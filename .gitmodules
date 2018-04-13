@@ -1,0 +1,3 @@
+[submodule "thirdparty/JUCE"]
+	path = thirdparty/JUCE
+	url = https://github.com/WeAreROLI/JUCE.git

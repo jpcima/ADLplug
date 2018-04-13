@@ -1,0 +1,65 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2017
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ADLplug - Standalone Plugin", "ADLplug_StandalonePlugin.vcxproj", "{E07CB8C1-FF5A-CEC4-0BF6-AA9C1677895B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{94B6638A-821E-8E7A-2B28-519C47E712D8} = {94B6638A-821E-8E7A-2B28-519C47E712D8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ADLplug - VST", "ADLplug_VST.vcxproj", "{144C23AC-E985-C79D-7513-193A575F7446}"
+	ProjectSection(ProjectDependencies) = postProject
+		{94B6638A-821E-8E7A-2B28-519C47E712D8} = {94B6638A-821E-8E7A-2B28-519C47E712D8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ADLplug - VST3", "ADLplug_VST3.vcxproj", "{BCD94B90-CC9A-5A92-BCBA-A7DEF93852B9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{94B6638A-821E-8E7A-2B28-519C47E712D8} = {94B6638A-821E-8E7A-2B28-519C47E712D8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ADLplug - AAX", "ADLplug_AAX.vcxproj", "{1638CB3E-6A71-8AE5-4780-1BBF7684E792}"
+	ProjectSection(ProjectDependencies) = postProject
+		{94B6638A-821E-8E7A-2B28-519C47E712D8} = {94B6638A-821E-8E7A-2B28-519C47E712D8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ADLplug - RTAS", "ADLplug_RTAS.vcxproj", "{A1E17920-1D7C-011F-C0ED-B1B55CC6430F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{94B6638A-821E-8E7A-2B28-519C47E712D8} = {94B6638A-821E-8E7A-2B28-519C47E712D8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ADLplug - Shared Code", "ADLplug_SharedCode.vcxproj", "{94B6638A-821E-8E7A-2B28-519C47E712D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{144C23AC-E985-C79D-7513-193A575F7446}.Debug|x64.ActiveCfg = Debug|x64
+		{144C23AC-E985-C79D-7513-193A575F7446}.Debug|x64.Build.0 = Debug|x64
+		{144C23AC-E985-C79D-7513-193A575F7446}.Release|x64.ActiveCfg = Release|x64
+		{144C23AC-E985-C79D-7513-193A575F7446}.Release|x64.Build.0 = Release|x64
+		{BCD94B90-CC9A-5A92-BCBA-A7DEF93852B9}.Debug|x64.ActiveCfg = Debug|x64
+		{BCD94B90-CC9A-5A92-BCBA-A7DEF93852B9}.Debug|x64.Build.0 = Debug|x64
+		{BCD94B90-CC9A-5A92-BCBA-A7DEF93852B9}.Release|x64.ActiveCfg = Release|x64
+		{BCD94B90-CC9A-5A92-BCBA-A7DEF93852B9}.Release|x64.Build.0 = Release|x64
+		{1638CB3E-6A71-8AE5-4780-1BBF7684E792}.Debug|x64.ActiveCfg = Debug|x64
+		{1638CB3E-6A71-8AE5-4780-1BBF7684E792}.Debug|x64.Build.0 = Debug|x64
+		{1638CB3E-6A71-8AE5-4780-1BBF7684E792}.Release|x64.ActiveCfg = Release|x64
+		{1638CB3E-6A71-8AE5-4780-1BBF7684E792}.Release|x64.Build.0 = Release|x64
+		{A1E17920-1D7C-011F-C0ED-B1B55CC6430F}.Debug|x64.ActiveCfg = Debug|x64
+		{A1E17920-1D7C-011F-C0ED-B1B55CC6430F}.Debug|x64.Build.0 = Debug|x64
+		{A1E17920-1D7C-011F-C0ED-B1B55CC6430F}.Release|x64.ActiveCfg = Release|x64
+		{A1E17920-1D7C-011F-C0ED-B1B55CC6430F}.Release|x64.Build.0 = Release|x64
+		{E07CB8C1-FF5A-CEC4-0BF6-AA9C1677895B}.Debug|x64.ActiveCfg = Debug|x64
+		{E07CB8C1-FF5A-CEC4-0BF6-AA9C1677895B}.Debug|x64.Build.0 = Debug|x64
+		{E07CB8C1-FF5A-CEC4-0BF6-AA9C1677895B}.Release|x64.ActiveCfg = Release|x64
+		{E07CB8C1-FF5A-CEC4-0BF6-AA9C1677895B}.Release|x64.Build.0 = Release|x64
+		{94B6638A-821E-8E7A-2B28-519C47E712D8}.Debug|x64.ActiveCfg = Debug|x64
+		{94B6638A-821E-8E7A-2B28-519C47E712D8}.Debug|x64.Build.0 = Debug|x64
+		{94B6638A-821E-8E7A-2B28-519C47E712D8}.Release|x64.ActiveCfg = Release|x64
+		{94B6638A-821E-8E7A-2B28-519C47E712D8}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
