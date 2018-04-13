@@ -37,8 +37,8 @@ message("Build VST3: ${ADLplug_VST3}")
 message("Build LV2: ${ADLplug_LV2}")
 
 add_library(ADLplug_core STATIC
-  sources/plugin_editor.cpp
-  sources/plugin_processor.cpp)
+  "sources/plugin_editor.cpp"
+  "sources/plugin_processor.cpp")
 target_link_libraries(ADLplug_core
   PRIVATE juce_core juce_events juce_data_structures
   juce_audio_basics juce_audio_devices juce_audio_formats juce_audio_processors juce_audio_utils
@@ -71,4 +71,12 @@ if(ADLplug_LV2)
     set_property(TARGET ADLplug_LV2 APPEND_STRING
       PROPERTY LINK_FLAGS " -Wl,-u,lv2_generate_ttl,-u,lv2_descriptor,-u,lv2ui_descriptor")
   endif()
+
+  set(ADLplug_LV2_INSTALL_DIR "lib/lv2/ADLplug.git")
+  install(TARGETS ADLplug_LV2 DESTINATION "${ADLplug_LV2_INSTALL_DIR}")
+  install(FILES
+    "resources/lv2/libADLplug_LV2.ttl"
+    "resources/lv2/manifest.ttl"
+    "resources/lv2/presets.ttl"
+    DESTINATION "${ADLplug_LV2_INSTALL_DIR}")
 endif()
