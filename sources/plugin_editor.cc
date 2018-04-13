@@ -12,17 +12,17 @@
 #include "plugin_processor.h"
 
 //==============================================================================
-AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(
-    AdlplugAudioProcessor &p)
-    : AudioProcessorEditor(&p)
-    , processor(p)
+AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &p)
+    : AudioProcessorEditor(&p) , processor(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize(400, 300);
 }
 
-AdlplugAudioProcessorEditor::~AdlplugAudioProcessorEditor() {}
+AdlplugAudioProcessorEditor::~AdlplugAudioProcessorEditor()
+{
+}
 
 //==============================================================================
 void AdlplugAudioProcessorEditor::paint(Graphics &g)

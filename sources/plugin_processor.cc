@@ -13,57 +13,34 @@
 
 //==============================================================================
 AdlplugAudioProcessor::AdlplugAudioProcessor()
-#ifndef JucePlugin_PreferredChannelConfigurations
-    : AudioProcessor(BusesProperties()
-#if !JucePlugin_IsMidiEffect
-#if !JucePlugin_IsSynth
-                     .withInput("Input", AudioChannelSet::stereo(), true)
-#endif
-                     .withOutput("Output", AudioChannelSet::stereo(), true)
-#endif
-        )
-#endif
+    : AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true))
 {
 }
 
 AdlplugAudioProcessor::~AdlplugAudioProcessor() {}
 
 //==============================================================================
-const String
-AdlplugAudioProcessor::getName() const
+const String AdlplugAudioProcessor::getName() const
 {
     return JucePlugin_Name;
 }
 
 bool AdlplugAudioProcessor::acceptsMidi() const
 {
-#if JucePlugin_WantsMidiInput
     return true;
-#else
-    return false;
-#endif
 }
 
 bool AdlplugAudioProcessor::producesMidi() const
 {
-#if JucePlugin_ProducesMidiOutput
-    return true;
-#else
     return false;
-#endif
 }
 
 bool AdlplugAudioProcessor::isMidiEffect() const
 {
-#if JucePlugin_IsMidiEffect
-    return true;
-#else
     return false;
-#endif
 }
 
-double
-AdlplugAudioProcessor::getTailLengthSeconds() const
+double AdlplugAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
 }
@@ -84,8 +61,7 @@ void AdlplugAudioProcessor::setCurrentProgram(int index)
 {
 }
 
-const String
-AdlplugAudioProcessor::getProgramName(int index)
+const String AdlplugAudioProcessor::getProgramName(int index)
 {
     return {};
 }
@@ -107,66 +83,29 @@ void AdlplugAudioProcessor::releaseResources()
     // spare memory, etc.
 }
 
-#ifndef JucePlugin_PreferredChannelConfigurations
 bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
 {
-#if JucePlugin_IsMidiEffect
-    ignoreUnused(layouts);
-    return true;
-#else
-    // This is the place where you check if the layout is supported.
-    // In this template code we only support mono or stereo.
-    if (layouts.getMainOutputChannelSet() != AudioChannelSet::mono() && layouts.getMainOutputChannelSet() != AudioChannelSet::stereo())
-        return false;
-
-    // This checks if the input layout matches the output layout
-#if !JucePlugin_IsSynth
-    if (layouts.getMainOutputChannelSet() != layouts.getMainInputChannelSet())
-        return false;
-#endif
-
-    return true;
-#endif
+    return layouts.getMainOutputChannelSet() == AudioChannelSet::stereo();
 }
-#endif
 
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                          MidiBuffer &midiMessages)
 {
     ScopedNoDenormals noDenormals;
-    auto totalNumInputChannels = getTotalNumInputChannels();
-    auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-    // In case we have more outputs than inputs, this code clears any output
-    // channels that didn't contain input data, (because these aren't
-    // guaranteed to be empty - they may contain garbage).
-    // This is here to avoid people getting screaming feedback
-    // when they first compile a plugin, but obviously you don't need to keep
-    // this code if your algorithm always overwrites all the output channels.
-    for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-        buffer.clear(i, 0, buffer.getNumSamples());
+    float *left = buffer.getWritePointer(0);
+    float *right = buffer.getWritePointer(1);
 
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-    // Make sure to reset the state if your inner loop is processing
-    // the samples and the outer loop is handling the channels.
-    // Alternatively, you can process the samples with the channels
-    // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel) {
-        auto *channelData = buffer.getWritePointer(channel);
-
-        // ..do something to the data...
-    }
+    // TODO process
 }
 
 //==============================================================================
 bool AdlplugAudioProcessor::hasEditor() const
 {
-    return true; // (change this to false if you choose to not supply an editor)
+    return true;
 }
 
-AudioProcessorEditor *
-AdlplugAudioProcessor::createEditor()
+AudioProcessorEditor *AdlplugAudioProcessor::createEditor()
 {
     return new AdlplugAudioProcessorEditor(*this);
 }
@@ -188,8 +127,7 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int sizeInByte
 
 //==============================================================================
 // This creates new instances of the plugin..
-AudioProcessor *JUCE_CALLTYPE
-createPluginFilter()
+AudioProcessor *JUCE_CALLTYPE createPluginFilter()
 {
     return new AdlplugAudioProcessor();
 }
