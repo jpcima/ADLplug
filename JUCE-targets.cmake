@@ -30,7 +30,7 @@ target_link_libraries(juce_gui_basics PUBLIC juce_gui_extra)
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   # Windows
   # TODO
-elif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   # Mac
   # TODO
 else()
