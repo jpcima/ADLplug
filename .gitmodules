@@ -4,3 +4,6 @@
 [submodule "thirdparty/vst3sdk"]
 	path = thirdparty/vst3sdk
 	url = https://github.com/steinbergmedia/vst3sdk.git
+[submodule "thirdparty/libADLMIDI"]
+	path = thirdparty/libADLMIDI
+	url = https://github.com/Wohlstand/libADLMIDI.git

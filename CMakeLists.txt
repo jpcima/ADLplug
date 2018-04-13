@@ -13,6 +13,15 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   endif()
 endif()
 
+### ADLMIDI
+set(WITH_MIDI_SEQUENCER OFF CACHE STRING "")
+set(WITH_MUS_SUPPORT OFF CACHE STRING "")
+set(WITH_XMI_SUPPORT OFF CACHE STRING "")
+set(libADLMIDI_STATIC ON CACHE STRING "")
+set(libADLMIDI_SHARED OFF CACHE STRING "")
+add_subdirectory("thirdparty/libADLMIDI")
+
+###
 include("${CMAKE_SOURCE_DIR}/JUCE-targets.cmake")
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows" OR
@@ -49,11 +58,14 @@ message("Build LV2: ${ADLplug_LV2}")
 
 add_library(ADLplug_core STATIC
   "sources/plugin_editor.cc"
-  "sources/plugin_processor.cc")
+  "sources/plugin_processor.cc"
+  "sources/adl/player.cc")
+target_include_directories(ADLplug_core PRIVATE "sources")
 target_link_libraries(ADLplug_core
   PRIVATE juce_core juce_events juce_data_structures
   juce_audio_basics juce_audio_devices juce_audio_formats juce_audio_processors juce_audio_utils
-  juce_graphics juce_gui_basics juce_gui_extra)
+  juce_graphics juce_gui_basics juce_gui_extra
+  PRIVATE ADLMIDI_static)
 set_property(TARGET ADLplug_core
   PROPERTY POSITION_INDEPENDENT_CODE ON)
 

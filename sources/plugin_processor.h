@@ -1,16 +1,13 @@
-/*
-  ==============================================================================
-
-  This file was auto-generated!
-
-  It contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
+//          Copyright Jean Pierre Cimalando 2018.
+// Distributed under the Boost Software License, Version 1.0.
+//    (See accompanying file LICENSE or copy at
+//          http://www.boost.org/LICENSE_1_0.txt)
 
 #pragma once
 
+#include "adl/player.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <memory>
 
 //==============================================================================
 /**
@@ -53,6 +50,7 @@ public:
     void setStateInformation(const void *data, int sizeInBytes) override;
 
 private:
+    std::unique_ptr<Generic_Player> player_;
     //==========================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessor)
 };

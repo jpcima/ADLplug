@@ -1,12 +1,7 @@
-/*
-  ==============================================================================
-
-  This file was auto-generated!
-
-  It contains the basic framework code for a JUCE plugin processor.
-
-  ==============================================================================
-*/
+//          Copyright Jean Pierre Cimalando 2018.
+// Distributed under the Boost Software License, Version 1.0.
+//    (See accompanying file LICENSE or copy at
+//          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "plugin_processor.h"
 #include "plugin_editor.h"
@@ -66,21 +61,25 @@ const String AdlplugAudioProcessor::getProgramName(int index)
     return {};
 }
 
-void AdlplugAudioProcessor::changeProgramName(int index, const String &newName)
+void AdlplugAudioProcessor::changeProgramName(int index, const String &new_name)
 {
 }
 
 //==============================================================================
-void AdlplugAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
+void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    Generic_Player *pl = instantiate_player(Player_Type::OPL3);
+    player_.reset(pl);
+    pl->init(sample_rate);
 }
 
 void AdlplugAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
+    player_.reset();
 }
 
 bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
@@ -89,14 +88,23 @@ bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) c
 }
 
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
-                                         MidiBuffer &midiMessages)
+                                         MidiBuffer &midi_messages)
 {
     ScopedNoDenormals noDenormals;
 
+    Generic_Player *pl = player_.get();
+    unsigned nframes = buffer.getNumSamples();
     float *left = buffer.getWritePointer(0);
     float *right = buffer.getWritePointer(1);
 
-    // TODO process
+    const uint8_t *midi_data;
+    int midi_size;
+    int sample_position;
+    MidiBuffer::Iterator it(midi_messages);
+    while (it.getNextEvent(midi_data, midi_size, sample_position))
+        pl->play_midi(midi_data, midi_size);
+
+    pl->generate(left, right, nframes, 1);
 }
 
 //==============================================================================
@@ -111,14 +119,14 @@ AudioProcessorEditor *AdlplugAudioProcessor::createEditor()
 }
 
 //==============================================================================
-void AdlplugAudioProcessor::getStateInformation(MemoryBlock &destData)
+void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 }
 
-void AdlplugAudioProcessor::setStateInformation(const void *data, int sizeInBytes)
+void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
 {
     // You should use this method to restore your parameters from this memory
     // block, whose contents will have been created by the getStateInformation()
