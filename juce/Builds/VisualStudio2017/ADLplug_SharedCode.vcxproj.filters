@@ -107,6 +107,12 @@
     <Filter Include="JUCE Modules\juce_audio_plugin_client\AU">
       <UniqueIdentifier>{355704C0-2A0C-6AFD-71D3-80264445D7DF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JUCE Modules\juce_audio_plugin_client\LV2\includes">
+      <UniqueIdentifier>{B9061690-46C5-F193-18C9-8F2AE361A95F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JUCE Modules\juce_audio_plugin_client\LV2">
+      <UniqueIdentifier>{8FF7E4BF-402D-E88A-60F1-F4B63E830502}</UniqueIdentifier>
+    </Filter>
     <Filter Include="JUCE Modules\juce_audio_plugin_client\Standalone">
       <UniqueIdentifier>{725C0EA8-9736-764D-81E6-01695B6B00B3}</UniqueIdentifier>
     </Filter>
@@ -355,10 +361,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\sources\plugin_editor.cpp">
+    <ClCompile Include="..\..\..\sources\plugin_editor.cc">
       <Filter>ADLplug\sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sources\plugin_processor.cpp">
+    <ClCompile Include="..\..\..\sources\plugin_processor.cc">
       <Filter>ADLplug\sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
@@ -760,6 +766,9 @@
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\AU\CoreAudioUtilityClasses\MusicDeviceBase.cpp">
       <Filter>JUCE Modules\juce_audio_plugin_client\AU\CoreAudioUtilityClasses</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\juce_LV2_Wrapper.cpp">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\Standalone\juce_StandaloneFilterApp.cpp">
       <Filter>JUCE Modules\juce_audio_plugin_client\Standalone</Filter>
     </ClCompile>
@@ -771,6 +780,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\VST\juce_VST_Wrapper.mm">
       <Filter>JUCE Modules\juce_audio_plugin_client\VST</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\juce_audio_plugin_client_LV2.cpp">
+      <Filter>JUCE Modules\juce_audio_plugin_client</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\juce_audio_plugin_client_utils.cpp">
       <Filter>JUCE Modules\juce_audio_plugin_client</Filter>
@@ -2143,6 +2155,9 @@
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_formats.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_plugin_client_LV2.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_plugin_client_utils.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -2732,6 +2747,57 @@
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\AU\CoreAudioUtilityClasses\MusicDeviceBase.h">
       <Filter>JUCE Modules\juce_audio_plugin_client\AU\CoreAudioUtilityClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\atom-util.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\atom.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\buf-size.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\instance-access.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\lv2.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\lv2_external_ui.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\lv2_programs.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\midi.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\options.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\parameters.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\port-props.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\presets.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\state.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\time.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\ui.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\units.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\includes\urid.h">
+      <Filter>JUCE Modules\juce_audio_plugin_client\LV2\includes</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\Standalone\juce_StandaloneFilterWindow.h">
       <Filter>JUCE Modules\juce_audio_plugin_client\Standalone</Filter>

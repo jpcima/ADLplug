@@ -94,11 +94,12 @@ OBJECTS_STANDALONE_PLUGIN := \
   $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o \
 
 OBJECTS_SHARED_CODE := \
-  $(JUCE_OBJDIR)/plugin_editor_974545a8.o \
-  $(JUCE_OBJDIR)/plugin_processor_69d5a081.o \
+  $(JUCE_OBJDIR)/plugin_editor_4e133bb.o \
+  $(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_68f957b.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_6eefc5f1.o \
   $(JUCE_OBJDIR)/include_juce_audio_formats_21d6c8f0.o \
+  $(JUCE_OBJDIR)/include_juce_audio_plugin_client_LV2_e2b46ad4.o \
   $(JUCE_OBJDIR)/include_juce_audio_plugin_client_utils_baa4955d.o \
   $(JUCE_OBJDIR)/include_juce_audio_processors_5ced3317.o \
   $(JUCE_OBJDIR)/include_juce_audio_utils_a3a1cb85.o \
@@ -148,14 +149,14 @@ $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o: ../../../
 	@echo "Compiling include_juce_audio_plugin_client_Standalone.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_STANDALONE_PLUGIN) $(JUCE_CFLAGS_STANDALONE_PLUGIN) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/plugin_editor_974545a8.o: ../../../sources/plugin_editor.cpp
+$(JUCE_OBJDIR)/plugin_editor_4e133bb.o: ../../../sources/plugin_editor.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling plugin_editor.cpp"
+	@echo "Compiling plugin_editor.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/plugin_processor_69d5a081.o: ../../../sources/plugin_processor.cpp
+$(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o: ../../../sources/plugin_processor.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling plugin_processor.cpp"
+	@echo "Compiling plugin_processor.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/include_juce_audio_basics_68f957b.o: ../../../JuceLibraryCode/include_juce_audio_basics.cpp
@@ -171,6 +172,11 @@ $(JUCE_OBJDIR)/include_juce_audio_devices_6eefc5f1.o: ../../../JuceLibraryCode/i
 $(JUCE_OBJDIR)/include_juce_audio_formats_21d6c8f0.o: ../../../JuceLibraryCode/include_juce_audio_formats.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling include_juce_audio_formats.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_juce_audio_plugin_client_LV2_e2b46ad4.o: ../../../JuceLibraryCode/include_juce_audio_plugin_client_LV2.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_juce_audio_plugin_client_LV2.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/include_juce_audio_plugin_client_utils_baa4955d.o: ../../../JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp

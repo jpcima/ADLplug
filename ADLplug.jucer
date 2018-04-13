@@ -9,11 +9,11 @@
               aaxIdentifier="jpcima.ADLplug">
   <MAINGROUP id="faq0v0" name="ADLplug">
     <GROUP id="{57FD1426-D8BF-7CCC-6B25-2A7108A4390B}" name="sources">
-      <FILE id="FSPDYz" name="plugin_editor.cpp" compile="1" resource="0"
-            file="sources/plugin_editor.cpp"/>
+      <FILE id="LbE9y8" name="plugin_editor.cc" compile="1" resource="0"
+            file="sources/plugin_editor.cc"/>
       <FILE id="QxGCKT" name="plugin_editor.h" compile="0" resource="0" file="sources/plugin_editor.h"/>
-      <FILE id="mgfUvZ" name="plugin_processor.cpp" compile="1" resource="0"
-            file="sources/plugin_processor.cpp"/>
+      <FILE id="UBnJeF" name="plugin_processor.cc" compile="1" resource="0"
+            file="sources/plugin_processor.cc"/>
       <FILE id="QkXWb6" name="plugin_processor.h" compile="0" resource="0"
             file="sources/plugin_processor.h"/>
     </GROUP>
