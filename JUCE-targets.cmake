@@ -24,15 +24,27 @@ target_link_libraries(juce_audio_utils PUBLIC juce_gui_extra juce_audio_processo
 target_link_libraries(juce_gui_basics PUBLIC juce_graphics juce_data_structures)
 target_link_libraries(juce_gui_extra PUBLIC juce_gui_basics)
 
-# need this circular link dependency on X11
-target_link_libraries(juce_gui_basics PUBLIC juce_gui_extra)
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  # need this circular link dependency on Windows
+  target_link_libraries(juce_events PUBLIC juce_gui_extra)
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+else()
+  # need this circular link dependency on X11
+  target_link_libraries(juce_gui_basics PUBLIC juce_gui_extra)
+endif()
 
 find_package(Threads REQUIRED)
 target_link_libraries(juce_core PRIVATE ${CMAKE_THREAD_LIBS_INIT})
 
+add_library(vst3sdk INTERFACE)
+target_include_directories(vst3sdk INTERFACE "${PROJECT_SOURCE_DIR}/thirdparty/vst3sdk")
+
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   # Windows
   # TODO
+
+  target_link_libraries(juce_core PRIVATE winmm wininet ws2_32 shlwapi version)
+  target_link_libraries(juce_gui_basics PRIVATE imm32)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   # Mac
   # TODO
@@ -78,7 +90,7 @@ if(ADLplug_VST3)
     list(APPEND VST3_SOURCES "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm")
   endif()
   add_juce_module(juce_audio_plugin_client_VST3 ${VST3_SOURCES})
-  target_link_libraries(juce_audio_plugin_client_VST3 PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)
+  target_link_libraries(juce_audio_plugin_client_VST3 PUBLIC vst3sdk juce_gui_basics juce_audio_basics juce_audio_processors)
 endif()
 
 if(ADLplug_LV2)
@@ -89,7 +101,7 @@ if(ADLplug_LV2)
   target_link_libraries(juce_audio_plugin_client_LV2 PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)
 
   target_compile_definitions(juce_audio_plugin_client_LV2
-    PUBLIC "JucePlugin_Build_LV2"
+    PUBLIC "JucePlugin_Build_LV2=1"
     PUBLIC "JucePlugin_LV2URI=\"${ADLplug_URI}\"")
 endif()
 

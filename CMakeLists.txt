@@ -6,6 +6,13 @@ set(ADLplug_URI "https://github.com/jpcima/ADLplug")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(LinkHelpers)
 
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+  if(CMAKE_COMPILER_IS_GNUCXX)
+    # on MinGW JUCE defines a _WINNT_VER which disables some needed definitions
+    add_definitions("-DREPLACEFILE_IGNORE_ACL_ERRORS=0x4")
+  endif()
+endif()
+
 include("${CMAKE_SOURCE_DIR}/JUCE-targets.cmake")
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows" OR
