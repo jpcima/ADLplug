@@ -60,6 +60,14 @@ set_property(TARGET ADLplug_core
 macro(add_plugin NAME)
   add_library("${NAME}" MODULE ${ARGN})
   set_property(TARGET "${NAME}" PROPERTY PREFIX "")
+  if(CMAKE_SYSTEM_NAME STREQUAL "Windows" AND CMAKE_COMPILER_IS_GNUCXX)
+    # forces the static link of standard libraries
+    set_property(TARGET "${NAME}" APPEND_STRING
+      PROPERTY LINK_FLAGS " -static-libgcc -static-libstdc++")
+    # forces the static link of winpthread
+    set_property(TARGET "${NAME}" APPEND_STRING
+      PROPERTY LINK_FLAGS " -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,-Bdynamic,--no-whole-archive")
+  endif()
 endmacro()
 
 if(ADLplug_VST2)
@@ -91,7 +99,11 @@ endif()
 if(ADLplug_Standalone)
   add_executable(ADLplug_Standalone sources/main.cc)
   target_link_libraries(ADLplug_Standalone PRIVATE juce_audio_plugin_client_Standalone ADLplug_core)
-  require_symbols(ADLplug_Standalone "main")
+  if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    require_symbols(ADLplug_Standalone "_WinMain@16")
+  else()
+    require_symbols(ADLplug_Standalone "main")
+  endif()
   set_property(TARGET ADLplug_Standalone PROPERTY OUTPUT_NAME "ADLplug")
 
   install(TARGETS ADLplug_Standalone DESTINATION "bin")
