@@ -154,6 +154,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\ui\knob_component.cc"/>
     <ClCompile Include="..\..\..\sources\adl\player.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
@@ -1819,6 +1820,7 @@
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\JuceLibraryCode\BinaryData.cpp"/>
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_devices.cpp"/>
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_formats.cpp"/>
@@ -1834,6 +1836,7 @@
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\ui\knob_component.h"/>
     <ClInclude Include="..\..\..\sources\adl\player.h"/>
     <ClInclude Include="..\..\..\sources\plugin_editor.h"/>
     <ClInclude Include="..\..\..\sources\plugin_processor.h"/>
@@ -2482,9 +2485,11 @@
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\native\juce_mac_CarbonViewWrapperComponent.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.h"/>
     <ClInclude Include="..\..\..\JuceLibraryCode\AppConfig.h"/>
+    <ClInclude Include="..\..\..\JuceLibraryCode\BinaryData.h"/>
     <ClInclude Include="..\..\..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\resources\ui\knob-skin.png"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt"/>

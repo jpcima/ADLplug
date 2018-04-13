@@ -2,6 +2,12 @@
 
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="ADLplug\resources">
+      <UniqueIdentifier>{95FAA976-2189-7683-BA44-3180A641CA15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\sources\ui">
+      <UniqueIdentifier>{6006179A-8107-802D-704D-F74685683401}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\sources\adl">
       <UniqueIdentifier>{28E4F184-1528-C78F-B59B-C37CCB8E9989}</UniqueIdentifier>
     </Filter>
@@ -364,6 +370,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\ui\knob_component.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\adl\player.cc">
       <Filter>ADLplug\sources\adl</Filter>
     </ClCompile>
@@ -2152,6 +2161,9 @@
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.mm">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\JuceLibraryCode\BinaryData.cpp">
+      <Filter>JUCE Library Code</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_basics.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -2193,6 +2205,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\ui\knob_component.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\adl\player.h">
       <Filter>ADLplug\sources\adl</Filter>
     </ClInclude>
@@ -4137,11 +4152,17 @@
     <ClInclude Include="..\..\..\JuceLibraryCode\AppConfig.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\JuceLibraryCode\BinaryData.h">
+      <Filter>JUCE Library Code</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\resources\ui\knob-skin.png">
+      <Filter>ADLplug\resources</Filter>
+    </None>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt">
       <Filter>JUCE Modules\juce_audio_formats\codecs\flac</Filter>
     </None>

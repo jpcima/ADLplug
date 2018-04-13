@@ -59,8 +59,11 @@ message("Build VST3: ${ADLplug_VST3}")
 message("Build LV2: ${ADLplug_LV2}")
 
 add_library(ADLplug_core STATIC
+  "JuceLibraryCode/BinaryData.cpp"
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
+  "sources/ui/knob_component.cc"
+  "sources/ui/image_utils.cc"
   "sources/adl/player.cc")
 target_include_directories(ADLplug_core PRIVATE "sources")
 target_link_libraries(ADLplug_core
