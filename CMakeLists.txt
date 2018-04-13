@@ -32,6 +32,9 @@ else()
     set(ADLplug_LV2 "ON" CACHE STRING "" FORCE)
   endif()
 endif()
+if(NOT DEFINED ADLplug_Standalone)
+  set(ADLplug_Standalone "ON" CACHE STRING "" FORCE)
+endif()
 
 message("Build VST2: ${ADLplug_VST2}")
 message("Build VST3: ${ADLplug_VST3}")
@@ -76,4 +79,13 @@ if(ADLplug_LV2)
     "resources/lv2/manifest.ttl"
     "resources/lv2/presets.ttl"
     DESTINATION "${ADLplug_LV2_INSTALL_DIR}")
+endif()
+
+if(ADLplug_Standalone)
+  add_executable(ADLplug_Standalone sources/main.cc)
+  target_link_libraries(ADLplug_Standalone PRIVATE juce_audio_plugin_client_Standalone ADLplug_core)
+  require_symbols(ADLplug_Standalone "main")
+  set_property(TARGET ADLplug_Standalone PROPERTY OUTPUT_NAME "ADLplug")
+
+  install(TARGETS ADLplug_Standalone DESTINATION "bin")
 endif()

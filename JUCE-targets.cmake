@@ -27,6 +27,9 @@ target_link_libraries(juce_gui_extra PUBLIC juce_gui_basics)
 # need this circular link dependency on X11
 target_link_libraries(juce_gui_basics PUBLIC juce_gui_extra)
 
+find_package(Threads REQUIRED)
+target_link_libraries(juce_core PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   # Windows
   # TODO
@@ -37,8 +40,18 @@ else()
   # Linux and others
   include(FindPkgConfig)
   #
+  target_link_libraries(juce_core PRIVATE dl)
+  #
+  find_package(ALSA REQUIRED)
+  target_link_libraries(juce_audio_devices PRIVATE ${ALSA_LIBRARIES})
+  target_include_directories(juce_audio_devices PRIVATE ${ALSA_INCLUDE_DIRS})
+  #
   find_package(Freetype REQUIRED)
   target_link_libraries(juce_graphics PRIVATE Freetype::Freetype)
+  #
+  find_package(X11 REQUIRED)
+  target_link_libraries(juce_gui_basics PRIVATE ${X11_LIBRARIES})
+  target_include_directories(juce_gui_basics PRIVATE ${X11_INCLUDE_DIRS})
   #
   pkg_check_modules(GTK gtk+-3.0 REQUIRED)
   target_link_libraries(juce_gui_extra PRIVATE ${GTK_LIBRARIES})
@@ -78,4 +91,12 @@ if(ADLplug_LV2)
   target_compile_definitions(juce_audio_plugin_client_LV2
     PUBLIC "JucePlugin_Build_LV2"
     PUBLIC "JucePlugin_LV2URI=\"${ADLplug_URI}\"")
+endif()
+
+if(ADLplug_Standalone)
+  set(Standalone_SOURCES
+    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_Standalone.cpp")
+  add_juce_module(juce_audio_plugin_client_Standalone ${Standalone_SOURCES})
+  target_link_libraries(juce_audio_plugin_client_Standalone PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)
 endif()
