@@ -110,6 +110,18 @@ if(ADLplug_VST3)
   target_link_libraries(juce_audio_plugin_client_VST3 PUBLIC vst3sdk juce_gui_basics juce_audio_basics juce_audio_processors)
 endif()
 
+if(ADLplug_AU)
+  set(AU_SOURCES
+    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_AU_1.mm"
+    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_AU_2.mm"
+    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_AU.r"
+    #"${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_AUv3.mm"
+    )
+  add_juce_module(juce_audio_plugin_client_AU ${AU_SOURCES})
+  target_link_libraries(juce_audio_plugin_client_AU PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)
+endif()
+
 if(ADLplug_LV2)
   set(LV2_SOURCES
     "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
