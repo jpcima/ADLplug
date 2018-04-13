@@ -2,6 +2,9 @@
 
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="ADLplug\sources\adl">
+      <UniqueIdentifier>{28E4F184-1528-C78F-B59B-C37CCB8E9989}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\sources">
       <UniqueIdentifier>{337050D3-2325-64ED-EBA1-66A581B1107F}</UniqueIdentifier>
     </Filter>
@@ -361,6 +364,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\adl\player.cc">
+      <Filter>ADLplug\sources\adl</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\plugin_editor.cc">
       <Filter>ADLplug\sources</Filter>
     </ClCompile>
@@ -2187,6 +2193,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\adl\player.h">
+      <Filter>ADLplug\sources\adl</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\plugin_editor.h">
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
