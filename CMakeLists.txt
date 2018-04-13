@@ -41,8 +41,8 @@ message("Build VST3: ${ADLplug_VST3}")
 message("Build LV2: ${ADLplug_LV2}")
 
 add_library(ADLplug_core STATIC
-  "sources/plugin_editor.cpp"
-  "sources/plugin_processor.cpp")
+  "sources/plugin_editor.cc"
+  "sources/plugin_processor.cc")
 target_link_libraries(ADLplug_core
   PRIVATE juce_core juce_events juce_data_structures
   juce_audio_basics juce_audio_devices juce_audio_formats juce_audio_processors juce_audio_utils

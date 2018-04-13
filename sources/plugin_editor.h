@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    This file was auto-generated!
+  This file was auto-generated!
 
-    It contains the basic framework code for a JUCE plugin editor.
+  It contains the basic framework code for a JUCE plugin editor.
 
   ==============================================================================
 */
@@ -15,21 +15,20 @@
 
 //==============================================================================
 /**
-*/
-class AdlplugAudioProcessorEditor  : public AudioProcessorEditor
-{
+ */
+class AdlplugAudioProcessorEditor : public AudioProcessorEditor {
 public:
-    AdlplugAudioProcessorEditor (AdlplugAudioProcessor&);
+    AdlplugAudioProcessorEditor(AdlplugAudioProcessor &);
     ~AdlplugAudioProcessorEditor();
 
-    //==============================================================================
-    void paint (Graphics&) override;
+    //==========================================================================
+    void paint(Graphics &) override;
     void resized() override;
 
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    AdlplugAudioProcessor& processor;
+    AdlplugAudioProcessor &processor;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AdlplugAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessorEditor)
 };
