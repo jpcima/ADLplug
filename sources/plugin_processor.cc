@@ -12,7 +12,9 @@ AdlplugAudioProcessor::AdlplugAudioProcessor()
 {
 }
 
-AdlplugAudioProcessor::~AdlplugAudioProcessor() {}
+AdlplugAudioProcessor::~AdlplugAudioProcessor()
+{
+}
 
 //==============================================================================
 const String AdlplugAudioProcessor::getName() const
