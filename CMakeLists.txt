@@ -11,6 +11,8 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # on MinGW JUCE defines a _WINNT_VER which disables some needed definitions
     add_definitions("-DREPLACEFILE_IGNORE_ACL_ERRORS=0x4")
   endif()
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
 endif()
 
 ### ADLMIDI
