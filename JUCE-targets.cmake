@@ -41,13 +41,30 @@ target_include_directories(vst3sdk INTERFACE "${PROJECT_SOURCE_DIR}/thirdparty/v
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   # Windows
-  # TODO
-
   target_link_libraries(juce_core PRIVATE winmm wininet ws2_32 shlwapi version)
   target_link_libraries(juce_gui_basics PRIVATE imm32)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   # Mac
-  # TODO
+  find_library(FOUNDATION_LIBRARY "Foundation")
+  find_library(COCOA_LIBRARY "Cocoa")
+  find_library(CORE_SERVICES_LIBRARY "CoreServices")
+  find_library(APPLICATION_SERVICES_LIBRARY "ApplicationServices")
+  find_library(CORE_AUDIO_LIBRARY "CoreAudio")
+  find_library(CORE_MIDI_LIBRARY "CoreMIDI")
+  find_library(AUDIO_TOOLBOX_LIBRARY "AudioToolbox")
+  find_library(ACCELERATE_LIBRARY "Accelerate")
+  find_library(CORE_IMAGE_LIBRARY "CoreImage")
+  find_library(IOKIT_LIBRARY "IOKit")
+  target_link_libraries(juce_core PRIVATE "${FOUNDATION_LIBRARY}")
+  target_link_libraries(juce_core PRIVATE "${COCOA_LIBRARY}")
+  target_link_libraries(juce_core PRIVATE "${CORE_SERVICES_LIBRARY}")
+  target_link_libraries(juce_core PRIVATE "${APPLICATION_SERVICES_LIBRARY}")
+  target_link_libraries(juce_audio_basics PRIVATE "${ACCELERATE_LIBRARY}")
+  target_link_libraries(juce_audio_devices PRIVATE "${CORE_AUDIO_LIBRARY}")
+  target_link_libraries(juce_audio_devices PRIVATE "${CORE_MIDI_LIBRARY}")
+  target_link_libraries(juce_audio_formats PRIVATE "${AUDIO_TOOLBOX_LIBRARY}")
+  target_link_libraries(juce_graphics PRIVATE "${CORE_IMAGE_LIBRARY}")
+  target_link_libraries(juce_gui_basics PRIVATE "${IOKIT_LIBRARY}")
 else()
   # Linux and others
   include(FindPkgConfig)

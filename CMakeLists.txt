@@ -73,7 +73,7 @@ endmacro()
 if(ADLplug_VST2)
   add_plugin(ADLplug_VST2)
   target_link_libraries(ADLplug_VST2 PRIVATE juce_audio_plugin_client_VST2 ADLplug_core)
-  require_symbols(ADLplug_VST2 "main" "VSTPluginMain")
+  require_symbols(ADLplug_VST2 "VSTPluginMain")
 endif()
 
 if(ADLplug_VST3)
