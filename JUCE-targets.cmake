@@ -64,3 +64,15 @@ if(ADLplug_VST3)
   add_juce_module(juce_audio_plugin_client_VST3 ${VST3_SOURCES})
   target_link_libraries(juce_audio_plugin_client_VST3 PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)
 endif()
+
+if(ADLplug_LV2)
+  set(LV2_SOURCES
+    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_LV2.cpp")
+  add_juce_module(juce_audio_plugin_client_LV2 ${LV2_SOURCES})
+  target_link_libraries(juce_audio_plugin_client_LV2 PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)
+
+  target_compile_definitions(juce_audio_plugin_client_LV2
+    PUBLIC "JucePlugin_Build_LV2"
+    PUBLIC "JucePlugin_LV2URI=\"${ADLplug_URI}\"")
+endif()
