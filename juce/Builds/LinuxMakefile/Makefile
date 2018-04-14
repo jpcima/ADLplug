@@ -94,9 +94,10 @@ OBJECTS_STANDALONE_PLUGIN := \
   $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o \
 
 OBJECTS_SHARED_CODE := \
+  $(JUCE_OBJDIR)/graphics_utils_35f53d7c.o \
   $(JUCE_OBJDIR)/image_utils_a38eb576.o \
   $(JUCE_OBJDIR)/knob_component_5796d5a5.o \
-  $(JUCE_OBJDIR)/operator_editor_f8b760e8.o \
+  $(JUCE_OBJDIR)/operator_editor_6b1eb07b.o \
   $(JUCE_OBJDIR)/player_38a5f121.o \
   $(JUCE_OBJDIR)/plugin_editor_4e133bb.o \
   $(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o \
@@ -154,6 +155,11 @@ $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o: ../../../
 	@echo "Compiling include_juce_audio_plugin_client_Standalone.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_STANDALONE_PLUGIN) $(JUCE_CFLAGS_STANDALONE_PLUGIN) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/graphics_utils_35f53d7c.o: ../../../sources/ui/graphics_utils.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling graphics_utils.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/image_utils_a38eb576.o: ../../../sources/ui/image_utils.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling image_utils.cc"
@@ -164,9 +170,9 @@ $(JUCE_OBJDIR)/knob_component_5796d5a5.o: ../../../sources/ui/knob_component.cc
 	@echo "Compiling knob_component.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/operator_editor_f8b760e8.o: ../../../sources/ui/operator_editor.cpp
+$(JUCE_OBJDIR)/operator_editor_6b1eb07b.o: ../../../sources/ui/operator_editor.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling operator_editor.cpp"
+	@echo "Compiling operator_editor.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/player_38a5f121.o: ../../../sources/adl/player.cc

@@ -14,7 +14,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{94B6638A-821E-8E7A-2B28-519C47E712D8}</ProjectGuid>
+    <ProjectGuid>{82B9358C-F93E-6DA8-D358-EFA6C41AAE12}</ProjectGuid>
     <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -154,9 +154,10 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc"/>
     <ClCompile Include="..\..\..\sources\ui\image_utils.cc"/>
     <ClCompile Include="..\..\..\sources\ui\knob_component.cc"/>
-    <ClCompile Include="..\..\..\sources\ui\operator_editor.cpp"/>
+    <ClCompile Include="..\..\..\sources\ui\operator_editor.cc"/>
     <ClCompile Include="..\..\..\sources\adl\player.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
@@ -1838,6 +1839,7 @@
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\ui\graphics_utils.h"/>
     <ClInclude Include="..\..\..\sources\ui\image_utils.h"/>
     <ClInclude Include="..\..\..\sources\ui\knob_component.h"/>
     <ClInclude Include="..\..\..\sources\ui\operator_editor.h"/>
@@ -2495,6 +2497,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\resources\ui\knob-skin.png"/>
+    <None Include="..\..\..\resources\ui\logo.png"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt"/>

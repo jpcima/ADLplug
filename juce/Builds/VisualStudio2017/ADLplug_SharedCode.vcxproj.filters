@@ -370,13 +370,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\image_utils.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\knob_component.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\operator_editor.cpp">
+    <ClCompile Include="..\..\..\sources\ui\operator_editor.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\adl\player.cc">
@@ -2211,6 +2214,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\ui\graphics_utils.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\image_utils.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
@@ -4176,6 +4182,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\resources\ui\knob-skin.png">
+      <Filter>ADLplug\resources</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\logo.png">
       <Filter>ADLplug\resources</Filter>
     </None>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt">
