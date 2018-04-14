@@ -10,14 +10,16 @@
 AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &p)
     : AudioProcessorEditor(&p) , processor(p)
 {
-#warning XXX test only
-    knob_ = new Knob;
-    addAndMakeVisible(knob_);
-    knob_->load_skin_data(BinaryData::knobskin_png, BinaryData::knobskin_pngSize, 64);
+    logo_ = ImageFileFormat::loadFrom(BinaryData::logo_png, BinaryData::logo_pngSize);
+
+    for (int i = 0; i < 4; ++i) {
+        Operator_Editor *oped = oped_[i] = new Operator_Editor;
+        addAndMakeVisible(oped);
+    }
 
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize(400, 300);
+    setSize(800, 600);
 }
 
 AdlplugAudioProcessorEditor::~AdlplugAudioProcessorEditor()
@@ -33,9 +35,20 @@ void AdlplugAudioProcessorEditor::paint(Graphics &g)
     // solid colour)
     g.fillAll(lnf.findColour(ResizableWindow::backgroundColourId));
 
+    Rectangle<int> bounds = getLocalBounds();
+
+    //
+    const Image &logo = logo_;
+    bounds.removeFromTop(4);
+    Rectangle<int> toprow = bounds.removeFromTop(logo.getHeight());
+    toprow.removeFromLeft(8);
+    Point<int> logo_pos = toprow.getTopLeft();
+    g.drawImageAt(logo, logo_pos.getX(), logo_pos.getY());
+    toprow.removeFromLeft(logo.getWidth() + 8);
+    toprow.removeFromRight(24);
     g.setColour(Colours::white);
     g.setFont(15.0f);
-    g.drawFittedText("Hello World!", getLocalBounds(), Justification::centred, 1);
+    g.drawText("FM synthesizer with YMF262chip emulation", toprow, Justification::centred);
 }
 
 void AdlplugAudioProcessorEditor::resized()
@@ -46,7 +59,12 @@ void AdlplugAudioProcessorEditor::resized()
     Rectangle<int> bounds = getLocalBounds();
 
 #warning XXX test only
-    Knob *knob = knob_;
-    Rectangle<int> knob_bounds = Rectangle<int>(bounds.getTopLeft(), {100, 100});
-    knob->setBounds(knob_bounds);
+    bounds.removeFromTop(100);
+    for (int i = 0; i < 4; ++i) {
+        Operator_Editor *oped = oped_[i];
+        Rectangle<int> oped_bounds = bounds.removeFromTop(100);
+        // fprintf(stderr, "%s\n", oped_bounds.toString().toRawUTF8());
+        oped->setBounds(oped_bounds);
+        bounds.removeFromTop(8);
+    }
 }

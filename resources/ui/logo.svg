@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="63.612568mm"
+   height="10.384296mm"
+   viewBox="0 0 127.22514 20.768593"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 2405546, 2018-03-11"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="/home/jpc/Documents/Projects/ADLplug/resources/ui/logo.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4542">
+      <stop
+         style="stop-color:#0067bc;stop-opacity:1"
+         offset="0"
+         id="stop4538" />
+      <stop
+         style="stop-color:#00d6c1;stop-opacity:1"
+         offset="1"
+         id="stop4540" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4542"
+       id="linearGradient4544"
+       x1="56.885418"
+       y1="90.625"
+       x2="56.885418"
+       y2="98.5625"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.3831735,0,0,2.3831735,-73.807274,-125.02582)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4542"
+       id="linearGradient4575"
+       gradientUnits="userSpaceOnUse"
+       x1="56.885418"
+       y1="90.625"
+       x2="56.885418"
+       y2="98.5625"
+       gradientTransform="translate(-0.52916663,0.52916667)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="125.71411"
+     inkscape:cy="28.973301"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     showguides="false"
+     inkscape:window-width="1224"
+     inkscape:window-height="783"
+     inkscape:window-x="31"
+     inkscape:window-y="100"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4534"
+       originx="-106.72164"
+       originy="-392.45029" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-53.360816,-90.390547)">
+    <text
+       id="text4573"
+       y="111.15914"
+       x="53.336185"
+       style="font-style:normal;font-weight:normal;font-size:25.22192001px;line-height:1.25;font-family:sans-serif;letter-spacing:1.26109612px;word-spacing:0px;fill:#1c2a22;fill-opacity:0.3956522;stroke:none;stroke-width:0.630548"
+       xml:space="preserve"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Black';-inkscape-font-specification:'Arial Black, ';letter-spacing:1.26109612px;fill:#1c2a22;fill-opacity:0.3956522;stroke-width:0.630548"
+         y="111.15914"
+         x="53.336185"
+         id="tspan4571"
+         sodipodi:role="line">ADLMIDI</tspan></text>
+    <text
+       id="text4567"
+       y="109.0407"
+       x="55.501274"
+       style="font-style:normal;font-weight:normal;font-size:25.22192001px;line-height:1.25;font-family:sans-serif;letter-spacing:1.26109612px;word-spacing:0px;fill:url(#linearGradient4544);fill-opacity:1;stroke:#e5b570;stroke-width:1.19158685;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       xml:space="preserve"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Black';-inkscape-font-specification:'Arial Black, ';letter-spacing:1.26109612px;fill:url(#linearGradient4544);fill-opacity:1;stroke:#e5b570;stroke-width:1.19158685;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         y="109.0407"
+         x="55.501274"
+         id="tspan4565"
+         sodipodi:role="line">ADLMIDI</tspan></text>
+  </g>
+</svg>

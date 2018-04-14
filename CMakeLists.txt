@@ -63,6 +63,8 @@ add_library(ADLplug_core STATIC
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
   "sources/ui/knob_component.cc"
+  "sources/ui/operator_editor.cc"
+  "sources/ui/graphics_utils.cc"
   "sources/ui/image_utils.cc"
   "sources/adl/player.cc")
 target_include_directories(ADLplug_core PRIVATE "sources")

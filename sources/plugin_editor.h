@@ -6,8 +6,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#warning XXX test only
-#include "ui/knob_component.h"
+#include "ui/operator_editor.h"
 #include "plugin_processor.h"
 
 //==============================================================================
@@ -27,8 +26,8 @@ private:
     // access the processor object that created it.
     AdlplugAudioProcessor &processor;
 
-#warning XXX test only
-    Knob *knob_ = nullptr;
+    Image logo_;
+    Operator_Editor *oped_[4] = {};
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessorEditor)
 };

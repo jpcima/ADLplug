@@ -10,13 +10,25 @@
   <MAINGROUP id="faq0v0" name="ADLplug">
     <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
       <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="resources/ui/knob-skin.png"/>
+      <FILE id="XMgYTR" name="logo.png" compile="0" resource="1" file="resources/ui/logo.png"/>
     </GROUP>
     <GROUP id="{57FD1426-D8BF-7CCC-6B25-2A7108A4390B}" name="sources">
       <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">
+        <FILE id="zNTqHQ" name="graphics_utils.cc" compile="1" resource="0"
+              file="sources/ui/graphics_utils.cc"/>
+        <FILE id="I3iZ1b" name="graphics_utils.h" compile="0" resource="0"
+              file="sources/ui/graphics_utils.h"/>
+        <FILE id="p3eY4I" name="image_utils.cc" compile="1" resource="0" file="sources/ui/image_utils.cc"/>
+        <FILE id="Gyog2d" name="image_utils.h" compile="0" resource="0" file="sources/ui/image_utils.h"/>
         <FILE id="tDUMPu" name="knob_component.cc" compile="1" resource="0"
               file="sources/ui/knob_component.cc"/>
         <FILE id="EJfe9K" name="knob_component.h" compile="0" resource="0"
               file="sources/ui/knob_component.h"/>
+        <FILE id="WAXJXE" name="operator_editor.cc" compile="1" resource="0"
+              file="sources/ui/operator_editor.cc"/>
+        <FILE id="qbk60K" name="operator_editor.h" compile="0" resource="0"
+              file="sources/ui/operator_editor.h"/>
+        <FILE id="FDBT9O" name="styled_knobs.h" compile="0" resource="0" file="sources/ui/styled_knobs.h"/>
       </GROUP>
       <GROUP id="{90BE611D-B377-7C79-171F-98F2CD7899AE}" name="adl">
         <FILE id="YNeRaV" name="player.cc" compile="1" resource="0" file="sources/adl/player.cc"/>

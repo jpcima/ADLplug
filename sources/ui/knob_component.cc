@@ -155,6 +155,6 @@ Rectangle<float> Knob::get_frame_bounds() const
         return Rectangle<float>();
 
     Rectangle<int> fbounds = skin[0].getBounds();
-    return getBounds().toType<float>().withSizeKeepingCentre(
+    return getLocalBounds().toType<float>().withSizeKeepingCentre(
         fbounds.getWidth(), fbounds.getHeight());
 }

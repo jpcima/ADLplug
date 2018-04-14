@@ -13,6 +13,7 @@ class Knob : public Component
 public:
     Knob();
     explicit Knob(const String &name);
+    virtual ~Knob() {}
     void load_skin(const Image &img, unsigned frame_count);
     void load_skin_data(const char *data, unsigned size, unsigned frame_count);
     void load_skin_resource(const char *name, unsigned frame_count);

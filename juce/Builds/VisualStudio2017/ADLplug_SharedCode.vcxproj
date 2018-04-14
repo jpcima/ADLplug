@@ -154,7 +154,9 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\ui\image_utils.cc"/>
     <ClCompile Include="..\..\..\sources\ui\knob_component.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\operator_editor.cpp"/>
     <ClCompile Include="..\..\..\sources\adl\player.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
@@ -1836,7 +1838,10 @@
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\ui\image_utils.h"/>
     <ClInclude Include="..\..\..\sources\ui\knob_component.h"/>
+    <ClInclude Include="..\..\..\sources\ui\operator_editor.h"/>
+    <ClInclude Include="..\..\..\sources\ui\styled_knobs.h"/>
     <ClInclude Include="..\..\..\sources\adl\player.h"/>
     <ClInclude Include="..\..\..\sources\plugin_editor.h"/>
     <ClInclude Include="..\..\..\sources\plugin_processor.h"/>

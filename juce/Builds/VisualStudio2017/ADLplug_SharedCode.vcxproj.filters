@@ -370,7 +370,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\ui\image_utils.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\knob_component.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\operator_editor.cpp">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\adl\player.cc">
@@ -2205,7 +2211,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\ui\image_utils.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\knob_component.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\operator_editor.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\styled_knobs.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\adl\player.h">
