@@ -21,7 +21,7 @@ set(WITH_MUS_SUPPORT OFF CACHE STRING "")
 set(WITH_XMI_SUPPORT OFF CACHE STRING "")
 set(libADLMIDI_STATIC ON CACHE STRING "")
 set(libADLMIDI_SHARED OFF CACHE STRING "")
-add_subdirectory("thirdparty/libADLMIDI")
+add_subdirectory("thirdparty/libADLMIDI" EXCLUDE_FROM_ALL)
 
 ###
 include("${CMAKE_SOURCE_DIR}/JUCE-targets.cmake")
