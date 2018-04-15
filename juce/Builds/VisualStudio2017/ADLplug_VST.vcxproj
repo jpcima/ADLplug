@@ -14,7 +14,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2A0C3695-E5DF-D362-8B08-0AD6C81588BA}</ProjectGuid>
+    <ProjectGuid>{89609D26-7B3B-7ED6-D94E-F2A4FBF2124E}</ProjectGuid>
     <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>

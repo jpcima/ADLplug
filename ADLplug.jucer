@@ -13,13 +13,17 @@
     </GROUP>
     <GROUP id="{57FD1426-D8BF-7CCC-6B25-2A7108A4390B}" name="sources">
       <GROUP id="{2E9ABF3F-6195-1F35-766C-4D30B755E87E}" name="dsp">
-        <FILE id="HFc1Or" name="dcfilter.h" compile="0" resource="0" file="sources/dsp/dcfilter.h"/>
+        <FILE id="jnXF8V" name="dc_filter.h" compile="0" resource="0" file="sources/dsp/dc_filter.h"/>
       </GROUP>
       <GROUP id="{17C850C0-7CFF-17BC-4511-EED271A552A6}" name="utility">
         <FILE id="MYO38b" name="simple_fifo.cc" compile="1" resource="0" file="sources/utility/simple_fifo.cc"/>
         <FILE id="fr1vaj" name="simple_fifo.h" compile="0" resource="0" file="sources/utility/simple_fifo.h"/>
       </GROUP>
       <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">
+        <FILE id="JdskR5" name="about_component.cc" compile="1" resource="0"
+              file="sources/ui/about_component.cc"/>
+        <FILE id="mwuHEz" name="about_component.h" compile="0" resource="0"
+              file="sources/ui/about_component.h"/>
         <FILE id="zNTqHQ" name="graphics_utils.cc" compile="1" resource="0"
               file="sources/ui/graphics_utils.cc"/>
         <FILE id="I3iZ1b" name="graphics_utils.h" compile="0" resource="0"

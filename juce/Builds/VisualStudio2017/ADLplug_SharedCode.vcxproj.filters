@@ -379,6 +379,9 @@
     <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc">
       <Filter>ADLplug\sources\utility</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\about_component.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
@@ -2232,11 +2235,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\sources\dsp\dcfilter.h">
+    <ClInclude Include="..\..\..\sources\dsp\dc_filter.h">
       <Filter>ADLplug\sources\dsp</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h">
       <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\about_component.h">
+      <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\graphics_utils.h">
       <Filter>ADLplug\sources\ui</Filter>

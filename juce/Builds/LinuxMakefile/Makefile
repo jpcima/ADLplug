@@ -95,6 +95,7 @@ OBJECTS_STANDALONE_PLUGIN := \
 
 OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/simple_fifo_14f04efe.o \
+  $(JUCE_OBJDIR)/about_component_574ed838.o \
   $(JUCE_OBJDIR)/graphics_utils_35f53d7c.o \
   $(JUCE_OBJDIR)/image_utils_a38eb576.o \
   $(JUCE_OBJDIR)/knob_component_5796d5a5.o \
@@ -162,6 +163,11 @@ $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o: ../../../
 $(JUCE_OBJDIR)/simple_fifo_14f04efe.o: ../../../sources/utility/simple_fifo.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling simple_fifo.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/about_component_574ed838.o: ../../../sources/ui/about_component.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling about_component.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/graphics_utils_35f53d7c.o: ../../../sources/ui/graphics_utils.cc

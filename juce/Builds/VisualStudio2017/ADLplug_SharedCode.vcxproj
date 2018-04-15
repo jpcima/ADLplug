@@ -14,7 +14,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B3A9D35F-3B0A-53F2-223E-63AC399C538C}</ProjectGuid>
+    <ProjectGuid>{7568C184-C3A4-34FE-284C-2F748D43F28F}</ProjectGuid>
     <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\about_component.cc"/>
     <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc"/>
     <ClCompile Include="..\..\..\sources\ui\image_utils.cc"/>
     <ClCompile Include="..\..\..\sources\ui\knob_component.cc"/>
@@ -1843,8 +1844,9 @@
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\sources\dsp\dcfilter.h"/>
+    <ClInclude Include="..\..\..\sources\dsp\dc_filter.h"/>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
+    <ClInclude Include="..\..\..\sources\ui\about_component.h"/>
     <ClInclude Include="..\..\..\sources\ui\graphics_utils.h"/>
     <ClInclude Include="..\..\..\sources\ui\image_utils.h"/>
     <ClInclude Include="..\..\..\sources\ui\knob_component.h"/>
