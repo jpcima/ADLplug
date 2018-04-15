@@ -6,6 +6,7 @@
 #pragma once
 
 #include "adl/player.h"
+#include "dsp/dc_filter.h"
 #include "utility/simple_fifo.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <memory>
@@ -56,6 +57,7 @@ public:
 private:
     std::unique_ptr<Generic_Player> player_;
     std::unique_ptr<Simple_Fifo> ui_midi_queue_;
+    Dc_Filter dc_filter_[2];
 
     //==========================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessor)

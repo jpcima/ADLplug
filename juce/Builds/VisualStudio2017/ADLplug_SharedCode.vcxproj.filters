@@ -5,6 +5,9 @@
     <Filter Include="ADLplug\resources">
       <UniqueIdentifier>{95FAA976-2189-7683-BA44-3180A641CA15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\sources\dsp">
+      <UniqueIdentifier>{537D8C60-15C2-2C54-07BE-1B04848D95AC}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\sources\utility">
       <UniqueIdentifier>{A6C88D66-4AFB-E68D-8252-A1568A19A4DF}</UniqueIdentifier>
     </Filter>
@@ -2229,6 +2232,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\dsp\dcfilter.h">
+      <Filter>ADLplug\sources\dsp</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h">
       <Filter>ADLplug\sources\utility</Filter>
     </ClInclude>

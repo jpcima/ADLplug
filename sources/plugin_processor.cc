@@ -76,6 +76,11 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     Generic_Player *pl = instantiate_player(Player_Type::OPL3);
     player_.reset(pl);
     pl->init(sample_rate);
+
+    for (unsigned i = 0; i < 2; ++i) {
+        Dc_Filter &dcf = dc_filter_[i];
+        dcf.cutoff(5.0 / sample_rate);
+    }
 }
 
 void AdlplugAudioProcessor::releaseResources()
@@ -122,6 +127,14 @@ void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         pl->play_midi(midi_data, midi_size);
 
     pl->generate(left, right, nframes, 1);
+
+    // filter out the DC component
+    for (unsigned i = 0; i < nframes; ++i) {
+        Dc_Filter &dclf = dc_filter_[0];
+        left[i] = dclf.process(left[i]);
+        Dc_Filter &dcrf = dc_filter_[1];
+        right[i] = dcrf.process(right[i]);
+    }
 }
 
 void AdlplugAudioProcessor::processBlockBypassed(AudioBuffer<float> &buffer, MidiBuffer &midi_messages)

@@ -1843,6 +1843,7 @@
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\dsp\dcfilter.h"/>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
     <ClInclude Include="..\..\..\sources\ui\graphics_utils.h"/>
     <ClInclude Include="..\..\..\sources\ui\image_utils.h"/>
