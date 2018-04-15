@@ -422,7 +422,6 @@ void Main_Component::handleNoteOff(MidiKeyboardState *, int channel, int note, f
 
 void Main_Component::popup_about_dialog()
 {
-
     DialogWindow::LaunchOptions dlgopts;
     dlgopts.dialogTitle = "About " JucePlugin_Name;
     dlgopts.content.set(new About_Component, true);
