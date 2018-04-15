@@ -67,6 +67,7 @@ add_library(ADLplug_core STATIC
   "sources/ui/knob_component.cc"
   "sources/ui/styled_knobs.cc"
   "sources/ui/operator_editor.cc"
+  "sources/ui/about_component.cc"
   "sources/ui/main_component.cc"
   "sources/ui/graphics_utils.cc"
   "sources/ui/image_utils.cc"

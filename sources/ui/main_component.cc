@@ -19,6 +19,7 @@
 
 //[Headers] You can add your own extra header files here...
 #include "ui/operator_editor.h"
+#include "ui/about_component.h"
 //[/Headers]
 
 #include "main_component.h"
@@ -145,7 +146,16 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
 
     midi_kb->setBounds (24, 480, 752, 56);
 
-    cachedImage_logo_png_1 = ImageCache::getFromMemory (logo_png, logo_pngSize);
+    addAndMakeVisible (btn_about = new ImageButton ("new button"));
+    btn_about->setButtonText (String());
+    btn_about->addListener (this);
+
+    btn_about->setImages (false, true, true,
+                          ImageCache::getFromMemory (logo_png, logo_pngSize), 1.000f, Colour (0x00000000),
+                          Image(), 1.000f, Colour (0x00000000),
+                          Image(), 1.000f, Colour (0x00000000));
+    btn_about->setBounds (16, 16, 232, 40);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -202,6 +212,7 @@ Main_Component::~Main_Component()
     component5 = nullptr;
     component6 = nullptr;
     midi_kb = nullptr;
+    btn_about = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -217,18 +228,7 @@ void Main_Component::paint (Graphics& g)
     g.fillAll (Colour (0xff323e44));
 
     {
-        int x = 20, y = 12, width = 308, height = 68;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (Colours::black);
-        g.drawImageWithin (cachedImage_logo_png_1,
-                           x, y, width, height,
-                           RectanglePlacement::centred | RectanglePlacement::onlyReduceInSize,
-                           false);
-    }
-
-    {
-        int x = 356, y = 28, width = 284, height = 30;
+        int x = 356, y = 20, width = 284, height = 30;
         String text (TRANS("FM synthesizer with YMF262 chip emulation"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -364,6 +364,12 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_btn_am34] -- add your button handler code here..
         //[/UserButtonCode_btn_am34]
     }
+    else if (buttonThatWasClicked == btn_about)
+    {
+        //[UserButtonCode_btn_about] -- add your button handler code here..
+        popup_about_dialog();
+        //[/UserButtonCode_btn_about]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
@@ -413,6 +419,17 @@ void Main_Component::handleNoteOff(MidiKeyboardState *, int channel, int note, f
     msg[3] = velocity * 127;
     queue.write(msg, sizeof(msg));
 }
+
+void Main_Component::popup_about_dialog()
+{
+
+    DialogWindow::LaunchOptions dlgopts;
+    dlgopts.dialogTitle = "About " JucePlugin_Name;
+    dlgopts.content.set(new About_Component, true);
+    dlgopts.componentToCentreAround = this;
+    dlgopts.resizable = false;
+    dlgopts.runModal();
+}
 //[/MiscUserCode]
 
 
@@ -431,9 +448,7 @@ BEGIN_JUCER_METADATA
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="800" initialHeight="600">
   <BACKGROUND backgroundColour="ff323e44">
-    <IMAGE pos="20 12 308 68" resource="logo_png" opacity="1.00000000000000000000"
-           mode="2"/>
-    <TEXT pos="356 28 284 30" fill="solid: fff0f8ff" hasStroke="0" text="FM synthesizer with YMF262 chip emulation"
+    <TEXT pos="356 20 284 30" fill="solid: fff0f8ff" hasStroke="0" text="FM synthesizer with YMF262 chip emulation"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
     <TEXT pos="28 132 92 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 1-2"
@@ -507,6 +522,13 @@ BEGIN_JUCER_METADATA
   <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="midi_kb"
                     virtualName="" explicitFocusOrder="0" pos="24 480 752 56" class="MidiKeyboardComponent"
                     params="midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard"/>
+  <IMAGEBUTTON name="new button" id="1c21a98bd6493eb8" memberName="btn_about"
+               virtualName="" explicitFocusOrder="0" pos="16 16 232 40" buttonText=""
+               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
+               resourceNormal="logo_png" opacityNormal="1.00000000000000000000"
+               colourNormal="0" resourceOver="" opacityOver="1.00000000000000000000"
+               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
+               colourDown="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
