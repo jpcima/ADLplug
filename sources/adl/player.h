@@ -25,6 +25,7 @@ class Generic_Player
 {
 public:
     virtual ~Generic_Player() {}
+    virtual Player_Type type() const = 0;
     virtual void init(unsigned sample_rate) = 0;
     virtual void close() = 0;
     virtual void reset() = 0;

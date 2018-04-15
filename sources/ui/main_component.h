@@ -24,6 +24,7 @@
 #include "ui/styled_knobs.h"
 #include "utility/simple_fifo.h"
 class Operator_Editor;
+class AdlplugAudioProcessor;
 //[/Headers]
 
 
@@ -39,11 +40,12 @@ class Operator_Editor;
 class Main_Component  : public Component,
                         public MidiKeyboardStateListener,
                         public Button::Listener,
-                        public Slider::Listener
+                        public Slider::Listener,
+                        public ComboBox::Listener
 {
 public:
     //==============================================================================
-    Main_Component (Simple_Fifo &midi_out_queue);
+    Main_Component (AdlplugAudioProcessor &proc);
     ~Main_Component();
 
     //==============================================================================
@@ -57,6 +59,7 @@ public:
     void resized() override;
     void buttonClicked (Button* buttonThatWasClicked) override;
     void sliderValueChanged (Slider* sliderThatWasMoved) override;
+    void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
 
     // Binary resources:
     static const char* logo_png;
@@ -65,7 +68,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
-    Simple_Fifo *midi_out_queue_ = nullptr;
+    AdlplugAudioProcessor *proc_ = nullptr;
     MidiKeyboardState midi_kb_state_;
     //[/UserVariables]
 
@@ -87,6 +90,11 @@ private:
     ScopedPointer<Styled_Knob_DefaultSmall> component6;
     ScopedPointer<MidiKeyboardComponent> midi_kb;
     ScopedPointer<ImageButton> btn_about;
+    ScopedPointer<Label> label;
+    ScopedPointer<Label> lbl_num_chips;
+    ScopedPointer<TextButton> btn_less_chips;
+    ScopedPointer<TextButton> btn_more_chips;
+    ScopedPointer<ComboBox> cb_emulator;
 
 
     //==============================================================================

@@ -11,7 +11,7 @@
 AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &p)
     : AudioProcessorEditor(&p) , processor(p)
 {
-    Main_Component *main = new Main_Component(p.midi_queue_for_ui());
+    Main_Component *main = new Main_Component(p);
     main_.reset(main);
     addAndMakeVisible(main);
 

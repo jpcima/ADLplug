@@ -50,6 +50,7 @@ class Player : public Generic_Player
     std::unique_ptr<player_type, player_deleter> player_;
 
 public:
+    Player_Type type() const override { return Pt; }
     void init(unsigned sample_rate) override;
     void close() override
         { player_.reset(); }

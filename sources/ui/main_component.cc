@@ -20,6 +20,7 @@
 //[Headers] You can add your own extra header files here...
 #include "ui/operator_editor.h"
 #include "ui/about_component.h"
+#include "plugin_processor.h"
 //[/Headers]
 
 #include "main_component.h"
@@ -34,7 +35,7 @@ enum class Radio_Button_Group {
 //[/MiscUserDefs]
 
 //==============================================================================
-Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
+Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
@@ -156,6 +157,50 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
                           Image(), 1.000f, Colour (0x00000000));
     btn_about->setBounds (16, 16, 232, 40);
 
+    addAndMakeVisible (label = new Label ("new label",
+                                          TRANS("Chips")));
+    label->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label->setJustificationType (Justification::centredLeft);
+    label->setEditable (false, false, false);
+    label->setColour (TextEditor::textColourId, Colours::black);
+    label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label->setBounds (608, 64, 48, 24);
+
+    addAndMakeVisible (lbl_num_chips = new Label ("new label",
+                                                  TRANS("100")));
+    lbl_num_chips->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_num_chips->setJustificationType (Justification::centredLeft);
+    lbl_num_chips->setEditable (false, false, false);
+    lbl_num_chips->setColour (Label::outlineColourId, Colour (0xff8e989b));
+    lbl_num_chips->setColour (TextEditor::textColourId, Colours::black);
+    lbl_num_chips->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_num_chips->setBounds (656, 64, 32, 24);
+
+    addAndMakeVisible (btn_less_chips = new TextButton ("new button"));
+    btn_less_chips->setButtonText (TRANS("<"));
+    btn_less_chips->setConnectedEdges (Button::ConnectedOnRight);
+    btn_less_chips->addListener (this);
+
+    btn_less_chips->setBounds (696, 65, 23, 24);
+
+    addAndMakeVisible (btn_more_chips = new TextButton ("new button"));
+    btn_more_chips->setButtonText (TRANS(">"));
+    btn_more_chips->setConnectedEdges (Button::ConnectedOnLeft);
+    btn_more_chips->addListener (this);
+
+    btn_more_chips->setBounds (719, 65, 23, 24);
+
+    addAndMakeVisible (cb_emulator = new ComboBox ("new combo box"));
+    cb_emulator->setEditableText (false);
+    cb_emulator->setJustificationType (Justification::centredLeft);
+    cb_emulator->setTextWhenNothingSelected (String());
+    cb_emulator->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
+    cb_emulator->addListener (this);
+
+    cb_emulator->setBounds (544, 96, 198, 24);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -164,7 +209,7 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
 
 
     //[Constructor] You can add your own custom stuff here..
-    midi_out_queue_ = &midi_out_queue;
+    proc_ = &proc;
     midi_kb_state_.addListener(this);
 
     midi_kb->setLowestVisibleKey(24);
@@ -188,6 +233,13 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
     ed_op2->set_op_label("Carrier");
     ed_op3->set_op_label("Modulator");
     ed_op4->set_op_label("Carrier");
+
+    lbl_num_chips->setText(String(proc.get_num_chips()), juce::dontSendNotification);
+
+    std::vector<std::string> emus = proc.enumerate_emulators();
+    for (size_t i = 0, n = emus.size(); i < n; ++i)
+        cb_emulator->addItem(emus[i], i + 1);
+    cb_emulator->setSelectedId(1);
     //[/Constructor]
 }
 
@@ -213,6 +265,11 @@ Main_Component::~Main_Component()
     component6 = nullptr;
     midi_kb = nullptr;
     btn_about = nullptr;
+    label = nullptr;
+    lbl_num_chips = nullptr;
+    btn_less_chips = nullptr;
+    btn_more_chips = nullptr;
+    cb_emulator = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -370,6 +427,32 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         popup_about_dialog();
         //[/UserButtonCode_btn_about]
     }
+    else if (buttonThatWasClicked == btn_less_chips)
+    {
+        //[UserButtonCode_btn_less_chips] -- add your button handler code here..
+        AdlplugAudioProcessor &proc = *proc_;
+        unsigned nchips = proc.get_num_chips();
+        if (nchips > 1) {
+            std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+            proc.set_num_chips_nonrt(nchips - 1);
+            lock.unlock();
+            lbl_num_chips->setText(String(proc.get_num_chips()), juce::dontSendNotification);
+        }
+        //[/UserButtonCode_btn_less_chips]
+    }
+    else if (buttonThatWasClicked == btn_more_chips)
+    {
+        //[UserButtonCode_btn_more_chips] -- add your button handler code here..
+        AdlplugAudioProcessor &proc = *proc_;
+        unsigned nchips = proc.get_num_chips();
+        if (nchips < 100) {
+            std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+            proc.set_num_chips_nonrt(proc.get_num_chips() + 1);
+            lock.unlock();
+            lbl_num_chips->setText(String(proc.get_num_chips()), juce::dontSendNotification);
+        }
+        //[/UserButtonCode_btn_more_chips]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
@@ -395,12 +478,30 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
     //[/UsersliderValueChanged_Post]
 }
 
+void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
+{
+    //[UsercomboBoxChanged_Pre]
+    //[/UsercomboBoxChanged_Pre]
+
+    if (comboBoxThatHasChanged == cb_emulator)
+    {
+        //[UserComboBoxCode_cb_emulator] -- add your combo box handling code here..
+        AdlplugAudioProcessor &proc = *proc_;
+        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+        proc.set_chip_emulator_nonrt(comboBoxThatHasChanged->getSelectedId() - 1);
+        //[/UserComboBoxCode_cb_emulator]
+    }
+
+    //[UsercomboBoxChanged_Post]
+    //[/UsercomboBoxChanged_Post]
+}
+
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 void Main_Component::handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity)
 {
-    Simple_Fifo &queue = *midi_out_queue_;
+    Simple_Fifo &queue = proc_->midi_queue_for_ui();
     uint8_t msg[4];
     msg[0] = 3;
     msg[1] = (unsigned)(channel - 1) | (0b1001u << 4);
@@ -411,7 +512,7 @@ void Main_Component::handleNoteOn(MidiKeyboardState *, int channel, int note, fl
 
 void Main_Component::handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity)
 {
-    Simple_Fifo &queue = *midi_out_queue_;
+    Simple_Fifo &queue = proc_->midi_queue_for_ui();
     uint8_t msg[4];
     msg[0] = 3;
     msg[1] = (unsigned)(channel - 1) | (0b1000u << 4);
@@ -443,7 +544,7 @@ BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="Main_Component" componentName=""
                  parentClasses="public Component, public MidiKeyboardStateListener"
-                 constructorParams="Simple_Fifo &amp;midi_out_queue" variableInitialisers=""
+                 constructorParams="AdlplugAudioProcessor &amp;proc" variableInitialisers=""
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="800" initialHeight="600">
   <BACKGROUND backgroundColour="ff323e44">
@@ -528,6 +629,26 @@ BEGIN_JUCER_METADATA
                colourNormal="0" resourceOver="" opacityOver="1.00000000000000000000"
                colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
                colourDown="0"/>
+  <LABEL name="new label" id="5628e38331cdf4ec" memberName="label" virtualName=""
+         explicitFocusOrder="0" pos="608 64 48 24" edTextCol="ff000000"
+         edBkgCol="0" labelText="Chips" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
+         kerning="0.00000000000000000000" bold="0" italic="0" justification="33"/>
+  <LABEL name="new label" id="be41a2433f6d1f03" memberName="lbl_num_chips"
+         virtualName="" explicitFocusOrder="0" pos="656 64 32 24" outlineCol="ff8e989b"
+         edTextCol="ff000000" edBkgCol="0" labelText="100" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
+         bold="0" italic="0" justification="33"/>
+  <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="btn_less_chips"
+              virtualName="" explicitFocusOrder="0" pos="696 65 23 24" buttonText="&lt;"
+              connectedEdges="2" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="btn_more_chips"
+              virtualName="" explicitFocusOrder="0" pos="719 65 23 24" buttonText="&gt;"
+              connectedEdges="1" needsCallback="1" radioGroupId="0"/>
+  <COMBOBOX name="new combo box" id="8f8a11ca0d94343f" memberName="cb_emulator"
+            virtualName="" explicitFocusOrder="0" pos="544 96 198 24" editable="0"
+            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

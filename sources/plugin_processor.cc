@@ -78,6 +78,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     Generic_Player *pl = instantiate_player(Player_Type::OPL3);
     player_.reset(pl);
     pl->init(sample_rate);
+    pl->set_num_chips(4);
 
     for (unsigned i = 0; i < 2; ++i) {
         Dc_Filter &dcf = dc_filter_[i];
@@ -92,28 +93,44 @@ void AdlplugAudioProcessor::releaseResources()
     player_.reset();
 }
 
+unsigned AdlplugAudioProcessor::get_num_chips() const
+{
+    Generic_Player *pl = player_.get();
+    return pl->num_chips();
+}
+
+std::unique_lock<std::mutex> AdlplugAudioProcessor::acquire_player_nonrt()
+{
+    return std::unique_lock<std::mutex>(player_lock_);
+}
+
 void AdlplugAudioProcessor::set_num_chips_nonrt(unsigned chips)
 {
-    std::lock_guard<std::mutex> lock(player_lock_);
     Generic_Player *pl = player_.get();
+    pl->reset();
+    // TODO crashes libADLMIDI, must investigate
     pl->set_num_chips(chips);
-    reconfigure_chip();
+    reconfigure_chip_nonrt();
 }
 
 void AdlplugAudioProcessor::set_chip_emulator_nonrt(unsigned emu)
 {
-    std::lock_guard<std::mutex> lock(player_lock_);
     Generic_Player *pl = player_.get();
+    pl->reset();
     pl->set_emulator(emu);
-    reconfigure_chip();
+    reconfigure_chip_nonrt();
 }
 
-void AdlplugAudioProcessor::reconfigure_chip()
+void AdlplugAudioProcessor::reconfigure_chip_nonrt()
 {
     Generic_Player *pl = player_.get();
-    // TODO reload the bank etc..
-    
-    pl->reset();
+    // TODO any necessary reconfiguration after reset
+}
+
+std::vector<std::string> AdlplugAudioProcessor::enumerate_emulators()
+{
+    Generic_Player *pl = player_.get();
+    return ::enumerate_emulators(pl->type());
 }
 
 bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
@@ -124,6 +141,13 @@ bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) c
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                          MidiBuffer &midi_messages)
 {
+    ScopedNoDenormals no_denormals;
+    Generic_Player *pl = player_.get();
+    unsigned nframes = buffer.getNumSamples();
+    float *left = buffer.getWritePointer(0);
+    float *right = buffer.getWritePointer(1);
+    Simple_Fifo &midi_q = *ui_midi_queue_;
+
     std::unique_lock<std::mutex> lock(player_lock_, std::try_to_lock);
     if (!lock.owns_lock()) {
         // can't use the player while non-rt modifies it
@@ -131,15 +155,7 @@ void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         return;
     }
 
-    ScopedNoDenormals noDenormals;
-
-    Generic_Player *pl = player_.get();
-    unsigned nframes = buffer.getNumSamples();
-    float *left = buffer.getWritePointer(0);
-    float *right = buffer.getWritePointer(1);
-
     // handle MIDI events from GUI
-    Simple_Fifo &midi_q = *ui_midi_queue_;
     for (uint8_t len; midi_q.read(&len, 1, false) && midi_q.get_num_ready() >= len + 1;) {
         midi_q.discard(1);
         uint8_t data[3];
@@ -160,6 +176,7 @@ void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         pl->play_midi(midi_data, midi_size);
 
     pl->generate(left, right, nframes, 1);
+    lock.unlock();
 
     // filter out the DC component
     for (unsigned i = 0; i < nframes; ++i) {
