@@ -97,6 +97,8 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/graphics_utils_35f53d7c.o \
   $(JUCE_OBJDIR)/image_utils_a38eb576.o \
   $(JUCE_OBJDIR)/knob_component_5796d5a5.o \
+  $(JUCE_OBJDIR)/knobman_skin_53c856a1.o \
+  $(JUCE_OBJDIR)/main_component_ffc34342.o \
   $(JUCE_OBJDIR)/operator_editor_6b1eb07b.o \
   $(JUCE_OBJDIR)/player_38a5f121.o \
   $(JUCE_OBJDIR)/plugin_editor_4e133bb.o \
@@ -168,6 +170,16 @@ $(JUCE_OBJDIR)/image_utils_a38eb576.o: ../../../sources/ui/image_utils.cc
 $(JUCE_OBJDIR)/knob_component_5796d5a5.o: ../../../sources/ui/knob_component.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling knob_component.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/knobman_skin_53c856a1.o: ../../../sources/ui/knobman_skin.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling knobman_skin.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/main_component_ffc34342.o: ../../../sources/ui/main_component.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling main_component.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/operator_editor_6b1eb07b.o: ../../../sources/ui/operator_editor.cc

@@ -14,7 +14,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5EBD0E8D-1D83-756E-BC8C-055B66316CC6}</ProjectGuid>
+    <ProjectGuid>{B3A9D35F-3B0A-53F2-223E-63AC399C538C}</ProjectGuid>
     <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -157,6 +157,8 @@
     <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc"/>
     <ClCompile Include="..\..\..\sources\ui\image_utils.cc"/>
     <ClCompile Include="..\..\..\sources\ui\knob_component.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\knobman_skin.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\main_component.cc"/>
     <ClCompile Include="..\..\..\sources\ui\operator_editor.cc"/>
     <ClCompile Include="..\..\..\sources\adl\player.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
@@ -1842,6 +1844,8 @@
     <ClInclude Include="..\..\..\sources\ui\graphics_utils.h"/>
     <ClInclude Include="..\..\..\sources\ui\image_utils.h"/>
     <ClInclude Include="..\..\..\sources\ui\knob_component.h"/>
+    <ClInclude Include="..\..\..\sources\ui\knobman_skin.h"/>
+    <ClInclude Include="..\..\..\sources\ui\main_component.h"/>
     <ClInclude Include="..\..\..\sources\ui\operator_editor.h"/>
     <ClInclude Include="..\..\..\sources\ui\styled_knobs.h"/>
     <ClInclude Include="..\..\..\sources\adl\player.h"/>
@@ -2497,7 +2501,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\resources\ui\knob-skin.png"/>
-    <None Include="..\..\..\resources\ui\logo.png"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt"/>
