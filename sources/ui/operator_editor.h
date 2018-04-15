@@ -61,21 +61,24 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<Styled_Knob_Default> component;
-    ScopedPointer<Styled_Knob_Default> component2;
-    ScopedPointer<Styled_Knob_Default> component3;
-    ScopedPointer<Styled_Knob_Default> component4;
+    ScopedPointer<Styled_Knob_Default> kn_attack;
+    ScopedPointer<Styled_Knob_Default> kn_decay;
+    ScopedPointer<Styled_Knob_Default> kn_sustain;
+    ScopedPointer<Styled_Knob_Default> kn_release;
     ScopedPointer<Label> label;
     ScopedPointer<TextButton> textButton;
     ScopedPointer<TextButton> textButton2;
-    ScopedPointer<TextButton> textButton3;
-    ScopedPointer<TextButton> textButton4;
-    ScopedPointer<TextButton> textButton5;
-    ScopedPointer<TextButton> textButton6;
-    ScopedPointer<Slider> slider;
-    ScopedPointer<Slider> slider2;
-    ScopedPointer<Slider> slider3;
+    ScopedPointer<TextButton> btn_trem;
+    ScopedPointer<TextButton> btn_vib;
+    ScopedPointer<TextButton> btn_sus;
+    ScopedPointer<TextButton> btn_env;
+    ScopedPointer<Slider> sl_level;
+    ScopedPointer<Slider> sl_fmul;
+    ScopedPointer<Slider> sl_ksl;
     ScopedPointer<Label> lb_optype;
+    ScopedPointer<Label> lbl_level;
+    ScopedPointer<Label> lbl_fmul;
+    ScopedPointer<Label> lbl_ksl;
 
 
     //==============================================================================

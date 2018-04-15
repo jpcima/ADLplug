@@ -8,7 +8,7 @@
 #include "ui/knobman_skin.h"
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-class Knob : public Component
+class Knob : public Component, public SettableTooltipClient
 {
 public:
     Knob();

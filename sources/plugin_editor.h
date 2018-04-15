@@ -28,6 +28,7 @@ private:
     AdlplugAudioProcessor &processor;
 
     Main_Component *main_ = nullptr;
+    TooltipWindow tooltip_window_;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessorEditor)
 };

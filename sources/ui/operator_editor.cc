@@ -32,25 +32,25 @@ Operator_Editor::Operator_Editor ()
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    addAndMakeVisible (component = new Styled_Knob_Default());
-    component->setName ("new component");
+    addAndMakeVisible (kn_attack = new Styled_Knob_Default());
+    kn_attack->setName ("new component");
 
-    component->setBounds (56, 8, 48, 48);
+    kn_attack->setBounds (56, 8, 48, 48);
 
-    addAndMakeVisible (component2 = new Styled_Knob_Default());
-    component2->setName ("new component");
+    addAndMakeVisible (kn_decay = new Styled_Knob_Default());
+    kn_decay->setName ("new component");
 
-    component2->setBounds (104, 8, 48, 48);
+    kn_decay->setBounds (104, 8, 48, 48);
 
-    addAndMakeVisible (component3 = new Styled_Knob_Default());
-    component3->setName ("new component");
+    addAndMakeVisible (kn_sustain = new Styled_Knob_Default());
+    kn_sustain->setName ("new component");
 
-    component3->setBounds (152, 8, 48, 48);
+    kn_sustain->setBounds (152, 8, 48, 48);
 
-    addAndMakeVisible (component4 = new Styled_Knob_Default());
-    component4->setName ("new component");
+    addAndMakeVisible (kn_release = new Styled_Knob_Default());
+    kn_release->setName ("new component");
 
-    component4->setBounds (200, 8, 48, 48);
+    kn_release->setBounds (200, 8, 48, 48);
 
     addAndMakeVisible (label = new Label ("new label",
                                           TRANS("label text")));
@@ -76,57 +76,57 @@ Operator_Editor::Operator_Editor ()
 
     textButton2->setBounds (184, 66, 23, 24);
 
-    addAndMakeVisible (textButton3 = new TextButton ("new button"));
-    textButton3->setButtonText (TRANS("TREM"));
-    textButton3->setConnectedEdges (Button::ConnectedOnRight);
-    textButton3->addListener (this);
+    addAndMakeVisible (btn_trem = new TextButton ("new button"));
+    btn_trem->setButtonText (TRANS("TREM"));
+    btn_trem->setConnectedEdges (Button::ConnectedOnRight);
+    btn_trem->addListener (this);
 
-    textButton3->setBounds (32, 96, 48, 24);
+    btn_trem->setBounds (32, 96, 48, 24);
 
-    addAndMakeVisible (textButton4 = new TextButton ("new button"));
-    textButton4->setButtonText (TRANS("VIB"));
-    textButton4->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
-    textButton4->addListener (this);
+    addAndMakeVisible (btn_vib = new TextButton ("new button"));
+    btn_vib->setButtonText (TRANS("VIB"));
+    btn_vib->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
+    btn_vib->addListener (this);
 
-    textButton4->setBounds (80, 96, 48, 24);
+    btn_vib->setBounds (80, 96, 48, 24);
 
-    addAndMakeVisible (textButton5 = new TextButton ("new button"));
-    textButton5->setButtonText (TRANS("SUS"));
-    textButton5->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
-    textButton5->addListener (this);
+    addAndMakeVisible (btn_sus = new TextButton ("new button"));
+    btn_sus->setButtonText (TRANS("SUS"));
+    btn_sus->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
+    btn_sus->addListener (this);
 
-    textButton5->setBounds (128, 96, 48, 24);
+    btn_sus->setBounds (128, 96, 48, 24);
 
-    addAndMakeVisible (textButton6 = new TextButton ("new button"));
-    textButton6->setButtonText (TRANS("ENV"));
-    textButton6->setConnectedEdges (Button::ConnectedOnLeft);
-    textButton6->addListener (this);
+    addAndMakeVisible (btn_env = new TextButton ("new button"));
+    btn_env->setButtonText (TRANS("ENV"));
+    btn_env->setConnectedEdges (Button::ConnectedOnLeft);
+    btn_env->addListener (this);
 
-    textButton6->setBounds (176, 96, 48, 24);
+    btn_env->setBounds (176, 96, 48, 24);
 
-    addAndMakeVisible (slider = new Slider ("new slider"));
-    slider->setRange (0, 10, 0);
-    slider->setSliderStyle (Slider::LinearVertical);
-    slider->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
-    slider->addListener (this);
+    addAndMakeVisible (sl_level = new Slider ("new slider"));
+    sl_level->setRange (0, 10, 0);
+    sl_level->setSliderStyle (Slider::LinearVertical);
+    sl_level->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
+    sl_level->addListener (this);
 
-    slider->setBounds (264, 32, 24, 70);
+    sl_level->setBounds (264, 32, 24, 70);
 
-    addAndMakeVisible (slider2 = new Slider ("new slider"));
-    slider2->setRange (0, 10, 0);
-    slider2->setSliderStyle (Slider::LinearVertical);
-    slider2->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
-    slider2->addListener (this);
+    addAndMakeVisible (sl_fmul = new Slider ("new slider"));
+    sl_fmul->setRange (0, 10, 0);
+    sl_fmul->setSliderStyle (Slider::LinearVertical);
+    sl_fmul->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
+    sl_fmul->addListener (this);
 
-    slider2->setBounds (288, 32, 24, 70);
+    sl_fmul->setBounds (288, 32, 24, 70);
 
-    addAndMakeVisible (slider3 = new Slider ("new slider"));
-    slider3->setRange (0, 10, 0);
-    slider3->setSliderStyle (Slider::LinearVertical);
-    slider3->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
-    slider3->addListener (this);
+    addAndMakeVisible (sl_ksl = new Slider ("new slider"));
+    sl_ksl->setRange (0, 10, 0);
+    sl_ksl->setSliderStyle (Slider::LinearVertical);
+    sl_ksl->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
+    sl_ksl->addListener (this);
 
-    slider3->setBounds (312, 32, 24, 70);
+    sl_ksl->setBounds (312, 32, 24, 70);
 
     addAndMakeVisible (lb_optype = new Label ("new label",
                                               TRANS("Modulator")));
@@ -138,8 +138,54 @@ Operator_Editor::Operator_Editor ()
 
     lb_optype->setBounds (264, 8, 78, 24);
 
+    addAndMakeVisible (lbl_level = new Label ("new label",
+                                              TRANS("Lv")));
+    lbl_level->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_level->setJustificationType (Justification::centred);
+    lbl_level->setEditable (false, false, false);
+    lbl_level->setColour (TextEditor::textColourId, Colours::black);
+    lbl_level->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_level->setBounds (260, 100, 28, 18);
+
+    addAndMakeVisible (lbl_fmul = new Label ("new label",
+                                             TRANS("F*")));
+    lbl_fmul->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_fmul->setJustificationType (Justification::centred);
+    lbl_fmul->setEditable (false, false, false);
+    lbl_fmul->setColour (TextEditor::textColourId, Colours::black);
+    lbl_fmul->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_fmul->setBounds (284, 100, 28, 18);
+
+    addAndMakeVisible (lbl_ksl = new Label ("new label",
+                                            TRANS("Ksl")));
+    lbl_ksl->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_ksl->setJustificationType (Justification::centred);
+    lbl_ksl->setEditable (false, false, false);
+    lbl_ksl->setColour (TextEditor::textColourId, Colours::black);
+    lbl_ksl->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_ksl->setBounds (308, 100, 28, 18);
+
 
     //[UserPreSize]
+    kn_attack->setTooltip("Attack");
+    kn_decay->setTooltip("Decay");
+    kn_sustain->setTooltip("Sustain");
+    kn_release->setTooltip("Release");
+
+    btn_trem->setTooltip("Tremolo");
+    btn_vib->setTooltip("Vibrato");
+    btn_sus->setTooltip("Sustaining voice");
+    btn_env->setTooltip("Envelope scale");
+
+    sl_level->setTooltip("Level");
+    lbl_level->setTooltip("Level");
+    sl_fmul->setTooltip("Frequency multiplication");
+    lbl_fmul->setTooltip("Frequency multiplication");
+    sl_ksl->setTooltip("Key scale level");
+    lbl_ksl->setTooltip("Key scale level");
     //[/UserPreSize]
 
     setSize (600, 400);
@@ -154,21 +200,24 @@ Operator_Editor::~Operator_Editor()
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
 
-    component = nullptr;
-    component2 = nullptr;
-    component3 = nullptr;
-    component4 = nullptr;
+    kn_attack = nullptr;
+    kn_decay = nullptr;
+    kn_sustain = nullptr;
+    kn_release = nullptr;
     label = nullptr;
     textButton = nullptr;
     textButton2 = nullptr;
-    textButton3 = nullptr;
-    textButton4 = nullptr;
-    textButton5 = nullptr;
-    textButton6 = nullptr;
-    slider = nullptr;
-    slider2 = nullptr;
-    slider3 = nullptr;
+    btn_trem = nullptr;
+    btn_vib = nullptr;
+    btn_sus = nullptr;
+    btn_env = nullptr;
+    sl_level = nullptr;
+    sl_fmul = nullptr;
+    sl_ksl = nullptr;
     lb_optype = nullptr;
+    lbl_level = nullptr;
+    lbl_fmul = nullptr;
+    lbl_ksl = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -230,42 +279,6 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 260, y = 100, width = 28, height = 18;
-        String text (TRANS("Lv"));
-        Colour fillColour = Colours::aliceblue;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-        g.drawText (text, x, y, width, height,
-                    Justification::centred, true);
-    }
-
-    {
-        int x = 284, y = 100, width = 28, height = 18;
-        String text (TRANS("F*"));
-        Colour fillColour = Colours::aliceblue;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-        g.drawText (text, x, y, width, height,
-                    Justification::centred, true);
-    }
-
-    {
-        int x = 308, y = 100, width = 28, height = 18;
-        String text (TRANS("Ksl"));
-        Colour fillColour = Colours::aliceblue;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-        g.drawText (text, x, y, width, height,
-                    Justification::centred, true);
-    }
-
-    {
         int x = 264, y = 8, width = 78, height = 24;
         Colour fillColour = Colour (0xd3a52a2a);
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -302,25 +315,25 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_textButton2] -- add your button handler code here..
         //[/UserButtonCode_textButton2]
     }
-    else if (buttonThatWasClicked == textButton3)
+    else if (buttonThatWasClicked == btn_trem)
     {
-        //[UserButtonCode_textButton3] -- add your button handler code here..
-        //[/UserButtonCode_textButton3]
+        //[UserButtonCode_btn_trem] -- add your button handler code here..
+        //[/UserButtonCode_btn_trem]
     }
-    else if (buttonThatWasClicked == textButton4)
+    else if (buttonThatWasClicked == btn_vib)
     {
-        //[UserButtonCode_textButton4] -- add your button handler code here..
-        //[/UserButtonCode_textButton4]
+        //[UserButtonCode_btn_vib] -- add your button handler code here..
+        //[/UserButtonCode_btn_vib]
     }
-    else if (buttonThatWasClicked == textButton5)
+    else if (buttonThatWasClicked == btn_sus)
     {
-        //[UserButtonCode_textButton5] -- add your button handler code here..
-        //[/UserButtonCode_textButton5]
+        //[UserButtonCode_btn_sus] -- add your button handler code here..
+        //[/UserButtonCode_btn_sus]
     }
-    else if (buttonThatWasClicked == textButton6)
+    else if (buttonThatWasClicked == btn_env)
     {
-        //[UserButtonCode_textButton6] -- add your button handler code here..
-        //[/UserButtonCode_textButton6]
+        //[UserButtonCode_btn_env] -- add your button handler code here..
+        //[/UserButtonCode_btn_env]
     }
 
     //[UserbuttonClicked_Post]
@@ -332,20 +345,20 @@ void Operator_Editor::sliderValueChanged (Slider* sliderThatWasMoved)
     //[UsersliderValueChanged_Pre]
     //[/UsersliderValueChanged_Pre]
 
-    if (sliderThatWasMoved == slider)
+    if (sliderThatWasMoved == sl_level)
     {
-        //[UserSliderCode_slider] -- add your slider handling code here..
-        //[/UserSliderCode_slider]
+        //[UserSliderCode_sl_level] -- add your slider handling code here..
+        //[/UserSliderCode_sl_level]
     }
-    else if (sliderThatWasMoved == slider2)
+    else if (sliderThatWasMoved == sl_fmul)
     {
-        //[UserSliderCode_slider2] -- add your slider handling code here..
-        //[/UserSliderCode_slider2]
+        //[UserSliderCode_sl_fmul] -- add your slider handling code here..
+        //[/UserSliderCode_sl_fmul]
     }
-    else if (sliderThatWasMoved == slider3)
+    else if (sliderThatWasMoved == sl_ksl)
     {
-        //[UserSliderCode_slider3] -- add your slider handling code here..
-        //[/UserSliderCode_slider3]
+        //[UserSliderCode_sl_ksl] -- add your slider handling code here..
+        //[/UserSliderCode_sl_ksl]
     }
 
     //[UsersliderValueChanged_Post]
@@ -381,27 +394,18 @@ BEGIN_JUCER_METADATA
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="33"/>
     <RECT pos="52 64 100 24" fill="solid: ff373737" hasStroke="0"/>
-    <TEXT pos="260 100 28 18" fill="solid: fff0f8ff" hasStroke="0" text="Lv"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="36"/>
-    <TEXT pos="284 100 28 18" fill="solid: fff0f8ff" hasStroke="0" text="F*"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="36"/>
-    <TEXT pos="308 100 28 18" fill="solid: fff0f8ff" hasStroke="0" text="Ksl"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="36"/>
     <RECT pos="264 8 78 24" fill="solid: d3a52a2a" hasStroke="0"/>
   </BACKGROUND>
-  <GENERICCOMPONENT name="new component" id="7c54ff103d9f5d" memberName="component"
+  <GENERICCOMPONENT name="new component" id="7c54ff103d9f5d" memberName="kn_attack"
                     virtualName="" explicitFocusOrder="0" pos="56 8 48 48" class="Styled_Knob_Default"
                     params=""/>
-  <GENERICCOMPONENT name="new component" id="be39ad00dcf6efe1" memberName="component2"
+  <GENERICCOMPONENT name="new component" id="be39ad00dcf6efe1" memberName="kn_decay"
                     virtualName="" explicitFocusOrder="0" pos="104 8 48 48" class="Styled_Knob_Default"
                     params=""/>
-  <GENERICCOMPONENT name="new component" id="8d88729c124c7b16" memberName="component3"
+  <GENERICCOMPONENT name="new component" id="8d88729c124c7b16" memberName="kn_sustain"
                     virtualName="" explicitFocusOrder="0" pos="152 8 48 48" class="Styled_Knob_Default"
                     params=""/>
-  <GENERICCOMPONENT name="new component" id="7d576b68e9b588f" memberName="component4"
+  <GENERICCOMPONENT name="new component" id="7d576b68e9b588f" memberName="kn_release"
                     virtualName="" explicitFocusOrder="0" pos="200 8 48 48" class="Styled_Knob_Default"
                     params=""/>
   <LABEL name="new label" id="78c50cdc26d2ebfe" memberName="label" virtualName=""
@@ -415,30 +419,30 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="textButton2"
               virtualName="" explicitFocusOrder="0" pos="184 66 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="f60e70ed4f10ef32" memberName="textButton3"
+  <TEXTBUTTON name="new button" id="f60e70ed4f10ef32" memberName="btn_trem"
               virtualName="" explicitFocusOrder="0" pos="32 96 48 24" buttonText="TREM"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="501ccf7ad0bc53a7" memberName="textButton4"
+  <TEXTBUTTON name="new button" id="501ccf7ad0bc53a7" memberName="btn_vib"
               virtualName="" explicitFocusOrder="0" pos="80 96 48 24" buttonText="VIB"
               connectedEdges="3" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="3e46dd6b966c40b2" memberName="textButton5"
+  <TEXTBUTTON name="new button" id="3e46dd6b966c40b2" memberName="btn_sus"
               virtualName="" explicitFocusOrder="0" pos="128 96 48 24" buttonText="SUS"
               connectedEdges="3" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="eb8e9dfd42dd8f57" memberName="textButton6"
+  <TEXTBUTTON name="new button" id="eb8e9dfd42dd8f57" memberName="btn_env"
               virtualName="" explicitFocusOrder="0" pos="176 96 48 24" buttonText="ENV"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
-  <SLIDER name="new slider" id="b7065e7cd8f3e951" memberName="slider" virtualName=""
-          explicitFocusOrder="0" pos="264 32 24 70" min="0.00000000000000000000"
+  <SLIDER name="new slider" id="b7065e7cd8f3e951" memberName="sl_level"
+          virtualName="" explicitFocusOrder="0" pos="264 32 24 70" min="0.00000000000000000000"
           max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
           textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
-  <SLIDER name="new slider" id="47c9497e72aa0068" memberName="slider2"
+  <SLIDER name="new slider" id="47c9497e72aa0068" memberName="sl_fmul"
           virtualName="" explicitFocusOrder="0" pos="288 32 24 70" min="0.00000000000000000000"
           max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
           textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
-  <SLIDER name="new slider" id="7da3d626504f1592" memberName="slider3"
-          virtualName="" explicitFocusOrder="0" pos="312 32 24 70" min="0.00000000000000000000"
+  <SLIDER name="new slider" id="7da3d626504f1592" memberName="sl_ksl" virtualName=""
+          explicitFocusOrder="0" pos="312 32 24 70" min="0.00000000000000000000"
           max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
           textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
@@ -448,6 +452,21 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
          kerning="0.00000000000000000000" bold="1" italic="0" justification="36"
          typefaceStyle="Bold"/>
+  <LABEL name="new label" id="ce54b68fc1a1f1e1" memberName="lbl_level"
+         virtualName="" explicitFocusOrder="0" pos="260 100 28 18" edTextCol="ff000000"
+         edBkgCol="0" labelText="Lv" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
+         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+  <LABEL name="new label" id="1c179b730ba90c01" memberName="lbl_fmul"
+         virtualName="" explicitFocusOrder="0" pos="284 100 28 18" edTextCol="ff000000"
+         edBkgCol="0" labelText="F*" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
+         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+  <LABEL name="new label" id="654b3ac6531d1941" memberName="lbl_ksl" virtualName=""
+         explicitFocusOrder="0" pos="308 100 28 18" edTextCol="ff000000"
+         edBkgCol="0" labelText="Ksl" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
+         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
