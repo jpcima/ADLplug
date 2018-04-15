@@ -12,14 +12,12 @@ AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &
 {
     logo_ = ImageFileFormat::loadFrom(BinaryData::logo_png, BinaryData::logo_pngSize);
 
-    for (int i = 0; i < 4; ++i) {
-        Operator_Editor *oped = oped_[i] = new Operator_Editor;
-        addAndMakeVisible(oped);
-    }
+    Main_Component *main = main_ = new Main_Component;
+    addAndMakeVisible(main);
 
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize(800, 600);
+    setSize(main->getWidth(), main->getHeight());
 }
 
 AdlplugAudioProcessorEditor::~AdlplugAudioProcessorEditor()
@@ -48,7 +46,7 @@ void AdlplugAudioProcessorEditor::paint(Graphics &g)
     toprow.removeFromRight(24);
     g.setColour(Colours::white);
     g.setFont(15.0f);
-    g.drawText("FM synthesizer with YMF262chip emulation", toprow, Justification::centred);
+    g.drawText("FM synthesizer with YMF262 chip emulation", toprow, Justification::centred);
 }
 
 void AdlplugAudioProcessorEditor::resized()
@@ -58,13 +56,6 @@ void AdlplugAudioProcessorEditor::resized()
 
     Rectangle<int> bounds = getLocalBounds();
 
-#warning XXX test only
-    bounds.removeFromTop(100);
-    for (int i = 0; i < 4; ++i) {
-        Operator_Editor *oped = oped_[i];
-        Rectangle<int> oped_bounds = bounds.removeFromTop(100);
-        // fprintf(stderr, "%s\n", oped_bounds.toString().toRawUTF8());
-        oped->setBounds(oped_bounds);
-        bounds.removeFromTop(8);
-    }
+    Main_Component *main = main_;
+    main->setBounds(bounds);
 }

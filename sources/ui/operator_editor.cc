@@ -45,12 +45,12 @@ Operator_Editor::Operator_Editor ()
     addAndMakeVisible (component3 = new Styled_Knob_Default());
     component3->setName ("new component");
 
-    component3->setBounds (160, 16, 48, 48);
+    component3->setBounds (16, 80, 48, 48);
 
     addAndMakeVisible (component4 = new Styled_Knob_Default());
     component4->setName ("new component");
 
-    component4->setBounds (232, 16, 48, 48);
+    component4->setBounds (88, 80, 48, 48);
 
 
     //[UserPreSize]
@@ -83,6 +83,8 @@ void Operator_Editor::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
+
+    g.fillAll (Colour (0xff323e44));
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -124,10 +126,10 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="88 16 48 48" class="Styled_Knob_Default"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="8d88729c124c7b16" memberName="component3"
-                    virtualName="" explicitFocusOrder="0" pos="160 16 48 48" class="Styled_Knob_Default"
+                    virtualName="" explicitFocusOrder="0" pos="16 80 48 48" class="Styled_Knob_Default"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="7d576b68e9b588f" memberName="component4"
-                    virtualName="" explicitFocusOrder="0" pos="232 16 48 48" class="Styled_Knob_Default"
+                    virtualName="" explicitFocusOrder="0" pos="88 80 48 48" class="Styled_Knob_Default"
                     params=""/>
 </JUCER_COMPONENT>
 

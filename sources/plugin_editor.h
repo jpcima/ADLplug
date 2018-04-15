@@ -6,6 +6,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "ui/main_component.h"
 #include "ui/operator_editor.h"
 #include "plugin_processor.h"
 
@@ -27,7 +28,7 @@ private:
     AdlplugAudioProcessor &processor;
 
     Image logo_;
-    Operator_Editor *oped_[4] = {};
+    Main_Component *main_ = nullptr;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessorEditor)
 };
