@@ -7,6 +7,7 @@
 #include <thread>
 #include <stdio.h>
 #include <stdlib.h>
+#include <signal.h>
 
 static std::thread::id rt_thread_id;
 
@@ -17,8 +18,10 @@ void rt_checker_init()
 
 static void rt_check(const char *name)
 {
-    if (rt_thread_id == std::this_thread::get_id())
+    if (rt_thread_id == std::this_thread::get_id()) {
         fprintf(stderr, "%s was called in the RT thread\n", name);
+        raise(SIGTRAP);
+    }
 }
 
 extern "C"
@@ -47,7 +50,8 @@ void *__wrap_realloc(void *ptr, size_t size)
 extern "C"
 void __wrap_free(void *ptr)
 {
-    rt_check("free");
+    if (ptr)
+        rt_check("free");
     return __real_free(ptr);
 }
 
