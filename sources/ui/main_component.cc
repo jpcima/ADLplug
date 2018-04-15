@@ -47,6 +47,7 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
     btn_4op->setButtonText (TRANS("4 op"));
     btn_4op->setConnectedEdges (Button::ConnectedOnRight);
     btn_4op->addListener (this);
+    btn_4op->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
     btn_4op->setBounds (48, 96, 56, 24);
 
@@ -54,6 +55,7 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
     btn_pseudo4op->setButtonText (TRANS("2x2 op"));
     btn_pseudo4op->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     btn_pseudo4op->addListener (this);
+    btn_pseudo4op->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
     btn_pseudo4op->setBounds (104, 96, 56, 24);
 
@@ -61,6 +63,7 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
     btn_2op->setButtonText (TRANS("2 op"));
     btn_2op->setConnectedEdges (Button::ConnectedOnLeft);
     btn_2op->addListener (this);
+    btn_2op->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
     btn_2op->setBounds (160, 96, 56, 24);
 
@@ -68,6 +71,7 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
     btn_fm12->setButtonText (TRANS("FM"));
     btn_fm12->setConnectedEdges (Button::ConnectedOnBottom);
     btn_fm12->addListener (this);
+    btn_fm12->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
     btn_fm12->setBounds (376, 200, 36, 24);
 
@@ -75,6 +79,7 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
     btn_am12->setButtonText (TRANS("AM"));
     btn_am12->setConnectedEdges (Button::ConnectedOnTop);
     btn_am12->addListener (this);
+    btn_am12->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
     btn_am12->setBounds (376, 224, 36, 24);
 
@@ -92,6 +97,7 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
     btn_fm34->setButtonText (TRANS("FM"));
     btn_fm34->setConnectedEdges (Button::ConnectedOnBottom);
     btn_fm34->addListener (this);
+    btn_fm34->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
     btn_fm34->setBounds (378, 368, 36, 24);
 
@@ -99,6 +105,7 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
     btn_am34->setButtonText (TRANS("AM"));
     btn_am34->setConnectedEdges (Button::ConnectedOnTop);
     btn_am34->addListener (this);
+    btn_am34->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
     btn_am34->setBounds (378, 392, 36, 24);
 
@@ -450,20 +457,20 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="16 160 352 128" class="Operator_Editor"
                     params=""/>
   <TEXTBUTTON name="new button" id="333aa0ccccbfed24" memberName="btn_4op"
-              virtualName="" explicitFocusOrder="0" pos="48 96 56 24" buttonText="4 op"
-              connectedEdges="2" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="48 96 56 24" bgColOn="ff42a2c8"
+              buttonText="4 op" connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="64d70bb49227f0d8" memberName="btn_pseudo4op"
-              virtualName="" explicitFocusOrder="0" pos="104 96 56 24" buttonText="2x2 op"
-              connectedEdges="3" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="104 96 56 24" bgColOn="ff42a2c8"
+              buttonText="2x2 op" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="402f6ebfee1d48e6" memberName="btn_2op"
-              virtualName="" explicitFocusOrder="0" pos="160 96 56 24" buttonText="2 op"
-              connectedEdges="1" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="160 96 56 24" bgColOn="ff42a2c8"
+              buttonText="2 op" connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="b2cb238ae0314374" memberName="btn_fm12"
-              virtualName="" explicitFocusOrder="0" pos="376 200 36 24" buttonText="FM"
-              connectedEdges="8" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="376 200 36 24" bgColOn="ff42a2c8"
+              buttonText="FM" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="f884f98bb82f318" memberName="btn_am12"
-              virtualName="" explicitFocusOrder="0" pos="376 224 36 24" buttonText="AM"
-              connectedEdges="4" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="376 224 36 24" bgColOn="ff42a2c8"
+              buttonText="AM" connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="a00c5401e39a953e" memberName="ed_op1"
                     virtualName="" explicitFocusOrder="0" pos="421 160 352 128" class="Operator_Editor"
                     params=""/>
@@ -471,11 +478,11 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="18 328 352 128" class="Operator_Editor"
                     params=""/>
   <TEXTBUTTON name="new button" id="6c84b2cc5c27a17f" memberName="btn_fm34"
-              virtualName="" explicitFocusOrder="0" pos="378 368 36 24" buttonText="FM"
-              connectedEdges="8" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="378 368 36 24" bgColOn="ff42a2c8"
+              buttonText="FM" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="c55383265bc18fb0" memberName="btn_am34"
-              virtualName="" explicitFocusOrder="0" pos="378 392 36 24" buttonText="AM"
-              connectedEdges="4" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="378 392 36 24" bgColOn="ff42a2c8"
+              buttonText="AM" connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="ed_op3"
                     virtualName="" explicitFocusOrder="0" pos="423 328 352 128" class="Operator_Editor"
                     params=""/>
