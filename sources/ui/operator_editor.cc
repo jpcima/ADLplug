@@ -130,13 +130,13 @@ Operator_Editor::Operator_Editor ()
 
     addAndMakeVisible (lb_optype = new Label ("new label",
                                               TRANS("Modulator")));
-    lb_optype->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lb_optype->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Bold"));
     lb_optype->setJustificationType (Justification::centred);
     lb_optype->setEditable (false, false, false);
     lb_optype->setColour (TextEditor::textColourId, Colours::black);
     lb_optype->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lb_optype->setBounds (240, 8, 78, 24);
+    lb_optype->setBounds (232, 8, 78, 24);
 
 
     //[UserPreSize]
@@ -266,7 +266,7 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 240, y = 8, width = 78, height = 24;
+        int x = 232, y = 8, width = 78, height = 24;
         Colour fillColour = Colour (0xd3a52a2a);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -390,7 +390,7 @@ BEGIN_JUCER_METADATA
     <TEXT pos="284 124 28 18" fill="solid: fff0f8ff" hasStroke="0" text="Eg"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <RECT pos="240 8 78 24" fill="solid: d3a52a2a" hasStroke="0"/>
+    <RECT pos="232 8 78 24" fill="solid: d3a52a2a" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="7c54ff103d9f5d" memberName="component"
                     virtualName="" explicitFocusOrder="0" pos="8 32 48 48" class="Styled_Knob_Default"
@@ -443,10 +443,11 @@ BEGIN_JUCER_METADATA
           textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
   <LABEL name="new label" id="d5cf6971a21036bf" memberName="lb_optype"
-         virtualName="" explicitFocusOrder="0" pos="240 8 78 24" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="232 8 78 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Modulator" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         kerning="0.00000000000000000000" bold="1" italic="0" justification="36"
+         typefaceStyle="Bold"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

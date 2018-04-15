@@ -204,25 +204,25 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 68, y = 132, width = 84, height = 30;
+        int x = 68, y = 132, width = 92, height = 30;
         String text (TRANS("Operator 1-2"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Bold"));
         g.drawText (text, x, y, width, height,
                     Justification::centredLeft, true);
     }
 
     {
-        int x = 68, y = 340, width = 84, height = 30;
+        int x = 68, y = 340, width = 92, height = 30;
         String text (TRANS("Operator 3-4"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Bold"));
         g.drawText (text, x, y, width, height,
                     Justification::centredLeft, true);
     }
@@ -378,12 +378,12 @@ BEGIN_JUCER_METADATA
     <TEXT pos="356 28 284 30" fill="solid: fff0f8ff" hasStroke="0" text="FM synthesizer with YMF262 chip emulation"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <TEXT pos="68 132 84 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 1-2"
+    <TEXT pos="68 132 92 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 1-2"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="33"/>
-    <TEXT pos="68 340 84 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 3-4"
+          bold="1" italic="0" justification="33" typefaceStyle="Bold"/>
+    <TEXT pos="68 340 92 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 3-4"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="33"/>
+          bold="1" italic="0" justification="33" typefaceStyle="Bold"/>
     <TEXT pos="572 132 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Tune"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
