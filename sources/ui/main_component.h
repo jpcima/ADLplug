@@ -95,6 +95,7 @@ private:
     ScopedPointer<TextButton> btn_less_chips;
     ScopedPointer<TextButton> btn_more_chips;
     ScopedPointer<ComboBox> cb_emulator;
+    ScopedPointer<Label> label2;
 
 
     //==============================================================================

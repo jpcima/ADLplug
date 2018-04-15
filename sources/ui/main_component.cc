@@ -155,7 +155,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
                           ImageCache::getFromMemory (logo_png, logo_pngSize), 1.000f, Colour (0x00000000),
                           Image(), 1.000f, Colour (0x00000000),
                           Image(), 1.000f, Colour (0x00000000));
-    btn_about->setBounds (16, 16, 232, 40);
+    btn_about->setBounds (16, 8, 232, 40);
 
     addAndMakeVisible (label = new Label ("new label",
                                           TRANS("Chips")));
@@ -165,32 +165,32 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     label->setColour (TextEditor::textColourId, Colours::black);
     label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label->setBounds (608, 64, 48, 24);
+    label->setBounds (632, 16, 48, 24);
 
     addAndMakeVisible (lbl_num_chips = new Label ("new label",
                                                   TRANS("100")));
     lbl_num_chips->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-    lbl_num_chips->setJustificationType (Justification::centredLeft);
+    lbl_num_chips->setJustificationType (Justification::centred);
     lbl_num_chips->setEditable (false, false, false);
     lbl_num_chips->setColour (Label::outlineColourId, Colour (0xff8e989b));
     lbl_num_chips->setColour (TextEditor::textColourId, Colours::black);
     lbl_num_chips->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lbl_num_chips->setBounds (656, 64, 32, 24);
+    lbl_num_chips->setBounds (680, 16, 32, 24);
 
     addAndMakeVisible (btn_less_chips = new TextButton ("new button"));
     btn_less_chips->setButtonText (TRANS("<"));
     btn_less_chips->setConnectedEdges (Button::ConnectedOnRight);
     btn_less_chips->addListener (this);
 
-    btn_less_chips->setBounds (696, 65, 23, 24);
+    btn_less_chips->setBounds (720, 17, 23, 24);
 
     addAndMakeVisible (btn_more_chips = new TextButton ("new button"));
     btn_more_chips->setButtonText (TRANS(">"));
     btn_more_chips->setConnectedEdges (Button::ConnectedOnLeft);
     btn_more_chips->addListener (this);
 
-    btn_more_chips->setBounds (719, 65, 23, 24);
+    btn_more_chips->setBounds (743, 17, 23, 24);
 
     addAndMakeVisible (cb_emulator = new ComboBox ("new combo box"));
     cb_emulator->setEditableText (false);
@@ -199,7 +199,17 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     cb_emulator->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     cb_emulator->addListener (this);
 
-    cb_emulator->setBounds (544, 96, 198, 24);
+    cb_emulator->setBounds (568, 48, 198, 24);
+
+    addAndMakeVisible (label2 = new Label ("new label",
+                                           TRANS("FM synthesizer with YMF262 chip emulation")));
+    label2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label2->setJustificationType (Justification::centredLeft);
+    label2->setEditable (false, false, false);
+    label2->setColour (TextEditor::textColourId, Colours::black);
+    label2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label2->setBounds (280, 16, 280, 24);
 
 
     //[UserPreSize]
@@ -239,6 +249,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     std::vector<std::string> emus = proc.enumerate_emulators();
     for (size_t i = 0, n = emus.size(); i < n; ++i)
         cb_emulator->addItem(emus[i], i + 1);
+    // TODO should have an API to get the current emulator...
     cb_emulator->setSelectedId(1);
     //[/Constructor]
 }
@@ -270,6 +281,7 @@ Main_Component::~Main_Component()
     btn_less_chips = nullptr;
     btn_more_chips = nullptr;
     cb_emulator = nullptr;
+    label2 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -283,18 +295,6 @@ void Main_Component::paint (Graphics& g)
     //[/UserPrePaint]
 
     g.fillAll (Colour (0xff323e44));
-
-    {
-        int x = 356, y = 20, width = 284, height = 30;
-        String text (TRANS("FM synthesizer with YMF262 chip emulation"));
-        Colour fillColour = Colours::aliceblue;
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-        g.drawText (text, x, y, width, height,
-                    Justification::centred, true);
-    }
 
     {
         int x = 28, y = 132, width = 92, height = 30;
@@ -548,9 +548,6 @@ BEGIN_JUCER_METADATA
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="800" initialHeight="600">
   <BACKGROUND backgroundColour="ff323e44">
-    <TEXT pos="356 20 284 30" fill="solid: fff0f8ff" hasStroke="0" text="FM synthesizer with YMF262 chip emulation"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="36"/>
     <TEXT pos="28 132 92 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 1-2"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="1" italic="0" justification="33" typefaceStyle="Bold"/>
@@ -623,32 +620,38 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="24 480 752 56" class="MidiKeyboardComponent"
                     params="midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard"/>
   <IMAGEBUTTON name="new button" id="1c21a98bd6493eb8" memberName="btn_about"
-               virtualName="" explicitFocusOrder="0" pos="16 16 232 40" buttonText=""
+               virtualName="" explicitFocusOrder="0" pos="16 8 232 40" buttonText=""
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="logo_png" opacityNormal="1.00000000000000000000"
                colourNormal="0" resourceOver="" opacityOver="1.00000000000000000000"
                colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
                colourDown="0"/>
   <LABEL name="new label" id="5628e38331cdf4ec" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="608 64 48 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="632 16 48 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Chips" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
          kerning="0.00000000000000000000" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="be41a2433f6d1f03" memberName="lbl_num_chips"
-         virtualName="" explicitFocusOrder="0" pos="656 64 32 24" outlineCol="ff8e989b"
+         virtualName="" explicitFocusOrder="0" pos="680 16 32 24" outlineCol="ff8e989b"
          edTextCol="ff000000" edBkgCol="0" labelText="100" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="btn_less_chips"
-              virtualName="" explicitFocusOrder="0" pos="696 65 23 24" buttonText="&lt;"
+              virtualName="" explicitFocusOrder="0" pos="720 17 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="btn_more_chips"
-              virtualName="" explicitFocusOrder="0" pos="719 65 23 24" buttonText="&gt;"
+              virtualName="" explicitFocusOrder="0" pos="743 17 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <COMBOBOX name="new combo box" id="8f8a11ca0d94343f" memberName="cb_emulator"
-            virtualName="" explicitFocusOrder="0" pos="544 96 198 24" editable="0"
+            virtualName="" explicitFocusOrder="0" pos="568 48 198 24" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <LABEL name="new label" id="9fd95e8efc5b0fe1" memberName="label2" virtualName=""
+         explicitFocusOrder="0" pos="280 16 280 24" edTextCol="ff000000"
+         edBkgCol="0" labelText="FM synthesizer with YMF262 chip emulation"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
+         bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
