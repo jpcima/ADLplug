@@ -9,6 +9,10 @@
 #include <boost/smart_ptr/intrusive_ref_counter.hpp>
 #include <vector>
 
+struct Km_Skin;
+typedef boost::intrusive_ptr<Km_Skin> Km_Skin_Ptr;
+typedef boost::intrusive_ptr<const Km_Skin> Km_Skin_CPtr;
+
 struct Km_Skin : public boost::intrusive_ref_counter<Km_Skin>
 {
     std::vector<Image> frames;
@@ -17,7 +21,6 @@ struct Km_Skin : public boost::intrusive_ref_counter<Km_Skin>
     void load(const Image &img, unsigned frame_count);
     void load_data(const char *data, unsigned size, unsigned frame_count);
     void load_resource(const char *name, unsigned frame_count);
-};
 
-typedef boost::intrusive_ptr<Km_Skin> Km_Skin_Ptr;
-typedef boost::intrusive_ptr<const Km_Skin> Km_Skin_CPtr;
+    Km_Skin_Ptr scaled(double ratio) const;
+};

@@ -118,21 +118,15 @@ Main_Component::Main_Component ()
 
     sl_tune34->setBounds (608, 344, 150, 24);
 
-    addAndMakeVisible (sl_fb12 = new Slider ("new slider"));
-    sl_fb12->setRange (0, 7, 0);
-    sl_fb12->setSliderStyle (Slider::LinearHorizontal);
-    sl_fb12->setTextBoxStyle (Slider::TextBoxRight, false, 20, 20);
-    sl_fb12->addListener (this);
+    addAndMakeVisible (component5 = new Styled_Knob_DefaultSmall());
+    component5->setName ("new component");
 
-    sl_fb12->setBounds (408, 136, 150, 24);
+    component5->setBounds (536, 128, 32, 32);
 
-    addAndMakeVisible (sl_fb34 = new Slider ("new slider"));
-    sl_fb34->setRange (0, 7, 0);
-    sl_fb34->setSliderStyle (Slider::LinearHorizontal);
-    sl_fb34->setTextBoxStyle (Slider::TextBoxRight, false, 20, 20);
-    sl_fb34->addListener (this);
+    addAndMakeVisible (component6 = new Styled_Knob_DefaultSmall());
+    component6->setName ("new component");
 
-    sl_fb34->setBounds (408, 344, 150, 24);
+    component6->setBounds (536, 336, 32, 32);
 
     cachedImage_logo_png_1 = ImageCache::getFromMemory (logo_png, logo_pngSize);
 
@@ -143,8 +137,6 @@ Main_Component::Main_Component ()
 
 
     //[Constructor] You can add your own custom stuff here..
-    sl_fb12->setNumDecimalPlacesToDisplay(0);
-    sl_fb34->setNumDecimalPlacesToDisplay(0);
     sl_tune12->setNumDecimalPlacesToDisplay(0);
     sl_tune34->setNumDecimalPlacesToDisplay(0);
     //[/Constructor]
@@ -168,8 +160,8 @@ Main_Component::~Main_Component()
     component4 = nullptr;
     sl_tune12 = nullptr;
     sl_tune34 = nullptr;
-    sl_fb12 = nullptr;
-    sl_fb34 = nullptr;
+    component5 = nullptr;
+    component6 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -256,7 +248,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 348, y = 340, width = 60, height = 30;
+        int x = 468, y = 340, width = 60, height = 30;
         String text (TRANS("Feedback"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -268,7 +260,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 348, y = 132, width = 60, height = 30;
+        int x = 468, y = 132, width = 60, height = 30;
         String text (TRANS("Feedback"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -352,16 +344,6 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
         //[UserSliderCode_sl_tune34] -- add your slider handling code here..
         //[/UserSliderCode_sl_tune34]
     }
-    else if (sliderThatWasMoved == sl_fb12)
-    {
-        //[UserSliderCode_sl_fb12] -- add your slider handling code here..
-        //[/UserSliderCode_sl_fb12]
-    }
-    else if (sliderThatWasMoved == sl_fb34)
-    {
-        //[UserSliderCode_sl_fb34] -- add your slider handling code here..
-        //[/UserSliderCode_sl_fb34]
-    }
 
     //[UsersliderValueChanged_Post]
     //[/UsersliderValueChanged_Post]
@@ -404,10 +386,10 @@ BEGIN_JUCER_METADATA
     <TEXT pos="572 340 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Tune"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <TEXT pos="348 340 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
+    <TEXT pos="468 340 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <TEXT pos="348 132 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
+    <TEXT pos="468 132 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
   </BACKGROUND>
@@ -454,16 +436,12 @@ BEGIN_JUCER_METADATA
           max="127.00000000000000000000" int="0.00000000000000000000" style="LinearHorizontal"
           textBoxPos="TextBoxRight" textBoxEditable="1" textBoxWidth="36"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
-  <SLIDER name="new slider" id="39c8b5b1d7b1754b" memberName="sl_fb12"
-          virtualName="" explicitFocusOrder="0" pos="408 136 150 24" min="0.00000000000000000000"
-          max="7.00000000000000000000" int="0.00000000000000000000" style="LinearHorizontal"
-          textBoxPos="TextBoxRight" textBoxEditable="1" textBoxWidth="20"
-          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
-  <SLIDER name="new slider" id="bc28784641c8674c" memberName="sl_fb34"
-          virtualName="" explicitFocusOrder="0" pos="408 344 150 24" min="0.00000000000000000000"
-          max="7.00000000000000000000" int="0.00000000000000000000" style="LinearHorizontal"
-          textBoxPos="TextBoxRight" textBoxEditable="1" textBoxWidth="20"
-          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+  <GENERICCOMPONENT name="new component" id="8e0915367ccd00d3" memberName="component5"
+                    virtualName="" explicitFocusOrder="0" pos="536 128 32 32" class="Styled_Knob_DefaultSmall"
+                    params=""/>
+  <GENERICCOMPONENT name="new component" id="59510781248f1393" memberName="component6"
+                    virtualName="" explicitFocusOrder="0" pos="536 336 32 32" class="Styled_Knob_DefaultSmall"
+                    params=""/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

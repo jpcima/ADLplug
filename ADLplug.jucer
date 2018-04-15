@@ -33,6 +33,7 @@
               file="sources/ui/operator_editor.cc"/>
         <FILE id="qbk60K" name="operator_editor.h" compile="0" resource="0"
               file="sources/ui/operator_editor.h"/>
+        <FILE id="P5y4Io" name="styled_knobs.cc" compile="1" resource="0" file="sources/ui/styled_knobs.cc"/>
         <FILE id="FDBT9O" name="styled_knobs.h" compile="0" resource="0" file="sources/ui/styled_knobs.h"/>
       </GROUP>
       <GROUP id="{90BE611D-B377-7C79-171F-98F2CD7899AE}" name="adl">

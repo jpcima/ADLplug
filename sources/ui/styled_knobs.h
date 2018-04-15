@@ -15,3 +15,11 @@ public:
         { set_skin(style_skin()); }
     static const Km_Skin_Ptr &style_skin();
 };
+
+class Styled_Knob_DefaultSmall : public Knob
+{
+public:
+    Styled_Knob_DefaultSmall()
+        { set_skin(style_skin()); }
+    static const Km_Skin_Ptr &style_skin();
+};

@@ -76,8 +76,8 @@ private:
     ScopedPointer<Operator_Editor> component4;
     ScopedPointer<Slider> sl_tune12;
     ScopedPointer<Slider> sl_tune34;
-    ScopedPointer<Slider> sl_fb12;
-    ScopedPointer<Slider> sl_fb34;
+    ScopedPointer<Styled_Knob_DefaultSmall> component5;
+    ScopedPointer<Styled_Knob_DefaultSmall> component6;
     Image cachedImage_logo_png_1;
 
 

@@ -15,3 +15,11 @@ const Km_Skin_Ptr &Styled_Knob_Default::style_skin()
     }
     return the_skin;
 }
+
+const Km_Skin_Ptr &Styled_Knob_DefaultSmall::style_skin()
+{
+    static Km_Skin_Ptr the_skin;
+    if (!the_skin)
+        the_skin = Styled_Knob_Default::style_skin()->scaled(0.7);
+    return the_skin;
+}

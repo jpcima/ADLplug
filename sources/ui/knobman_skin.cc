@@ -44,3 +44,21 @@ void Km_Skin::load_resource(const char *name, unsigned frame_count)
         return;
     load_data(data, size, frame_count);
 }
+
+Km_Skin_Ptr Km_Skin::scaled(double ratio) const
+{
+    Km_Skin_Ptr skin = new Km_Skin;
+    size_t frame_count = this->frames.size();
+    skin->frames.resize(frame_count);
+    if (!*this)
+        return skin;
+
+    int orig_w = this->frames[0].getWidth();
+    int orig_h = this->frames[0].getHeight();
+    int new_w = lround(orig_w * ratio);
+    int new_h = lround(orig_h * ratio);
+    for (size_t i = 0; i < frame_count; ++i)
+        skin->frames[i] = this->frames[i].rescaled(new_w, new_h, Graphics::highResamplingQuality);
+
+    return skin;
+}
