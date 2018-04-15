@@ -27,7 +27,7 @@ private:
     // access the processor object that created it.
     AdlplugAudioProcessor &processor;
 
-    Main_Component *main_ = nullptr;
+    ScopedPointer<Main_Component> main_;
     TooltipWindow tooltip_window_;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessorEditor)
