@@ -100,6 +100,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/knobman_skin_53c856a1.o \
   $(JUCE_OBJDIR)/main_component_ffc34342.o \
   $(JUCE_OBJDIR)/operator_editor_6b1eb07b.o \
+  $(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o \
   $(JUCE_OBJDIR)/player_38a5f121.o \
   $(JUCE_OBJDIR)/plugin_editor_4e133bb.o \
   $(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o \
@@ -185,6 +186,11 @@ $(JUCE_OBJDIR)/main_component_ffc34342.o: ../../../sources/ui/main_component.cc
 $(JUCE_OBJDIR)/operator_editor_6b1eb07b.o: ../../../sources/ui/operator_editor.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling operator_editor.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o: ../../../sources/ui/styled_knobs.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling styled_knobs.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/player_38a5f121.o: ../../../sources/adl/player.cc

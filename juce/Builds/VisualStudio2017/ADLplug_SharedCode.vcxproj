@@ -160,6 +160,7 @@
     <ClCompile Include="..\..\..\sources\ui\knobman_skin.cc"/>
     <ClCompile Include="..\..\..\sources\ui\main_component.cc"/>
     <ClCompile Include="..\..\..\sources\ui\operator_editor.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc"/>
     <ClCompile Include="..\..\..\sources\adl\player.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>

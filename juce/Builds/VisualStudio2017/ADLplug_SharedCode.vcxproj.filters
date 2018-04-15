@@ -388,6 +388,9 @@
     <ClCompile Include="..\..\..\sources\ui\operator_editor.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\adl\player.cc">
       <Filter>ADLplug\sources\adl</Filter>
     </ClCompile>
