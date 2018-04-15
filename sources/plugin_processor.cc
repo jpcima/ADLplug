@@ -5,6 +5,7 @@
 
 #include "adl/player.h"
 #include "utility/simple_fifo.h"
+#include "utility/rt_checker.h"
 #include "plugin_processor.h"
 #include "plugin_editor.h"
 
@@ -141,6 +142,10 @@ bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) c
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                          MidiBuffer &midi_messages)
 {
+#ifdef ADLplug_RT_CHECKER
+    rt_checker_init();
+#endif
+
     ScopedNoDenormals no_denormals;
     Generic_Player *pl = player_.get();
     unsigned nframes = buffer.getNumSamples();

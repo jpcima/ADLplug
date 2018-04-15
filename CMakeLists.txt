@@ -3,8 +3,14 @@ cmake_minimum_required(VERSION 3.6)
 project(ADLplug VERSION 1.0.0 LANGUAGES CXX)
 set(ADLplug_URI "https://github.com/jpcima/ADLplug")
 
+option(ADLplug_RT_CHECKER "Enable a detector of RT programming errors" OFF)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread")
+
+if(ADLplug_RT_CHECKER)
+  add_definitions("-DADLplug_RT_CHECKER=1")
+  set(ADLplug_RT_CHECKER_LINK_FLAGS "-Wl,--wrap=malloc -Wl,--wrap=realloc -Wl,--wrap=free -Wl,--wrap=memalign")
+endif()
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(LinkHelpers)
@@ -64,6 +70,7 @@ message("Build LV2: ${ADLplug_LV2}")
 add_library(ADLplug_core STATIC
   "JuceLibraryCode/BinaryData.cpp"
   "sources/utility/simple_fifo.cc"
+  "sources/utility/rt_checker.cc"
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
   "sources/ui/knobman_skin.cc"
@@ -94,6 +101,10 @@ macro(add_plugin NAME)
     # forces the static link of winpthread
     set_property(TARGET "${NAME}" APPEND_STRING
       PROPERTY LINK_FLAGS " -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,-Bdynamic,--no-whole-archive")
+  endif()
+  if(ADLplug_RT_CHECKER)
+    set_property(TARGET "${NAME}" APPEND_STRING
+      PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
   endif()
 endmacro()
 
@@ -142,6 +153,9 @@ if(ADLplug_Standalone)
     require_symbols(ADLplug_Standalone "main")
   endif()
   set_property(TARGET ADLplug_Standalone PROPERTY OUTPUT_NAME "ADLplug")
-
+  if(ADLplug_RT_CHECKER)
+    set_property(TARGET "ADLplug_Standalone" APPEND_STRING
+      PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
+  endif()
   install(TARGETS ADLplug_Standalone DESTINATION "bin")
 endif()
