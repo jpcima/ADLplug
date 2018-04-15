@@ -34,7 +34,9 @@
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class Operator_Editor  : public Component
+class Operator_Editor  : public Component,
+                         public Button::Listener,
+                         public Slider::Listener
 {
 public:
     //==============================================================================
@@ -47,6 +49,8 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
+    void buttonClicked (Button* buttonThatWasClicked) override;
+    void sliderValueChanged (Slider* sliderThatWasMoved) override;
 
 
 
@@ -59,6 +63,16 @@ private:
     ScopedPointer<Styled_Knob_Default> component2;
     ScopedPointer<Styled_Knob_Default> component3;
     ScopedPointer<Styled_Knob_Default> component4;
+    ScopedPointer<Label> label;
+    ScopedPointer<TextButton> textButton;
+    ScopedPointer<TextButton> textButton2;
+    ScopedPointer<TextButton> textButton3;
+    ScopedPointer<TextButton> textButton4;
+    ScopedPointer<TextButton> textButton5;
+    ScopedPointer<TextButton> textButton6;
+    ScopedPointer<Slider> slider;
+    ScopedPointer<Slider> slider2;
+    ScopedPointer<Slider> slider3;
 
 
     //==============================================================================

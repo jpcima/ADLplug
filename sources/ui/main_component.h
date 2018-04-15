@@ -20,8 +20,8 @@
 #pragma once
 
 //[Headers]     -- You can add your own extra header files here --
-#include "ui/operator_editor.h"
 #include "../../JuceLibraryCode/JuceHeader.h"
+class Operator_Editor;
 //[/Headers]
 
 
@@ -34,7 +34,8 @@
     Describe your class and how it works here!
                                                                     //[/Comments]
 */
-class Main_Component  : public Component
+class Main_Component  : public Component,
+                        public Button::Listener
 {
 public:
     //==============================================================================
@@ -47,7 +48,11 @@ public:
 
     void paint (Graphics& g) override;
     void resized() override;
+    void buttonClicked (Button* buttonThatWasClicked) override;
 
+    // Binary resources:
+    static const char* logo_png;
+    static const int logo_pngSize;
 
 
 private:
@@ -56,10 +61,17 @@ private:
 
     //==============================================================================
     ScopedPointer<Operator_Editor> component;
+    ScopedPointer<TextButton> textButton;
+    ScopedPointer<TextButton> textButton2;
+    ScopedPointer<TextButton> textButton3;
+    ScopedPointer<TextButton> textButton4;
+    ScopedPointer<TextButton> textButton5;
     ScopedPointer<Operator_Editor> component2;
     ScopedPointer<Operator_Editor> component3;
+    ScopedPointer<TextButton> textButton6;
+    ScopedPointer<TextButton> textButton7;
     ScopedPointer<Operator_Editor> component4;
-    ScopedPointer<Drawable> drawable1;
+    Image cachedImage_logo_png_1;
 
 
     //==============================================================================
