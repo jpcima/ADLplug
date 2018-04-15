@@ -110,7 +110,7 @@ Operator_Editor::Operator_Editor ()
     slider->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     slider->addListener (this);
 
-    slider->setBounds (224, 24, 24, 96);
+    slider->setBounds (224, 32, 24, 96);
 
     addAndMakeVisible (slider2 = new Slider ("new slider"));
     slider2->setRange (0, 10, 0);
@@ -118,7 +118,7 @@ Operator_Editor::Operator_Editor ()
     slider2->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     slider2->addListener (this);
 
-    slider2->setBounds (256, 24, 24, 96);
+    slider2->setBounds (256, 32, 24, 96);
 
     addAndMakeVisible (slider3 = new Slider ("new slider"));
     slider3->setRange (0, 10, 0);
@@ -126,7 +126,17 @@ Operator_Editor::Operator_Editor ()
     slider3->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     slider3->addListener (this);
 
-    slider3->setBounds (288, 24, 24, 96);
+    slider3->setBounds (288, 32, 24, 96);
+
+    addAndMakeVisible (lb_optype = new Label ("new label",
+                                              TRANS("Modulator")));
+    lb_optype->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lb_optype->setJustificationType (Justification::centred);
+    lb_optype->setEditable (false, false, false);
+    lb_optype->setColour (TextEditor::textColourId, Colours::black);
+    lb_optype->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lb_optype->setBounds (240, 8, 78, 24);
 
 
     //[UserPreSize]
@@ -158,6 +168,7 @@ Operator_Editor::~Operator_Editor()
     slider = nullptr;
     slider2 = nullptr;
     slider3 = nullptr;
+    lb_optype = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -219,7 +230,7 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 220, y = 116, width = 28, height = 18;
+        int x = 220, y = 124, width = 28, height = 18;
         String text (TRANS("Lv"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -231,7 +242,7 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 252, y = 116, width = 28, height = 18;
+        int x = 252, y = 124, width = 28, height = 18;
         String text (TRANS("F*"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -243,7 +254,7 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 284, y = 116, width = 28, height = 18;
+        int x = 284, y = 124, width = 28, height = 18;
         String text (TRANS("Eg"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -252,6 +263,15 @@ void Operator_Editor::paint (Graphics& g)
         g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
         g.drawText (text, x, y, width, height,
                     Justification::centred, true);
+    }
+
+    {
+        int x = 240, y = 8, width = 78, height = 24;
+        Colour fillColour = Colour (0xd3a52a2a);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
     }
 
     //[UserPaint] Add your own custom painting code here..
@@ -361,15 +381,16 @@ BEGIN_JUCER_METADATA
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="33"/>
     <RECT pos="52 92 100 20" fill="solid: ff373737" hasStroke="0"/>
-    <TEXT pos="220 116 28 18" fill="solid: fff0f8ff" hasStroke="0" text="Lv"
+    <TEXT pos="220 124 28 18" fill="solid: fff0f8ff" hasStroke="0" text="Lv"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <TEXT pos="252 116 28 18" fill="solid: fff0f8ff" hasStroke="0" text="F*"
+    <TEXT pos="252 124 28 18" fill="solid: fff0f8ff" hasStroke="0" text="F*"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <TEXT pos="284 116 28 18" fill="solid: fff0f8ff" hasStroke="0" text="Eg"
+    <TEXT pos="284 124 28 18" fill="solid: fff0f8ff" hasStroke="0" text="Eg"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
+    <RECT pos="240 8 78 24" fill="solid: d3a52a2a" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="7c54ff103d9f5d" memberName="component"
                     virtualName="" explicitFocusOrder="0" pos="8 32 48 48" class="Styled_Knob_Default"
@@ -407,20 +428,25 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="152 136 48 24" buttonText="ENV"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <SLIDER name="new slider" id="b7065e7cd8f3e951" memberName="slider" virtualName=""
-          explicitFocusOrder="0" pos="224 24 24 96" min="0.00000000000000000000"
+          explicitFocusOrder="0" pos="224 32 24 96" min="0.00000000000000000000"
           max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
           textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
   <SLIDER name="new slider" id="47c9497e72aa0068" memberName="slider2"
-          virtualName="" explicitFocusOrder="0" pos="256 24 24 96" min="0.00000000000000000000"
+          virtualName="" explicitFocusOrder="0" pos="256 32 24 96" min="0.00000000000000000000"
           max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
           textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
   <SLIDER name="new slider" id="7da3d626504f1592" memberName="slider3"
-          virtualName="" explicitFocusOrder="0" pos="288 24 24 96" min="0.00000000000000000000"
+          virtualName="" explicitFocusOrder="0" pos="288 32 24 96" min="0.00000000000000000000"
           max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
           textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+  <LABEL name="new label" id="d5cf6971a21036bf" memberName="lb_optype"
+         virtualName="" explicitFocusOrder="0" pos="240 8 78 24" edTextCol="ff000000"
+         edBkgCol="0" labelText="Modulator" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
+         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

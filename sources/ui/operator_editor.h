@@ -45,6 +45,8 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    void set_op_label(const String &type)
+        { lb_optype->setText(type, juce::dontSendNotification); }
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -73,6 +75,7 @@ private:
     ScopedPointer<Slider> slider;
     ScopedPointer<Slider> slider2;
     ScopedPointer<Slider> slider3;
+    ScopedPointer<Label> lb_optype;
 
 
     //==============================================================================

@@ -33,10 +33,10 @@ Main_Component::Main_Component ()
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    addAndMakeVisible (component = new Operator_Editor());
-    component->setName ("new component");
+    addAndMakeVisible (ed_op2 = new Operator_Editor());
+    ed_op2->setName ("new component");
 
-    component->setBounds (56, 160, 328, 172);
+    ed_op2->setBounds (56, 160, 328, 172);
 
     addAndMakeVisible (textButton = new TextButton ("new button"));
     textButton->setButtonText (TRANS("4 op"));
@@ -73,15 +73,15 @@ Main_Component::Main_Component ()
 
     textButton5->setBounds (392, 248, 36, 24);
 
-    addAndMakeVisible (component2 = new Operator_Editor());
-    component2->setName ("new component");
+    addAndMakeVisible (ed_op1 = new Operator_Editor());
+    ed_op1->setName ("new component");
 
-    component2->setBounds (437, 160, 328, 172);
+    ed_op1->setBounds (437, 160, 328, 172);
 
-    addAndMakeVisible (component3 = new Operator_Editor());
-    component3->setName ("new component");
+    addAndMakeVisible (ed_op4 = new Operator_Editor());
+    ed_op4->setName ("new component");
 
-    component3->setBounds (58, 368, 328, 172);
+    ed_op4->setBounds (58, 368, 328, 172);
 
     addAndMakeVisible (textButton6 = new TextButton ("new button"));
     textButton6->setButtonText (TRANS("FM"));
@@ -97,10 +97,10 @@ Main_Component::Main_Component ()
 
     textButton7->setBounds (394, 456, 36, 24);
 
-    addAndMakeVisible (component4 = new Operator_Editor());
-    component4->setName ("new component");
+    addAndMakeVisible (ed_op3 = new Operator_Editor());
+    ed_op3->setName ("new component");
 
-    component4->setBounds (439, 368, 328, 172);
+    ed_op3->setBounds (439, 368, 328, 172);
 
     addAndMakeVisible (sl_tune12 = new Slider ("new slider"));
     sl_tune12->setRange (-127, 127, 0);
@@ -139,6 +139,10 @@ Main_Component::Main_Component ()
     //[Constructor] You can add your own custom stuff here..
     sl_tune12->setNumDecimalPlacesToDisplay(0);
     sl_tune34->setNumDecimalPlacesToDisplay(0);
+    ed_op1->set_op_label("Modulator");
+    ed_op2->set_op_label("Carrier");
+    ed_op3->set_op_label("Modulator");
+    ed_op4->set_op_label("Carrier");
     //[/Constructor]
 }
 
@@ -147,17 +151,17 @@ Main_Component::~Main_Component()
     //[Destructor_pre]. You can add your own custom destruction code here..
     //[/Destructor_pre]
 
-    component = nullptr;
+    ed_op2 = nullptr;
     textButton = nullptr;
     textButton2 = nullptr;
     textButton3 = nullptr;
     textButton4 = nullptr;
     textButton5 = nullptr;
-    component2 = nullptr;
-    component3 = nullptr;
+    ed_op1 = nullptr;
+    ed_op4 = nullptr;
     textButton6 = nullptr;
     textButton7 = nullptr;
-    component4 = nullptr;
+    ed_op3 = nullptr;
     sl_tune12 = nullptr;
     sl_tune34 = nullptr;
     component5 = nullptr;
@@ -393,7 +397,7 @@ BEGIN_JUCER_METADATA
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
   </BACKGROUND>
-  <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="component"
+  <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="56 160 328 172" class="Operator_Editor"
                     params=""/>
   <TEXTBUTTON name="new button" id="333aa0ccccbfed24" memberName="textButton"
@@ -411,10 +415,10 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="new button" id="f884f98bb82f318" memberName="textButton5"
               virtualName="" explicitFocusOrder="0" pos="392 248 36 24" buttonText="AM"
               connectedEdges="4" needsCallback="1" radioGroupId="0"/>
-  <GENERICCOMPONENT name="new component" id="a00c5401e39a953e" memberName="component2"
+  <GENERICCOMPONENT name="new component" id="a00c5401e39a953e" memberName="ed_op1"
                     virtualName="" explicitFocusOrder="0" pos="437 160 328 172" class="Operator_Editor"
                     params=""/>
-  <GENERICCOMPONENT name="new component" id="b7424f0838e48a08" memberName="component3"
+  <GENERICCOMPONENT name="new component" id="b7424f0838e48a08" memberName="ed_op4"
                     virtualName="" explicitFocusOrder="0" pos="58 368 328 172" class="Operator_Editor"
                     params=""/>
   <TEXTBUTTON name="new button" id="6c84b2cc5c27a17f" memberName="textButton6"
@@ -423,7 +427,7 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="new button" id="c55383265bc18fb0" memberName="textButton7"
               virtualName="" explicitFocusOrder="0" pos="394 456 36 24" buttonText="AM"
               connectedEdges="4" needsCallback="1" radioGroupId="0"/>
-  <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="component4"
+  <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="ed_op3"
                     virtualName="" explicitFocusOrder="0" pos="439 368 328 172" class="Operator_Editor"
                     params=""/>
   <SLIDER name="new slider" id="9cd7cc232d55ac8a" memberName="sl_tune12"

@@ -63,17 +63,17 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<Operator_Editor> component;
+    ScopedPointer<Operator_Editor> ed_op2;
     ScopedPointer<TextButton> textButton;
     ScopedPointer<TextButton> textButton2;
     ScopedPointer<TextButton> textButton3;
     ScopedPointer<TextButton> textButton4;
     ScopedPointer<TextButton> textButton5;
-    ScopedPointer<Operator_Editor> component2;
-    ScopedPointer<Operator_Editor> component3;
+    ScopedPointer<Operator_Editor> ed_op1;
+    ScopedPointer<Operator_Editor> ed_op4;
     ScopedPointer<TextButton> textButton6;
     ScopedPointer<TextButton> textButton7;
-    ScopedPointer<Operator_Editor> component4;
+    ScopedPointer<Operator_Editor> ed_op3;
     ScopedPointer<Slider> sl_tune12;
     ScopedPointer<Slider> sl_tune34;
     ScopedPointer<Styled_Knob_DefaultSmall> component5;
