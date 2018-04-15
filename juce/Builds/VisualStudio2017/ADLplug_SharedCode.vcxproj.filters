@@ -2,6 +2,24 @@
 
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips\dosbox">
+      <UniqueIdentifier>{CF80540C-7182-A6A8-10FB-E4FB9014A866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips\nuked">
+      <UniqueIdentifier>{8E19FE76-C813-660D-E004-596697EB57EE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips">
+      <UniqueIdentifier>{08340194-1B79-95DF-B14C-DD72966F1539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI\src">
+      <UniqueIdentifier>{39F22A29-E257-0396-B966-3DFCC4355E5E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI">
+      <UniqueIdentifier>{1D4B41E5-4B5E-C947-8F64-B4D9BBC9640C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty">
+      <UniqueIdentifier>{8370FCDC-BA76-8487-1CCC-DFA80E44CAE2}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\resources">
       <UniqueIdentifier>{95FAA976-2189-7683-BA44-3180A641CA15}</UniqueIdentifier>
     </Filter>
@@ -376,6 +394,51 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\dosbox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.c">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\nuked</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3_174.c">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\nuked</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3_v174.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adldata.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_load.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_midiplay.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_mus2mid.c">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_opl3.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.c">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc">
       <Filter>ADLplug\sources\utility</Filter>
     </ClCompile>
@@ -2235,6 +2298,42 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\dosbox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\nuked</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3_174.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\nuked</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3_v174.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adldata.hh">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_mus2mid.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.hpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\fraction.hpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\dsp\dc_filter.h">
       <Filter>ADLplug\sources\dsp</Filter>
     </ClInclude>

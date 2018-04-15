@@ -35,7 +35,7 @@ ifeq ($(CONFIG),Debug)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../../../JuceLibraryCode -I../../../thirdparty/JUCE/modules -I../../../sources $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../../../JuceLibraryCode -I../../../thirdparty/JUCE/modules -I../../../sources -I../../../thirdparty/libADLMIDI/include $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST := -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0
   JUCE_CFLAGS_VST := -fPIC -fvisibility=hidden
@@ -50,7 +50,7 @@ ifeq ($(CONFIG),Debug)
 
   JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -fPIC -g -ggdb -O0 $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++14 $(CXXFLAGS)
-  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -ldl -lpthread -lrt -lADLMIDI $(LDFLAGS)
+  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -ldl -lpthread -lrt $(LDFLAGS)
 
   CLEANCMD = rm -rf $(JUCE_OUTDIR)/$(TARGET) $(JUCE_OBJDIR)
 endif
@@ -65,7 +65,7 @@ ifeq ($(CONFIG),Release)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../../../JuceLibraryCode -I../../../thirdparty/JUCE/modules -I../../../sources $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../../../JuceLibraryCode -I../../../thirdparty/JUCE/modules -I../../../sources -I../../../thirdparty/libADLMIDI/include $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST := -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0
   JUCE_CFLAGS_VST := -fPIC -fvisibility=hidden
@@ -80,7 +80,7 @@ ifeq ($(CONFIG),Release)
 
   JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -fPIC -O3 $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++14 $(CXXFLAGS)
-  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -fvisibility=hidden -ldl -lpthread -lrt -lADLMIDI $(LDFLAGS)
+  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -fvisibility=hidden -ldl -lpthread -lrt $(LDFLAGS)
 
   CLEANCMD = rm -rf $(JUCE_OUTDIR)/$(TARGET) $(JUCE_OBJDIR)
 endif
@@ -94,6 +94,21 @@ OBJECTS_STANDALONE_PLUGIN := \
   $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o \
 
 OBJECTS_SHARED_CODE := \
+  $(JUCE_OBJDIR)/dbopl_29fab7f2.o \
+  $(JUCE_OBJDIR)/nukedopl3_7d9c6478.o \
+  $(JUCE_OBJDIR)/nukedopl3_174_285c1147.o \
+  $(JUCE_OBJDIR)/dosbox_opl3_7372c17d.o \
+  $(JUCE_OBJDIR)/nuked_opl3_21e19815.o \
+  $(JUCE_OBJDIR)/nuked_opl3_v174_1b09214c.o \
+  $(JUCE_OBJDIR)/opl_chip_base_cbcb36a9.o \
+  $(JUCE_OBJDIR)/adldata_9238d314.o \
+  $(JUCE_OBJDIR)/adlmidi_c578730b.o \
+  $(JUCE_OBJDIR)/adlmidi_load_f4b93b64.o \
+  $(JUCE_OBJDIR)/adlmidi_midiplay_ccf1053.o \
+  $(JUCE_OBJDIR)/adlmidi_mus2mid_c51d72d.o \
+  $(JUCE_OBJDIR)/adlmidi_opl3_7155cc66.o \
+  $(JUCE_OBJDIR)/adlmidi_private_8636c74f.o \
+  $(JUCE_OBJDIR)/adlmidi_xmi2mid_1b3ae4b6.o \
   $(JUCE_OBJDIR)/simple_fifo_14f04efe.o \
   $(JUCE_OBJDIR)/about_component_574ed838.o \
   $(JUCE_OBJDIR)/graphics_utils_35f53d7c.o \
@@ -159,6 +174,81 @@ $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o: ../../../
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling include_juce_audio_plugin_client_Standalone.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_STANDALONE_PLUGIN) $(JUCE_CFLAGS_STANDALONE_PLUGIN) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/dbopl_29fab7f2.o: ../../../thirdparty/libADLMIDI/src/chips/dosbox/dbopl.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling dbopl.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/nukedopl3_7d9c6478.o: ../../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3.c
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling nukedopl3.c"
+	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/nukedopl3_174_285c1147.o: ../../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3_174.c
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling nukedopl3_174.c"
+	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/dosbox_opl3_7372c17d.o: ../../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling dosbox_opl3.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/nuked_opl3_21e19815.o: ../../../thirdparty/libADLMIDI/src/chips/nuked_opl3.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling nuked_opl3.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/nuked_opl3_v174_1b09214c.o: ../../../thirdparty/libADLMIDI/src/chips/nuked_opl3_v174.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling nuked_opl3_v174.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/opl_chip_base_cbcb36a9.o: ../../../thirdparty/libADLMIDI/src/chips/opl_chip_base.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling opl_chip_base.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/adldata_9238d314.o: ../../../thirdparty/libADLMIDI/src/adldata.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling adldata.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/adlmidi_c578730b.o: ../../../thirdparty/libADLMIDI/src/adlmidi.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling adlmidi.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/adlmidi_load_f4b93b64.o: ../../../thirdparty/libADLMIDI/src/adlmidi_load.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling adlmidi_load.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/adlmidi_midiplay_ccf1053.o: ../../../thirdparty/libADLMIDI/src/adlmidi_midiplay.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling adlmidi_midiplay.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/adlmidi_mus2mid_c51d72d.o: ../../../thirdparty/libADLMIDI/src/adlmidi_mus2mid.c
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling adlmidi_mus2mid.c"
+	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/adlmidi_opl3_7155cc66.o: ../../../thirdparty/libADLMIDI/src/adlmidi_opl3.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling adlmidi_opl3.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/adlmidi_private_8636c74f.o: ../../../thirdparty/libADLMIDI/src/adlmidi_private.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling adlmidi_private.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/adlmidi_xmi2mid_1b3ae4b6.o: ../../../thirdparty/libADLMIDI/src/adlmidi_xmi2mid.c
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling adlmidi_xmi2mid.c"
+	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/simple_fifo_14f04efe.o: ../../../sources/utility/simple_fifo.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)

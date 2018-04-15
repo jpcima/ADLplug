@@ -6,8 +6,60 @@
               buildAAX="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               bundleIdentifier="jpcima.ADLplug" pluginName="ADLplug" pluginDesc="ADLplug"
               pluginManufacturer="jpcima" pluginManufacturerCode="JPCm" pluginCode="ADLM"
-              aaxIdentifier="jpcima.ADLplug" headerPath="../../../sources">
+              aaxIdentifier="jpcima.ADLplug" headerPath="../../../sources&#10;../../../thirdparty/libADLMIDI/include"
+              defines="ADLMIDI_DISABLE_CPP_EXTRAS&#10;ADLMIDI_DISABLE_MIDI_SEQUENCER&#10;ADLMIDI_DISABLE_MUS_SUPPORT&#10;ADLMIDI_DISABLE_XMI_SUPPORT">
   <MAINGROUP id="faq0v0" name="ADLplug">
+    <GROUP id="{C55CC9DB-ED0F-DE1B-46CB-A28A61433406}" name="thirdparty">
+      <GROUP id="{46FD1D8A-303F-2543-5E20-D07F19C1C62D}" name="libADLMIDI">
+        <GROUP id="{27FCCD7E-2B41-8DEA-8B6B-3033713471D2}" name="src">
+          <GROUP id="{8038FC48-896F-DD32-B76F-C79A56D89109}" name="chips">
+            <GROUP id="{CF0534B4-86BC-E498-762F-02D7AD5D1840}" name="dosbox">
+              <FILE id="JZgeDc" name="dbopl.cpp" compile="1" resource="0" file="thirdparty/libADLMIDI/src/chips/dosbox/dbopl.cpp"/>
+              <FILE id="UIoUFf" name="dbopl.h" compile="0" resource="0" file="thirdparty/libADLMIDI/src/chips/dosbox/dbopl.h"/>
+            </GROUP>
+            <GROUP id="{D3C43548-B6B2-A539-012A-49047148E75C}" name="nuked">
+              <FILE id="Y7vSRY" name="nukedopl3.c" compile="1" resource="0" file="thirdparty/libADLMIDI/src/chips/nuked/nukedopl3.c"/>
+              <FILE id="np3F4A" name="nukedopl3.h" compile="0" resource="0" file="thirdparty/libADLMIDI/src/chips/nuked/nukedopl3.h"/>
+              <FILE id="Gvz4rD" name="nukedopl3_174.c" compile="1" resource="0" file="thirdparty/libADLMIDI/src/chips/nuked/nukedopl3_174.c"/>
+              <FILE id="dVM2T9" name="nukedopl3_174.h" compile="0" resource="0" file="thirdparty/libADLMIDI/src/chips/nuked/nukedopl3_174.h"/>
+            </GROUP>
+            <FILE id="nDZkuv" name="dosbox_opl3.cpp" compile="1" resource="0" file="thirdparty/libADLMIDI/src/chips/dosbox_opl3.cpp"/>
+            <FILE id="hFk0JH" name="dosbox_opl3.h" compile="0" resource="0" file="thirdparty/libADLMIDI/src/chips/dosbox_opl3.h"/>
+            <FILE id="Cydl53" name="nuked_opl3.cpp" compile="1" resource="0" file="thirdparty/libADLMIDI/src/chips/nuked_opl3.cpp"/>
+            <FILE id="BmbU6j" name="nuked_opl3.h" compile="0" resource="0" file="thirdparty/libADLMIDI/src/chips/nuked_opl3.h"/>
+            <FILE id="fZLmA0" name="nuked_opl3_v174.cpp" compile="1" resource="0"
+                  file="thirdparty/libADLMIDI/src/chips/nuked_opl3_v174.cpp"/>
+            <FILE id="oqO4Qv" name="nuked_opl3_v174.h" compile="0" resource="0"
+                  file="thirdparty/libADLMIDI/src/chips/nuked_opl3_v174.h"/>
+            <FILE id="BIPdFv" name="opl_chip_base.cpp" compile="1" resource="0"
+                  file="thirdparty/libADLMIDI/src/chips/opl_chip_base.cpp"/>
+            <FILE id="AqlSwH" name="opl_chip_base.h" compile="0" resource="0" file="thirdparty/libADLMIDI/src/chips/opl_chip_base.h"/>
+          </GROUP>
+          <FILE id="Nx4vf0" name="adldata.cpp" compile="1" resource="0" file="thirdparty/libADLMIDI/src/adldata.cpp"/>
+          <FILE id="e59kxG" name="adldata.hh" compile="0" resource="0" file="thirdparty/libADLMIDI/src/adldata.hh"/>
+          <FILE id="qcLa76" name="adlmidi.cpp" compile="1" resource="0" file="thirdparty/libADLMIDI/src/adlmidi.cpp"/>
+          <FILE id="IL3FEP" name="adlmidi_load.cpp" compile="1" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_load.cpp"/>
+          <FILE id="FVJBtw" name="adlmidi_midiplay.cpp" compile="1" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_midiplay.cpp"/>
+          <FILE id="Dbbx8U" name="adlmidi_mus2mid.c" compile="1" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_mus2mid.c"/>
+          <FILE id="yBfbLo" name="adlmidi_mus2mid.h" compile="0" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_mus2mid.h"/>
+          <FILE id="NMGdm7" name="adlmidi_opl3.cpp" compile="1" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_opl3.cpp"/>
+          <FILE id="zqawzn" name="adlmidi_private.cpp" compile="1" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_private.cpp"/>
+          <FILE id="mkAlRT" name="adlmidi_private.hpp" compile="0" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_private.hpp"/>
+          <FILE id="WV483y" name="adlmidi_xmi2mid.c" compile="1" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_xmi2mid.c"/>
+          <FILE id="ZH1C49" name="adlmidi_xmi2mid.h" compile="0" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_xmi2mid.h"/>
+          <FILE id="GQ6FoP" name="fraction.hpp" compile="0" resource="0" file="thirdparty/libADLMIDI/src/fraction.hpp"/>
+        </GROUP>
+      </GROUP>
+    </GROUP>
     <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
       <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="resources/ui/knob-skin.png"/>
     </GROUP>
@@ -65,7 +117,7 @@
   </LIVE_SETTINGS>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="juce/Builds/MacOSX" vst3Folder="" aaxFolder=""
-               rtasFolder="" externalLibraries="ADLMIDI">
+               rtasFolder="">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
@@ -86,7 +138,7 @@
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2017 targetFolder="juce/Builds/VisualStudio2017" vst3Folder="" aaxFolder=""
-            rtasFolder="" externalLibraries="ADLMIDI">
+            rtasFolder="">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
@@ -106,7 +158,7 @@
         <MODULEPATH id="juce_audio_formats" path="thirdparty/JUCE/modules"/>
       </MODULEPATHS>
     </VS2017>
-    <LINUX_MAKE targetFolder="juce/Builds/LinuxMakefile" externalLibraries="ADLMIDI">
+    <LINUX_MAKE targetFolder="juce/Builds/LinuxMakefile">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
