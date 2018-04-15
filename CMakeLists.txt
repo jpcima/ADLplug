@@ -107,14 +107,22 @@ if(ADLplug_LV2)
   add_plugin(ADLplug_LV2)
   target_link_libraries(ADLplug_LV2 PRIVATE juce_audio_plugin_client_LV2 ADLplug_core)
   require_symbols(ADLplug_LV2 "lv2_generate_ttl" "lv2_descriptor" "lv2ui_descriptor")
+  set_property(TARGET ADLplug_LV2
+    PROPERTY LIBRARY_OUTPUT_DIRECTORY "lv2/ADLplug.lv2")
 
-  set(ADLplug_LV2_INSTALL_DIR "lib/lv2/ADLplug.git")
-  install(TARGETS ADLplug_LV2 DESTINATION "${ADLplug_LV2_INSTALL_DIR}")
-  install(FILES
+  set(ADLplug_LV2_MANIFESTS
     "resources/lv2/ADLplug_LV2.ttl"
     "resources/lv2/manifest.ttl"
-    "resources/lv2/presets.ttl"
-    DESTINATION "${ADLplug_LV2_INSTALL_DIR}")
+    "resources/lv2/presets.ttl")
+  add_custom_target(ADLplug_LV2_manifests_copy ALL
+    COMMAND "${CMAKE_COMMAND}" "-E" "make_directory" "${CMAKE_CURRENT_BINARY_DIR}/lv2/ADLplug.lv2/"
+    COMMAND "${CMAKE_COMMAND}" "-E" "copy" ${ADLplug_LV2_MANIFESTS} "${CMAKE_CURRENT_BINARY_DIR}/lv2/ADLplug.lv2/"
+    DEPENDS ${ADLplug_LV2_MANIFESTS}
+    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+
+  set(ADLplug_LV2_INSTALL_DIR "lib/lv2/ADLplug.lv2")
+  install(TARGETS ADLplug_LV2 DESTINATION "${ADLplug_LV2_INSTALL_DIR}")
+  install(FILES ${ADLplug_LV2_MANIFESTS} DESTINATION "${ADLplug_LV2_INSTALL_DIR}")
 endif()
 
 if(ADLplug_Standalone)
