@@ -61,12 +61,14 @@ Main_Component::Main_Component ()
 
     addAndMakeVisible (textButton4 = new TextButton ("new button"));
     textButton4->setButtonText (TRANS("FM"));
+    textButton4->setConnectedEdges (Button::ConnectedOnBottom);
     textButton4->addListener (this);
 
     textButton4->setBounds (392, 224, 36, 24);
 
     addAndMakeVisible (textButton5 = new TextButton ("new button"));
     textButton5->setButtonText (TRANS("AM"));
+    textButton5->setConnectedEdges (Button::ConnectedOnTop);
     textButton5->addListener (this);
 
     textButton5->setBounds (392, 248, 36, 24);
@@ -79,24 +81,58 @@ Main_Component::Main_Component ()
     addAndMakeVisible (component3 = new Operator_Editor());
     component3->setName ("new component");
 
-    component3->setBounds (58, 367, 328, 172);
+    component3->setBounds (58, 368, 328, 172);
 
     addAndMakeVisible (textButton6 = new TextButton ("new button"));
     textButton6->setButtonText (TRANS("FM"));
+    textButton6->setConnectedEdges (Button::ConnectedOnBottom);
     textButton6->addListener (this);
 
-    textButton6->setBounds (394, 431, 36, 24);
+    textButton6->setBounds (394, 432, 36, 24);
 
     addAndMakeVisible (textButton7 = new TextButton ("new button"));
     textButton7->setButtonText (TRANS("AM"));
+    textButton7->setConnectedEdges (Button::ConnectedOnTop);
     textButton7->addListener (this);
 
-    textButton7->setBounds (394, 455, 36, 24);
+    textButton7->setBounds (394, 456, 36, 24);
 
     addAndMakeVisible (component4 = new Operator_Editor());
     component4->setName ("new component");
 
-    component4->setBounds (439, 367, 328, 172);
+    component4->setBounds (439, 368, 328, 172);
+
+    addAndMakeVisible (sl_tune12 = new Slider ("new slider"));
+    sl_tune12->setRange (-127, 127, 0);
+    sl_tune12->setSliderStyle (Slider::LinearHorizontal);
+    sl_tune12->setTextBoxStyle (Slider::TextBoxRight, false, 36, 20);
+    sl_tune12->addListener (this);
+
+    sl_tune12->setBounds (512, 136, 150, 24);
+
+    addAndMakeVisible (sl_tune34 = new Slider ("new slider"));
+    sl_tune34->setRange (-127, 127, 0);
+    sl_tune34->setSliderStyle (Slider::LinearHorizontal);
+    sl_tune34->setTextBoxStyle (Slider::TextBoxRight, false, 36, 20);
+    sl_tune34->addListener (this);
+
+    sl_tune34->setBounds (512, 344, 150, 24);
+
+    addAndMakeVisible (sl_fb12 = new Slider ("new slider"));
+    sl_fb12->setRange (0, 7, 0);
+    sl_fb12->setSliderStyle (Slider::LinearHorizontal);
+    sl_fb12->setTextBoxStyle (Slider::TextBoxRight, false, 20, 20);
+    sl_fb12->addListener (this);
+
+    sl_fb12->setBounds (312, 136, 150, 24);
+
+    addAndMakeVisible (sl_fb34 = new Slider ("new slider"));
+    sl_fb34->setRange (0, 7, 0);
+    sl_fb34->setSliderStyle (Slider::LinearHorizontal);
+    sl_fb34->setTextBoxStyle (Slider::TextBoxRight, false, 20, 20);
+    sl_fb34->addListener (this);
+
+    sl_fb34->setBounds (312, 344, 150, 24);
 
     cachedImage_logo_png_1 = ImageCache::getFromMemory (logo_png, logo_pngSize);
 
@@ -107,6 +143,10 @@ Main_Component::Main_Component ()
 
 
     //[Constructor] You can add your own custom stuff here..
+    sl_fb12->setNumDecimalPlacesToDisplay(0);
+    sl_fb34->setNumDecimalPlacesToDisplay(0);
+    sl_tune12->setNumDecimalPlacesToDisplay(0);
+    sl_tune34->setNumDecimalPlacesToDisplay(0);
     //[/Constructor]
 }
 
@@ -126,6 +166,10 @@ Main_Component::~Main_Component()
     textButton6 = nullptr;
     textButton7 = nullptr;
     component4 = nullptr;
+    sl_tune12 = nullptr;
+    sl_tune34 = nullptr;
+    sl_fb12 = nullptr;
+    sl_fb34 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -187,6 +231,54 @@ void Main_Component::paint (Graphics& g)
                     Justification::centredLeft, true);
     }
 
+    {
+        int x = 476, y = 132, width = 36, height = 30;
+        String text (TRANS("Tune"));
+        Colour fillColour = Colours::aliceblue;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.drawText (text, x, y, width, height,
+                    Justification::centred, true);
+    }
+
+    {
+        int x = 476, y = 340, width = 36, height = 30;
+        String text (TRANS("Tune"));
+        Colour fillColour = Colours::aliceblue;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.drawText (text, x, y, width, height,
+                    Justification::centred, true);
+    }
+
+    {
+        int x = 252, y = 340, width = 60, height = 30;
+        String text (TRANS("Feedback"));
+        Colour fillColour = Colours::aliceblue;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.drawText (text, x, y, width, height,
+                    Justification::centred, true);
+    }
+
+    {
+        int x = 252, y = 132, width = 60, height = 30;
+        String text (TRANS("Feedback"));
+        Colour fillColour = Colours::aliceblue;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.drawText (text, x, y, width, height,
+                    Justification::centred, true);
+    }
+
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
 }
@@ -245,6 +337,36 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     //[/UserbuttonClicked_Post]
 }
 
+void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
+{
+    //[UsersliderValueChanged_Pre]
+    //[/UsersliderValueChanged_Pre]
+
+    if (sliderThatWasMoved == sl_tune12)
+    {
+        //[UserSliderCode_sl_tune12] -- add your slider handling code here..
+        //[/UserSliderCode_sl_tune12]
+    }
+    else if (sliderThatWasMoved == sl_tune34)
+    {
+        //[UserSliderCode_sl_tune34] -- add your slider handling code here..
+        //[/UserSliderCode_sl_tune34]
+    }
+    else if (sliderThatWasMoved == sl_fb12)
+    {
+        //[UserSliderCode_sl_fb12] -- add your slider handling code here..
+        //[/UserSliderCode_sl_fb12]
+    }
+    else if (sliderThatWasMoved == sl_fb34)
+    {
+        //[UserSliderCode_sl_fb34] -- add your slider handling code here..
+        //[/UserSliderCode_sl_fb34]
+    }
+
+    //[UsersliderValueChanged_Post]
+    //[/UsersliderValueChanged_Post]
+}
+
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
@@ -276,6 +398,18 @@ BEGIN_JUCER_METADATA
     <TEXT pos="68 340 84 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 3-4"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="33"/>
+    <TEXT pos="476 132 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Tune"
+          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
+          bold="0" italic="0" justification="36"/>
+    <TEXT pos="476 340 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Tune"
+          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
+          bold="0" italic="0" justification="36"/>
+    <TEXT pos="252 340 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
+          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
+          bold="0" italic="0" justification="36"/>
+    <TEXT pos="252 132 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
+          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
+          bold="0" italic="0" justification="36"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="component"
                     virtualName="" explicitFocusOrder="0" pos="56 160 328 172" class="Operator_Editor"
@@ -291,25 +425,45 @@ BEGIN_JUCER_METADATA
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="b2cb238ae0314374" memberName="textButton4"
               virtualName="" explicitFocusOrder="0" pos="392 224 36 24" buttonText="FM"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+              connectedEdges="8" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="f884f98bb82f318" memberName="textButton5"
               virtualName="" explicitFocusOrder="0" pos="392 248 36 24" buttonText="AM"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+              connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="a00c5401e39a953e" memberName="component2"
                     virtualName="" explicitFocusOrder="0" pos="437 160 328 172" class="Operator_Editor"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="b7424f0838e48a08" memberName="component3"
-                    virtualName="" explicitFocusOrder="0" pos="58 367 328 172" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="58 368 328 172" class="Operator_Editor"
                     params=""/>
   <TEXTBUTTON name="new button" id="6c84b2cc5c27a17f" memberName="textButton6"
-              virtualName="" explicitFocusOrder="0" pos="394 431 36 24" buttonText="FM"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="394 432 36 24" buttonText="FM"
+              connectedEdges="8" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="c55383265bc18fb0" memberName="textButton7"
-              virtualName="" explicitFocusOrder="0" pos="394 455 36 24" buttonText="AM"
-              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+              virtualName="" explicitFocusOrder="0" pos="394 456 36 24" buttonText="AM"
+              connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="component4"
-                    virtualName="" explicitFocusOrder="0" pos="439 367 328 172" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="439 368 328 172" class="Operator_Editor"
                     params=""/>
+  <SLIDER name="new slider" id="9cd7cc232d55ac8a" memberName="sl_tune12"
+          virtualName="" explicitFocusOrder="0" pos="512 136 150 24" min="-127.00000000000000000000"
+          max="127.00000000000000000000" int="0.00000000000000000000" style="LinearHorizontal"
+          textBoxPos="TextBoxRight" textBoxEditable="1" textBoxWidth="36"
+          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+  <SLIDER name="new slider" id="314f46c5e90647" memberName="sl_tune34"
+          virtualName="" explicitFocusOrder="0" pos="512 344 150 24" min="-127.00000000000000000000"
+          max="127.00000000000000000000" int="0.00000000000000000000" style="LinearHorizontal"
+          textBoxPos="TextBoxRight" textBoxEditable="1" textBoxWidth="36"
+          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+  <SLIDER name="new slider" id="39c8b5b1d7b1754b" memberName="sl_fb12"
+          virtualName="" explicitFocusOrder="0" pos="312 136 150 24" min="0.00000000000000000000"
+          max="7.00000000000000000000" int="0.00000000000000000000" style="LinearHorizontal"
+          textBoxPos="TextBoxRight" textBoxEditable="1" textBoxWidth="20"
+          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+  <SLIDER name="new slider" id="bc28784641c8674c" memberName="sl_fb34"
+          virtualName="" explicitFocusOrder="0" pos="312 344 150 24" min="0.00000000000000000000"
+          max="7.00000000000000000000" int="0.00000000000000000000" style="LinearHorizontal"
+          textBoxPos="TextBoxRight" textBoxEditable="1" textBoxWidth="20"
+          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

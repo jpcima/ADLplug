@@ -35,7 +35,8 @@ class Operator_Editor;
                                                                     //[/Comments]
 */
 class Main_Component  : public Component,
-                        public Button::Listener
+                        public Button::Listener,
+                        public Slider::Listener
 {
 public:
     //==============================================================================
@@ -49,6 +50,7 @@ public:
     void paint (Graphics& g) override;
     void resized() override;
     void buttonClicked (Button* buttonThatWasClicked) override;
+    void sliderValueChanged (Slider* sliderThatWasMoved) override;
 
     // Binary resources:
     static const char* logo_png;
@@ -71,6 +73,10 @@ private:
     ScopedPointer<TextButton> textButton6;
     ScopedPointer<TextButton> textButton7;
     ScopedPointer<Operator_Editor> component4;
+    ScopedPointer<Slider> sl_tune12;
+    ScopedPointer<Slider> sl_tune34;
+    ScopedPointer<Slider> sl_fb12;
+    ScopedPointer<Slider> sl_fb34;
     Image cachedImage_logo_png_1;
 
 
