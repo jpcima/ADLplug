@@ -10,7 +10,7 @@
 AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &p)
     : AudioProcessorEditor(&p) , processor(p)
 {
-    Main_Component *main = main_ = new Main_Component;
+    Main_Component *main = main_ = new Main_Component(p.midi_queue_for_ui());
     addAndMakeVisible(main);
 
     // Make sure that before the constructor has finished, you've set the

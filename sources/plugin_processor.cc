@@ -10,6 +10,7 @@
 AdlplugAudioProcessor::AdlplugAudioProcessor()
     : AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true))
 {
+    ui_midi_queue_.reset(new Simple_Fifo(1024));
 }
 
 AdlplugAudioProcessor::~AdlplugAudioProcessor()
@@ -99,6 +100,20 @@ void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     float *left = buffer.getWritePointer(0);
     float *right = buffer.getWritePointer(1);
 
+    // handle MIDI events from GUI
+    Simple_Fifo &midi_q = *ui_midi_queue_;
+    for (uint8_t len; midi_q.read(&len, 1, false) && midi_q.get_num_ready() >= len + 1;) {
+        midi_q.discard(1);
+        uint8_t data[3];
+        if (len > sizeof(data))
+            midi_q.discard(len);
+        else
+        {
+            midi_q.read(data, len);
+            pl->play_midi(data, len);
+        }
+    }
+
     const uint8_t *midi_data;
     int midi_size;
     int sample_position;
@@ -107,6 +122,16 @@ void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         pl->play_midi(midi_data, midi_size);
 
     pl->generate(left, right, nframes, 1);
+}
+
+void AdlplugAudioProcessor::processBlockBypassed(AudioBuffer<float> &buffer, MidiBuffer &midi_messages)
+{
+    // flush MIDI events from GUI
+    Simple_Fifo &midi_q = *ui_midi_queue_;
+    for (uint8_t len; midi_q.read(&len, 1, false) && midi_q.get_num_ready() >= len + 1;)
+        midi_q.discard(len + 1);
+
+    AudioProcessor::processBlockBypassed(buffer, midi_messages);
 }
 
 //==============================================================================

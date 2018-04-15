@@ -5,6 +5,9 @@
     <Filter Include="ADLplug\resources">
       <UniqueIdentifier>{95FAA976-2189-7683-BA44-3180A641CA15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\sources\utility">
+      <UniqueIdentifier>{A6C88D66-4AFB-E68D-8252-A1568A19A4DF}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\sources\ui">
       <UniqueIdentifier>{6006179A-8107-802D-704D-F74685683401}</UniqueIdentifier>
     </Filter>
@@ -370,6 +373,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
@@ -2223,6 +2229,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\utility\simple_fifo.h">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\graphics_utils.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>

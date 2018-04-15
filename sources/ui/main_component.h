@@ -22,6 +22,7 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ui/styled_knobs.h"
+#include "utility/simple_fifo.h"
 class Operator_Editor;
 //[/Headers]
 
@@ -36,16 +37,19 @@ class Operator_Editor;
                                                                     //[/Comments]
 */
 class Main_Component  : public Component,
+                        public MidiKeyboardStateListener,
                         public Button::Listener,
                         public Slider::Listener
 {
 public:
     //==============================================================================
-    Main_Component ();
+    Main_Component (Simple_Fifo &midi_out_queue);
     ~Main_Component();
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    void handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity) override;
+    void handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity) override;
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -60,6 +64,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    Simple_Fifo *midi_out_queue_ = nullptr;
     MidiKeyboardState midi_kb_state_;
     //[/UserVariables]
 
@@ -79,7 +84,7 @@ private:
     ScopedPointer<Slider> sl_tune34;
     ScopedPointer<Styled_Knob_DefaultSmall> component5;
     ScopedPointer<Styled_Knob_DefaultSmall> component6;
-    ScopedPointer<MidiKeyboardComponent> component;
+    ScopedPointer<MidiKeyboardComponent> midi_kb;
     Image cachedImage_logo_png_1;
 
 

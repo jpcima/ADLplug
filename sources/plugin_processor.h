@@ -6,6 +6,7 @@
 #pragma once
 
 #include "adl/player.h"
+#include "utility/simple_fifo.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <memory>
 
@@ -25,10 +26,13 @@ public:
     bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
 
     void processBlock(AudioBuffer<float> &, MidiBuffer &) override;
+    void processBlockBypassed(AudioBuffer<float> &, MidiBuffer &) override;
 
     //==========================================================================
     AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override;
+
+    Simple_Fifo &midi_queue_for_ui() const { return *ui_midi_queue_; }
 
     //==========================================================================
     const String getName() const override;
@@ -51,6 +55,8 @@ public:
 
 private:
     std::unique_ptr<Generic_Player> player_;
+    std::unique_ptr<Simple_Fifo> ui_midi_queue_;
+
     //==========================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessor)
 };

@@ -28,7 +28,7 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-Main_Component::Main_Component ()
+Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
@@ -128,10 +128,10 @@ Main_Component::Main_Component ()
 
     component6->setBounds (496, 296, 32, 32);
 
-    addAndMakeVisible (component = new MidiKeyboardComponent (midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard));
-    component->setName ("new component");
+    addAndMakeVisible (midi_kb = new MidiKeyboardComponent (midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard));
+    midi_kb->setName ("new component");
 
-    component->setBounds (24, 480, 752, 56);
+    midi_kb->setBounds (24, 480, 752, 56);
 
     cachedImage_logo_png_1 = ImageCache::getFromMemory (logo_png, logo_pngSize);
 
@@ -142,6 +142,9 @@ Main_Component::Main_Component ()
 
 
     //[Constructor] You can add your own custom stuff here..
+    midi_out_queue_ = &midi_out_queue;
+    midi_kb_state_.addListener(this);
+
     sl_tune12->setNumDecimalPlacesToDisplay(0);
     sl_tune34->setNumDecimalPlacesToDisplay(0);
     ed_op1->set_op_label("Modulator");
@@ -171,7 +174,7 @@ Main_Component::~Main_Component()
     sl_tune34 = nullptr;
     component5 = nullptr;
     component6 = nullptr;
-    component = nullptr;
+    midi_kb = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -362,6 +365,27 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+void Main_Component::handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity)
+{
+    Simple_Fifo &queue = *midi_out_queue_;
+    uint8_t msg[4];
+    msg[0] = 3;
+    msg[1] = (unsigned)(channel - 1) | (0b1001u << 4);
+    msg[2] = note;
+    msg[3] = velocity * 127;
+    queue.write(msg, sizeof(msg));
+}
+
+void Main_Component::handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity)
+{
+    Simple_Fifo &queue = *midi_out_queue_;
+    uint8_t msg[4];
+    msg[0] = 3;
+    msg[1] = (unsigned)(channel - 1) | (0b1000u << 4);
+    msg[2] = note;
+    msg[3] = velocity * 127;
+    queue.write(msg, sizeof(msg));
+}
 //[/MiscUserCode]
 
 
@@ -375,7 +399,8 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="Main_Component" componentName=""
-                 parentClasses="public Component" constructorParams="" variableInitialisers=""
+                 parentClasses="public Component, public MidiKeyboardStateListener"
+                 constructorParams="Simple_Fifo &amp;midi_out_queue" variableInitialisers=""
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="800" initialHeight="600">
   <BACKGROUND backgroundColour="ff323e44">
@@ -452,7 +477,7 @@ BEGIN_JUCER_METADATA
   <GENERICCOMPONENT name="new component" id="59510781248f1393" memberName="component6"
                     virtualName="" explicitFocusOrder="0" pos="496 296 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
-  <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="component"
+  <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="midi_kb"
                     virtualName="" explicitFocusOrder="0" pos="24 480 752 56" class="MidiKeyboardComponent"
                     params="midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard"/>
 </JUCER_COMPONENT>

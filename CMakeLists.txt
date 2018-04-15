@@ -60,6 +60,7 @@ message("Build LV2: ${ADLplug_LV2}")
 
 add_library(ADLplug_core STATIC
   "JuceLibraryCode/BinaryData.cpp"
+  "sources/utility/simple_fifo.cc"
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
   "sources/ui/knobman_skin.cc"
