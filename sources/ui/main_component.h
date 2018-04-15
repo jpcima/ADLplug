@@ -70,15 +70,15 @@ private:
 
     //==============================================================================
     ScopedPointer<Operator_Editor> ed_op2;
-    ScopedPointer<TextButton> textButton;
-    ScopedPointer<TextButton> textButton2;
-    ScopedPointer<TextButton> textButton3;
-    ScopedPointer<TextButton> textButton4;
-    ScopedPointer<TextButton> textButton5;
+    ScopedPointer<TextButton> btn_4op;
+    ScopedPointer<TextButton> btn_pseudo4op;
+    ScopedPointer<TextButton> btn_2op;
+    ScopedPointer<TextButton> btn_fm12;
+    ScopedPointer<TextButton> btn_am12;
     ScopedPointer<Operator_Editor> ed_op1;
     ScopedPointer<Operator_Editor> ed_op4;
-    ScopedPointer<TextButton> textButton6;
-    ScopedPointer<TextButton> textButton7;
+    ScopedPointer<TextButton> btn_fm34;
+    ScopedPointer<TextButton> btn_am34;
     ScopedPointer<Operator_Editor> ed_op3;
     ScopedPointer<Slider> sl_tune12;
     ScopedPointer<Slider> sl_tune34;

@@ -25,6 +25,11 @@
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
+enum class Radio_Button_Group {
+    Fm_Mode = 1,
+    Algo_12,
+    Algo_34,
+};
 //[/MiscUserDefs]
 
 //==============================================================================
@@ -38,40 +43,40 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
 
     ed_op2->setBounds (16, 160, 352, 128);
 
-    addAndMakeVisible (textButton = new TextButton ("new button"));
-    textButton->setButtonText (TRANS("4 op"));
-    textButton->setConnectedEdges (Button::ConnectedOnRight);
-    textButton->addListener (this);
+    addAndMakeVisible (btn_4op = new TextButton ("new button"));
+    btn_4op->setButtonText (TRANS("4 op"));
+    btn_4op->setConnectedEdges (Button::ConnectedOnRight);
+    btn_4op->addListener (this);
 
-    textButton->setBounds (48, 96, 56, 24);
+    btn_4op->setBounds (48, 96, 56, 24);
 
-    addAndMakeVisible (textButton2 = new TextButton ("new button"));
-    textButton2->setButtonText (TRANS("2x2 op"));
-    textButton2->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
-    textButton2->addListener (this);
+    addAndMakeVisible (btn_pseudo4op = new TextButton ("new button"));
+    btn_pseudo4op->setButtonText (TRANS("2x2 op"));
+    btn_pseudo4op->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
+    btn_pseudo4op->addListener (this);
 
-    textButton2->setBounds (104, 96, 56, 24);
+    btn_pseudo4op->setBounds (104, 96, 56, 24);
 
-    addAndMakeVisible (textButton3 = new TextButton ("new button"));
-    textButton3->setButtonText (TRANS("2 op"));
-    textButton3->setConnectedEdges (Button::ConnectedOnLeft);
-    textButton3->addListener (this);
+    addAndMakeVisible (btn_2op = new TextButton ("new button"));
+    btn_2op->setButtonText (TRANS("2 op"));
+    btn_2op->setConnectedEdges (Button::ConnectedOnLeft);
+    btn_2op->addListener (this);
 
-    textButton3->setBounds (160, 96, 56, 24);
+    btn_2op->setBounds (160, 96, 56, 24);
 
-    addAndMakeVisible (textButton4 = new TextButton ("new button"));
-    textButton4->setButtonText (TRANS("FM"));
-    textButton4->setConnectedEdges (Button::ConnectedOnBottom);
-    textButton4->addListener (this);
+    addAndMakeVisible (btn_fm12 = new TextButton ("new button"));
+    btn_fm12->setButtonText (TRANS("FM"));
+    btn_fm12->setConnectedEdges (Button::ConnectedOnBottom);
+    btn_fm12->addListener (this);
 
-    textButton4->setBounds (376, 200, 36, 24);
+    btn_fm12->setBounds (376, 200, 36, 24);
 
-    addAndMakeVisible (textButton5 = new TextButton ("new button"));
-    textButton5->setButtonText (TRANS("AM"));
-    textButton5->setConnectedEdges (Button::ConnectedOnTop);
-    textButton5->addListener (this);
+    addAndMakeVisible (btn_am12 = new TextButton ("new button"));
+    btn_am12->setButtonText (TRANS("AM"));
+    btn_am12->setConnectedEdges (Button::ConnectedOnTop);
+    btn_am12->addListener (this);
 
-    textButton5->setBounds (376, 224, 36, 24);
+    btn_am12->setBounds (376, 224, 36, 24);
 
     addAndMakeVisible (ed_op1 = new Operator_Editor());
     ed_op1->setName ("new component");
@@ -83,19 +88,19 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
 
     ed_op4->setBounds (18, 328, 352, 128);
 
-    addAndMakeVisible (textButton6 = new TextButton ("new button"));
-    textButton6->setButtonText (TRANS("FM"));
-    textButton6->setConnectedEdges (Button::ConnectedOnBottom);
-    textButton6->addListener (this);
+    addAndMakeVisible (btn_fm34 = new TextButton ("new button"));
+    btn_fm34->setButtonText (TRANS("FM"));
+    btn_fm34->setConnectedEdges (Button::ConnectedOnBottom);
+    btn_fm34->addListener (this);
 
-    textButton6->setBounds (378, 368, 36, 24);
+    btn_fm34->setBounds (378, 368, 36, 24);
 
-    addAndMakeVisible (textButton7 = new TextButton ("new button"));
-    textButton7->setButtonText (TRANS("AM"));
-    textButton7->setConnectedEdges (Button::ConnectedOnTop);
-    textButton7->addListener (this);
+    addAndMakeVisible (btn_am34 = new TextButton ("new button"));
+    btn_am34->setButtonText (TRANS("AM"));
+    btn_am34->setConnectedEdges (Button::ConnectedOnTop);
+    btn_am34->addListener (this);
 
-    textButton7->setBounds (378, 392, 36, 24);
+    btn_am34->setBounds (378, 392, 36, 24);
 
     addAndMakeVisible (ed_op3 = new Operator_Editor());
     ed_op3->setName ("new component");
@@ -145,6 +150,19 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
     midi_out_queue_ = &midi_out_queue;
     midi_kb_state_.addListener(this);
 
+    for (TextButton *btn : {btn_4op.get(), btn_pseudo4op.get(), btn_2op.get()}) {
+        btn->setClickingTogglesState(true);
+        btn->setRadioGroupId((int)Radio_Button_Group::Fm_Mode);
+    }
+    for (TextButton *btn : {btn_fm12.get(), btn_am12.get()}) {
+        btn->setClickingTogglesState(true);
+        btn->setRadioGroupId((int)Radio_Button_Group::Algo_12);
+    }
+    for (TextButton *btn : {btn_fm34.get(), btn_am34.get()}) {
+        btn->setClickingTogglesState(true);
+        btn->setRadioGroupId((int)Radio_Button_Group::Algo_34);
+    }
+
     sl_tune12->setNumDecimalPlacesToDisplay(0);
     sl_tune34->setNumDecimalPlacesToDisplay(0);
     ed_op1->set_op_label("Modulator");
@@ -160,15 +178,15 @@ Main_Component::~Main_Component()
     //[/Destructor_pre]
 
     ed_op2 = nullptr;
-    textButton = nullptr;
-    textButton2 = nullptr;
-    textButton3 = nullptr;
-    textButton4 = nullptr;
-    textButton5 = nullptr;
+    btn_4op = nullptr;
+    btn_pseudo4op = nullptr;
+    btn_2op = nullptr;
+    btn_fm12 = nullptr;
+    btn_am12 = nullptr;
     ed_op1 = nullptr;
     ed_op4 = nullptr;
-    textButton6 = nullptr;
-    textButton7 = nullptr;
+    btn_fm34 = nullptr;
+    btn_am34 = nullptr;
     ed_op3 = nullptr;
     sl_tune12 = nullptr;
     sl_tune34 = nullptr;
@@ -302,40 +320,40 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     //[UserbuttonClicked_Pre]
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == textButton)
+    if (buttonThatWasClicked == btn_4op)
     {
-        //[UserButtonCode_textButton] -- add your button handler code here..
-        //[/UserButtonCode_textButton]
+        //[UserButtonCode_btn_4op] -- add your button handler code here..
+        //[/UserButtonCode_btn_4op]
     }
-    else if (buttonThatWasClicked == textButton2)
+    else if (buttonThatWasClicked == btn_pseudo4op)
     {
-        //[UserButtonCode_textButton2] -- add your button handler code here..
-        //[/UserButtonCode_textButton2]
+        //[UserButtonCode_btn_pseudo4op] -- add your button handler code here..
+        //[/UserButtonCode_btn_pseudo4op]
     }
-    else if (buttonThatWasClicked == textButton3)
+    else if (buttonThatWasClicked == btn_2op)
     {
-        //[UserButtonCode_textButton3] -- add your button handler code here..
-        //[/UserButtonCode_textButton3]
+        //[UserButtonCode_btn_2op] -- add your button handler code here..
+        //[/UserButtonCode_btn_2op]
     }
-    else if (buttonThatWasClicked == textButton4)
+    else if (buttonThatWasClicked == btn_fm12)
     {
-        //[UserButtonCode_textButton4] -- add your button handler code here..
-        //[/UserButtonCode_textButton4]
+        //[UserButtonCode_btn_fm12] -- add your button handler code here..
+        //[/UserButtonCode_btn_fm12]
     }
-    else if (buttonThatWasClicked == textButton5)
+    else if (buttonThatWasClicked == btn_am12)
     {
-        //[UserButtonCode_textButton5] -- add your button handler code here..
-        //[/UserButtonCode_textButton5]
+        //[UserButtonCode_btn_am12] -- add your button handler code here..
+        //[/UserButtonCode_btn_am12]
     }
-    else if (buttonThatWasClicked == textButton6)
+    else if (buttonThatWasClicked == btn_fm34)
     {
-        //[UserButtonCode_textButton6] -- add your button handler code here..
-        //[/UserButtonCode_textButton6]
+        //[UserButtonCode_btn_fm34] -- add your button handler code here..
+        //[/UserButtonCode_btn_fm34]
     }
-    else if (buttonThatWasClicked == textButton7)
+    else if (buttonThatWasClicked == btn_am34)
     {
-        //[UserButtonCode_textButton7] -- add your button handler code here..
-        //[/UserButtonCode_textButton7]
+        //[UserButtonCode_btn_am34] -- add your button handler code here..
+        //[/UserButtonCode_btn_am34]
     }
 
     //[UserbuttonClicked_Post]
@@ -431,19 +449,19 @@ BEGIN_JUCER_METADATA
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="16 160 352 128" class="Operator_Editor"
                     params=""/>
-  <TEXTBUTTON name="new button" id="333aa0ccccbfed24" memberName="textButton"
+  <TEXTBUTTON name="new button" id="333aa0ccccbfed24" memberName="btn_4op"
               virtualName="" explicitFocusOrder="0" pos="48 96 56 24" buttonText="4 op"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="64d70bb49227f0d8" memberName="textButton2"
+  <TEXTBUTTON name="new button" id="64d70bb49227f0d8" memberName="btn_pseudo4op"
               virtualName="" explicitFocusOrder="0" pos="104 96 56 24" buttonText="2x2 op"
               connectedEdges="3" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="402f6ebfee1d48e6" memberName="textButton3"
+  <TEXTBUTTON name="new button" id="402f6ebfee1d48e6" memberName="btn_2op"
               virtualName="" explicitFocusOrder="0" pos="160 96 56 24" buttonText="2 op"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="b2cb238ae0314374" memberName="textButton4"
+  <TEXTBUTTON name="new button" id="b2cb238ae0314374" memberName="btn_fm12"
               virtualName="" explicitFocusOrder="0" pos="376 200 36 24" buttonText="FM"
               connectedEdges="8" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="f884f98bb82f318" memberName="textButton5"
+  <TEXTBUTTON name="new button" id="f884f98bb82f318" memberName="btn_am12"
               virtualName="" explicitFocusOrder="0" pos="376 224 36 24" buttonText="AM"
               connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="a00c5401e39a953e" memberName="ed_op1"
@@ -452,10 +470,10 @@ BEGIN_JUCER_METADATA
   <GENERICCOMPONENT name="new component" id="b7424f0838e48a08" memberName="ed_op4"
                     virtualName="" explicitFocusOrder="0" pos="18 328 352 128" class="Operator_Editor"
                     params=""/>
-  <TEXTBUTTON name="new button" id="6c84b2cc5c27a17f" memberName="textButton6"
+  <TEXTBUTTON name="new button" id="6c84b2cc5c27a17f" memberName="btn_fm34"
               virtualName="" explicitFocusOrder="0" pos="378 368 36 24" buttonText="FM"
               connectedEdges="8" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="c55383265bc18fb0" memberName="textButton7"
+  <TEXTBUTTON name="new button" id="c55383265bc18fb0" memberName="btn_am34"
               virtualName="" explicitFocusOrder="0" pos="378 392 36 24" buttonText="AM"
               connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="ed_op3"

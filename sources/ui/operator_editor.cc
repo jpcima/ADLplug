@@ -170,6 +170,11 @@ Operator_Editor::Operator_Editor ()
 
 
     //[UserPreSize]
+    btn_trem->setClickingTogglesState(true);
+    btn_vib->setClickingTogglesState(true);
+    btn_sus->setClickingTogglesState(true);
+    btn_env->setClickingTogglesState(true);
+
     kn_attack->setTooltip("Attack");
     kn_decay->setTooltip("Decay");
     kn_sustain->setTooltip("Sustain");
