@@ -157,6 +157,8 @@ Main_Component::Main_Component (Simple_Fifo &midi_out_queue)
     midi_out_queue_ = &midi_out_queue;
     midi_kb_state_.addListener(this);
 
+    midi_kb->setLowestVisibleKey(24);
+
     for (TextButton *btn : {btn_4op.get(), btn_pseudo4op.get(), btn_2op.get()}) {
         btn->setClickingTogglesState(true);
         btn->setRadioGroupId((int)Radio_Button_Group::Fm_Mode);
