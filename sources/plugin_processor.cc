@@ -92,6 +92,30 @@ void AdlplugAudioProcessor::releaseResources()
     player_.reset();
 }
 
+void AdlplugAudioProcessor::set_num_chips_nonrt(unsigned chips)
+{
+    std::lock_guard<std::mutex> lock(player_lock_);
+    Generic_Player *pl = player_.get();
+    pl->set_num_chips(chips);
+    reconfigure_chip();
+}
+
+void AdlplugAudioProcessor::set_chip_emulator_nonrt(unsigned emu)
+{
+    std::lock_guard<std::mutex> lock(player_lock_);
+    Generic_Player *pl = player_.get();
+    pl->set_emulator(emu);
+    reconfigure_chip();
+}
+
+void AdlplugAudioProcessor::reconfigure_chip()
+{
+    Generic_Player *pl = player_.get();
+    // TODO reload the bank etc..
+    
+    pl->reset();
+}
+
 bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
 {
     return layouts.getMainOutputChannelSet() == AudioChannelSet::stereo();
@@ -100,6 +124,13 @@ bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) c
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                          MidiBuffer &midi_messages)
 {
+    std::unique_lock<std::mutex> lock(player_lock_, std::try_to_lock);
+    if (!lock.owns_lock()) {
+        // can't use the player while non-rt modifies it
+        processBlockBypassed(buffer, midi_messages);
+        return;
+    }
+
     ScopedNoDenormals noDenormals;
 
     Generic_Player *pl = player_.get();

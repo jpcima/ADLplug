@@ -29,6 +29,9 @@ public:
     virtual void close() = 0;
     virtual void reset() = 0;
     virtual const char *emulator_name() const = 0;
+    virtual void set_emulator(unsigned emu) = 0;
+    virtual unsigned num_chips() = 0;
+    virtual bool set_num_chips(unsigned chips) = 0;
     virtual void play_midi(const uint8_t *msg, unsigned len) = 0;
     virtual void generate(float *left, float *right, unsigned nframes, unsigned stride) = 0;
 };

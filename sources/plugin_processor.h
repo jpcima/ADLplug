@@ -8,6 +8,7 @@
 #include "dsp/dc_filter.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <memory>
+#include <mutex>
 class Generic_Player;
 class Simple_Fifo;
 
@@ -23,6 +24,10 @@ public:
     //==========================================================================
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
+
+    void set_num_chips_nonrt(unsigned chips);
+    void set_chip_emulator_nonrt(unsigned emu);
+    void reconfigure_chip();
 
     bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
 
@@ -58,6 +63,7 @@ private:
     std::unique_ptr<Generic_Player> player_;
     std::unique_ptr<Simple_Fifo> ui_midi_queue_;
     Dc_Filter dc_filter_[2];
+    std::mutex player_lock_;
 
     //==========================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessor)

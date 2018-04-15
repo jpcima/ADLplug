@@ -28,6 +28,8 @@ struct Player_Traits<Player_Type::OPL3>
     static constexpr auto &close = adl_close;
     static constexpr auto &reset = adl_reset;
     static constexpr auto &emulator_name = adl_chipEmulatorName;
+    static constexpr auto &get_num_chips = adl_getNumChips;
+    static constexpr auto &set_num_chips = adl_setNumChips;
     static constexpr auto &switch_emulator = adl_switchEmulator;
     static constexpr auto &generate_format = adl_generateFormat;
     static constexpr auto &rt_note_on = adl_rt_noteOn;
@@ -55,6 +57,12 @@ public:
         { traits::reset(player_.get()); }
     const char *emulator_name() const override
         { return traits::emulator_name(player_.get()); }
+    void set_emulator(unsigned emu) override
+        { traits::switch_emulator(player_.get(), emu); }
+    unsigned num_chips() override
+        { return traits::get_num_chips(player_.get()); }
+    bool set_num_chips(unsigned chips) override
+        { return traits::set_num_chips(player_.get(), chips) == 0; }
     void play_midi(const uint8_t *msg, unsigned len) override;
     void generate(float *left, float *right, unsigned nframes, unsigned stride) override;
 };
