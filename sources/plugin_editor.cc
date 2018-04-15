@@ -21,6 +21,7 @@ AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &
 
 AdlplugAudioProcessorEditor::~AdlplugAudioProcessorEditor()
 {
+    Styled_Knobs::release_skins();
 }
 
 //==============================================================================

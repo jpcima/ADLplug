@@ -44,4 +44,6 @@ private:
     ListenerList<Listener> listeners_;
     bool in_drag_ = false;
     float value_at_drag_start_ = 0;
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Knob);
 };

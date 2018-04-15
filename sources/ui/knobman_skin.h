@@ -9,12 +9,13 @@
 #include <boost/smart_ptr/intrusive_ref_counter.hpp>
 #include <vector>
 
-struct Km_Skin;
+class Km_Skin;
 typedef boost::intrusive_ptr<Km_Skin> Km_Skin_Ptr;
 typedef boost::intrusive_ptr<const Km_Skin> Km_Skin_CPtr;
 
-struct Km_Skin : public boost::intrusive_ref_counter<Km_Skin>
+class Km_Skin : public boost::intrusive_ref_counter<Km_Skin>
 {
+public:
     std::vector<Image> frames;
     explicit operator bool() const { return !frames.empty(); }
 
@@ -23,4 +24,7 @@ struct Km_Skin : public boost::intrusive_ref_counter<Km_Skin>
     void load_resource(const char *name, unsigned frame_count);
 
     Km_Skin_Ptr scaled(double ratio) const;
+
+private:
+    JUCE_LEAK_DETECTOR(Km_Skin);
 };

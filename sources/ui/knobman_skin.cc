@@ -50,7 +50,7 @@ Km_Skin_Ptr Km_Skin::scaled(double ratio) const
     Km_Skin_Ptr skin = new Km_Skin;
     size_t frame_count = this->frames.size();
     skin->frames.resize(frame_count);
-    if (!*this)
+    if (frame_count == 0)
         return skin;
 
     int orig_w = this->frames[0].getWidth();

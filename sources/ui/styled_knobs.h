@@ -4,22 +4,36 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #pragma once
-
 #include "ui/knob_component.h"
 #include "ui/knobman_skin.h"
+
+#define EACH_STYLED_KNOB(F, ...)                \
+    F(Default, ##__VA_ARGS__)                   \
+    F(DefaultSmall, ##__VA_ARGS__)
 
 class Styled_Knob_Default : public Knob
 {
 public:
-    Styled_Knob_Default()
-        { set_skin(style_skin()); }
+    Styled_Knob_Default() { set_skin(style_skin()); }
     static const Km_Skin_Ptr &style_skin();
+    static void release_skin() { skin_.reset(); }
+private:
+    static Km_Skin_Ptr skin_;
 };
 
+//------------------------------------------------------------------------------
 class Styled_Knob_DefaultSmall : public Knob
 {
 public:
-    Styled_Knob_DefaultSmall()
-        { set_skin(style_skin()); }
+    Styled_Knob_DefaultSmall() { set_skin(style_skin()); }
     static const Km_Skin_Ptr &style_skin();
+    static void release_skin() { skin_.reset(); }
+private:
+    static Km_Skin_Ptr skin_;
+};
+
+//------------------------------------------------------------------------------
+namespace Styled_Knobs
+{
+    void release_skins();
 };
