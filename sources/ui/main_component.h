@@ -60,6 +60,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    MidiKeyboardState midi_kb_state_;
     //[/UserVariables]
 
     //==============================================================================
@@ -78,6 +79,7 @@ private:
     ScopedPointer<Slider> sl_tune34;
     ScopedPointer<Styled_Knob_DefaultSmall> component5;
     ScopedPointer<Styled_Knob_DefaultSmall> component6;
+    ScopedPointer<MidiKeyboardComponent> component;
     Image cachedImage_logo_png_1;
 
 

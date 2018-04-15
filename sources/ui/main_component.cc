@@ -36,7 +36,7 @@ Main_Component::Main_Component ()
     addAndMakeVisible (ed_op2 = new Operator_Editor());
     ed_op2->setName ("new component");
 
-    ed_op2->setBounds (56, 160, 328, 172);
+    ed_op2->setBounds (16, 160, 352, 128);
 
     addAndMakeVisible (textButton = new TextButton ("new button"));
     textButton->setButtonText (TRANS("4 op"));
@@ -64,43 +64,43 @@ Main_Component::Main_Component ()
     textButton4->setConnectedEdges (Button::ConnectedOnBottom);
     textButton4->addListener (this);
 
-    textButton4->setBounds (392, 224, 36, 24);
+    textButton4->setBounds (376, 200, 36, 24);
 
     addAndMakeVisible (textButton5 = new TextButton ("new button"));
     textButton5->setButtonText (TRANS("AM"));
     textButton5->setConnectedEdges (Button::ConnectedOnTop);
     textButton5->addListener (this);
 
-    textButton5->setBounds (392, 248, 36, 24);
+    textButton5->setBounds (376, 224, 36, 24);
 
     addAndMakeVisible (ed_op1 = new Operator_Editor());
     ed_op1->setName ("new component");
 
-    ed_op1->setBounds (437, 160, 328, 172);
+    ed_op1->setBounds (421, 160, 352, 128);
 
     addAndMakeVisible (ed_op4 = new Operator_Editor());
     ed_op4->setName ("new component");
 
-    ed_op4->setBounds (58, 368, 328, 172);
+    ed_op4->setBounds (18, 328, 352, 128);
 
     addAndMakeVisible (textButton6 = new TextButton ("new button"));
     textButton6->setButtonText (TRANS("FM"));
     textButton6->setConnectedEdges (Button::ConnectedOnBottom);
     textButton6->addListener (this);
 
-    textButton6->setBounds (394, 432, 36, 24);
+    textButton6->setBounds (378, 368, 36, 24);
 
     addAndMakeVisible (textButton7 = new TextButton ("new button"));
     textButton7->setButtonText (TRANS("AM"));
     textButton7->setConnectedEdges (Button::ConnectedOnTop);
     textButton7->addListener (this);
 
-    textButton7->setBounds (394, 456, 36, 24);
+    textButton7->setBounds (378, 392, 36, 24);
 
     addAndMakeVisible (ed_op3 = new Operator_Editor());
     ed_op3->setName ("new component");
 
-    ed_op3->setBounds (439, 368, 328, 172);
+    ed_op3->setBounds (423, 328, 352, 128);
 
     addAndMakeVisible (sl_tune12 = new Slider ("new slider"));
     sl_tune12->setRange (-127, 127, 0);
@@ -108,7 +108,7 @@ Main_Component::Main_Component ()
     sl_tune12->setTextBoxStyle (Slider::TextBoxRight, false, 36, 20);
     sl_tune12->addListener (this);
 
-    sl_tune12->setBounds (608, 136, 150, 24);
+    sl_tune12->setBounds (568, 136, 150, 24);
 
     addAndMakeVisible (sl_tune34 = new Slider ("new slider"));
     sl_tune34->setRange (-127, 127, 0);
@@ -116,17 +116,22 @@ Main_Component::Main_Component ()
     sl_tune34->setTextBoxStyle (Slider::TextBoxRight, false, 36, 20);
     sl_tune34->addListener (this);
 
-    sl_tune34->setBounds (608, 344, 150, 24);
+    sl_tune34->setBounds (568, 304, 150, 24);
 
     addAndMakeVisible (component5 = new Styled_Knob_DefaultSmall());
     component5->setName ("new component");
 
-    component5->setBounds (536, 128, 32, 32);
+    component5->setBounds (496, 128, 32, 32);
 
     addAndMakeVisible (component6 = new Styled_Knob_DefaultSmall());
     component6->setName ("new component");
 
-    component6->setBounds (536, 336, 32, 32);
+    component6->setBounds (496, 296, 32, 32);
+
+    addAndMakeVisible (component = new MidiKeyboardComponent (midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard));
+    component->setName ("new component");
+
+    component->setBounds (24, 480, 752, 56);
 
     cachedImage_logo_png_1 = ImageCache::getFromMemory (logo_png, logo_pngSize);
 
@@ -166,6 +171,7 @@ Main_Component::~Main_Component()
     sl_tune34 = nullptr;
     component5 = nullptr;
     component6 = nullptr;
+    component = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -204,7 +210,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 68, y = 132, width = 92, height = 30;
+        int x = 28, y = 132, width = 92, height = 30;
         String text (TRANS("Operator 1-2"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -216,7 +222,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 68, y = 340, width = 92, height = 30;
+        int x = 28, y = 300, width = 92, height = 30;
         String text (TRANS("Operator 3-4"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -228,7 +234,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 572, y = 132, width = 36, height = 30;
+        int x = 532, y = 132, width = 36, height = 30;
         String text (TRANS("Tune"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -240,7 +246,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 572, y = 340, width = 36, height = 30;
+        int x = 532, y = 300, width = 36, height = 30;
         String text (TRANS("Tune"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -252,7 +258,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 468, y = 340, width = 60, height = 30;
+        int x = 428, y = 300, width = 60, height = 30;
         String text (TRANS("Feedback"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -264,7 +270,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 468, y = 132, width = 60, height = 30;
+        int x = 428, y = 132, width = 60, height = 30;
         String text (TRANS("Feedback"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -378,27 +384,27 @@ BEGIN_JUCER_METADATA
     <TEXT pos="356 28 284 30" fill="solid: fff0f8ff" hasStroke="0" text="FM synthesizer with YMF262 chip emulation"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <TEXT pos="68 132 92 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 1-2"
+    <TEXT pos="28 132 92 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 1-2"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="1" italic="0" justification="33" typefaceStyle="Bold"/>
-    <TEXT pos="68 340 92 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 3-4"
+    <TEXT pos="28 300 92 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 3-4"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="1" italic="0" justification="33" typefaceStyle="Bold"/>
-    <TEXT pos="572 132 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Tune"
+    <TEXT pos="532 132 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Tune"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <TEXT pos="572 340 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Tune"
+    <TEXT pos="532 300 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Tune"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <TEXT pos="468 340 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
+    <TEXT pos="428 300 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <TEXT pos="468 132 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
+    <TEXT pos="428 132 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
-                    virtualName="" explicitFocusOrder="0" pos="56 160 328 172" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="16 160 352 128" class="Operator_Editor"
                     params=""/>
   <TEXTBUTTON name="new button" id="333aa0ccccbfed24" memberName="textButton"
               virtualName="" explicitFocusOrder="0" pos="48 96 56 24" buttonText="4 op"
@@ -410,42 +416,45 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="160 96 56 24" buttonText="2 op"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="b2cb238ae0314374" memberName="textButton4"
-              virtualName="" explicitFocusOrder="0" pos="392 224 36 24" buttonText="FM"
+              virtualName="" explicitFocusOrder="0" pos="376 200 36 24" buttonText="FM"
               connectedEdges="8" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="f884f98bb82f318" memberName="textButton5"
-              virtualName="" explicitFocusOrder="0" pos="392 248 36 24" buttonText="AM"
+              virtualName="" explicitFocusOrder="0" pos="376 224 36 24" buttonText="AM"
               connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="a00c5401e39a953e" memberName="ed_op1"
-                    virtualName="" explicitFocusOrder="0" pos="437 160 328 172" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="421 160 352 128" class="Operator_Editor"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="b7424f0838e48a08" memberName="ed_op4"
-                    virtualName="" explicitFocusOrder="0" pos="58 368 328 172" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="18 328 352 128" class="Operator_Editor"
                     params=""/>
   <TEXTBUTTON name="new button" id="6c84b2cc5c27a17f" memberName="textButton6"
-              virtualName="" explicitFocusOrder="0" pos="394 432 36 24" buttonText="FM"
+              virtualName="" explicitFocusOrder="0" pos="378 368 36 24" buttonText="FM"
               connectedEdges="8" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="c55383265bc18fb0" memberName="textButton7"
-              virtualName="" explicitFocusOrder="0" pos="394 456 36 24" buttonText="AM"
+              virtualName="" explicitFocusOrder="0" pos="378 392 36 24" buttonText="AM"
               connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="ed_op3"
-                    virtualName="" explicitFocusOrder="0" pos="439 368 328 172" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="423 328 352 128" class="Operator_Editor"
                     params=""/>
   <SLIDER name="new slider" id="9cd7cc232d55ac8a" memberName="sl_tune12"
-          virtualName="" explicitFocusOrder="0" pos="608 136 150 24" min="-127.00000000000000000000"
+          virtualName="" explicitFocusOrder="0" pos="568 136 150 24" min="-127.00000000000000000000"
           max="127.00000000000000000000" int="0.00000000000000000000" style="LinearHorizontal"
           textBoxPos="TextBoxRight" textBoxEditable="1" textBoxWidth="36"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
   <SLIDER name="new slider" id="314f46c5e90647" memberName="sl_tune34"
-          virtualName="" explicitFocusOrder="0" pos="608 344 150 24" min="-127.00000000000000000000"
+          virtualName="" explicitFocusOrder="0" pos="568 304 150 24" min="-127.00000000000000000000"
           max="127.00000000000000000000" int="0.00000000000000000000" style="LinearHorizontal"
           textBoxPos="TextBoxRight" textBoxEditable="1" textBoxWidth="36"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
   <GENERICCOMPONENT name="new component" id="8e0915367ccd00d3" memberName="component5"
-                    virtualName="" explicitFocusOrder="0" pos="536 128 32 32" class="Styled_Knob_DefaultSmall"
+                    virtualName="" explicitFocusOrder="0" pos="496 128 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="59510781248f1393" memberName="component6"
-                    virtualName="" explicitFocusOrder="0" pos="536 336 32 32" class="Styled_Knob_DefaultSmall"
+                    virtualName="" explicitFocusOrder="0" pos="496 296 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
+  <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="component"
+                    virtualName="" explicitFocusOrder="0" pos="24 480 752 56" class="MidiKeyboardComponent"
+                    params="midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

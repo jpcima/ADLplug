@@ -35,22 +35,22 @@ Operator_Editor::Operator_Editor ()
     addAndMakeVisible (component = new Styled_Knob_Default());
     component->setName ("new component");
 
-    component->setBounds (8, 32, 48, 48);
+    component->setBounds (56, 8, 48, 48);
 
     addAndMakeVisible (component2 = new Styled_Knob_Default());
     component2->setName ("new component");
 
-    component2->setBounds (56, 32, 48, 48);
+    component2->setBounds (104, 8, 48, 48);
 
     addAndMakeVisible (component3 = new Styled_Knob_Default());
     component3->setName ("new component");
 
-    component3->setBounds (104, 32, 48, 48);
+    component3->setBounds (152, 8, 48, 48);
 
     addAndMakeVisible (component4 = new Styled_Knob_Default());
     component4->setName ("new component");
 
-    component4->setBounds (152, 32, 48, 48);
+    component4->setBounds (200, 8, 48, 48);
 
     addAndMakeVisible (label = new Label ("new label",
                                           TRANS("label text")));
@@ -60,49 +60,49 @@ Operator_Editor::Operator_Editor ()
     label->setColour (TextEditor::textColourId, Colours::black);
     label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label->setBounds (56, 88, 88, 24);
+    label->setBounds (56, 64, 88, 24);
 
     addAndMakeVisible (textButton = new TextButton ("new button"));
     textButton->setButtonText (TRANS("<"));
     textButton->setConnectedEdges (Button::ConnectedOnRight);
     textButton->addListener (this);
 
-    textButton->setBounds (161, 90, 23, 24);
+    textButton->setBounds (161, 66, 23, 24);
 
     addAndMakeVisible (textButton2 = new TextButton ("new button"));
     textButton2->setButtonText (TRANS(">"));
     textButton2->setConnectedEdges (Button::ConnectedOnLeft);
     textButton2->addListener (this);
 
-    textButton2->setBounds (184, 90, 23, 24);
+    textButton2->setBounds (184, 66, 23, 24);
 
     addAndMakeVisible (textButton3 = new TextButton ("new button"));
     textButton3->setButtonText (TRANS("TREM"));
     textButton3->setConnectedEdges (Button::ConnectedOnRight);
     textButton3->addListener (this);
 
-    textButton3->setBounds (8, 136, 48, 24);
+    textButton3->setBounds (32, 96, 48, 24);
 
     addAndMakeVisible (textButton4 = new TextButton ("new button"));
     textButton4->setButtonText (TRANS("VIB"));
     textButton4->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     textButton4->addListener (this);
 
-    textButton4->setBounds (56, 136, 48, 24);
+    textButton4->setBounds (80, 96, 48, 24);
 
     addAndMakeVisible (textButton5 = new TextButton ("new button"));
     textButton5->setButtonText (TRANS("SUS"));
     textButton5->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     textButton5->addListener (this);
 
-    textButton5->setBounds (104, 136, 48, 24);
+    textButton5->setBounds (128, 96, 48, 24);
 
     addAndMakeVisible (textButton6 = new TextButton ("new button"));
     textButton6->setButtonText (TRANS("ENV"));
     textButton6->setConnectedEdges (Button::ConnectedOnLeft);
     textButton6->addListener (this);
 
-    textButton6->setBounds (152, 136, 48, 24);
+    textButton6->setBounds (176, 96, 48, 24);
 
     addAndMakeVisible (slider = new Slider ("new slider"));
     slider->setRange (0, 10, 0);
@@ -110,7 +110,7 @@ Operator_Editor::Operator_Editor ()
     slider->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     slider->addListener (this);
 
-    slider->setBounds (224, 32, 24, 96);
+    slider->setBounds (264, 32, 24, 70);
 
     addAndMakeVisible (slider2 = new Slider ("new slider"));
     slider2->setRange (0, 10, 0);
@@ -118,7 +118,7 @@ Operator_Editor::Operator_Editor ()
     slider2->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     slider2->addListener (this);
 
-    slider2->setBounds (256, 32, 24, 96);
+    slider2->setBounds (288, 32, 24, 70);
 
     addAndMakeVisible (slider3 = new Slider ("new slider"));
     slider3->setRange (0, 10, 0);
@@ -126,7 +126,7 @@ Operator_Editor::Operator_Editor ()
     slider3->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     slider3->addListener (this);
 
-    slider3->setBounds (288, 32, 24, 96);
+    slider3->setBounds (312, 32, 24, 70);
 
     addAndMakeVisible (lb_optype = new Label ("new label",
                                               TRANS("Modulator")));
@@ -136,7 +136,7 @@ Operator_Editor::Operator_Editor ()
     lb_optype->setColour (TextEditor::textColourId, Colours::black);
     lb_optype->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lb_optype->setBounds (232, 8, 78, 24);
+    lb_optype->setBounds (264, 8, 78, 24);
 
 
     //[UserPreSize]
@@ -184,7 +184,7 @@ void Operator_Editor::paint (Graphics& g)
     g.fillAll (Colour (0xff323e44));
 
     {
-        int x = 0, y = 0, width = 324, height = 172;
+        int x = 0, y = 0, width = 352, height = 128;
         Colour fillColour = Colour (0xff2e4c4d);
         Colour strokeColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -209,7 +209,7 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 4, y = 84, width = 36, height = 30;
+        int x = 4, y = 60, width = 36, height = 30;
         String text (TRANS("Wave"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -221,7 +221,7 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 52, y = 92, width = 100, height = 20;
+        int x = 52, y = 64, width = 100, height = 24;
         Colour fillColour = Colour (0xff373737);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -230,7 +230,7 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 220, y = 124, width = 28, height = 18;
+        int x = 260, y = 100, width = 28, height = 18;
         String text (TRANS("Lv"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -242,7 +242,7 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 252, y = 124, width = 28, height = 18;
+        int x = 284, y = 100, width = 28, height = 18;
         String text (TRANS("F*"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -254,8 +254,8 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 284, y = 124, width = 28, height = 18;
-        String text (TRANS("Eg"));
+        int x = 308, y = 100, width = 28, height = 18;
+        String text (TRANS("Ksl"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -266,7 +266,7 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 232, y = 8, width = 78, height = 24;
+        int x = 264, y = 8, width = 78, height = 24;
         Colour fillColour = Colour (0xd3a52a2a);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -372,78 +372,78 @@ BEGIN_JUCER_METADATA
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ff323e44">
-    <RECT pos="0 0 324 172" fill="solid: ff2e4c4d" hasStroke="1" stroke="1, mitered, butt"
+    <RECT pos="0 0 352 128" fill="solid: ff2e4c4d" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: fff0f8ff"/>
     <TEXT pos="4 4 36 30" fill="solid: fff0f8ff" hasStroke="0" text="ADSR"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="33"/>
-    <TEXT pos="4 84 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Wave"
+    <TEXT pos="4 60 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Wave"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="33"/>
-    <RECT pos="52 92 100 20" fill="solid: ff373737" hasStroke="0"/>
-    <TEXT pos="220 124 28 18" fill="solid: fff0f8ff" hasStroke="0" text="Lv"
+    <RECT pos="52 64 100 24" fill="solid: ff373737" hasStroke="0"/>
+    <TEXT pos="260 100 28 18" fill="solid: fff0f8ff" hasStroke="0" text="Lv"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <TEXT pos="252 124 28 18" fill="solid: fff0f8ff" hasStroke="0" text="F*"
+    <TEXT pos="284 100 28 18" fill="solid: fff0f8ff" hasStroke="0" text="F*"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <TEXT pos="284 124 28 18" fill="solid: fff0f8ff" hasStroke="0" text="Eg"
+    <TEXT pos="308 100 28 18" fill="solid: fff0f8ff" hasStroke="0" text="Ksl"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <RECT pos="232 8 78 24" fill="solid: d3a52a2a" hasStroke="0"/>
+    <RECT pos="264 8 78 24" fill="solid: d3a52a2a" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="7c54ff103d9f5d" memberName="component"
-                    virtualName="" explicitFocusOrder="0" pos="8 32 48 48" class="Styled_Knob_Default"
+                    virtualName="" explicitFocusOrder="0" pos="56 8 48 48" class="Styled_Knob_Default"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="be39ad00dcf6efe1" memberName="component2"
-                    virtualName="" explicitFocusOrder="0" pos="56 32 48 48" class="Styled_Knob_Default"
+                    virtualName="" explicitFocusOrder="0" pos="104 8 48 48" class="Styled_Knob_Default"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="8d88729c124c7b16" memberName="component3"
-                    virtualName="" explicitFocusOrder="0" pos="104 32 48 48" class="Styled_Knob_Default"
+                    virtualName="" explicitFocusOrder="0" pos="152 8 48 48" class="Styled_Knob_Default"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="7d576b68e9b588f" memberName="component4"
-                    virtualName="" explicitFocusOrder="0" pos="152 32 48 48" class="Styled_Knob_Default"
+                    virtualName="" explicitFocusOrder="0" pos="200 8 48 48" class="Styled_Knob_Default"
                     params=""/>
   <LABEL name="new label" id="78c50cdc26d2ebfe" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="56 88 88 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="56 64 88 24" edTextCol="ff000000"
          edBkgCol="0" labelText="label text" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
          kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="textButton"
-              virtualName="" explicitFocusOrder="0" pos="161 90 23 24" buttonText="&lt;"
+              virtualName="" explicitFocusOrder="0" pos="161 66 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="textButton2"
-              virtualName="" explicitFocusOrder="0" pos="184 90 23 24" buttonText="&gt;"
+              virtualName="" explicitFocusOrder="0" pos="184 66 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="f60e70ed4f10ef32" memberName="textButton3"
-              virtualName="" explicitFocusOrder="0" pos="8 136 48 24" buttonText="TREM"
+              virtualName="" explicitFocusOrder="0" pos="32 96 48 24" buttonText="TREM"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="501ccf7ad0bc53a7" memberName="textButton4"
-              virtualName="" explicitFocusOrder="0" pos="56 136 48 24" buttonText="VIB"
+              virtualName="" explicitFocusOrder="0" pos="80 96 48 24" buttonText="VIB"
               connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="3e46dd6b966c40b2" memberName="textButton5"
-              virtualName="" explicitFocusOrder="0" pos="104 136 48 24" buttonText="SUS"
+              virtualName="" explicitFocusOrder="0" pos="128 96 48 24" buttonText="SUS"
               connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="eb8e9dfd42dd8f57" memberName="textButton6"
-              virtualName="" explicitFocusOrder="0" pos="152 136 48 24" buttonText="ENV"
+              virtualName="" explicitFocusOrder="0" pos="176 96 48 24" buttonText="ENV"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <SLIDER name="new slider" id="b7065e7cd8f3e951" memberName="slider" virtualName=""
-          explicitFocusOrder="0" pos="224 32 24 96" min="0.00000000000000000000"
+          explicitFocusOrder="0" pos="264 32 24 70" min="0.00000000000000000000"
           max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
           textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
   <SLIDER name="new slider" id="47c9497e72aa0068" memberName="slider2"
-          virtualName="" explicitFocusOrder="0" pos="256 32 24 96" min="0.00000000000000000000"
+          virtualName="" explicitFocusOrder="0" pos="288 32 24 70" min="0.00000000000000000000"
           max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
           textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
   <SLIDER name="new slider" id="7da3d626504f1592" memberName="slider3"
-          virtualName="" explicitFocusOrder="0" pos="288 32 24 96" min="0.00000000000000000000"
+          virtualName="" explicitFocusOrder="0" pos="312 32 24 70" min="0.00000000000000000000"
           max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
           textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
   <LABEL name="new label" id="d5cf6971a21036bf" memberName="lb_optype"
-         virtualName="" explicitFocusOrder="0" pos="232 8 78 24" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="264 8 78 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Modulator" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
          kerning="0.00000000000000000000" bold="1" italic="0" justification="36"
