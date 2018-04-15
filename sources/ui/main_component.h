@@ -21,6 +21,7 @@
 
 //[Headers]     -- You can add your own extra header files here --
 #include "../../JuceLibraryCode/JuceHeader.h"
+#include "ui/styled_knobs.h"
 class Operator_Editor;
 //[/Headers]
 

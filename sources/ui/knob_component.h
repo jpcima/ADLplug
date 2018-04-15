@@ -5,8 +5,8 @@
 
 #pragma once
 
+#include "ui/knobman_skin.h"
 #include "../../JuceLibraryCode/JuceHeader.h"
-#include <vector>
 
 class Knob : public Component
 {
@@ -14,9 +14,9 @@ public:
     Knob();
     explicit Knob(const String &name);
     virtual ~Knob() {}
-    void load_skin(const Image &img, unsigned frame_count);
-    void load_skin_data(const char *data, unsigned size, unsigned frame_count);
-    void load_skin_resource(const char *name, unsigned frame_count);
+
+    const Km_Skin_CPtr &skin() const;
+    void set_skin(Km_Skin_CPtr skin);
 
     float value() const;
     void set_value(float v);
@@ -39,7 +39,7 @@ protected:
 
 private:
     Rectangle<float> get_frame_bounds() const;
-    std::vector<Image> skin_;
+    Km_Skin_CPtr skin_;
     float value_ = 0;
     ListenerList<Listener> listeners_;
     bool in_drag_ = false;

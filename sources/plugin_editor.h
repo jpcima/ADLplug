@@ -27,7 +27,6 @@ private:
     // access the processor object that created it.
     AdlplugAudioProcessor &processor;
 
-    Image logo_;
     Main_Component *main_ = nullptr;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessorEditor)

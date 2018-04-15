@@ -4,7 +4,6 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "ui/knob_component.h"
-#include "ui/image_utils.h"
 
 Knob::Knob()
 {
@@ -15,44 +14,17 @@ Knob::Knob(const String &name)
 {
 }
 
-void Knob::load_skin(const Image &img, unsigned frame_count)
+const Km_Skin_CPtr &Knob::skin() const
 {
-    std::vector<Image> &skin = skin_;
-    skin.resize(frame_count);
+    return skin_;
+}
 
-    if (skin.empty())
-        return;
-
-    int w = img.getWidth();
-    int h = img.getHeight();
-    int hframe = h / frame_count;
-    Rectangle<int> frame_area (0, 0, w, hframe);
-    for (unsigned i = 0; i < frame_count; ++i) {
-        Rectangle<int> bounds(0, i * hframe, w, hframe);
-        skin[i] = img.getClippedImage(bounds);
+void Knob::set_skin(Km_Skin_CPtr skin)
+{
+    if (skin_ != skin) {
+        skin_ = skin;
+        repaint();
     }
-
-    // crop transparent bounds
-    Rectangle<int> opaque_bounds = Image_Utils::get_image_solid_area(skin[0]);
-    for (unsigned i = 1; i < frame_count; ++i)
-        opaque_bounds = opaque_bounds.getUnion(Image_Utils::get_image_solid_area(skin[i]));
-    for (unsigned i = 0; i < frame_count; ++i)
-        skin[i] = skin[i].getClippedImage(opaque_bounds);
-}
-
-void Knob::load_skin_data(const char *data, unsigned size, unsigned frame_count)
-{
-    Image img = ImageFileFormat::loadFrom(data, size);
-    load_skin(img, frame_count);
-}
-
-void Knob::load_skin_resource(const char *name, unsigned frame_count)
-{
-    int size;
-    const char *data = BinaryData::getNamedResource(name, size);
-    if (!data)
-        return;
-    load_skin_data(data, size, frame_count);
 }
 
 float Knob::value() const
@@ -82,11 +54,12 @@ void Knob::remove_listener(Listener *l)
 
 void Knob::paint(Graphics &g)
 {
-    const std::vector<Image> &skin = skin_;
-    size_t frame_count = skin.size();
-    if (frame_count <= 0)
+    const Km_Skin *skin = skin_.get();
+    if (!skin || !*skin)
         return;
 
+    const std::vector<Image> &frames = skin->frames;
+    size_t frame_count = frames.size();
     Rectangle<int> bounds = getLocalBounds();
     int x = bounds.getX();
     int y = bounds.getY();
@@ -97,8 +70,7 @@ void Knob::paint(Graphics &g)
     unsigned long index = lround(value * (frame_count - 1));
     index = ((long)index < 0) ? 0 : (index >= frame_count) ? (frame_count - 1) : index;
 
-    const Image &frame = skin[index];
-    g.drawImage(frame, get_frame_bounds());
+    g.drawImage(frames[index], get_frame_bounds());
 }
 
 void Knob::mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &wheel)
@@ -150,11 +122,12 @@ void Knob::mouseDrag(const MouseEvent &event)
 
 Rectangle<float> Knob::get_frame_bounds() const
 {
-    const std::vector<Image> &skin = skin_;
-    if (skin.empty())
+    const Km_Skin *skin = skin_.get();
+    if (!skin || !*skin)
         return Rectangle<float>();
 
-    Rectangle<int> fbounds = skin[0].getBounds();
+    const std::vector<Image> &frames = skin->frames;
+    Rectangle<int> fbounds = frames[0].getBounds();
     return getLocalBounds().toType<float>().withSizeKeepingCentre(
         fbounds.getWidth(), fbounds.getHeight());
 }

@@ -6,10 +6,12 @@
 #pragma once
 
 #include "ui/knob_component.h"
+#include "ui/knobman_skin.h"
 
 class Styled_Knob_Default : public Knob
 {
 public:
     Styled_Knob_Default()
-        { load_skin_data(BinaryData::knobskin_png, BinaryData::knobskin_pngSize, 64); }
+        { set_skin(style_skin()); }
+    static const Km_Skin_Ptr &style_skin();
 };

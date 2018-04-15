@@ -10,8 +10,6 @@
 AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &p)
     : AudioProcessorEditor(&p) , processor(p)
 {
-    logo_ = ImageFileFormat::loadFrom(BinaryData::logo_png, BinaryData::logo_pngSize);
-
     Main_Component *main = main_ = new Main_Component;
     addAndMakeVisible(main);
 
@@ -32,21 +30,6 @@ void AdlplugAudioProcessorEditor::paint(Graphics &g)
     // (Our component is opaque, so we must completely fill the background with a
     // solid colour)
     g.fillAll(lnf.findColour(ResizableWindow::backgroundColourId));
-
-    Rectangle<int> bounds = getLocalBounds();
-
-    //
-    const Image &logo = logo_;
-    bounds.removeFromTop(4);
-    Rectangle<int> toprow = bounds.removeFromTop(logo.getHeight());
-    toprow.removeFromLeft(8);
-    Point<int> logo_pos = toprow.getTopLeft();
-    g.drawImageAt(logo, logo_pos.getX(), logo_pos.getY());
-    toprow.removeFromLeft(logo.getWidth() + 8);
-    toprow.removeFromRight(24);
-    g.setColour(Colours::white);
-    g.setFont(15.0f);
-    g.drawText("FM synthesizer with YMF262 chip emulation", toprow, Justification::centred);
 }
 
 void AdlplugAudioProcessorEditor::resized()

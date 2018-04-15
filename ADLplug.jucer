@@ -10,7 +10,6 @@
   <MAINGROUP id="faq0v0" name="ADLplug">
     <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
       <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="resources/ui/knob-skin.png"/>
-      <FILE id="XMgYTR" name="logo.png" compile="0" resource="1" file="resources/ui/logo.png"/>
     </GROUP>
     <GROUP id="{57FD1426-D8BF-7CCC-6B25-2A7108A4390B}" name="sources">
       <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">
@@ -24,6 +23,12 @@
               file="sources/ui/knob_component.cc"/>
         <FILE id="EJfe9K" name="knob_component.h" compile="0" resource="0"
               file="sources/ui/knob_component.h"/>
+        <FILE id="H0oYmi" name="knobman_skin.cc" compile="1" resource="0" file="sources/ui/knobman_skin.cc"/>
+        <FILE id="OuGpce" name="knobman_skin.h" compile="0" resource="0" file="sources/ui/knobman_skin.h"/>
+        <FILE id="N6HR3L" name="main_component.cc" compile="1" resource="0"
+              file="sources/ui/main_component.cc"/>
+        <FILE id="TOEmqc" name="main_component.h" compile="0" resource="0"
+              file="sources/ui/main_component.h"/>
         <FILE id="WAXJXE" name="operator_editor.cc" compile="1" resource="0"
               file="sources/ui/operator_editor.cc"/>
         <FILE id="qbk60K" name="operator_editor.h" compile="0" resource="0"
