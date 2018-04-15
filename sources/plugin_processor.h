@@ -5,11 +5,11 @@
 
 #pragma once
 
-#include "adl/player.h"
 #include "dsp/dc_filter.h"
-#include "utility/simple_fifo.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <memory>
+class Generic_Player;
+class Simple_Fifo;
 
 //==============================================================================
 /**

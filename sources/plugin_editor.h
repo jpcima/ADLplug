@@ -6,9 +6,8 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "ui/main_component.h"
-#include "ui/operator_editor.h"
-#include "plugin_processor.h"
+class AdlplugAudioProcessor;
+class Main_Component;
 
 //==============================================================================
 /**

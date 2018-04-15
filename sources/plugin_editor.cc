@@ -3,6 +3,7 @@
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
+#include "ui/main_component.h"
 #include "plugin_editor.h"
 #include "plugin_processor.h"
 
