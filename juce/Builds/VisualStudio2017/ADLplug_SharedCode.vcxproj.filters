@@ -2,24 +2,6 @@
 
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips\dosbox">
-      <UniqueIdentifier>{CF80540C-7182-A6A8-10FB-E4FB9014A866}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips\nuked">
-      <UniqueIdentifier>{8E19FE76-C813-660D-E004-596697EB57EE}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips">
-      <UniqueIdentifier>{08340194-1B79-95DF-B14C-DD72966F1539}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ADLplug\thirdparty\libADLMIDI\src">
-      <UniqueIdentifier>{39F22A29-E257-0396-B966-3DFCC4355E5E}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ADLplug\thirdparty\libADLMIDI">
-      <UniqueIdentifier>{1D4B41E5-4B5E-C947-8F64-B4D9BBC9640C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ADLplug\thirdparty">
-      <UniqueIdentifier>{8370FCDC-BA76-8487-1CCC-DFA80E44CAE2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ADLplug\resources">
       <UniqueIdentifier>{95FAA976-2189-7683-BA44-3180A641CA15}</UniqueIdentifier>
     </Filter>
@@ -40,6 +22,24 @@
     </Filter>
     <Filter Include="ADLplug\sources">
       <UniqueIdentifier>{337050D3-2325-64ED-EBA1-66A581B1107F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips\dosbox">
+      <UniqueIdentifier>{CF80540C-7182-A6A8-10FB-E4FB9014A866}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips\nuked">
+      <UniqueIdentifier>{8E19FE76-C813-660D-E004-596697EB57EE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips">
+      <UniqueIdentifier>{08340194-1B79-95DF-B14C-DD72966F1539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI\src">
+      <UniqueIdentifier>{39F22A29-E257-0396-B966-3DFCC4355E5E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI">
+      <UniqueIdentifier>{1D4B41E5-4B5E-C947-8F64-B4D9BBC9640C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty">
+      <UniqueIdentifier>{8370FCDC-BA76-8487-1CCC-DFA80E44CAE2}</UniqueIdentifier>
     </Filter>
     <Filter Include="ADLplug">
       <UniqueIdentifier>{E87C007A-5FE0-4AB6-9321-FFCBC999C81D}</UniqueIdentifier>
@@ -397,6 +397,48 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\chips\opl3_waves.cc">
+      <Filter>ADLplug\sources\ui\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\about_component.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\image_utils.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\knob_component.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\knobman_skin.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\main_component.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\operator_editor.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\vu_meter.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\adl\player.cc">
+      <Filter>ADLplug\sources\adl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\plugin_editor.cc">
+      <Filter>ADLplug\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\plugin_processor.cc">
+      <Filter>ADLplug\sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.cpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\dosbox</Filter>
     </ClCompile>
@@ -441,45 +483,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.c">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc">
-      <Filter>ADLplug\sources\utility</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\chips\opl3_waves.cc">
-      <Filter>ADLplug\sources\ui\chips</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\about_component.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\image_utils.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\knob_component.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\knobman_skin.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\main_component.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\operator_editor.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\adl\player.cc">
-      <Filter>ADLplug\sources\adl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\plugin_editor.cc">
-      <Filter>ADLplug\sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\plugin_processor.cc">
-      <Filter>ADLplug\sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <Filter>JUCE Modules\juce_audio_basics\buffers</Filter>
@@ -2304,6 +2307,54 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\dsp\dc_filter.h">
+      <Filter>ADLplug\sources\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\dsp\vu_monitor.h">
+      <Filter>ADLplug\sources\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\utility\simple_fifo.h">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h">
+      <Filter>ADLplug\sources\ui\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\about_component.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\graphics_utils.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\image_utils.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\knob_component.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\knobman_skin.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\main_component.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\operator_editor.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\styled_knobs.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\vu_meter.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\adl\player.h">
+      <Filter>ADLplug\sources\adl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\plugin_editor.h">
+      <Filter>ADLplug\sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\plugin_processor.h">
+      <Filter>ADLplug\sources</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.h">
       <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\dosbox</Filter>
     </ClInclude>
@@ -2339,48 +2390,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\fraction.hpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\dsp\dc_filter.h">
-      <Filter>ADLplug\sources\dsp</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\utility\simple_fifo.h">
-      <Filter>ADLplug\sources\utility</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h">
-      <Filter>ADLplug\sources\ui\chips</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\about_component.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\graphics_utils.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\image_utils.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\knob_component.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\knobman_skin.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\main_component.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\operator_editor.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\styled_knobs.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\adl\player.h">
-      <Filter>ADLplug\sources\adl</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\plugin_editor.h">
-      <Filter>ADLplug\sources</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\plugin_processor.h">
-      <Filter>ADLplug\sources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>JUCE Modules\juce_audio_basics\audio_play_head</Filter>

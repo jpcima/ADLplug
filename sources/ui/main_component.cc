@@ -19,6 +19,7 @@
 
 //[Headers] You can add your own extra header files here...
 #include "ui/operator_editor.h"
+#include "ui/vu_meter.h"
 #include "ui/about_component.h"
 #include "plugin_processor.h"
 //[/Headers]
@@ -211,6 +212,16 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     label2->setBounds (280, 16, 280, 24);
 
+    addAndMakeVisible (vu_left = new Vu_Meter());
+    vu_left->setName ("new component");
+
+    vu_left->setBounds (592, 80, 168, 12);
+
+    addAndMakeVisible (vu_right = new Vu_Meter());
+    vu_right->setName ("new component");
+
+    vu_right->setBounds (592, 96, 168, 12);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -251,6 +262,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
         cb_emulator->addItem(emus[i], i + 1);
     // TODO should have an API to get the current emulator...
     cb_emulator->setSelectedId(1);
+
+    vu_timer_ = ScopedPointer<Vu_Timer>(new Vu_Timer(this));
+    vu_timer_->startTimer(10);
     //[/Constructor]
 }
 
@@ -282,6 +296,8 @@ Main_Component::~Main_Component()
     btn_more_chips = nullptr;
     cb_emulator = nullptr;
     label2 = nullptr;
+    vu_left = nullptr;
+    vu_right = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -366,6 +382,32 @@ void Main_Component::paint (Graphics& g)
         g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
         g.drawText (text, x, y, width, height,
                     Justification::centred, true);
+    }
+
+    {
+        int x = 592, y = 80, width = 168, height = 12;
+        Colour fillColour = Colours::grey;
+        Colour strokeColour = Colours::aliceblue;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
+
+    {
+        int x = 592, y = 96, width = 168, height = 12;
+        Colour fillColour = Colours::grey;
+        Colour strokeColour = Colours::aliceblue;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
     }
 
     //[UserPaint] Add your own custom painting code here..
@@ -521,6 +563,13 @@ void Main_Component::handleNoteOff(MidiKeyboardState *, int channel, int note, f
     queue.write(msg, sizeof(msg));
 }
 
+void Main_Component::vu_update()
+{
+    AdlplugAudioProcessor &proc = *proc_;
+    vu_left->set_value(proc.vu_level(0));
+    vu_right->set_value(proc.vu_level(1));
+}
+
 void Main_Component::popup_about_dialog()
 {
     DialogWindow::LaunchOptions dlgopts;
@@ -566,6 +615,10 @@ BEGIN_JUCER_METADATA
     <TEXT pos="428 132 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
+    <RECT pos="592 80 168 12" fill="solid: ff808080" hasStroke="1" stroke="1, mitered, butt"
+          strokeColour="solid: fff0f8ff"/>
+    <RECT pos="592 96 168 12" fill="solid: ff808080" hasStroke="1" stroke="1, mitered, butt"
+          strokeColour="solid: fff0f8ff"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="16 160 352 128" class="Operator_Editor"
@@ -652,6 +705,12 @@ BEGIN_JUCER_METADATA
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
          bold="0" italic="0" justification="33"/>
+  <GENERICCOMPONENT name="new component" id="8c38ad0cbcf109f7" memberName="vu_left"
+                    virtualName="" explicitFocusOrder="0" pos="592 80 168 12" class="Vu_Meter"
+                    params=""/>
+  <GENERICCOMPONENT name="new component" id="16bc493366b76ca5" memberName="vu_right"
+                    virtualName="" explicitFocusOrder="0" pos="592 96 168 12" class="Vu_Meter"
+                    params=""/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

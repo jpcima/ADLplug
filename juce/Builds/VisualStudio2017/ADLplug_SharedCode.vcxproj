@@ -14,7 +14,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{729C143B-39E5-A608-60D2-C97A112FE061}</ProjectGuid>
+    <ProjectGuid>{5B36D0B8-36D9-21EC-06FD-DEDC4597AED1}</ProjectGuid>
     <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -148,6 +148,20 @@
     <Lib/>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\chips\opl3_waves.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\about_component.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\image_utils.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\knob_component.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\knobman_skin.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\main_component.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\operator_editor.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\vu_meter.cc"/>
+    <ClCompile Include="..\..\..\sources\adl\player.cc"/>
+    <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
+    <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.c"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3_174.c"/>
@@ -163,19 +177,6 @@
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_opl3.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.c"/>
-    <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc"/>
-    <ClCompile Include="..\..\..\sources\ui\chips\opl3_waves.cc"/>
-    <ClCompile Include="..\..\..\sources\ui\about_component.cc"/>
-    <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc"/>
-    <ClCompile Include="..\..\..\sources\ui\image_utils.cc"/>
-    <ClCompile Include="..\..\..\sources\ui\knob_component.cc"/>
-    <ClCompile Include="..\..\..\sources\ui\knobman_skin.cc"/>
-    <ClCompile Include="..\..\..\sources\ui\main_component.cc"/>
-    <ClCompile Include="..\..\..\sources\ui\operator_editor.cc"/>
-    <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc"/>
-    <ClCompile Include="..\..\..\sources\adl\player.cc"/>
-    <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
-    <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1854,6 +1855,22 @@
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\dsp\dc_filter.h"/>
+    <ClInclude Include="..\..\..\sources\dsp\vu_monitor.h"/>
+    <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
+    <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h"/>
+    <ClInclude Include="..\..\..\sources\ui\about_component.h"/>
+    <ClInclude Include="..\..\..\sources\ui\graphics_utils.h"/>
+    <ClInclude Include="..\..\..\sources\ui\image_utils.h"/>
+    <ClInclude Include="..\..\..\sources\ui\knob_component.h"/>
+    <ClInclude Include="..\..\..\sources\ui\knobman_skin.h"/>
+    <ClInclude Include="..\..\..\sources\ui\main_component.h"/>
+    <ClInclude Include="..\..\..\sources\ui\operator_editor.h"/>
+    <ClInclude Include="..\..\..\sources\ui\styled_knobs.h"/>
+    <ClInclude Include="..\..\..\sources\ui\vu_meter.h"/>
+    <ClInclude Include="..\..\..\sources\adl\player.h"/>
+    <ClInclude Include="..\..\..\sources\plugin_editor.h"/>
+    <ClInclude Include="..\..\..\sources\plugin_processor.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3_174.h"/>
@@ -1866,20 +1883,6 @@
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.hpp"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\fraction.hpp"/>
-    <ClInclude Include="..\..\..\sources\dsp\dc_filter.h"/>
-    <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
-    <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h"/>
-    <ClInclude Include="..\..\..\sources\ui\about_component.h"/>
-    <ClInclude Include="..\..\..\sources\ui\graphics_utils.h"/>
-    <ClInclude Include="..\..\..\sources\ui\image_utils.h"/>
-    <ClInclude Include="..\..\..\sources\ui\knob_component.h"/>
-    <ClInclude Include="..\..\..\sources\ui\knobman_skin.h"/>
-    <ClInclude Include="..\..\..\sources\ui\main_component.h"/>
-    <ClInclude Include="..\..\..\sources\ui\operator_editor.h"/>
-    <ClInclude Include="..\..\..\sources\ui\styled_knobs.h"/>
-    <ClInclude Include="..\..\..\sources\adl\player.h"/>
-    <ClInclude Include="..\..\..\sources\plugin_editor.h"/>
-    <ClInclude Include="..\..\..\sources\plugin_processor.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>

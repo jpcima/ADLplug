@@ -9,6 +9,64 @@
               aaxIdentifier="jpcima.ADLplug" headerPath="../../../sources&#10;../../../thirdparty/libADLMIDI/include"
               defines="ADLMIDI_DISABLE_CPP_EXTRAS&#10;ADLMIDI_DISABLE_MIDI_SEQUENCER&#10;ADLMIDI_DISABLE_MUS_SUPPORT&#10;ADLMIDI_DISABLE_XMI_SUPPORT">
   <MAINGROUP id="faq0v0" name="ADLplug">
+    <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
+      <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="resources/ui/knob-skin.png"/>
+    </GROUP>
+    <GROUP id="{57FD1426-D8BF-7CCC-6B25-2A7108A4390B}" name="sources">
+      <GROUP id="{2E9ABF3F-6195-1F35-766C-4D30B755E87E}" name="dsp">
+        <FILE id="jnXF8V" name="dc_filter.h" compile="0" resource="0" file="sources/dsp/dc_filter.h"/>
+        <FILE id="vP3pf2" name="vu_monitor.h" compile="0" resource="0" file="sources/dsp/vu_monitor.h"/>
+      </GROUP>
+      <GROUP id="{17C850C0-7CFF-17BC-4511-EED271A552A6}" name="utility">
+        <FILE id="MYO38b" name="simple_fifo.cc" compile="1" resource="0" file="sources/utility/simple_fifo.cc"/>
+        <FILE id="fr1vaj" name="simple_fifo.h" compile="0" resource="0" file="sources/utility/simple_fifo.h"/>
+      </GROUP>
+      <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">
+        <GROUP id="{D334F30B-8548-822D-8F67-78AE712EBDBA}" name="chips">
+          <FILE id="zgUEIA" name="opl3_waves.cc" compile="1" resource="0" file="sources/ui/chips/opl3_waves.cc"/>
+          <FILE id="jcoZ2e" name="opl3_waves.h" compile="0" resource="0" file="sources/ui/chips/opl3_waves.h"/>
+        </GROUP>
+        <FILE id="JdskR5" name="about_component.cc" compile="1" resource="0"
+              file="sources/ui/about_component.cc"/>
+        <FILE id="mwuHEz" name="about_component.h" compile="0" resource="0"
+              file="sources/ui/about_component.h"/>
+        <FILE id="zNTqHQ" name="graphics_utils.cc" compile="1" resource="0"
+              file="sources/ui/graphics_utils.cc"/>
+        <FILE id="I3iZ1b" name="graphics_utils.h" compile="0" resource="0"
+              file="sources/ui/graphics_utils.h"/>
+        <FILE id="p3eY4I" name="image_utils.cc" compile="1" resource="0" file="sources/ui/image_utils.cc"/>
+        <FILE id="Gyog2d" name="image_utils.h" compile="0" resource="0" file="sources/ui/image_utils.h"/>
+        <FILE id="tDUMPu" name="knob_component.cc" compile="1" resource="0"
+              file="sources/ui/knob_component.cc"/>
+        <FILE id="EJfe9K" name="knob_component.h" compile="0" resource="0"
+              file="sources/ui/knob_component.h"/>
+        <FILE id="H0oYmi" name="knobman_skin.cc" compile="1" resource="0" file="sources/ui/knobman_skin.cc"/>
+        <FILE id="OuGpce" name="knobman_skin.h" compile="0" resource="0" file="sources/ui/knobman_skin.h"/>
+        <FILE id="N6HR3L" name="main_component.cc" compile="1" resource="0"
+              file="sources/ui/main_component.cc"/>
+        <FILE id="TOEmqc" name="main_component.h" compile="0" resource="0"
+              file="sources/ui/main_component.h"/>
+        <FILE id="WAXJXE" name="operator_editor.cc" compile="1" resource="0"
+              file="sources/ui/operator_editor.cc"/>
+        <FILE id="qbk60K" name="operator_editor.h" compile="0" resource="0"
+              file="sources/ui/operator_editor.h"/>
+        <FILE id="P5y4Io" name="styled_knobs.cc" compile="1" resource="0" file="sources/ui/styled_knobs.cc"/>
+        <FILE id="FDBT9O" name="styled_knobs.h" compile="0" resource="0" file="sources/ui/styled_knobs.h"/>
+        <FILE id="MFvW4n" name="vu_meter.cc" compile="1" resource="0" file="sources/ui/vu_meter.cc"/>
+        <FILE id="QIFiOc" name="vu_meter.h" compile="0" resource="0" file="sources/ui/vu_meter.h"/>
+      </GROUP>
+      <GROUP id="{90BE611D-B377-7C79-171F-98F2CD7899AE}" name="adl">
+        <FILE id="YNeRaV" name="player.cc" compile="1" resource="0" file="sources/adl/player.cc"/>
+        <FILE id="cktZse" name="player.h" compile="0" resource="0" file="sources/adl/player.h"/>
+      </GROUP>
+      <FILE id="LbE9y8" name="plugin_editor.cc" compile="1" resource="0"
+            file="sources/plugin_editor.cc"/>
+      <FILE id="QxGCKT" name="plugin_editor.h" compile="0" resource="0" file="sources/plugin_editor.h"/>
+      <FILE id="UBnJeF" name="plugin_processor.cc" compile="1" resource="0"
+            file="sources/plugin_processor.cc"/>
+      <FILE id="QkXWb6" name="plugin_processor.h" compile="0" resource="0"
+            file="sources/plugin_processor.h"/>
+    </GROUP>
     <GROUP id="{C55CC9DB-ED0F-DE1B-46CB-A28A61433406}" name="thirdparty">
       <GROUP id="{46FD1D8A-303F-2543-5E20-D07F19C1C62D}" name="libADLMIDI">
         <GROUP id="{27FCCD7E-2B41-8DEA-8B6B-3033713471D2}" name="src">
@@ -59,61 +117,6 @@
           <FILE id="GQ6FoP" name="fraction.hpp" compile="0" resource="0" file="thirdparty/libADLMIDI/src/fraction.hpp"/>
         </GROUP>
       </GROUP>
-    </GROUP>
-    <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
-      <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="resources/ui/knob-skin.png"/>
-    </GROUP>
-    <GROUP id="{57FD1426-D8BF-7CCC-6B25-2A7108A4390B}" name="sources">
-      <GROUP id="{2E9ABF3F-6195-1F35-766C-4D30B755E87E}" name="dsp">
-        <FILE id="jnXF8V" name="dc_filter.h" compile="0" resource="0" file="sources/dsp/dc_filter.h"/>
-      </GROUP>
-      <GROUP id="{17C850C0-7CFF-17BC-4511-EED271A552A6}" name="utility">
-        <FILE id="MYO38b" name="simple_fifo.cc" compile="1" resource="0" file="sources/utility/simple_fifo.cc"/>
-        <FILE id="fr1vaj" name="simple_fifo.h" compile="0" resource="0" file="sources/utility/simple_fifo.h"/>
-      </GROUP>
-      <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">
-        <GROUP id="{D334F30B-8548-822D-8F67-78AE712EBDBA}" name="chips">
-          <FILE id="zgUEIA" name="opl3_waves.cc" compile="1" resource="0" file="sources/ui/chips/opl3_waves.cc"/>
-          <FILE id="jcoZ2e" name="opl3_waves.h" compile="0" resource="0" file="sources/ui/chips/opl3_waves.h"/>
-        </GROUP>
-        <FILE id="JdskR5" name="about_component.cc" compile="1" resource="0"
-              file="sources/ui/about_component.cc"/>
-        <FILE id="mwuHEz" name="about_component.h" compile="0" resource="0"
-              file="sources/ui/about_component.h"/>
-        <FILE id="zNTqHQ" name="graphics_utils.cc" compile="1" resource="0"
-              file="sources/ui/graphics_utils.cc"/>
-        <FILE id="I3iZ1b" name="graphics_utils.h" compile="0" resource="0"
-              file="sources/ui/graphics_utils.h"/>
-        <FILE id="p3eY4I" name="image_utils.cc" compile="1" resource="0" file="sources/ui/image_utils.cc"/>
-        <FILE id="Gyog2d" name="image_utils.h" compile="0" resource="0" file="sources/ui/image_utils.h"/>
-        <FILE id="tDUMPu" name="knob_component.cc" compile="1" resource="0"
-              file="sources/ui/knob_component.cc"/>
-        <FILE id="EJfe9K" name="knob_component.h" compile="0" resource="0"
-              file="sources/ui/knob_component.h"/>
-        <FILE id="H0oYmi" name="knobman_skin.cc" compile="1" resource="0" file="sources/ui/knobman_skin.cc"/>
-        <FILE id="OuGpce" name="knobman_skin.h" compile="0" resource="0" file="sources/ui/knobman_skin.h"/>
-        <FILE id="N6HR3L" name="main_component.cc" compile="1" resource="0"
-              file="sources/ui/main_component.cc"/>
-        <FILE id="TOEmqc" name="main_component.h" compile="0" resource="0"
-              file="sources/ui/main_component.h"/>
-        <FILE id="WAXJXE" name="operator_editor.cc" compile="1" resource="0"
-              file="sources/ui/operator_editor.cc"/>
-        <FILE id="qbk60K" name="operator_editor.h" compile="0" resource="0"
-              file="sources/ui/operator_editor.h"/>
-        <FILE id="P5y4Io" name="styled_knobs.cc" compile="1" resource="0" file="sources/ui/styled_knobs.cc"/>
-        <FILE id="FDBT9O" name="styled_knobs.h" compile="0" resource="0" file="sources/ui/styled_knobs.h"/>
-      </GROUP>
-      <GROUP id="{90BE611D-B377-7C79-171F-98F2CD7899AE}" name="adl">
-        <FILE id="YNeRaV" name="player.cc" compile="1" resource="0" file="sources/adl/player.cc"/>
-        <FILE id="cktZse" name="player.h" compile="0" resource="0" file="sources/adl/player.h"/>
-      </GROUP>
-      <FILE id="LbE9y8" name="plugin_editor.cc" compile="1" resource="0"
-            file="sources/plugin_editor.cc"/>
-      <FILE id="QxGCKT" name="plugin_editor.h" compile="0" resource="0" file="sources/plugin_editor.h"/>
-      <FILE id="UBnJeF" name="plugin_processor.cc" compile="1" resource="0"
-            file="sources/plugin_processor.cc"/>
-      <FILE id="QkXWb6" name="plugin_processor.h" compile="0" resource="0"
-            file="sources/plugin_processor.h"/>
     </GROUP>
   </MAINGROUP>
   <LIVE_SETTINGS>

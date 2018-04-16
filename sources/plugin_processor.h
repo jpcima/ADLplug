@@ -6,6 +6,7 @@
 #pragma once
 
 #include "dsp/dc_filter.h"
+#include "dsp/vu_monitor.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <memory>
 #include <mutex>
@@ -43,6 +44,9 @@ public:
 
     Simple_Fifo &midi_queue_for_ui() const { return *ui_midi_queue_; }
 
+    double vu_level(unsigned channel) const
+        { return (channel < 2) ? lv_current_[channel] : 0; }
+
     //==========================================================================
     const String getName() const override;
 
@@ -66,6 +70,8 @@ private:
     std::unique_ptr<Generic_Player> player_;
     std::unique_ptr<Simple_Fifo> ui_midi_queue_;
     Dc_Filter dc_filter_[2];
+    Vu_Monitor vu_monitor_[2];
+    double lv_current_[2] {};
     std::mutex player_lock_;
 
     //==========================================================================

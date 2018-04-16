@@ -77,6 +77,7 @@ add_library(ADLplug_core STATIC
   "sources/ui/knobman_skin.cc"
   "sources/ui/knob_component.cc"
   "sources/ui/styled_knobs.cc"
+  "sources/ui/vu_meter.cc"
   "sources/ui/operator_editor.cc"
   "sources/ui/wave_label.cc"
   "sources/ui/about_component.cc"

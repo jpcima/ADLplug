@@ -84,6 +84,8 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     for (unsigned i = 0; i < 2; ++i) {
         Dc_Filter &dcf = dc_filter_[i];
         dcf.cutoff(5.0 / sample_rate);
+        Vu_Monitor &vu = vu_monitor_[i];
+        vu.release(0.5 * sample_rate);
     }
 }
 
@@ -183,13 +185,24 @@ void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
     pl->generate(left, right, nframes, 1);
     lock.unlock();
 
+    Dc_Filter &dclf = dc_filter_[0];
+    Dc_Filter &dcrf = dc_filter_[1];
+    Vu_Monitor &lvu = vu_monitor_[0];
+    Vu_Monitor &rvu = vu_monitor_[1];
+    double lv_current[2];
+
     // filter out the DC component
     for (unsigned i = 0; i < nframes; ++i) {
-        Dc_Filter &dclf = dc_filter_[0];
-        left[i] = dclf.process(left[i]);
-        Dc_Filter &dcrf = dc_filter_[1];
-        right[i] = dcrf.process(right[i]);
+        double left_sample = dclf.process(left[i]);
+        double right_sample = dcrf.process(left[i]);
+        left[i] = left_sample;
+        right[i] = right_sample;
+        lv_current[0] = lvu.process(left_sample);
+        lv_current[1] = rvu.process(right_sample);
     }
+
+    lv_current_[0] = lv_current[0];
+    lv_current_[1] = lv_current[1];
 }
 
 void AdlplugAudioProcessor::processBlockBypassed(AudioBuffer<float> &buffer, MidiBuffer &midi_messages)
