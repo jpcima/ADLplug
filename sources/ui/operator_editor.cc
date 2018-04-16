@@ -58,14 +58,14 @@ Operator_Editor::Operator_Editor ()
     textButton->setConnectedEdges (Button::ConnectedOnRight);
     textButton->addListener (this);
 
-    textButton->setBounds (161, 66, 23, 24);
+    textButton->setBounds (161, 64, 23, 24);
 
     addAndMakeVisible (textButton2 = new TextButton ("new button"));
     textButton2->setButtonText (TRANS(">"));
     textButton2->setConnectedEdges (Button::ConnectedOnLeft);
     textButton2->addListener (this);
 
-    textButton2->setBounds (184, 66, 23, 24);
+    textButton2->setBounds (184, 64, 23, 24);
 
     addAndMakeVisible (btn_trem = new TextButton ("new button"));
     btn_trem->setButtonText (TRANS("TREM"));
@@ -414,10 +414,10 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="200 8 48 48" class="Styled_Knob_Default"
                     params=""/>
   <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="textButton"
-              virtualName="" explicitFocusOrder="0" pos="161 66 23 24" buttonText="&lt;"
+              virtualName="" explicitFocusOrder="0" pos="161 64 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="textButton2"
-              virtualName="" explicitFocusOrder="0" pos="184 66 23 24" buttonText="&gt;"
+              virtualName="" explicitFocusOrder="0" pos="184 64 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="f60e70ed4f10ef32" memberName="btn_trem"
               virtualName="" explicitFocusOrder="0" pos="32 96 48 24" bgColOn="ff42a2c8"

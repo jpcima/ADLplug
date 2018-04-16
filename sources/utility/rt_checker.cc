@@ -40,7 +40,8 @@ static void rt_check(const char *name)
 {
     if (rt_thread_id == std::this_thread::get_id()) {
         no_malloc_printf(STDERR_FILENO, "call to \"%s\" in the RT thread\n", name);
-        raise(SIGTRAP);
+        if (0)
+            raise(SIGTRAP);
     }
 }
 

@@ -52,7 +52,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     btn_4op->addListener (this);
     btn_4op->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_4op->setBounds (48, 96, 56, 24);
+    btn_4op->setBounds (176, 134, 56, 24);
 
     addAndMakeVisible (btn_pseudo4op = new TextButton ("new button"));
     btn_pseudo4op->setButtonText (TRANS("2x2 op"));
@@ -60,7 +60,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     btn_pseudo4op->addListener (this);
     btn_pseudo4op->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_pseudo4op->setBounds (104, 96, 56, 24);
+    btn_pseudo4op->setBounds (232, 134, 56, 24);
 
     addAndMakeVisible (btn_2op = new TextButton ("new button"));
     btn_2op->setButtonText (TRANS("2 op"));
@@ -68,7 +68,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     btn_2op->addListener (this);
     btn_2op->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_2op->setBounds (160, 96, 56, 24);
+    btn_2op->setBounds (288, 134, 56, 24);
 
     addAndMakeVisible (btn_fm12 = new TextButton ("new button"));
     btn_fm12->setButtonText (TRANS("FM"));
@@ -94,7 +94,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     addAndMakeVisible (ed_op4 = new Operator_Editor());
     ed_op4->setName ("new component");
 
-    ed_op4->setBounds (18, 328, 352, 128);
+    ed_op4->setBounds (16, 328, 352, 128);
 
     addAndMakeVisible (btn_fm34 = new TextButton ("new button"));
     btn_fm34->setButtonText (TRANS("FM"));
@@ -102,7 +102,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     btn_fm34->addListener (this);
     btn_fm34->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_fm34->setBounds (378, 368, 36, 24);
+    btn_fm34->setBounds (376, 368, 36, 24);
 
     addAndMakeVisible (btn_am34 = new TextButton ("new button"));
     btn_am34->setButtonText (TRANS("AM"));
@@ -110,12 +110,12 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     btn_am34->addListener (this);
     btn_am34->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_am34->setBounds (378, 392, 36, 24);
+    btn_am34->setBounds (376, 392, 36, 24);
 
     addAndMakeVisible (ed_op3 = new Operator_Editor());
     ed_op3->setName ("new component");
 
-    ed_op3->setBounds (423, 328, 352, 128);
+    ed_op3->setBounds (421, 328, 352, 128);
 
     addAndMakeVisible (sl_tune12 = new Slider ("new slider"));
     sl_tune12->setRange (-127, 127, 0);
@@ -146,7 +146,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     addAndMakeVisible (midi_kb = new MidiKeyboardComponent (midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard));
     midi_kb->setName ("new component");
 
-    midi_kb->setBounds (24, 480, 752, 56);
+    midi_kb->setBounds (16, 480, 757, 56);
 
     addAndMakeVisible (btn_about = new ImageButton ("new button"));
     btn_about->setButtonText (String());
@@ -166,7 +166,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     label->setColour (TextEditor::textColourId, Colours::black);
     label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label->setBounds (632, 16, 48, 24);
+    label->setBounds (480, 40, 48, 24);
 
     addAndMakeVisible (lbl_num_chips = new Label ("new label",
                                                   TRANS("100")));
@@ -177,21 +177,21 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     lbl_num_chips->setColour (TextEditor::textColourId, Colours::black);
     lbl_num_chips->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lbl_num_chips->setBounds (680, 16, 32, 24);
+    lbl_num_chips->setBounds (528, 40, 32, 24);
 
     addAndMakeVisible (btn_less_chips = new TextButton ("new button"));
     btn_less_chips->setButtonText (TRANS("<"));
     btn_less_chips->setConnectedEdges (Button::ConnectedOnRight);
     btn_less_chips->addListener (this);
 
-    btn_less_chips->setBounds (720, 17, 23, 24);
+    btn_less_chips->setBounds (568, 40, 23, 24);
 
     addAndMakeVisible (btn_more_chips = new TextButton ("new button"));
     btn_more_chips->setButtonText (TRANS(">"));
     btn_more_chips->setConnectedEdges (Button::ConnectedOnLeft);
     btn_more_chips->addListener (this);
 
-    btn_more_chips->setBounds (743, 17, 23, 24);
+    btn_more_chips->setBounds (591, 40, 23, 24);
 
     addAndMakeVisible (cb_emulator = new ComboBox ("new combo box"));
     cb_emulator->setEditableText (false);
@@ -200,7 +200,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     cb_emulator->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     cb_emulator->addListener (this);
 
-    cb_emulator->setBounds (568, 48, 198, 24);
+    cb_emulator->setBounds (272, 40, 198, 24);
 
     addAndMakeVisible (label2 = new Label ("new label",
                                            TRANS("FM synthesizer with YMF262 chip emulation")));
@@ -210,17 +210,17 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     label2->setColour (TextEditor::textColourId, Colours::black);
     label2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label2->setBounds (280, 16, 280, 24);
+    label2->setBounds (280, 8, 280, 24);
 
     addAndMakeVisible (vu_left = new Vu_Meter());
     vu_left->setName ("new component");
 
-    vu_left->setBounds (592, 80, 168, 12);
+    vu_left->setBounds (636, 8, 136, 12);
 
     addAndMakeVisible (vu_right = new Vu_Meter());
     vu_right->setName ("new component");
 
-    vu_right->setBounds (592, 96, 168, 12);
+    vu_right->setBounds (636, 24, 136, 12);
 
 
     //[UserPreSize]
@@ -385,7 +385,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 592, y = 80, width = 168, height = 12;
+        int x = 636, y = 8, width = 136, height = 12;
         Colour fillColour = Colours::grey;
         Colour strokeColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -398,7 +398,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 592, y = 96, width = 168, height = 12;
+        int x = 636, y = 24, width = 136, height = 12;
         Colour fillColour = Colours::grey;
         Colour strokeColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -615,22 +615,22 @@ BEGIN_JUCER_METADATA
     <TEXT pos="428 132 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <RECT pos="592 80 168 12" fill="solid: ff808080" hasStroke="1" stroke="1, mitered, butt"
+    <RECT pos="636 8 136 12" fill="solid: ff808080" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: fff0f8ff"/>
-    <RECT pos="592 96 168 12" fill="solid: ff808080" hasStroke="1" stroke="1, mitered, butt"
+    <RECT pos="636 24 136 12" fill="solid: ff808080" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: fff0f8ff"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="16 160 352 128" class="Operator_Editor"
                     params=""/>
   <TEXTBUTTON name="new button" id="333aa0ccccbfed24" memberName="btn_4op"
-              virtualName="" explicitFocusOrder="0" pos="48 96 56 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="176 134 56 24" bgColOn="ff42a2c8"
               buttonText="4 op" connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="64d70bb49227f0d8" memberName="btn_pseudo4op"
-              virtualName="" explicitFocusOrder="0" pos="104 96 56 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="232 134 56 24" bgColOn="ff42a2c8"
               buttonText="2x2 op" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="402f6ebfee1d48e6" memberName="btn_2op"
-              virtualName="" explicitFocusOrder="0" pos="160 96 56 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="288 134 56 24" bgColOn="ff42a2c8"
               buttonText="2 op" connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="b2cb238ae0314374" memberName="btn_fm12"
               virtualName="" explicitFocusOrder="0" pos="376 200 36 24" bgColOn="ff42a2c8"
@@ -642,16 +642,16 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="421 160 352 128" class="Operator_Editor"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="b7424f0838e48a08" memberName="ed_op4"
-                    virtualName="" explicitFocusOrder="0" pos="18 328 352 128" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="16 328 352 128" class="Operator_Editor"
                     params=""/>
   <TEXTBUTTON name="new button" id="6c84b2cc5c27a17f" memberName="btn_fm34"
-              virtualName="" explicitFocusOrder="0" pos="378 368 36 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="376 368 36 24" bgColOn="ff42a2c8"
               buttonText="FM" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="c55383265bc18fb0" memberName="btn_am34"
-              virtualName="" explicitFocusOrder="0" pos="378 392 36 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="376 392 36 24" bgColOn="ff42a2c8"
               buttonText="AM" connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="ed_op3"
-                    virtualName="" explicitFocusOrder="0" pos="423 328 352 128" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="421 328 352 128" class="Operator_Editor"
                     params=""/>
   <SLIDER name="new slider" id="9cd7cc232d55ac8a" memberName="sl_tune12"
           virtualName="" explicitFocusOrder="0" pos="568 136 150 24" min="-127.00000000000000000000"
@@ -670,7 +670,7 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="496 296 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="midi_kb"
-                    virtualName="" explicitFocusOrder="0" pos="24 480 752 56" class="MidiKeyboardComponent"
+                    virtualName="" explicitFocusOrder="0" pos="16 480 757 56" class="MidiKeyboardComponent"
                     params="midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard"/>
   <IMAGEBUTTON name="new button" id="1c21a98bd6493eb8" memberName="btn_about"
                virtualName="" explicitFocusOrder="0" pos="16 8 232 40" buttonText=""
@@ -680,36 +680,36 @@ BEGIN_JUCER_METADATA
                colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
                colourDown="0"/>
   <LABEL name="new label" id="5628e38331cdf4ec" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="632 16 48 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="480 40 48 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Chips" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
          kerning="0.00000000000000000000" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="be41a2433f6d1f03" memberName="lbl_num_chips"
-         virtualName="" explicitFocusOrder="0" pos="680 16 32 24" outlineCol="ff8e989b"
+         virtualName="" explicitFocusOrder="0" pos="528 40 32 24" outlineCol="ff8e989b"
          edTextCol="ff000000" edBkgCol="0" labelText="100" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
          bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="btn_less_chips"
-              virtualName="" explicitFocusOrder="0" pos="720 17 23 24" buttonText="&lt;"
+              virtualName="" explicitFocusOrder="0" pos="568 40 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="btn_more_chips"
-              virtualName="" explicitFocusOrder="0" pos="743 17 23 24" buttonText="&gt;"
+              virtualName="" explicitFocusOrder="0" pos="591 40 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <COMBOBOX name="new combo box" id="8f8a11ca0d94343f" memberName="cb_emulator"
-            virtualName="" explicitFocusOrder="0" pos="568 48 198 24" editable="0"
+            virtualName="" explicitFocusOrder="0" pos="272 40 198 24" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <LABEL name="new label" id="9fd95e8efc5b0fe1" memberName="label2" virtualName=""
-         explicitFocusOrder="0" pos="280 16 280 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="280 8 280 24" edTextCol="ff000000"
          edBkgCol="0" labelText="FM synthesizer with YMF262 chip emulation"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
          bold="0" italic="0" justification="33"/>
   <GENERICCOMPONENT name="new component" id="8c38ad0cbcf109f7" memberName="vu_left"
-                    virtualName="" explicitFocusOrder="0" pos="592 80 168 12" class="Vu_Meter"
+                    virtualName="" explicitFocusOrder="0" pos="636 8 136 12" class="Vu_Meter"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="16bc493366b76ca5" memberName="vu_right"
-                    virtualName="" explicitFocusOrder="0" pos="592 96 168 12" class="Vu_Meter"
+                    virtualName="" explicitFocusOrder="0" pos="636 24 136 12" class="Vu_Meter"
                     params=""/>
 </JUCER_COMPONENT>
 
