@@ -22,6 +22,7 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ui/styled_knobs.h"
+class Wave_Label;
 //[/Headers]
 
 
@@ -65,7 +66,6 @@ private:
     ScopedPointer<Styled_Knob_Default> kn_decay;
     ScopedPointer<Styled_Knob_Default> kn_sustain;
     ScopedPointer<Styled_Knob_Default> kn_release;
-    ScopedPointer<Label> label;
     ScopedPointer<TextButton> textButton;
     ScopedPointer<TextButton> textButton2;
     ScopedPointer<TextButton> btn_trem;
@@ -79,6 +79,7 @@ private:
     ScopedPointer<Label> lbl_level;
     ScopedPointer<Label> lbl_fmul;
     ScopedPointer<Label> lbl_ksl;
+    ScopedPointer<Wave_Label> lbl_wave;
 
 
     //==============================================================================

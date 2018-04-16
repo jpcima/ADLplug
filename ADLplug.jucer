@@ -72,6 +72,10 @@
         <FILE id="fr1vaj" name="simple_fifo.h" compile="0" resource="0" file="sources/utility/simple_fifo.h"/>
       </GROUP>
       <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">
+        <GROUP id="{D334F30B-8548-822D-8F67-78AE712EBDBA}" name="chips">
+          <FILE id="zgUEIA" name="opl3_waves.cc" compile="1" resource="0" file="sources/ui/chips/opl3_waves.cc"/>
+          <FILE id="jcoZ2e" name="opl3_waves.h" compile="0" resource="0" file="sources/ui/chips/opl3_waves.h"/>
+        </GROUP>
         <FILE id="JdskR5" name="about_component.cc" compile="1" resource="0"
               file="sources/ui/about_component.cc"/>
         <FILE id="mwuHEz" name="about_component.h" compile="0" resource="0"

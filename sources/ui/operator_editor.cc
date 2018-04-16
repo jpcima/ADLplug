@@ -18,6 +18,7 @@
 */
 
 //[Headers] You can add your own extra header files here...
+#include "ui/wave_label.h"
 //[/Headers]
 
 #include "operator_editor.h"
@@ -51,16 +52,6 @@ Operator_Editor::Operator_Editor ()
     kn_release->setName ("new component");
 
     kn_release->setBounds (200, 8, 48, 48);
-
-    addAndMakeVisible (label = new Label ("new label",
-                                          TRANS("label text")));
-    label->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
-    label->setJustificationType (Justification::centred);
-    label->setEditable (false, false, false);
-    label->setColour (TextEditor::textColourId, Colours::black);
-    label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    label->setBounds (56, 64, 88, 24);
 
     addAndMakeVisible (textButton = new TextButton ("new button"));
     textButton->setButtonText (TRANS("<"));
@@ -172,6 +163,11 @@ Operator_Editor::Operator_Editor ()
 
     lbl_ksl->setBounds (308, 100, 28, 18);
 
+    addAndMakeVisible (lbl_wave = new Wave_Label());
+    lbl_wave->setName ("new component");
+
+    lbl_wave->setBounds (52, 64, 100, 24);
+
 
     //[UserPreSize]
     btn_trem->setClickingTogglesState(true);
@@ -213,7 +209,6 @@ Operator_Editor::~Operator_Editor()
     kn_decay = nullptr;
     kn_sustain = nullptr;
     kn_release = nullptr;
-    label = nullptr;
     textButton = nullptr;
     textButton2 = nullptr;
     btn_trem = nullptr;
@@ -227,6 +222,7 @@ Operator_Editor::~Operator_Editor()
     lbl_level = nullptr;
     lbl_fmul = nullptr;
     lbl_ksl = nullptr;
+    lbl_wave = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -417,11 +413,6 @@ BEGIN_JUCER_METADATA
   <GENERICCOMPONENT name="new component" id="7d576b68e9b588f" memberName="kn_release"
                     virtualName="" explicitFocusOrder="0" pos="200 8 48 48" class="Styled_Knob_Default"
                     params=""/>
-  <LABEL name="new label" id="78c50cdc26d2ebfe" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="56 64 88 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="label text" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="textButton"
               virtualName="" explicitFocusOrder="0" pos="161 66 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
@@ -476,6 +467,9 @@ BEGIN_JUCER_METADATA
          edBkgCol="0" labelText="Ksl" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
          kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+  <GENERICCOMPONENT name="new component" id="dd16fb8d4c488877" memberName="lbl_wave"
+                    virtualName="" explicitFocusOrder="0" pos="52 64 100 24" class="Wave_Label"
+                    params=""/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
