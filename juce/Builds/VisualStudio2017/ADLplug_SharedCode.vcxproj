@@ -14,7 +14,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{02CA0B82-BC76-5F20-29E6-CDD31EF480AF}</ProjectGuid>
+    <ProjectGuid>{729C143B-39E5-A608-60D2-C97A112FE061}</ProjectGuid>
     <PlatformToolset>v141</PlatformToolset>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -164,6 +164,7 @@
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.c"/>
     <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\chips\opl3_waves.cc"/>
     <ClCompile Include="..\..\..\sources\ui\about_component.cc"/>
     <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc"/>
     <ClCompile Include="..\..\..\sources\ui\image_utils.cc"/>
@@ -1867,6 +1868,7 @@
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\fraction.hpp"/>
     <ClInclude Include="..\..\..\sources\dsp\dc_filter.h"/>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
+    <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h"/>
     <ClInclude Include="..\..\..\sources\ui\about_component.h"/>
     <ClInclude Include="..\..\..\sources\ui\graphics_utils.h"/>
     <ClInclude Include="..\..\..\sources\ui\image_utils.h"/>

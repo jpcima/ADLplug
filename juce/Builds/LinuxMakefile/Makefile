@@ -110,6 +110,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/adlmidi_private_8636c74f.o \
   $(JUCE_OBJDIR)/adlmidi_xmi2mid_1b3ae4b6.o \
   $(JUCE_OBJDIR)/simple_fifo_14f04efe.o \
+  $(JUCE_OBJDIR)/opl3_waves_d1747c0e.o \
   $(JUCE_OBJDIR)/about_component_574ed838.o \
   $(JUCE_OBJDIR)/graphics_utils_35f53d7c.o \
   $(JUCE_OBJDIR)/image_utils_a38eb576.o \
@@ -253,6 +254,11 @@ $(JUCE_OBJDIR)/adlmidi_xmi2mid_1b3ae4b6.o: ../../../thirdparty/libADLMIDI/src/ad
 $(JUCE_OBJDIR)/simple_fifo_14f04efe.o: ../../../sources/utility/simple_fifo.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling simple_fifo.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/opl3_waves_d1747c0e.o: ../../../sources/ui/chips/opl3_waves.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling opl3_waves.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/about_component_574ed838.o: ../../../sources/ui/about_component.cc
