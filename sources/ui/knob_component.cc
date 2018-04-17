@@ -32,14 +32,21 @@ float Knob::value() const
     return value_;
 }
 
-void Knob::set_value(float v)
+void Knob::set_value(float v, NotificationType notification)
 {
     v = (v < 0) ? 0 : (v > 1) ? 1 : v;
-    if (v != value_) {
-        value_ = v;
-        listeners_.call([this](Knob::Listener &l) { l.knob_value_changed(this); });
-        repaint();
-    }
+    if (v == value_)
+        return;
+    value_ = v;
+    repaint();
+
+    if (notification == dontSendNotification)
+        return;
+
+    if (notification == sendNotificationSync)
+        handleAsyncUpdate();
+    else
+        triggerAsyncUpdate();
 }
 
 void Knob::add_listener(Listener *l)
@@ -50,6 +57,20 @@ void Knob::add_listener(Listener *l)
 void Knob::remove_listener(Listener *l)
 {
     listeners_.remove(l);
+}
+
+void Knob::handleAsyncUpdate()
+{
+    cancelPendingUpdate();
+
+    Component::BailOutChecker checker(this);
+    listeners_.callChecked(checker, [this](Knob::Listener &l) { l.knob_value_changed(this); });
+
+    if (checker.shouldBailOut())
+        return;
+
+    if (this->on_value_change != nullptr)
+        this->on_value_change();
 }
 
 void Knob::paint(Graphics &g)
@@ -78,7 +99,7 @@ void Knob::mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &whee
     Rectangle<int> frame_bounds = get_frame_bounds().toType<int>();
     if (wheel.deltaY && frame_bounds.contains(event.getPosition())) {
         const float k = 0.5f;
-        set_value(value_ + k * wheel.deltaY);
+        set_value(value_ + k * wheel.deltaY, sendNotification);
         return;
     }
     Component::mouseWheelMove(event, wheel);
@@ -114,7 +135,7 @@ void Knob::mouseDrag(const MouseEvent &event)
         float xamt = k * (pos - center).getX() / frame_bounds.getWidth();
         float yamt = -k * (pos - center).getY() / frame_bounds.getHeight();
         float amt = (std::abs(xamt) > std::abs(yamt)) ? xamt : yamt;
-        set_value(value_at_drag_start_ + amt);
+        set_value(value_at_drag_start_ + amt, sendNotification);
         return;
     }
     Component::mouseDrag(event);

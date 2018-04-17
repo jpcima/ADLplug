@@ -8,7 +8,9 @@
 #include "ui/knobman_skin.h"
 #include "../../JuceLibraryCode/JuceHeader.h"
 
-class Knob : public Component, public SettableTooltipClient
+class Knob : public Component,
+             public AsyncUpdater,
+             public SettableTooltipClient
 {
 public:
     Knob();
@@ -19,7 +21,7 @@ public:
     void set_skin(Km_Skin_CPtr skin);
 
     float value() const;
-    void set_value(float v);
+    void set_value(float v, NotificationType notification);
 
     class Listener {
     public:
@@ -30,7 +32,10 @@ public:
     void add_listener(Listener *l);
     void remove_listener(Listener *l);
 
+    std::function<void()> on_value_change;
+
 protected:
+    void handleAsyncUpdate() override;
     void paint(Graphics &g) override;
     void mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &wheel) override;
     void mouseDown(const MouseEvent &event) override;
