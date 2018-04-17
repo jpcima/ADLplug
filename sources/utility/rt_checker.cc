@@ -88,7 +88,7 @@ void *operator new(size_t sz)
     return p;
 }
 
-void *operator new(size_t sz, std::nothrow_t const &)
+void *operator new(size_t sz, const std::nothrow_t &)
 {
     rt_check("operator new");
     void *p = __real_malloc(sz);
@@ -104,10 +104,47 @@ void *operator new[](size_t sz)
     return p;
 }
 
-void *operator new[](size_t sz, std::nothrow_t const &)
+void *operator new[](size_t sz, const std::nothrow_t &)
 {
     rt_check("operator new[]");
     void *p = __real_malloc(sz);
     return p;
 }
+
+void operator delete[](void *ptr)
+{
+    rt_check("operator delete[]");
+    __real_free(ptr);
+}
+
+void operator delete[](void *ptr, unsigned long)
+{
+    rt_check("operator delete[]");
+    __real_free(ptr);
+}
+
+void operator delete[](void *ptr, const std::nothrow_t &)
+{
+    rt_check("operator delete[]");
+    __real_free(ptr);
+}
+
+void operator delete(void *ptr)
+{
+    rt_check("operator delete");
+    __real_free(ptr);
+}
+
+void operator delete(void *ptr, unsigned long)
+{
+    rt_check("operator delete");
+    __real_free(ptr);
+}
+
+void operator delete(void *ptr, const std::nothrow_t &)
+{
+    rt_check("operator delete");
+    __real_free(ptr);
+}
+
 #endif
