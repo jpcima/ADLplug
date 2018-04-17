@@ -17,8 +17,8 @@ public:
     explicit Knob(const String &name);
     virtual ~Knob() {}
 
-    const Km_Skin_CPtr &skin() const;
-    void set_skin(Km_Skin_CPtr skin);
+    Km_Skin *skin() const;
+    void set_skin(Km_Skin *skin);
 
     float value() const;
     void set_value(float v, NotificationType notification);
@@ -44,7 +44,7 @@ protected:
 
 private:
     Rectangle<float> get_frame_bounds() const;
-    Km_Skin_CPtr skin_;
+    Km_Skin_Ptr skin_;
     float value_ = 0;
     ListenerList<Listener> listeners_;
     bool in_drag_ = false;

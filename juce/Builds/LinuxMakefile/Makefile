@@ -35,7 +35,7 @@ ifeq ($(CONFIG),Debug)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../../../JuceLibraryCode -I../../../thirdparty/JUCE/modules -I../../../sources -I../../../thirdparty/libADLMIDI/include $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DVF_USE_FREETYPE=1 -DVF_USE_NATIVE_FREETYPE=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa libcurl x11 xext xinerama) -pthread -I../../../JuceLibraryCode -I../../../thirdparty/JUCE/modules -I../../../thirdparty/VFLib/modules -I../../../sources -I../../../thirdparty/libADLMIDI/include $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST := -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0
   JUCE_CFLAGS_VST := -fPIC -fvisibility=hidden
@@ -50,7 +50,7 @@ ifeq ($(CONFIG),Debug)
 
   JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -fPIC -g -ggdb -O0 $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++14 $(CXXFLAGS)
-  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -ldl -lpthread -lrt $(LDFLAGS)
+  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs freetype2 alsa libcurl x11 xext xinerama) -ldl -lpthread -lrt $(LDFLAGS)
 
   CLEANCMD = rm -rf $(JUCE_OUTDIR)/$(TARGET) $(JUCE_OBJDIR)
 endif
@@ -65,7 +65,7 @@ ifeq ($(CONFIG),Release)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags alsa freetype2 libcurl x11 xext xinerama) -pthread -I../../../JuceLibraryCode -I../../../thirdparty/JUCE/modules -I../../../sources -I../../../thirdparty/libADLMIDI/include $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DVF_USE_FREETYPE=1 -DVF_USE_NATIVE_FREETYPE=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa libcurl x11 xext xinerama) -pthread -I../../../JuceLibraryCode -I../../../thirdparty/JUCE/modules -I../../../thirdparty/VFLib/modules -I../../../sources -I../../../thirdparty/libADLMIDI/include $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST := -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0
   JUCE_CFLAGS_VST := -fPIC -fvisibility=hidden
@@ -80,7 +80,7 @@ ifeq ($(CONFIG),Release)
 
   JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -fPIC -O3 $(CFLAGS)
   JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++14 $(CXXFLAGS)
-  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs alsa freetype2 libcurl x11 xext xinerama) -fvisibility=hidden -ldl -lpthread -lrt $(LDFLAGS)
+  JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs freetype2 alsa libcurl x11 xext xinerama) -fvisibility=hidden -ldl -lpthread -lrt $(LDFLAGS)
 
   CLEANCMD = rm -rf $(JUCE_OUTDIR)/$(TARGET) $(JUCE_OBJDIR)
 endif
@@ -101,6 +101,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/image_utils_a38eb576.o \
   $(JUCE_OBJDIR)/knob_component_5796d5a5.o \
   $(JUCE_OBJDIR)/knobman_skin_53c856a1.o \
+  $(JUCE_OBJDIR)/look_and_feel_f9ca8b5.o \
   $(JUCE_OBJDIR)/main_component_ffc34342.o \
   $(JUCE_OBJDIR)/operator_editor_6b1eb07b.o \
   $(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o \
@@ -137,6 +138,8 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/include_juce_graphics_eb811ef8.o \
   $(JUCE_OBJDIR)/include_juce_gui_basics_a2082cf6.o \
   $(JUCE_OBJDIR)/include_juce_gui_extra_e7ac9489.o \
+  $(JUCE_OBJDIR)/include_vf_freetype_f81ee730.o \
+  $(JUCE_OBJDIR)/include_vf_gui_2660237b.o \
 
 .PHONY: clean all VST Standalone
 
@@ -210,6 +213,11 @@ $(JUCE_OBJDIR)/knob_component_5796d5a5.o: ../../../sources/ui/knob_component.cc
 $(JUCE_OBJDIR)/knobman_skin_53c856a1.o: ../../../sources/ui/knobman_skin.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling knobman_skin.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/look_and_feel_f9ca8b5.o: ../../../sources/ui/look_and_feel.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling look_and_feel.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/main_component_ffc34342.o: ../../../sources/ui/main_component.cc
@@ -392,9 +400,19 @@ $(JUCE_OBJDIR)/include_juce_gui_extra_e7ac9489.o: ../../../JuceLibraryCode/inclu
 	@echo "Compiling include_juce_gui_extra.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/include_vf_freetype_f81ee730.o: ../../../JuceLibraryCode/include_vf_freetype.c
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_vf_freetype.c"
+	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/include_vf_gui_2660237b.o: ../../../JuceLibraryCode/include_vf_gui.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling include_vf_gui.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
 check-pkg-config:
 	@command -v pkg-config >/dev/null 2>&1 || { echo >&2 "pkg-config not installed. Please, install it."; exit 1; }
-	@pkg-config --print-errors alsa freetype2 libcurl x11 xext xinerama
+	@pkg-config --print-errors freetype2 alsa libcurl x11 xext xinerama
 
 clean:
 	@echo Cleaning ADLplug

@@ -128,6 +128,7 @@ Operator_Editor::Operator_Editor ()
     lb_optype->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Bold"));
     lb_optype->setJustificationType (Justification::centred);
     lb_optype->setEditable (false, false, false);
+    lb_optype->setColour (Label::textColourId, Colours::aliceblue);
     lb_optype->setColour (TextEditor::textColourId, Colours::black);
     lb_optype->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -447,11 +448,11 @@ BEGIN_JUCER_METADATA
           textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
           textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
   <LABEL name="new label" id="d5cf6971a21036bf" memberName="lb_optype"
-         virtualName="" explicitFocusOrder="0" pos="264 8 78 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Modulator" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="1" italic="0" justification="36"
-         typefaceStyle="Bold"/>
+         virtualName="" explicitFocusOrder="0" pos="264 8 78 24" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Modulator" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
+         bold="1" italic="0" justification="36" typefaceStyle="Bold"/>
   <LABEL name="new label" id="ce54b68fc1a1f1e1" memberName="lbl_level"
          virtualName="" explicitFocusOrder="0" pos="260 100 28 18" edTextCol="ff000000"
          edBkgCol="0" labelText="Lv" editableSingleClick="0" editableDoubleClick="0"

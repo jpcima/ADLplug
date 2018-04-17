@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "ui/main_component.h"
+#include "ui/look_and_feel.h"
 #include "plugin_editor.h"
 #include "plugin_processor.h"
 
@@ -11,6 +12,10 @@
 AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &p)
     : AudioProcessorEditor(&p) , processor(p)
 {
+    Custom_Look_And_Feel *lnf = new Custom_Look_And_Feel;
+    lnf_.reset(lnf);
+    LookAndFeel::setDefaultLookAndFeel(lnf);
+
     Main_Component *main = new Main_Component(p);
     main_.reset(main);
     addAndMakeVisible(main);

@@ -7,6 +7,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 class AdlplugAudioProcessor;
+class Custom_Look_And_Feel;
 class Main_Component;
 
 //==============================================================================
@@ -26,6 +27,7 @@ private:
     // access the processor object that created it.
     AdlplugAudioProcessor &processor;
 
+    ScopedPointer<Custom_Look_And_Feel> lnf_;
     ScopedPointer<Main_Component> main_;
     TooltipWindow tooltip_window_;
 

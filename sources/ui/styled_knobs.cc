@@ -7,24 +7,24 @@
 
 Km_Skin_Ptr Styled_Knob_Default::skin_;
 
-const Km_Skin_Ptr &Styled_Knob_Default::style_skin()
+Km_Skin *Styled_Knob_Default::style_skin()
 {
     if (!skin_) {
         Km_Skin_Ptr skin(new Km_Skin);
         skin->load_data(BinaryData::knobskin_png, BinaryData::knobskin_pngSize, 64);
         skin_ = skin;
     }
-    return skin_;
+    return skin_.get();
 }
 
 //------------------------------------------------------------------------------
 Km_Skin_Ptr Styled_Knob_DefaultSmall::skin_;
 
-const Km_Skin_Ptr &Styled_Knob_DefaultSmall::style_skin()
+Km_Skin *Styled_Knob_DefaultSmall::style_skin()
 {
     if (!skin_)
         skin_ = Styled_Knob_Default::style_skin()->scaled(0.7);
-    return skin_;
+    return skin_.get();
 }
 
 //------------------------------------------------------------------------------

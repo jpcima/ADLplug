@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 3.6)
 
-project(ADLplug VERSION 1.0.0 LANGUAGES CXX)
+project(ADLplug VERSION 1.0.0 LANGUAGES CXX C)
 set(ADLplug_URI "https://github.com/jpcima/ADLplug")
+
+set(ADLplug_VST2 "" CACHE STRING "Build VST2")
+set(ADLplug_VST3 "" CACHE STRING "Build VST3")
+set(ADLplug_LV2 "" CACHE STRING "Build LV2")
+set(ADLplug_Standalone "" CACHE STRING "Build Standalone")
+set(ADLplug_Jack "" CACHE STRING "Build Jack")
 
 option(ADLplug_RT_CHECKER "Enable a detector of RT programming errors" OFF)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
@@ -33,42 +39,42 @@ set(libADLMIDI_SHARED OFF CACHE STRING "")
 add_subdirectory("thirdparty/libADLMIDI" EXCLUDE_FROM_ALL)
 
 ###
-include("${CMAKE_SOURCE_DIR}/JUCE-targets.cmake")
-
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows" OR
     CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-  if(NOT DEFINED ADLplug_VST2)
-    set(ADLplug_VST2 "ON" CACHE STRING "" FORCE)
+  if(ADLplug_VST2 STREQUAL "")
+    set(ADLplug_VST2 "ON" CACHE STRING "Build VST2" FORCE)
   endif()
-  if(NOT DEFINED ADLplug_VST3)
-    set(ADLplug_VST3 "ON" CACHE STRING "" FORCE)
+  if(ADLplug_VST3 STREQUAL "")
+    set(ADLplug_VST3 "ON" CACHE STRING "Build VST3" FORCE)
   endif()
-  if(NOT DEFINED ADLplug_LV2)
-    set(ADLplug_LV2 "OFF" CACHE STRING "" FORCE)
+  if(ADLplug_LV2 STREQUAL "")
+    set(ADLplug_LV2 "OFF" CACHE STRING "Build LV2" FORCE)
   endif()
 else()
-  if(NOT DEFINED ADLplug_VST2)
-    set(ADLplug_VST2 "ON" CACHE STRING "" FORCE)
+  if(ADLplug_VST2 STREQUAL "")
+    set(ADLplug_VST2 "ON" CACHE STRING "Build VST2" FORCE)
   endif()
-  if(NOT DEFINED ADLplug_VST3)
-    set(ADLplug_VST3 "OFF" CACHE STRING "" FORCE)
+  if(ADLplug_VST3 STREQUAL "")
+    set(ADLplug_VST3 "OFF" CACHE STRING "Build VST3" FORCE)
   elseif(ADLplug_VST3)
     message(FATAL_ERROR "VST3 is not supported on ${CMAKE_SYSTEM_NAME}")
   endif()
-  if(NOT DEFINED ADLplug_LV2)
-    set(ADLplug_LV2 "ON" CACHE STRING "" FORCE)
+  if(ADLplug_LV2 STREQUAL "")
+    set(ADLplug_LV2 "ON" CACHE STRING "Build LV2" FORCE)
   endif()
 endif()
-if(NOT DEFINED ADLplug_Standalone)
-  set(ADLplug_Standalone "ON" CACHE STRING "" FORCE)
+if(ADLplug_Standalone STREQUAL "")
+  set(ADLplug_Standalone "ON" CACHE STRING "Build Standalone" FORCE)
 endif()
 
-if(NOT DEFINED ADLplug_Jack)
+if(ADLplug_Jack STREQUAL "")
+  include(FindPkgConfig)
   pkg_check_modules(JACK jack)
   if(JACK_FOUND)
-    set(ADLplug_Jack "ON" CACHE STRING "" FORCE)
+    set(ADLplug_Jack "ON" CACHE STRING "Build Jack" FORCE)
   endif()
 elseif(ADLplug_Jack)
+  include(FindPkgConfig)
   pkg_check_modules(JACK jack REQUIRED)
 endif()
 
@@ -78,6 +84,8 @@ message("Build LV2: ${ADLplug_LV2}")
 message("Build Standalone: ${ADLplug_Standalone}")
 message("Build Jack: ${ADLplug_Jack}")
 
+include("${CMAKE_SOURCE_DIR}/JUCE-targets.cmake")
+
 add_library(ADLplug_core STATIC
   "JuceLibraryCode/BinaryData.cpp"
   "sources/utility/simple_fifo.cc"
@@ -85,6 +93,7 @@ add_library(ADLplug_core STATIC
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
   "sources/ui/chips/opl3_waves.cc"
+  "sources/ui/look_and_feel.cc"
   "sources/ui/knobman_skin.cc"
   "sources/ui/knob_component.cc"
   "sources/ui/styled_knobs.cc"
@@ -98,7 +107,8 @@ add_library(ADLplug_core STATIC
   "sources/adl/player.cc")
 target_include_directories(ADLplug_core PRIVATE "sources")
 target_link_libraries(ADLplug_core
-  PRIVATE juce_core juce_events juce_data_structures
+  PUBLIC vf_freetype vf_gui
+  juce_core juce_events juce_data_structures
   juce_audio_basics juce_audio_devices juce_audio_formats juce_audio_processors juce_audio_utils
   juce_graphics juce_gui_basics juce_gui_extra
   PRIVATE ADLMIDI_static)

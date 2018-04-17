@@ -163,6 +163,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     label->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     label->setJustificationType (Justification::centredLeft);
     label->setEditable (false, false, false);
+    label->setColour (Label::textColourId, Colours::aliceblue);
     label->setColour (TextEditor::textColourId, Colours::black);
     label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -173,6 +174,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     lbl_num_chips->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_num_chips->setJustificationType (Justification::centred);
     lbl_num_chips->setEditable (false, false, false);
+    lbl_num_chips->setColour (Label::textColourId, Colours::aliceblue);
     lbl_num_chips->setColour (Label::outlineColourId, Colour (0xff8e989b));
     lbl_num_chips->setColour (TextEditor::textColourId, Colours::black);
     lbl_num_chips->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
@@ -207,6 +209,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     label2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     label2->setJustificationType (Justification::centredLeft);
     label2->setEditable (false, false, false);
+    label2->setColour (Label::textColourId, Colours::aliceblue);
     label2->setColour (TextEditor::textColourId, Colours::black);
     label2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -227,6 +230,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     label3->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     label3->setJustificationType (Justification::centredLeft);
     label3->setEditable (false, false, false);
+    label3->setColour (Label::textColourId, Colours::aliceblue);
     label3->setColour (TextEditor::textColourId, Colours::black);
     label3->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -237,6 +241,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     lbl_cpu->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_cpu->setJustificationType (Justification::centred);
     lbl_cpu->setEditable (false, false, false);
+    lbl_cpu->setColour (Label::textColourId, Colours::aliceblue);
     lbl_cpu->setColour (Label::outlineColourId, Colour (0xff8e989b));
     lbl_cpu->setColour (TextEditor::textColourId, Colours::black);
     lbl_cpu->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
@@ -708,15 +713,16 @@ BEGIN_JUCER_METADATA
                colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
                colourDown="0"/>
   <LABEL name="new label" id="5628e38331cdf4ec" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="480 40 48 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Chips" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="33"/>
-  <LABEL name="new label" id="be41a2433f6d1f03" memberName="lbl_num_chips"
-         virtualName="" explicitFocusOrder="0" pos="528 40 32 24" outlineCol="ff8e989b"
-         edTextCol="ff000000" edBkgCol="0" labelText="100" editableSingleClick="0"
+         explicitFocusOrder="0" pos="480 40 48 24" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Chips" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
+         bold="0" italic="0" justification="33"/>
+  <LABEL name="new label" id="be41a2433f6d1f03" memberName="lbl_num_chips"
+         virtualName="" explicitFocusOrder="0" pos="528 40 32 24" textCol="fff0f8ff"
+         outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="100"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
          bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="btn_less_chips"
               virtualName="" explicitFocusOrder="0" pos="568 40 23 24" buttonText="&lt;"
@@ -728,8 +734,8 @@ BEGIN_JUCER_METADATA
             virtualName="" explicitFocusOrder="0" pos="272 40 198 24" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <LABEL name="new label" id="9fd95e8efc5b0fe1" memberName="label2" virtualName=""
-         explicitFocusOrder="0" pos="280 8 280 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="FM synthesizer with YMF262 chip emulation"
+         explicitFocusOrder="0" pos="280 8 280 24" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="FM synthesizer with YMF262 chip emulation"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
          bold="0" italic="0" justification="33"/>
@@ -740,15 +746,16 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="680 24 92 12" class="Vu_Meter"
                     params=""/>
   <LABEL name="new label" id="bda2c045916cddf3" memberName="label3" virtualName=""
-         explicitFocusOrder="0" pos="684 40 40 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="CPU" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="33"/>
-  <LABEL name="new label" id="2067136cf573bd1a" memberName="lbl_cpu" virtualName=""
-         explicitFocusOrder="0" pos="724 40 48 24" outlineCol="ff8e989b"
-         edTextCol="ff000000" edBkgCol="0" labelText="100%" editableSingleClick="0"
+         explicitFocusOrder="0" pos="684 40 40 24" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="CPU" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
+         bold="0" italic="0" justification="33"/>
+  <LABEL name="new label" id="2067136cf573bd1a" memberName="lbl_cpu" virtualName=""
+         explicitFocusOrder="0" pos="724 40 48 24" textCol="fff0f8ff"
+         outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="100%"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
          bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 

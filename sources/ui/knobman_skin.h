@@ -5,15 +5,12 @@
 
 #pragma once
 #include "../../JuceLibraryCode/JuceHeader.h"
-#include <boost/smart_ptr/intrusive_ptr.hpp>
-#include <boost/smart_ptr/intrusive_ref_counter.hpp>
 #include <vector>
 
 class Km_Skin;
-typedef boost::intrusive_ptr<Km_Skin> Km_Skin_Ptr;
-typedef boost::intrusive_ptr<const Km_Skin> Km_Skin_CPtr;
+typedef ReferenceCountedObjectPtr<Km_Skin> Km_Skin_Ptr;
 
-class Km_Skin : public boost::intrusive_ref_counter<Km_Skin>
+class Km_Skin : public ReferenceCountedObject
 {
 public:
     std::vector<Image> frames;

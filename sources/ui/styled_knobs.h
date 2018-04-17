@@ -15,8 +15,8 @@ class Styled_Knob_Default : public Knob
 {
 public:
     Styled_Knob_Default() { set_skin(style_skin()); }
-    static const Km_Skin_Ptr &style_skin();
-    static void release_skin() { skin_.reset(); }
+    static Km_Skin *style_skin();
+    static void release_skin() { skin_ = nullptr; }
 private:
     static Km_Skin_Ptr skin_;
 };
@@ -26,8 +26,8 @@ class Styled_Knob_DefaultSmall : public Knob
 {
 public:
     Styled_Knob_DefaultSmall() { set_skin(style_skin()); }
-    static const Km_Skin_Ptr &style_skin();
-    static void release_skin() { skin_.reset(); }
+    static Km_Skin *style_skin();
+    static void release_skin() { skin_ = nullptr; }
 private:
     static Km_Skin_Ptr skin_;
 };

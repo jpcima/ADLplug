@@ -14,14 +14,14 @@ Knob::Knob(const String &name)
 {
 }
 
-const Km_Skin_CPtr &Knob::skin() const
+Km_Skin *Knob::skin() const
 {
     return skin_;
 }
 
-void Knob::set_skin(Km_Skin_CPtr skin)
+void Knob::set_skin(Km_Skin *skin)
 {
-    if (skin_ != skin) {
+    if (skin_.get() != skin) {
         skin_ = skin;
         repaint();
     }

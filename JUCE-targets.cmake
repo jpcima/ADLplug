@@ -24,6 +24,29 @@ target_link_libraries(juce_audio_utils PUBLIC juce_gui_extra juce_audio_processo
 target_link_libraries(juce_gui_basics PUBLIC juce_graphics juce_data_structures)
 target_link_libraries(juce_gui_extra PUBLIC juce_gui_basics)
 
+macro(add_vflib_module NAME)
+  set(_sources ${ARGN})
+  if(NOT _sources)
+    set(_sources "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_${NAME}.cpp")
+  endif()
+  add_juce_module("${NAME}" "${_sources}")
+  target_include_directories("${NAME}" PUBLIC "${PROJECT_SOURCE_DIR}/thirdparty/VFLib/modules")
+  unset(_sources)
+endmacro()
+
+add_vflib_module(vf_freetype "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_vf_freetype.c")
+add_vflib_module(vf_gui)
+target_link_libraries(vf_gui PUBLIC vf_freetype)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+else()
+  find_package(Freetype REQUIRED)
+  target_compile_definitions(vf_freetype PUBLIC "VF_USE_FREETYPE=1" "VF_USE_NATIVE_FREETYPE=1")
+  target_include_directories(vf_freetype PUBLIC ${FREETYPE_INCLUDE_DIRS})
+  target_link_libraries(vf_freetype PUBLIC ${FREETYPE_LIBRARIES})
+endif()
+
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   # need this circular link dependency on Windows
   target_link_libraries(juce_events PUBLIC juce_gui_extra)
