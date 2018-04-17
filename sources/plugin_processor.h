@@ -38,6 +38,9 @@ public:
     void processBlock(AudioBuffer<float> &, MidiBuffer &) override;
     void processBlockBypassed(AudioBuffer<float> &, MidiBuffer &) override;
 
+    typedef std::pair<const uint8_t *, unsigned> (*pfn_midi_callback)(void *);
+    void process(float *outputs[], unsigned nframes, pfn_midi_callback midi_cb, void *midi_user_data);
+
     //==========================================================================
     AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override;

@@ -63,9 +63,20 @@ if(NOT DEFINED ADLplug_Standalone)
   set(ADLplug_Standalone "ON" CACHE STRING "" FORCE)
 endif()
 
+if(NOT DEFINED ADLplug_Jack)
+  pkg_check_modules(JACK jack)
+  if(JACK_FOUND)
+    set(ADLplug_Jack "ON" CACHE STRING "" FORCE)
+  endif()
+elseif(ADLplug_Jack)
+  pkg_check_modules(JACK jack REQUIRED)
+endif()
+
 message("Build VST2: ${ADLplug_VST2}")
 message("Build VST3: ${ADLplug_VST3}")
 message("Build LV2: ${ADLplug_LV2}")
+message("Build Standalone: ${ADLplug_Standalone}")
+message("Build Jack: ${ADLplug_Jack}")
 
 add_library(ADLplug_core STATIC
   "JuceLibraryCode/BinaryData.cpp"
@@ -157,8 +168,21 @@ if(ADLplug_Standalone)
   endif()
   set_property(TARGET ADLplug_Standalone PROPERTY OUTPUT_NAME "ADLplug")
   if(ADLplug_RT_CHECKER)
-    set_property(TARGET "ADLplug_Standalone" APPEND_STRING
+    set_property(TARGET ADLplug_Standalone APPEND_STRING
       PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
   endif()
   install(TARGETS ADLplug_Standalone DESTINATION "bin")
+endif()
+
+if(ADLplug_Jack)
+  add_executable(ADLplug_Jack sources/jack_main.cc)
+  target_link_libraries(ADLplug_Jack PRIVATE juce_audio_plugin_client_StandaloneCustom ADLplug_core ${JACK_LIBRARIES})
+  target_include_directories(ADLplug_Jack PRIVATE ${JACK_INCLUDE_DIRS})
+  link_directories(${JACK_LIBRARY_DIRS})
+  set_property(TARGET ADLplug_Jack PROPERTY OUTPUT_NAME "ADLplug_jack")
+  if(ADLplug_RT_CHECKER)
+    set_property(TARGET ADLplug_Jack APPEND_STRING
+      PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
+  endif()
+  install(TARGETS ADLplug_Jack DESTINATION "bin")
 endif()

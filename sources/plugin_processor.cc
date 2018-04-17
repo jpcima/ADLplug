@@ -141,26 +141,26 @@ bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) c
     return layouts.getMainOutputChannelSet() == AudioChannelSet::stereo();
 }
 
-void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
-                                         MidiBuffer &midi_messages)
+void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, pfn_midi_callback midi_cb, void *midi_user_data)
 {
 #ifdef ADLplug_RT_CHECKER
     rt_checker_init();
 #endif
 
-    ScopedNoDenormals no_denormals;
     Generic_Player *pl = player_.get();
-    unsigned nframes = buffer.getNumSamples();
-    float *left = buffer.getWritePointer(0);
-    float *right = buffer.getWritePointer(1);
+    float *left = outputs[0];
+    float *right = outputs[1];
     Simple_Fifo &midi_q = *ui_midi_queue_;
 
     std::unique_lock<std::mutex> lock(player_lock_, std::try_to_lock);
     if (!lock.owns_lock()) {
         // can't use the player while non-rt modifies it
-        processBlockBypassed(buffer, midi_messages);
+        std::fill_n(left, nframes, 0);
+        std::fill_n(right, nframes, 0);
         return;
     }
+
+    ScopedNoDenormals no_denormals;
 
     // handle MIDI events from GUI
     for (uint8_t len; midi_q.read(&len, 1, false) && midi_q.get_num_ready() >= len + 1;) {
@@ -175,12 +175,12 @@ void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
         }
     }
 
-    const uint8_t *midi_data;
-    int midi_size;
-    int sample_position;
-    MidiBuffer::Iterator it(midi_messages);
-    while (it.getNextEvent(midi_data, midi_size, sample_position))
-        pl->play_midi(midi_data, midi_size);
+    std::pair<const uint8_t *, unsigned> midi_event;
+    while (midi_event = midi_cb(midi_user_data), midi_event.first) {
+        const uint8_t *data = midi_event.first;
+        unsigned size = midi_event.second;
+        pl->play_midi(data, size);
+    }
 
     pl->generate(left, right, nframes, 1);
     lock.unlock();
@@ -203,6 +203,25 @@ void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
     lv_current_[0] = lv_current[0];
     lv_current_[1] = lv_current[1];
+}
+
+void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
+                                         MidiBuffer &midi_messages)
+{
+    unsigned nframes = buffer.getNumSamples();
+    float *outputs[2] = {buffer.getWritePointer(0), buffer.getWritePointer(1)};
+
+    MidiBuffer::Iterator midi_iterator(midi_messages);
+    auto midi_cb = [](void *user_data) -> std::pair<const uint8_t *, unsigned> {
+        const uint8_t *data;
+        int size, sample_pos;
+        MidiBuffer::Iterator &it = *reinterpret_cast<MidiBuffer::Iterator *>(user_data);
+        if (!it.getNextEvent(data, size, sample_pos))
+            return {nullptr, 0};
+        return {data, size};
+    };
+
+    process(outputs, nframes, +midi_cb, &midi_iterator);
 }
 
 void AdlplugAudioProcessor::processBlockBypassed(AudioBuffer<float> &buffer, MidiBuffer &midi_messages)
