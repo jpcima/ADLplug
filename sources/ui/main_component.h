@@ -54,6 +54,7 @@ public:
     void handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity) override;
     void handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity) override;
     void vu_update();
+    void cpu_load_update();
     void popup_about_dialog();
     //[/UserMethods]
 
@@ -75,15 +76,23 @@ private:
 
     class Vu_Timer : public Timer {
     public:
-        explicit Vu_Timer(Main_Component *mc)
-            : mc_(mc) {}
-        void timerCallback() override
-            { mc_->vu_update(); }
+        explicit Vu_Timer(Main_Component *mc) : mc_(mc) {}
+        void timerCallback() override { mc_->vu_update(); }
     private:
         Main_Component *mc_ = nullptr;
     };
 
     ScopedPointer<Vu_Timer> vu_timer_;
+
+    class Cpu_Load_Timer : public Timer {
+    public:
+        explicit Cpu_Load_Timer(Main_Component *mc) : mc_(mc) {}
+        void timerCallback() override { mc_->cpu_load_update(); }
+    private:
+        Main_Component *mc_ = nullptr;
+    };
+
+    ScopedPointer<Cpu_Load_Timer> cpu_load_timer_;
     //[/UserVariables]
 
     //==============================================================================
@@ -112,6 +121,8 @@ private:
     ScopedPointer<Label> label2;
     ScopedPointer<Vu_Meter> vu_left;
     ScopedPointer<Vu_Meter> vu_right;
+    ScopedPointer<Label> label3;
+    ScopedPointer<Label> lbl_cpu;
 
 
     //==============================================================================

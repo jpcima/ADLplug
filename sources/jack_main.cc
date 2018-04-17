@@ -69,6 +69,7 @@ void Application_Jack::initialise(const String &args)
     AdlplugAudioProcessor *processor = new AdlplugAudioProcessor;
     processor_.reset(processor);
     processor->prepareToPlay(sample_rate, buffer_size);
+    processor->setPlayConfigDetails(0, 2, sample_rate, buffer_size);
 
     AdlplugAudioProcessorEditor *editor = new AdlplugAudioProcessorEditor(*processor);
     editor_.reset(editor);

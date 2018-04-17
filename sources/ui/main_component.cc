@@ -215,12 +215,33 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     addAndMakeVisible (vu_left = new Vu_Meter());
     vu_left->setName ("new component");
 
-    vu_left->setBounds (636, 8, 136, 12);
+    vu_left->setBounds (680, 8, 92, 12);
 
     addAndMakeVisible (vu_right = new Vu_Meter());
     vu_right->setName ("new component");
 
-    vu_right->setBounds (636, 24, 136, 12);
+    vu_right->setBounds (680, 24, 92, 12);
+
+    addAndMakeVisible (label3 = new Label ("new label",
+                                           TRANS("CPU")));
+    label3->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label3->setJustificationType (Justification::centredLeft);
+    label3->setEditable (false, false, false);
+    label3->setColour (TextEditor::textColourId, Colours::black);
+    label3->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label3->setBounds (684, 40, 40, 24);
+
+    addAndMakeVisible (lbl_cpu = new Label ("new label",
+                                            TRANS("100%")));
+    lbl_cpu->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_cpu->setJustificationType (Justification::centred);
+    lbl_cpu->setEditable (false, false, false);
+    lbl_cpu->setColour (Label::outlineColourId, Colour (0xff8e989b));
+    lbl_cpu->setColour (TextEditor::textColourId, Colours::black);
+    lbl_cpu->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_cpu->setBounds (724, 40, 48, 24);
 
 
     //[UserPreSize]
@@ -265,6 +286,10 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     vu_timer_ = ScopedPointer<Vu_Timer>(new Vu_Timer(this));
     vu_timer_->startTimer(10);
+
+    cpu_load_timer_ = ScopedPointer<Cpu_Load_Timer>(new Cpu_Load_Timer(this));
+    cpu_load_timer_->startTimer(500);
+    lbl_cpu->setText("0%", dontSendNotification);
     //[/Constructor]
 }
 
@@ -298,6 +323,8 @@ Main_Component::~Main_Component()
     label2 = nullptr;
     vu_left = nullptr;
     vu_right = nullptr;
+    label3 = nullptr;
+    lbl_cpu = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -385,26 +412,20 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 636, y = 8, width = 136, height = 12;
-        Colour fillColour = Colours::grey;
-        Colour strokeColour = Colours::aliceblue;
+        int x = 680, y = 8, width = 92, height = 12;
+        Colour strokeColour = Colour (0xff8e989b);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
         g.setColour (strokeColour);
         g.drawRect (x, y, width, height, 1);
 
     }
 
     {
-        int x = 636, y = 24, width = 136, height = 12;
-        Colour fillColour = Colours::grey;
-        Colour strokeColour = Colours::aliceblue;
+        int x = 680, y = 24, width = 92, height = 12;
+        Colour strokeColour = Colour (0xff8e989b);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
         g.setColour (strokeColour);
         g.drawRect (x, y, width, height, 1);
 
@@ -570,6 +591,13 @@ void Main_Component::vu_update()
     vu_right->set_value(proc.vu_level(1));
 }
 
+void Main_Component::cpu_load_update()
+{
+    AdlplugAudioProcessor &proc = *proc_;
+    String text = String((int)(100.0 * proc.cpu_load())) + "%";
+    lbl_cpu->setText(text, dontSendNotification);
+}
+
 void Main_Component::popup_about_dialog()
 {
     DialogWindow::LaunchOptions dlgopts;
@@ -615,10 +643,10 @@ BEGIN_JUCER_METADATA
     <TEXT pos="428 132 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="36"/>
-    <RECT pos="636 8 136 12" fill="solid: ff808080" hasStroke="1" stroke="1, mitered, butt"
-          strokeColour="solid: fff0f8ff"/>
-    <RECT pos="636 24 136 12" fill="solid: ff808080" hasStroke="1" stroke="1, mitered, butt"
-          strokeColour="solid: fff0f8ff"/>
+    <RECT pos="680 8 92 12" fill="solid: 8e989b" hasStroke="1" stroke="1, mitered, butt"
+          strokeColour="solid: ff8e989b"/>
+    <RECT pos="680 24 92 12" fill="solid: 8e989b" hasStroke="1" stroke="1, mitered, butt"
+          strokeColour="solid: ff8e989b"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="16 160 352 128" class="Operator_Editor"
@@ -706,11 +734,22 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
          bold="0" italic="0" justification="33"/>
   <GENERICCOMPONENT name="new component" id="8c38ad0cbcf109f7" memberName="vu_left"
-                    virtualName="" explicitFocusOrder="0" pos="636 8 136 12" class="Vu_Meter"
+                    virtualName="" explicitFocusOrder="0" pos="680 8 92 12" class="Vu_Meter"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="16bc493366b76ca5" memberName="vu_right"
-                    virtualName="" explicitFocusOrder="0" pos="636 24 136 12" class="Vu_Meter"
+                    virtualName="" explicitFocusOrder="0" pos="680 24 92 12" class="Vu_Meter"
                     params=""/>
+  <LABEL name="new label" id="bda2c045916cddf3" memberName="label3" virtualName=""
+         explicitFocusOrder="0" pos="684 40 40 24" edTextCol="ff000000"
+         edBkgCol="0" labelText="CPU" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
+         kerning="0.00000000000000000000" bold="0" italic="0" justification="33"/>
+  <LABEL name="new label" id="2067136cf573bd1a" memberName="lbl_cpu" virtualName=""
+         explicitFocusOrder="0" pos="724 40 48 24" outlineCol="ff8e989b"
+         edTextCol="ff000000" edBkgCol="0" labelText="100%" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
+         bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

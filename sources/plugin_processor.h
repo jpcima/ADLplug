@@ -50,6 +50,9 @@ public:
     double vu_level(unsigned channel) const
         { return (channel < 2) ? lv_current_[channel] : 0; }
 
+    double cpu_load() const
+        { return cpu_load_; }
+
     //==========================================================================
     const String getName() const override;
 
@@ -75,6 +78,7 @@ private:
     Dc_Filter dc_filter_[2];
     Vu_Monitor vu_monitor_[2];
     double lv_current_[2] {};
+    double cpu_load_ = 0;
     std::mutex player_lock_;
 
     //==========================================================================

@@ -182,7 +182,9 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, pfn_midi
         pl->play_midi(data, size);
     }
 
+    int64_t time_before_generate = Time::getHighResolutionTicks();
     pl->generate(left, right, nframes, 1);
+    int64_t time_after_generate = Time::getHighResolutionTicks();
     lock.unlock();
 
     Dc_Filter &dclf = dc_filter_[0];
@@ -203,6 +205,10 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, pfn_midi
 
     lv_current_[0] = lv_current[0];
     lv_current_[1] = lv_current[1];
+
+    double generate_duration = Time::highResolutionTicksToSeconds(time_after_generate - time_before_generate);
+    double buffer_duration = nframes / getSampleRate();
+    cpu_load_ = generate_duration / buffer_duration;
 }
 
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
@@ -230,6 +236,8 @@ void AdlplugAudioProcessor::processBlockBypassed(AudioBuffer<float> &buffer, Mid
     Simple_Fifo &midi_q = *ui_midi_queue_;
     for (uint8_t len; midi_q.read(&len, 1, false) && midi_q.get_num_ready() >= len + 1;)
         midi_q.discard(len + 1);
+
+    cpu_load_ = 0;
 
     AudioProcessor::processBlockBypassed(buffer, midi_messages);
 }
