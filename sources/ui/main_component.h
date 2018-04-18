@@ -25,6 +25,7 @@
 #include "utility/simple_fifo.h"
 class Operator_Editor;
 class Vu_Meter;
+class Indicator_NxM;
 class AdlplugAudioProcessor;
 //[/Headers]
 
@@ -55,6 +56,7 @@ public:
     void handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity) override;
     void vu_update();
     void cpu_load_update();
+    void midi_activity_update();
     void popup_about_dialog();
     //[/UserMethods]
 
@@ -81,7 +83,6 @@ private:
     private:
         Main_Component *mc_ = nullptr;
     };
-
     ScopedPointer<Vu_Timer> vu_timer_;
 
     class Cpu_Load_Timer : public Timer {
@@ -91,8 +92,16 @@ private:
     private:
         Main_Component *mc_ = nullptr;
     };
-
     ScopedPointer<Cpu_Load_Timer> cpu_load_timer_;
+
+    class Midi_Activity_Timer : public Timer {
+    public:
+        explicit Midi_Activity_Timer(Main_Component *mc) : mc_(mc) {}
+        void timerCallback() override { mc_->midi_activity_update(); }
+    private:
+        Main_Component *mc_ = nullptr;
+    };
+    ScopedPointer<Midi_Activity_Timer> midi_activity_timer_;
     //[/UserVariables]
 
     //==============================================================================
@@ -123,6 +132,7 @@ private:
     ScopedPointer<Vu_Meter> vu_right;
     ScopedPointer<Label> label3;
     ScopedPointer<Label> lbl_cpu;
+    ScopedPointer<Indicator_NxM> ind_midi_activity;
 
 
     //==============================================================================

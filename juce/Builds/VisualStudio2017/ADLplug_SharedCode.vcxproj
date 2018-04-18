@@ -151,6 +151,7 @@
     <ClCompile Include="..\..\..\sources\ui\about_component.cc"/>
     <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc"/>
     <ClCompile Include="..\..\..\sources\ui\image_utils.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\indicator_NxM.cc"/>
     <ClCompile Include="..\..\..\sources\ui\knob_component.cc"/>
     <ClCompile Include="..\..\..\sources\ui\knobman_skin.cc"/>
     <ClCompile Include="..\..\..\sources\ui\look_and_feel.cc"/>
@@ -1838,9 +1839,6 @@
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\FreeTypeAmalgam.c">
-      <ExcludedFromBuild>true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\vf_freetype.c">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1875,6 +1873,7 @@
     <ClInclude Include="..\..\..\sources\ui\about_component.h"/>
     <ClInclude Include="..\..\..\sources\ui\graphics_utils.h"/>
     <ClInclude Include="..\..\..\sources\ui\image_utils.h"/>
+    <ClInclude Include="..\..\..\sources\ui\indicator_NxM.h"/>
     <ClInclude Include="..\..\..\sources\ui\knob_component.h"/>
     <ClInclude Include="..\..\..\sources\ui\knobman_skin.h"/>
     <ClInclude Include="..\..\..\sources\ui\look_and_feel.h"/>
@@ -2541,7 +2540,6 @@
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\misc\juce_WebBrowserComponent.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\native\juce_mac_CarbonViewWrapperComponent.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.h"/>
-    <ClInclude Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\FreeTypeAmalgam.h"/>
     <ClInclude Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\vf_freetype.h"/>
     <ClInclude Include="..\..\..\thirdparty\VFLib\modules\vf_gui\graphics\vf_FreeTypeFaces.h"/>
     <ClInclude Include="..\..\..\thirdparty\VFLib\modules\vf_gui\vf_gui.h"/>
@@ -2555,10 +2553,6 @@
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_graphics\image_formats\pnglib\libpng_readme.txt"/>
-    <None Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\FTL.TXT"/>
-    <None Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\GPLv2.TXT"/>
-    <None Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\LICENSE.TXT"/>
-    <None Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\README.md"/>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
   <ImportGroup Label="ExtensionTargets"/>

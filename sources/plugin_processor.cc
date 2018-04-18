@@ -87,6 +87,11 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
         Vu_Monitor &vu = vu_monitor_[i];
         vu.release(0.5 * sample_rate);
     }
+
+    for (unsigned i = 0; i < 16; ++i) {
+        midi_channel_note_count_[i] = 0;
+        midi_channel_note_active_[i].reset();
+    }
 }
 
 void AdlplugAudioProcessor::releaseResources()
@@ -151,6 +156,7 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, pfn_midi
     float *left = outputs[0];
     float *right = outputs[1];
     Simple_Fifo &midi_q = *ui_midi_queue_;
+    double sample_period = 1.0 / getSampleRate();
 
     std::unique_lock<std::mutex> lock(player_lock_, std::try_to_lock);
     if (!lock.owns_lock()) {
@@ -171,16 +177,13 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, pfn_midi
         else
         {
             midi_q.read(data, len);
-            pl->play_midi(data, len);
+            process_midi(data, len);
         }
     }
 
-    std::pair<const uint8_t *, unsigned> midi_event;
-    while (midi_event = midi_cb(midi_user_data), midi_event.first) {
-        const uint8_t *data = midi_event.first;
-        unsigned size = midi_event.second;
-        pl->play_midi(data, size);
-    }
+    for (std::pair<const uint8_t *, unsigned> midi_event;
+         midi_event = midi_cb(midi_user_data), midi_event.first;)
+        process_midi(midi_event.first, midi_event.second);
 
     int64_t time_before_generate = Time::getHighResolutionTicks();
     pl->generate(left, right, nframes, 1);
@@ -207,8 +210,43 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, pfn_midi
     lv_current_[1] = lv_current[1];
 
     double generate_duration = Time::highResolutionTicksToSeconds(time_after_generate - time_before_generate);
-    double buffer_duration = nframes / getSampleRate();
+    double buffer_duration = nframes * sample_period;
     cpu_load_ = generate_duration / buffer_duration;
+}
+
+void AdlplugAudioProcessor::process_midi(const uint8_t *data, unsigned len)
+{
+    Generic_Player *pl = player_.get();
+    pl->play_midi(data, len);
+
+    unsigned status = (len > 0) ? data[0] : 0;
+    unsigned channel = status & 0x0f;
+
+    switch (status & 0xf0) {
+    case 0x90:
+        if (len < 3) break;
+        if (data[2] > 0) {
+            if (!midi_channel_note_active_[channel][data[1]]) {
+                ++midi_channel_note_count_[channel];
+                midi_channel_note_active_[channel][data[1]] = true;
+            }
+            break;
+        }
+    case 0x80:
+        if (len < 3) break;
+        if (midi_channel_note_active_[channel][data[1]]) {
+            --midi_channel_note_count_[channel];
+            midi_channel_note_active_[channel][data[1]] = false;
+        }
+        break;
+    case 0xb0:
+        if (len < 3) break;
+        if (data[1] == 120 || data[1] == 123) {
+            midi_channel_note_count_[channel] = 0;
+            midi_channel_note_active_[channel].reset();
+        }
+        break;
+    }
 }
 
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
@@ -232,6 +270,11 @@ void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
 void AdlplugAudioProcessor::processBlockBypassed(AudioBuffer<float> &buffer, MidiBuffer &midi_messages)
 {
+    for (unsigned i = 0; i < 16; ++i) {
+        midi_channel_note_count_[i] = 0;
+        midi_channel_note_active_[i].reset();
+    }
+
     // flush MIDI events from GUI
     Simple_Fifo &midi_q = *ui_midi_queue_;
     for (uint8_t len; midi_q.read(&len, 1, false) && midi_q.get_num_ready() >= len + 1;)

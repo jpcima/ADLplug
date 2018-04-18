@@ -20,6 +20,7 @@
 //[Headers] You can add your own extra header files here...
 #include "ui/operator_editor.h"
 #include "ui/vu_meter.h"
+#include "ui/indicator_NxM.h"
 #include "ui/about_component.h"
 #include "plugin_processor.h"
 //[/Headers]
@@ -248,6 +249,11 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     lbl_cpu->setBounds (724, 40, 48, 24);
 
+    addAndMakeVisible (ind_midi_activity = new Indicator_NxM (2, 8));
+    ind_midi_activity->setName ("new component");
+
+    ind_midi_activity->setBounds (568, 8, 102, 28);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -295,6 +301,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     cpu_load_timer_ = ScopedPointer<Cpu_Load_Timer>(new Cpu_Load_Timer(this));
     cpu_load_timer_->startTimer(500);
     lbl_cpu->setText("0%", dontSendNotification);
+
+    midi_activity_timer_ = ScopedPointer<Midi_Activity_Timer>(new Midi_Activity_Timer(this));
+    midi_activity_timer_->startTimer(100);
     //[/Constructor]
 }
 
@@ -330,6 +339,7 @@ Main_Component::~Main_Component()
     vu_right = nullptr;
     label3 = nullptr;
     lbl_cpu = nullptr;
+    ind_midi_activity = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -603,6 +613,17 @@ void Main_Component::cpu_load_update()
     lbl_cpu->setText(text, dontSendNotification);
 }
 
+void Main_Component::midi_activity_update()
+{
+    AdlplugAudioProcessor &proc = *proc_;
+    for (unsigned i = 0; i < 16; ++i) {
+        const double threshold = midi_activity_timer_->getTimerInterval() * 1e-3;
+        bool active = proc.midi_channel_note_count(i) > 0;
+        unsigned columns = ind_midi_activity->columns();
+        ind_midi_activity->set_value(i / columns, i % columns, active);
+    }
+}
+
 void Main_Component::popup_about_dialog()
 {
     DialogWindow::LaunchOptions dlgopts;
@@ -757,6 +778,9 @@ BEGIN_JUCER_METADATA
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
          bold="0" italic="0" justification="36"/>
+  <GENERICCOMPONENT name="new component" id="b87acb622e25d16e" memberName="ind_midi_activity"
+                    virtualName="" explicitFocusOrder="0" pos="568 8 102 28" class="Indicator_NxM"
+                    params="2, 8"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

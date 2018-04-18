@@ -37,6 +37,9 @@
               file="sources/ui/graphics_utils.h"/>
         <FILE id="p3eY4I" name="image_utils.cc" compile="1" resource="0" file="sources/ui/image_utils.cc"/>
         <FILE id="Gyog2d" name="image_utils.h" compile="0" resource="0" file="sources/ui/image_utils.h"/>
+        <FILE id="VrlRk8" name="indicator_NxM.cc" compile="1" resource="0"
+              file="sources/ui/indicator_NxM.cc"/>
+        <FILE id="wwPBb9" name="indicator_NxM.h" compile="0" resource="0" file="sources/ui/indicator_NxM.h"/>
         <FILE id="tDUMPu" name="knob_component.cc" compile="1" resource="0"
               file="sources/ui/knob_component.cc"/>
         <FILE id="EJfe9K" name="knob_component.h" compile="0" resource="0"

@@ -4,7 +4,6 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #pragma once
-
 #include "../../JuceLibraryCode/JuceHeader.h"
 
 namespace Image_Utils {

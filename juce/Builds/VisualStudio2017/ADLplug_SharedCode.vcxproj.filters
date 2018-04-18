@@ -389,9 +389,6 @@
     <Filter Include="JUCE Modules\juce_gui_extra">
       <UniqueIdentifier>{A4D76113-9EDC-DA60-D89B-5BACF7F1C426}</UniqueIdentifier>
     </Filter>
-    <Filter Include="JUCE Modules\vf_freetype\FreeTypeAmalgam">
-      <UniqueIdentifier>{185B78D9-9CCF-7F29-7489-F4ECF6DCE5B3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="JUCE Modules\vf_freetype">
       <UniqueIdentifier>{DEAFE480-C95E-9BDB-F4E5-F2C60C5402C1}</UniqueIdentifier>
     </Filter>
@@ -422,6 +419,9 @@
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\image_utils.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\indicator_NxM.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\knob_component.cc">
@@ -2278,9 +2278,6 @@
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.mm">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\FreeTypeAmalgam.c">
-      <Filter>JUCE Modules\vf_freetype\FreeTypeAmalgam</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\vf_freetype.c">
       <Filter>JUCE Modules\vf_freetype</Filter>
     </ClCompile>
@@ -2359,6 +2356,9 @@
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\image_utils.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\indicator_NxM.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\knob_component.h">
@@ -4359,9 +4359,6 @@
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\FreeTypeAmalgam.h">
-      <Filter>JUCE Modules\vf_freetype\FreeTypeAmalgam</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\vf_freetype.h">
       <Filter>JUCE Modules\vf_freetype</Filter>
     </ClInclude>
@@ -4396,18 +4393,6 @@
     </None>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_graphics\image_formats\pnglib\libpng_readme.txt">
       <Filter>JUCE Modules\juce_graphics\image_formats\pnglib</Filter>
-    </None>
-    <None Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\FTL.TXT">
-      <Filter>JUCE Modules\vf_freetype\FreeTypeAmalgam</Filter>
-    </None>
-    <None Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\GPLv2.TXT">
-      <Filter>JUCE Modules\vf_freetype\FreeTypeAmalgam</Filter>
-    </None>
-    <None Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\LICENSE.TXT">
-      <Filter>JUCE Modules\vf_freetype\FreeTypeAmalgam</Filter>
-    </None>
-    <None Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\FreeTypeAmalgam\README.md">
-      <Filter>JUCE Modules\vf_freetype\FreeTypeAmalgam</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@
 #include "dsp/dc_filter.h"
 #include "dsp/vu_monitor.h"
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <bitset>
 #include <memory>
 #include <mutex>
 class Generic_Player;
@@ -40,6 +41,7 @@ public:
 
     typedef std::pair<const uint8_t *, unsigned> (*pfn_midi_callback)(void *);
     void process(float *outputs[], unsigned nframes, pfn_midi_callback midi_cb, void *midi_user_data);
+    void process_midi(const uint8_t *data, unsigned len);
 
     //==========================================================================
     AudioProcessorEditor *createEditor() override;
@@ -52,6 +54,9 @@ public:
 
     double cpu_load() const
         { return cpu_load_; }
+
+    unsigned midi_channel_note_count(unsigned channel) const
+        { return (channel < 16) ? midi_channel_note_count_[channel] : 0; }
 
     //==========================================================================
     const String getName() const override;
@@ -79,6 +84,8 @@ private:
     Vu_Monitor vu_monitor_[2];
     double lv_current_[2] {};
     double cpu_load_ = 0;
+    unsigned midi_channel_note_count_[16] = {};
+    std::bitset<128> midi_channel_note_active_[16];
     std::mutex player_lock_;
 
     //==========================================================================

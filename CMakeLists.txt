@@ -100,6 +100,7 @@ add_library(ADLplug_core STATIC
   "sources/ui/vu_meter.cc"
   "sources/ui/operator_editor.cc"
   "sources/ui/wave_label.cc"
+  "sources/ui/indicator_NxM.cc"
   "sources/ui/about_component.cc"
   "sources/ui/main_component.cc"
   "sources/ui/graphics_utils.cc"

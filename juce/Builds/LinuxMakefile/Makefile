@@ -99,6 +99,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/about_component_574ed838.o \
   $(JUCE_OBJDIR)/graphics_utils_35f53d7c.o \
   $(JUCE_OBJDIR)/image_utils_a38eb576.o \
+  $(JUCE_OBJDIR)/indicator_NxM_d416d5d0.o \
   $(JUCE_OBJDIR)/knob_component_5796d5a5.o \
   $(JUCE_OBJDIR)/knobman_skin_53c856a1.o \
   $(JUCE_OBJDIR)/look_and_feel_f9ca8b5.o \
@@ -203,6 +204,11 @@ $(JUCE_OBJDIR)/graphics_utils_35f53d7c.o: ../../../sources/ui/graphics_utils.cc
 $(JUCE_OBJDIR)/image_utils_a38eb576.o: ../../../sources/ui/image_utils.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling image_utils.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/indicator_NxM_d416d5d0.o: ../../../sources/ui/indicator_NxM.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling indicator_NxM.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/knob_component_5796d5a5.o: ../../../sources/ui/knob_component.cc
