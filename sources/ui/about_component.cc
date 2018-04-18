@@ -37,7 +37,7 @@ About_Component::About_Component ()
     hyperlinkButton->setTooltip (TRANS("https://github.com/jpcima/ADLplug"));
     hyperlinkButton->setButtonText (TRANS("Home page"));
 
-    hyperlinkButton->setBounds (8, 8, 88, 24);
+    hyperlinkButton->setBounds (8, 40, 88, 24);
 
     addAndMakeVisible (label = new Label ("new label",
                                           CharPointer_UTF8 ("This program is free software developed by Jean Pierre Cimalando. \xc2\xa9 2018\n"
@@ -48,7 +48,7 @@ About_Component::About_Component ()
     label->setColour (TextEditor::textColourId, Colours::black);
     label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label->setBounds (8, 40, 488, 40);
+    label->setBounds (8, 72, 488, 40);
 
     addAndMakeVisible (label2 = new Label ("new label",
                                            TRANS("Vitaly Novichkov for the ADLMIDI library\n"
@@ -61,16 +61,27 @@ About_Component::About_Component ()
     label2->setColour (TextEditor::textColourId, Colours::black);
     label2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label2->setBounds (8, 88, 488, 56);
+    label2->setBounds (8, 120, 488, 56);
+
+    addAndMakeVisible (lbl_prog_version = new Label ("new label",
+                                                     TRANS("Foobar 1.0")));
+    lbl_prog_version->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Bold"));
+    lbl_prog_version->setJustificationType (Justification::centredLeft);
+    lbl_prog_version->setEditable (false, false, false);
+    lbl_prog_version->setColour (TextEditor::textColourId, Colours::black);
+    lbl_prog_version->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_prog_version->setBounds (8, 8, 150, 24);
 
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (500, 160);
+    setSize (500, 190);
 
 
     //[Constructor] You can add your own custom stuff here..
+    lbl_prog_version->setText(JucePlugin_Name " " JucePlugin_VersionString, dontSendNotification);
     //[/Constructor]
 }
 
@@ -82,6 +93,7 @@ About_Component::~About_Component()
     hyperlinkButton = nullptr;
     label = nullptr;
     label2 = nullptr;
+    lbl_prog_version = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -127,24 +139,30 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="About_Component" componentName=""
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
-                 fixedSize="0" initialWidth="500" initialHeight="160">
+                 fixedSize="0" initialWidth="500" initialHeight="190">
   <BACKGROUND backgroundColour="ff323e44"/>
   <HYPERLINKBUTTON name="new hyperlink" id="ab6eab2236ebdf3d" memberName="hyperlinkButton"
-                   virtualName="" explicitFocusOrder="0" pos="8 8 88 24" tooltip="https://github.com/jpcima/ADLplug"
+                   virtualName="" explicitFocusOrder="0" pos="8 40 88 24" tooltip="https://github.com/jpcima/ADLplug"
                    buttonText="Home page" connectedEdges="0" needsCallback="0" radioGroupId="0"
                    url="https://github.com/jpcima/ADLplug"/>
   <LABEL name="new label" id="e558d7bffe2fa0ac" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="8 40 488 40" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="8 72 488 40" edTextCol="ff000000"
          edBkgCol="0" labelText="This program is free software developed by Jean Pierre Cimalando. &#169; 2018&#10;Many thanks to people who make this program possible."
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
          bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="5ed4be24f6c40a04" memberName="label2" virtualName=""
-         explicitFocusOrder="0" pos="8 88 488 56" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="8 120 488 56" edTextCol="ff000000"
          edBkgCol="0" labelText="Vitaly Novichkov for the ADLMIDI library&#10;Joel Yliluoma for the original ADLMIDI software&#10;Alexey Khokholov for Nuked OPL3&#10;The Dosbox Team for Dosbox OPL"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
          bold="0" italic="0" justification="33"/>
+  <LABEL name="new label" id="368ceb7955ceaf95" memberName="lbl_prog_version"
+         virtualName="" explicitFocusOrder="0" pos="8 8 150 24" edTextCol="ff000000"
+         edBkgCol="0" labelText="Foobar 1.0" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
+         kerning="0.00000000000000000000" bold="1" italic="0" justification="33"
+         typefaceStyle="Bold"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

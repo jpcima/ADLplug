@@ -57,6 +57,7 @@ private:
     ScopedPointer<HyperlinkButton> hyperlinkButton;
     ScopedPointer<Label> label;
     ScopedPointer<Label> label2;
+    ScopedPointer<Label> lbl_prog_version;
 
 
     //==============================================================================
