@@ -27,6 +27,7 @@ struct Player_Traits<Player_Type::OPL3>
     static constexpr auto &init = adl_init;
     static constexpr auto &close = adl_close;
     static constexpr auto &reset = adl_reset;
+    static constexpr auto &panic = adl_panic;
     static constexpr auto &emulator_name = adl_chipEmulatorName;
     static constexpr auto &get_num_chips = adl_getNumChips;
     static constexpr auto &set_num_chips = adl_setNumChips;
@@ -56,6 +57,8 @@ public:
         { player_.reset(); }
     void reset() override
         { traits::reset(player_.get()); }
+    void panic() override
+        { traits::panic(player_.get()); }
     const char *emulator_name() const override
         { return traits::emulator_name(player_.get()); }
     void set_emulator(unsigned emu) override

@@ -29,6 +29,7 @@ public:
     virtual void init(unsigned sample_rate) = 0;
     virtual void close() = 0;
     virtual void reset() = 0;
+    virtual void panic() = 0;
     virtual const char *emulator_name() const = 0;
     virtual void set_emulator(unsigned emu) = 0;
     virtual unsigned num_chips() = 0;
