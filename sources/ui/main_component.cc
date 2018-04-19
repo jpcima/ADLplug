@@ -254,6 +254,14 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     ind_midi_activity->setBounds (568, 8, 102, 28);
 
+    addAndMakeVisible (btn_panic = new TextButton ("new button"));
+    btn_panic->setButtonText (TRANS("Panic"));
+    btn_panic->setConnectedEdges (Button::ConnectedOnBottom);
+    btn_panic->addListener (this);
+    btn_panic->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
+
+    btn_panic->setBounds (622, 40, 48, 24);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -340,6 +348,7 @@ Main_Component::~Main_Component()
     label3 = nullptr;
     lbl_cpu = nullptr;
     ind_midi_activity = nullptr;
+    btn_panic = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -530,6 +539,14 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
             lbl_num_chips->setText(String(proc.get_num_chips()), juce::dontSendNotification);
         }
         //[/UserButtonCode_btn_more_chips]
+    }
+    else if (buttonThatWasClicked == btn_panic)
+    {
+        //[UserButtonCode_btn_panic] -- add your button handler code here..
+        AdlplugAudioProcessor &proc = *proc_;
+        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+        proc.panic_nonrt();
+        //[/UserButtonCode_btn_panic]
     }
 
     //[UserbuttonClicked_Post]
@@ -781,6 +798,9 @@ BEGIN_JUCER_METADATA
   <GENERICCOMPONENT name="new component" id="b87acb622e25d16e" memberName="ind_midi_activity"
                     virtualName="" explicitFocusOrder="0" pos="568 8 102 28" class="Indicator_NxM"
                     params="2, 8"/>
+  <TEXTBUTTON name="new button" id="ec00354399da2ced" memberName="btn_panic"
+              virtualName="" explicitFocusOrder="0" pos="622 40 48 24" bgColOn="ff42a2c8"
+              buttonText="Panic" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

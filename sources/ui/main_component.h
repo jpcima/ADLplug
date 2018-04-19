@@ -133,6 +133,7 @@ private:
     ScopedPointer<Label> label3;
     ScopedPointer<Label> lbl_cpu;
     ScopedPointer<Indicator_NxM> ind_midi_activity;
+    ScopedPointer<TextButton> btn_panic;
 
 
     //==============================================================================

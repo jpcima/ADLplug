@@ -31,6 +31,7 @@ public:
     std::unique_lock<std::mutex> acquire_player_nonrt();
     void set_num_chips_nonrt(unsigned chips);
     void set_chip_emulator_nonrt(unsigned emu);
+    void panic_nonrt();
     void reconfigure_chip_nonrt();
     std::vector<std::string> enumerate_emulators();
 

@@ -115,7 +115,7 @@ std::unique_lock<std::mutex> AdlplugAudioProcessor::acquire_player_nonrt()
 void AdlplugAudioProcessor::set_num_chips_nonrt(unsigned chips)
 {
     Generic_Player *pl = player_.get();
-    pl->panic();
+    panic_nonrt();
     pl->set_num_chips(chips);
     reconfigure_chip_nonrt();
 }
@@ -123,9 +123,15 @@ void AdlplugAudioProcessor::set_num_chips_nonrt(unsigned chips)
 void AdlplugAudioProcessor::set_chip_emulator_nonrt(unsigned emu)
 {
     Generic_Player *pl = player_.get();
-    pl->panic();
+    panic_nonrt();
     pl->set_emulator(emu);
     reconfigure_chip_nonrt();
+}
+
+void AdlplugAudioProcessor::panic_nonrt()
+{
+    Generic_Player *pl = player_.get();
+    pl->panic();
 }
 
 void AdlplugAudioProcessor::reconfigure_chip_nonrt()
