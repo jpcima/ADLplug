@@ -88,6 +88,8 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
         vu.release(0.5 * sample_rate);
     }
 
+    midi_channel_mask_.set();
+
     for (unsigned i = 0; i < 16; ++i) {
         midi_channel_note_count_[i] = 0;
         midi_channel_note_active_[i].reset();
@@ -226,6 +228,9 @@ void AdlplugAudioProcessor::process_midi(const uint8_t *data, unsigned len)
 
     unsigned status = (len > 0) ? data[0] : 0;
     unsigned channel = status & 0x0f;
+
+    if ((status & 0xf0) != 0xf0 && !midi_channel_mask_[channel])
+        return;
 
     switch (status & 0xf0) {
     case 0x90:

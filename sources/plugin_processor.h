@@ -85,6 +85,7 @@ private:
     Vu_Monitor vu_monitor_[2];
     double lv_current_[2] {};
     double cpu_load_ = 0;
+    std::bitset<16> midi_channel_mask_;
     unsigned midi_channel_note_count_[16] = {};
     std::bitset<128> midi_channel_note_active_[16];
     std::mutex player_lock_;
