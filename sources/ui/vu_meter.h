@@ -16,9 +16,18 @@ public:
         { return value_; }
     void set_value(double value);
 
+    bool logarithmic() const
+        { return logarithmic_; }
+    void set_logarithmic(bool logarithmic);
+
+    void set_hue(double start, double range);
+
 protected:
     void paint(Graphics &g) override;
 
 private:
     double value_ = 1.0;
+    bool logarithmic_ = false;
+    double hue_start_ = 0.0;
+    double hue_range_ = 0.0;
 };
