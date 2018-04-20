@@ -272,7 +272,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
                               ImageCache::getFromMemory (emoji_u1f4be_png, emoji_u1f4be_pngSize), 1.000f, Colour (0x00000000),
                               Image(), 1.000f, Colour (0x00000000),
                               Image(), 1.000f, Colour (0x00000000));
-    btn_bank_save->setBounds (208, 80, 30, 24);
+    btn_bank_save->setBounds (264, 80, 30, 24);
 
     addAndMakeVisible (btn_bank_load = new ImageButton ("new button"));
     btn_bank_load->addListener (this);
@@ -281,19 +281,19 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
                               ImageCache::getFromMemory (emoji_u1f4c2_png, emoji_u1f4c2_pngSize), 1.000f, Colour (0x00000000),
                               Image(), 1.000f, Colour (0x00000000),
                               Image(), 1.000f, Colour (0x00000000));
-    btn_bank_load->setBounds (176, 80, 30, 24);
+    btn_bank_load->setBounds (232, 80, 30, 24);
 
-    addAndMakeVisible (textEditor = new TextEditor ("new text editor"));
-    textEditor->setMultiLine (false);
-    textEditor->setReturnKeyStartsNewLine (false);
-    textEditor->setReadOnly (false);
-    textEditor->setScrollbarsShown (true);
-    textEditor->setCaretVisible (true);
-    textEditor->setPopupMenuEnabled (true);
-    textEditor->setColour (TextEditor::outlineColourId, Colour (0xff8e989b));
-    textEditor->setText (TRANS("Bank name"));
+    addAndMakeVisible (edt_bank_name = new TextEditor ("new text editor"));
+    edt_bank_name->setMultiLine (false);
+    edt_bank_name->setReturnKeyStartsNewLine (false);
+    edt_bank_name->setReadOnly (false);
+    edt_bank_name->setScrollbarsShown (true);
+    edt_bank_name->setCaretVisible (true);
+    edt_bank_name->setPopupMenuEnabled (true);
+    edt_bank_name->setColour (TextEditor::outlineColourId, Colour (0xff8e989b));
+    edt_bank_name->setText (TRANS("Bank name"));
 
-    textEditor->setBounds (16, 80, 150, 24);
+    edt_bank_name->setBounds (16, 80, 208, 24);
 
 
     //[UserPreSize]
@@ -389,7 +389,7 @@ Main_Component::~Main_Component()
     btn_panic = nullptr;
     btn_bank_save = nullptr;
     btn_bank_load = nullptr;
-    textEditor = nullptr;
+    edt_bank_name = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -601,7 +601,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
             // Save it
             fprintf(stderr, "Save to WOPL file: %s\n", file.getFullPathName().toRawUTF8());
             // TODO
-            
+
         }
         //[/UserButtonCode_btn_bank_save]
     }
@@ -635,13 +635,26 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
                 AlertWindow::showMessageBox(
                     AlertWindow::WarningIcon, error_title, "The input file is not in WOPL format.");
             else {
-                fprintf(stderr, "Loaded WOPL file: (%u melodic banks, %u percussion banks)\n",
-                        wopl->banks_count_melodic, wopl->banks_count_percussion);
-                // for (unsigned i = 0, n = wopl->banks_count_melodic; i < n; ++i)
-                //     transmit_bank(wopl->banks_melodic[i], Bank_Mode::Melodic);
-                // for (unsigned i = 0, n = wopl->banks_count_percussion; i < n; ++i)
-                //     transmit_bank(wopl->banks_percussive[i], Bank_Mode::Percussion);
-                // TODO
+                Simple_Fifo &queue = proc_->midi_queue_for_ui();
+                auto send_bank = [&queue](const WOPLBank &bank, Bank_Mode mode) {
+                        for (unsigned i = 0; i < 128; ++i) {
+                            Message_Header hdr = {(unsigned)User_Message::Instrument, sizeof(Messages::User::Instrument)};
+                            Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
+                            auto *data = (Messages::User::Instrument *)msg.data;
+                            data->bank = bank.bank_midi_lsb | (bank.bank_midi_msb << 7);
+                            data->mode = mode;
+                            data->program = i;
+                            data->instrument = bank.ins[i];
+                            finish_write_message(queue, msg);
+                        }
+                    };
+                edt_bank_name->setText(file.getFileNameWithoutExtension());
+                edt_bank_name->setCaretPosition(0);
+                // TODO clear existing banks
+                for (unsigned i = 0, n = wopl->banks_count_melodic; i < n; ++i)
+                    send_bank(wopl->banks_melodic[i], Bank_Mode::Melodic);
+                for (unsigned i = 0, n = wopl->banks_count_percussion; i < n; ++i)
+                    send_bank(wopl->banks_percussive[i], Bank_Mode::Percussive);
             }
         }
         //[/UserButtonCode_btn_bank_load]
@@ -696,9 +709,7 @@ void Main_Component::handleNoteOn(MidiKeyboardState *, int channel, int note, fl
 {
     Simple_Fifo &queue = proc_->midi_queue_for_ui();
     Message_Header msghdr = {(unsigned)User_Message::Midi, 3};
-    Buffered_Message msg = write_message(queue, msghdr);
-    if (!msg)
-        return;
+    Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
     msg.data[0] = (unsigned)(channel - 1) | (0b1001u << 4);
     msg.data[1] = note;
     msg.data[2] = velocity * 127;
@@ -709,9 +720,7 @@ void Main_Component::handleNoteOff(MidiKeyboardState *, int channel, int note, f
 {
     Simple_Fifo &queue = proc_->midi_queue_for_ui();
     Message_Header msghdr = {(unsigned)User_Message::Midi, 3};
-    Buffered_Message msg = write_message(queue, msghdr);
-    if (!msg)
-        return;
+    Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
     msg.data[0] = (unsigned)(channel - 1) | (0b1000u << 4);
     msg.data[1] = note;
     msg.data[2] = velocity * 127;
@@ -904,21 +913,21 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="622 40 48 24" bgColOn="ff42a2c8"
               buttonText="Panic" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
   <IMAGEBUTTON name="new button" id="9f8f27848ef4c443" memberName="btn_bank_save"
-               virtualName="" explicitFocusOrder="0" pos="208 80 30 24" buttonText="new button"
+               virtualName="" explicitFocusOrder="0" pos="264 80 30 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="emoji_u1f4be_png" opacityNormal="1.00000000000000000000"
                colourNormal="0" resourceOver="" opacityOver="1.00000000000000000000"
                colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
                colourDown="0"/>
   <IMAGEBUTTON name="new button" id="815efbfa4ced22e6" memberName="btn_bank_load"
-               virtualName="" explicitFocusOrder="0" pos="176 80 30 24" buttonText="new button"
+               virtualName="" explicitFocusOrder="0" pos="232 80 30 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="emoji_u1f4c2_png" opacityNormal="1.00000000000000000000"
                colourNormal="0" resourceOver="" opacityOver="1.00000000000000000000"
                colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
                colourDown="0"/>
-  <TEXTEDITOR name="new text editor" id="62544efea1101020" memberName="textEditor"
-              virtualName="" explicitFocusOrder="0" pos="16 80 150 24" outlinecol="ff8e989b"
+  <TEXTEDITOR name="new text editor" id="62544efea1101020" memberName="edt_bank_name"
+              virtualName="" explicitFocusOrder="0" pos="16 80 208 24" outlinecol="ff8e989b"
               initialText="Bank name" multiline="0" retKeyStartsLine="0" readonly="0"
               scrollbars="1" caret="1" popupmenu="1"/>
 </JUCER_COMPONENT>

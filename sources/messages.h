@@ -6,6 +6,7 @@
 #pragma once
 #include "utility/simple_fifo.h"
 #include <wopl/wopl_file.h>
+#include <thread>
 #include <cstdint>
 
 enum class Bank_Mode {
@@ -26,18 +27,37 @@ struct Buffered_Message {
 };
 
 Buffered_Message read_message(Simple_Fifo &fifo) noexcept;
-void finish_read_message(Simple_Fifo &fifo, const Buffered_Message &msg);
+void finish_read_message(Simple_Fifo &fifo, const Buffered_Message &msg) noexcept;
 
 Buffered_Message write_message(Simple_Fifo &fifo, const Message_Header &hdr) noexcept;
-void finish_write_message(Simple_Fifo &fifo, Buffered_Message &msg);
+void finish_write_message(Simple_Fifo &fifo, Buffered_Message &msg) noexcept;
+
+template <class R, class P>
+Buffered_Message write_message_retrying(
+    Simple_Fifo &fifo, const Message_Header &hdr, std::chrono::duration<R, P> delay)
+{
+    Buffered_Message msg;
+    while (!(msg = write_message(fifo, hdr)))
+        std::this_thread::sleep_for(delay);
+    return msg;
+}
 
 //------------------------------------------------------------------------------
 enum class User_Message {
     Midi,  // midi event
+    Instrument,  // edits an instrument
 };
 
 namespace Messages {
 namespace User {
+
+struct Instrument
+{
+    uint16_t bank;
+    uint8_t program;
+    Bank_Mode mode;
+    WOPLInstrument instrument;
+};
 
 }  // namespace User
 }  // namespace Messages
@@ -50,13 +70,7 @@ enum class Fx_Message {
 namespace Messages {
 namespace Fx {
 
-struct Instrument
-{
-    uint16_t bank;
-    uint8_t program;
-    Bank_Mode mode;
-    WOPLInstrument instrument;
-};
+typedef Messages::User::Instrument Instrument;  // same
 
 }  // namespace Fx
 }  // namespace Messages

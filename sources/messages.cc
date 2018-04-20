@@ -17,7 +17,7 @@ Buffered_Message read_message(Simple_Fifo &fifo) noexcept
     return msg;
 }
 
-void finish_read_message(Simple_Fifo &fifo, const Buffered_Message &msg)
+void finish_read_message(Simple_Fifo &fifo, const Buffered_Message &msg) noexcept
 {
     fifo.finish_read(msg.offset);
 }
@@ -35,7 +35,7 @@ Buffered_Message write_message(Simple_Fifo &fifo, const Message_Header &hdr) noe
     return msg;
 }
 
-void finish_write_message(Simple_Fifo &fifo, Buffered_Message &msg)
+void finish_write_message(Simple_Fifo &fifo, Buffered_Message &msg) noexcept
 {
     fifo.finish_write(msg.offset);
 }

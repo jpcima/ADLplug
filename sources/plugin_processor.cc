@@ -262,7 +262,14 @@ void AdlplugAudioProcessor::handle_message(const Buffered_Message &msg)
 
     switch (tag) {
     case User_Message::Midi:
-        process_midi(msg.data, size); break;
+        process_midi(msg.data, size);
+        break;
+    case User_Message::Instrument: {
+        auto &body = *(const Messages::User::Instrument *)msg.data;
+        // TODO
+        
+        break;
+    }
     default:
         assert(false);
     }

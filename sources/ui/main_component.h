@@ -141,7 +141,7 @@ private:
     ScopedPointer<TextButton> btn_panic;
     ScopedPointer<ImageButton> btn_bank_save;
     ScopedPointer<ImageButton> btn_bank_load;
-    ScopedPointer<TextEditor> textEditor;
+    ScopedPointer<TextEditor> edt_bank_name;
 
 
     //==============================================================================
