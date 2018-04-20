@@ -176,22 +176,22 @@ Operator_Editor::Operator_Editor ()
     btn_sus->setClickingTogglesState(true);
     btn_env->setClickingTogglesState(true);
 
-    kn_attack->setTooltip("Attack");
-    kn_decay->setTooltip("Decay");
-    kn_sustain->setTooltip("Sustain");
-    kn_release->setTooltip("Release");
+    kn_attack->setTooltip(TRANS("Attack"));
+    kn_decay->setTooltip(TRANS("Decay"));
+    kn_sustain->setTooltip(TRANS("Sustain"));
+    kn_release->setTooltip(TRANS("Release"));
 
-    btn_trem->setTooltip("Tremolo");
-    btn_vib->setTooltip("Vibrato");
-    btn_sus->setTooltip("Sustaining voice");
-    btn_env->setTooltip("Envelope scale");
+    btn_trem->setTooltip(TRANS("Tremolo"));
+    btn_vib->setTooltip(TRANS("Vibrato"));
+    btn_sus->setTooltip(TRANS("Sustaining voice"));
+    btn_env->setTooltip(TRANS("Envelope scale"));
 
-    sl_level->setTooltip("Level");
-    lbl_level->setTooltip("Level");
-    sl_fmul->setTooltip("Frequency multiplication");
-    lbl_fmul->setTooltip("Frequency multiplication");
-    sl_ksl->setTooltip("Key scale level");
-    lbl_ksl->setTooltip("Key scale level");
+    sl_level->setTooltip(TRANS("Level"));
+    lbl_level->setTooltip(TRANS("Level"));
+    sl_fmul->setTooltip(TRANS("Frequency multiplication"));
+    lbl_fmul->setTooltip(TRANS("Frequency multiplication"));
+    sl_ksl->setTooltip(TRANS("Key scale level"));
+    lbl_ksl->setTooltip(TRANS("Key scale level"));
     //[/UserPreSize]
 
     setSize (600, 400);

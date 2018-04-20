@@ -309,6 +309,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     midi_kb->setLowestVisibleKey(24);
 
+    btn_bank_load->setTooltip(TRANS("Load bank"));
+    btn_bank_save->setTooltip(TRANS("Save bank"));
+
     for (TextButton *btn : {btn_4op.get(), btn_pseudo4op.get(), btn_2op.get()}) {
         btn->setClickingTogglesState(true);
         btn->setRadioGroupId((int)Radio_Button_Group::Fm_Mode);
@@ -324,10 +327,10 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     sl_tune12->setNumDecimalPlacesToDisplay(0);
     sl_tune34->setNumDecimalPlacesToDisplay(0);
-    ed_op1->set_op_label("Modulator");
-    ed_op2->set_op_label("Carrier");
-    ed_op3->set_op_label("Modulator");
-    ed_op4->set_op_label("Carrier");
+    ed_op1->set_op_label(TRANS("Modulator"));
+    ed_op2->set_op_label(TRANS("Carrier"));
+    ed_op3->set_op_label(TRANS("Modulator"));
+    ed_op4->set_op_label(TRANS("Carrier"));
 
     lbl_num_chips->setText(String(proc.get_num_chips()), juce::dontSendNotification);
 
