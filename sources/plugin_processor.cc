@@ -6,8 +6,10 @@
 #include "adl/player.h"
 #include "utility/simple_fifo.h"
 #include "utility/rt_checker.h"
+#include "messages.h"
 #include "plugin_processor.h"
 #include "plugin_editor.h"
+#include <cassert>
 
 //==============================================================================
 AdlplugAudioProcessor::AdlplugAudioProcessor()
@@ -175,17 +177,10 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, pfn_midi
 
     ScopedNoDenormals no_denormals;
 
-    // handle MIDI events from GUI
-    for (uint8_t len; midi_q.read(&len, 1, false) && midi_q.get_num_ready() >= len + 1;) {
-        midi_q.discard(1);
-        uint8_t data[3];
-        if (len > sizeof(data))
-            midi_q.discard(len);
-        else
-        {
-            midi_q.read(data, len);
-            process_midi(data, len);
-        }
+    // handle events from GUI
+    while (Buffered_Message msg = read_message(midi_q)) {
+        handle_message(msg);
+        finish_read_message(midi_q, msg);
     }
 
     for (std::pair<const uint8_t *, unsigned> midi_event;
@@ -259,6 +254,20 @@ void AdlplugAudioProcessor::process_midi(const uint8_t *data, unsigned len)
     }
 }
 
+void AdlplugAudioProcessor::handle_message(const Buffered_Message &msg)
+{
+    const uint8_t *data = msg.data;
+    User_Message tag = (User_Message)msg.header->tag;
+    unsigned size = msg.header->size;
+
+    switch (tag) {
+    case User_Message::Midi:
+        process_midi(msg.data, size); break;
+    default:
+        assert(false);
+    }
+}
+
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                          MidiBuffer &midi_messages)
 {
@@ -280,15 +289,13 @@ void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
 
 void AdlplugAudioProcessor::processBlockBypassed(AudioBuffer<float> &buffer, MidiBuffer &midi_messages)
 {
-    for (unsigned i = 0; i < 16; ++i) {
-        midi_channel_note_count_[i] = 0;
-        midi_channel_note_active_[i].reset();
-    }
-
-    // flush MIDI events from GUI
     Simple_Fifo &midi_q = *ui_midi_queue_;
-    for (uint8_t len; midi_q.read(&len, 1, false) && midi_q.get_num_ready() >= len + 1;)
-        midi_q.discard(len + 1);
+
+    // handle events from GUI
+    while (Buffered_Message msg = read_message(midi_q)) {
+        handle_message(msg);
+        finish_read_message(midi_q, msg);
+    }
 
     cpu_load_ = 0;
 

@@ -96,6 +96,7 @@ add_library(ADLplug_core STATIC
   "sources/utility/rt_checker.cc"
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
+  "sources/messages.cc"
   "sources/ui/chips/opl3_waves.cc"
   "sources/ui/look_and_feel.cc"
   "sources/ui/knobman_skin.cc"

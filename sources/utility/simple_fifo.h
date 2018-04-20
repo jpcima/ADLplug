@@ -9,16 +9,29 @@
 class Simple_Fifo
 {
 public:
-    explicit Simple_Fifo(unsigned cap);
+    explicit Simple_Fifo(unsigned capacity);
 
-    bool discard(unsigned length);
-    bool read(uint8_t *data, unsigned length, bool consume = true);
-    bool write(const uint8_t *data, unsigned length);
+    const uint8_t *read(unsigned length, unsigned &offset) const noexcept;
+    bool read_padding(unsigned &offset) noexcept;
+    void finish_read(unsigned length) noexcept
+        { return fifo_.finishedRead(length); }
 
-    unsigned get_free_space() const;
-    unsigned get_num_ready() const;
+    uint8_t *write(unsigned length, unsigned &offset) noexcept;
+    bool write_padding(unsigned &offset) noexcept;
+    void finish_write(unsigned length) noexcept;
+
+    unsigned get_free_space() const noexcept
+        { return fifo_.getFreeSpace(); }
+    unsigned get_num_ready() const noexcept
+        { return fifo_.getNumReady(); }
 
 private:
     AbstractFifo fifo_;
     std::unique_ptr<uint8_t[]> buffer_;
+
+    static unsigned pad_offset(unsigned offset)
+    {
+        unsigned n = offset % sizeof(max_align_t);
+        return offset + (n ? (sizeof(max_align_t) - n) : 0);
+    }
 };

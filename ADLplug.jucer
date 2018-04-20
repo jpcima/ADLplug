@@ -81,6 +81,8 @@
             file="sources/plugin_processor.cc"/>
       <FILE id="QkXWb6" name="plugin_processor.h" compile="0" resource="0"
             file="sources/plugin_processor.h"/>
+      <FILE id="vUM9TO" name="messages.cc" compile="1" resource="0" file="sources/messages.cc"/>
+      <FILE id="W3uPOQ" name="messages.h" compile="0" resource="0" file="sources/messages.h"/>
     </GROUP>
     <GROUP id="{C55CC9DB-ED0F-DE1B-46CB-A28A61433406}" name="thirdparty">
       <GROUP id="{55F90F3C-3521-0BD5-0978-A6334B278C70}" name="wopl">

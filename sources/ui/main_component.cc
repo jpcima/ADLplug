@@ -23,6 +23,7 @@
 #include "ui/indicator_NxM.h"
 #include "ui/about_component.h"
 #include "plugin_processor.h"
+#include "messages.h"
 #include <wopl/wopl_file.h>
 #include <memory>
 //[/Headers]
@@ -636,8 +637,11 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
             else {
                 fprintf(stderr, "Loaded WOPL file: (%u melodic banks, %u percussion banks)\n",
                         wopl->banks_count_melodic, wopl->banks_count_percussion);
+                // for (unsigned i = 0, n = wopl->banks_count_melodic; i < n; ++i)
+                //     transmit_bank(wopl->banks_melodic[i], Bank_Mode::Melodic);
+                // for (unsigned i = 0, n = wopl->banks_count_percussion; i < n; ++i)
+                //     transmit_bank(wopl->banks_percussive[i], Bank_Mode::Percussion);
                 // TODO
-                
             }
         }
         //[/UserButtonCode_btn_bank_load]
@@ -691,23 +695,27 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 void Main_Component::handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity)
 {
     Simple_Fifo &queue = proc_->midi_queue_for_ui();
-    uint8_t msg[4];
-    msg[0] = 3;
-    msg[1] = (unsigned)(channel - 1) | (0b1001u << 4);
-    msg[2] = note;
-    msg[3] = velocity * 127;
-    queue.write(msg, sizeof(msg));
+    Message_Header msghdr = {(unsigned)User_Message::Midi, 3};
+    Buffered_Message msg = write_message(queue, msghdr);
+    if (!msg)
+        return;
+    msg.data[0] = (unsigned)(channel - 1) | (0b1001u << 4);
+    msg.data[1] = note;
+    msg.data[2] = velocity * 127;
+    finish_write_message(queue, msg);
 }
 
 void Main_Component::handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity)
 {
     Simple_Fifo &queue = proc_->midi_queue_for_ui();
-    uint8_t msg[4];
-    msg[0] = 3;
-    msg[1] = (unsigned)(channel - 1) | (0b1000u << 4);
-    msg[2] = note;
-    msg[3] = velocity * 127;
-    queue.write(msg, sizeof(msg));
+    Message_Header msghdr = {(unsigned)User_Message::Midi, 3};
+    Buffered_Message msg = write_message(queue, msghdr);
+    if (!msg)
+        return;
+    msg.data[0] = (unsigned)(channel - 1) | (0b1000u << 4);
+    msg.data[1] = note;
+    msg.data[2] = velocity * 127;
+    finish_write_message(queue, msg);
 }
 
 void Main_Component::vu_update()

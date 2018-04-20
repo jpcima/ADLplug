@@ -162,6 +162,7 @@
     <ClCompile Include="..\..\..\sources\adl\player.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
+    <ClCompile Include="..\..\..\sources\messages.cc"/>
     <ClCompile Include="..\..\..\thirdparty\wopl\wopl\wopl_file.c"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.c"/>
@@ -1885,6 +1886,7 @@
     <ClInclude Include="..\..\..\sources\adl\player.h"/>
     <ClInclude Include="..\..\..\sources\plugin_editor.h"/>
     <ClInclude Include="..\..\..\sources\plugin_processor.h"/>
+    <ClInclude Include="..\..\..\sources\messages.h"/>
     <ClInclude Include="..\..\..\thirdparty\wopl\wopl\wopl_file.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.h"/>

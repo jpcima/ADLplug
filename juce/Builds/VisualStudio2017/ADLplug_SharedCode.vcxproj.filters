@@ -466,6 +466,9 @@
     <ClCompile Include="..\..\..\sources\plugin_processor.cc">
       <Filter>ADLplug\sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\messages.cc">
+      <Filter>ADLplug\sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\wopl\wopl\wopl_file.c">
       <Filter>ADLplug\thirdparty\wopl\wopl</Filter>
     </ClCompile>
@@ -2404,6 +2407,9 @@
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\plugin_processor.h">
+      <Filter>ADLplug\sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\messages.h">
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\wopl\wopl\wopl_file.h">

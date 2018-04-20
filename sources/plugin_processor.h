@@ -13,6 +13,7 @@
 #include <mutex>
 class Generic_Player;
 class Simple_Fifo;
+class Buffered_Message;
 
 //==============================================================================
 /**
@@ -43,6 +44,8 @@ public:
     typedef std::pair<const uint8_t *, unsigned> (*pfn_midi_callback)(void *);
     void process(float *outputs[], unsigned nframes, pfn_midi_callback midi_cb, void *midi_user_data);
     void process_midi(const uint8_t *data, unsigned len);
+
+    void handle_message(const Buffered_Message &msg);
 
     //==========================================================================
     AudioProcessorEditor *createEditor() override;

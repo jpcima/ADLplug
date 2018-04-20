@@ -5,59 +5,67 @@
 
 #include "utility/simple_fifo.h"
 #include <cstring>
+#include <cassert>
 
-Simple_Fifo::Simple_Fifo(unsigned cap)
-    : fifo_(cap),
-      buffer_(new uint8_t[cap])
+Simple_Fifo::Simple_Fifo(unsigned capacity)
+    : fifo_(capacity),
+      buffer_(new uint8_t[capacity * 2]())
 {
 }
 
-bool Simple_Fifo::discard(unsigned length)
+const uint8_t *Simple_Fifo::read(unsigned length, unsigned &offset) const noexcept
 {
-    AbstractFifo &fifo = fifo_;
-    int i1, n1, i2, n2;
-    fifo.prepareToRead(length, i1, n1, i2, n2);
-    if (n1 + n2 < length)
+    const AbstractFifo &fifo = fifo_;
+    unsigned i1, n1, i2, n2, off = offset;
+    fifo.prepareToRead(off + length, (int &)i1, (int &)n1, (int &)i2, (int &)n2);
+    if (n1 + n2 != off + length)
+        return nullptr;
+    offset = off + length;
+    return &buffer_[off + i1];
+}
+
+bool Simple_Fifo::read_padding(unsigned &offset) noexcept
+{
+    unsigned off = pad_offset(offset);
+    if (off > get_num_ready())
         return false;
-    fifo.finishedRead(length);
+    offset = off;
     return true;
 }
 
-bool Simple_Fifo::read(uint8_t *data, unsigned length, bool consume)
+uint8_t *Simple_Fifo::write(unsigned length, unsigned &offset) noexcept
 {
-    AbstractFifo &fifo = fifo_;
-    int i1, n1, i2, n2;
-    fifo.prepareToRead(length, i1, n1, i2, n2);
-    if (n1 + n2 < length)
+    const AbstractFifo &fifo = fifo_;
+    unsigned i1, n1, i2, n2, off = offset;
+    fifo.prepareToWrite(off + length, (int &)i1, (int &)n1, (int &)i2, (int &)n2);
+    if (n1 + n2 != off + length)
+        return nullptr;
+    offset = off + length;
+    return &buffer_[off + i1];
+}
+
+bool Simple_Fifo::write_padding(unsigned &offset) noexcept
+{
+    unsigned off = pad_offset(offset);
+    if (off > get_free_space())
         return false;
-    const uint8_t *buffer = buffer_.get();
-    memcpy(data, buffer + i1, n1);
-    memcpy(data + n1, buffer + i2, n2);
-    if (consume)
-        fifo.finishedRead(length);
+    offset = off;
     return true;
 }
 
-bool Simple_Fifo::write(const uint8_t *data, unsigned length)
+void Simple_Fifo::finish_write(unsigned length) noexcept
 {
     AbstractFifo &fifo = fifo_;
-    int i1, n1, i2, n2;
-    fifo.prepareToWrite(length, i1, n1, i2, n2);
-    if (n1 + n2 < length)
-        return false;
+    unsigned capacity = fifo.getTotalSize();
+    unsigned i1, n1, i2, n2;
+    fifo.prepareToWrite(length, (int &)i1, (int &)n1, (int &)i2, (int &)n2);
+    assert(length == n1 + n2);
     uint8_t *buffer = buffer_.get();
-    memcpy(buffer + i1, data, n1);
-    memcpy(buffer + i2, data + n1, n2);
+    for (unsigned i = 0; i < length; ++i) {
+        unsigned src = i1 + i;
+        unsigned dst = src + capacity;
+        dst = (dst < 2 * capacity) ? dst : (dst - 2 * capacity);
+        buffer[dst] = buffer[src];
+    }
     fifo.finishedWrite(length);
-    return true;
-}
-
-unsigned Simple_Fifo::get_free_space() const
-{
-    return fifo_.getFreeSpace();
-}
-
-unsigned Simple_Fifo::get_num_ready() const
-{
-    return fifo_.getNumReady();
 }
