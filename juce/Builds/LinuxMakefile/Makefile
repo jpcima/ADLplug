@@ -110,6 +110,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/player_38a5f121.o \
   $(JUCE_OBJDIR)/plugin_editor_4e133bb.o \
   $(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o \
+  $(JUCE_OBJDIR)/wopl_file_21aeabfb.o \
   $(JUCE_OBJDIR)/dbopl_29fab7f2.o \
   $(JUCE_OBJDIR)/nukedopl3_7d9c6478.o \
   $(JUCE_OBJDIR)/nukedopl3_174_285c1147.o \
@@ -260,6 +261,11 @@ $(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o: ../../../sources/plugin_processor.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling plugin_processor.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/wopl_file_21aeabfb.o: ../../../thirdparty/wopl/wopl/wopl_file.c
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling wopl_file.c"
+	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/dbopl_29fab7f2.o: ../../../thirdparty/libADLMIDI/src/chips/dosbox/dbopl.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)

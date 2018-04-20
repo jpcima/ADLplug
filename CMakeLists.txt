@@ -86,6 +86,10 @@ message("Build Jack: ${ADLplug_Jack}")
 
 include("${CMAKE_SOURCE_DIR}/JUCE-targets.cmake")
 
+add_library(wopl STATIC "thirdparty/wopl/wopl/wopl_file.c")
+target_include_directories(wopl PUBLIC "thirdparty/wopl")
+set_property(TARGET wopl PROPERTY POSITION_INDEPENDENT_CODE ON)
+
 add_library(ADLplug_core STATIC
   "JuceLibraryCode/BinaryData.cpp"
   "sources/utility/simple_fifo.cc"
@@ -112,7 +116,7 @@ target_link_libraries(ADLplug_core
   juce_core juce_events juce_data_structures
   juce_audio_basics juce_audio_devices juce_audio_formats juce_audio_processors juce_audio_utils
   juce_graphics juce_gui_basics juce_gui_extra
-  PRIVATE ADLMIDI_static)
+  PRIVATE ADLMIDI_static wopl)
 set_property(TARGET ADLplug_core
   PROPERTY POSITION_INDEPENDENT_CODE ON)
 

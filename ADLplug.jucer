@@ -11,7 +11,15 @@
               id="ojbkOL">
   <MAINGROUP id="faq0v0" name="ADLplug">
     <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
-      <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="resources/ui/knob-skin.png"/>
+      <GROUP id="{02680B2E-61B1-FA1B-3D9A-89A688227935}" name="ui">
+        <GROUP id="{877CC963-FD61-84EC-01EC-E41153BC0627}" name="noto-emoji">
+          <FILE id="Q6lsDQ" name="emoji_u1f4be.png" compile="0" resource="1"
+                file="resources/ui/noto-emoji/emoji_u1f4be.png"/>
+          <FILE id="zQcn4S" name="emoji_u1f4c2.png" compile="0" resource="1"
+                file="resources/ui/noto-emoji/emoji_u1f4c2.png"/>
+        </GROUP>
+        <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="resources/ui/knob-skin.png"/>
+      </GROUP>
     </GROUP>
     <GROUP id="{57FD1426-D8BF-7CCC-6B25-2A7108A4390B}" name="sources">
       <GROUP id="{2E9ABF3F-6195-1F35-766C-4D30B755E87E}" name="dsp">
@@ -75,6 +83,12 @@
             file="sources/plugin_processor.h"/>
     </GROUP>
     <GROUP id="{C55CC9DB-ED0F-DE1B-46CB-A28A61433406}" name="thirdparty">
+      <GROUP id="{55F90F3C-3521-0BD5-0978-A6334B278C70}" name="wopl">
+        <GROUP id="{A9210AD0-C405-73DB-95F8-F22346CD4FCC}" name="wopl">
+          <FILE id="NQlYCa" name="wopl_file.c" compile="1" resource="0" file="thirdparty/wopl/wopl/wopl_file.c"/>
+          <FILE id="gC1weA" name="wopl_file.h" compile="0" resource="0" file="thirdparty/wopl/wopl/wopl_file.h"/>
+        </GROUP>
+      </GROUP>
       <GROUP id="{46FD1D8A-303F-2543-5E20-D07F19C1C62D}" name="libADLMIDI">
         <GROUP id="{27FCCD7E-2B41-8DEA-8B6B-3033713471D2}" name="src">
           <GROUP id="{8038FC48-896F-DD32-B76F-C79A56D89109}" name="chips">

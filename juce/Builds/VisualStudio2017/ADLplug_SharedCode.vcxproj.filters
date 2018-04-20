@@ -2,6 +2,12 @@
 
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="ADLplug\resources\ui\noto-emoji">
+      <UniqueIdentifier>{2288D80B-8FCD-D223-C21C-84DE757503F1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\resources\ui">
+      <UniqueIdentifier>{81724DEE-E899-3942-1F8B-81EE4F205704}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\resources">
       <UniqueIdentifier>{95FAA976-2189-7683-BA44-3180A641CA15}</UniqueIdentifier>
     </Filter>
@@ -22,6 +28,12 @@
     </Filter>
     <Filter Include="ADLplug\sources">
       <UniqueIdentifier>{337050D3-2325-64ED-EBA1-66A581B1107F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\wopl\wopl">
+      <UniqueIdentifier>{57412E37-DB20-0F75-B7AA-6E53A1FD1109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\wopl">
+      <UniqueIdentifier>{0862D760-3908-CFE9-6CAA-880AA476324F}</UniqueIdentifier>
     </Filter>
     <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips\dosbox">
       <UniqueIdentifier>{CF80540C-7182-A6A8-10FB-E4FB9014A866}</UniqueIdentifier>
@@ -453,6 +465,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\sources\plugin_processor.cc">
       <Filter>ADLplug\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\wopl\wopl\wopl_file.c">
+      <Filter>ADLplug\thirdparty\wopl\wopl</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.cpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\dosbox</Filter>
@@ -2390,6 +2405,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\sources\plugin_processor.h">
       <Filter>ADLplug\sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\wopl\wopl\wopl_file.h">
+      <Filter>ADLplug\thirdparty\wopl\wopl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.h">
       <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\dosbox</Filter>
@@ -4379,8 +4397,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png">
+      <Filter>ADLplug\resources\ui\noto-emoji</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png">
+      <Filter>ADLplug\resources\ui\noto-emoji</Filter>
+    </None>
     <None Include="..\..\..\resources\ui\knob-skin.png">
-      <Filter>ADLplug\resources</Filter>
+      <Filter>ADLplug\resources\ui</Filter>
     </None>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt">
       <Filter>JUCE Modules\juce_audio_formats\codecs\flac</Filter>

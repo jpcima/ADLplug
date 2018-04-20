@@ -285,12 +285,12 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 264, y = 8, width = 78, height = 24;
+        float x = 264.0f, y = 8.0f, width = 78.0f, height = 24.0f;
         Colour fillColour = Colour (0xd3a52a2a);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
+        g.fillRoundedRectangle (x, y, width, height, 3.000f);
     }
 
     //[UserPaint] Add your own custom painting code here..
@@ -400,7 +400,8 @@ BEGIN_JUCER_METADATA
           fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
           bold="0" italic="0" justification="33"/>
     <RECT pos="52 64 100 24" fill="solid: ff373737" hasStroke="0"/>
-    <RECT pos="264 8 78 24" fill="solid: d3a52a2a" hasStroke="0"/>
+    <ROUNDRECT pos="264 8 78 24" cornerSize="3.00000000000000000000" fill="solid: d3a52a2a"
+               hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="7c54ff103d9f5d" memberName="kn_attack"
                     virtualName="" explicitFocusOrder="0" pos="56 8 48 48" class="Styled_Knob_Default"

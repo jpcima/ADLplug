@@ -8,11 +8,17 @@
 
 namespace BinaryData
 {
+    extern const char*   emoji_u1f4be_png;
+    const int            emoji_u1f4be_pngSize = 1505;
+
+    extern const char*   emoji_u1f4c2_png;
+    const int            emoji_u1f4c2_pngSize = 2181;
+
     extern const char*   knobskin_png;
     const int            knobskin_pngSize = 21416;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 1;
+    const int namedResourceListSize = 3;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

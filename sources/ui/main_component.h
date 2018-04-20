@@ -69,11 +69,16 @@ public:
     // Binary resources:
     static const char* logo_png;
     static const int logo_pngSize;
+    static const char* emoji_u1f4be_png;
+    static const int emoji_u1f4be_pngSize;
+    static const char* emoji_u1f4c2_png;
+    static const int emoji_u1f4c2_pngSize;
 
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     AdlplugAudioProcessor *proc_ = nullptr;
+    File bank_directory_;
     MidiKeyboardState midi_kb_state_;
 
     class Vu_Timer : public Timer {
@@ -134,6 +139,9 @@ private:
     ScopedPointer<Label> lbl_cpu;
     ScopedPointer<Indicator_NxM> ind_midi_activity;
     ScopedPointer<TextButton> btn_panic;
+    ScopedPointer<ImageButton> btn_bank_save;
+    ScopedPointer<ImageButton> btn_bank_load;
+    ScopedPointer<TextEditor> textEditor;
 
 
     //==============================================================================
