@@ -133,6 +133,7 @@ static void WOPL_parseInstrument(WOPLInstrument *ins, uint8_t *cursor, uint16_t 
 {
     int l;
     strncpy(ins->inst_name, (const char*)cursor, 32);
+    ins->inst_name[32] = '\0';
     ins->note_offset1 = toSint16BE(cursor + 32);
     ins->note_offset2 = toSint16BE(cursor + 34);
     ins->midi_velocity_offset = (int8_t)cursor[36];
@@ -284,6 +285,7 @@ WOPLFile *WOPL_LoadBankFromMem(void *mem, size_t length, int *error)
                     return NULL;
                 }
                 strncpy(bankslots[i][j].bank_name, (const char*)cursor, 32);
+                bankslots[i][j].bank_name[32] = '\0';
                 bankslots[i][j].bank_midi_lsb = cursor[32];
                 bankslots[i][j].bank_midi_msb = cursor[33];
                 GO_FORWARD(34);
