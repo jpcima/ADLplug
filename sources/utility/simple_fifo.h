@@ -31,7 +31,7 @@ private:
 
     static unsigned pad_offset(unsigned offset)
     {
-        unsigned n = offset % sizeof(max_align_t);
-        return offset + (n ? (sizeof(max_align_t) - n) : 0);
+        unsigned n = offset % alignof(max_align_t);
+        return offset + (n ? (alignof(max_align_t) - n) : 0);
     }
 };
