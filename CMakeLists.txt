@@ -142,6 +142,20 @@ if(ADLplug_VST2)
   add_plugin(ADLplug_VST2)
   target_link_libraries(ADLplug_VST2 PRIVATE juce_audio_plugin_client_VST2 ADLplug_core)
   require_symbols(ADLplug_VST2 "VSTPluginMain")
+  if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set_target_properties(ADLplug_VST2 PROPERTIES
+      PREFIX "" OUTPUT_NAME "ADLplug" SUFFIX ""
+      LIBRARY_OUTPUT_DIRECTORY "vst2/ADLplug.vst/Contents/MacOS")
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/vst2/ADLplug.vst/Contents/")
+    file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/vst2/ADLplug.vst/Contents/PkgInfo" "BNDL????")
+    add_custom_target(ADLplug_VST2_InfoPlist ALL
+      "${CMAKE_COMMAND}"
+      "-DCONFIGURE_FILE_INPUT=${PROJECT_SOURCE_DIR}/juce/Builds/MacOSX/Info-VST.plist"
+      "-DCONFIGURE_FILE_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/vst2/ADLplug.vst/Contents/Info.plist"
+      "-DEXECUTABLE_NAME=ADLplug"
+      "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
+      DEPENDS "${PROJECT_SOURCE_DIR}/juce/Builds/MacOSX/Info-VST.plist")
+  endif()
 endif()
 
 if(ADLplug_VST3)
