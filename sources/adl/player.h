@@ -36,6 +36,7 @@ public:
     virtual bool set_num_chips(unsigned chips) = 0;
     virtual void play_midi(const uint8_t *msg, unsigned len) = 0;
     virtual void generate(float *left, float *right, unsigned nframes, unsigned stride) = 0;
+    virtual bool load_bank_file(const char *file) = 0;
 };
 
 std::vector<std::string> enumerate_emulators(Player_Type pt);

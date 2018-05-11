@@ -613,6 +613,13 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
             File file = chooser.getResult();
             bank_directory_ = file.getParentDirectory();
 
+#if 1
+            AdlplugAudioProcessor &proc = *proc_;
+            {
+                std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+                proc.load_bank_stupidly_nonrt(file.getFullPathName().toRawUTF8());
+            }
+#else
             // Load it
             WOPLFile_Ptr wopl;
             std::unique_ptr<uint8_t[]> filedata;
@@ -656,6 +663,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
                 for (unsigned i = 0, n = wopl->banks_count_percussion; i < n; ++i)
                     send_bank(wopl->banks_percussive[i], Bank_Mode::Percussive);
             }
+#endif
         }
         //[/UserButtonCode_btn_bank_load]
     }

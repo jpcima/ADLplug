@@ -144,6 +144,13 @@ void AdlplugAudioProcessor::reconfigure_chip_nonrt()
     // TODO any necessary reconfiguration after reset
 }
 
+bool AdlplugAudioProcessor::load_bank_stupidly_nonrt(const char *path)
+{
+    Generic_Player *pl = player_.get();
+    panic_nonrt();
+    return pl->load_bank_file(path);
+}
+
 std::vector<std::string> AdlplugAudioProcessor::enumerate_emulators()
 {
     Generic_Player *pl = player_.get();

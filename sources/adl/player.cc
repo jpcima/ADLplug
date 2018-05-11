@@ -40,6 +40,7 @@ struct Player_Traits<Player_Type::OPL3>
     static constexpr auto &rt_controller_change = adl_rt_controllerChange;
     static constexpr auto &rt_program_change = adl_rt_patchChange;
     static constexpr auto &rt_pitchbend_ml = adl_rt_pitchBendML;
+    static constexpr auto &open_bank_file = adl_openBankFile;
 };
 
 template <Player_Type Pt>
@@ -69,6 +70,8 @@ public:
         { return traits::set_num_chips(player_.get(), chips) == 0; }
     void play_midi(const uint8_t *msg, unsigned len) override;
     void generate(float *left, float *right, unsigned nframes, unsigned stride) override;
+    bool load_bank_file(const char *file) override
+        { return traits::open_bank_file(player_.get(), file) >= 0; }
 };
 
 template <Player_Type Pt>

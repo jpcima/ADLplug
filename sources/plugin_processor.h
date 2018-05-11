@@ -34,6 +34,7 @@ public:
     void set_chip_emulator_nonrt(unsigned emu);
     void panic_nonrt();
     void reconfigure_chip_nonrt();
+    bool load_bank_stupidly_nonrt(const char *path);
     std::vector<std::string> enumerate_emulators();
 
     bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
