@@ -10,8 +10,15 @@ set(ADLplug_Standalone "" CACHE STRING "Build Standalone")
 set(ADLplug_Jack "" CACHE STRING "Build Jack")
 
 option(ADLplug_RT_CHECKER "Enable a detector of RT programming errors" OFF)
+
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+include(GNUWarnings)
+
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread")
+
+enable_gnu_warning("all")
+disable_gnu_warning("multichar")
 
 if(ADLplug_RT_CHECKER)
   add_definitions("-DADLplug_RT_CHECKER=1")

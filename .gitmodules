@@ -4,6 +4,3 @@
 [submodule "thirdparty/JUCE"]
 	path = thirdparty/JUCE
 	url = https://github.com/jpcima/JUCE.git
-[submodule "thirdparty/vst3sdk"]
-	path = thirdparty/vst3sdk
-	url = https://github.com/steinbergmedia/vst3sdk.git
