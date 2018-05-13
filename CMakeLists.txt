@@ -122,7 +122,7 @@ set_property(TARGET ADLplug_core
   PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 macro(add_plugin NAME)
-  add_library("${NAME}" MODULE ${ARGN})
+  add_library("${NAME}" MODULE "sources/nothing.cc" ${ARGN})
   set_property(TARGET "${NAME}" PROPERTY PREFIX "")
   if(CMAKE_SYSTEM_NAME STREQUAL "Windows" AND CMAKE_COMPILER_IS_GNUCXX)
     # forces the static link of standard libraries
@@ -189,7 +189,7 @@ if(ADLplug_LV2)
 endif()
 
 if(ADLplug_Standalone)
-  add_executable(ADLplug_Standalone sources/main.cc)
+  add_executable(ADLplug_Standalone "sources/nothing.cc")
   target_link_libraries(ADLplug_Standalone PRIVATE juce_audio_plugin_client_Standalone ADLplug_core)
   if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     require_symbols(ADLplug_Standalone "_WinMain@16")
@@ -205,7 +205,7 @@ if(ADLplug_Standalone)
 endif()
 
 if(ADLplug_Jack)
-  add_executable(ADLplug_Jack sources/jack_main.cc)
+  add_executable(ADLplug_Jack "sources/jack_main.cc")
   target_link_libraries(ADLplug_Jack PRIVATE juce_audio_plugin_client_StandaloneCustom ADLplug_core ${JACK_LIBRARIES})
   target_include_directories(ADLplug_Jack PRIVATE ${JACK_INCLUDE_DIRS})
   link_directories(${JACK_LIBRARY_DIRS})
