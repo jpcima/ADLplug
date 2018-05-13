@@ -13,6 +13,7 @@ option(ADLplug_RT_CHECKER "Enable a detector of RT programming errors" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 include(GNUWarnings)
+include(LinkHelpers)
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread")
@@ -24,9 +25,6 @@ if(ADLplug_RT_CHECKER)
   add_definitions("-DADLplug_RT_CHECKER=1")
   set(ADLplug_RT_CHECKER_LINK_FLAGS "-Wl,--wrap=malloc -Wl,--wrap=realloc -Wl,--wrap=free -Wl,--wrap=memalign")
 endif()
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
-include(LinkHelpers)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   if(CMAKE_COMPILER_IS_GNUCXX)
