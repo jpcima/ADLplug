@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.1
+  Created with Projucer version: 5.3.2
 
   ------------------------------------------------------------------------------
 
@@ -62,24 +62,24 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<Styled_Knob_Default> kn_attack;
-    ScopedPointer<Styled_Knob_Default> kn_decay;
-    ScopedPointer<Styled_Knob_Default> kn_sustain;
-    ScopedPointer<Styled_Knob_Default> kn_release;
-    ScopedPointer<TextButton> textButton;
-    ScopedPointer<TextButton> textButton2;
-    ScopedPointer<TextButton> btn_trem;
-    ScopedPointer<TextButton> btn_vib;
-    ScopedPointer<TextButton> btn_sus;
-    ScopedPointer<TextButton> btn_env;
-    ScopedPointer<Slider> sl_level;
-    ScopedPointer<Slider> sl_fmul;
-    ScopedPointer<Slider> sl_ksl;
-    ScopedPointer<Label> lb_optype;
-    ScopedPointer<Label> lbl_level;
-    ScopedPointer<Label> lbl_fmul;
-    ScopedPointer<Label> lbl_ksl;
-    ScopedPointer<Wave_Label> lbl_wave;
+    std::unique_ptr<Styled_Knob_Default> kn_attack;
+    std::unique_ptr<Styled_Knob_Default> kn_decay;
+    std::unique_ptr<Styled_Knob_Default> kn_sustain;
+    std::unique_ptr<Styled_Knob_Default> kn_release;
+    std::unique_ptr<TextButton> textButton;
+    std::unique_ptr<TextButton> textButton2;
+    std::unique_ptr<TextButton> btn_trem;
+    std::unique_ptr<TextButton> btn_vib;
+    std::unique_ptr<TextButton> btn_sus;
+    std::unique_ptr<TextButton> btn_env;
+    std::unique_ptr<Slider> sl_level;
+    std::unique_ptr<Slider> sl_fmul;
+    std::unique_ptr<Slider> sl_ksl;
+    std::unique_ptr<Label> lb_optype;
+    std::unique_ptr<Label> lbl_level;
+    std::unique_ptr<Label> lbl_fmul;
+    std::unique_ptr<Label> lbl_ksl;
+    std::unique_ptr<Wave_Label> lbl_wave;
 
 
     //==============================================================================

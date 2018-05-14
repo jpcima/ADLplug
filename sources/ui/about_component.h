@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.1
+  Created with Projucer version: 5.3.2
 
   ------------------------------------------------------------------------------
 
@@ -54,10 +54,10 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<HyperlinkButton> hyperlinkButton;
-    ScopedPointer<Label> label;
-    ScopedPointer<Label> label2;
-    ScopedPointer<Label> lbl_prog_version;
+    std::unique_ptr<HyperlinkButton> hyperlinkButton;
+    std::unique_ptr<Label> label;
+    std::unique_ptr<Label> label2;
+    std::unique_ptr<Label> lbl_prog_version;
 
 
     //==============================================================================

@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.1
+  Created with Projucer version: 5.3.2
 
   ------------------------------------------------------------------------------
 
@@ -33,41 +33,48 @@ Operator_Editor::Operator_Editor ()
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    addAndMakeVisible (kn_attack = new Styled_Knob_Default());
+    kn_attack.reset (new Styled_Knob_Default());
+    addAndMakeVisible (kn_attack.get());
     kn_attack->setName ("new component");
 
     kn_attack->setBounds (56, 8, 48, 48);
 
-    addAndMakeVisible (kn_decay = new Styled_Knob_Default());
+    kn_decay.reset (new Styled_Knob_Default());
+    addAndMakeVisible (kn_decay.get());
     kn_decay->setName ("new component");
 
     kn_decay->setBounds (104, 8, 48, 48);
 
-    addAndMakeVisible (kn_sustain = new Styled_Knob_Default());
+    kn_sustain.reset (new Styled_Knob_Default());
+    addAndMakeVisible (kn_sustain.get());
     kn_sustain->setName ("new component");
 
     kn_sustain->setBounds (152, 8, 48, 48);
 
-    addAndMakeVisible (kn_release = new Styled_Knob_Default());
+    kn_release.reset (new Styled_Knob_Default());
+    addAndMakeVisible (kn_release.get());
     kn_release->setName ("new component");
 
     kn_release->setBounds (200, 8, 48, 48);
 
-    addAndMakeVisible (textButton = new TextButton ("new button"));
+    textButton.reset (new TextButton ("new button"));
+    addAndMakeVisible (textButton.get());
     textButton->setButtonText (TRANS("<"));
     textButton->setConnectedEdges (Button::ConnectedOnRight);
     textButton->addListener (this);
 
     textButton->setBounds (161, 64, 23, 24);
 
-    addAndMakeVisible (textButton2 = new TextButton ("new button"));
+    textButton2.reset (new TextButton ("new button"));
+    addAndMakeVisible (textButton2.get());
     textButton2->setButtonText (TRANS(">"));
     textButton2->setConnectedEdges (Button::ConnectedOnLeft);
     textButton2->addListener (this);
 
     textButton2->setBounds (184, 64, 23, 24);
 
-    addAndMakeVisible (btn_trem = new TextButton ("new button"));
+    btn_trem.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_trem.get());
     btn_trem->setButtonText (TRANS("TREM"));
     btn_trem->setConnectedEdges (Button::ConnectedOnRight);
     btn_trem->addListener (this);
@@ -75,7 +82,8 @@ Operator_Editor::Operator_Editor ()
 
     btn_trem->setBounds (32, 96, 48, 24);
 
-    addAndMakeVisible (btn_vib = new TextButton ("new button"));
+    btn_vib.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_vib.get());
     btn_vib->setButtonText (TRANS("VIB"));
     btn_vib->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     btn_vib->addListener (this);
@@ -83,7 +91,8 @@ Operator_Editor::Operator_Editor ()
 
     btn_vib->setBounds (80, 96, 48, 24);
 
-    addAndMakeVisible (btn_sus = new TextButton ("new button"));
+    btn_sus.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_sus.get());
     btn_sus->setButtonText (TRANS("SUS"));
     btn_sus->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     btn_sus->addListener (this);
@@ -91,7 +100,8 @@ Operator_Editor::Operator_Editor ()
 
     btn_sus->setBounds (128, 96, 48, 24);
 
-    addAndMakeVisible (btn_env = new TextButton ("new button"));
+    btn_env.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_env.get());
     btn_env->setButtonText (TRANS("ENV"));
     btn_env->setConnectedEdges (Button::ConnectedOnLeft);
     btn_env->addListener (this);
@@ -99,7 +109,8 @@ Operator_Editor::Operator_Editor ()
 
     btn_env->setBounds (176, 96, 48, 24);
 
-    addAndMakeVisible (sl_level = new Slider ("new slider"));
+    sl_level.reset (new Slider ("new slider"));
+    addAndMakeVisible (sl_level.get());
     sl_level->setRange (0, 10, 0);
     sl_level->setSliderStyle (Slider::LinearVertical);
     sl_level->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
@@ -107,7 +118,8 @@ Operator_Editor::Operator_Editor ()
 
     sl_level->setBounds (264, 32, 24, 70);
 
-    addAndMakeVisible (sl_fmul = new Slider ("new slider"));
+    sl_fmul.reset (new Slider ("new slider"));
+    addAndMakeVisible (sl_fmul.get());
     sl_fmul->setRange (0, 10, 0);
     sl_fmul->setSliderStyle (Slider::LinearVertical);
     sl_fmul->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
@@ -115,7 +127,8 @@ Operator_Editor::Operator_Editor ()
 
     sl_fmul->setBounds (288, 32, 24, 70);
 
-    addAndMakeVisible (sl_ksl = new Slider ("new slider"));
+    sl_ksl.reset (new Slider ("new slider"));
+    addAndMakeVisible (sl_ksl.get());
     sl_ksl->setRange (0, 10, 0);
     sl_ksl->setSliderStyle (Slider::LinearVertical);
     sl_ksl->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
@@ -123,8 +136,9 @@ Operator_Editor::Operator_Editor ()
 
     sl_ksl->setBounds (312, 32, 24, 70);
 
-    addAndMakeVisible (lb_optype = new Label ("new label",
-                                              TRANS("Modulator")));
+    lb_optype.reset (new Label ("new label",
+                                TRANS("Modulator")));
+    addAndMakeVisible (lb_optype.get());
     lb_optype->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Bold"));
     lb_optype->setJustificationType (Justification::centred);
     lb_optype->setEditable (false, false, false);
@@ -134,8 +148,9 @@ Operator_Editor::Operator_Editor ()
 
     lb_optype->setBounds (264, 8, 78, 24);
 
-    addAndMakeVisible (lbl_level = new Label ("new label",
-                                              TRANS("Lv")));
+    lbl_level.reset (new Label ("new label",
+                                TRANS("Lv")));
+    addAndMakeVisible (lbl_level.get());
     lbl_level->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_level->setJustificationType (Justification::centred);
     lbl_level->setEditable (false, false, false);
@@ -144,8 +159,9 @@ Operator_Editor::Operator_Editor ()
 
     lbl_level->setBounds (260, 100, 28, 18);
 
-    addAndMakeVisible (lbl_fmul = new Label ("new label",
-                                             TRANS("F*")));
+    lbl_fmul.reset (new Label ("new label",
+                               TRANS("F*")));
+    addAndMakeVisible (lbl_fmul.get());
     lbl_fmul->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_fmul->setJustificationType (Justification::centred);
     lbl_fmul->setEditable (false, false, false);
@@ -154,8 +170,9 @@ Operator_Editor::Operator_Editor ()
 
     lbl_fmul->setBounds (284, 100, 28, 18);
 
-    addAndMakeVisible (lbl_ksl = new Label ("new label",
-                                            TRANS("Ksl")));
+    lbl_ksl.reset (new Label ("new label",
+                              TRANS("Ksl")));
+    addAndMakeVisible (lbl_ksl.get());
     lbl_ksl->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_ksl->setJustificationType (Justification::centred);
     lbl_ksl->setEditable (false, false, false);
@@ -164,7 +181,8 @@ Operator_Editor::Operator_Editor ()
 
     lbl_ksl->setBounds (308, 100, 28, 18);
 
-    addAndMakeVisible (lbl_wave = new Wave_Label());
+    lbl_wave.reset (new Wave_Label());
+    addAndMakeVisible (lbl_wave.get());
     lbl_wave->setName ("new component");
 
     lbl_wave->setBounds (52, 64, 100, 24);
@@ -311,32 +329,32 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
     //[UserbuttonClicked_Pre]
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == textButton)
+    if (buttonThatWasClicked == textButton.get())
     {
         //[UserButtonCode_textButton] -- add your button handler code here..
         //[/UserButtonCode_textButton]
     }
-    else if (buttonThatWasClicked == textButton2)
+    else if (buttonThatWasClicked == textButton2.get())
     {
         //[UserButtonCode_textButton2] -- add your button handler code here..
         //[/UserButtonCode_textButton2]
     }
-    else if (buttonThatWasClicked == btn_trem)
+    else if (buttonThatWasClicked == btn_trem.get())
     {
         //[UserButtonCode_btn_trem] -- add your button handler code here..
         //[/UserButtonCode_btn_trem]
     }
-    else if (buttonThatWasClicked == btn_vib)
+    else if (buttonThatWasClicked == btn_vib.get())
     {
         //[UserButtonCode_btn_vib] -- add your button handler code here..
         //[/UserButtonCode_btn_vib]
     }
-    else if (buttonThatWasClicked == btn_sus)
+    else if (buttonThatWasClicked == btn_sus.get())
     {
         //[UserButtonCode_btn_sus] -- add your button handler code here..
         //[/UserButtonCode_btn_sus]
     }
-    else if (buttonThatWasClicked == btn_env)
+    else if (buttonThatWasClicked == btn_env.get())
     {
         //[UserButtonCode_btn_env] -- add your button handler code here..
         //[/UserButtonCode_btn_env]
@@ -351,17 +369,17 @@ void Operator_Editor::sliderValueChanged (Slider* sliderThatWasMoved)
     //[UsersliderValueChanged_Pre]
     //[/UsersliderValueChanged_Pre]
 
-    if (sliderThatWasMoved == sl_level)
+    if (sliderThatWasMoved == sl_level.get())
     {
         //[UserSliderCode_sl_level] -- add your slider handling code here..
         //[/UserSliderCode_sl_level]
     }
-    else if (sliderThatWasMoved == sl_fmul)
+    else if (sliderThatWasMoved == sl_fmul.get())
     {
         //[UserSliderCode_sl_fmul] -- add your slider handling code here..
         //[/UserSliderCode_sl_fmul]
     }
-    else if (sliderThatWasMoved == sl_ksl)
+    else if (sliderThatWasMoved == sl_ksl.get())
     {
         //[UserSliderCode_sl_ksl] -- add your slider handling code here..
         //[/UserSliderCode_sl_ksl]

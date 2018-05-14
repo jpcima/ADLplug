@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.1
+  Created with Projucer version: 5.3.2
 
   ------------------------------------------------------------------------------
 
@@ -45,12 +45,14 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    addAndMakeVisible (ed_op2 = new Operator_Editor());
+    ed_op2.reset (new Operator_Editor());
+    addAndMakeVisible (ed_op2.get());
     ed_op2->setName ("new component");
 
     ed_op2->setBounds (16, 160, 352, 128);
 
-    addAndMakeVisible (btn_4op = new TextButton ("new button"));
+    btn_4op.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_4op.get());
     btn_4op->setButtonText (TRANS("4 op"));
     btn_4op->setConnectedEdges (Button::ConnectedOnRight);
     btn_4op->addListener (this);
@@ -58,7 +60,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_4op->setBounds (176, 134, 56, 24);
 
-    addAndMakeVisible (btn_pseudo4op = new TextButton ("new button"));
+    btn_pseudo4op.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_pseudo4op.get());
     btn_pseudo4op->setButtonText (TRANS("2x2 op"));
     btn_pseudo4op->setConnectedEdges (Button::ConnectedOnLeft | Button::ConnectedOnRight);
     btn_pseudo4op->addListener (this);
@@ -66,7 +69,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_pseudo4op->setBounds (232, 134, 56, 24);
 
-    addAndMakeVisible (btn_2op = new TextButton ("new button"));
+    btn_2op.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_2op.get());
     btn_2op->setButtonText (TRANS("2 op"));
     btn_2op->setConnectedEdges (Button::ConnectedOnLeft);
     btn_2op->addListener (this);
@@ -74,7 +78,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_2op->setBounds (288, 134, 56, 24);
 
-    addAndMakeVisible (btn_fm12 = new TextButton ("new button"));
+    btn_fm12.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_fm12.get());
     btn_fm12->setButtonText (TRANS("FM"));
     btn_fm12->setConnectedEdges (Button::ConnectedOnBottom);
     btn_fm12->addListener (this);
@@ -82,7 +87,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_fm12->setBounds (376, 200, 36, 24);
 
-    addAndMakeVisible (btn_am12 = new TextButton ("new button"));
+    btn_am12.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_am12.get());
     btn_am12->setButtonText (TRANS("AM"));
     btn_am12->setConnectedEdges (Button::ConnectedOnTop);
     btn_am12->addListener (this);
@@ -90,17 +96,20 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_am12->setBounds (376, 224, 36, 24);
 
-    addAndMakeVisible (ed_op1 = new Operator_Editor());
+    ed_op1.reset (new Operator_Editor());
+    addAndMakeVisible (ed_op1.get());
     ed_op1->setName ("new component");
 
     ed_op1->setBounds (421, 160, 352, 128);
 
-    addAndMakeVisible (ed_op4 = new Operator_Editor());
+    ed_op4.reset (new Operator_Editor());
+    addAndMakeVisible (ed_op4.get());
     ed_op4->setName ("new component");
 
     ed_op4->setBounds (16, 328, 352, 128);
 
-    addAndMakeVisible (btn_fm34 = new TextButton ("new button"));
+    btn_fm34.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_fm34.get());
     btn_fm34->setButtonText (TRANS("FM"));
     btn_fm34->setConnectedEdges (Button::ConnectedOnBottom);
     btn_fm34->addListener (this);
@@ -108,7 +117,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_fm34->setBounds (376, 368, 36, 24);
 
-    addAndMakeVisible (btn_am34 = new TextButton ("new button"));
+    btn_am34.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_am34.get());
     btn_am34->setButtonText (TRANS("AM"));
     btn_am34->setConnectedEdges (Button::ConnectedOnTop);
     btn_am34->addListener (this);
@@ -116,12 +126,14 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_am34->setBounds (376, 392, 36, 24);
 
-    addAndMakeVisible (ed_op3 = new Operator_Editor());
+    ed_op3.reset (new Operator_Editor());
+    addAndMakeVisible (ed_op3.get());
     ed_op3->setName ("new component");
 
     ed_op3->setBounds (421, 328, 352, 128);
 
-    addAndMakeVisible (sl_tune12 = new Slider ("new slider"));
+    sl_tune12.reset (new Slider ("new slider"));
+    addAndMakeVisible (sl_tune12.get());
     sl_tune12->setRange (-127, 127, 0);
     sl_tune12->setSliderStyle (Slider::LinearHorizontal);
     sl_tune12->setTextBoxStyle (Slider::TextBoxRight, false, 36, 20);
@@ -129,7 +141,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     sl_tune12->setBounds (568, 136, 150, 24);
 
-    addAndMakeVisible (sl_tune34 = new Slider ("new slider"));
+    sl_tune34.reset (new Slider ("new slider"));
+    addAndMakeVisible (sl_tune34.get());
     sl_tune34->setRange (-127, 127, 0);
     sl_tune34->setSliderStyle (Slider::LinearHorizontal);
     sl_tune34->setTextBoxStyle (Slider::TextBoxRight, false, 36, 20);
@@ -137,22 +150,26 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     sl_tune34->setBounds (568, 304, 150, 24);
 
-    addAndMakeVisible (component5 = new Styled_Knob_DefaultSmall());
+    component5.reset (new Styled_Knob_DefaultSmall());
+    addAndMakeVisible (component5.get());
     component5->setName ("new component");
 
     component5->setBounds (496, 128, 32, 32);
 
-    addAndMakeVisible (component6 = new Styled_Knob_DefaultSmall());
+    component6.reset (new Styled_Knob_DefaultSmall());
+    addAndMakeVisible (component6.get());
     component6->setName ("new component");
 
     component6->setBounds (496, 296, 32, 32);
 
-    addAndMakeVisible (midi_kb = new MidiKeyboardComponent (midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard));
+    midi_kb.reset (new MidiKeyboardComponent (midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard));
+    addAndMakeVisible (midi_kb.get());
     midi_kb->setName ("new component");
 
     midi_kb->setBounds (16, 480, 757, 56);
 
-    addAndMakeVisible (btn_about = new ImageButton ("new button"));
+    btn_about.reset (new ImageButton ("new button"));
+    addAndMakeVisible (btn_about.get());
     btn_about->setButtonText (String());
     btn_about->addListener (this);
 
@@ -162,8 +179,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
                           Image(), 1.000f, Colour (0x00000000));
     btn_about->setBounds (16, 8, 232, 40);
 
-    addAndMakeVisible (label = new Label ("new label",
-                                          TRANS("Chips")));
+    label.reset (new Label ("new label",
+                            TRANS("Chips")));
+    addAndMakeVisible (label.get());
     label->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     label->setJustificationType (Justification::centredLeft);
     label->setEditable (false, false, false);
@@ -173,8 +191,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     label->setBounds (480, 40, 48, 24);
 
-    addAndMakeVisible (lbl_num_chips = new Label ("new label",
-                                                  TRANS("100")));
+    lbl_num_chips.reset (new Label ("new label",
+                                    TRANS("100")));
+    addAndMakeVisible (lbl_num_chips.get());
     lbl_num_chips->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_num_chips->setJustificationType (Justification::centred);
     lbl_num_chips->setEditable (false, false, false);
@@ -185,21 +204,24 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     lbl_num_chips->setBounds (528, 40, 32, 24);
 
-    addAndMakeVisible (btn_less_chips = new TextButton ("new button"));
+    btn_less_chips.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_less_chips.get());
     btn_less_chips->setButtonText (TRANS("<"));
     btn_less_chips->setConnectedEdges (Button::ConnectedOnRight);
     btn_less_chips->addListener (this);
 
     btn_less_chips->setBounds (568, 40, 23, 24);
 
-    addAndMakeVisible (btn_more_chips = new TextButton ("new button"));
+    btn_more_chips.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_more_chips.get());
     btn_more_chips->setButtonText (TRANS(">"));
     btn_more_chips->setConnectedEdges (Button::ConnectedOnLeft);
     btn_more_chips->addListener (this);
 
     btn_more_chips->setBounds (591, 40, 23, 24);
 
-    addAndMakeVisible (cb_emulator = new ComboBox ("new combo box"));
+    cb_emulator.reset (new ComboBox ("new combo box"));
+    addAndMakeVisible (cb_emulator.get());
     cb_emulator->setEditableText (false);
     cb_emulator->setJustificationType (Justification::centredLeft);
     cb_emulator->setTextWhenNothingSelected (String());
@@ -208,8 +230,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     cb_emulator->setBounds (272, 40, 198, 24);
 
-    addAndMakeVisible (label2 = new Label ("new label",
-                                           TRANS("FM synthesizer with YMF262 chip emulation")));
+    label2.reset (new Label ("new label",
+                             TRANS("FM synthesizer with YMF262 chip emulation")));
+    addAndMakeVisible (label2.get());
     label2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     label2->setJustificationType (Justification::centredLeft);
     label2->setEditable (false, false, false);
@@ -219,18 +242,21 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     label2->setBounds (280, 8, 280, 24);
 
-    addAndMakeVisible (vu_left = new Vu_Meter());
+    vu_left.reset (new Vu_Meter());
+    addAndMakeVisible (vu_left.get());
     vu_left->setName ("new component");
 
     vu_left->setBounds (680, 8, 92, 12);
 
-    addAndMakeVisible (vu_right = new Vu_Meter());
+    vu_right.reset (new Vu_Meter());
+    addAndMakeVisible (vu_right.get());
     vu_right->setName ("new component");
 
     vu_right->setBounds (680, 24, 92, 12);
 
-    addAndMakeVisible (label3 = new Label ("new label",
-                                           TRANS("CPU")));
+    label3.reset (new Label ("new label",
+                             TRANS("CPU")));
+    addAndMakeVisible (label3.get());
     label3->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     label3->setJustificationType (Justification::centredLeft);
     label3->setEditable (false, false, false);
@@ -240,8 +266,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     label3->setBounds (684, 40, 40, 24);
 
-    addAndMakeVisible (lbl_cpu = new Label ("new label",
-                                            TRANS("100%")));
+    lbl_cpu.reset (new Label ("new label",
+                              TRANS("100%")));
+    addAndMakeVisible (lbl_cpu.get());
     lbl_cpu->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_cpu->setJustificationType (Justification::centred);
     lbl_cpu->setEditable (false, false, false);
@@ -252,12 +279,14 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     lbl_cpu->setBounds (724, 40, 48, 24);
 
-    addAndMakeVisible (ind_midi_activity = new Indicator_NxM (2, 8));
+    ind_midi_activity.reset (new Indicator_NxM (2, 8));
+    addAndMakeVisible (ind_midi_activity.get());
     ind_midi_activity->setName ("new component");
 
     ind_midi_activity->setBounds (568, 8, 102, 28);
 
-    addAndMakeVisible (btn_panic = new TextButton ("new button"));
+    btn_panic.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_panic.get());
     btn_panic->setButtonText (TRANS("Panic"));
     btn_panic->setConnectedEdges (Button::ConnectedOnBottom);
     btn_panic->addListener (this);
@@ -265,7 +294,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_panic->setBounds (622, 40, 48, 24);
 
-    addAndMakeVisible (btn_bank_save = new ImageButton ("new button"));
+    btn_bank_save.reset (new ImageButton ("new button"));
+    addAndMakeVisible (btn_bank_save.get());
     btn_bank_save->addListener (this);
 
     btn_bank_save->setImages (false, true, true,
@@ -274,7 +304,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
                               Image(), 1.000f, Colour (0x00000000));
     btn_bank_save->setBounds (264, 80, 30, 24);
 
-    addAndMakeVisible (btn_bank_load = new ImageButton ("new button"));
+    btn_bank_load.reset (new ImageButton ("new button"));
+    addAndMakeVisible (btn_bank_load.get());
     btn_bank_load->addListener (this);
 
     btn_bank_load->setImages (false, true, true,
@@ -283,7 +314,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
                               Image(), 1.000f, Colour (0x00000000));
     btn_bank_load->setBounds (232, 80, 30, 24);
 
-    addAndMakeVisible (edt_bank_name = new TextEditor ("new text editor"));
+    edt_bank_name.reset (new TextEditor ("new text editor"));
+    addAndMakeVisible (edt_bank_name.get());
     edt_bank_name->setMultiLine (false);
     edt_bank_name->setReturnKeyStartsNewLine (false);
     edt_bank_name->setReadOnly (false);
@@ -514,48 +546,48 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     //[UserbuttonClicked_Pre]
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == btn_4op)
+    if (buttonThatWasClicked == btn_4op.get())
     {
         //[UserButtonCode_btn_4op] -- add your button handler code here..
         //[/UserButtonCode_btn_4op]
     }
-    else if (buttonThatWasClicked == btn_pseudo4op)
+    else if (buttonThatWasClicked == btn_pseudo4op.get())
     {
         //[UserButtonCode_btn_pseudo4op] -- add your button handler code here..
         //[/UserButtonCode_btn_pseudo4op]
     }
-    else if (buttonThatWasClicked == btn_2op)
+    else if (buttonThatWasClicked == btn_2op.get())
     {
         //[UserButtonCode_btn_2op] -- add your button handler code here..
         //[/UserButtonCode_btn_2op]
     }
-    else if (buttonThatWasClicked == btn_fm12)
+    else if (buttonThatWasClicked == btn_fm12.get())
     {
         //[UserButtonCode_btn_fm12] -- add your button handler code here..
         //[/UserButtonCode_btn_fm12]
     }
-    else if (buttonThatWasClicked == btn_am12)
+    else if (buttonThatWasClicked == btn_am12.get())
     {
         //[UserButtonCode_btn_am12] -- add your button handler code here..
         //[/UserButtonCode_btn_am12]
     }
-    else if (buttonThatWasClicked == btn_fm34)
+    else if (buttonThatWasClicked == btn_fm34.get())
     {
         //[UserButtonCode_btn_fm34] -- add your button handler code here..
         //[/UserButtonCode_btn_fm34]
     }
-    else if (buttonThatWasClicked == btn_am34)
+    else if (buttonThatWasClicked == btn_am34.get())
     {
         //[UserButtonCode_btn_am34] -- add your button handler code here..
         //[/UserButtonCode_btn_am34]
     }
-    else if (buttonThatWasClicked == btn_about)
+    else if (buttonThatWasClicked == btn_about.get())
     {
         //[UserButtonCode_btn_about] -- add your button handler code here..
         popup_about_dialog();
         //[/UserButtonCode_btn_about]
     }
-    else if (buttonThatWasClicked == btn_less_chips)
+    else if (buttonThatWasClicked == btn_less_chips.get())
     {
         //[UserButtonCode_btn_less_chips] -- add your button handler code here..
         AdlplugAudioProcessor &proc = *proc_;
@@ -568,7 +600,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         }
         //[/UserButtonCode_btn_less_chips]
     }
-    else if (buttonThatWasClicked == btn_more_chips)
+    else if (buttonThatWasClicked == btn_more_chips.get())
     {
         //[UserButtonCode_btn_more_chips] -- add your button handler code here..
         AdlplugAudioProcessor &proc = *proc_;
@@ -581,7 +613,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         }
         //[/UserButtonCode_btn_more_chips]
     }
-    else if (buttonThatWasClicked == btn_panic)
+    else if (buttonThatWasClicked == btn_panic.get())
     {
         //[UserButtonCode_btn_panic] -- add your button handler code here..
         AdlplugAudioProcessor &proc = *proc_;
@@ -589,7 +621,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         proc.panic_nonrt();
         //[/UserButtonCode_btn_panic]
     }
-    else if (buttonThatWasClicked == btn_bank_save)
+    else if (buttonThatWasClicked == btn_bank_save.get())
     {
         //[UserButtonCode_btn_bank_save] -- add your button handler code here..
         FileChooser chooser(TRANS("Save bank..."), bank_directory_, "*.wopl");
@@ -605,7 +637,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         }
         //[/UserButtonCode_btn_bank_save]
     }
-    else if (buttonThatWasClicked == btn_bank_load)
+    else if (buttonThatWasClicked == btn_bank_load.get())
     {
         //[UserButtonCode_btn_bank_load] -- add your button handler code here..
         FileChooser chooser(TRANS("Load bank..."), bank_directory_, "*.wopl");
@@ -669,12 +701,12 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
     //[UsersliderValueChanged_Pre]
     //[/UsersliderValueChanged_Pre]
 
-    if (sliderThatWasMoved == sl_tune12)
+    if (sliderThatWasMoved == sl_tune12.get())
     {
         //[UserSliderCode_sl_tune12] -- add your slider handling code here..
         //[/UserSliderCode_sl_tune12]
     }
-    else if (sliderThatWasMoved == sl_tune34)
+    else if (sliderThatWasMoved == sl_tune34.get())
     {
         //[UserSliderCode_sl_tune34] -- add your slider handling code here..
         //[/UserSliderCode_sl_tune34]
@@ -689,7 +721,7 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     //[UsercomboBoxChanged_Pre]
     //[/UsercomboBoxChanged_Pre]
 
-    if (comboBoxThatHasChanged == cb_emulator)
+    if (comboBoxThatHasChanged == cb_emulator.get())
     {
         //[UserComboBoxCode_cb_emulator] -- add your combo box handling code here..
         AdlplugAudioProcessor &proc = *proc_;

@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.1
+  Created with Projucer version: 5.3.2
 
   ------------------------------------------------------------------------------
 
@@ -32,16 +32,18 @@ About_Component::About_Component ()
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    addAndMakeVisible (hyperlinkButton = new HyperlinkButton (TRANS("Home page"),
-                                                              URL ("https://github.com/jpcima/ADLplug")));
+    hyperlinkButton.reset (new HyperlinkButton (TRANS("Home page"),
+                                                URL ("https://github.com/jpcima/ADLplug")));
+    addAndMakeVisible (hyperlinkButton.get());
     hyperlinkButton->setTooltip (TRANS("https://github.com/jpcima/ADLplug"));
     hyperlinkButton->setButtonText (TRANS("Home page"));
 
     hyperlinkButton->setBounds (8, 40, 88, 24);
 
-    addAndMakeVisible (label = new Label ("new label",
-                                          CharPointer_UTF8 ("This program is free software developed by Jean Pierre Cimalando. \xc2\xa9 2018\n"
-                                          "Many thanks to people who make this program possible.")));
+    label.reset (new Label ("new label",
+                            CharPointer_UTF8 ("This program is free software developed by Jean Pierre Cimalando. \xc2\xa9 2018\n"
+                            "Many thanks to people who make this program possible.")));
+    addAndMakeVisible (label.get());
     label->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     label->setJustificationType (Justification::centredLeft);
     label->setEditable (false, false, false);
@@ -50,11 +52,12 @@ About_Component::About_Component ()
 
     label->setBounds (8, 72, 488, 40);
 
-    addAndMakeVisible (label2 = new Label ("new label",
-                                           TRANS("Vitaly Novichkov for the ADLMIDI library\n"
-                                           "Joel Yliluoma for the original ADLMIDI software\n"
-                                           "Alexey Khokholov for Nuked OPL3\n"
-                                           "The Dosbox Team for Dosbox OPL")));
+    label2.reset (new Label ("new label",
+                             TRANS("Vitaly Novichkov for the ADLMIDI library\n"
+                             "Joel Yliluoma for the original ADLMIDI software\n"
+                             "Alexey Khokholov for Nuked OPL3\n"
+                             "The Dosbox Team for Dosbox OPL")));
+    addAndMakeVisible (label2.get());
     label2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
     label2->setJustificationType (Justification::centredLeft);
     label2->setEditable (false, false, false);
@@ -63,8 +66,9 @@ About_Component::About_Component ()
 
     label2->setBounds (8, 120, 488, 56);
 
-    addAndMakeVisible (lbl_prog_version = new Label ("new label",
-                                                     TRANS("Foobar 1.0")));
+    lbl_prog_version.reset (new Label ("new label",
+                                       TRANS("Foobar 1.0")));
+    addAndMakeVisible (lbl_prog_version.get());
     lbl_prog_version->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Bold"));
     lbl_prog_version->setJustificationType (Justification::centredLeft);
     lbl_prog_version->setEditable (false, false, false);

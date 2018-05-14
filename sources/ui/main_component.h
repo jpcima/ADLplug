@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.1
+  Created with Projucer version: 5.3.2
 
   ------------------------------------------------------------------------------
 
@@ -110,38 +110,38 @@ private:
     //[/UserVariables]
 
     //==============================================================================
-    ScopedPointer<Operator_Editor> ed_op2;
-    ScopedPointer<TextButton> btn_4op;
-    ScopedPointer<TextButton> btn_pseudo4op;
-    ScopedPointer<TextButton> btn_2op;
-    ScopedPointer<TextButton> btn_fm12;
-    ScopedPointer<TextButton> btn_am12;
-    ScopedPointer<Operator_Editor> ed_op1;
-    ScopedPointer<Operator_Editor> ed_op4;
-    ScopedPointer<TextButton> btn_fm34;
-    ScopedPointer<TextButton> btn_am34;
-    ScopedPointer<Operator_Editor> ed_op3;
-    ScopedPointer<Slider> sl_tune12;
-    ScopedPointer<Slider> sl_tune34;
-    ScopedPointer<Styled_Knob_DefaultSmall> component5;
-    ScopedPointer<Styled_Knob_DefaultSmall> component6;
-    ScopedPointer<MidiKeyboardComponent> midi_kb;
-    ScopedPointer<ImageButton> btn_about;
-    ScopedPointer<Label> label;
-    ScopedPointer<Label> lbl_num_chips;
-    ScopedPointer<TextButton> btn_less_chips;
-    ScopedPointer<TextButton> btn_more_chips;
-    ScopedPointer<ComboBox> cb_emulator;
-    ScopedPointer<Label> label2;
-    ScopedPointer<Vu_Meter> vu_left;
-    ScopedPointer<Vu_Meter> vu_right;
-    ScopedPointer<Label> label3;
-    ScopedPointer<Label> lbl_cpu;
-    ScopedPointer<Indicator_NxM> ind_midi_activity;
-    ScopedPointer<TextButton> btn_panic;
-    ScopedPointer<ImageButton> btn_bank_save;
-    ScopedPointer<ImageButton> btn_bank_load;
-    ScopedPointer<TextEditor> edt_bank_name;
+    std::unique_ptr<Operator_Editor> ed_op2;
+    std::unique_ptr<TextButton> btn_4op;
+    std::unique_ptr<TextButton> btn_pseudo4op;
+    std::unique_ptr<TextButton> btn_2op;
+    std::unique_ptr<TextButton> btn_fm12;
+    std::unique_ptr<TextButton> btn_am12;
+    std::unique_ptr<Operator_Editor> ed_op1;
+    std::unique_ptr<Operator_Editor> ed_op4;
+    std::unique_ptr<TextButton> btn_fm34;
+    std::unique_ptr<TextButton> btn_am34;
+    std::unique_ptr<Operator_Editor> ed_op3;
+    std::unique_ptr<Slider> sl_tune12;
+    std::unique_ptr<Slider> sl_tune34;
+    std::unique_ptr<Styled_Knob_DefaultSmall> component5;
+    std::unique_ptr<Styled_Knob_DefaultSmall> component6;
+    std::unique_ptr<MidiKeyboardComponent> midi_kb;
+    std::unique_ptr<ImageButton> btn_about;
+    std::unique_ptr<Label> label;
+    std::unique_ptr<Label> lbl_num_chips;
+    std::unique_ptr<TextButton> btn_less_chips;
+    std::unique_ptr<TextButton> btn_more_chips;
+    std::unique_ptr<ComboBox> cb_emulator;
+    std::unique_ptr<Label> label2;
+    std::unique_ptr<Vu_Meter> vu_left;
+    std::unique_ptr<Vu_Meter> vu_right;
+    std::unique_ptr<Label> label3;
+    std::unique_ptr<Label> lbl_cpu;
+    std::unique_ptr<Indicator_NxM> ind_midi_activity;
+    std::unique_ptr<TextButton> btn_panic;
+    std::unique_ptr<ImageButton> btn_bank_save;
+    std::unique_ptr<ImageButton> btn_bank_load;
+    std::unique_ptr<TextEditor> edt_bank_name;
 
 
     //==============================================================================
