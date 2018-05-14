@@ -1,0 +1,4 @@
+EXPORTS
+        InitDll
+        ExitDll
+        GetPluginFactory
