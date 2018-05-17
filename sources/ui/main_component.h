@@ -88,7 +88,7 @@ private:
     private:
         Main_Component *mc_ = nullptr;
     };
-    ScopedPointer<Vu_Timer> vu_timer_;
+    std::unique_ptr<Vu_Timer> vu_timer_;
 
     class Cpu_Load_Timer : public Timer {
     public:
@@ -97,7 +97,7 @@ private:
     private:
         Main_Component *mc_ = nullptr;
     };
-    ScopedPointer<Cpu_Load_Timer> cpu_load_timer_;
+    std::unique_ptr<Cpu_Load_Timer> cpu_load_timer_;
 
     class Midi_Activity_Timer : public Timer {
     public:
@@ -106,7 +106,7 @@ private:
     private:
         Main_Component *mc_ = nullptr;
     };
-    ScopedPointer<Midi_Activity_Timer> midi_activity_timer_;
+    std::unique_ptr<Midi_Activity_Timer> midi_activity_timer_;
     //[/UserVariables]
 
     //==============================================================================

@@ -10,7 +10,7 @@
 
 //==============================================================================
 AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &p)
-    : AudioProcessorEditor(&p) , processor(p)
+    : AudioProcessorEditor(&p)
 {
     Custom_Look_And_Feel *lnf = new Custom_Look_And_Feel;
     lnf_.reset(lnf);
@@ -47,6 +47,6 @@ void AdlplugAudioProcessorEditor::resized()
 
     Rectangle<int> bounds = getLocalBounds();
 
-    Main_Component *main = main_;
+    Main_Component *main = main_.get();
     main->setBounds(bounds);
 }

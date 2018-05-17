@@ -373,14 +373,14 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     // TODO should have an API to get the current emulator...
     cb_emulator->setSelectedId(1);
 
-    vu_timer_ = ScopedPointer<Vu_Timer>(new Vu_Timer(this));
+    vu_timer_.reset(new Vu_Timer(this));
     vu_timer_->startTimer(10);
 
-    cpu_load_timer_ = ScopedPointer<Cpu_Load_Timer>(new Cpu_Load_Timer(this));
+    cpu_load_timer_.reset(new Cpu_Load_Timer(this));
     cpu_load_timer_->startTimer(500);
     lbl_cpu->setText("0%", dontSendNotification);
 
-    midi_activity_timer_ = ScopedPointer<Midi_Activity_Timer>(new Midi_Activity_Timer(this));
+    midi_activity_timer_.reset(new Midi_Activity_Timer(this));
     midi_activity_timer_->startTimer(100);
     //[/Constructor]
 }
@@ -648,7 +648,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
             // Load it
             WOPLFile_Ptr wopl;
             std::unique_ptr<uint8_t[]> filedata;
-            ScopedPointer<FileInputStream> stream = file.createInputStream();
+            std::unique_ptr<FileInputStream> stream(file.createInputStream());
             uint64_t length;
             constexpr uint64_t max_length = 8 * 1024 * 1024;
             const char *error_title = "Error loading bank";
@@ -777,7 +777,6 @@ void Main_Component::midi_activity_update()
 {
     AdlplugAudioProcessor &proc = *proc_;
     for (unsigned i = 0; i < 16; ++i) {
-        const double threshold = midi_activity_timer_->getTimerInterval() * 1e-3;
         bool active = proc.midi_channel_note_count(i) > 0;
         unsigned columns = ind_midi_activity->columns();
         ind_midi_activity->set_value(i / columns, i % columns, active);

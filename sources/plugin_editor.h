@@ -23,12 +23,8 @@ public:
     void resized() override;
 
 private:
-    // This reference is provided as a quick way for your editor to
-    // access the processor object that created it.
-    AdlplugAudioProcessor &processor;
-
-    ScopedPointer<Custom_Look_And_Feel> lnf_;
-    ScopedPointer<Main_Component> main_;
+    std::unique_ptr<Custom_Look_And_Feel> lnf_;
+    std::unique_ptr<Main_Component> main_;
     TooltipWindow tooltip_window_;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessorEditor)

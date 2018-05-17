@@ -13,7 +13,7 @@
 #include <mutex>
 class Generic_Player;
 class Simple_Fifo;
-class Buffered_Message;
+struct Buffered_Message;
 
 //==============================================================================
 /**
