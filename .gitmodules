@@ -1,6 +1,6 @@
 [submodule "thirdparty/libADLMIDI"]
 	path = thirdparty/libADLMIDI
-	url = https://github.com/Wohlstand/libADLMIDI.git
+	url = https://github.com/jpcima/libADLMIDI.git
 [submodule "thirdparty/JUCE"]
 	path = thirdparty/JUCE
 	url = https://github.com/jpcima/JUCE.git
