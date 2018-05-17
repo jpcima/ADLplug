@@ -119,7 +119,8 @@ add_library(ADLplug_core STATIC
   "sources/ui/main_component.cc"
   "sources/ui/graphics_utils.cc"
   "sources/ui/image_utils.cc"
-  "sources/adl/player.cc")
+  "sources/adl/player.cc"
+  "sources/adl/instrument.cc")
 target_include_directories(ADLplug_core PRIVATE "sources")
 target_link_libraries(ADLplug_core
   PUBLIC vf_freetype vf_gui

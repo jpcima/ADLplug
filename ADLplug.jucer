@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT name="ADLplug" projectType="audioplug" buildStandalone="1" jucerVersion="5.3.1"
+<JUCERPROJECT name="ADLplug" projectType="audioplug" buildStandalone="1" jucerVersion="5.3.2"
               pluginFormats="buildVST,buildVST3,buildAU,buildAUv3,buildRTAS,buildAAX,buildStandalone"
               buildVST="1" buildVST3="1" buildAU="1" buildAUv3="1" buildRTAS="1"
               buildAAX="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
@@ -71,6 +71,8 @@
         <FILE id="QIFiOc" name="vu_meter.h" compile="0" resource="0" file="sources/ui/vu_meter.h"/>
       </GROUP>
       <GROUP id="{90BE611D-B377-7C79-171F-98F2CD7899AE}" name="adl">
+        <FILE id="ZhOlLH" name="instrument.cc" compile="1" resource="0" file="sources/adl/instrument.cc"/>
+        <FILE id="ivL5rz" name="instrument.h" compile="0" resource="0" file="sources/adl/instrument.h"/>
         <FILE id="YNeRaV" name="player.cc" compile="1" resource="0" file="sources/adl/player.cc"/>
         <FILE id="cktZse" name="player.h" compile="0" resource="0" file="sources/adl/player.h"/>
       </GROUP>

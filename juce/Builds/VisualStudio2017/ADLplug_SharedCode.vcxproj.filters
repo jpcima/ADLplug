@@ -457,6 +457,9 @@
     <ClCompile Include="..\..\..\sources\ui\vu_meter.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\adl\instrument.cc">
+      <Filter>ADLplug\sources\adl</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\adl\player.cc">
       <Filter>ADLplug\sources\adl</Filter>
     </ClCompile>
@@ -1076,6 +1079,9 @@
       <Filter>JUCE Modules\juce_core\containers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_PropertySet.cpp">
+      <Filter>JUCE Modules\juce_core\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_SparseSet.cpp">
       <Filter>JUCE Modules\juce_core\containers</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_Variant.cpp">
@@ -2399,6 +2405,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\vu_meter.h">
       <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\adl\instrument.h">
+      <Filter>ADLplug\sources\adl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\adl\player.h">
       <Filter>ADLplug\sources\adl</Filter>

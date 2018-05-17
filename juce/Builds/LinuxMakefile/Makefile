@@ -107,6 +107,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/operator_editor_6b1eb07b.o \
   $(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o \
   $(JUCE_OBJDIR)/vu_meter_b39aee30.o \
+  $(JUCE_OBJDIR)/instrument_a889d85b.o \
   $(JUCE_OBJDIR)/player_38a5f121.o \
   $(JUCE_OBJDIR)/plugin_editor_4e133bb.o \
   $(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o \
@@ -246,6 +247,11 @@ $(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o: ../../../sources/ui/styled_knobs.cc
 $(JUCE_OBJDIR)/vu_meter_b39aee30.o: ../../../sources/ui/vu_meter.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling vu_meter.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/instrument_a889d85b.o: ../../../sources/adl/instrument.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling instrument.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/player_38a5f121.o: ../../../sources/adl/player.cc

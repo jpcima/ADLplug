@@ -159,6 +159,7 @@
     <ClCompile Include="..\..\..\sources\ui\operator_editor.cc"/>
     <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc"/>
     <ClCompile Include="..\..\..\sources\ui\vu_meter.cc"/>
+    <ClCompile Include="..\..\..\sources\adl\instrument.cc"/>
     <ClCompile Include="..\..\..\sources\adl\player.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
@@ -702,6 +703,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_PropertySet.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_SparseSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_Variant.cpp">
@@ -1883,6 +1887,7 @@
     <ClInclude Include="..\..\..\sources\ui\operator_editor.h"/>
     <ClInclude Include="..\..\..\sources\ui\styled_knobs.h"/>
     <ClInclude Include="..\..\..\sources\ui\vu_meter.h"/>
+    <ClInclude Include="..\..\..\sources\adl\instrument.h"/>
     <ClInclude Include="..\..\..\sources\adl\player.h"/>
     <ClInclude Include="..\..\..\sources\plugin_editor.h"/>
     <ClInclude Include="..\..\..\sources\plugin_processor.h"/>
