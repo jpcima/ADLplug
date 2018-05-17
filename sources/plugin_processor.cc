@@ -7,6 +7,7 @@
 #include "utility/simple_fifo.h"
 #include "utility/rt_checker.h"
 #include "messages.h"
+#include "definitions.h"
 #include "plugin_processor.h"
 #include "plugin_editor.h"
 #include <cassert>
@@ -15,7 +16,6 @@
 AdlplugAudioProcessor::AdlplugAudioProcessor()
     : AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true))
 {
-    ui_midi_queue_.reset(new Simple_Fifo(1024));
 }
 
 AdlplugAudioProcessor::~AdlplugAudioProcessor()
@@ -76,11 +76,12 @@ void AdlplugAudioProcessor::changeProgramName(int index, const String &new_name)
 //==============================================================================
 void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+    ui_midi_queue_.reset(new Simple_Fifo(1024));
+
     Generic_Player *pl = instantiate_player(Player_Type::OPL3);
     player_.reset(pl);
     pl->init(sample_rate);
+    pl->reserve_banks(bank_reserve_size);
     pl->set_num_chips(4);
 
     for (unsigned i = 0; i < 2; ++i) {
@@ -100,9 +101,8 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 
 void AdlplugAudioProcessor::releaseResources()
 {
-    // When playback stops, you can use this as an opportunity to free up any
-    // spare memory, etc.
     player_.reset();
+    ui_midi_queue_.reset();
 }
 
 unsigned AdlplugAudioProcessor::get_num_chips() const

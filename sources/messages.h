@@ -5,13 +5,9 @@
 
 #pragma once
 #include "utility/simple_fifo.h"
-#include <wopl/wopl_file.h>
+#include <adlmidi.h>
 #include <thread>
 #include <cstdint>
-
-enum class Bank_Mode {
-    Melodic, Percussive,
-};
 
 struct Message_Header {
     unsigned tag;
@@ -53,10 +49,9 @@ namespace User {
 
 struct Instrument
 {
-    uint16_t bank;
+    ADL_BankId bank;
     uint8_t program;
-    Bank_Mode mode;
-    WOPLInstrument instrument;
+    ADL_Instrument instrument;
 };
 
 }  // namespace User

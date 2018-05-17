@@ -22,6 +22,7 @@
 #include "ui/vu_meter.h"
 #include "ui/indicator_NxM.h"
 #include "ui/about_component.h"
+#include "adl/instrument.h"
 #include "plugin_processor.h"
 #include "messages.h"
 #include <wopl/wopl_file.h>
@@ -668,15 +669,16 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
                     AlertWindow::WarningIcon, error_title, "The input file is not in WOPL format.");
             else {
                 Simple_Fifo &queue = proc_->midi_queue_for_ui();
-                auto send_bank = [&queue](const WOPLBank &bank, Bank_Mode mode) {
+                auto send_bank = [&queue](const WOPLBank &bank, bool percussive) {
                         for (unsigned i = 0; i < 128; ++i) {
                             Message_Header hdr = {(unsigned)User_Message::Instrument, sizeof(Messages::User::Instrument)};
                             Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
-                            auto *data = (Messages::User::Instrument *)msg.data;
-                            data->bank = bank.bank_midi_lsb | (bank.bank_midi_msb << 7);
-                            data->mode = mode;
-                            data->program = i;
-                            data->instrument = bank.ins[i];
+                            auto &data = *(Messages::User::Instrument *)msg.data;
+                            data.bank.lsb = bank.bank_midi_lsb;
+                            data.bank.msb = bank.bank_midi_msb;
+                            data.bank.percussive = percussive;
+                            data.program = i;
+                            convert_ADLI_from_WOPI(data.instrument, bank.ins[i]);
                             finish_write_message(queue, msg);
                         }
                     };
@@ -684,9 +686,9 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
                 edt_bank_name->setCaretPosition(0);
                 // TODO clear existing banks
                 for (unsigned i = 0, n = wopl->banks_count_melodic; i < n; ++i)
-                    send_bank(wopl->banks_melodic[i], Bank_Mode::Melodic);
+                    send_bank(wopl->banks_melodic[i], false);
                 for (unsigned i = 0, n = wopl->banks_count_percussion; i < n; ++i)
-                    send_bank(wopl->banks_percussive[i], Bank_Mode::Percussive);
+                    send_bank(wopl->banks_percussive[i], true);
             }
         }
         //[/UserButtonCode_btn_bank_load]
