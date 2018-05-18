@@ -38,13 +38,11 @@ private:
     static int process(jack_nframes_t nframes, void *user_data);
 
     std::unique_ptr<AdlplugAudioProcessor> processor_;
-    std::unique_ptr<AdlplugAudioProcessorEditor> editor_;
-    Application_Window *window_ = nullptr;
+    std::unique_ptr<Application_Window> window_;
 
     struct jack_client_deleter {
         void operator()(jack_client_t *c) const { jack_client_close(c); }
     };
-
     std::unique_ptr<jack_client_t, jack_client_deleter> client_;
     jack_port_t *midiport_ = nullptr;
     jack_port_t *outport_[2] = {nullptr, nullptr};
@@ -72,9 +70,6 @@ void Application_Jack::initialise(const String &args)
     processor->prepareToPlay(sample_rate, buffer_size);
     processor->setPlayConfigDetails(0, 2, sample_rate, buffer_size);
 
-    AdlplugAudioProcessorEditor *editor = new AdlplugAudioProcessorEditor(*processor);
-    editor_.reset(editor);
-
     jack_set_process_callback(client, &process, this);
 
     if (jack_activate(client) != 0)
@@ -82,16 +77,20 @@ void Application_Jack::initialise(const String &args)
 
     Application_Window *window = new Application_Window(
         getApplicationName() + " [jack:" + (const char *)jack_get_client_name(client) + "]");
-    window_ = window;
+    window_.reset(window);
+
+    AdlplugAudioProcessorEditor *editor = new AdlplugAudioProcessorEditor(*processor);
     window->setContentOwned(editor, true);
+
     window->setSize(editor->getWidth(), editor->getHeight());
     window->setVisible(true);
 }
 
 void Application_Jack::shutdown()
 {
-    window_ = nullptr;
     client_.reset();
+    window_.reset();
+    processor_.reset();
 }
 
 int Application_Jack::process(jack_nframes_t nframes, void *user_data)
