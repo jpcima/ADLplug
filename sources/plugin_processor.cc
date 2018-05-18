@@ -82,7 +82,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     player_.reset(pl);
     pl->init(sample_rate);
     pl->reserve_banks(bank_reserve_size);
-    pl->set_num_chips(4);
+    pl->set_num_chips(2);
 
     for (unsigned i = 0; i < 2; ++i) {
         Dc_Filter &dcf = dc_filter_[i];
