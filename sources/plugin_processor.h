@@ -55,7 +55,7 @@ public:
     AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override;
 
-    Simple_Fifo &midi_queue_for_ui() const { return *ui_midi_queue_; }
+    Simple_Fifo &message_queue_for_ui() const { return *mq_from_ui_; }
 
     double vu_level(unsigned channel) const
         { return (channel < 2) ? lv_current_[channel] : 0; }
@@ -87,14 +87,18 @@ public:
 
 private:
     std::unique_ptr<Generic_Player> player_;
-    std::unique_ptr<Simple_Fifo> ui_midi_queue_;
+
+    std::unique_ptr<Simple_Fifo> mq_from_ui_;
+
     Dc_Filter dc_filter_[2];
     Vu_Monitor vu_monitor_[2];
     double lv_current_[2] {};
     double cpu_load_ = 0;
+
     std::bitset<16> midi_channel_mask_;
     unsigned midi_channel_note_count_[16] = {};
     std::bitset<128> midi_channel_note_active_[16];
+
     std::mutex player_lock_;
 
     //==========================================================================

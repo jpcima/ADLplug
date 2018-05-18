@@ -77,7 +77,7 @@ void AdlplugAudioProcessor::changeProgramName(int index, const String &new_name)
 //==============================================================================
 void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 {
-    ui_midi_queue_.reset(new Simple_Fifo(1024));
+    mq_from_ui_.reset(new Simple_Fifo(1024));
 
     Generic_Player *pl = instantiate_player(Player_Type::OPL3);
     player_.reset(pl);
@@ -103,7 +103,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 void AdlplugAudioProcessor::releaseResources()
 {
     player_.reset();
-    ui_midi_queue_.reset();
+    mq_from_ui_.reset();
 }
 
 unsigned AdlplugAudioProcessor::get_num_chips() const
@@ -223,10 +223,10 @@ void AdlplugAudioProcessor::process_messages(Midi_Input_Source &midi, bool under
     begin_handling_messages(ctx);
 
     // handle events from GUI
-    Simple_Fifo &midi_q = *ui_midi_queue_;
-    while (Buffered_Message msg = read_message(midi_q)) {
+    Simple_Fifo &mq_from_ui = *mq_from_ui_;
+    while (Buffered_Message msg = read_message(mq_from_ui)) {
         handle_message(msg, ctx);
-        finish_read_message(midi_q, msg);
+        finish_read_message(mq_from_ui, msg);
     }
 
     // handle events from MIDI

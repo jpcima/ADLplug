@@ -668,7 +668,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
                 AlertWindow::showMessageBox(
                     AlertWindow::WarningIcon, error_title, "The input file is not in WOPL format.");
             else {
-                Simple_Fifo &queue = proc_->midi_queue_for_ui();
+                Simple_Fifo &queue = proc_->message_queue_for_ui();
                 auto send_bank = [&queue](const WOPLBank &bank, bool percussive) {
                         for (unsigned i = 0; i < 128; ++i) {
                             Message_Header hdr(User_Message::LoadInstrument, sizeof(Messages::User::LoadInstrument));
@@ -741,7 +741,7 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 void Main_Component::handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity)
 {
-    Simple_Fifo &queue = proc_->midi_queue_for_ui();
+    Simple_Fifo &queue = proc_->message_queue_for_ui();
     Message_Header msghdr(User_Message::Midi, 3);
     Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
     msg.data[0] = (unsigned)(channel - 1) | (0b1001u << 4);
@@ -752,7 +752,7 @@ void Main_Component::handleNoteOn(MidiKeyboardState *, int channel, int note, fl
 
 void Main_Component::handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity)
 {
-    Simple_Fifo &queue = proc_->midi_queue_for_ui();
+    Simple_Fifo &queue = proc_->message_queue_for_ui();
     Message_Header msghdr(User_Message::Midi, 3);
     Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
     msg.data[0] = (unsigned)(channel - 1) | (0b1000u << 4);
