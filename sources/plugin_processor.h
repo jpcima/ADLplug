@@ -13,6 +13,7 @@
 #include <mutex>
 class Generic_Player;
 class Simple_Fifo;
+class Midi_Input_Source;
 struct Buffered_Message;
 
 //==============================================================================
@@ -41,11 +42,11 @@ public:
     void processBlock(AudioBuffer<float> &, MidiBuffer &) override;
     void processBlockBypassed(AudioBuffer<float> &, MidiBuffer &) override;
 
-    typedef std::pair<const uint8_t *, unsigned> (*pfn_midi_callback)(void *);
-    void process(float *outputs[], unsigned nframes, pfn_midi_callback midi_cb, void *midi_user_data);
-    void process_midi(const uint8_t *data, unsigned len);
+    void process(float *outputs[], unsigned nframes, Midi_Input_Source &midi);
+    void process_messages(Midi_Input_Source &midi, bool under_lock);
 
     struct Message_Handler_Context;
+    void handle_midi(const uint8_t *data, unsigned len, Message_Handler_Context &ctx);
     void handle_message(const Buffered_Message &msg, Message_Handler_Context &ctx);
     void begin_handling_messages(Message_Handler_Context &ctx);
     void finish_handling_messages(Message_Handler_Context &ctx);

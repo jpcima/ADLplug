@@ -5,6 +5,7 @@
 
 #include "plugin_processor.h"
 #include "plugin_editor.h"
+#include "utility/midi.h"
 #include <memory>
 #include <jack/jack.h>
 #include <jack/midiport.h>
@@ -109,16 +110,17 @@ int Application_Jack::process(jack_nframes_t nframes, void *user_data)
         jack_nframes_t nframes;
     };
 
-    auto midi_cb = [](void *user_data) -> std::pair<const uint8_t *, unsigned> {
+    auto midi_cb = [](void *user_data) -> Midi_Input_Message {
         Midi_Cb_Context &ctx = *reinterpret_cast<Midi_Cb_Context *>(user_data);
         jack_midi_event_t event;
-        if (jack_midi_event_get(&event, ctx.port_buffer, ctx.index++) != 0)
-            return {nullptr, 0};
-        return {event.buffer, event.size};
+        return (jack_midi_event_get(&event, ctx.port_buffer, ctx.index++) == 0) ?
+            Midi_Input_Message(event.buffer, event.size) : Midi_Input_Message();
     };
-
     Midi_Cb_Context midi_ctx = { midi, 0, nframes };
-    self->processor_->process(outputs, nframes, +midi_cb, &midi_ctx);
+
+    Midi_Input_Source midi_source(+midi_cb, &midi_ctx);
+    self->processor_->process(outputs, nframes, midi_source);
+
     return 0;
 }
 

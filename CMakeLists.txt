@@ -101,6 +101,7 @@ set_property(TARGET wopl PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 add_library(ADLplug_core STATIC
   "JuceLibraryCode/BinaryData.cpp"
+  "sources/utility/midi.cc"
   "sources/utility/simple_fifo.cc"
   "sources/utility/rt_checker.cc"
   "sources/plugin_editor.cc"

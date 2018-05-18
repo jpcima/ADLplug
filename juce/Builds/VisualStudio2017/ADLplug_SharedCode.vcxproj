@@ -146,6 +146,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\utility\midi.cc"/>
+    <ClCompile Include="..\..\..\sources\utility\rt_checker.cc"/>
     <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc"/>
     <ClCompile Include="..\..\..\sources\ui\chips\opl3_waves.cc"/>
     <ClCompile Include="..\..\..\sources\ui\about_component.cc"/>
@@ -1874,6 +1876,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\sources\dsp\dc_filter.h"/>
     <ClInclude Include="..\..\..\sources\dsp\vu_monitor.h"/>
+    <ClInclude Include="..\..\..\sources\utility\midi.h"/>
+    <ClInclude Include="..\..\..\sources\utility\rt_checker.h"/>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
     <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h"/>
     <ClInclude Include="..\..\..\sources\ui\about_component.h"/>

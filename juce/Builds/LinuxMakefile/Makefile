@@ -94,6 +94,8 @@ OBJECTS_STANDALONE_PLUGIN := \
   $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o \
 
 OBJECTS_SHARED_CODE := \
+  $(JUCE_OBJDIR)/midi_dde9aea4.o \
+  $(JUCE_OBJDIR)/rt_checker_e98c166d.o \
   $(JUCE_OBJDIR)/simple_fifo_14f04efe.o \
   $(JUCE_OBJDIR)/opl3_waves_d1747c0e.o \
   $(JUCE_OBJDIR)/about_component_574ed838.o \
@@ -183,6 +185,16 @@ $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o: ../../../
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling include_juce_audio_plugin_client_Standalone.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_STANDALONE_PLUGIN) $(JUCE_CFLAGS_STANDALONE_PLUGIN) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/midi_dde9aea4.o: ../../../sources/utility/midi.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling midi.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/rt_checker_e98c166d.o: ../../../sources/utility/rt_checker.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling rt_checker.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/simple_fifo_14f04efe.o: ../../../sources/utility/simple_fifo.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)

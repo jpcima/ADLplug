@@ -418,6 +418,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\utility\midi.cc">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\utility\rt_checker.cc">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc">
       <Filter>ADLplug\sources\utility</Filter>
     </ClCompile>
@@ -2366,6 +2372,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\sources\dsp\vu_monitor.h">
       <Filter>ADLplug\sources\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\utility\midi.h">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\utility\rt_checker.h">
+      <Filter>ADLplug\sources\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h">
       <Filter>ADLplug\sources\utility</Filter>
