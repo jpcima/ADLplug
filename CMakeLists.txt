@@ -10,6 +10,7 @@ set(ADLplug_Standalone "" CACHE STRING "Build Standalone")
 set(ADLplug_Jack "" CACHE STRING "Build Jack")
 
 option(ADLplug_RT_CHECKER "Enable a detector of RT programming errors" OFF)
+option(ADLplug_ASSERTIONS "Enable assertions" OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 include(GNUWarnings)
@@ -26,6 +27,10 @@ disable_gnu_warning("multichar")
 if(ADLplug_RT_CHECKER)
   add_definitions("-DADLplug_RT_CHECKER=1")
   set(ADLplug_RT_CHECKER_LINK_FLAGS "-Wl,--wrap=malloc -Wl,--wrap=realloc -Wl,--wrap=free -Wl,--wrap=memalign")
+endif()
+
+if(ADLplug_ASSERTIONS)
+  add_definitions("-UNDEBUG")
 endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
@@ -106,6 +111,7 @@ add_library(ADLplug_core STATIC
   "sources/utility/rt_checker.cc"
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
+  "sources/bank_manager.cc"
   "sources/messages.cc"
   "sources/ui/chips/opl3_waves.cc"
   "sources/ui/look_and_feel.cc"
@@ -128,7 +134,7 @@ target_link_libraries(ADLplug_core
   juce_core juce_events juce_data_structures
   juce_audio_basics juce_audio_devices juce_audio_formats juce_audio_processors juce_audio_utils
   juce_graphics juce_gui_basics juce_gui_extra
-  PRIVATE ADLMIDI_static wopl)
+  ADLMIDI_static wopl)
 set_property(TARGET ADLplug_core
   PROPERTY POSITION_INDEPENDENT_CODE ON)
 

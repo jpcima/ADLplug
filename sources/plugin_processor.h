@@ -12,6 +12,7 @@
 #include <memory>
 #include <mutex>
 class Generic_Player;
+class Bank_Manager;
 class Simple_Fifo;
 class Midi_Input_Source;
 struct Buffered_Message;
@@ -56,6 +57,7 @@ public:
     bool hasEditor() const override;
 
     Simple_Fifo &message_queue_for_ui() const { return *mq_from_ui_; }
+    Simple_Fifo &message_queue_to_ui() const { return *mq_to_ui_; }
 
     double vu_level(unsigned channel) const
         { return (channel < 2) ? lv_current_[channel] : 0; }
@@ -87,8 +89,10 @@ public:
 
 private:
     std::unique_ptr<Generic_Player> player_;
+    std::unique_ptr<Bank_Manager> bank_manager_;
 
     std::unique_ptr<Simple_Fifo> mq_from_ui_;
+    std::unique_ptr<Simple_Fifo> mq_to_ui_;
 
     Dc_Filter dc_filter_[2];
     Vu_Monitor vu_monitor_[2];

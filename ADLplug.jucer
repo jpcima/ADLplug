@@ -80,6 +80,9 @@
         <FILE id="YNeRaV" name="player.cc" compile="1" resource="0" file="sources/adl/player.cc"/>
         <FILE id="cktZse" name="player.h" compile="0" resource="0" file="sources/adl/player.h"/>
       </GROUP>
+      <FILE id="dneZUm" name="bank_manager.cc" compile="1" resource="0" file="sources/bank_manager.cc"/>
+      <FILE id="hFbd2C" name="bank_manager.h" compile="0" resource="0" file="sources/bank_manager.h"/>
+      <FILE id="oFvaCp" name="definitions.h" compile="0" resource="0" file="sources/definitions.h"/>
       <FILE id="LbE9y8" name="plugin_editor.cc" compile="1" resource="0"
             file="sources/plugin_editor.cc"/>
       <FILE id="QxGCKT" name="plugin_editor.h" compile="0" resource="0" file="sources/plugin_editor.h"/>
@@ -125,6 +128,10 @@
           <FILE id="Nx4vf0" name="adldata.cpp" compile="1" resource="0" file="thirdparty/libADLMIDI/src/adldata.cpp"/>
           <FILE id="e59kxG" name="adldata.hh" compile="0" resource="0" file="thirdparty/libADLMIDI/src/adldata.hh"/>
           <FILE id="qcLa76" name="adlmidi.cpp" compile="1" resource="0" file="thirdparty/libADLMIDI/src/adlmidi.cpp"/>
+          <FILE id="QI8VTw" name="adlmidi_bankmap.h" compile="0" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_bankmap.h"/>
+          <FILE id="TfNuGc" name="adlmidi_bankmap.tcc" compile="0" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_bankmap.tcc"/>
           <FILE id="IL3FEP" name="adlmidi_load.cpp" compile="1" resource="0"
                 file="thirdparty/libADLMIDI/src/adlmidi_load.cpp"/>
           <FILE id="FVJBtw" name="adlmidi_midiplay.cpp" compile="1" resource="0"
@@ -139,6 +146,7 @@
                 file="thirdparty/libADLMIDI/src/adlmidi_private.cpp"/>
           <FILE id="mkAlRT" name="adlmidi_private.hpp" compile="0" resource="0"
                 file="thirdparty/libADLMIDI/src/adlmidi_private.hpp"/>
+          <FILE id="RKcUrt" name="adlmidi_ptr.hpp" compile="0" resource="0" file="thirdparty/libADLMIDI/src/adlmidi_ptr.hpp"/>
           <FILE id="WV483y" name="adlmidi_xmi2mid.c" compile="1" resource="0"
                 file="thirdparty/libADLMIDI/src/adlmidi_xmi2mid.c"/>
           <FILE id="ZH1C49" name="adlmidi_xmi2mid.h" compile="0" resource="0"

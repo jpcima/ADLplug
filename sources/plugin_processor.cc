@@ -7,6 +7,7 @@
 #include "utility/midi.h"
 #include "utility/simple_fifo.h"
 #include "utility/rt_checker.h"
+#include "bank_manager.h"
 #include "messages.h"
 #include "definitions.h"
 #include "plugin_processor.h"
@@ -78,6 +79,7 @@ void AdlplugAudioProcessor::changeProgramName(int index, const String &new_name)
 void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 {
     mq_from_ui_.reset(new Simple_Fifo(1024));
+    mq_to_ui_.reset(new Simple_Fifo(1024));
 
     Generic_Player *pl = instantiate_player(Player_Type::OPL3);
     player_.reset(pl);
@@ -98,10 +100,15 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
         midi_channel_note_count_[i] = 0;
         midi_channel_note_active_[i].reset();
     }
+
+    Bank_Manager *bm = new Bank_Manager(*this, *pl);
+    bank_manager_.reset(bm);
+    bm->update_all_banks();
 }
 
 void AdlplugAudioProcessor::releaseResources()
 {
+    bank_manager_.reset();
     player_.reset();
     mq_from_ui_.reset();
 }
@@ -159,8 +166,6 @@ bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) c
 struct AdlplugAudioProcessor::Message_Handler_Context
 {
     bool under_lock = false;
-    Bank_Lookup_Cache bank_cache;
-#pragma message("TODO clear cache when bank will be erased")
 };
 
 void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Input_Source &midi)
@@ -296,12 +301,7 @@ void AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     switch (tag) {
     case User_Message::LoadInstrument: {
         auto &body = *(const Messages::User::LoadInstrument *)data;
-        int flags = ADLMIDI_Bank_Create|ADLMIDI_Bank_DoNotAllocate;
-        Bank_Ref *bank = ctx.bank_cache.get(*pl, body.bank, flags);
-        if (bank) {
-            if (pl->set_instrument(*bank, body.program, body.instrument))
-                ; // TODO notify
-        }
+        bank_manager_->load_program(body.bank, body.program, body.instrument);
         break;
     }
     default:
@@ -315,6 +315,7 @@ void AdlplugAudioProcessor::begin_handling_messages(Message_Handler_Context &ctx
 
 void AdlplugAudioProcessor::finish_handling_messages(Message_Handler_Context &ctx)
 {
+    bank_manager_->send_notifications();
 }
 
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,

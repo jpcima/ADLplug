@@ -7,8 +7,9 @@
 #include "adl/player.h"
 #include <wopl/wopl_file.h>
 #include <adlmidi.h>
+#include <cassert>
 
-Instrument::Instrument(const WOPLInstrument &o)
+Instrument::Instrument(const WOPLInstrument &o) noexcept
     : ADL_Instrument{}
 {
     version = ADLMIDI_InstrumentVersion;
@@ -33,7 +34,7 @@ Instrument::Instrument(const WOPLInstrument &o)
 #undef COPY
 }
 
-Bank_Ref *Bank_Lookup_Cache::get(Generic_Player &pl, const Bank_Id &id, int flags)
+Bank_Ref *Bank_Lookup_Cache::get(Generic_Player &pl, const Bank_Id &id, int flags) noexcept
 {
     if (id == last_bank_id_)
         return &last_bank_;
@@ -41,4 +42,11 @@ Bank_Ref *Bank_Lookup_Cache::get(Generic_Player &pl, const Bank_Id &id, int flag
         return nullptr;
     last_bank_id_ = id;
     return &last_bank_;
+}
+
+Bank_Ref &Bank_Lookup_Cache::ensure_get(Generic_Player &pl, const Bank_Id &id, int flags) noexcept
+{
+    Bank_Ref *bank = get(pl, id, flags);
+    assert(bank);
+    return *bank;
 }

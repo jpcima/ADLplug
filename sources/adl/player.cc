@@ -31,6 +31,11 @@ struct Player_Traits<Player_Type::OPL3>
     static constexpr auto &panic = adl_panic;
     static constexpr auto &reserve_banks = adl_reserveBanks;
     static constexpr auto &get_bank = adl_getBank;
+    static constexpr auto &get_first_bank = adl_getFirstBank;
+    static constexpr auto &get_next_bank = adl_getNextBank;
+    static constexpr auto &get_bank_id = adl_getBankId;
+    static constexpr auto &remove_bank = adl_removeBank;
+    static constexpr auto &get_instrument = adl_getInstrument;
     static constexpr auto &set_instrument = adl_setInstrument;
     static constexpr auto &emulator_name = adl_chipEmulatorName;
     static constexpr auto &get_num_chips = adl_getNumChips;
@@ -67,6 +72,16 @@ public:
         { return traits::reserve_banks(player_.get(), banks); }
     bool get_bank(const Bank_Id &id, int flags, Bank_Ref &bank) override
         { return traits::get_bank(player_.get(), &id, flags, &bank) >= 0; }
+    bool get_first_bank(Bank_Ref &bank) override
+        { return traits::get_first_bank(player_.get(), &bank) >= 0; }
+    bool get_next_bank(Bank_Ref &bank) override
+        { return traits::get_next_bank(player_.get(), &bank) >= 0; }
+    bool get_bank_id(const Bank_Ref &bank, Bank_Id &id) override
+        { return traits::get_bank_id(player_.get(), &bank, &id) >= 0; }
+    bool remove_bank(Bank_Ref &bank) override
+        { return traits::remove_bank(player_.get(), &bank) >= 0; }
+    bool get_instrument(const Bank_Ref &bank, unsigned index, Instrument &ins) override
+        { return traits::get_instrument(player_.get(), &bank, index, &ins) >= 0; }
     bool set_instrument(Bank_Ref &bank, unsigned index, const Instrument &ins) override
         { return traits::set_instrument(player_.get(), &bank, index, &ins) >= 0; }
     const char *emulator_name() const override

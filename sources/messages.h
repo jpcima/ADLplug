@@ -66,13 +66,17 @@ struct LoadInstrument
 
 //------------------------------------------------------------------------------
 enum class Fx_Message {
-    LoadInstrument,  // notifies an instrument when changed
+    NotifyInstrument,  // notifies an instrument when changed
 };
 
 namespace Messages {
 namespace Fx {
 
-typedef Messages::User::LoadInstrument LoadInstrument;  // same
+struct NotifyInstrument {
+    Bank_Id bank;
+    uint8_t program = 0;
+    Instrument instrument;
+};
 
 }  // namespace Fx
 }  // namespace Messages

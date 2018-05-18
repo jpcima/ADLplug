@@ -7,6 +7,7 @@
 #include <adlmidi.h>
 #include <string>
 #include <vector>
+#include <cassert>
 
 #define EACH_PLAYER_TYPE(F, ...)                \
     F(OPL3, ##__VA_ARGS__)                      \
@@ -36,6 +37,11 @@ public:
     virtual void panic() = 0;
     virtual unsigned reserve_banks(unsigned banks) = 0;
     virtual bool get_bank(const Bank_Id &id, int flags, Bank_Ref &bank) = 0;
+    virtual bool get_first_bank(Bank_Ref &bank) = 0;
+    virtual bool get_next_bank(Bank_Ref &bank) = 0;
+    virtual bool get_bank_id(const Bank_Ref &bank, Bank_Id &id) = 0;
+    virtual bool remove_bank(Bank_Ref &bank) = 0;
+    virtual bool get_instrument(const Bank_Ref &bank, unsigned index, Instrument &ins) = 0;
     virtual bool set_instrument(Bank_Ref &bank, unsigned index, const Instrument &ins) = 0;
     virtual const char *emulator_name() const = 0;
     virtual void set_emulator(unsigned emu) = 0;
@@ -43,6 +49,17 @@ public:
     virtual bool set_num_chips(unsigned chips) = 0;
     virtual void play_midi(const uint8_t *msg, unsigned len) = 0;
     virtual void generate(float *left, float *right, unsigned nframes, unsigned stride) = 0;
+
+    void ensure_get_bank_id(const Bank_Ref &bank, Bank_Id &id)
+        { bool success = get_bank_id(bank, id); assert(success); }
+    void ensure_get_bank(const Bank_Id &id, int flags, Bank_Ref &bank)
+        { bool success = get_bank(id, flags, bank); assert(success); }
+    void ensure_remove_bank(Bank_Ref &bank)
+        { bool success = remove_bank(bank); assert(success); }
+    void ensure_get_instrument(const Bank_Ref &bank, unsigned index, Instrument &ins)
+        { bool success = get_instrument(bank, index, ins); assert(success); }
+    void ensure_set_instrument(Bank_Ref &bank, unsigned index, const Instrument &ins)
+        { bool success = set_instrument(bank, index, ins); assert(success); }
 };
 
 std::vector<std::string> enumerate_emulators(Player_Type pt);

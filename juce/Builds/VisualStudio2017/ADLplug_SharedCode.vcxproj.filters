@@ -469,6 +469,9 @@
     <ClCompile Include="..\..\..\sources\adl\player.cc">
       <Filter>ADLplug\sources\adl</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\bank_manager.cc">
+      <Filter>ADLplug\sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\plugin_editor.cc">
       <Filter>ADLplug\sources</Filter>
     </ClCompile>
@@ -2424,6 +2427,12 @@
     <ClInclude Include="..\..\..\sources\adl\player.h">
       <Filter>ADLplug\sources\adl</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\sources\bank_manager.h">
+      <Filter>ADLplug\sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\definitions.h">
+      <Filter>ADLplug\sources</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\plugin_editor.h">
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
@@ -2460,10 +2469,16 @@
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adldata.hh">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_mus2mid.h">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.hpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_ptr.hpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.h">
@@ -4432,6 +4447,9 @@
     </None>
     <None Include="..\..\..\resources\ui\knob-skin.png">
       <Filter>ADLplug\resources\ui</Filter>
+    </None>
+    <None Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.tcc">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </None>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt">
       <Filter>JUCE Modules\juce_audio_formats\codecs\flac</Filter>

@@ -111,6 +111,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/vu_meter_b39aee30.o \
   $(JUCE_OBJDIR)/instrument_a889d85b.o \
   $(JUCE_OBJDIR)/player_38a5f121.o \
+  $(JUCE_OBJDIR)/bank_manager_bcf4961e.o \
   $(JUCE_OBJDIR)/plugin_editor_4e133bb.o \
   $(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o \
   $(JUCE_OBJDIR)/messages_ad8a073c.o \
@@ -269,6 +270,11 @@ $(JUCE_OBJDIR)/instrument_a889d85b.o: ../../../sources/adl/instrument.cc
 $(JUCE_OBJDIR)/player_38a5f121.o: ../../../sources/adl/player.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling player.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/bank_manager_bcf4961e.o: ../../../sources/bank_manager.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling bank_manager.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/plugin_editor_4e133bb.o: ../../../sources/plugin_editor.cc

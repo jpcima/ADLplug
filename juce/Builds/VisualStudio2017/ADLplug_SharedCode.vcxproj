@@ -163,6 +163,7 @@
     <ClCompile Include="..\..\..\sources\ui\vu_meter.cc"/>
     <ClCompile Include="..\..\..\sources\adl\instrument.cc"/>
     <ClCompile Include="..\..\..\sources\adl\player.cc"/>
+    <ClCompile Include="..\..\..\sources\bank_manager.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
     <ClCompile Include="..\..\..\sources\messages.cc"/>
@@ -1893,6 +1894,8 @@
     <ClInclude Include="..\..\..\sources\ui\vu_meter.h"/>
     <ClInclude Include="..\..\..\sources\adl\instrument.h"/>
     <ClInclude Include="..\..\..\sources\adl\player.h"/>
+    <ClInclude Include="..\..\..\sources\bank_manager.h"/>
+    <ClInclude Include="..\..\..\sources\definitions.h"/>
     <ClInclude Include="..\..\..\sources\plugin_editor.h"/>
     <ClInclude Include="..\..\..\sources\plugin_processor.h"/>
     <ClInclude Include="..\..\..\sources\messages.h"/>
@@ -1905,8 +1908,10 @@
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3_v174.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adldata.hh"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_mus2mid.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.hpp"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_ptr.hpp"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\fraction.hpp"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
@@ -2564,6 +2569,7 @@
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png"/>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png"/>
     <None Include="..\..\..\resources\ui\knob-skin.png"/>
+    <None Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.tcc"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_graphics\image_formats\jpglib\changes to libjpeg for JUCE.txt"/>
