@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "adl/player.h"
+#include "adl/instrument.h"
 #include <memory>
 #include <assert.h>
 
@@ -29,6 +30,8 @@ struct Player_Traits<Player_Type::OPL3>
     static constexpr auto &reset = adl_reset;
     static constexpr auto &panic = adl_panic;
     static constexpr auto &reserve_banks = adl_reserveBanks;
+    static constexpr auto &get_bank = adl_getBank;
+    static constexpr auto &set_instrument = adl_setInstrument;
     static constexpr auto &emulator_name = adl_chipEmulatorName;
     static constexpr auto &get_num_chips = adl_getNumChips;
     static constexpr auto &set_num_chips = adl_setNumChips;
@@ -62,6 +65,10 @@ public:
         { traits::panic(player_.get()); }
     unsigned reserve_banks(unsigned banks) override
         { return traits::reserve_banks(player_.get(), banks); }
+    bool get_bank(const Bank_Id &id, int flags, Bank_Ref &bank) override
+        { return traits::get_bank(player_.get(), &id, flags, &bank) >= 0; }
+    bool set_instrument(Bank_Ref &bank, unsigned index, const Instrument &ins) override
+        { return traits::set_instrument(player_.get(), &bank, index, &ins) >= 0; }
     const char *emulator_name() const override
         { return traits::emulator_name(player_.get()); }
     void set_emulator(unsigned emu) override

@@ -45,7 +45,10 @@ public:
     void process(float *outputs[], unsigned nframes, pfn_midi_callback midi_cb, void *midi_user_data);
     void process_midi(const uint8_t *data, unsigned len);
 
-    void handle_message(const Buffered_Message &msg);
+    struct Message_Handler_Context;
+    void handle_message(const Buffered_Message &msg, Message_Handler_Context &ctx);
+    void begin_handling_messages(Message_Handler_Context &ctx);
+    void finish_handling_messages(Message_Handler_Context &ctx);
 
     //==========================================================================
     AudioProcessorEditor *createEditor() override;

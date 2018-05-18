@@ -4,14 +4,21 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #pragma once
+#include "adl/instrument.h"
 #include "utility/simple_fifo.h"
-#include <adlmidi.h>
 #include <thread>
 #include <cstdint>
 
+enum class User_Message;
+enum class Fx_Message;
+
 struct Message_Header {
-    unsigned tag;
-    unsigned size;
+    unsigned tag {};
+    unsigned size = 0;
+    Message_Header(User_Message tag, unsigned size)
+        : tag((unsigned)tag), size(size) {}
+    Message_Header(Fx_Message tag, unsigned size)
+        : tag((unsigned)tag), size(size) {}
 };
 
 struct Buffered_Message {
@@ -41,17 +48,17 @@ Buffered_Message write_message_retrying(
 //------------------------------------------------------------------------------
 enum class User_Message {
     Midi,  // midi event
-    Instrument,  // edits an instrument
+    LoadInstrument,  // edits an instrument
 };
 
 namespace Messages {
 namespace User {
 
-struct Instrument
+struct LoadInstrument
 {
-    ADL_BankId bank;
-    uint8_t program;
-    ADL_Instrument instrument;
+    Bank_Id bank;
+    uint8_t program = 0;
+    Instrument instrument;
 };
 
 }  // namespace User
@@ -59,13 +66,13 @@ struct Instrument
 
 //------------------------------------------------------------------------------
 enum class Fx_Message {
-    Instrument,  // notifies an instrument when changed
+    LoadInstrument,  // notifies an instrument when changed
 };
 
 namespace Messages {
 namespace Fx {
 
-typedef Messages::User::Instrument Instrument;  // same
+typedef Messages::User::LoadInstrument LoadInstrument;  // same
 
 }  // namespace Fx
 }  // namespace Messages

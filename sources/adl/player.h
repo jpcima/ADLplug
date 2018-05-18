@@ -18,6 +18,10 @@ enum class Player_Type {
     #undef ENUMVAL
 };
 
+struct Bank_Id;
+struct Bank_Ref;
+struct Instrument;
+
 template <Player_Type>
 struct Player_Traits;
 
@@ -31,6 +35,8 @@ public:
     virtual void reset() = 0;
     virtual void panic() = 0;
     virtual unsigned reserve_banks(unsigned banks) = 0;
+    virtual bool get_bank(const Bank_Id &id, int flags, Bank_Ref &bank) = 0;
+    virtual bool set_instrument(Bank_Ref &bank, unsigned index, const Instrument &ins) = 0;
     virtual const char *emulator_name() const = 0;
     virtual void set_emulator(unsigned emu) = 0;
     virtual unsigned num_chips() = 0;

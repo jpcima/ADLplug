@@ -155,6 +155,12 @@ bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) c
     return layouts.getMainOutputChannelSet() == AudioChannelSet::stereo();
 }
 
+struct AdlplugAudioProcessor::Message_Handler_Context
+{
+    Bank_Lookup_Cache bank_cache;
+#pragma message("TODO clear cache when bank will be erased")
+};
+
 void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, pfn_midi_callback midi_cb, void *midi_user_data)
 {
 #ifdef ADLplug_RT_CHECKER
@@ -178,10 +184,13 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, pfn_midi
     ScopedNoDenormals no_denormals;
 
     // handle events from GUI
+    Message_Handler_Context msg_ctx;
+    begin_handling_messages(msg_ctx);
     while (Buffered_Message msg = read_message(midi_q)) {
-        handle_message(msg);
+        handle_message(msg, msg_ctx);
         finish_read_message(midi_q, msg);
     }
+    finish_handling_messages(msg_ctx);
 
     for (std::pair<const uint8_t *, unsigned> midi_event;
          midi_event = midi_cb(midi_user_data), midi_event.first;)
@@ -254,25 +263,38 @@ void AdlplugAudioProcessor::process_midi(const uint8_t *data, unsigned len)
     }
 }
 
-void AdlplugAudioProcessor::handle_message(const Buffered_Message &msg)
+void AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_Handler_Context &ctx)
 {
+    Generic_Player *pl = player_.get();
     const uint8_t *data = msg.data;
     User_Message tag = (User_Message)msg.header->tag;
     unsigned size = msg.header->size;
 
     switch (tag) {
     case User_Message::Midi:
-        process_midi(msg.data, size);
+        process_midi(data, size);
         break;
-    case User_Message::Instrument: {
-        auto &body = *(const Messages::User::Instrument *)msg.data;
-        // TODO
-        
+    case User_Message::LoadInstrument: {
+        auto &body = *(const Messages::User::LoadInstrument *)data;
+        int flags = ADLMIDI_Bank_Create|ADLMIDI_Bank_DoNotAllocate;
+        Bank_Ref *bank = ctx.bank_cache.get(*pl, body.bank, flags);
+        if (bank) {
+            if (pl->set_instrument(*bank, body.program, body.instrument))
+                ; // TODO notify
+        }
         break;
     }
     default:
         assert(false);
     }
+}
+
+void AdlplugAudioProcessor::begin_handling_messages(Message_Handler_Context &ctx)
+{
+}
+
+void AdlplugAudioProcessor::finish_handling_messages(Message_Handler_Context &ctx)
+{
 }
 
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
@@ -299,10 +321,13 @@ void AdlplugAudioProcessor::processBlockBypassed(AudioBuffer<float> &buffer, Mid
     Simple_Fifo &midi_q = *ui_midi_queue_;
 
     // handle events from GUI
+    Message_Handler_Context msg_ctx;
+    begin_handling_messages(msg_ctx);
     while (Buffered_Message msg = read_message(midi_q)) {
-        handle_message(msg);
+        handle_message(msg, msg_ctx);
         finish_read_message(midi_q, msg);
     }
+    finish_handling_messages(msg_ctx);
 
     cpu_load_ = 0;
 

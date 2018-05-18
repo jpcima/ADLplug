@@ -4,14 +4,15 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "adl/instrument.h"
+#include "adl/player.h"
 #include <wopl/wopl_file.h>
 #include <adlmidi.h>
 
-template <class Dst, class Src>
-static inline void convert_WOPLish_instruments(Dst &dst, const Src &src)
+Instrument::Instrument(const WOPLInstrument &o)
+    : ADL_Instrument{}
 {
-#define COPY(x) dst.x = src.x;
-
+    version = ADLMIDI_InstrumentVersion;
+#define COPY(x) this->x = o.x;
     COPY(note_offset1);
     COPY(note_offset2);
     COPY(midi_velocity_offset);
@@ -29,21 +30,15 @@ static inline void convert_WOPLish_instruments(Dst &dst, const Src &src)
     }
     COPY(delay_on_ms);
     COPY(delay_off_ms);
-
 #undef COPY
 }
 
-void convert_ADLI_from_WOPI(
-    ADL_Instrument &dst, const WOPLInstrument &src)
+Bank_Ref *Bank_Lookup_Cache::get(Generic_Player &pl, const Bank_Id &id, int flags)
 {
-    dst = ADL_Instrument{};
-    dst.version = ADLMIDI_InstrumentVersion;
-    convert_WOPLish_instruments(dst, src);
-}
-
-void convert_WOPI_from_ADLI(
-    WOPLInstrument &dst, const ADL_Instrument &src)
-{
-    dst = WOPLInstrument{};
-    convert_WOPLish_instruments(dst, src);
+    if (id == last_bank_id_)
+        return &last_bank_;
+    if (!pl.get_bank(id, flags, last_bank_))
+        return nullptr;
+    last_bank_id_ = id;
+    return &last_bank_;
 }
