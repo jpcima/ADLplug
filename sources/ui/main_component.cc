@@ -175,15 +175,15 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     btn_about->addListener (this);
 
     btn_about->setImages (false, true, true,
-                          ImageCache::getFromMemory (logo_png, logo_pngSize), 1.000f, Colour (0x00000000),
-                          Image(), 1.000f, Colour (0x00000000),
-                          Image(), 1.000f, Colour (0x00000000));
+                          ImageCache::getFromMemory (logo_png, logo_pngSize), 1.0f, Colour (0x00000000),
+                          Image(), 1.0f, Colour (0x00000000),
+                          Image(), 1.0f, Colour (0x00000000));
     btn_about->setBounds (16, 8, 232, 40);
 
     label.reset (new Label ("new label",
                             TRANS("Chips")));
     addAndMakeVisible (label.get());
-    label->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     label->setJustificationType (Justification::centredLeft);
     label->setEditable (false, false, false);
     label->setColour (Label::textColourId, Colours::aliceblue);
@@ -195,7 +195,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     lbl_num_chips.reset (new Label ("new label",
                                     TRANS("100")));
     addAndMakeVisible (lbl_num_chips.get());
-    lbl_num_chips->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_num_chips->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_num_chips->setJustificationType (Justification::centred);
     lbl_num_chips->setEditable (false, false, false);
     lbl_num_chips->setColour (Label::textColourId, Colours::aliceblue);
@@ -234,7 +234,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     label2.reset (new Label ("new label",
                              TRANS("FM synthesizer with YMF262 chip emulation")));
     addAndMakeVisible (label2.get());
-    label2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label2->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     label2->setJustificationType (Justification::centredLeft);
     label2->setEditable (false, false, false);
     label2->setColour (Label::textColourId, Colours::aliceblue);
@@ -258,7 +258,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     label3.reset (new Label ("new label",
                              TRANS("CPU")));
     addAndMakeVisible (label3.get());
-    label3->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label3->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     label3->setJustificationType (Justification::centredLeft);
     label3->setEditable (false, false, false);
     label3->setColour (Label::textColourId, Colours::aliceblue);
@@ -270,7 +270,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     lbl_cpu.reset (new Label ("new label",
                               TRANS("100%")));
     addAndMakeVisible (lbl_cpu.get());
-    lbl_cpu->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_cpu->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_cpu->setJustificationType (Justification::centred);
     lbl_cpu->setEditable (false, false, false);
     lbl_cpu->setColour (Label::textColourId, Colours::aliceblue);
@@ -300,9 +300,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     btn_bank_save->addListener (this);
 
     btn_bank_save->setImages (false, true, true,
-                              ImageCache::getFromMemory (emoji_u1f4be_png, emoji_u1f4be_pngSize), 1.000f, Colour (0x00000000),
-                              Image(), 1.000f, Colour (0x00000000),
-                              Image(), 1.000f, Colour (0x00000000));
+                              ImageCache::getFromMemory (emoji_u1f4be_png, emoji_u1f4be_pngSize), 1.0f, Colour (0x00000000),
+                              Image(), 1.0f, Colour (0x00000000),
+                              Image(), 1.0f, Colour (0x00000000));
     btn_bank_save->setBounds (264, 80, 30, 24);
 
     btn_bank_load.reset (new ImageButton ("new button"));
@@ -310,9 +310,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     btn_bank_load->addListener (this);
 
     btn_bank_load->setImages (false, true, true,
-                              ImageCache::getFromMemory (emoji_u1f4c2_png, emoji_u1f4c2_pngSize), 1.000f, Colour (0x00000000),
-                              Image(), 1.000f, Colour (0x00000000),
-                              Image(), 1.000f, Colour (0x00000000));
+                              ImageCache::getFromMemory (emoji_u1f4c2_png, emoji_u1f4c2_pngSize), 1.0f, Colour (0x00000000),
+                              Image(), 1.0f, Colour (0x00000000),
+                              Image(), 1.0f, Colour (0x00000000));
     btn_bank_load->setBounds (232, 80, 30, 24);
 
     edt_bank_name.reset (new TextEditor ("new text editor"));
@@ -444,7 +444,7 @@ void Main_Component::paint (Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Bold"));
+        g.setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Bold"));
         g.drawText (text, x, y, width, height,
                     Justification::centredLeft, true);
     }
@@ -456,7 +456,7 @@ void Main_Component::paint (Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Bold"));
+        g.setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Bold"));
         g.drawText (text, x, y, width, height,
                     Justification::centredLeft, true);
     }
@@ -468,7 +468,7 @@ void Main_Component::paint (Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
         g.drawText (text, x, y, width, height,
                     Justification::centred, true);
     }
@@ -480,7 +480,7 @@ void Main_Component::paint (Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
         g.drawText (text, x, y, width, height,
                     Justification::centred, true);
     }
@@ -492,7 +492,7 @@ void Main_Component::paint (Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
         g.drawText (text, x, y, width, height,
                     Justification::centred, true);
     }
@@ -504,7 +504,7 @@ void Main_Component::paint (Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
         g.drawText (text, x, y, width, height,
                     Justification::centred, true);
     }
@@ -809,27 +809,27 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="Main_Component" componentName=""
                  parentClasses="public Component, public MidiKeyboardStateListener"
                  constructorParams="AdlplugAudioProcessor &amp;proc" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
+                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.33"
                  fixedSize="0" initialWidth="800" initialHeight="600">
   <BACKGROUND backgroundColour="ff323e44">
     <TEXT pos="28 132 92 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 1-2"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="1" italic="0" justification="33" typefaceStyle="Bold"/>
+          fontname="Default font" fontsize="15.0" kerning="0.0" bold="1"
+          italic="0" justification="33" typefaceStyle="Bold"/>
     <TEXT pos="28 300 92 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 3-4"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="1" italic="0" justification="33" typefaceStyle="Bold"/>
+          fontname="Default font" fontsize="15.0" kerning="0.0" bold="1"
+          italic="0" justification="33" typefaceStyle="Bold"/>
     <TEXT pos="532 132 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Tune"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="36"/>
+          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+          italic="0" justification="36"/>
     <TEXT pos="532 300 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Tune"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="36"/>
+          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+          italic="0" justification="36"/>
     <TEXT pos="428 300 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="36"/>
+          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+          italic="0" justification="36"/>
     <TEXT pos="428 132 60 30" fill="solid: fff0f8ff" hasStroke="0" text="Feedback"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="36"/>
+          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+          italic="0" justification="36"/>
     <RECT pos="680 8 92 12" fill="solid: 8e989b" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: ff8e989b"/>
     <RECT pos="680 24 92 12" fill="solid: 8e989b" hasStroke="1" stroke="1, mitered, butt"
@@ -869,15 +869,15 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="421 328 352 128" class="Operator_Editor"
                     params=""/>
   <SLIDER name="new slider" id="9cd7cc232d55ac8a" memberName="sl_tune12"
-          virtualName="" explicitFocusOrder="0" pos="568 136 150 24" min="-127.00000000000000000000"
-          max="127.00000000000000000000" int="0.00000000000000000000" style="LinearHorizontal"
-          textBoxPos="TextBoxRight" textBoxEditable="1" textBoxWidth="36"
-          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+          virtualName="" explicitFocusOrder="0" pos="568 136 150 24" min="-127.0"
+          max="127.0" int="0.0" style="LinearHorizontal" textBoxPos="TextBoxRight"
+          textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <SLIDER name="new slider" id="314f46c5e90647" memberName="sl_tune34"
-          virtualName="" explicitFocusOrder="0" pos="568 304 150 24" min="-127.00000000000000000000"
-          max="127.00000000000000000000" int="0.00000000000000000000" style="LinearHorizontal"
-          textBoxPos="TextBoxRight" textBoxEditable="1" textBoxWidth="36"
-          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+          virtualName="" explicitFocusOrder="0" pos="568 304 150 24" min="-127.0"
+          max="127.0" int="0.0" style="LinearHorizontal" textBoxPos="TextBoxRight"
+          textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <GENERICCOMPONENT name="new component" id="8e0915367ccd00d3" memberName="component5"
                     virtualName="" explicitFocusOrder="0" pos="496 128 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
@@ -890,22 +890,20 @@ BEGIN_JUCER_METADATA
   <IMAGEBUTTON name="new button" id="1c21a98bd6493eb8" memberName="btn_about"
                virtualName="" explicitFocusOrder="0" pos="16 8 232 40" buttonText=""
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="logo_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="logo_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="" opacityOver="1.0" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <LABEL name="new label" id="5628e38331cdf4ec" memberName="label" virtualName=""
          explicitFocusOrder="0" pos="480 40 48 24" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Chips" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="be41a2433f6d1f03" memberName="lbl_num_chips"
          virtualName="" explicitFocusOrder="0" pos="528 40 32 24" textCol="fff0f8ff"
          outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="100"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="btn_less_chips"
               virtualName="" explicitFocusOrder="0" pos="568 40 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
@@ -919,8 +917,8 @@ BEGIN_JUCER_METADATA
          explicitFocusOrder="0" pos="280 8 280 24" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="FM synthesizer with YMF262 chip emulation"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <GENERICCOMPONENT name="new component" id="8c38ad0cbcf109f7" memberName="vu_left"
                     virtualName="" explicitFocusOrder="0" pos="680 8 92 12" class="Vu_Meter"
                     params=""/>
@@ -931,14 +929,13 @@ BEGIN_JUCER_METADATA
          explicitFocusOrder="0" pos="684 40 40 24" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="CPU" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="2067136cf573bd1a" memberName="lbl_cpu" virtualName=""
          explicitFocusOrder="0" pos="724 40 48 24" textCol="fff0f8ff"
          outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="100%"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="36"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
   <GENERICCOMPONENT name="new component" id="b87acb622e25d16e" memberName="ind_midi_activity"
                     virtualName="" explicitFocusOrder="0" pos="568 8 102 28" class="Indicator_NxM"
                     params="2, 8"/>
@@ -948,17 +945,15 @@ BEGIN_JUCER_METADATA
   <IMAGEBUTTON name="new button" id="9f8f27848ef4c443" memberName="btn_bank_save"
                virtualName="" explicitFocusOrder="0" pos="264 80 30 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="emoji_u1f4be_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="emoji_u1f4be_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="" opacityOver="1.0" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <IMAGEBUTTON name="new button" id="815efbfa4ced22e6" memberName="btn_bank_load"
                virtualName="" explicitFocusOrder="0" pos="232 80 30 24" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
-               resourceNormal="emoji_u1f4c2_png" opacityNormal="1.00000000000000000000"
-               colourNormal="0" resourceOver="" opacityOver="1.00000000000000000000"
-               colourOver="0" resourceDown="" opacityDown="1.00000000000000000000"
-               colourDown="0"/>
+               resourceNormal="emoji_u1f4c2_png" opacityNormal="1.0" colourNormal="0"
+               resourceOver="" opacityOver="1.0" colourOver="0" resourceDown=""
+               opacityDown="1.0" colourDown="0"/>
   <TEXTEDITOR name="new text editor" id="62544efea1101020" memberName="edt_bank_name"
               virtualName="" explicitFocusOrder="0" pos="16 80 208 24" outlinecol="ff8e989b"
               initialText="Bank name" multiline="0" retKeyStartsLine="0" readonly="0"

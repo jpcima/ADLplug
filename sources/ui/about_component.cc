@@ -44,7 +44,7 @@ About_Component::About_Component ()
                             CharPointer_UTF8 ("This program is free software developed by Jean Pierre Cimalando. \xc2\xa9 2018\n"
                             "Many thanks to people who make this program possible.")));
     addAndMakeVisible (label.get());
-    label->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     label->setJustificationType (Justification::centredLeft);
     label->setEditable (false, false, false);
     label->setColour (TextEditor::textColourId, Colours::black);
@@ -58,7 +58,7 @@ About_Component::About_Component ()
                              "Alexey Khokholov for Nuked OPL3\n"
                              "The Dosbox Team for Dosbox OPL")));
     addAndMakeVisible (label2.get());
-    label2->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    label2->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     label2->setJustificationType (Justification::centredLeft);
     label2->setEditable (false, false, false);
     label2->setColour (TextEditor::textColourId, Colours::black);
@@ -69,7 +69,7 @@ About_Component::About_Component ()
     lbl_prog_version.reset (new Label ("new label",
                                        TRANS("Foobar 1.0")));
     addAndMakeVisible (lbl_prog_version.get());
-    lbl_prog_version->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Bold"));
+    lbl_prog_version->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Bold"));
     lbl_prog_version->setJustificationType (Justification::centredLeft);
     lbl_prog_version->setEditable (false, false, false);
     lbl_prog_version->setColour (TextEditor::textColourId, Colours::black);
@@ -142,7 +142,7 @@ BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="About_Component" componentName=""
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
+                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.33"
                  fixedSize="0" initialWidth="500" initialHeight="190">
   <BACKGROUND backgroundColour="ff323e44"/>
   <HYPERLINKBUTTON name="new hyperlink" id="ab6eab2236ebdf3d" memberName="hyperlinkButton"
@@ -153,20 +153,19 @@ BEGIN_JUCER_METADATA
          explicitFocusOrder="0" pos="8 72 488 40" edTextCol="ff000000"
          edBkgCol="0" labelText="This program is free software developed by Jean Pierre Cimalando. &#169; 2018&#10;Many thanks to people who make this program possible."
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <LABEL name="new label" id="5ed4be24f6c40a04" memberName="label2" virtualName=""
          explicitFocusOrder="0" pos="8 120 488 56" edTextCol="ff000000"
          edBkgCol="0" labelText="Vitaly Novichkov for the ADLMIDI library&#10;Joel Yliluoma for the original ADLMIDI software&#10;Alexey Khokholov for Nuked OPL3&#10;The Dosbox Team for Dosbox OPL"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="0" italic="0" justification="33"/>
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <LABEL name="new label" id="368ceb7955ceaf95" memberName="lbl_prog_version"
          virtualName="" explicitFocusOrder="0" pos="8 8 150 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Foobar 1.0" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="1" italic="0" justification="33"
-         typefaceStyle="Bold"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="1" italic="0" justification="33" typefaceStyle="Bold"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

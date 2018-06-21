@@ -116,11 +116,11 @@
 // juce_audio_formats flags:
 
 #ifndef    JUCE_USE_FLAC
- //#define JUCE_USE_FLAC 1
+ #define   JUCE_USE_FLAC 0
 #endif
 
 #ifndef    JUCE_USE_OGGVORBIS
- //#define JUCE_USE_OGGVORBIS 1
+ #define   JUCE_USE_OGGVORBIS 0
 #endif
 
 #ifndef    JUCE_USE_MP3AUDIOFORMAT
@@ -132,7 +132,7 @@
 #endif
 
 #ifndef    JUCE_USE_WINDOWS_MEDIA_FORMAT
- //#define JUCE_USE_WINDOWS_MEDIA_FORMAT 1
+ #define   JUCE_USE_WINDOWS_MEDIA_FORMAT 0
 #endif
 
 //==============================================================================
@@ -208,7 +208,11 @@
 #endif
 
 #ifndef    JUCE_USE_CURL
- //#define JUCE_USE_CURL 0
+ #define   JUCE_USE_CURL 1
+#endif
+
+#ifndef    JUCE_LOAD_CURL_SYMBOLS_LAZILY
+ #define   JUCE_LOAD_CURL_SYMBOLS_LAZILY 1
 #endif
 
 #ifndef    JUCE_CATCH_UNHANDLED_EXCEPTIONS
@@ -235,6 +239,10 @@
 
 #ifndef    JUCE_USE_DIRECTWRITE
  //#define JUCE_USE_DIRECTWRITE 1
+#endif
+
+#ifndef    JUCE_DISABLE_COREGRAPHICS_FONT_SMOOTHING
+ //#define JUCE_DISABLE_COREGRAPHICS_FONT_SMOOTHING 0
 #endif
 
 //==============================================================================
@@ -317,6 +325,9 @@
 #endif
 #ifndef  JucePlugin_Build_Standalone
  #define JucePlugin_Build_Standalone       1
+#endif
+#ifndef  JucePlugin_Build_Unity
+ #define JucePlugin_Build_Unity            0
 #endif
 #ifndef  JucePlugin_Enable_IAA
  #define JucePlugin_Enable_IAA             0

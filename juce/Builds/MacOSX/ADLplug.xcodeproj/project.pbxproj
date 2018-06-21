@@ -491,7 +491,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../thirdparty/JUCE/modules", "../../../thirdparty/VFLib/modules", "../../../sources", "../../../thirdparty/libADLMIDI/include", "../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
@@ -503,6 +504,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-bundle -lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = vst; }; name = Debug; };
@@ -534,7 +536,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
@@ -548,6 +551,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-bundle -lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = vst; }; name = Release; };
@@ -579,7 +583,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../thirdparty/JUCE/modules", "../../../thirdparty/VFLib/modules", "../../../sources", "../../../thirdparty/libADLMIDI/include", "../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
@@ -591,6 +596,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-bundle -lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = vst3; }; name = Debug; };
@@ -622,7 +628,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
@@ -636,6 +643,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-bundle -lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = vst3; }; name = Release; };
@@ -667,7 +675,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=1",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../thirdparty/JUCE/modules", "../../../thirdparty/VFLib/modules", "../../../sources", "../../../thirdparty/libADLMIDI/include", "../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
@@ -680,6 +689,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-bundle -lAAXLibrary_libcpp -lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = aaxplugin; }; name = Debug; };
@@ -711,7 +721,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=1",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
@@ -726,6 +737,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-bundle -lAAXLibrary_libcpp -lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = aaxplugin; }; name = Release; };
@@ -757,7 +769,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=1",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../thirdparty/JUCE/modules", "../../../thirdparty/VFLib/modules", "../../../sources", "../../../thirdparty/libADLMIDI/include", "$(DEVELOPER_DIR)/Headers/FlatCarbon", "$(SDKROOT)/Developer/Headers/FlatCarbon", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Controls", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/CoreClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/DSPClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/EffectClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/MacBuild", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Meters", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ProcessClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ProcessClasses/Interfaces", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/RTASP_Adapt", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Utilities", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ViewClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/DSPManager/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SupplementalPlugInLib/Encryption", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SupplementalPlugInLib/GraphicsExtensions", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/common/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/common/PI_LibInterface", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PACEProtection/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SignalProcessing/**", "~/SDKs/PT_90_SDK/AlturaPorts/OMS/Headers", "~/SDKs/PT_90_SDK/AlturaPorts/Fic/Interfaces/**", "~/SDKs/PT_90_SDK/AlturaPorts/Fic/Source/SignalNets", "~/SDKs/PT_90_SDK/AlturaPorts/DSIPublicInterface/PublicHeaders", "~/SDKs/PT_90_SDK/DAEWin/Include", "~/SDKs/PT_90_SDK/AlturaPorts/DigiPublic/Interfaces", "~/SDKs/PT_90_SDK/AlturaPorts/DigiPublic", "~/SDKs/PT_90_SDK/AlturaPorts/NewFileLibs/DOA", "~/SDKs/PT_90_SDK/AlturaPorts/NewFileLibs/Cmn", "~/SDKs/PT_90_SDK/xplat/AVX/avx2/avx2sdk/inc", "~/SDKs/PT_90_SDK/xplat/AVX/avx2/avx2sdk/utils", "../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
@@ -770,6 +783,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-bundle -lPluginLibrary -lPluginLibrary -lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = dpm; }; name = Debug; };
@@ -801,7 +815,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=1",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
@@ -816,6 +831,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-bundle -lPluginLibrary -lPluginLibrary -lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = dpm; }; name = Release; };
@@ -847,7 +863,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../thirdparty/JUCE/modules", "../../../thirdparty/VFLib/modules", "../../../sources", "../../../thirdparty/libADLMIDI/include", "../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
@@ -860,6 +877,7 @@
 				OTHER_LDFLAGS = "-bundle -lADLplug";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\"";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = component; }; name = Debug; };
@@ -891,7 +909,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
@@ -906,6 +925,7 @@
 				OTHER_LDFLAGS = "-bundle -lADLplug";
 				OTHER_REZFLAGS = "-d ppc_$ppc -d i386_$i386 -d ppc64_$ppc64 -d x86_64_$x86_64 -I /System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Versions/A/Headers -I \"$(DEVELOPER_DIR)/Extras/CoreAudio/AudioUnits/AUPublic/AUBase\"";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO;
 				WRAPPER_EXTENSION = component; }; name = Release; };
@@ -937,7 +957,8 @@
 					"JucePlugin_Build_AUv3=1",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../thirdparty/JUCE/modules", "../../../thirdparty/VFLib/modules", "../../../sources", "../../../thirdparty/libADLMIDI/include", "../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-AUv3_AppExtension.plist;
@@ -946,6 +967,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug.ADLplugAUv3;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO; }; name = Debug; };
 		3A39369A887614768EAABFE6 = {isa = XCBuildConfiguration; buildSettings = {
@@ -976,7 +998,8 @@
 					"JucePlugin_Build_AUv3=1",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=0", );
+					"JucePlugin_Build_Standalone=0",
+					"JucePlugin_Build_Unity=0", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../thirdparty/JUCE/modules", "../../../thirdparty/VFLib/modules", "../../../sources", "../../../thirdparty/libADLMIDI/include", "../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
@@ -987,6 +1010,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug.ADLplugAUv3;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO; }; name = Release; };
 		7BD7C98AB2FD5AAD35282AA9 = {isa = XCBuildConfiguration; buildSettings = {
@@ -1015,7 +1039,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=1", );
+					"JucePlugin_Build_Standalone=1",
+					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../thirdparty/JUCE/modules", "../../../thirdparty/VFLib/modules", "../../../sources", "../../../thirdparty/libADLMIDI/include", "../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-Standalone_Plugin.plist;
@@ -1024,6 +1049,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO; }; name = Debug; };
 		B434EDDDFCC1D1A717554EF3 = {isa = XCBuildConfiguration; buildSettings = {
@@ -1052,7 +1078,8 @@
 					"JucePlugin_Build_AUv3=0",
 					"JucePlugin_Build_RTAS=0",
 					"JucePlugin_Build_AAX=0",
-					"JucePlugin_Build_Standalone=1", );
+					"JucePlugin_Build_Standalone=1",
+					"JucePlugin_Build_Unity=0", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../thirdparty/JUCE/modules", "../../../thirdparty/VFLib/modules", "../../../sources", "../../../thirdparty/libADLMIDI/include", "../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
@@ -1063,6 +1090,7 @@
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = "-lADLplug";
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO; }; name = Release; };
 		8B622AD1F2C5B88A121B62FD = {isa = XCBuildConfiguration; buildSettings = {
@@ -1092,6 +1120,7 @@
 					"JucePlugin_Build_RTAS=1",
 					"JucePlugin_Build_AAX=1",
 					"JucePlugin_Build_Standalone=1",
+					"JucePlugin_Build_Unity=0",
 					"JUCE_SHARED_CODE=1", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../thirdparty/JUCE/modules", "../../../thirdparty/VFLib/modules", "../../../sources", "../../../thirdparty/libADLMIDI/include", "../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
@@ -1099,6 +1128,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO; }; name = Debug; };
 		C42A860F034AB7FD78ABD569 = {isa = XCBuildConfiguration; buildSettings = {
@@ -1128,6 +1158,7 @@
 					"JucePlugin_Build_RTAS=1",
 					"JucePlugin_Build_AAX=1",
 					"JucePlugin_Build_Standalone=1",
+					"JucePlugin_Build_Unity=0",
 					"JUCE_SHARED_CODE=1", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1137,6 +1168,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				PRODUCT_BUNDLE_IDENTIFIER = jpcima.ADLplug;
+				PRODUCT_NAME = "ADLplug";
 				SDKROOT_ppc = macosx10.5;
 				USE_HEADERMAP = NO; }; name = Release; };
 		7FFBC3616009EDFAD098131B = {isa = XCBuildConfiguration; buildSettings = {
