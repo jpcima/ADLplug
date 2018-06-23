@@ -9,6 +9,12 @@
 #include "adl/player.h"
 #include <cassert>
 
+#if 1
+#   define trace(fmt, ...)
+#else
+#   define trace(fmt, ...) fprintf(stderr, "[Bank Manager] " fmt "\n", ##__VA_ARGS__)
+#endif
+
 Bank_Manager::Bank_Manager(AdlplugAudioProcessor &proc, Generic_Player &pl)
     : proc_(proc), pl_(pl)
 {
@@ -18,12 +24,17 @@ void Bank_Manager::update_all_banks()
 {
     Generic_Player &pl = pl_;
 
+    trace("Update all banks");
+
     Bank_Ref bank;
     unsigned index = 0;
 
     for (bool have = pl.get_first_bank(bank); have; have = pl.get_next_bank(bank)) {
         Bank_Id id;
         pl.ensure_get_bank_id(bank, id);
+
+        trace("Update bank %c%u:%u at slot %u",
+              id.percussive ? 'P' : 'M', id.msb, id.lsb, index);
 
         Instrument ins;
         unsigned num_programs = 0;
@@ -46,6 +57,7 @@ void Bank_Manager::update_all_banks()
         ++index;
     }
 
+    trace("Clear slots %u-%u", index, bank_reserve_size - 1);
     for (; index < bank_reserve_size; ++index)
         bank_infos_[index].id = Bank_Id();
 }
@@ -89,20 +101,37 @@ void Bank_Manager::send_notifications()
 void Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instrument &ins)
 {
     Generic_Player &pl = pl_;
-    unsigned index = find_slot(id);
 
-    if (index == (unsigned)-1) {
+    unsigned index = find_slot(id);
+    if (index != (unsigned)-1) {
+        trace("Loading program %c%u:%u:%u into existing bank at slot %u",
+              id.percussive ? 'P' : 'M', id.msb, id.lsb, program, index);
+    }
+    else {
         // no slots, try to find empty
         index = find_empty_slot();
-        if (index == (unsigned) -1)
+
+        if (index == (unsigned)-1) {
+            trace("No empty slot to load program %c%u:%u:%u",
+                  id.percussive ? 'P' : 'M', id.msb, id.lsb, program);
             return;
+        }
+
         Bank_Info &info = bank_infos_[index];
-        // remove the old bank if one was there
-        if (info.id)
+        if (!info.id) {
+            trace("Loading program %c%u:%u:%u at empty slot %u",
+                  id.percussive ? 'P' : 'M', id.msb, id.lsb, program, index);
+        }
+        else {
+            // remove the old bank if one was there
+            trace("Loading program %c%u:%u:%u over existing blank bank %c%u:%u at slot %u",
+                  id.percussive ? 'P' : 'M', id.msb, id.lsb, program,
+                  info.id.percussive ? 'P' : 'M', info.id.lsb, info.id.msb, index);
             pl.ensure_remove_bank(info.bank);
+        }
+
         info.id = id;
-        int flags = ADLMIDI_Bank_Create|ADLMIDI_Bank_DoNotAllocate;
-        pl.ensure_get_bank(id, flags, info.bank);
+        pl.ensure_get_bank(id, ADLMIDI_Bank_CreateRt, info.bank);
     }
 
     Bank_Info &info = bank_infos_[index];

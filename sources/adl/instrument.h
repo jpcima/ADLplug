@@ -30,13 +30,13 @@ struct Bank_Ref : ADL_Bank
 struct Bank_Id : ADL_BankId
 {
     constexpr Bank_Id() noexcept
-        : ADL_BankId{0xff} {}
+        : ADL_BankId{false, 0xff, 0xff} {}
     constexpr Bank_Id(uint8_t msb, uint8_t lsb, bool percussive) noexcept
-        : ADL_BankId{msb, lsb, percussive} {}
+        : ADL_BankId{percussive, msb, lsb} {}
     constexpr explicit operator bool() const noexcept
         { return msb < 0x7f; }
     constexpr bool operator==(const Bank_Id &o) const noexcept
-        { return msb == o.msb && lsb == o.lsb && percussive == o.percussive; }
+        { return msb == o.msb && lsb == o.lsb && (bool)percussive == (bool)o.percussive; }
     constexpr bool operator!=(const Bank_Id &o) const noexcept
         { return !operator==(o); }
 };

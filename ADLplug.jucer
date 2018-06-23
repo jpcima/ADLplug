@@ -7,7 +7,7 @@
               bundleIdentifier="jpcima.ADLplug" pluginName="ADLplug" pluginDesc="ADLplug"
               pluginManufacturer="jpcima" pluginManufacturerCode="JPCm" pluginCode="ADLM"
               aaxIdentifier="jpcima.ADLplug" headerPath="../../../sources&#10;../../../thirdparty/libADLMIDI/include"
-              defines="ADLMIDI_DISABLE_CPP_EXTRAS&#10;ADLMIDI_DISABLE_MIDI_SEQUENCER&#10;ADLMIDI_DISABLE_MUS_SUPPORT&#10;ADLMIDI_DISABLE_XMI_SUPPORT"
+              defines="ADLMIDI_UNSTABLE_API&#10;ADLMIDI_DISABLE_CPP_EXTRAS&#10;ADLMIDI_DISABLE_MIDI_SEQUENCER&#10;ADLMIDI_DISABLE_MUS_SUPPORT&#10;ADLMIDI_DISABLE_XMI_SUPPORT"
               id="ojbkOL">
   <MAINGROUP id="faq0v0" name="ADLplug">
     <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
@@ -121,9 +121,9 @@
                   file="thirdparty/libADLMIDI/src/chips/nuked_opl3_v174.cpp"/>
             <FILE id="oqO4Qv" name="nuked_opl3_v174.h" compile="0" resource="0"
                   file="thirdparty/libADLMIDI/src/chips/nuked_opl3_v174.h"/>
-            <FILE id="BIPdFv" name="opl_chip_base.cpp" compile="1" resource="0"
-                  file="thirdparty/libADLMIDI/src/chips/opl_chip_base.cpp"/>
             <FILE id="AqlSwH" name="opl_chip_base.h" compile="0" resource="0" file="thirdparty/libADLMIDI/src/chips/opl_chip_base.h"/>
+            <FILE id="ruZYLd" name="opl_chip_base.tcc" compile="0" resource="0"
+                  file="thirdparty/libADLMIDI/src/chips/opl_chip_base.tcc"/>
           </GROUP>
           <FILE id="Nx4vf0" name="adldata.cpp" compile="1" resource="0" file="thirdparty/libADLMIDI/src/adldata.cpp"/>
           <FILE id="e59kxG" name="adldata.hh" compile="0" resource="0" file="thirdparty/libADLMIDI/src/adldata.hh"/>

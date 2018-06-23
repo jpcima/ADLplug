@@ -553,9 +553,6 @@
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3_v174.cpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.cpp">
-      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adldata.cpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClCompile>
@@ -4744,6 +4741,9 @@
     </None>
     <None Include="..\..\..\resources\ui\knob-skin.png">
       <Filter>ADLplug\resources\ui</Filter>
+    </None>
+    <None Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.tcc">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
     </None>
     <None Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.tcc">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>

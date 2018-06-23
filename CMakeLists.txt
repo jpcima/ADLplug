@@ -129,6 +129,7 @@ add_library(ADLplug_core STATIC
   "sources/adl/player.cc"
   "sources/adl/instrument.cc")
 target_include_directories(ADLplug_core PRIVATE "sources")
+target_compile_definitions(ADLplug_core PRIVATE "ADLMIDI_UNSTABLE_API")
 target_link_libraries(ADLplug_core
   PUBLIC vf_freetype vf_gui
   juce_core juce_events juce_data_structures

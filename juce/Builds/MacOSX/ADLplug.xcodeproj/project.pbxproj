@@ -56,7 +56,6 @@
 		F6562901A253D2A9FB6F846C = {isa = PBXBuildFile; fileRef = 832902B433C17B378D0E67A5; };
 		0F2F131E98C88BC301BB6CC6 = {isa = PBXBuildFile; fileRef = 774A3345D14799F3764F9822; };
 		06E8313D978B84E643907B11 = {isa = PBXBuildFile; fileRef = 41712EF1AD9A8BFA6C2D65FC; };
-		02F06E0CF479A8DAEAD429A9 = {isa = PBXBuildFile; fileRef = 900123729569861ED9E72096; };
 		8E470D07CAF60597C9E1D906 = {isa = PBXBuildFile; fileRef = 0981095258A0E1358DD2718E; };
 		853BB77D73FE4D18399D183D = {isa = PBXBuildFile; fileRef = 07291390FCAF583F97127416; };
 		5CDF89908CFF99C3B4284B2C = {isa = PBXBuildFile; fileRef = 78368434ED0EE139AE38B2F9; };
@@ -181,7 +180,6 @@
 		8A46F8FF8245C59B01A91377 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_devices.mm"; path = "../../../JuceLibraryCode/include_juce_audio_devices.mm"; sourceTree = "SOURCE_ROOT"; };
 		8D086DCAABC00815A83ABCD2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "indicator_NxM.h"; path = "../../../sources/ui/indicator_NxM.h"; sourceTree = "SOURCE_ROOT"; };
 		8FEFBD58DEB4E0094F2E2CC5 = {isa = PBXFileReference; lastKnownFileType = file.tcc; name = "adlmidi_bankmap.tcc"; path = "../../../thirdparty/libADLMIDI/src/adlmidi_bankmap.tcc"; sourceTree = "SOURCE_ROOT"; };
-		900123729569861ED9E72096 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "opl_chip_base.cpp"; path = "../../../thirdparty/libADLMIDI/src/chips/opl_chip_base.cpp"; sourceTree = "SOURCE_ROOT"; };
 		90758199676372F0B558EB27 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_events"; path = "../../../thirdparty/JUCE/modules/juce_events"; sourceTree = "SOURCE_ROOT"; };
 		907D7C41E35DB01AA436E95D = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "include_juce_audio_plugin_client_VST2.cpp"; path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_VST2.cpp"; sourceTree = "SOURCE_ROOT"; };
 		944DE9DB0DF3F06C4269AAA9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "dosbox_opl3.h"; path = "../../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.h"; sourceTree = "SOURCE_ROOT"; };
@@ -239,6 +237,7 @@
 		E4514B1F92F5A295EE779F74 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_gui_basics.mm"; path = "../../../JuceLibraryCode/include_juce_gui_basics.mm"; sourceTree = "SOURCE_ROOT"; };
 		E6AFD2FEEC661181C7A8B279 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "nukedopl3_174.h"; path = "../../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3_174.h"; sourceTree = "SOURCE_ROOT"; };
 		E6C98F17ECBB0B938BCECC6A = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		E6DB3855ABA3D37C5ABF6D99 = {isa = PBXFileReference; lastKnownFileType = file.tcc; name = "opl_chip_base.tcc"; path = "../../../thirdparty/libADLMIDI/src/chips/opl_chip_base.tcc"; sourceTree = "SOURCE_ROOT"; };
 		E74169F822F725F25D6CA162 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "adlmidi_ptr.hpp"; path = "../../../thirdparty/libADLMIDI/src/adlmidi_ptr.hpp"; sourceTree = "SOURCE_ROOT"; };
 		E9A7C912AC998596441572AD = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_core"; path = "../../../thirdparty/JUCE/modules/juce_core"; sourceTree = "SOURCE_ROOT"; };
 		E9FD2550CF3DA671F4020480 = {isa = PBXFileReference; lastKnownFileType = image.png; name = "emoji_u1f4be.png"; path = "../../../resources/ui/noto-emoji/emoji_u1f4be.png"; sourceTree = "SOURCE_ROOT"; };
@@ -340,8 +339,8 @@
 					1D6FC546B54D62299732F538,
 					41712EF1AD9A8BFA6C2D65FC,
 					FFB8B5577B5CD776552DBC11,
-					900123729569861ED9E72096,
-					3F1F4311B46C56EAE0E95887, ); name = chips; sourceTree = "<group>"; };
+					3F1F4311B46C56EAE0E95887,
+					E6DB3855ABA3D37C5ABF6D99, ); name = chips; sourceTree = "<group>"; };
 		CB442E8ECFAD588463D9AB75 = {isa = PBXGroup; children = (
 					83CF1602A921F80138E98606,
 					0981095258A0E1358DD2718E,
@@ -477,6 +476,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -522,6 +522,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -569,6 +570,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -614,6 +616,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -661,6 +664,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -707,6 +711,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -755,6 +760,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -801,6 +807,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -849,6 +856,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -895,6 +903,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -943,6 +952,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -984,6 +994,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -1025,6 +1036,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -1064,6 +1076,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -1105,6 +1118,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -1143,6 +1157,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
+					"ADLMIDI_UNSTABLE_API",
 					"ADLMIDI_DISABLE_CPP_EXTRAS",
 					"ADLMIDI_DISABLE_MIDI_SEQUENCER",
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
@@ -1481,7 +1496,6 @@
 					F6562901A253D2A9FB6F846C,
 					0F2F131E98C88BC301BB6CC6,
 					06E8313D978B84E643907B11,
-					02F06E0CF479A8DAEAD429A9,
 					8E470D07CAF60597C9E1D906,
 					853BB77D73FE4D18399D183D,
 					5CDF89908CFF99C3B4284B2C,
