@@ -178,10 +178,9 @@
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_load.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_midiplay.cpp"/>
-    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_mus2mid.c"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_opl3.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.cpp"/>
-    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.c"/>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_sequencer.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1974,11 +1973,15 @@
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adldata.hh"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.h"/>
-    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_mus2mid.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.hpp"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_ptr.hpp"/>
-    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.h"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\cvt_mus2mid.hpp"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\cvt_xmi2mid.hpp"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\file_reader.hpp"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\fraction.hpp"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\midi_sequencer.h"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\midi_sequencer.hpp"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\midi_sequencer_impl.hpp"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>

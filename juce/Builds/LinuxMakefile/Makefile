@@ -126,10 +126,9 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/adlmidi_c578730b.o \
   $(JUCE_OBJDIR)/adlmidi_load_f4b93b64.o \
   $(JUCE_OBJDIR)/adlmidi_midiplay_ccf1053.o \
-  $(JUCE_OBJDIR)/adlmidi_mus2mid_c51d72d.o \
   $(JUCE_OBJDIR)/adlmidi_opl3_7155cc66.o \
   $(JUCE_OBJDIR)/adlmidi_private_8636c74f.o \
-  $(JUCE_OBJDIR)/adlmidi_xmi2mid_1b3ae4b6.o \
+  $(JUCE_OBJDIR)/adlmidi_sequencer_c49001dd.o \
   $(JUCE_OBJDIR)/BinaryData_51699c3.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_68f957b.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_6eefc5f1.o \
@@ -346,11 +345,6 @@ $(JUCE_OBJDIR)/adlmidi_midiplay_ccf1053.o: ../../../thirdparty/libADLMIDI/src/ad
 	@echo "Compiling adlmidi_midiplay.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/adlmidi_mus2mid_c51d72d.o: ../../../thirdparty/libADLMIDI/src/adlmidi_mus2mid.c
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling adlmidi_mus2mid.c"
-	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/adlmidi_opl3_7155cc66.o: ../../../thirdparty/libADLMIDI/src/adlmidi_opl3.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling adlmidi_opl3.cpp"
@@ -361,10 +355,10 @@ $(JUCE_OBJDIR)/adlmidi_private_8636c74f.o: ../../../thirdparty/libADLMIDI/src/ad
 	@echo "Compiling adlmidi_private.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/adlmidi_xmi2mid_1b3ae4b6.o: ../../../thirdparty/libADLMIDI/src/adlmidi_xmi2mid.c
+$(JUCE_OBJDIR)/adlmidi_sequencer_c49001dd.o: ../../../thirdparty/libADLMIDI/src/adlmidi_sequencer.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling adlmidi_xmi2mid.c"
-	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+	@echo "Compiling adlmidi_sequencer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_51699c3.o: ../../../JuceLibraryCode/BinaryData.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)

@@ -565,16 +565,13 @@
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_midiplay.cpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_mus2mid.c">
-      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_opl3.cpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.cpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.c">
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_sequencer.cpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
@@ -2586,19 +2583,31 @@
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.h">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_mus2mid.h">
-      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.hpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_ptr.hpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_xmi2mid.h">
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\cvt_mus2mid.hpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\cvt_xmi2mid.hpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\file_reader.hpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\fraction.hpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\midi_sequencer.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\midi_sequencer.hpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\midi_sequencer_impl.hpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">

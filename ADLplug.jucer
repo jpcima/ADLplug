@@ -136,10 +136,6 @@
                 file="thirdparty/libADLMIDI/src/adlmidi_load.cpp"/>
           <FILE id="FVJBtw" name="adlmidi_midiplay.cpp" compile="1" resource="0"
                 file="thirdparty/libADLMIDI/src/adlmidi_midiplay.cpp"/>
-          <FILE id="Dbbx8U" name="adlmidi_mus2mid.c" compile="1" resource="0"
-                file="thirdparty/libADLMIDI/src/adlmidi_mus2mid.c"/>
-          <FILE id="yBfbLo" name="adlmidi_mus2mid.h" compile="0" resource="0"
-                file="thirdparty/libADLMIDI/src/adlmidi_mus2mid.h"/>
           <FILE id="NMGdm7" name="adlmidi_opl3.cpp" compile="1" resource="0"
                 file="thirdparty/libADLMIDI/src/adlmidi_opl3.cpp"/>
           <FILE id="zqawzn" name="adlmidi_private.cpp" compile="1" resource="0"
@@ -147,11 +143,18 @@
           <FILE id="mkAlRT" name="adlmidi_private.hpp" compile="0" resource="0"
                 file="thirdparty/libADLMIDI/src/adlmidi_private.hpp"/>
           <FILE id="RKcUrt" name="adlmidi_ptr.hpp" compile="0" resource="0" file="thirdparty/libADLMIDI/src/adlmidi_ptr.hpp"/>
-          <FILE id="WV483y" name="adlmidi_xmi2mid.c" compile="1" resource="0"
-                file="thirdparty/libADLMIDI/src/adlmidi_xmi2mid.c"/>
-          <FILE id="ZH1C49" name="adlmidi_xmi2mid.h" compile="0" resource="0"
-                file="thirdparty/libADLMIDI/src/adlmidi_xmi2mid.h"/>
+          <FILE id="m29EGf" name="adlmidi_sequencer.cpp" compile="1" resource="0"
+                file="thirdparty/libADLMIDI/src/adlmidi_sequencer.cpp"/>
+          <FILE id="y5Dy0d" name="cvt_mus2mid.hpp" compile="0" resource="0" file="thirdparty/libADLMIDI/src/cvt_mus2mid.hpp"/>
+          <FILE id="XlwCY3" name="cvt_xmi2mid.hpp" compile="0" resource="0" file="thirdparty/libADLMIDI/src/cvt_xmi2mid.hpp"/>
+          <FILE id="t1ENkt" name="file_reader.hpp" compile="0" resource="0" file="thirdparty/libADLMIDI/src/file_reader.hpp"/>
           <FILE id="GQ6FoP" name="fraction.hpp" compile="0" resource="0" file="thirdparty/libADLMIDI/src/fraction.hpp"/>
+          <FILE id="wI0cN4" name="midi_sequencer.h" compile="0" resource="0"
+                file="thirdparty/libADLMIDI/src/midi_sequencer.h"/>
+          <FILE id="XZzw35" name="midi_sequencer.hpp" compile="0" resource="0"
+                file="thirdparty/libADLMIDI/src/midi_sequencer.hpp"/>
+          <FILE id="ud0W3L" name="midi_sequencer_impl.hpp" compile="0" resource="0"
+                file="thirdparty/libADLMIDI/src/midi_sequencer_impl.hpp"/>
         </GROUP>
       </GROUP>
     </GROUP>
