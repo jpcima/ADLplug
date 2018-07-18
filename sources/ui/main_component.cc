@@ -413,8 +413,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
         btn->setRadioGroupId((int)Radio_Button_Group::Algo_34);
     }
 
-    kn_fb12->set_range(0, 3);
-    kn_fb34->set_range(0, 3);
+    kn_fb12->set_range(0, 7);
+    kn_fb34->set_range(0, 7);
     sl_tune12->setNumDecimalPlacesToDisplay(0);
     sl_tune34->setNumDecimalPlacesToDisplay(0);
     ed_op1->set_op_label(TRANS("Modulator"));
