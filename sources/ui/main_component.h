@@ -59,8 +59,15 @@ public:
     void handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity) override;
     void handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity) override;
 
+    void send_controller(unsigned channel, unsigned ctl, unsigned value);
+    void send_program_change(unsigned channel, unsigned value);
+
+    bool is_percussion_channel(unsigned channel) const;
+
     void receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins);
     void update_instrument_choices();
+
+    void on_change_midi_channel(unsigned channel);
 
 public:
     void vu_update();
@@ -95,6 +102,7 @@ private:
     std::map<uint32_t, Editor_Bank> instrument_map_;
 
     unsigned midichannel_ = 0;
+    uint32_t midiprogram_[16] = {};
 
     File bank_directory_;
     MidiKeyboardState midi_kb_state_;

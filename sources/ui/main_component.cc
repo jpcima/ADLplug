@@ -761,19 +761,13 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_prev_channel.get())
     {
         //[UserButtonCode_btn_prev_channel] -- add your button handler code here..
-        if (midichannel_ > 0) {
-            --midichannel_;
-            lbl_channel->setText(String(1 + midichannel_), dontSendNotification);
-        }
+        on_change_midi_channel(midichannel_ - 1);
         //[/UserButtonCode_btn_prev_channel]
     }
     else if (buttonThatWasClicked == btn_next_channel.get())
     {
         //[UserButtonCode_btn_next_channel] -- add your button handler code here..
-        if (midichannel_ < 15) {
-            ++midichannel_;
-            lbl_channel->setText(String(1 + midichannel_), dontSendNotification);
-        }
+        on_change_midi_channel(midichannel_ + 1);
         //[/UserButtonCode_btn_next_channel]
     }
 
@@ -817,12 +811,28 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     else if (comboBoxThatHasChanged == cb_program.get())
     {
         //[UserComboBoxCode_cb_program] -- add your combo box handling code here..
-        uint32_t cbid = (uint32_t)comboBoxThatHasChanged->getSelectedId() - 1;
-        unsigned insno = cbid & 255;
-        uint32_t psid = cbid >> 8;
+        int selection = comboBoxThatHasChanged->getSelectedId();
+        if (selection != 0) {
+            unsigned insno = ((unsigned)selection - 1) & 255;
+            unsigned psid = ((unsigned)selection - 1) >> 8;
 
-#pragma message("TODO send program change")
+            unsigned channel = midichannel_;
 
+            bool isdrum = is_percussion_channel(channel);
+            if (isdrum && insno >= 128) {
+                midiprogram_[channel] = (psid << 7) | insno;
+                // percussion bank change LSB only
+                send_program_change(channel, psid);
+            }
+            else if (!isdrum && insno < 128) {
+                midiprogram_[channel] = (psid << 7) | insno;
+                Simple_Fifo &queue = proc_->message_queue_for_ui();
+                Message_Header msghdr(User_Message::Midi, 3);
+                send_controller(channel, 0, psid >> 7);
+                send_controller(channel, 32, psid & 127);
+                send_program_change(channel, insno);
+            }
+        }
 
         //[/UserComboBoxCode_cb_program]
     }
@@ -834,26 +844,62 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
-void Main_Component::handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity)
+void Main_Component::handleNoteOn(MidiKeyboardState *, int channel_, int note, float velocity)
 {
+    unsigned channel = (unsigned)(channel_ - 1);
     Simple_Fifo &queue = proc_->message_queue_for_ui();
+
+    if (is_percussion_channel(channel))
+        note = (midiprogram_[channel] - 128) & 127;
+
     Message_Header msghdr(User_Message::Midi, 3);
     Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
-    msg.data[0] = (unsigned)(channel - 1) | (0b1001u << 4);
+    msg.data[0] = channel | (0b1001u << 4);
     msg.data[1] = note;
     msg.data[2] = velocity * 127;
     finish_write_message(queue, msg);
 }
 
-void Main_Component::handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity)
+void Main_Component::handleNoteOff(MidiKeyboardState *, int channel_, int note, float velocity)
+{
+    unsigned channel = (unsigned)(channel_ - 1);
+
+    if (is_percussion_channel(channel))
+        note = (midiprogram_[channel] - 128) & 127;
+
+    Simple_Fifo &queue = proc_->message_queue_for_ui();
+    Message_Header msghdr(User_Message::Midi, 3);
+    Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
+    msg.data[0] = channel | (0b1000u << 4);
+    msg.data[1] = note;
+    msg.data[2] = velocity * 127;
+    finish_write_message(queue, msg);
+}
+
+void Main_Component::send_controller(unsigned channel, unsigned ctl, unsigned value)
 {
     Simple_Fifo &queue = proc_->message_queue_for_ui();
     Message_Header msghdr(User_Message::Midi, 3);
     Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
-    msg.data[0] = (unsigned)(channel - 1) | (0b1000u << 4);
-    msg.data[1] = note;
-    msg.data[2] = velocity * 127;
+    msg.data[0] = (channel & 15) | (0b1011u << 4);
+    msg.data[1] = ctl & 127;
+    msg.data[2] = value & 127;
     finish_write_message(queue, msg);
+}
+
+void Main_Component::send_program_change(unsigned channel, unsigned value)
+{
+    Simple_Fifo &queue = proc_->message_queue_for_ui();
+    Message_Header msghdr(User_Message::Midi, 2);
+    Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
+    msg.data[0] = (channel & 15) | (0b1100u << 4);
+    msg.data[1] = value & 127;
+    finish_write_message(queue, msg);
+}
+
+bool Main_Component::is_percussion_channel(unsigned channel) const
+{
+    return channel == 9;
 }
 
 void Main_Component::receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins)
@@ -899,6 +945,20 @@ void Main_Component::update_instrument_choices()
 
         menu->addSubMenu(bank_sid, e_bank.ins_menu);
     }
+
+    unsigned channel = midichannel_;
+    cb.setSelectedId(midiprogram_[channel] + 1, dontSendNotification);
+}
+
+void Main_Component::on_change_midi_channel(unsigned channel)
+{
+    if (channel > 15)
+        return;
+
+    midichannel_ = channel;
+    lbl_channel->setText(String(channel + 1), dontSendNotification);
+    midi_kb->setMidiChannel(channel + 1);
+    cb_program->setSelectedId(midiprogram_[channel] + 1, dontSendNotification);
 }
 
 void Main_Component::vu_update()
