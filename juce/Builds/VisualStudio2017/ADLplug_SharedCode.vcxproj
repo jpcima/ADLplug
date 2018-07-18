@@ -2699,6 +2699,7 @@
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png"/>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png"/>
     <None Include="..\..\..\resources\ui\knob-skin.png"/>
+    <None Include="..\..\..\sources\adl\instrument.tcc"/>
     <None Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.tcc"/>
     <None Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.tcc"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>

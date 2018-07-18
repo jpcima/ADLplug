@@ -154,17 +154,17 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     sl_tune34->setBounds (568, 304, 150, 24);
 
-    component5.reset (new Styled_Knob_DefaultSmall());
-    addAndMakeVisible (component5.get());
-    component5->setName ("new component");
+    kn_fb12.reset (new Styled_Knob_DefaultSmall());
+    addAndMakeVisible (kn_fb12.get());
+    kn_fb12->setName ("new component");
 
-    component5->setBounds (496, 128, 32, 32);
+    kn_fb12->setBounds (496, 128, 32, 32);
 
-    component6.reset (new Styled_Knob_DefaultSmall());
-    addAndMakeVisible (component6.get());
-    component6->setName ("new component");
+    kn_fb34.reset (new Styled_Knob_DefaultSmall());
+    addAndMakeVisible (kn_fb34.get());
+    kn_fb34->setName ("new component");
 
-    component6->setBounds (496, 296, 32, 32);
+    kn_fb34->setBounds (496, 296, 32, 32);
 
     midi_kb.reset (new MidiKeyboardComponent (midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard));
     addAndMakeVisible (midi_kb.get());
@@ -413,6 +413,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
         btn->setRadioGroupId((int)Radio_Button_Group::Algo_34);
     }
 
+    kn_fb12->set_range(0, 3);
+    kn_fb34->set_range(0, 3);
     sl_tune12->setNumDecimalPlacesToDisplay(0);
     sl_tune34->setNumDecimalPlacesToDisplay(0);
     ed_op1->set_op_label(TRANS("Modulator"));
@@ -460,8 +462,8 @@ Main_Component::~Main_Component()
     ed_op3 = nullptr;
     sl_tune12 = nullptr;
     sl_tune34 = nullptr;
-    component5 = nullptr;
-    component6 = nullptr;
+    kn_fb12 = nullptr;
+    kn_fb34 = nullptr;
     midi_kb = nullptr;
     btn_about = nullptr;
     label = nullptr;
@@ -817,7 +819,6 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
             unsigned psid = ((unsigned)selection - 1) >> 8;
 
             unsigned channel = midichannel_;
-
             bool isdrum = is_percussion_channel(channel);
             if (isdrum && insno >= 128) {
                 midiprogram_[channel] = (psid << 7) | insno;
@@ -826,13 +827,12 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
             }
             else if (!isdrum && insno < 128) {
                 midiprogram_[channel] = (psid << 7) | insno;
-                Simple_Fifo &queue = proc_->message_queue_for_ui();
-                Message_Header msghdr(User_Message::Midi, 3);
                 send_controller(channel, 0, psid >> 7);
                 send_controller(channel, 32, psid & 127);
                 send_program_change(channel, insno);
             }
         }
+        reload_selected_instrument(dontSendNotification);
 
         //[/UserComboBoxCode_cb_program]
     }
@@ -902,12 +902,74 @@ bool Main_Component::is_percussion_channel(unsigned channel) const
     return channel == 9;
 }
 
+Instrument *Main_Component::find_instrument(uint32_t program, Instrument *if_not_found)
+{
+    uint32_t psid = program >> 8;
+    auto it = instrument_map_.find(psid);
+    if (it == instrument_map_.end())
+        return if_not_found;
+    return &it->second.ins[program & 255];
+}
+
+void Main_Component::reload_selected_instrument(NotificationType ntf)
+{
+    int selection = cb_program->getSelectedId();
+    Instrument ins_empty, *ins = &ins_empty;
+    if (selection != 0) {
+        uint32_t program = (unsigned)selection - 1;
+        ins = find_instrument(program, &ins_empty);
+    }
+    set_instrument_parameters(*ins, ntf);
+}
+
+void Main_Component::set_instrument_parameters(const Instrument &ins, NotificationType ntf)
+{
+    Operator_Editor *op_editors[4] =
+        { ed_op2.get(), ed_op1.get(), ed_op4.get(), ed_op3.get() };
+    unsigned opnum[4] =
+        { WOPL_OP_CARRIER1, WOPL_OP_MODULATOR1,  WOPL_OP_CARRIER2, WOPL_OP_MODULATOR2 };
+
+   ((!(ins.inst_flags & ADLMIDI_Ins_4op)) ? btn_2op :
+    (ins.inst_flags & ADLMIDI_Ins_Pseudo4op) ? btn_pseudo4op : btn_4op)->setToggleState(true, ntf);
+
+   ((ins.con12()) ? btn_am12 : btn_fm12)->setToggleState(true, ntf);
+   ((ins.con34()) ? btn_am34 : btn_fm34)->setToggleState(true, ntf);
+
+   sl_tune12->setValue(ins.note_offset1, ntf);
+   sl_tune34->setValue(ins.note_offset2, ntf);
+
+   kn_fb12->set_value(ins.fb12(), ntf);
+   kn_fb34->set_value(ins.fb34(), ntf);
+
+   for (unsigned op = 0; op < 4; ++op) {
+       Operator_Editor *oped = op_editors[op];
+       oped->set_operator_parameters(ins, opnum[op], ntf);
+       oped->set_operator_enabled(opnum[op] < 2 || (ins.inst_flags & ADLMIDI_Ins_4op));
+   }
+}
+
 void Main_Component::receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins)
 {
-    Editor_Bank &e_bank = instrument_map_[bank.pseudo_id()];
     assert(pgm < 128);
-    e_bank.ins[pgm + (bank.percussive ? 128 : 0)] = ins;
-    update_instrument_choices();
+
+    Editor_Bank *e_bank;
+    bool update;
+    unsigned insno = pgm + (bank.percussive ? 128 : 0);
+
+    auto it = instrument_map_.find(bank.pseudo_id());
+    if (it == instrument_map_.end()) {
+        e_bank = &instrument_map_[bank.pseudo_id()];
+        update = true;
+    }
+    else {
+        e_bank = &it->second;
+        update = !e_bank->ins[insno].equal_instrument(ins);
+    }
+
+    if (update) {
+        e_bank->ins[insno] = ins;
+        update_instrument_choices();
+    }
 }
 
 void Main_Component::update_instrument_choices()
@@ -924,7 +986,7 @@ void Main_Component::update_instrument_choices()
         Editor_Bank &e_bank = it->second;
 
         char bank_sid[64];
-        std::sprintf(bank_sid, "%03u:%03u", psid >> 7, psid & 127);
+        std::sprintf(bank_sid, "Bank %03u:%03u", psid >> 7, psid & 127);
 
         e_bank.ins_menu.clear();
         for (unsigned i = 0; i < 256; ++i) {
@@ -940,7 +1002,8 @@ void Main_Component::update_instrument_choices()
                 midi_db.inst(i) : midi_db.perc(i & 127).name;
 
             std::sprintf(ins_sid, "%c%03u %s", "MP"[i >= 128], i & 127, name);
-            e_bank.ins_menu.addItem(1 + (psid * 256) + i, ins_sid);
+            uint32_t program = (psid << 8) + i;
+            e_bank.ins_menu.addItem(program + 1, ins_sid);
         }
 
         menu->addSubMenu(bank_sid, e_bank.ins_menu);
@@ -948,6 +1011,7 @@ void Main_Component::update_instrument_choices()
 
     unsigned channel = midichannel_;
     cb.setSelectedId(midiprogram_[channel] + 1, dontSendNotification);
+    reload_selected_instrument(dontSendNotification);
 }
 
 void Main_Component::on_change_midi_channel(unsigned channel)
@@ -959,6 +1023,7 @@ void Main_Component::on_change_midi_channel(unsigned channel)
     lbl_channel->setText(String(channel + 1), dontSendNotification);
     midi_kb->setMidiChannel(channel + 1);
     cb_program->setSelectedId(midiprogram_[channel] + 1, dontSendNotification);
+    reload_selected_instrument(dontSendNotification);
 }
 
 void Main_Component::vu_update()
@@ -1078,10 +1143,10 @@ BEGIN_JUCER_METADATA
           max="127.0" int="0.0" style="LinearHorizontal" textBoxPos="TextBoxRight"
           textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
-  <GENERICCOMPONENT name="new component" id="8e0915367ccd00d3" memberName="component5"
+  <GENERICCOMPONENT name="new component" id="8e0915367ccd00d3" memberName="kn_fb12"
                     virtualName="" explicitFocusOrder="0" pos="496 128 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
-  <GENERICCOMPONENT name="new component" id="59510781248f1393" memberName="component6"
+  <GENERICCOMPONENT name="new component" id="59510781248f1393" memberName="kn_fb34"
                     virtualName="" explicitFocusOrder="0" pos="496 296 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="midi_kb"

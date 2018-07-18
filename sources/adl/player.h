@@ -51,15 +51,15 @@ public:
     virtual void generate(float *left, float *right, unsigned nframes, unsigned stride) = 0;
 
     void ensure_get_bank_id(const Bank_Ref &bank, Bank_Id &id)
-        { bool success = get_bank_id(bank, id); assert(success); }
+        { bool success = get_bank_id(bank, id); assert(success); (void)success; }
     void ensure_get_bank(const Bank_Id &id, int flags, Bank_Ref &bank)
-        { bool success = get_bank(id, flags, bank); assert(success); }
+        { bool success = get_bank(id, flags, bank); assert(success); (void)success; }
     void ensure_remove_bank(Bank_Ref &bank)
-        { bool success = remove_bank(bank); assert(success); }
+        { bool success = remove_bank(bank); assert(success); (void)success; }
     void ensure_get_instrument(const Bank_Ref &bank, unsigned index, Instrument &ins)
-        { bool success = get_instrument(bank, index, ins); assert(success); }
+        { bool success = get_instrument(bank, index, ins); assert(success); (void)success; }
     void ensure_set_instrument(Bank_Ref &bank, unsigned index, const Instrument &ins)
-        { bool success = set_instrument(bank, index, ins); assert(success); }
+        { bool success = set_instrument(bank, index, ins); assert(success); (void)success; }
 };
 
 std::vector<std::string> enumerate_emulators(Player_Type pt);

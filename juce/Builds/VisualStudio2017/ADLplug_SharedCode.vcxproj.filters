@@ -4760,6 +4760,9 @@
     <None Include="..\..\..\resources\ui\knob-skin.png">
       <Filter>ADLplug\resources\ui</Filter>
     </None>
+    <None Include="..\..\..\sources\adl\instrument.tcc">
+      <Filter>ADLplug\sources\adl</Filter>
+    </None>
     <None Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.tcc">
       <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
     </None>

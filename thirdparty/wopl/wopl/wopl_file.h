@@ -32,6 +32,14 @@
 extern "C" {
 #endif
 
+#if !defined(__STDC_VERSION__) || (defined(__STDC_VERSION__) && (__STDC_VERSION__ < 199901L)) \
+  || defined(__STRICT_ANSI__) || !defined(__cplusplus)
+typedef signed char int8_t;
+typedef unsigned char uint8_t;
+typedef signed short int int16_t;
+typedef unsigned short int uint16_t;
+#endif
+
 /* Global OPL flags */
 typedef enum WOPLFileFlags
 {
@@ -63,13 +71,13 @@ typedef enum WOPL_InstrumentFlags
     WOPL_Ins_IsBlank    = 0x04,
 
     /* RythmMode flags mask */
-    WOPL_RythmModeMask  = 0x38,
+    WOPL_RhythmModeMask  = 0x38,
 
     /* Mask of the flags range */
     WOPL_Ins_ALL_MASK   = 0x07
 } WOPL_InstrumentFlags;
 
-typedef enum WOPL_RythmMode
+typedef enum WOPL_RhythmMode
 {
     /* RythmMode: BassDrum */
     WOPL_RM_BassDrum  = 0x08,
@@ -78,10 +86,13 @@ typedef enum WOPL_RythmMode
     /* RythmMode: TomTom */
     WOPL_RM_TomTom    = 0x18,
     /* RythmMode: Cymbell */
-    WOPL_RM_Cymball   = 0x20,
+    WOPL_RM_Cymbal   = 0x20,
     /* RythmMode: HiHat */
     WOPL_RM_HiHat     = 0x28
-} WOPL_RythmMode;
+} WOPL_RhythmMode;
+
+/* DEPRECATED: It has typo. Don't use it! */
+typedef WOPL_RhythmMode WOPL_RythmMode;
 
 /* Error codes */
 typedef enum WOPL_ErrorCodes
@@ -279,7 +290,7 @@ extern int WOPL_SaveInstToMem(WOPIFile *file, void *dest_mem, size_t length, uin
 }  // extern "C"
 #endif
 
-#ifdef __cplusplus
+#if __cplusplus >= 201103L
 #include <memory>
 struct WOPLFile_Deleter
 {

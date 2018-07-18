@@ -20,8 +20,15 @@ public:
     Km_Skin *skin() const;
     void set_skin(Km_Skin *skin);
 
-    float value() const;
+    float value() const
+        { return value_; }
     void set_value(float v, NotificationType notification);
+
+    float min() const
+        { return min_; }
+    float max() const
+        { return max_; }
+    void set_range(float min, float max);
 
     class Listener {
     public:
@@ -46,6 +53,8 @@ private:
     Rectangle<float> get_frame_bounds() const;
     Km_Skin_Ptr skin_;
     float value_ = 0;
+    float min_ = 0;
+    float max_ = 1;
     ListenerList<Listener> listeners_;
     bool in_drag_ = false;
     float value_at_drag_start_ = 0;

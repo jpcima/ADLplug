@@ -27,14 +27,9 @@ void Knob::set_skin(Km_Skin *skin)
     }
 }
 
-float Knob::value() const
-{
-    return value_;
-}
-
 void Knob::set_value(float v, NotificationType notification)
 {
-    v = (v < 0) ? 0 : (v > 1) ? 1 : v;
+    v = (v < min_) ? min_ : (v > max_) ? max_ : v;
     if (v == value_)
         return;
     value_ = v;
@@ -47,6 +42,15 @@ void Knob::set_value(float v, NotificationType notification)
         handleAsyncUpdate();
     else
         triggerAsyncUpdate();
+}
+
+void Knob::set_range(float min, float max)
+{
+    jassert(min < max);
+
+    min_ = min;
+    max_ = max;
+    set_value(value_, dontSendNotification);
 }
 
 void Knob::add_listener(Listener *l)
@@ -88,7 +92,8 @@ void Knob::paint(Graphics &g)
     int h = bounds.getHeight();
 
     const float value = value_;
-    unsigned long index = lround(value * (frame_count - 1));
+    const float ratio = (value - min_) / (max_ - min_);
+    unsigned long index = lround(ratio * (frame_count - 1));
     index = ((long)index < 0) ? 0 : (index >= frame_count) ? (frame_count - 1) : index;
 
     g.drawImage(frames[index], get_frame_bounds());
@@ -98,7 +103,7 @@ void Knob::mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &whee
 {
     Rectangle<int> frame_bounds = get_frame_bounds().toType<int>();
     if (wheel.deltaY && frame_bounds.contains(event.getPosition())) {
-        const float k = 0.5f;
+        const float k = 0.5f * (max_ - min_);
         set_value(value_ + k * wheel.deltaY, sendNotification);
         return;
     }
@@ -130,7 +135,7 @@ void Knob::mouseDrag(const MouseEvent &event)
     Point<int> off = event.getOffsetFromDragStart();
     Rectangle<int> frame_bounds = get_frame_bounds().toType<int>();
     if (in_drag_ && event.mods.isLeftButtonDown()) {
-        const float k = 0.5f;
+        const float k = 0.5f * (max_ - min_);
         Point<int> center = frame_bounds.getCentre();
         float xamt = k * (pos - center).getX() / frame_bounds.getWidth();
         float yamt = -k * (pos - center).getY() / frame_bounds.getHeight();

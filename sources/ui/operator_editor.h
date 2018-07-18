@@ -23,6 +23,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ui/styled_knobs.h"
 class Wave_Label;
+struct Instrument;
 //[/Headers]
 
 
@@ -48,6 +49,11 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
     void set_op_label(const String &type)
         { lb_optype->setText(type, juce::dontSendNotification); }
+    void set_operator_parameters(const Instrument &ins, unsigned op, NotificationType ntf);
+
+    void set_operator_enabled(bool b);
+
+    void paintOverChildren(Graphics &g) override;
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -59,6 +65,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    bool operator_enabled_ = true;
     //[/UserVariables]
 
     //==============================================================================

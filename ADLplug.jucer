@@ -81,6 +81,7 @@
       <GROUP id="{90BE611D-B377-7C79-171F-98F2CD7899AE}" name="adl">
         <FILE id="ZhOlLH" name="instrument.cc" compile="1" resource="0" file="sources/adl/instrument.cc"/>
         <FILE id="ivL5rz" name="instrument.h" compile="0" resource="0" file="sources/adl/instrument.h"/>
+        <FILE id="I6ORD5" name="instrument.tcc" compile="0" resource="0" file="sources/adl/instrument.tcc"/>
         <FILE id="YNeRaV" name="player.cc" compile="1" resource="0" file="sources/adl/player.cc"/>
         <FILE id="cktZse" name="player.h" compile="0" resource="0" file="sources/adl/player.h"/>
       </GROUP>

@@ -19,6 +19,7 @@
 
 //[Headers] You can add your own extra header files here...
 #include "ui/wave_label.h"
+#include "adl/instrument.h"
 //[/Headers]
 
 #include "operator_editor.h"
@@ -111,7 +112,7 @@ Operator_Editor::Operator_Editor ()
 
     sl_level.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_level.get());
-    sl_level->setRange (0, 10, 0);
+    sl_level->setRange (0, 63, 0);
     sl_level->setSliderStyle (Slider::LinearVertical);
     sl_level->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     sl_level->addListener (this);
@@ -120,7 +121,7 @@ Operator_Editor::Operator_Editor ()
 
     sl_fmul.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_fmul.get());
-    sl_fmul->setRange (0, 10, 0);
+    sl_fmul->setRange (0, 15, 0);
     sl_fmul->setSliderStyle (Slider::LinearVertical);
     sl_fmul->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     sl_fmul->addListener (this);
@@ -129,7 +130,7 @@ Operator_Editor::Operator_Editor ()
 
     sl_ksl.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_ksl.get());
-    sl_ksl->setRange (0, 10, 0);
+    sl_ksl->setRange (0, 3, 0);
     sl_ksl->setSliderStyle (Slider::LinearVertical);
     sl_ksl->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     sl_ksl->addListener (this);
@@ -139,7 +140,7 @@ Operator_Editor::Operator_Editor ()
     lb_optype.reset (new Label ("new label",
                                 TRANS("Modulator")));
     addAndMakeVisible (lb_optype.get());
-    lb_optype->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Bold"));
+    lb_optype->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Bold"));
     lb_optype->setJustificationType (Justification::centred);
     lb_optype->setEditable (false, false, false);
     lb_optype->setColour (Label::textColourId, Colours::aliceblue);
@@ -151,7 +152,7 @@ Operator_Editor::Operator_Editor ()
     lbl_level.reset (new Label ("new label",
                                 TRANS("Lv")));
     addAndMakeVisible (lbl_level.get());
-    lbl_level->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_level->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_level->setJustificationType (Justification::centred);
     lbl_level->setEditable (false, false, false);
     lbl_level->setColour (TextEditor::textColourId, Colours::black);
@@ -162,7 +163,7 @@ Operator_Editor::Operator_Editor ()
     lbl_fmul.reset (new Label ("new label",
                                TRANS("F*")));
     addAndMakeVisible (lbl_fmul.get());
-    lbl_fmul->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_fmul->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_fmul->setJustificationType (Justification::centred);
     lbl_fmul->setEditable (false, false, false);
     lbl_fmul->setColour (TextEditor::textColourId, Colours::black);
@@ -173,7 +174,7 @@ Operator_Editor::Operator_Editor ()
     lbl_ksl.reset (new Label ("new label",
                               TRANS("Ksl")));
     addAndMakeVisible (lbl_ksl.get());
-    lbl_ksl->setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_ksl->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_ksl->setJustificationType (Justification::centred);
     lbl_ksl->setEditable (false, false, false);
     lbl_ksl->setColour (TextEditor::textColourId, Colours::black);
@@ -216,6 +217,10 @@ Operator_Editor::Operator_Editor ()
 
 
     //[Constructor] You can add your own custom stuff here..
+    kn_attack->set_range(0, 15);
+    kn_decay->set_range(0, 15);
+    kn_sustain->set_range(0, 15);
+    kn_release->set_range(0, 15);
     //[/Constructor]
 }
 
@@ -276,7 +281,7 @@ void Operator_Editor::paint (Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
         g.drawText (text, x, y, width, height,
                     Justification::centredLeft, true);
     }
@@ -288,7 +293,7 @@ void Operator_Editor::paint (Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.setFont (Font (15.00f, Font::plain).withTypefaceStyle ("Regular"));
+        g.setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
         g.drawText (text, x, y, width, height,
                     Justification::centredLeft, true);
     }
@@ -308,7 +313,7 @@ void Operator_Editor::paint (Graphics& g)
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.fillRoundedRectangle (x, y, width, height, 3.000f);
+        g.fillRoundedRectangle (x, y, width, height, 3.0f);
     }
 
     //[UserPaint] Add your own custom painting code here..
@@ -392,6 +397,40 @@ void Operator_Editor::sliderValueChanged (Slider* sliderThatWasMoved)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op, NotificationType ntf)
+{
+    kn_attack->set_value(ins.attack(op), ntf);
+    kn_decay->set_value(ins.decay(op), ntf);
+    kn_sustain->set_value(ins.sustain(op), ntf);
+    kn_release->set_value(ins.release(op), ntf);
+
+    sl_level->setValue(ins.level(op), ntf);
+    sl_fmul->setValue(ins.fmul(op), ntf);
+    sl_ksl->setValue(ins.ksl(op), ntf);
+
+    btn_trem->setToggleState(ins.trem(op), ntf);
+    btn_vib->setToggleState(ins.vib(op), ntf);
+    btn_sus->setToggleState(ins.sus(op), ntf);
+    btn_env->setToggleState(ins.env(op), ntf);
+
+#pragma message("TODO wave notifications")
+    lbl_wave->set_wave(ins.wave(op)/*, ntf*/);
+}
+
+void Operator_Editor::set_operator_enabled(bool b)
+{
+    if (b == operator_enabled_)
+        return;
+
+    operator_enabled_ = b;
+    repaint();
+}
+
+void Operator_Editor::paintOverChildren(Graphics &g)
+{
+    if (!operator_enabled_)
+        g.fillAll(Colour(0x66aaaaaa));
+}
 //[/MiscUserCode]
 
 
@@ -406,20 +445,19 @@ BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="Operator_Editor" componentName=""
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.330"
+                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.33"
                  fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ff323e44">
     <RECT pos="0 0 352 128" fill="solid: ff2e4c4d" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: fff0f8ff"/>
     <TEXT pos="8 4 36 30" fill="solid: fff0f8ff" hasStroke="0" text="ADSR"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="33"/>
+          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+          italic="0" justification="33"/>
     <TEXT pos="8 60 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Wave"
-          fontname="Default font" fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-          bold="0" italic="0" justification="33"/>
+          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+          italic="0" justification="33"/>
     <RECT pos="52 64 100 24" fill="solid: ff373737" hasStroke="0"/>
-    <ROUNDRECT pos="264 8 78 24" cornerSize="3.00000000000000000000" fill="solid: d3a52a2a"
-               hasStroke="0"/>
+    <ROUNDRECT pos="264 8 78 24" cornerSize="3.0" fill="solid: d3a52a2a" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="7c54ff103d9f5d" memberName="kn_attack"
                     virtualName="" explicitFocusOrder="0" pos="56 8 48 48" class="Styled_Knob_Default"
@@ -452,41 +490,40 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="176 96 48 24" bgColOn="ff42a2c8"
               buttonText="ENV" connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <SLIDER name="new slider" id="b7065e7cd8f3e951" memberName="sl_level"
-          virtualName="" explicitFocusOrder="0" pos="264 32 24 70" min="0.00000000000000000000"
-          max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
-          textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
-          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+          virtualName="" explicitFocusOrder="0" pos="264 32 24 70" min="0.0"
+          max="63.0" int="0.0" style="LinearVertical" textBoxPos="NoTextBox"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <SLIDER name="new slider" id="47c9497e72aa0068" memberName="sl_fmul"
-          virtualName="" explicitFocusOrder="0" pos="288 32 24 70" min="0.00000000000000000000"
-          max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
-          textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
-          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+          virtualName="" explicitFocusOrder="0" pos="288 32 24 70" min="0.0"
+          max="15.0" int="0.0" style="LinearVertical" textBoxPos="NoTextBox"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
   <SLIDER name="new slider" id="7da3d626504f1592" memberName="sl_ksl" virtualName=""
-          explicitFocusOrder="0" pos="312 32 24 70" min="0.00000000000000000000"
-          max="10.00000000000000000000" int="0.00000000000000000000" style="LinearVertical"
-          textBoxPos="NoTextBox" textBoxEditable="1" textBoxWidth="80"
-          textBoxHeight="20" skewFactor="1.00000000000000000000" needsCallback="1"/>
+          explicitFocusOrder="0" pos="312 32 24 70" min="0.0" max="3.0"
+          int="0.0" style="LinearVertical" textBoxPos="NoTextBox" textBoxEditable="1"
+          textBoxWidth="80" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="new label" id="d5cf6971a21036bf" memberName="lb_optype"
          virtualName="" explicitFocusOrder="0" pos="264 8 78 24" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Modulator" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.00000000000000000000" kerning="0.00000000000000000000"
-         bold="1" italic="0" justification="36" typefaceStyle="Bold"/>
+         fontsize="15.0" kerning="0.0" bold="1" italic="0" justification="36"
+         typefaceStyle="Bold"/>
   <LABEL name="new label" id="ce54b68fc1a1f1e1" memberName="lbl_level"
          virtualName="" explicitFocusOrder="0" pos="260 100 28 18" edTextCol="ff000000"
          edBkgCol="0" labelText="Lv" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="1c179b730ba90c01" memberName="lbl_fmul"
          virtualName="" explicitFocusOrder="0" pos="284 100 28 18" edTextCol="ff000000"
          edBkgCol="0" labelText="F*" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="654b3ac6531d1941" memberName="lbl_ksl" virtualName=""
          explicitFocusOrder="0" pos="308 100 28 18" edTextCol="ff000000"
          edBkgCol="0" labelText="Ksl" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="15.00000000000000000000"
-         kerning="0.00000000000000000000" bold="0" italic="0" justification="36"/>
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <GENERICCOMPONENT name="new component" id="dd16fb8d4c488877" memberName="lbl_wave"
                     virtualName="" explicitFocusOrder="0" pos="52 64 100 24" class="Wave_Label"
                     params=""/>

@@ -63,6 +63,10 @@ public:
     void send_program_change(unsigned channel, unsigned value);
 
     bool is_percussion_channel(unsigned channel) const;
+    Instrument *find_instrument(uint32_t program, Instrument *if_not_found);
+
+    void reload_selected_instrument(NotificationType ntf);
+    void set_instrument_parameters(const Instrument &ins, NotificationType ntf);
 
     void receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins);
     void update_instrument_choices();
@@ -149,8 +153,8 @@ private:
     std::unique_ptr<Operator_Editor> ed_op3;
     std::unique_ptr<Slider> sl_tune12;
     std::unique_ptr<Slider> sl_tune34;
-    std::unique_ptr<Styled_Knob_DefaultSmall> component5;
-    std::unique_ptr<Styled_Knob_DefaultSmall> component6;
+    std::unique_ptr<Styled_Knob_DefaultSmall> kn_fb12;
+    std::unique_ptr<Styled_Knob_DefaultSmall> kn_fb34;
     std::unique_ptr<MidiKeyboardComponent> midi_kb;
     std::unique_ptr<ImageButton> btn_about;
     std::unique_ptr<Label> label;
