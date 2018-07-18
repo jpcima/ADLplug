@@ -9,6 +9,7 @@ set(ADLplug_LV2 "" CACHE STRING "Build LV2")
 set(ADLplug_Standalone "" CACHE STRING "Build Standalone")
 set(ADLplug_Jack "" CACHE STRING "Build Jack")
 
+option(ADLplug_PCH "Enable precompiled headers" OFF)
 option(ADLplug_RT_CHECKER "Enable a detector of RT programming errors" OFF)
 option(ADLplug_ASSERTIONS "Enable assertions" OFF)
 
@@ -127,7 +128,8 @@ add_library(ADLplug_core STATIC
   "sources/ui/graphics_utils.cc"
   "sources/ui/image_utils.cc"
   "sources/adl/player.cc"
-  "sources/adl/instrument.cc")
+  "sources/adl/instrument.cc"
+  "sources/pch/ADLplug_core.h")
 target_include_directories(ADLplug_core PRIVATE "sources")
 target_compile_definitions(ADLplug_core PRIVATE "ADLMIDI_UNSTABLE_API")
 target_link_libraries(ADLplug_core
@@ -138,6 +140,13 @@ target_link_libraries(ADLplug_core
   ADLMIDI_static wopl)
 set_property(TARGET ADLplug_core
   PROPERTY POSITION_INDEPENDENT_CODE ON)
+
+if(ADLplug_PCH)
+  include(PrecompiledHeader)
+  add_precompiled_header(ADLplug_core "sources/pch/ADLplug_core.h"
+    FORCEINCLUDE
+    SOURCE_CXX "sources/pch/ADLplug_core.cc")
+endif()
 
 macro(add_plugin NAME)
   add_library("${NAME}" MODULE "sources/nothing.cc" ${ARGN})
