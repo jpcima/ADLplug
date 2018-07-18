@@ -6,9 +6,10 @@
 #include "plugin_processor.h"
 #include "plugin_editor.h"
 #include "utility/midi.h"
-#include <memory>
 #include <jack/jack.h>
 #include <jack/midiport.h>
+#include <memory>
+#include <sys/mman.h>
 extern AudioProcessor *JUCE_CALLTYPE createPluginFilter();
 
 class Application_Window : public DocumentWindow
@@ -51,6 +52,9 @@ private:
 
 void Application_Jack::initialise(const String &args)
 {
+    if (mlockall(MCL_CURRENT|MCL_FUTURE) != 0)
+        fprintf(stderr, "could not lock memory\n");
+
     jack_client_t *client = jack_client_open("ADLplug", JackNoStartServer, nullptr);
     if (!client)
         throw std::runtime_error("error creating Jack client");
