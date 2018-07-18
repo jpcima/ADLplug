@@ -110,6 +110,7 @@ add_library(ADLplug_core STATIC
   "sources/utility/midi.cc"
   "sources/utility/simple_fifo.cc"
   "sources/utility/rt_checker.cc"
+  "sources/midi/insnames.cc"
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
   "sources/bank_manager.cc"

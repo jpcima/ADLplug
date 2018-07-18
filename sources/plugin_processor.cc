@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "adl/player.h"
+#include "midi/insnames.h"
 #include "utility/midi.h"
 #include "utility/simple_fifo.h"
 #include "utility/rt_checker.h"
@@ -373,5 +374,6 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
 // This creates new instances of the plugin..
 AudioProcessor *JUCE_CALLTYPE createPluginFilter()
 {
+    midi_db.init();
     return new AdlplugAudioProcessor();
 }

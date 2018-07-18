@@ -26,6 +26,10 @@
         <FILE id="jnXF8V" name="dc_filter.h" compile="0" resource="0" file="sources/dsp/dc_filter.h"/>
         <FILE id="vP3pf2" name="vu_monitor.h" compile="0" resource="0" file="sources/dsp/vu_monitor.h"/>
       </GROUP>
+      <GROUP id="{9F9BED11-2146-7232-EF2D-915B05556466}" name="midi">
+        <FILE id="aBpHSz" name="insnames.cc" compile="1" resource="0" file="sources/midi/insnames.cc"/>
+        <FILE id="PHRogf" name="insnames.h" compile="0" resource="0" file="sources/midi/insnames.h"/>
+      </GROUP>
       <GROUP id="{17C850C0-7CFF-17BC-4511-EED271A552A6}" name="utility">
         <FILE id="tSjcHH" name="midi.cc" compile="1" resource="0" file="sources/utility/midi.cc"/>
         <FILE id="NBzY1D" name="midi.h" compile="0" resource="0" file="sources/utility/midi.h"/>

@@ -23,10 +23,13 @@
 #include "ui/indicator_NxM.h"
 #include "ui/about_component.h"
 #include "adl/instrument.h"
+#include "midi/insnames.h"
 #include "plugin_processor.h"
 #include "messages.h"
 #include <wopl/wopl_file.h>
 #include <memory>
+#include <cstdio>
+#include <cassert>
 //[/Headers]
 
 #include "main_component.h"
@@ -328,6 +331,57 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     edt_bank_name->setBounds (16, 80, 208, 24);
 
+    cb_program.reset (new ComboBox ("new combo box"));
+    addAndMakeVisible (cb_program.get());
+    cb_program->setEditableText (false);
+    cb_program->setJustificationType (Justification::centredLeft);
+    cb_program->setTextWhenNothingSelected (String());
+    cb_program->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
+    cb_program->addListener (this);
+
+    cb_program->setBounds (312, 80, 280, 24);
+
+    label4.reset (new Label ("new label",
+                             TRANS("Channel")));
+    addAndMakeVisible (label4.get());
+    label4->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label4->setJustificationType (Justification::centredLeft);
+    label4->setEditable (false, false, false);
+    label4->setColour (Label::textColourId, Colours::aliceblue);
+    label4->setColour (TextEditor::textColourId, Colours::black);
+    label4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label4->setBounds (620, 80, 60, 24);
+
+    lbl_channel.reset (new Label ("new label",
+                                  TRANS("1")));
+    addAndMakeVisible (lbl_channel.get());
+    lbl_channel->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_channel->setJustificationType (Justification::centred);
+    lbl_channel->setEditable (false, false, false);
+    lbl_channel->setColour (Label::textColourId, Colours::aliceblue);
+    lbl_channel->setColour (Label::outlineColourId, Colour (0xff8e989b));
+    lbl_channel->setColour (TextEditor::textColourId, Colours::black);
+    lbl_channel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_channel->setBounds (684, 80, 32, 24);
+
+    btn_prev_channel.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_prev_channel.get());
+    btn_prev_channel->setButtonText (TRANS("<"));
+    btn_prev_channel->setConnectedEdges (Button::ConnectedOnRight);
+    btn_prev_channel->addListener (this);
+
+    btn_prev_channel->setBounds (724, 80, 23, 24);
+
+    btn_next_channel.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_next_channel.get());
+    btn_next_channel->setButtonText (TRANS(">"));
+    btn_next_channel->setConnectedEdges (Button::ConnectedOnLeft);
+    btn_next_channel->addListener (this);
+
+    btn_next_channel->setBounds (747, 80, 23, 24);
+
 
     //[UserPreSize]
     //[/UserPreSize]
@@ -373,6 +427,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
         cb_emulator->addItem(emus[i], i + 1);
     // TODO should have an API to get the current emulator...
     cb_emulator->setSelectedId(1);
+
+    lbl_channel->setText(String(1 + midichannel_), dontSendNotification);
 
     vu_timer_.reset(new Vu_Timer(this));
     vu_timer_->startTimer(10);
@@ -423,6 +479,11 @@ Main_Component::~Main_Component()
     btn_bank_save = nullptr;
     btn_bank_load = nullptr;
     edt_bank_name = nullptr;
+    cb_program = nullptr;
+    label4 = nullptr;
+    lbl_channel = nullptr;
+    btn_prev_channel = nullptr;
+    btn_next_channel = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -633,7 +694,8 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
 
             // Save it
             fprintf(stderr, "Save to WOPL file: %s\n", file.getFullPathName().toRawUTF8());
-            // TODO
+
+#pragma message("TODO save WOPL file")
 
         }
         //[/UserButtonCode_btn_bank_save]
@@ -678,13 +740,16 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
                             data.bank.msb = bank.bank_midi_msb;
                             data.bank.percussive = percussive;
                             data.program = i;
-                            data.instrument = bank.ins[i];
+                            data.instrument = Instrument::from_wopl(bank.ins[i]);
                             finish_write_message(queue, msg);
                         }
                     };
                 edt_bank_name->setText(file.getFileNameWithoutExtension());
                 edt_bank_name->setCaretPosition(0);
-                // TODO clear existing banks
+
+#pragma message("TODO clear existing banks")
+
+
                 for (unsigned i = 0, n = wopl->banks_count_melodic; i < n; ++i)
                     send_bank(wopl->banks_melodic[i], false);
                 for (unsigned i = 0, n = wopl->banks_count_percussion; i < n; ++i)
@@ -692,6 +757,24 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
             }
         }
         //[/UserButtonCode_btn_bank_load]
+    }
+    else if (buttonThatWasClicked == btn_prev_channel.get())
+    {
+        //[UserButtonCode_btn_prev_channel] -- add your button handler code here..
+        if (midichannel_ > 0) {
+            --midichannel_;
+            lbl_channel->setText(String(1 + midichannel_), dontSendNotification);
+        }
+        //[/UserButtonCode_btn_prev_channel]
+    }
+    else if (buttonThatWasClicked == btn_next_channel.get())
+    {
+        //[UserButtonCode_btn_next_channel] -- add your button handler code here..
+        if (midichannel_ < 15) {
+            ++midichannel_;
+            lbl_channel->setText(String(1 + midichannel_), dontSendNotification);
+        }
+        //[/UserButtonCode_btn_next_channel]
     }
 
     //[UserbuttonClicked_Post]
@@ -731,6 +814,18 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         proc.set_chip_emulator_nonrt(comboBoxThatHasChanged->getSelectedId() - 1);
         //[/UserComboBoxCode_cb_emulator]
     }
+    else if (comboBoxThatHasChanged == cb_program.get())
+    {
+        //[UserComboBoxCode_cb_program] -- add your combo box handling code here..
+        uint32_t cbid = (uint32_t)comboBoxThatHasChanged->getSelectedId() - 1;
+        unsigned insno = cbid & 255;
+        uint32_t psid = cbid >> 8;
+
+#pragma message("TODO send program change")
+
+
+        //[/UserComboBoxCode_cb_program]
+    }
 
     //[UsercomboBoxChanged_Post]
     //[/UsercomboBoxChanged_Post]
@@ -759,6 +854,51 @@ void Main_Component::handleNoteOff(MidiKeyboardState *, int channel, int note, f
     msg.data[1] = note;
     msg.data[2] = velocity * 127;
     finish_write_message(queue, msg);
+}
+
+void Main_Component::receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins)
+{
+    Editor_Bank &e_bank = instrument_map_[bank.pseudo_id()];
+    assert(pgm < 128);
+    e_bank.ins[pgm + (bank.percussive ? 128 : 0)] = ins;
+    update_instrument_choices();
+}
+
+void Main_Component::update_instrument_choices()
+{
+    ComboBox &cb = *cb_program;
+    cb.clear(dontSendNotification);
+    PopupMenu *menu = cb.getRootMenu();
+
+    auto &instrument_map = instrument_map_;
+    auto it = instrument_map.begin();
+
+    for (; it != instrument_map.end(); ++it) {
+        uint32_t psid = it->first;
+        Editor_Bank &e_bank = it->second;
+
+        char bank_sid[64];
+        std::sprintf(bank_sid, "%03u:%03u", psid >> 7, psid & 127);
+
+        e_bank.ins_menu.clear();
+        for (unsigned i = 0; i < 256; ++i) {
+            const Instrument &ins = e_bank.ins[i];
+            if(ins.blank())
+                continue;
+            char ins_sid[64];
+
+#pragma message("TODO instrument names from WOPL")
+            const Midi_Program_Ex *ex = midi_db.find_ex(psid >> 7, psid & 127, i);
+            const char *name = ex ?
+                ex->name : (i < 128) ?
+                midi_db.inst(i) : midi_db.perc(i & 127).name;
+
+            std::sprintf(ins_sid, "%c%03u %s", "MP"[i >= 128], i & 127, name);
+            e_bank.ins_menu.addItem(1 + (psid * 256) + i, ins_sid);
+        }
+
+        menu->addSubMenu(bank_sid, e_bank.ins_menu);
+    }
 }
 
 void Main_Component::vu_update()
@@ -958,6 +1098,26 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="16 80 208 24" outlinecol="ff8e989b"
               initialText="Bank name" multiline="0" retKeyStartsLine="0" readonly="0"
               scrollbars="1" caret="1" popupmenu="1"/>
+  <COMBOBOX name="new combo box" id="396a835342f6b630" memberName="cb_program"
+            virtualName="" explicitFocusOrder="0" pos="312 80 280 24" editable="0"
+            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <LABEL name="new label" id="ac425a00ee881383" memberName="label4" virtualName=""
+         explicitFocusOrder="0" pos="620 80 60 24" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Channel" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <LABEL name="new label" id="1c00855603b30379" memberName="lbl_channel"
+         virtualName="" explicitFocusOrder="0" pos="684 80 32 24" textCol="fff0f8ff"
+         outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="1"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
+  <TEXTBUTTON name="new button" id="6ba2e6591ffa67ab" memberName="btn_prev_channel"
+              virtualName="" explicitFocusOrder="0" pos="724 80 23 24" buttonText="&lt;"
+              connectedEdges="2" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="f058380e7bbf63b0" memberName="btn_next_channel"
+              virtualName="" explicitFocusOrder="0" pos="747 80 23 24" buttonText="&gt;"
+              connectedEdges="1" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

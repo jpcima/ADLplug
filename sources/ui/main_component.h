@@ -22,7 +22,11 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ui/styled_knobs.h"
+#include "adl/instrument.h"
 #include "utility/simple_fifo.h"
+#include <map>
+#include <vector>
+#include <array>
 class Operator_Editor;
 class Vu_Meter;
 class Indicator_NxM;
@@ -54,6 +58,11 @@ public:
     //[UserMethods]     -- You can add your own custom methods in this section.
     void handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity) override;
     void handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity) override;
+
+    void receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins);
+    void update_instrument_choices();
+
+public:
     void vu_update();
     void cpu_load_update();
     void midi_activity_update();
@@ -78,6 +87,15 @@ public:
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     AdlplugAudioProcessor *proc_ = nullptr;
+
+    struct Editor_Bank {
+        PopupMenu ins_menu;
+        std::array<Instrument, 256> ins;
+    };
+    std::map<uint32_t, Editor_Bank> instrument_map_;
+
+    unsigned midichannel_ = 0;
+
     File bank_directory_;
     MidiKeyboardState midi_kb_state_;
 
@@ -142,6 +160,11 @@ private:
     std::unique_ptr<ImageButton> btn_bank_save;
     std::unique_ptr<ImageButton> btn_bank_load;
     std::unique_ptr<TextEditor> edt_bank_name;
+    std::unique_ptr<ComboBox> cb_program;
+    std::unique_ptr<Label> label4;
+    std::unique_ptr<Label> lbl_channel;
+    std::unique_ptr<TextButton> btn_prev_channel;
+    std::unique_ptr<TextButton> btn_next_channel;
 
 
     //==============================================================================

@@ -14,6 +14,9 @@
     <Filter Include="ADLplug\sources\dsp">
       <UniqueIdentifier>{537D8C60-15C2-2C54-07BE-1B04848D95AC}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\sources\midi">
+      <UniqueIdentifier>{5AEB3953-23AB-E997-455B-B424B0C98272}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\sources\utility">
       <UniqueIdentifier>{A6C88D66-4AFB-E68D-8252-A1568A19A4DF}</UniqueIdentifier>
     </Filter>
@@ -469,6 +472,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\midi\insnames.cc">
+      <Filter>ADLplug\sources\midi</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\utility\midi.cc">
       <Filter>ADLplug\sources\utility</Filter>
     </ClCompile>
@@ -2486,6 +2492,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\sources\dsp\vu_monitor.h">
       <Filter>ADLplug\sources\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\midi\insnames.h">
+      <Filter>ADLplug\sources\midi</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\utility\midi.h">
       <Filter>ADLplug\sources\utility</Filter>

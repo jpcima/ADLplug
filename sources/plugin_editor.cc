@@ -67,6 +67,7 @@ void AdlplugAudioProcessorEditor::resized()
 void AdlplugAudioProcessorEditor::process_notifications()
 {
     AdlplugAudioProcessor &proc = proc_;
+    Main_Component *main = main_.get();
     Simple_Fifo &queue = proc.message_queue_to_ui();
 
     while (Buffered_Message msg = read_message(queue)) {
@@ -75,11 +76,7 @@ void AdlplugAudioProcessorEditor::process_notifications()
         switch (tag) {
             case Fx_Message::NotifyInstrument: {
                 auto &body = *(const Messages::Fx::NotifyInstrument *)msg.data;
-
-                // fprintf(stderr, "Notify instrument %u:%u:%u:%u\n",
-                //         body.bank.percussive, body.bank.msb, body.bank.lsb,
-                //         body.program);
-
+                main->receive_instrument(body.bank, body.program, body.instrument);
                 break;
             }
         }

@@ -7,13 +7,21 @@
 #include "adl/player.h"
 #include <wopl/wopl_file.h>
 #include <adlmidi.h>
+#include <string.h>
 #include <cassert>
 
-Instrument::Instrument(const WOPLInstrument &o) noexcept
-    : ADL_Instrument{}
+Instrument Instrument::from_adlmidi(const ADL_Instrument &o) noexcept
 {
-    version = ADLMIDI_InstrumentVersion;
-#define COPY(x) this->x = o.x;
+    Instrument ins;
+    memcpy(static_cast<ADL_Instrument *>(&ins), &o, sizeof(ADL_Instrument));
+    return ins;
+}
+
+Instrument Instrument::from_wopl(const WOPLInstrument &o) noexcept
+{
+    Instrument ins;
+    ins.version = ADLMIDI_InstrumentVersion;
+#define COPY(x) ins.x = o.x;
     COPY(note_offset1);
     COPY(note_offset2);
     COPY(midi_velocity_offset);
@@ -32,7 +40,20 @@ Instrument::Instrument(const WOPLInstrument &o) noexcept
     COPY(delay_on_ms);
     COPY(delay_off_ms);
 #undef COPY
+
+#if 0
+    ins.name(o.inst_name);
+#endif
+
+    return ins;
 }
+
+#if 0
+void Instrument::name(const char *name) noexcept
+{
+    memcpy(name_, name, strnlen(name, name_size));
+}
+#endif
 
 Bank_Ref *Bank_Lookup_Cache::get(Generic_Player &pl, const Bank_Id &id, int flags) noexcept
 {

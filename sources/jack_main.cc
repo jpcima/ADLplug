@@ -9,6 +9,7 @@
 #include <memory>
 #include <jack/jack.h>
 #include <jack/midiport.h>
+extern AudioProcessor *JUCE_CALLTYPE createPluginFilter();
 
 class Application_Window : public DocumentWindow
 {
@@ -65,7 +66,7 @@ void Application_Jack::initialise(const String &args)
     jack_nframes_t buffer_size = jack_get_buffer_size(client);
     unsigned sample_rate = jack_get_sample_rate(client);
 
-    AdlplugAudioProcessor *processor = new AdlplugAudioProcessor;
+    AdlplugAudioProcessor *processor = static_cast<AdlplugAudioProcessor *>(createPluginFilter());
     processor_.reset(processor);
     processor->prepareToPlay(sample_rate, buffer_size);
     processor->setPlayConfigDetails(0, 2, sample_rate, buffer_size);
@@ -79,7 +80,7 @@ void Application_Jack::initialise(const String &args)
         getApplicationName() + " [jack:" + (const char *)jack_get_client_name(client) + "]");
     window_.reset(window);
 
-    AdlplugAudioProcessorEditor *editor = new AdlplugAudioProcessorEditor(*processor);
+    AdlplugAudioProcessorEditor *editor = static_cast<AdlplugAudioProcessorEditor *>(processor->createEditor());
     window->setContentOwned(editor, true);
 
     window->setSize(editor->getWidth(), editor->getHeight());

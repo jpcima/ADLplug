@@ -146,6 +146,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\midi\insnames.cc"/>
     <ClCompile Include="..\..\..\sources\utility\midi.cc"/>
     <ClCompile Include="..\..\..\sources\utility\rt_checker.cc"/>
     <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc"/>
@@ -1941,6 +1942,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\sources\dsp\dc_filter.h"/>
     <ClInclude Include="..\..\..\sources\dsp\vu_monitor.h"/>
+    <ClInclude Include="..\..\..\sources\midi\insnames.h"/>
     <ClInclude Include="..\..\..\sources\utility\midi.h"/>
     <ClInclude Include="..\..\..\sources\utility\rt_checker.h"/>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
