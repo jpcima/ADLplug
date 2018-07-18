@@ -2535,6 +2535,9 @@
     <ClInclude Include="..\..\..\sources\ui\operator_editor.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\sources\parameters.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\styled_knobs.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>

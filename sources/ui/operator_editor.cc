@@ -29,9 +29,10 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-Operator_Editor::Operator_Editor ()
+Operator_Editor::Operator_Editor (unsigned op_id)
 {
     //[Constructor_pre] You can add your own custom stuff here..
+    operator_id_ = op_id;
     //[/Constructor_pre]
 
     kn_attack.reset (new Styled_Knob_Default());
@@ -413,8 +414,7 @@ void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op
     btn_sus->setToggleState(ins.sus(op), ntf);
     btn_env->setToggleState(ins.env(op), ntf);
 
-#pragma message("TODO wave notifications")
-    lbl_wave->set_wave(ins.wave(op)/*, ntf*/);
+    lbl_wave->set_wave(ins.wave(op), ntf);
 }
 
 void Operator_Editor::set_operator_enabled(bool b)
@@ -444,9 +444,9 @@ void Operator_Editor::paintOverChildren(Graphics &g)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="Operator_Editor" componentName=""
-                 parentClasses="public Component" constructorParams="" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.33"
-                 fixedSize="0" initialWidth="600" initialHeight="400">
+                 parentClasses="public Component" constructorParams="unsigned op_id"
+                 variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
+                 overlayOpacity="0.33" fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ff323e44">
     <RECT pos="0 0 352 128" fill="solid: ff2e4c4d" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: fff0f8ff"/>

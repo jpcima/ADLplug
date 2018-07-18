@@ -15,12 +15,36 @@ Wave_Label::Wave_Label(const String &name)
 {
 }
 
-void Wave_Label::set_wave(unsigned wave)
+void Wave_Label::set_wave(unsigned wave, NotificationType notification)
 {
     if (wave_ == wave)
         return;
     wave_ = wave;
     repaint();
+
+    if (notification == dontSendNotification)
+        return;
+
+    if (notification == sendNotificationSync)
+        handleAsyncUpdate();
+    else
+        triggerAsyncUpdate();
+}
+
+void Wave_Label::handleAsyncUpdate()
+{
+    cancelPendingUpdate();
+
+    Component::BailOutChecker checker(this);
+    listeners_.callChecked(checker, [this](Wave_Label::Listener &l) { l.wave_changed(this); });
+
+    if (checker.shouldBailOut())
+        return;
+
+#if 0
+    if (this->on_wave_change != nullptr)
+        this->on_wave_change();
+#endif
 }
 
 void Wave_Label::paint(Graphics &g)

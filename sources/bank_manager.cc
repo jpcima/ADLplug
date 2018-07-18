@@ -98,7 +98,7 @@ void Bank_Manager::send_notifications()
     }
 }
 
-void Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instrument &ins)
+bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instrument &ins)
 {
     Generic_Player &pl = pl_;
 
@@ -114,7 +114,7 @@ void Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
         if (index == (unsigned)-1) {
             trace("No empty slot to load program %c%u:%u:%u",
                   id.percussive ? 'P' : 'M', id.msb, id.lsb, program);
-            return;
+            return false;
         }
 
         Bank_Info &info = bank_infos_[index];
@@ -149,6 +149,20 @@ void Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
     // mark for notification
     bank_notify_mask_.set(index);
     program_notify_mask_[index].set(program);
+    return true;
+}
+
+bool Bank_Manager::find_program(const Bank_Id &id, unsigned program, Instrument &ins)
+{
+    Generic_Player &pl = pl_;
+
+    unsigned index = find_slot(id);
+    if (index == (unsigned)-1)
+        return false;
+
+    Bank_Info &info = bank_infos_[index];
+    pl.ensure_get_instrument(info.bank, program, ins);
+    return true;
 }
 
 unsigned Bank_Manager::find_slot(const Bank_Id &id)

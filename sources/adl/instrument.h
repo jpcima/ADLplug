@@ -18,9 +18,6 @@ struct Instrument : ADL_Instrument
     static Instrument from_adlmidi(const ADL_Instrument &o) noexcept;
     static Instrument from_wopl(const WOPLInstrument &o) noexcept;
 
-    bool blank() const noexcept
-        { return inst_flags & ADLMIDI_Ins_IsBlank; }
-
 public:
 #define PARAMETER(type, id, field, shift, size, opt)            \
     type id() const noexcept                                    \
@@ -34,6 +31,9 @@ public:
     void id(unsigned op, type value) noexcept                           \
         { set_bits##opt<shift, size, type>(operators[op].field, value); }
 
+    PARAMETER(bool, four_op, inst_flags, 0, 1,)
+    PARAMETER(bool, pseudo_four_op, inst_flags, 1, 1,)
+    PARAMETER(bool, blank, inst_flags, 2, 1,)
     PARAMETER(bool, con12, fb_conn1_C0, 0, 1,)
     PARAMETER(bool, con34, fb_conn2_C0, 0, 1,)
     PARAMETER(unsigned, fb12, fb_conn1_C0, 1, 3,)

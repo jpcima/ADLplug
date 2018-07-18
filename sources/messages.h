@@ -49,6 +49,7 @@ Buffered_Message write_message_retrying(
 enum class User_Message {
     Midi,  // midi event
     LoadInstrument,  // edits an instrument
+    SelectProgram,  // changes selected program number
 };
 
 namespace Messages {
@@ -59,6 +60,12 @@ struct LoadInstrument
     Bank_Id bank;
     uint8_t program = 0;
     Instrument instrument;
+};
+
+struct SelectProgram
+{
+    Bank_Id bank;
+    uint8_t program = 0;
 };
 
 }  // namespace User

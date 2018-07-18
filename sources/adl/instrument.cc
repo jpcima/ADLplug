@@ -52,10 +52,16 @@ void Instrument::describe(FILE *out) const noexcept
 {
     fprintf(stderr,
             "Instrument\n"
-            "- 1-2 Feedback %u Conn %u\n"
-            "- 3-4 Feedback %u Conn %u\n",
-            fb12(), con12(),
-            fb34(), con34());
+            " - 4Op %u Ps4Op %u Blank %u\n"
+            " - 1-2 Feedback %u Conn %u Tune %d\n"
+            " - 3-4 Feedback %u Conn %u Tune %d\n"
+            " - Velocity offset %d\n"
+            " - Second voice fine tune %d\n"
+            " - Percussion note %u\n",
+            four_op(), pseudo_four_op(), blank(),
+            fb12(), con12(), note_offset1,
+            fb34(), con34(), note_offset2,
+            midi_velocity_offset, second_voice_detune, percussion_key_number);
     for (unsigned op = 0; op < 4; ++op)
         describe_operator(op, out, "    ");
 }
@@ -71,10 +77,10 @@ void Instrument::describe_operator(unsigned op, FILE *out, const char *indent) c
     }
     fprintf(stderr,
             "%sOperator %u: %s\n"
-            "%s- ADSR %u %u %u %u\n"
-            "%s- Level %u FMul %u KSL %u\n"
-            "%s- Trem %u Vib %u Sus %u Env %u\n"
-            "%s- Wave %u\n",
+            "%s - ADSR %u %u %u %u\n"
+            "%s - Level %u FMul %u KSL %u\n"
+            "%s - Trem %u Vib %u Sus %u Env %u\n"
+            "%s - Wave %u\n",
             indent, op, text,
             indent, attack(op), decay(op), sustain(op), release(op),
             indent, level(op), fmul(op), ksl(op),

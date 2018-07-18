@@ -13,12 +13,16 @@
 #include "definitions.h"
 #include "plugin_processor.h"
 #include "plugin_editor.h"
+#include <wopl/wopl_file.h>
 #include <cassert>
 
 //==============================================================================
 AdlplugAudioProcessor::AdlplugAudioProcessor()
     : AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true))
 {
+    Parameter_Block *pb = new Parameter_Block;
+    parameter_block_.reset(pb);
+    pb->setup_parameters(*this);
 }
 
 AdlplugAudioProcessor::~AdlplugAudioProcessor()
@@ -149,7 +153,7 @@ void AdlplugAudioProcessor::panic_nonrt()
 
 void AdlplugAudioProcessor::reconfigure_chip_nonrt()
 {
-    Generic_Player *pl = player_.get();
+    // Generic_Player *pl = player_.get();
     // TODO any necessary reconfiguration after reset
 }
 
@@ -187,6 +191,13 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         std::fill_n(left, nframes, 0);
         std::fill_n(right, nframes, 0);
         return;
+    }
+
+    if (parameters_changed_.compareAndSetBool(false, true)) {
+        Bank_Manager &bm = *bank_manager_;
+        Instrument ins;
+        parameters_to_instrument(ins);
+        bm.load_program(selection_id_, selection_pgm_, ins);
     }
 
     ScopedNoDenormals no_denormals;
@@ -297,12 +308,24 @@ void AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     if (!ctx.under_lock)
         return;
 
-    Generic_Player *pl = player_.get();
+    Bank_Manager &bm = *bank_manager_;
 
     switch (tag) {
     case User_Message::LoadInstrument: {
         auto &body = *(const Messages::User::LoadInstrument *)data;
-        bank_manager_->load_program(body.bank, body.program, body.instrument);
+        if (bm.load_program(body.bank, body.program, body.instrument)) {
+            if (body.bank == selection_id_ && body.program == selection_pgm_)
+                set_instrument_parameters_notifying_host();
+        }
+        break;
+    }
+    case User_Message::SelectProgram: {
+        auto &body = *(const Messages::User::SelectProgram *)data;
+        if (selection_id_ != body.bank || selection_pgm_ != body.program) {
+            selection_id_ = body.bank;
+            selection_pgm_ = body.program;
+            set_instrument_parameters_notifying_host();
+        }
         break;
     }
     default:
@@ -310,13 +333,86 @@ void AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     }
 }
 
-void AdlplugAudioProcessor::begin_handling_messages(Message_Handler_Context &ctx)
-{
-}
-
 void AdlplugAudioProcessor::finish_handling_messages(Message_Handler_Context &ctx)
 {
     bank_manager_->send_notifications();
+}
+
+void AdlplugAudioProcessor::parameters_to_instrument(Instrument &ins) const
+{
+    const Parameter_Block &pb = *parameter_block_;
+
+    ins.version = ADLMIDI_InstrumentVersion;
+    ins.inst_flags = 0;
+
+    ins.four_op(pb.p_4op->get());
+    ins.pseudo_four_op(pb.p_ps4op->get());
+    ins.blank(pb.p_blank->get());
+    ins.con12(pb.p_con12->getIndex());
+    ins.con34(pb.p_con34->getIndex());
+    ins.note_offset1 = pb.p_tune12->get();
+    ins.note_offset2 = pb.p_tune34->get();
+    ins.fb12(pb.p_fb12->get());
+    ins.fb34(pb.p_fb34->get());
+    ins.midi_velocity_offset = pb.p_veloffset->get();
+    ins.second_voice_detune = pb.p_voice2ft->get();
+    ins.percussion_key_number = pb.p_drumnote->get();
+
+    for (unsigned opnum = 0; opnum < 4; ++opnum) {
+        const Parameter_Block::Operator &op = pb.nth_operator(opnum);
+        ins.attack(opnum, op.p_attack->get());
+        ins.decay(opnum, op.p_decay->get());
+        ins.sustain(opnum, op.p_sustain->get());
+        ins.release(opnum, op.p_release->get());
+        ins.level(opnum, op.p_level->get());
+        ins.ksl(opnum, op.p_ksl->get());
+        ins.fmul(opnum, op.p_fmul->get());
+        ins.trem(opnum, op.p_trem->get());
+        ins.vib(opnum, op.p_vib->get());
+        ins.sus(opnum, op.p_sus->get());
+        ins.env(opnum, op.p_env->get());
+        ins.wave(opnum, op.p_wave->get());
+    }
+}
+
+void AdlplugAudioProcessor::set_instrument_parameters_notifying_host()
+{
+    Instrument ins;
+    Bank_Manager &bm = *bank_manager_;
+
+    if (!bm.find_program(selection_id_, selection_pgm_, ins))
+        return;
+
+    Parameter_Block &pb = *parameter_block_;
+
+    *pb.p_4op = ins.four_op();
+    *pb.p_ps4op = ins.pseudo_four_op();
+    *pb.p_blank = ins.blank();
+    *pb.p_con12 = ins.con12();
+    *pb.p_con34 = ins.con34();
+    *pb.p_tune12 = ins.note_offset1;
+    *pb.p_tune34 = ins.note_offset2;
+    *pb.p_fb12 = ins.fb12();
+    *pb.p_fb34 = ins.fb34();
+    *pb.p_veloffset = ins.midi_velocity_offset;
+    *pb.p_voice2ft = ins.second_voice_detune;
+    *pb.p_drumnote = ins.percussion_key_number;
+
+    for (unsigned opnum = 0; opnum < 4; ++opnum) {
+        Parameter_Block::Operator &op = pb.nth_operator(opnum);
+        *op.p_attack = ins.attack(opnum);
+        *op.p_decay = ins.decay(opnum);
+        *op.p_sustain = ins.sustain(opnum);
+        *op.p_release = ins.release(opnum);
+        *op.p_level = ins.level(opnum);
+        *op.p_ksl = ins.ksl(opnum);
+        *op.p_fmul = ins.fmul(opnum);
+        *op.p_trem = ins.trem(opnum);
+        *op.p_vib = ins.vib(opnum);
+        *op.p_sus = ins.sus(opnum);
+        *op.p_env = ins.env(opnum);
+        *op.p_wave = ins.wave(opnum);
+    }
 }
 
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
@@ -368,6 +464,12 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
     // You should use this method to restore your parameters from this memory
     // block, whose contents will have been created by the getStateInformation()
     // call.
+}
+
+//==============================================================================
+void AdlplugAudioProcessor::parameterValueChanged(int index, float value)
+{
+    parameters_changed_ = true;
 }
 
 //==============================================================================

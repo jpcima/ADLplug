@@ -73,8 +73,10 @@ void Knob::handleAsyncUpdate()
     if (checker.shouldBailOut())
         return;
 
+#if 0
     if (this->on_value_change != nullptr)
         this->on_value_change();
+#endif
 }
 
 void Knob::paint(Graphics &g)

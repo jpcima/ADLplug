@@ -39,7 +39,9 @@ public:
     void add_listener(Listener *l);
     void remove_listener(Listener *l);
 
+#if 0
     std::function<void()> on_value_change;
+#endif
 
 protected:
     void handleAsyncUpdate() override;

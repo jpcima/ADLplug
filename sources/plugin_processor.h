@@ -5,8 +5,10 @@
 
 #pragma once
 
+#include "parameter_block.h"
 #include "dsp/dc_filter.h"
 #include "dsp/vu_monitor.h"
+#include "adl/instrument.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <bitset>
 #include <memory>
@@ -16,11 +18,13 @@ class Bank_Manager;
 class Simple_Fifo;
 class Midi_Input_Source;
 struct Buffered_Message;
+struct Instrument;
 
 //==============================================================================
 /**
  */
-class AdlplugAudioProcessor : public AudioProcessor {
+class AdlplugAudioProcessor : public AudioProcessor,
+                              public AudioProcessorParameter::Listener {
 public:
     //==========================================================================
     AdlplugAudioProcessor();
@@ -49,8 +53,11 @@ public:
     struct Message_Handler_Context;
     void handle_midi(const uint8_t *data, unsigned len, Message_Handler_Context &ctx);
     void handle_message(const Buffered_Message &msg, Message_Handler_Context &ctx);
-    void begin_handling_messages(Message_Handler_Context &ctx);
+    void begin_handling_messages(Message_Handler_Context &ctx) {}
     void finish_handling_messages(Message_Handler_Context &ctx);
+
+    void parameters_to_instrument(Instrument &ins) const;
+    void set_instrument_parameters_notifying_host();
 
     //==========================================================================
     AudioProcessorEditor *createEditor() override;
@@ -87,6 +94,11 @@ public:
     void getStateInformation(MemoryBlock &destData) override;
     void setStateInformation(const void *data, int sizeInBytes) override;
 
+protected:
+    //==========================================================================
+    void parameterValueChanged(int index, float value) override;
+    void parameterGestureChanged(int index, bool is_starting) override {}
+
 private:
     std::unique_ptr<Generic_Player> player_;
     std::unique_ptr<Bank_Manager> bank_manager_;
@@ -98,6 +110,11 @@ private:
     Vu_Monitor vu_monitor_[2];
     double lv_current_[2] {};
     double cpu_load_ = 0;
+
+    Atomic<bool> parameters_changed_;
+    std::unique_ptr<Parameter_Block> parameter_block_;
+    Bank_Id selection_id_ {0, 0, false};
+    uint8_t selection_pgm_ = 0;
 
     std::bitset<16> midi_channel_mask_;
     unsigned midi_channel_note_count_[16] = {};

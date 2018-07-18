@@ -42,7 +42,7 @@ class Operator_Editor  : public Component,
 {
 public:
     //==============================================================================
-    Operator_Editor ();
+    Operator_Editor (unsigned op_id);
     ~Operator_Editor();
 
     //==============================================================================
@@ -65,6 +65,7 @@ public:
 
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
+    unsigned operator_id_ = 0;
     bool operator_enabled_ = true;
     //[/UserVariables]
 

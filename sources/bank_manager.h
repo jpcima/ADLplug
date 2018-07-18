@@ -16,7 +16,8 @@ public:
     explicit Bank_Manager(AdlplugAudioProcessor &proc, Generic_Player &pl);
     void update_all_banks();
     void send_notifications();
-    void load_program(const Bank_Id &id, unsigned program, const Instrument &ins);
+    bool load_program(const Bank_Id &id, unsigned program, const Instrument &ins);
+    bool find_program(const Bank_Id &id, unsigned program, Instrument &ins);
 
 private:
     unsigned find_slot(const Bank_Id &id);

@@ -49,7 +49,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
 
-    ed_op2.reset (new Operator_Editor());
+    ed_op2.reset (new Operator_Editor (WOPL_OP_CARRIER1));
     addAndMakeVisible (ed_op2.get());
     ed_op2->setName ("new component");
 
@@ -100,13 +100,13 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_am12->setBounds (376, 224, 36, 24);
 
-    ed_op1.reset (new Operator_Editor());
+    ed_op1.reset (new Operator_Editor (WOPL_OP_MODULATOR1));
     addAndMakeVisible (ed_op1.get());
     ed_op1->setName ("new component");
 
     ed_op1->setBounds (421, 160, 352, 128);
 
-    ed_op4.reset (new Operator_Editor());
+    ed_op4.reset (new Operator_Editor (WOPL_OP_CARRIER2));
     addAndMakeVisible (ed_op4.get());
     ed_op4->setName ("new component");
 
@@ -130,7 +130,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_am34->setBounds (376, 392, 36, 24);
 
-    ed_op3.reset (new Operator_Editor());
+    ed_op3.reset (new Operator_Editor (WOPL_OP_MODULATOR2));
     addAndMakeVisible (ed_op3.get());
     ed_op3->setName ("new component");
 
@@ -831,6 +831,14 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
                 send_controller(channel, 32, psid & 127);
                 send_program_change(channel, insno);
             }
+
+            Simple_Fifo &queue = proc_->message_queue_for_ui();
+            Message_Header msghdr(User_Message::SelectProgram, sizeof(Messages::User::SelectProgram));
+            Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
+            auto &body = *(Messages::User::SelectProgram *)msg.data;
+            body.bank = Bank_Id(psid >> 7, psid & 127, insno >= 128);
+            body.program = insno & 127;
+            finish_write_message(queue, msg);
         }
         reload_selected_instrument(dontSendNotification);
 
@@ -926,11 +934,9 @@ void Main_Component::set_instrument_parameters(const Instrument &ins, Notificati
 {
     Operator_Editor *op_editors[4] =
         { ed_op2.get(), ed_op1.get(), ed_op4.get(), ed_op3.get() };
-    unsigned opnum[4] =
-        { WOPL_OP_CARRIER1, WOPL_OP_MODULATOR1,  WOPL_OP_CARRIER2, WOPL_OP_MODULATOR2 };
 
-   ((!(ins.inst_flags & ADLMIDI_Ins_4op)) ? btn_2op :
-    (ins.inst_flags & ADLMIDI_Ins_Pseudo4op) ? btn_pseudo4op : btn_4op)->setToggleState(true, ntf);
+   ((!ins.four_op()) ? btn_2op :
+    (ins.pseudo_four_op()) ? btn_pseudo4op : btn_4op)->setToggleState(true, ntf);
 
    ((ins.con12()) ? btn_am12 : btn_fm12)->setToggleState(true, ntf);
    ((ins.con34()) ? btn_am34 : btn_fm34)->setToggleState(true, ntf);
@@ -943,8 +949,8 @@ void Main_Component::set_instrument_parameters(const Instrument &ins, Notificati
 
    for (unsigned op = 0; op < 4; ++op) {
        Operator_Editor *oped = op_editors[op];
-       oped->set_operator_parameters(ins, opnum[op], ntf);
-       oped->set_operator_enabled(opnum[op] < 2 || (ins.inst_flags & ADLMIDI_Ins_4op));
+       oped->set_operator_parameters(ins, op, ntf);
+       oped->set_operator_enabled(op < 2 || (ins.inst_flags & ADLMIDI_Ins_4op));
    }
 }
 
@@ -1102,7 +1108,7 @@ BEGIN_JUCER_METADATA
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="16 160 352 128" class="Operator_Editor"
-                    params=""/>
+                    params="WOPL_OP_CARRIER1"/>
   <TEXTBUTTON name="new button" id="333aa0ccccbfed24" memberName="btn_4op"
               virtualName="" explicitFocusOrder="0" pos="176 134 56 24" bgColOn="ff42a2c8"
               buttonText="4 op" connectedEdges="2" needsCallback="1" radioGroupId="0"/>
@@ -1120,10 +1126,10 @@ BEGIN_JUCER_METADATA
               buttonText="AM" connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="a00c5401e39a953e" memberName="ed_op1"
                     virtualName="" explicitFocusOrder="0" pos="421 160 352 128" class="Operator_Editor"
-                    params=""/>
+                    params="WOPL_OP_MODULATOR1"/>
   <GENERICCOMPONENT name="new component" id="b7424f0838e48a08" memberName="ed_op4"
                     virtualName="" explicitFocusOrder="0" pos="16 328 352 128" class="Operator_Editor"
-                    params=""/>
+                    params="WOPL_OP_CARRIER2"/>
   <TEXTBUTTON name="new button" id="6c84b2cc5c27a17f" memberName="btn_fm34"
               virtualName="" explicitFocusOrder="0" pos="376 368 36 24" bgColOn="ff42a2c8"
               buttonText="FM" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
@@ -1132,7 +1138,7 @@ BEGIN_JUCER_METADATA
               buttonText="AM" connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="ed_op3"
                     virtualName="" explicitFocusOrder="0" pos="421 328 352 128" class="Operator_Editor"
-                    params=""/>
+                    params="WOPL_OP_MODULATOR2"/>
   <SLIDER name="new slider" id="9cd7cc232d55ac8a" memberName="sl_tune12"
           virtualName="" explicitFocusOrder="0" pos="568 136 150 24" min="-127.0"
           max="127.0" int="0.0" style="LinearHorizontal" textBoxPos="TextBoxRight"

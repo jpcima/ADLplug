@@ -113,6 +113,7 @@ add_library(ADLplug_core STATIC
   "sources/midi/insnames.cc"
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
+  "sources/parameter_block.cc"
   "sources/bank_manager.cc"
   "sources/messages.cc"
   "sources/ui/chips/opl3_waves.cc"
