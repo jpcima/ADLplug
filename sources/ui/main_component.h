@@ -78,12 +78,17 @@ public:
     void set_program_selection(int selection, NotificationType ntf);
     static String program_selection_to_string(int selection);
 
+    void load_bank(const File &file);
+    void save_bank(const File &file);
+
     void on_change_midi_channel(unsigned channel);
 
     void vu_update();
     void cpu_load_update();
     void midi_activity_update();
     void popup_about_dialog();
+
+    void paintOverChildren(Graphics &g) override;
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -95,10 +100,6 @@ public:
     // Binary resources:
     static const char* logo_png;
     static const int logo_pngSize;
-    static const char* emoji_u1f4be_png;
-    static const int emoji_u1f4be_pngSize;
-    static const char* emoji_u1f4c2_png;
-    static const int emoji_u1f4c2_pngSize;
 
 
 private:
@@ -176,14 +177,14 @@ private:
     std::unique_ptr<Label> lbl_cpu;
     std::unique_ptr<Indicator_NxM> ind_midi_activity;
     std::unique_ptr<TextButton> btn_panic;
-    std::unique_ptr<ImageButton> btn_bank_save;
-    std::unique_ptr<ImageButton> btn_bank_load;
     std::unique_ptr<TextEditor> edt_bank_name;
     std::unique_ptr<ComboBox> cb_program;
     std::unique_ptr<Label> label4;
     std::unique_ptr<Label> lbl_channel;
     std::unique_ptr<TextButton> btn_prev_channel;
     std::unique_ptr<TextButton> btn_next_channel;
+    std::unique_ptr<TextButton> btn_bank_load;
+    std::unique_ptr<TextButton> btn_bank_save;
 
 
     //==============================================================================
