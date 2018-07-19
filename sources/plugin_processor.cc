@@ -117,6 +117,10 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     Bank_Manager *bm = new Bank_Manager(*this, *pl);
     bank_manager_.reset(bm);
     bm->update_all_banks();
+
+    selection_id_ = Bank_Id(0, 0, 0);
+    selection_pgm_ = 0;
+    set_instrument_parameters_notifying_host();
 }
 
 void AdlplugAudioProcessor::releaseResources()

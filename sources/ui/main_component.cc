@@ -1023,9 +1023,10 @@ Instrument *Main_Component::find_instrument(uint32_t program, Instrument *if_not
 
 void Main_Component::reload_selected_instrument(NotificationType ntf)
 {
-    trace("Reload selected instrument");
-
     int selection = cb_program->getSelectedId();
+
+    trace("Reload selected instrument %s", program_selection_to_string(selection).toRawUTF8());
+
     Instrument ins_empty, *ins = &ins_empty;
     if (selection != 0) {
         uint32_t program = (unsigned)selection - 1;
@@ -1144,6 +1145,11 @@ void Main_Component::update_instrument_choices()
             std::sprintf(ins_sid, "%c%03u %s", "MP"[i >= 128], i & 127, name);
             uint32_t program = (psid << 8) + i;
             e_bank.ins_menu.addItem(program + 1, ins_sid);
+
+            if (false)
+                trace("Add choice %s %s",
+                      program_selection_to_string(program + 1).toRawUTF8(),
+                      ins_sid);
         }
 
         menu->addSubMenu(bank_sid, e_bank.ins_menu);
