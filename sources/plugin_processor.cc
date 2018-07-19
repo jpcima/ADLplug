@@ -246,7 +246,8 @@ void AdlplugAudioProcessor::process_messages(Midi_Input_Source &midi, bool under
     // handle events from GUI
     Simple_Fifo &mq_from_ui = *mq_from_ui_;
     while (Buffered_Message msg = read_message(mq_from_ui)) {
-        handle_message(msg, ctx);
+        if (!handle_message(msg, ctx))
+            break;
         finish_read_message(mq_from_ui, msg);
     }
 
@@ -257,10 +258,10 @@ void AdlplugAudioProcessor::process_messages(Midi_Input_Source &midi, bool under
     finish_handling_messages(ctx);
 }
 
-void AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len, Message_Handler_Context &ctx)
+bool AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len, Message_Handler_Context &ctx)
 {
     if (!ctx.under_lock)
-        return;  // TODO save messages for later processing?
+        return false;  // TODO save messages for later processing?
 
     Generic_Player *pl = player_.get();
     pl->play_midi(data, len);
@@ -269,7 +270,7 @@ void AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len, Messa
     unsigned channel = status & 0x0f;
 
     if ((status & 0xf0) != 0xf0 && !midi_channel_mask_[channel])
-        return;
+        return true;
 
     switch (status & 0xf0) {
     case 0x90:
@@ -296,21 +297,21 @@ void AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len, Messa
         }
         break;
     }
+
+    return true;
 }
 
-void AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_Handler_Context &ctx)
+bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_Handler_Context &ctx)
 {
     const uint8_t *data = msg.data;
     User_Message tag = (User_Message)msg.header->tag;
     unsigned size = msg.header->size;
 
-    if (tag == User_Message::Midi) {
-        handle_midi(data, size, ctx);
-        return;
-    }
+    if (tag == User_Message::Midi)
+        return handle_midi(data, size, ctx);
 
     if (!ctx.under_lock)
-        return;
+        return false;
 
     Bank_Manager &bm = *bank_manager_;
 
@@ -335,6 +336,8 @@ void AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     default:
         assert(false);
     }
+
+    return true;
 }
 
 void AdlplugAudioProcessor::finish_handling_messages(Message_Handler_Context &ctx)
