@@ -6,7 +6,7 @@
 #pragma once
 
 // bank slors to reserve in the synthesizer
-static constexpr unsigned bank_reserve_size = 32;
+static constexpr unsigned bank_reserve_size = 64;
 
 // maximum program notification in a cycle
 static constexpr unsigned max_program_notifications = 32;
