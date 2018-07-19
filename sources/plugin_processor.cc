@@ -97,6 +97,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     pl->init(sample_rate);
     pl->reserve_banks(bank_reserve_size);
     pl->set_num_chips(2);
+    pl->set_num_4ops(2);
     pl->set_emulator(default_emulator_);
 
     for (unsigned i = 0; i < 2; ++i) {
