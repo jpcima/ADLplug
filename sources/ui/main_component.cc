@@ -438,7 +438,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     std::vector<std::string> emus = proc.enumerate_emulators();
     for (size_t i = 0, n = emus.size(); i < n; ++i)
         cb_emulator->addItem(emus[i], i + 1);
-    cb_emulator->setSelectedId(1 + proc.default_emulator());
 
     lbl_channel->setText(String(1 + midichannel_), dontSendNotification);
 
@@ -451,6 +450,11 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     midi_activity_timer_.reset(new Midi_Activity_Timer(this));
     midi_activity_timer_->startTimer(100);
+
+    {
+        std::unique_lock<std::mutex> lock(proc.acquire_player_nonrt());
+        cb_emulator->setSelectedId(1 + proc.chip_emulator_nonrt());
+    }
     //[/Constructor]
 }
 

@@ -44,6 +44,7 @@ public:
     virtual bool get_instrument(const Bank_Ref &bank, unsigned index, Instrument &ins) = 0;
     virtual bool set_instrument(Bank_Ref &bank, unsigned index, const Instrument &ins) = 0;
     virtual const char *emulator_name() const = 0;
+    virtual unsigned emulator() const = 0;
     virtual void set_emulator(unsigned emu) = 0;
     virtual unsigned num_chips() = 0;
     virtual bool set_num_chips(unsigned chips) = 0;

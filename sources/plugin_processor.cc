@@ -144,6 +144,12 @@ void AdlplugAudioProcessor::set_num_chips_nonrt(unsigned chips)
     reconfigure_chip_nonrt();
 }
 
+unsigned AdlplugAudioProcessor::chip_emulator_nonrt() const
+{
+    Generic_Player *pl = player_.get();
+    return pl->emulator();
+}
+
 void AdlplugAudioProcessor::set_chip_emulator_nonrt(unsigned emu)
 {
     Generic_Player *pl = player_.get();

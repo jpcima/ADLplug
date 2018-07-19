@@ -86,14 +86,19 @@ public:
         { return traits::set_instrument(player_.get(), &bank, index, &ins) >= 0; }
     const char *emulator_name() const override
         { return traits::emulator_name(player_.get()); }
+    unsigned emulator() const override
+        { return emu_; }
     void set_emulator(unsigned emu) override
-        { traits::switch_emulator(player_.get(), emu); }
+        { if (traits::switch_emulator(player_.get(), emu) >= 0) emu_ = emu; }
     unsigned num_chips() override
         { return traits::get_num_chips(player_.get()); }
     bool set_num_chips(unsigned chips) override
         { return traits::set_num_chips(player_.get(), chips) == 0; }
     void play_midi(const uint8_t *msg, unsigned len) override;
     void generate(float *left, float *right, unsigned nframes, unsigned stride) override;
+
+private:
+    unsigned emu_ = 0;
 };
 
 template <Player_Type Pt>
