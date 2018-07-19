@@ -108,6 +108,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/look_and_feel_f9ca8b5.o \
   $(JUCE_OBJDIR)/main_component_ffc34342.o \
   $(JUCE_OBJDIR)/operator_editor_6b1eb07b.o \
+  $(JUCE_OBJDIR)/parameter_block_834a48fd.o \
   $(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o \
   $(JUCE_OBJDIR)/vu_meter_b39aee30.o \
   $(JUCE_OBJDIR)/instrument_a889d85b.o \
@@ -254,6 +255,11 @@ $(JUCE_OBJDIR)/main_component_ffc34342.o: ../../../sources/ui/main_component.cc
 $(JUCE_OBJDIR)/operator_editor_6b1eb07b.o: ../../../sources/ui/operator_editor.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling operator_editor.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/parameter_block_834a48fd.o: ../../../sources/parameter_block.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling parameter_block.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o: ../../../sources/ui/styled_knobs.cc

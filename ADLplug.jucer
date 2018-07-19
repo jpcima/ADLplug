@@ -73,7 +73,10 @@
               file="sources/ui/operator_editor.cc"/>
         <FILE id="qbk60K" name="operator_editor.h" compile="0" resource="0"
               file="sources/ui/operator_editor.h"/>
-        <FILE id="e5GGBp" name="parameters.h" compile="0" resource="0" file="sources/parameters.h"/>
+        <FILE id="bAnyMi" name="parameter_block.cc" compile="1" resource="0"
+              file="sources/parameter_block.cc"/>
+        <FILE id="cKzhXr" name="parameter_block.h" compile="0" resource="0"
+              file="sources/parameter_block.h"/>
         <FILE id="P5y4Io" name="styled_knobs.cc" compile="1" resource="0" file="sources/ui/styled_knobs.cc"/>
         <FILE id="FDBT9O" name="styled_knobs.h" compile="0" resource="0" file="sources/ui/styled_knobs.h"/>
         <FILE id="MFvW4n" name="vu_meter.cc" compile="1" resource="0" file="sources/ui/vu_meter.cc"/>

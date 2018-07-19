@@ -160,6 +160,7 @@
     <ClCompile Include="..\..\..\sources\ui\look_and_feel.cc"/>
     <ClCompile Include="..\..\..\sources\ui\main_component.cc"/>
     <ClCompile Include="..\..\..\sources\ui\operator_editor.cc"/>
+    <ClCompile Include="..\..\..\sources\parameter_block.cc"/>
     <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc"/>
     <ClCompile Include="..\..\..\sources\ui\vu_meter.cc"/>
     <ClCompile Include="..\..\..\sources\adl\instrument.cc"/>
@@ -1956,7 +1957,7 @@
     <ClInclude Include="..\..\..\sources\ui\look_and_feel.h"/>
     <ClInclude Include="..\..\..\sources\ui\main_component.h"/>
     <ClInclude Include="..\..\..\sources\ui\operator_editor.h"/>
-    <ClInclude Include="..\..\..\sources\parameters.h"/>
+    <ClInclude Include="..\..\..\sources\parameter_block.h"/>
     <ClInclude Include="..\..\..\sources\ui\styled_knobs.h"/>
     <ClInclude Include="..\..\..\sources\ui\vu_meter.h"/>
     <ClInclude Include="..\..\..\sources\adl\instrument.h"/>

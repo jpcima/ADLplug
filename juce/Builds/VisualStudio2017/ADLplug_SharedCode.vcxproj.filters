@@ -514,6 +514,9 @@
     <ClCompile Include="..\..\..\sources\ui\operator_editor.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\parameter_block.cc">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
@@ -2535,7 +2538,7 @@
     <ClInclude Include="..\..\..\sources\ui\operator_editor.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sources\parameters.h">
+    <ClInclude Include="..\..\..\sources\parameter_block.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\styled_knobs.h">
