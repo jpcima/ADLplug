@@ -40,7 +40,9 @@ public:
     void set_chip_emulator_nonrt(unsigned emu);
     void panic_nonrt();
     void reconfigure_chip_nonrt();
-    std::vector<std::string> enumerate_emulators();
+
+    static std::vector<std::string> enumerate_emulators();
+    static unsigned identify_default_emulator();
 
     bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
 
@@ -62,6 +64,8 @@ public:
     //==========================================================================
     AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override;
+
+    unsigned default_emulator() const { return default_emulator_; }
 
     Simple_Fifo &message_queue_for_ui() const { return *mq_from_ui_; }
     Simple_Fifo &message_queue_to_ui() const { return *mq_to_ui_; }
@@ -101,6 +105,8 @@ protected:
 
 private:
     std::unique_ptr<Generic_Player> player_;
+    unsigned default_emulator_ = 0;
+
     std::unique_ptr<Bank_Manager> bank_manager_;
 
     std::unique_ptr<Simple_Fifo> mq_from_ui_;

@@ -21,6 +21,8 @@
 AdlplugAudioProcessor::AdlplugAudioProcessor()
     : AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true))
 {
+    default_emulator_ = identify_default_emulator();
+
     Parameter_Block *pb = new Parameter_Block;
     parameter_block_.reset(pb);
     pb->setup_parameters(*this);
@@ -95,6 +97,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     pl->init(sample_rate);
     pl->reserve_banks(bank_reserve_size);
     pl->set_num_chips(2);
+    pl->set_emulator(default_emulator_);
 
     for (unsigned i = 0; i < 2; ++i) {
         Dc_Filter &dcf = dc_filter_[i];
@@ -163,8 +166,23 @@ void AdlplugAudioProcessor::reconfigure_chip_nonrt()
 
 std::vector<std::string> AdlplugAudioProcessor::enumerate_emulators()
 {
-    Generic_Player *pl = player_.get();
+    std::unique_ptr<Generic_Player> pl(instantiate_player(Player_Type::OPL3));
     return ::enumerate_emulators(pl->type());
+}
+
+unsigned AdlplugAudioProcessor::identify_default_emulator()
+{
+    int emu = -1;
+    std::vector<std::string> emulators = enumerate_emulators();
+    for (unsigned i = 0, n = emulators.size(); i < n && emu == -1; ++i) {
+        std::string name = emulators[i];
+        std::transform(name.begin(), name.end(), name.begin(),
+                       [](unsigned char c) -> unsigned char
+                           { return (c >= 'A' && c <= 'Z') ? (c - 'A' + 'a') : c; });
+        if (name.size() >= 6 && !memcmp(name.data(), "dosbox", 6))
+            emu = i;
+    }
+    return (emu != -1) ? (unsigned)emu : 0;
 }
 
 bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const

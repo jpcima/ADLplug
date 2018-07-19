@@ -438,8 +438,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     std::vector<std::string> emus = proc.enumerate_emulators();
     for (size_t i = 0, n = emus.size(); i < n; ++i)
         cb_emulator->addItem(emus[i], i + 1);
-    // TODO should have an API to get the current emulator...
-    cb_emulator->setSelectedId(1);
+    cb_emulator->setSelectedId(1 + proc.default_emulator());
 
     lbl_channel->setText(String(1 + midichannel_), dontSendNotification);
 
