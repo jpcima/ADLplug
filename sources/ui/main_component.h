@@ -75,6 +75,8 @@ public:
 
     void receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins);
     void update_instrument_choices();
+    void set_program_selection(int selection, NotificationType ntf);
+    static String program_selection_to_string(int selection);
 
     void on_change_midi_channel(unsigned channel);
 

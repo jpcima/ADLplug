@@ -38,6 +38,12 @@
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
+#if 0
+#   define trace(fmt, ...)
+#else
+#   define trace(fmt, ...) fprintf(stderr, "[UI Main] " fmt "\n", ##__VA_ARGS__)
+#endif
+
 enum class Radio_Button_Group {
     Fm_Mode = 1,
     Algo_12,
@@ -885,6 +891,10 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     {
         //[UserComboBoxCode_cb_program] -- add your combo box handling code here..
         int selection = comboBoxThatHasChanged->getSelectedId();
+
+        trace("Select program by UI %s",
+              program_selection_to_string(selection).toRawUTF8());
+
         if (selection != 0) {
             unsigned insno = ((unsigned)selection - 1) & 255;
             unsigned psid = ((unsigned)selection - 1) >> 8;
@@ -892,12 +902,18 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
             unsigned channel = midichannel_;
             bool isdrum = is_percussion_channel(channel);
             if (isdrum && insno >= 128) {
-                midiprogram_[channel] = (psid << 7) | insno;
+                trace("Assign %s to percussion channel %u",
+                      program_selection_to_string(selection).toRawUTF8(),
+                      channel + 1);
+                midiprogram_[channel] = (psid << 8) | insno;
                 // percussion bank change LSB only
                 send_program_change(channel, psid);
             }
             else if (!isdrum && insno < 128) {
-                midiprogram_[channel] = (psid << 7) | insno;
+                trace("Assign %s to melodic channel %u",
+                      program_selection_to_string(selection).toRawUTF8(),
+                      channel + 1);
+                midiprogram_[channel] = (psid << 8) | insno;
                 send_controller(channel, 0, psid >> 7);
                 send_controller(channel, 32, psid & 127);
                 send_program_change(channel, insno);
@@ -1004,6 +1020,8 @@ Instrument *Main_Component::find_instrument(uint32_t program, Instrument *if_not
 
 void Main_Component::reload_selected_instrument(NotificationType ntf)
 {
+    trace("Reload selected instrument");
+
     int selection = cb_program->getSelectedId();
     Instrument ins_empty, *ins = &ins_empty;
     if (selection != 0) {
@@ -1016,8 +1034,18 @@ void Main_Component::reload_selected_instrument(NotificationType ntf)
 void Main_Component::send_selection_update()
 {
     int selection = cb_program->getSelectedId();
-    unsigned insno = ((unsigned)selection - 1) & 255;
-    unsigned psid = ((unsigned)selection - 1) >> 8;
+
+    unsigned insno = 0;
+    unsigned psid = 0;
+    if (selection != 0) {
+        insno = ((unsigned)selection - 1) & 255;
+        psid = ((unsigned)selection - 1) >> 8;
+        trace("Send selection update %s",
+              program_selection_to_string(selection).toRawUTF8());
+    }
+    else {
+        trace("Send selection update 0:0:0 because of empty selection");
+    }
 
     Simple_Fifo &queue = proc_->message_queue_for_ui();
     Message_Header msghdr(User_Message::SelectProgram, sizeof(Messages::User::SelectProgram));
@@ -1030,6 +1058,8 @@ void Main_Component::send_selection_update()
 
 void Main_Component::set_instrument_parameters(const Instrument &ins, NotificationType ntf)
 {
+    trace("Update instrument parameters on display");
+
     Operator_Editor *op_editors[4] =
         { ed_op2.get(), ed_op1.get(), ed_op4.get(), ed_op3.get() };
 
@@ -1060,6 +1090,8 @@ void Main_Component::receive_instrument(Bank_Id bank, unsigned pgm, const Instru
     bool update;
     unsigned insno = pgm + (bank.percussive ? 128 : 0);
 
+    trace("Receive instrument %u:%u:%u", bank.msb, bank.lsb, insno);
+
     auto it = instrument_map_.find(bank.pseudo_id());
     if (it == instrument_map_.end()) {
         e_bank = &instrument_map_[bank.pseudo_id()];
@@ -1072,6 +1104,7 @@ void Main_Component::receive_instrument(Bank_Id bank, unsigned pgm, const Instru
 
     if (update) {
         e_bank->ins[insno] = ins;
+        trace("Refresh choices because of received instrument");
         update_instrument_choices();
     }
 }
@@ -1114,9 +1147,34 @@ void Main_Component::update_instrument_choices()
     }
 
     unsigned channel = midichannel_;
-    cb.setSelectedId(midiprogram_[channel] + 1, dontSendNotification);
+    set_program_selection(midiprogram_[channel] + 1, dontSendNotification);
     reload_selected_instrument(dontSendNotification);
     send_selection_update();
+}
+
+void Main_Component::set_program_selection(int selection, NotificationType ntf)
+{
+    trace("Change program selection %s to %s",
+          program_selection_to_string(cb_program->getSelectedId()).toRawUTF8(),
+          program_selection_to_string(selection).toRawUTF8());
+
+    cb_program->setSelectedId(selection, ntf);
+
+    trace("New program selection %s",
+          program_selection_to_string(cb_program->getSelectedId()).toRawUTF8());
+}
+
+String Main_Component::program_selection_to_string(int selection)
+{
+    if (selection == 0)
+        return "(nil)";
+
+    unsigned insno = ((unsigned)selection - 1) & 255;
+    unsigned psid = ((unsigned)selection - 1) >> 8;
+
+    char buf[64];
+    std::sprintf(buf, "%u:%u:%u", psid >> 7, psid & 127, insno);
+    return buf;
 }
 
 void Main_Component::on_change_midi_channel(unsigned channel)
@@ -1124,10 +1182,12 @@ void Main_Component::on_change_midi_channel(unsigned channel)
     if (channel > 15)
         return;
 
+    trace("Change MIDI channel to %u", channel + 1);
+
     midichannel_ = channel;
     lbl_channel->setText(String(channel + 1), dontSendNotification);
     midi_kb->setMidiChannel(channel + 1);
-    cb_program->setSelectedId(midiprogram_[channel] + 1, dontSendNotification);
+    set_program_selection(midiprogram_[channel] + 1, dontSendNotification);
     reload_selected_instrument(dontSendNotification);
     send_selection_update();
 }
