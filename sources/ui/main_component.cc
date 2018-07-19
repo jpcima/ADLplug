@@ -25,10 +25,12 @@
 #include "adl/instrument.h"
 #include "midi/insnames.h"
 #include "plugin_processor.h"
+#include "parameter_block.h"
 #include "messages.h"
 #include <wopl/wopl_file.h>
 #include <memory>
 #include <cstdio>
+#include <cmath>
 #include <cassert>
 //[/Headers]
 
@@ -44,12 +46,13 @@ enum class Radio_Button_Group {
 //[/MiscUserDefs]
 
 //==============================================================================
-Main_Component::Main_Component (AdlplugAudioProcessor &proc)
+Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb)
 {
     //[Constructor_pre] You can add your own custom stuff here..
+    parameter_block_ = &pb;
     //[/Constructor_pre]
 
-    ed_op2.reset (new Operator_Editor (WOPL_OP_CARRIER1));
+    ed_op2.reset (new Operator_Editor (WOPL_OP_CARRIER1, pb));
     addAndMakeVisible (ed_op2.get());
     ed_op2->setName ("new component");
 
@@ -100,13 +103,13 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_am12->setBounds (376, 224, 36, 24);
 
-    ed_op1.reset (new Operator_Editor (WOPL_OP_MODULATOR1));
+    ed_op1.reset (new Operator_Editor (WOPL_OP_MODULATOR1, pb));
     addAndMakeVisible (ed_op1.get());
     ed_op1->setName ("new component");
 
     ed_op1->setBounds (421, 160, 352, 128);
 
-    ed_op4.reset (new Operator_Editor (WOPL_OP_CARRIER2));
+    ed_op4.reset (new Operator_Editor (WOPL_OP_CARRIER2, pb));
     addAndMakeVisible (ed_op4.get());
     ed_op4->setName ("new component");
 
@@ -130,7 +133,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
     btn_am34->setBounds (376, 392, 36, 24);
 
-    ed_op3.reset (new Operator_Editor (WOPL_OP_MODULATOR2));
+    ed_op3.reset (new Operator_Editor (WOPL_OP_MODULATOR2, pb));
     addAndMakeVisible (ed_op3.get());
     ed_op3->setName ("new component");
 
@@ -384,6 +387,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc)
 
 
     //[UserPreSize]
+    kn_fb12->add_listener(this);
+    kn_fb34->add_listener(this);
     //[/UserPreSize]
 
     setSize (800, 600);
@@ -608,41 +613,97 @@ void Main_Component::resized()
 void Main_Component::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
+    Parameter_Block &pb = *parameter_block_;
+    Button *btn = buttonThatWasClicked;
     //[/UserbuttonClicked_Pre]
 
     if (buttonThatWasClicked == btn_4op.get())
     {
         //[UserButtonCode_btn_4op] -- add your button handler code here..
+        if (btn->getToggleState()) {
+            AudioParameterBool &p1 = *pb.p_ps4op;
+            p1.beginChangeGesture();
+            p1 = false;
+            p1.endChangeGesture();
+            AudioParameterBool &p2 = *pb.p_4op;
+            p2.beginChangeGesture();
+            p2 = true;
+            p2.endChangeGesture();
+        }
         //[/UserButtonCode_btn_4op]
     }
     else if (buttonThatWasClicked == btn_pseudo4op.get())
     {
         //[UserButtonCode_btn_pseudo4op] -- add your button handler code here..
+        if (btn->getToggleState()) {
+            AudioParameterBool &p1 = *pb.p_ps4op;
+            p1.beginChangeGesture();
+            p1 = true;
+            p1.endChangeGesture();
+            AudioParameterBool &p2 = *pb.p_4op;
+            p2.beginChangeGesture();
+            p2 = true;
+            p2.endChangeGesture();
+        }
         //[/UserButtonCode_btn_pseudo4op]
     }
     else if (buttonThatWasClicked == btn_2op.get())
     {
         //[UserButtonCode_btn_2op] -- add your button handler code here..
+        if (btn->getToggleState()) {
+            AudioParameterBool &p1 = *pb.p_ps4op;
+            p1.beginChangeGesture();
+            p1 = false;
+            p1.endChangeGesture();
+            AudioParameterBool &p2 = *pb.p_4op;
+            p2.beginChangeGesture();
+            p2 = false;
+            p2.endChangeGesture();
+        }
         //[/UserButtonCode_btn_2op]
     }
     else if (buttonThatWasClicked == btn_fm12.get())
     {
         //[UserButtonCode_btn_fm12] -- add your button handler code here..
+        if (btn->getToggleState()) {
+            AudioParameterChoice &p = *pb.p_con12;
+            p.beginChangeGesture();
+            p = 0;
+            p.endChangeGesture();
+        }
         //[/UserButtonCode_btn_fm12]
     }
     else if (buttonThatWasClicked == btn_am12.get())
     {
         //[UserButtonCode_btn_am12] -- add your button handler code here..
+        if (btn->getToggleState()) {
+            AudioParameterChoice &p = *pb.p_con12;
+            p.beginChangeGesture();
+            p = 1;
+            p.endChangeGesture();
+        }
         //[/UserButtonCode_btn_am12]
     }
     else if (buttonThatWasClicked == btn_fm34.get())
     {
         //[UserButtonCode_btn_fm34] -- add your button handler code here..
+        if (btn->getToggleState()) {
+            AudioParameterChoice &p = *pb.p_con34;
+            p.beginChangeGesture();
+            p = 0;
+            p.endChangeGesture();
+        }
         //[/UserButtonCode_btn_fm34]
     }
     else if (buttonThatWasClicked == btn_am34.get())
     {
         //[UserButtonCode_btn_am34] -- add your button handler code here..
+        if (btn->getToggleState()) {
+            AudioParameterChoice &p = *pb.p_con34;
+            p.beginChangeGesture();
+            p = 1;
+            p.endChangeGesture();
+        }
         //[/UserButtonCode_btn_am34]
     }
     else if (buttonThatWasClicked == btn_about.get())
@@ -780,16 +841,26 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
 void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
 {
     //[UsersliderValueChanged_Pre]
+    Parameter_Block &pb = *parameter_block_;
+    Slider *sl = sliderThatWasMoved;
     //[/UsersliderValueChanged_Pre]
 
     if (sliderThatWasMoved == sl_tune12.get())
     {
         //[UserSliderCode_sl_tune12] -- add your slider handling code here..
+        AudioParameterInt &p = *pb.p_tune12;
+        p.beginChangeGesture();
+        p = std::lround(sl->getValue());
+        p.endChangeGesture();
         //[/UserSliderCode_sl_tune12]
     }
     else if (sliderThatWasMoved == sl_tune34.get())
     {
         //[UserSliderCode_sl_tune34] -- add your slider handling code here..
+        AudioParameterInt &p = *pb.p_tune34;
+        p.beginChangeGesture();
+        p = std::lround(sl->getValue());
+        p.endChangeGesture();
         //[/UserSliderCode_sl_tune34]
     }
 
@@ -832,13 +903,7 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
                 send_program_change(channel, insno);
             }
 
-            Simple_Fifo &queue = proc_->message_queue_for_ui();
-            Message_Header msghdr(User_Message::SelectProgram, sizeof(Messages::User::SelectProgram));
-            Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
-            auto &body = *(Messages::User::SelectProgram *)msg.data;
-            body.bank = Bank_Id(psid >> 7, psid & 127, insno >= 128);
-            body.program = insno & 127;
-            finish_write_message(queue, msg);
+            send_selection_update();
         }
         reload_selected_instrument(dontSendNotification);
 
@@ -882,6 +947,24 @@ void Main_Component::handleNoteOff(MidiKeyboardState *, int channel_, int note, 
     msg.data[1] = note;
     msg.data[2] = velocity * 127;
     finish_write_message(queue, msg);
+}
+
+void Main_Component::knob_value_changed(Knob *k)
+{
+    Parameter_Block &pb = *parameter_block_;
+
+    if (k == kn_fb12.get()) {
+        AudioParameterInt &p = *pb.p_fb12;
+        p.beginChangeGesture();
+        p = std::lround(k->value());
+        p.endChangeGesture();
+    }
+    else if (k == kn_fb34.get()) {
+        AudioParameterInt &p = *pb.p_fb34;
+        p.beginChangeGesture();
+        p = std::lround(k->value());
+        p.endChangeGesture();
+    }
 }
 
 void Main_Component::send_controller(unsigned channel, unsigned ctl, unsigned value)
@@ -928,6 +1011,21 @@ void Main_Component::reload_selected_instrument(NotificationType ntf)
         ins = find_instrument(program, &ins_empty);
     }
     set_instrument_parameters(*ins, ntf);
+}
+
+void Main_Component::send_selection_update()
+{
+    int selection = cb_program->getSelectedId();
+    unsigned insno = ((unsigned)selection - 1) & 255;
+    unsigned psid = ((unsigned)selection - 1) >> 8;
+
+    Simple_Fifo &queue = proc_->message_queue_for_ui();
+    Message_Header msghdr(User_Message::SelectProgram, sizeof(Messages::User::SelectProgram));
+    Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
+    auto &body = *(Messages::User::SelectProgram *)msg.data;
+    body.bank = Bank_Id(psid >> 7, psid & 127, insno >= 128);
+    body.program = insno & 127;
+    finish_write_message(queue, msg);
 }
 
 void Main_Component::set_instrument_parameters(const Instrument &ins, NotificationType ntf)
@@ -1018,6 +1116,7 @@ void Main_Component::update_instrument_choices()
     unsigned channel = midichannel_;
     cb.setSelectedId(midiprogram_[channel] + 1, dontSendNotification);
     reload_selected_instrument(dontSendNotification);
+    send_selection_update();
 }
 
 void Main_Component::on_change_midi_channel(unsigned channel)
@@ -1030,6 +1129,7 @@ void Main_Component::on_change_midi_channel(unsigned channel)
     midi_kb->setMidiChannel(channel + 1);
     cb_program->setSelectedId(midiprogram_[channel] + 1, dontSendNotification);
     reload_selected_instrument(dontSendNotification);
+    send_selection_update();
 }
 
 void Main_Component::vu_update()
@@ -1078,10 +1178,10 @@ void Main_Component::popup_about_dialog()
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="Main_Component" componentName=""
-                 parentClasses="public Component, public MidiKeyboardStateListener"
-                 constructorParams="AdlplugAudioProcessor &amp;proc" variableInitialisers=""
-                 snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.33"
-                 fixedSize="0" initialWidth="800" initialHeight="600">
+                 parentClasses="public Component, public MidiKeyboardStateListener, public Knob::Listener"
+                 constructorParams="AdlplugAudioProcessor &amp;proc, Parameter_Block &amp;pb"
+                 variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
+                 overlayOpacity="0.33" fixedSize="0" initialWidth="800" initialHeight="600">
   <BACKGROUND backgroundColour="ff323e44">
     <TEXT pos="28 132 92 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 1-2"
           fontname="Default font" fontsize="15.0" kerning="0.0" bold="1"
@@ -1108,7 +1208,7 @@ BEGIN_JUCER_METADATA
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="16 160 352 128" class="Operator_Editor"
-                    params="WOPL_OP_CARRIER1"/>
+                    params="WOPL_OP_CARRIER1, pb"/>
   <TEXTBUTTON name="new button" id="333aa0ccccbfed24" memberName="btn_4op"
               virtualName="" explicitFocusOrder="0" pos="176 134 56 24" bgColOn="ff42a2c8"
               buttonText="4 op" connectedEdges="2" needsCallback="1" radioGroupId="0"/>
@@ -1126,10 +1226,10 @@ BEGIN_JUCER_METADATA
               buttonText="AM" connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="a00c5401e39a953e" memberName="ed_op1"
                     virtualName="" explicitFocusOrder="0" pos="421 160 352 128" class="Operator_Editor"
-                    params="WOPL_OP_MODULATOR1"/>
+                    params="WOPL_OP_MODULATOR1, pb"/>
   <GENERICCOMPONENT name="new component" id="b7424f0838e48a08" memberName="ed_op4"
                     virtualName="" explicitFocusOrder="0" pos="16 328 352 128" class="Operator_Editor"
-                    params="WOPL_OP_CARRIER2"/>
+                    params="WOPL_OP_CARRIER2, pb"/>
   <TEXTBUTTON name="new button" id="6c84b2cc5c27a17f" memberName="btn_fm34"
               virtualName="" explicitFocusOrder="0" pos="376 368 36 24" bgColOn="ff42a2c8"
               buttonText="FM" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
@@ -1138,7 +1238,7 @@ BEGIN_JUCER_METADATA
               buttonText="AM" connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="ed_op3"
                     virtualName="" explicitFocusOrder="0" pos="421 328 352 128" class="Operator_Editor"
-                    params="WOPL_OP_MODULATOR2"/>
+                    params="WOPL_OP_MODULATOR2, pb"/>
   <SLIDER name="new slider" id="9cd7cc232d55ac8a" memberName="sl_tune12"
           virtualName="" explicitFocusOrder="0" pos="568 136 150 24" min="-127.0"
           max="127.0" int="0.0" style="LinearHorizontal" textBoxPos="TextBoxRight"

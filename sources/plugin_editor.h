@@ -9,13 +9,14 @@
 class AdlplugAudioProcessor;
 class Custom_Look_And_Feel;
 class Main_Component;
+struct Parameter_Block;
 
 //==============================================================================
 /**
  */
 class AdlplugAudioProcessorEditor : public AudioProcessorEditor {
 public:
-    AdlplugAudioProcessorEditor(AdlplugAudioProcessor &);
+    AdlplugAudioProcessorEditor(AdlplugAudioProcessor &, Parameter_Block &);
     ~AdlplugAudioProcessorEditor();
 
     //==========================================================================

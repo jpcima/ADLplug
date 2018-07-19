@@ -20,6 +20,8 @@
 //[Headers] You can add your own extra header files here...
 #include "ui/wave_label.h"
 #include "adl/instrument.h"
+#include "parameter_block.h"
+#include <cmath>
 //[/Headers]
 
 #include "operator_editor.h"
@@ -29,10 +31,11 @@
 //[/MiscUserDefs]
 
 //==============================================================================
-Operator_Editor::Operator_Editor (unsigned op_id)
+Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     operator_id_ = op_id;
+    parameter_block_ = &pb;
     //[/Constructor_pre]
 
     kn_attack.reset (new Styled_Knob_Default());
@@ -59,21 +62,21 @@ Operator_Editor::Operator_Editor (unsigned op_id)
 
     kn_release->setBounds (200, 8, 48, 48);
 
-    textButton.reset (new TextButton ("new button"));
-    addAndMakeVisible (textButton.get());
-    textButton->setButtonText (TRANS("<"));
-    textButton->setConnectedEdges (Button::ConnectedOnRight);
-    textButton->addListener (this);
+    btn_prev_wave.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_prev_wave.get());
+    btn_prev_wave->setButtonText (TRANS("<"));
+    btn_prev_wave->setConnectedEdges (Button::ConnectedOnRight);
+    btn_prev_wave->addListener (this);
 
-    textButton->setBounds (161, 64, 23, 24);
+    btn_prev_wave->setBounds (161, 64, 23, 24);
 
-    textButton2.reset (new TextButton ("new button"));
-    addAndMakeVisible (textButton2.get());
-    textButton2->setButtonText (TRANS(">"));
-    textButton2->setConnectedEdges (Button::ConnectedOnLeft);
-    textButton2->addListener (this);
+    btn_next_wave.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_next_wave.get());
+    btn_next_wave->setButtonText (TRANS(">"));
+    btn_next_wave->setConnectedEdges (Button::ConnectedOnLeft);
+    btn_next_wave->addListener (this);
 
-    textButton2->setBounds (184, 64, 23, 24);
+    btn_next_wave->setBounds (184, 64, 23, 24);
 
     btn_trem.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_trem.get());
@@ -191,6 +194,11 @@ Operator_Editor::Operator_Editor (unsigned op_id)
 
 
     //[UserPreSize]
+    kn_attack->add_listener(this);
+    kn_decay->add_listener(this);
+    kn_sustain->add_listener(this);
+    kn_release->add_listener(this);
+
     btn_trem->setClickingTogglesState(true);
     btn_vib->setClickingTogglesState(true);
     btn_sus->setClickingTogglesState(true);
@@ -234,8 +242,8 @@ Operator_Editor::~Operator_Editor()
     kn_decay = nullptr;
     kn_sustain = nullptr;
     kn_release = nullptr;
-    textButton = nullptr;
-    textButton2 = nullptr;
+    btn_prev_wave = nullptr;
+    btn_next_wave = nullptr;
     btn_trem = nullptr;
     btn_vib = nullptr;
     btn_sus = nullptr;
@@ -333,36 +341,67 @@ void Operator_Editor::resized()
 void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Operator &op = pb.nth_operator(operator_id_);
+    Button *btn = buttonThatWasClicked;
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == textButton.get())
+    if (buttonThatWasClicked == btn_prev_wave.get())
     {
-        //[UserButtonCode_textButton] -- add your button handler code here..
-        //[/UserButtonCode_textButton]
+        //[UserButtonCode_btn_prev_wave] -- add your button handler code here..
+        AudioParameterInt &p = *op.p_wave;
+        p.beginChangeGesture();
+        int wave = p.getRange().clipValue(p.get() - 1);
+        p = wave;
+        p.endChangeGesture();
+        lbl_wave->set_wave(wave, dontSendNotification);
+        //[/UserButtonCode_btn_prev_wave]
     }
-    else if (buttonThatWasClicked == textButton2.get())
+    else if (buttonThatWasClicked == btn_next_wave.get())
     {
-        //[UserButtonCode_textButton2] -- add your button handler code here..
-        //[/UserButtonCode_textButton2]
+        //[UserButtonCode_btn_next_wave] -- add your button handler code here..
+        AudioParameterInt &p = *op.p_wave;
+        p.beginChangeGesture();
+        int wave = p.getRange().clipValue(p.get() + 1);
+        p = wave;
+        p.endChangeGesture();
+        lbl_wave->set_wave(wave, dontSendNotification);
+        //[/UserButtonCode_btn_next_wave]
     }
     else if (buttonThatWasClicked == btn_trem.get())
     {
         //[UserButtonCode_btn_trem] -- add your button handler code here..
+        AudioParameterBool &p = *op.p_trem;
+        p.beginChangeGesture();
+        p = btn->getToggleState();
+        p.endChangeGesture();
         //[/UserButtonCode_btn_trem]
     }
     else if (buttonThatWasClicked == btn_vib.get())
     {
         //[UserButtonCode_btn_vib] -- add your button handler code here..
+        AudioParameterBool &p = *op.p_vib;
+        p.beginChangeGesture();
+        p = btn->getToggleState();
+        p.endChangeGesture();
         //[/UserButtonCode_btn_vib]
     }
     else if (buttonThatWasClicked == btn_sus.get())
     {
         //[UserButtonCode_btn_sus] -- add your button handler code here..
+        AudioParameterBool &p = *op.p_sus;
+        p.beginChangeGesture();
+        p = btn->getToggleState();
+        p.endChangeGesture();
         //[/UserButtonCode_btn_sus]
     }
     else if (buttonThatWasClicked == btn_env.get())
     {
         //[UserButtonCode_btn_env] -- add your button handler code here..
+        AudioParameterBool &p = *op.p_env;
+        p.beginChangeGesture();
+        p = btn->getToggleState();
+        p.endChangeGesture();
         //[/UserButtonCode_btn_env]
     }
 
@@ -373,21 +412,36 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
 void Operator_Editor::sliderValueChanged (Slider* sliderThatWasMoved)
 {
     //[UsersliderValueChanged_Pre]
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Operator &op = pb.nth_operator(operator_id_);
+    Slider *sl = sliderThatWasMoved;
     //[/UsersliderValueChanged_Pre]
 
     if (sliderThatWasMoved == sl_level.get())
     {
         //[UserSliderCode_sl_level] -- add your slider handling code here..
+        AudioParameterInt &p = *op.p_level;
+        p.beginChangeGesture();
+        p = std::lround(sl->getValue());
+        p.endChangeGesture();
         //[/UserSliderCode_sl_level]
     }
     else if (sliderThatWasMoved == sl_fmul.get())
     {
         //[UserSliderCode_sl_fmul] -- add your slider handling code here..
+        AudioParameterInt &p = *op.p_fmul;
+        p.beginChangeGesture();
+        p = std::lround(sl->getValue());
+        p.endChangeGesture();
         //[/UserSliderCode_sl_fmul]
     }
     else if (sliderThatWasMoved == sl_ksl.get())
     {
         //[UserSliderCode_sl_ksl] -- add your slider handling code here..
+        AudioParameterInt &p = *op.p_ksl;
+        p.beginChangeGesture();
+        p = std::lround(sl->getValue());
+        p.endChangeGesture();
         //[/UserSliderCode_sl_ksl]
     }
 
@@ -426,6 +480,37 @@ void Operator_Editor::set_operator_enabled(bool b)
     repaint();
 }
 
+void Operator_Editor::knob_value_changed(Knob *k)
+{
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Operator &op = pb.nth_operator(operator_id_);
+
+    if (k == kn_attack.get()) {
+        AudioParameterInt &p = *op.p_attack;
+        p.beginChangeGesture();
+        p = k->value();
+        p.endChangeGesture();
+    }
+    else if (k == kn_decay.get()) {
+        AudioParameterInt &p = *op.p_decay;
+        p.beginChangeGesture();
+        p = std::lround(k->value());
+        p.endChangeGesture();
+    }
+    else if (k == kn_sustain.get()) {
+        AudioParameterInt &p = *op.p_sustain;
+        p.beginChangeGesture();
+        p = std::lround(k->value());
+        p.endChangeGesture();
+    }
+    else if (k == kn_release.get()) {
+        AudioParameterInt &p = *op.p_release;
+        p.beginChangeGesture();
+        p = std::lround(k->value());
+        p.endChangeGesture();
+    }
+}
+
 void Operator_Editor::paintOverChildren(Graphics &g)
 {
     if (!operator_enabled_)
@@ -444,7 +529,7 @@ void Operator_Editor::paintOverChildren(Graphics &g)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="Operator_Editor" componentName=""
-                 parentClasses="public Component" constructorParams="unsigned op_id"
+                 parentClasses="public Component, public Knob::Listener" constructorParams="unsigned op_id, Parameter_Block &amp;pb"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
                  overlayOpacity="0.33" fixedSize="0" initialWidth="600" initialHeight="400">
   <BACKGROUND backgroundColour="ff323e44">
@@ -471,10 +556,10 @@ BEGIN_JUCER_METADATA
   <GENERICCOMPONENT name="new component" id="7d576b68e9b588f" memberName="kn_release"
                     virtualName="" explicitFocusOrder="0" pos="200 8 48 48" class="Styled_Knob_Default"
                     params=""/>
-  <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="textButton"
+  <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="btn_prev_wave"
               virtualName="" explicitFocusOrder="0" pos="161 64 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="textButton2"
+  <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="btn_next_wave"
               virtualName="" explicitFocusOrder="0" pos="184 64 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="f60e70ed4f10ef32" memberName="btn_trem"

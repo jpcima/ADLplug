@@ -9,6 +9,7 @@
 #include "utility/simple_fifo.h"
 #include "utility/rt_checker.h"
 #include "bank_manager.h"
+#include "parameter_block.h"
 #include "messages.h"
 #include "definitions.h"
 #include "plugin_processor.h"
@@ -23,6 +24,9 @@ AdlplugAudioProcessor::AdlplugAudioProcessor()
     Parameter_Block *pb = new Parameter_Block;
     parameter_block_.reset(pb);
     pb->setup_parameters(*this);
+
+    for (AudioProcessorParameter *p : getParameters())
+        p->addListener(this);
 }
 
 AdlplugAudioProcessor::~AdlplugAudioProcessor()
@@ -448,7 +452,7 @@ bool AdlplugAudioProcessor::hasEditor() const
 
 AudioProcessorEditor *AdlplugAudioProcessor::createEditor()
 {
-    return new AdlplugAudioProcessorEditor(*this);
+    return new AdlplugAudioProcessorEditor(*this, *parameter_block_);
 }
 
 //==============================================================================

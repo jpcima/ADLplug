@@ -31,6 +31,7 @@ class Operator_Editor;
 class Vu_Meter;
 class Indicator_NxM;
 class AdlplugAudioProcessor;
+struct Parameter_Block;
 //[/Headers]
 
 
@@ -45,19 +46,22 @@ class AdlplugAudioProcessor;
 */
 class Main_Component  : public Component,
                         public MidiKeyboardStateListener,
+                        public Knob::Listener,
                         public Button::Listener,
                         public Slider::Listener,
                         public ComboBox::Listener
 {
 public:
     //==============================================================================
-    Main_Component (AdlplugAudioProcessor &proc);
+    Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb);
     ~Main_Component();
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
     void handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity) override;
     void handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity) override;
+
+    void knob_value_changed(Knob *k) override;
 
     void send_controller(unsigned channel, unsigned ctl, unsigned value);
     void send_program_change(unsigned channel, unsigned value);
@@ -66,6 +70,7 @@ public:
     Instrument *find_instrument(uint32_t program, Instrument *if_not_found);
 
     void reload_selected_instrument(NotificationType ntf);
+    void send_selection_update();
     void set_instrument_parameters(const Instrument &ins, NotificationType ntf);
 
     void receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins);
@@ -73,7 +78,6 @@ public:
 
     void on_change_midi_channel(unsigned channel);
 
-public:
     void vu_update();
     void cpu_load_update();
     void midi_activity_update();
@@ -98,6 +102,7 @@ public:
 private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     AdlplugAudioProcessor *proc_ = nullptr;
+    Parameter_Block *parameter_block_ = nullptr;
 
     struct Editor_Bank {
         PopupMenu ins_menu;

@@ -24,6 +24,7 @@
 #include "ui/styled_knobs.h"
 class Wave_Label;
 struct Instrument;
+struct Parameter_Block;
 //[/Headers]
 
 
@@ -37,12 +38,13 @@ struct Instrument;
                                                                     //[/Comments]
 */
 class Operator_Editor  : public Component,
+                         public Knob::Listener,
                          public Button::Listener,
                          public Slider::Listener
 {
 public:
     //==============================================================================
-    Operator_Editor (unsigned op_id);
+    Operator_Editor (unsigned op_id, Parameter_Block &pb);
     ~Operator_Editor();
 
     //==============================================================================
@@ -52,6 +54,8 @@ public:
     void set_operator_parameters(const Instrument &ins, unsigned op, NotificationType ntf);
 
     void set_operator_enabled(bool b);
+
+    void knob_value_changed(Knob *k) override;
 
     void paintOverChildren(Graphics &g) override;
     //[/UserMethods]
@@ -67,6 +71,7 @@ private:
     //[UserVariables]   -- You can add your own custom variables in this section.
     unsigned operator_id_ = 0;
     bool operator_enabled_ = true;
+    Parameter_Block *parameter_block_ = nullptr;
     //[/UserVariables]
 
     //==============================================================================
@@ -74,8 +79,8 @@ private:
     std::unique_ptr<Styled_Knob_Default> kn_decay;
     std::unique_ptr<Styled_Knob_Default> kn_sustain;
     std::unique_ptr<Styled_Knob_Default> kn_release;
-    std::unique_ptr<TextButton> textButton;
-    std::unique_ptr<TextButton> textButton2;
+    std::unique_ptr<TextButton> btn_prev_wave;
+    std::unique_ptr<TextButton> btn_next_wave;
     std::unique_ptr<TextButton> btn_trem;
     std::unique_ptr<TextButton> btn_vib;
     std::unique_ptr<TextButton> btn_sus;

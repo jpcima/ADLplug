@@ -5,7 +5,6 @@
 
 #pragma once
 
-#include "parameter_block.h"
 #include "dsp/dc_filter.h"
 #include "dsp/vu_monitor.h"
 #include "adl/instrument.h"
@@ -17,6 +16,7 @@ class Generic_Player;
 class Bank_Manager;
 class Simple_Fifo;
 class Midi_Input_Source;
+struct Parameter_Block;
 struct Buffered_Message;
 struct Instrument;
 

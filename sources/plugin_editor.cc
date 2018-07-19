@@ -18,14 +18,14 @@ private:
 };
 
 //==============================================================================
-AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &p)
+AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &p, Parameter_Block &pb)
     : AudioProcessorEditor(&p), proc_(p)
 {
     Custom_Look_And_Feel *lnf = new Custom_Look_And_Feel;
     lnf_.reset(lnf);
     LookAndFeel::setDefaultLookAndFeel(lnf);
 
-    Main_Component *main = new Main_Component(p);
+    Main_Component *main = new Main_Component(p, pb);
     main_.reset(main);
     addAndMakeVisible(main);
 
