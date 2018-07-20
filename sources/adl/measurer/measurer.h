@@ -17,6 +17,7 @@
  */
 
 #pragma once
+#include <stdint.h>
 struct Instrument;
 
 namespace Measurer
