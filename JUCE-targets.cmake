@@ -66,6 +66,12 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   # Windows
   target_link_libraries(juce_core PRIVATE winmm wininet ws2_32 shlwapi version)
   target_link_libraries(juce_gui_basics PRIVATE imm32)
+  #
+  set(ADLplug_ASIO_SDK "${PROJECT_SOURCE_DIR}/thirdparty/ASIOSDK2.3" CACHE STRING "ASIO SDK location")
+  if(NOT EXISTS "${ADLplug_ASIO_SDK}/common/iasiodrv.h")
+    message(FATAL_ERROR "ASIO SDK not found in directory ${ADLplug_ASIO_SDK}")
+  endif()
+  target_include_directories(juce_audio_devices PRIVATE "${ADLplug_ASIO_SDK}/common")
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   # Mac
   find_library(FOUNDATION_LIBRARY "Foundation")
