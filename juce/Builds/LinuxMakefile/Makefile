@@ -94,11 +94,17 @@ OBJECTS_STANDALONE_PLUGIN := \
   $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o \
 
 OBJECTS_SHARED_CODE := \
+  $(JUCE_OBJDIR)/bank_manager_bcf4961e.o \
+  $(JUCE_OBJDIR)/messages_ad8a073c.o \
+  $(JUCE_OBJDIR)/plugin_editor_4e133bb.o \
+  $(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o \
+  $(JUCE_OBJDIR)/worker_c96aa64a.o \
+  $(JUCE_OBJDIR)/instrument_a889d85b.o \
+  $(JUCE_OBJDIR)/player_38a5f121.o \
+  $(JUCE_OBJDIR)/measurer_773e5778.o \
+  $(JUCE_OBJDIR)/dosbox_opl3_33ec4f62.o \
+  $(JUCE_OBJDIR)/dbopl_78b2e6ad.o \
   $(JUCE_OBJDIR)/insnames_5055460c.o \
-  $(JUCE_OBJDIR)/midi_dde9aea4.o \
-  $(JUCE_OBJDIR)/rt_checker_e98c166d.o \
-  $(JUCE_OBJDIR)/simple_fifo_14f04efe.o \
-  $(JUCE_OBJDIR)/opl3_waves_d1747c0e.o \
   $(JUCE_OBJDIR)/about_component_574ed838.o \
   $(JUCE_OBJDIR)/graphics_utils_35f53d7c.o \
   $(JUCE_OBJDIR)/image_utils_a38eb576.o \
@@ -111,23 +117,11 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/parameter_block_834a48fd.o \
   $(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o \
   $(JUCE_OBJDIR)/vu_meter_b39aee30.o \
-  $(JUCE_OBJDIR)/dbopl_78b2e6ad.o \
-  $(JUCE_OBJDIR)/dosbox_opl3_33ec4f62.o \
-  $(JUCE_OBJDIR)/measurer_773e5778.o \
-  $(JUCE_OBJDIR)/instrument_a889d85b.o \
-  $(JUCE_OBJDIR)/player_38a5f121.o \
-  $(JUCE_OBJDIR)/bank_manager_bcf4961e.o \
-  $(JUCE_OBJDIR)/plugin_editor_4e133bb.o \
-  $(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o \
-  $(JUCE_OBJDIR)/messages_ad8a073c.o \
-  $(JUCE_OBJDIR)/worker_c96aa64a.o \
+  $(JUCE_OBJDIR)/opl3_waves_d1747c0e.o \
+  $(JUCE_OBJDIR)/midi_dde9aea4.o \
+  $(JUCE_OBJDIR)/rt_checker_e98c166d.o \
+  $(JUCE_OBJDIR)/simple_fifo_14f04efe.o \
   $(JUCE_OBJDIR)/wopl_file_21aeabfb.o \
-  $(JUCE_OBJDIR)/dbopl_29fab7f2.o \
-  $(JUCE_OBJDIR)/nukedopl3_7d9c6478.o \
-  $(JUCE_OBJDIR)/nukedopl3_174_285c1147.o \
-  $(JUCE_OBJDIR)/dosbox_opl3_7372c17d.o \
-  $(JUCE_OBJDIR)/nuked_opl3_21e19815.o \
-  $(JUCE_OBJDIR)/nuked_opl3_v174_1b09214c.o \
   $(JUCE_OBJDIR)/adldata_9238d314.o \
   $(JUCE_OBJDIR)/adlmidi_c578730b.o \
   $(JUCE_OBJDIR)/adlmidi_load_f4b93b64.o \
@@ -135,6 +129,12 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/adlmidi_opl3_7155cc66.o \
   $(JUCE_OBJDIR)/adlmidi_private_8636c74f.o \
   $(JUCE_OBJDIR)/adlmidi_sequencer_c49001dd.o \
+  $(JUCE_OBJDIR)/dosbox_opl3_7372c17d.o \
+  $(JUCE_OBJDIR)/nuked_opl3_21e19815.o \
+  $(JUCE_OBJDIR)/nuked_opl3_v174_1b09214c.o \
+  $(JUCE_OBJDIR)/dbopl_29fab7f2.o \
+  $(JUCE_OBJDIR)/nukedopl3_7d9c6478.o \
+  $(JUCE_OBJDIR)/nukedopl3_174_285c1147.o \
   $(JUCE_OBJDIR)/BinaryData_51699c3.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_68f957b.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_6eefc5f1.o \
@@ -191,29 +191,59 @@ $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o: ../../../
 	@echo "Compiling include_juce_audio_plugin_client_Standalone.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_STANDALONE_PLUGIN) $(JUCE_CFLAGS_STANDALONE_PLUGIN) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/bank_manager_bcf4961e.o: ../../../sources/bank_manager.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling bank_manager.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/messages_ad8a073c.o: ../../../sources/messages.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling messages.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/plugin_editor_4e133bb.o: ../../../sources/plugin_editor.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling plugin_editor.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o: ../../../sources/plugin_processor.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling plugin_processor.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/worker_c96aa64a.o: ../../../sources/worker.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling worker.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/instrument_a889d85b.o: ../../../sources/adl/instrument.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling instrument.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/player_38a5f121.o: ../../../sources/adl/player.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling player.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/measurer_773e5778.o: ../../../sources/adl/measurer/measurer.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling measurer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/dosbox_opl3_33ec4f62.o: ../../../sources/adl/measurer/chips/dosbox_opl3.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling dosbox_opl3.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/dbopl_78b2e6ad.o: ../../../sources/adl/measurer/chips/dosbox/dbopl.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling dbopl.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/insnames_5055460c.o: ../../../sources/midi/insnames.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling insnames.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/midi_dde9aea4.o: ../../../sources/utility/midi.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling midi.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/rt_checker_e98c166d.o: ../../../sources/utility/rt_checker.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling rt_checker.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/simple_fifo_14f04efe.o: ../../../sources/utility/simple_fifo.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling simple_fifo.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/opl3_waves_d1747c0e.o: ../../../sources/ui/chips/opl3_waves.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling opl3_waves.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/about_component_574ed838.o: ../../../sources/ui/about_component.cc
@@ -276,90 +306,30 @@ $(JUCE_OBJDIR)/vu_meter_b39aee30.o: ../../../sources/ui/vu_meter.cc
 	@echo "Compiling vu_meter.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/dbopl_78b2e6ad.o: ../../../sources/adl/measurer/chips/dosbox/dbopl.cpp
+$(JUCE_OBJDIR)/opl3_waves_d1747c0e.o: ../../../sources/ui/chips/opl3_waves.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling dbopl.cpp"
+	@echo "Compiling opl3_waves.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/dosbox_opl3_33ec4f62.o: ../../../sources/adl/measurer/chips/dosbox_opl3.cpp
+$(JUCE_OBJDIR)/midi_dde9aea4.o: ../../../sources/utility/midi.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling dosbox_opl3.cpp"
+	@echo "Compiling midi.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/measurer_773e5778.o: ../../../sources/adl/measurer/measurer.cpp
+$(JUCE_OBJDIR)/rt_checker_e98c166d.o: ../../../sources/utility/rt_checker.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling measurer.cpp"
+	@echo "Compiling rt_checker.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/instrument_a889d85b.o: ../../../sources/adl/instrument.cc
+$(JUCE_OBJDIR)/simple_fifo_14f04efe.o: ../../../sources/utility/simple_fifo.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling instrument.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/player_38a5f121.o: ../../../sources/adl/player.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling player.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/bank_manager_bcf4961e.o: ../../../sources/bank_manager.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling bank_manager.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/plugin_editor_4e133bb.o: ../../../sources/plugin_editor.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling plugin_editor.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o: ../../../sources/plugin_processor.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling plugin_processor.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/messages_ad8a073c.o: ../../../sources/messages.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling messages.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/worker_c96aa64a.o: ../../../sources/worker.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling worker.cc"
+	@echo "Compiling simple_fifo.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/wopl_file_21aeabfb.o: ../../../thirdparty/wopl/wopl/wopl_file.c
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling wopl_file.c"
 	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/dbopl_29fab7f2.o: ../../../thirdparty/libADLMIDI/src/chips/dosbox/dbopl.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling dbopl.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/nukedopl3_7d9c6478.o: ../../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3.c
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling nukedopl3.c"
-	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/nukedopl3_174_285c1147.o: ../../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3_174.c
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling nukedopl3_174.c"
-	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/dosbox_opl3_7372c17d.o: ../../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling dosbox_opl3.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/nuked_opl3_21e19815.o: ../../../thirdparty/libADLMIDI/src/chips/nuked_opl3.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling nuked_opl3.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/nuked_opl3_v174_1b09214c.o: ../../../thirdparty/libADLMIDI/src/chips/nuked_opl3_v174.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling nuked_opl3_v174.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/adldata_9238d314.o: ../../../thirdparty/libADLMIDI/src/adldata.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
@@ -395,6 +365,36 @@ $(JUCE_OBJDIR)/adlmidi_sequencer_c49001dd.o: ../../../thirdparty/libADLMIDI/src/
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling adlmidi_sequencer.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/dosbox_opl3_7372c17d.o: ../../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling dosbox_opl3.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/nuked_opl3_21e19815.o: ../../../thirdparty/libADLMIDI/src/chips/nuked_opl3.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling nuked_opl3.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/nuked_opl3_v174_1b09214c.o: ../../../thirdparty/libADLMIDI/src/chips/nuked_opl3_v174.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling nuked_opl3_v174.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/dbopl_29fab7f2.o: ../../../thirdparty/libADLMIDI/src/chips/dosbox/dbopl.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling dbopl.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/nukedopl3_7d9c6478.o: ../../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3.c
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling nukedopl3.c"
+	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/nukedopl3_174_285c1147.o: ../../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3_174.c
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling nukedopl3_174.c"
+	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/BinaryData_51699c3.o: ../../../JuceLibraryCode/BinaryData.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)

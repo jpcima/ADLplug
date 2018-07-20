@@ -146,11 +146,17 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sources\bank_manager.cc"/>
+    <ClCompile Include="..\..\..\sources\messages.cc"/>
+    <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
+    <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
+    <ClCompile Include="..\..\..\sources\worker.cc"/>
+    <ClCompile Include="..\..\..\sources\adl\instrument.cc"/>
+    <ClCompile Include="..\..\..\sources\adl\player.cc"/>
+    <ClCompile Include="..\..\..\sources\adl\measurer\measurer.cpp"/>
+    <ClCompile Include="..\..\..\sources\adl\measurer\chips\dosbox_opl3.cpp"/>
+    <ClCompile Include="..\..\..\sources\adl\measurer\chips\dosbox\dbopl.cpp"/>
     <ClCompile Include="..\..\..\sources\midi\insnames.cc"/>
-    <ClCompile Include="..\..\..\sources\utility\midi.cc"/>
-    <ClCompile Include="..\..\..\sources\utility\rt_checker.cc"/>
-    <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc"/>
-    <ClCompile Include="..\..\..\sources\ui\chips\opl3_waves.cc"/>
     <ClCompile Include="..\..\..\sources\ui\about_component.cc"/>
     <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc"/>
     <ClCompile Include="..\..\..\sources\ui\image_utils.cc"/>
@@ -163,23 +169,11 @@
     <ClCompile Include="..\..\..\sources\parameter_block.cc"/>
     <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc"/>
     <ClCompile Include="..\..\..\sources\ui\vu_meter.cc"/>
-    <ClCompile Include="..\..\..\sources\adl\measurer\chips\dosbox\dbopl.cpp"/>
-    <ClCompile Include="..\..\..\sources\adl\measurer\chips\dosbox_opl3.cpp"/>
-    <ClCompile Include="..\..\..\sources\adl\measurer\measurer.cpp"/>
-    <ClCompile Include="..\..\..\sources\adl\instrument.cc"/>
-    <ClCompile Include="..\..\..\sources\adl\player.cc"/>
-    <ClCompile Include="..\..\..\sources\bank_manager.cc"/>
-    <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
-    <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
-    <ClCompile Include="..\..\..\sources\messages.cc"/>
-    <ClCompile Include="..\..\..\sources\worker.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\chips\opl3_waves.cc"/>
+    <ClCompile Include="..\..\..\sources\utility\midi.cc"/>
+    <ClCompile Include="..\..\..\sources\utility\rt_checker.cc"/>
+    <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc"/>
     <ClCompile Include="..\..\..\thirdparty\wopl\wopl\wopl_file.c"/>
-    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.cpp"/>
-    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.c"/>
-    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3_174.c"/>
-    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.cpp"/>
-    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3.cpp"/>
-    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3_v174.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adldata.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_load.cpp"/>
@@ -187,6 +181,12 @@
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_opl3.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_sequencer.cpp"/>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.cpp"/>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3.cpp"/>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3_v174.cpp"/>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.cpp"/>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.c"/>
+    <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3_174.c"/>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -1945,14 +1945,21 @@
     <ClCompile Include="..\..\..\JuceLibraryCode\include_vf_gui.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\sources\bank_manager.h"/>
+    <ClInclude Include="..\..\..\sources\definitions.h"/>
+    <ClInclude Include="..\..\..\sources\messages.h"/>
+    <ClInclude Include="..\..\..\sources\plugin_editor.h"/>
+    <ClInclude Include="..\..\..\sources\plugin_processor.h"/>
+    <ClInclude Include="..\..\..\sources\worker.h"/>
+    <ClInclude Include="..\..\..\sources\adl\instrument.h"/>
+    <ClInclude Include="..\..\..\sources\adl\player.h"/>
+    <ClInclude Include="..\..\..\sources\adl\measurer\measurer.h"/>
+    <ClInclude Include="..\..\..\sources\adl\measurer\chips\dosbox_opl3.h"/>
+    <ClInclude Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.h"/>
+    <ClInclude Include="..\..\..\sources\adl\measurer\chips\dosbox\dbopl.h"/>
     <ClInclude Include="..\..\..\sources\dsp\dc_filter.h"/>
     <ClInclude Include="..\..\..\sources\dsp\vu_monitor.h"/>
     <ClInclude Include="..\..\..\sources\midi\insnames.h"/>
-    <ClInclude Include="..\..\..\sources\utility\midi.h"/>
-    <ClInclude Include="..\..\..\sources\utility\rt_checker.h"/>
-    <ClInclude Include="..\..\..\sources\utility\semaphore.h"/>
-    <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
-    <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h"/>
     <ClInclude Include="..\..\..\sources\ui\about_component.h"/>
     <ClInclude Include="..\..\..\sources\ui\graphics_utils.h"/>
     <ClInclude Include="..\..\..\sources\ui\image_utils.h"/>
@@ -1965,26 +1972,12 @@
     <ClInclude Include="..\..\..\sources\parameter_block.h"/>
     <ClInclude Include="..\..\..\sources\ui\styled_knobs.h"/>
     <ClInclude Include="..\..\..\sources\ui\vu_meter.h"/>
-    <ClInclude Include="..\..\..\sources\adl\measurer\chips\dosbox\dbopl.h"/>
-    <ClInclude Include="..\..\..\sources\adl\measurer\chips\dosbox_opl3.h"/>
-    <ClInclude Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.h"/>
-    <ClInclude Include="..\..\..\sources\adl\measurer\measurer.h"/>
-    <ClInclude Include="..\..\..\sources\adl\instrument.h"/>
-    <ClInclude Include="..\..\..\sources\adl\player.h"/>
-    <ClInclude Include="..\..\..\sources\bank_manager.h"/>
-    <ClInclude Include="..\..\..\sources\definitions.h"/>
-    <ClInclude Include="..\..\..\sources\plugin_editor.h"/>
-    <ClInclude Include="..\..\..\sources\plugin_processor.h"/>
-    <ClInclude Include="..\..\..\sources\messages.h"/>
-    <ClInclude Include="..\..\..\sources\worker.h"/>
+    <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h"/>
+    <ClInclude Include="..\..\..\sources\utility\midi.h"/>
+    <ClInclude Include="..\..\..\sources\utility\rt_checker.h"/>
+    <ClInclude Include="..\..\..\sources\utility\semaphore.h"/>
+    <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
     <ClInclude Include="..\..\..\thirdparty\wopl\wopl\wopl_file.h"/>
-    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.h"/>
-    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.h"/>
-    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3_174.h"/>
-    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.h"/>
-    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3.h"/>
-    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3_v174.h"/>
-    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adldata.hh"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.hpp"/>
@@ -1996,6 +1989,13 @@
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\midi_sequencer.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\midi_sequencer.hpp"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\midi_sequencer_impl.hpp"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.h"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3.h"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3_v174.h"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.h"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.h"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.h"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3_174.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
@@ -2708,13 +2708,13 @@
     <ClInclude Include="..\..\..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\sources\adl\instrument.tcc"/>
+    <None Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.tcc"/>
+    <None Include="..\..\..\resources\ui\knob-skin.png"/>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png"/>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png"/>
-    <None Include="..\..\..\resources\ui\knob-skin.png"/>
-    <None Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.tcc"/>
-    <None Include="..\..\..\sources\adl\instrument.tcc"/>
-    <None Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.tcc"/>
     <None Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.tcc"/>
+    <None Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.tcc"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\oggvorbis\Ogg Vorbis Licence.txt"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\base\LICENSE.txt"/>
