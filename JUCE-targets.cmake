@@ -94,6 +94,11 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   target_link_libraries(juce_audio_formats PRIVATE "${AUDIO_TOOLBOX_LIBRARY}")
   target_link_libraries(juce_graphics PRIVATE "${CORE_IMAGE_LIBRARY}")
   target_link_libraries(juce_gui_basics PRIVATE "${IOKIT_LIBRARY}")
+  if(CMAKE_SYSTEM_PROCESSOR MATCHES "^i.86$" OR
+      CMAKE_SYSTEM_PROCESSOR STREQUAL "x86")
+    find_library(CARBON_LIBRARY "Carbon")
+    target_link_libraries(juce_core PRIVATE "${CARBON_LIBRARY}")
+  endif()
 else()
   # Linux and others
   include(FindPkgConfig)
