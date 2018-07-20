@@ -6,4 +6,253 @@
 @prefix state: <http://lv2plug.in/ns/ext/state#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 
+<https://github.com/jpcima/ADLplug#preset001> a pset:Preset ;
+    state:state [
+        <urn:juce:stateBinary> [
+            a atom:Chunk ;
+            rdf:value ""^^xsd:base64Binary ;
+        ] ;
+    ] ;
+
+    lv2:port [
+        lv2:symbol "is4op" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "ps4op" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "blank" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "con12" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "con34" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tune12" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "tune34" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "fb12" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "fb34" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "voice2ft" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1attack" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1decay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1sustain" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1release" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1level" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1ksl" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1fmul" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1trem" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1vib" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1sus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1env" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c1wave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1attack" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1decay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1sustain" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1release" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1level" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1ksl" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1fmul" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1trem" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1vib" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1sus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1env" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m1wave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2attack" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2decay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2sustain" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2release" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2level" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2ksl" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2fmul" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2trem" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2vib" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2sus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2env" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2wave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2attack" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2decay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2sustain" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2release" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2level" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2ksl" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2fmul" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2trem" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2vib" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2sus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2env" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2wave" ;
+        pset:value 0.000000 ;
+    ] .
+
 
