@@ -213,6 +213,20 @@ if(ADLplug_VST3)
   else()
     require_symbols(ADLplug_VST3 "GetPluginFactory")
   endif()
+  if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set_target_properties(ADLplug_VST3 PROPERTIES
+      PREFIX "" OUTPUT_NAME "ADLplug" SUFFIX ""
+      LIBRARY_OUTPUT_DIRECTORY "vst3/ADLplug.vst3/Contents/MacOS")
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/vst3/ADLplug.vst3/Contents/")
+    file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/vst3/ADLplug.vst3/Contents/PkgInfo" "BNDL????")
+    add_custom_target(ADLplug_VST3_InfoPlist ALL
+      "${CMAKE_COMMAND}"
+      "-DCONFIGURE_FILE_INPUT=${PROJECT_SOURCE_DIR}/juce/Builds/MacOSX/Info-VST3.plist"
+      "-DCONFIGURE_FILE_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/vst3/ADLplug.vst3/Contents/Info.plist"
+      "-DEXECUTABLE_NAME=ADLplug"
+      "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
+      DEPENDS "${PROJECT_SOURCE_DIR}/juce/Builds/MacOSX/Info-VST3.plist")
+  endif()
 endif()
 
 if(ADLplug_LV2)
