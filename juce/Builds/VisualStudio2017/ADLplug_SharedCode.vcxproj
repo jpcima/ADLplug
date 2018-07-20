@@ -172,6 +172,7 @@
     <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
     <ClCompile Include="..\..\..\sources\messages.cc"/>
+    <ClCompile Include="..\..\..\sources\worker.cc"/>
     <ClCompile Include="..\..\..\thirdparty\wopl\wopl\wopl_file.c"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.c"/>
@@ -1949,6 +1950,7 @@
     <ClInclude Include="..\..\..\sources\midi\insnames.h"/>
     <ClInclude Include="..\..\..\sources\utility\midi.h"/>
     <ClInclude Include="..\..\..\sources\utility\rt_checker.h"/>
+    <ClInclude Include="..\..\..\sources\utility\semaphore.h"/>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
     <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h"/>
     <ClInclude Include="..\..\..\sources\ui\about_component.h"/>
@@ -1974,6 +1976,7 @@
     <ClInclude Include="..\..\..\sources\plugin_editor.h"/>
     <ClInclude Include="..\..\..\sources\plugin_processor.h"/>
     <ClInclude Include="..\..\..\sources\messages.h"/>
+    <ClInclude Include="..\..\..\sources\worker.h"/>
     <ClInclude Include="..\..\..\thirdparty\wopl\wopl\wopl_file.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.h"/>

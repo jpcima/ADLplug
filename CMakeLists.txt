@@ -116,6 +116,7 @@ add_library(ADLplug_core STATIC
   "sources/parameter_block.cc"
   "sources/bank_manager.cc"
   "sources/messages.cc"
+  "sources/worker.cc"
   "sources/ui/chips/opl3_waves.cc"
   "sources/ui/look_and_feel.cc"
   "sources/ui/knobman_skin.cc"

@@ -548,16 +548,19 @@
       <Filter>ADLplug\sources\adl</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\bank_manager.cc">
-      <Filter>ADLplug\sources</Filter>
+      <Filter>ADLplug</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\plugin_editor.cc">
-      <Filter>ADLplug\sources</Filter>
+      <Filter>ADLplug</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\plugin_processor.cc">
-      <Filter>ADLplug\sources</Filter>
+      <Filter>ADLplug</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\messages.cc">
-      <Filter>ADLplug\sources</Filter>
+      <Filter>ADLplug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\worker.cc">
+      <Filter>ADLplug</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\wopl\wopl\wopl_file.c">
       <Filter>ADLplug\thirdparty\wopl\wopl</Filter>
@@ -2523,6 +2526,9 @@
     <ClInclude Include="..\..\..\sources\utility\rt_checker.h">
       <Filter>ADLplug\sources\utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\sources\utility\semaphore.h">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h">
       <Filter>ADLplug\sources\utility</Filter>
     </ClInclude>
@@ -2584,19 +2590,22 @@
       <Filter>ADLplug\sources\adl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\bank_manager.h">
-      <Filter>ADLplug\sources</Filter>
+      <Filter>ADLplug</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\definitions.h">
-      <Filter>ADLplug\sources</Filter>
+      <Filter>ADLplug</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\plugin_editor.h">
-      <Filter>ADLplug\sources</Filter>
+      <Filter>ADLplug</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\plugin_processor.h">
-      <Filter>ADLplug\sources</Filter>
+      <Filter>ADLplug</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\messages.h">
-      <Filter>ADLplug\sources</Filter>
+      <Filter>ADLplug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\worker.h">
+      <Filter>ADLplug</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\wopl\wopl\wopl_file.h">
       <Filter>ADLplug\thirdparty\wopl\wopl</Filter>

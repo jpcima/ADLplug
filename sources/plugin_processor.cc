@@ -14,6 +14,7 @@
 #include "definitions.h"
 #include "plugin_processor.h"
 #include "plugin_editor.h"
+#include "worker.h"
 #include <wopl/wopl_file.h>
 #include <cassert>
 
@@ -33,6 +34,8 @@ AdlplugAudioProcessor::AdlplugAudioProcessor()
 
 AdlplugAudioProcessor::~AdlplugAudioProcessor()
 {
+    if (Worker *worker = worker_.get())
+        worker->stopWorker();
 }
 
 //==============================================================================
@@ -92,6 +95,18 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     mq_from_ui_.reset(new Simple_Fifo(32 * 1024));
     mq_to_ui_.reset(new Simple_Fifo(32 * 1024));
 
+    mq_from_worker_.reset(new Simple_Fifo(32 * 1024));
+    mq_to_worker_.reset(new Simple_Fifo(32 * 1024));
+
+    Worker *worker = worker_.get();
+    if (worker) {
+        worker->stopWorker();
+        worker_.reset();
+    }
+    worker = new Worker(*this);
+    worker_.reset(worker);
+    worker->startThread();
+
     Generic_Player *pl = instantiate_player(Player_Type::OPL3);
     player_.reset(pl);
     pl->init(sample_rate);
@@ -125,6 +140,10 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 
 void AdlplugAudioProcessor::releaseResources()
 {
+    if (Worker *worker = worker_.get()) {
+        worker->stopWorker();
+        worker_.reset();
+    }
     bank_manager_.reset();
     player_.reset();
     mq_from_ui_.reset();
@@ -291,6 +310,14 @@ void AdlplugAudioProcessor::process_messages(Midi_Input_Source &midi, bool under
         if (!handle_message(msg, ctx))
             break;
         finish_read_message(mq_from_ui, msg);
+    }
+
+    // handle events from worker
+    Simple_Fifo &mq_from_worker = *mq_from_worker_;
+    while (Buffered_Message msg = read_message(mq_from_worker)) {
+        if (!handle_message(msg, ctx))
+            break;
+        finish_read_message(mq_from_worker, msg);
     }
 
     // handle events from MIDI

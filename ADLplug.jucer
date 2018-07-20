@@ -35,6 +35,7 @@
         <FILE id="NBzY1D" name="midi.h" compile="0" resource="0" file="sources/utility/midi.h"/>
         <FILE id="gGudmM" name="rt_checker.cc" compile="1" resource="0" file="sources/utility/rt_checker.cc"/>
         <FILE id="WXCDdV" name="rt_checker.h" compile="0" resource="0" file="sources/utility/rt_checker.h"/>
+        <FILE id="QNh3sf" name="semaphore.h" compile="0" resource="0" file="sources/utility/semaphore.h"/>
         <FILE id="MYO38b" name="simple_fifo.cc" compile="1" resource="0" file="sources/utility/simple_fifo.cc"/>
         <FILE id="fr1vaj" name="simple_fifo.h" compile="0" resource="0" file="sources/utility/simple_fifo.h"/>
       </GROUP>
@@ -104,19 +105,21 @@
         <FILE id="YNeRaV" name="player.cc" compile="1" resource="0" file="sources/adl/player.cc"/>
         <FILE id="cktZse" name="player.h" compile="0" resource="0" file="sources/adl/player.h"/>
       </GROUP>
-      <FILE id="dneZUm" name="bank_manager.cc" compile="1" resource="0" file="sources/bank_manager.cc"/>
-      <FILE id="hFbd2C" name="bank_manager.h" compile="0" resource="0" file="sources/bank_manager.h"/>
-      <FILE id="oFvaCp" name="definitions.h" compile="0" resource="0" file="sources/definitions.h"/>
-      <FILE id="LbE9y8" name="plugin_editor.cc" compile="1" resource="0"
-            file="sources/plugin_editor.cc"/>
-      <FILE id="QxGCKT" name="plugin_editor.h" compile="0" resource="0" file="sources/plugin_editor.h"/>
-      <FILE id="UBnJeF" name="plugin_processor.cc" compile="1" resource="0"
-            file="sources/plugin_processor.cc"/>
-      <FILE id="QkXWb6" name="plugin_processor.h" compile="0" resource="0"
-            file="sources/plugin_processor.h"/>
-      <FILE id="vUM9TO" name="messages.cc" compile="1" resource="0" file="sources/messages.cc"/>
-      <FILE id="W3uPOQ" name="messages.h" compile="0" resource="0" file="sources/messages.h"/>
     </GROUP>
+    <FILE id="dneZUm" name="bank_manager.cc" compile="1" resource="0" file="sources/bank_manager.cc"/>
+    <FILE id="hFbd2C" name="bank_manager.h" compile="0" resource="0" file="sources/bank_manager.h"/>
+    <FILE id="oFvaCp" name="definitions.h" compile="0" resource="0" file="sources/definitions.h"/>
+    <FILE id="LbE9y8" name="plugin_editor.cc" compile="1" resource="0"
+          file="sources/plugin_editor.cc"/>
+    <FILE id="QxGCKT" name="plugin_editor.h" compile="0" resource="0" file="sources/plugin_editor.h"/>
+    <FILE id="UBnJeF" name="plugin_processor.cc" compile="1" resource="0"
+          file="sources/plugin_processor.cc"/>
+    <FILE id="QkXWb6" name="plugin_processor.h" compile="0" resource="0"
+          file="sources/plugin_processor.h"/>
+    <FILE id="vUM9TO" name="messages.cc" compile="1" resource="0" file="sources/messages.cc"/>
+    <FILE id="W3uPOQ" name="messages.h" compile="0" resource="0" file="sources/messages.h"/>
+    <FILE id="M4xlwY" name="worker.cc" compile="1" resource="0" file="sources/worker.cc"/>
+    <FILE id="ymYAK6" name="worker.h" compile="0" resource="0" file="sources/worker.h"/>
     <GROUP id="{C55CC9DB-ED0F-DE1B-46CB-A28A61433406}" name="thirdparty">
       <GROUP id="{55F90F3C-3521-0BD5-0978-A6334B278C70}" name="wopl">
         <GROUP id="{A9210AD0-C405-73DB-95F8-F22346CD4FCC}" name="wopl">

@@ -4,7 +4,6 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #pragma once
-
 #include "dsp/dc_filter.h"
 #include "dsp/vu_monitor.h"
 #include "adl/instrument.h"
@@ -16,6 +15,7 @@ class Generic_Player;
 class Bank_Manager;
 class Simple_Fifo;
 class Midi_Input_Source;
+class Worker;
 struct Parameter_Block;
 struct Buffered_Message;
 struct Instrument;
@@ -73,6 +73,9 @@ public:
     Simple_Fifo &message_queue_for_ui() const { return *mq_from_ui_; }
     Simple_Fifo &message_queue_to_ui() const { return *mq_to_ui_; }
 
+    Simple_Fifo &message_queue_for_worker() const { return *mq_from_worker_; }
+    Simple_Fifo &message_queue_to_worker() const { return *mq_to_worker_; }
+
     double vu_level(unsigned channel) const
         { return (channel < 2) ? lv_current_[channel] : 0; }
 
@@ -115,6 +118,9 @@ private:
     std::unique_ptr<Simple_Fifo> mq_from_ui_;
     std::unique_ptr<Simple_Fifo> mq_to_ui_;
 
+    std::unique_ptr<Simple_Fifo> mq_from_worker_;
+    std::unique_ptr<Simple_Fifo> mq_to_worker_;
+
     Dc_Filter dc_filter_[2];
     Vu_Monitor vu_monitor_[2];
     double lv_current_[2] {};
@@ -130,6 +136,8 @@ private:
     std::bitset<128> midi_channel_note_active_[16];
 
     std::mutex player_lock_;
+
+    std::unique_ptr<Worker> worker_;
 
     //==========================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessor)
