@@ -10,6 +10,16 @@
 #include <string.h>
 #include <cassert>
 
+#define EACH_INS_FIELD(F)                                               \
+    F(note_offset1) F(note_offset2)                                     \
+    F(midi_velocity_offset) F(second_voice_detune) F(percussion_key_number) \
+    F(inst_flags)                                                       \
+    F(fb_conn1_C0) F(fb_conn2_C0)                                       \
+    F(delay_on_ms) F(delay_off_ms)
+
+#define EACH_OP_FIELD(F)                        \
+    F(avekf_20) F(ksl_l_40) F(atdec_60) F(susrel_80) F(waveform_E0)
+
 Instrument Instrument::from_adlmidi(const ADL_Instrument &o) noexcept
 {
     Instrument ins;
@@ -21,28 +31,41 @@ Instrument Instrument::from_wopl(const WOPLInstrument &o) noexcept
 {
     Instrument ins;
     ins.version = ADLMIDI_InstrumentVersion;
-#define COPY(x) ins.x = o.x;
-    COPY(note_offset1);
-    COPY(note_offset2);
-    COPY(midi_velocity_offset);
-    COPY(second_voice_detune);
-    COPY(percussion_key_number);
-    COPY(inst_flags);
-    COPY(fb_conn1_C0);
-    COPY(fb_conn2_C0);
-    for (unsigned op = 0; op < 4; ++op) {
-        COPY(operators[op].avekf_20);
-        COPY(operators[op].ksl_l_40);
-        COPY(operators[op].atdec_60);
-        COPY(operators[op].susrel_80);
-        COPY(operators[op].waveform_E0);
-    }
-    COPY(delay_on_ms);
-    COPY(delay_off_ms);
-#undef COPY
 
-#if 0
+    #define F(x) ins.x = o.x;
+    EACH_INS_FIELD(F)
+    #undef F
+
+    for (unsigned op = 0; op < 4; ++op) {
+        #define F(x) ins.operators[op].x = o.operators[op].x;
+        EACH_OP_FIELD(F)
+        #undef F
+    }
+
+#if defined(INSTRUMENT_HAS_NAME)
     ins.name(o.inst_name);
+#endif
+
+    return ins;
+}
+
+WOPLInstrument Instrument::to_wopl() const noexcept
+{
+    WOPLInstrument ins;
+    memset(&ins, 0, sizeof(WOPLInstrument));
+
+    #define F(x) ins.x = this->x;
+    EACH_INS_FIELD(F)
+    #undef F
+
+    for (unsigned op = 0; op < 4; ++op) {
+        #define F(x) ins.operators[op].x = this->operators[op].x;
+        EACH_OP_FIELD(F)
+        #undef F
+    }
+
+#if defined(INSTRUMENT_HAS_NAME)
+    strncpy(ins.inst_name, name_, sizeof(ins.inst_name));
 #endif
 
     return ins;
@@ -93,7 +116,7 @@ bool Instrument::equal_instrument(const ADL_Instrument &o) const noexcept
     return !memcmp(static_cast<const ADL_Instrument *>(this), &o, sizeof(ADL_Instrument));
 }
 
-#if 0
+#if defined(INSTRUMENT_HAS_NAME)
 void Instrument::name(const char *name) noexcept
 {
     memcpy(name_, name, strnlen(name, name_size));

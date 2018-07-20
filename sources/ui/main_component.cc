@@ -1185,7 +1185,7 @@ void Main_Component::load_bank(const File &file)
     edt_bank_name->setCaretPosition(0);
 
 #pragma message("TODO clear existing banks")
-
+    
 
     for (unsigned i = 0, n = wopl->banks_count_melodic; i < n; ++i)
         send_bank(wopl->banks_melodic[i], false);
@@ -1199,6 +1199,88 @@ void Main_Component::save_bank(const File &file)
 
 #pragma message("TODO save WOPL file")
 
+    const auto &instrument_map = instrument_map_;
+    size_t max_bank_count = instrument_map.size();
+
+    std::vector<WOPLBank> melo_array;
+    std::vector<WOPLBank> drum_array;
+    melo_array.reserve(max_bank_count);
+    drum_array.reserve(max_bank_count);
+
+    for (auto &entry : instrument_map) {
+        uint32_t psid = entry.first;
+
+        WOPLBank melo;
+        WOPLBank drum;
+        std::memset(&melo, 0, sizeof(WOPLBank));
+        std::memset(&drum, 0, sizeof(WOPLBank));
+
+        melo.bank_midi_msb = drum.bank_midi_msb = psid >> 7;
+        melo.bank_midi_lsb = drum.bank_midi_lsb = psid & 127;
+
+        size_t melo_count = 0;
+        size_t drum_count = 0;
+        for (size_t i = 0; i < 256; ++i) {
+            WOPLInstrument ins = entry.second.ins[i].to_wopl();
+            if (i < 128) {
+                melo.ins[i] = ins;
+                if (!(ins.inst_flags & WOPL_Ins_IsBlank))
+                    ++melo_count;
+            }
+            else {
+                drum.ins[i - 128] = ins;
+                if (!(ins.inst_flags & WOPL_Ins_IsBlank))
+                    ++drum_count;
+            }
+        }
+
+        if (melo_count > 0)
+            melo_array.push_back(melo);
+        if (drum_count > 0)
+            drum_array.push_back(drum);
+    }
+
+    WOPLFile wopl;
+    wopl.version = 3;
+
+#pragma message("TODO global chip flags, volume model")
+    wopl.opl_flags = 0;
+    wopl.volume_model = 0;
+
+    wopl.banks_count_melodic = melo_array.size();
+    wopl.banks_count_percussion = drum_array.size();
+    wopl.banks_melodic = melo_array.data();
+    wopl.banks_percussive = drum_array.data();
+
+    size_t filesize = WOPL_CalculateBankFileSize(&wopl, wopl.version);
+    std::unique_ptr<uint8_t> filedata(new uint8_t[filesize]);
+
+    const char *error_title = "Error saving bank";
+
+    if (WOPL_SaveBankToMem(&wopl, filedata.get(), filesize, wopl.version, 0) != 0) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The bank could not be converted to WOPL.");
+        return;
+    }
+
+    std::unique_ptr<FileOutputStream> stream(file.createOutputStream());
+
+    if (stream->failedToOpen()) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The file could not be opened.");
+        return;
+    }
+
+    stream->setPosition(0);
+    stream->truncate();
+    stream->write(filedata.get(), filesize);
+    stream->flush();
+
+    if (!stream->getStatus()) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The output operation has failed.");
+        return;
+    }
 }
 
 void Main_Component::on_change_midi_channel(unsigned channel)

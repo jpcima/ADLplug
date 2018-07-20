@@ -10,6 +10,8 @@
 struct WOPLInstrument;
 class Generic_Player;
 
+//#define INSTRUMENT_HAS_NAME
+
 struct Instrument : ADL_Instrument
 {
     Instrument() noexcept
@@ -17,6 +19,7 @@ struct Instrument : ADL_Instrument
 
     static Instrument from_adlmidi(const ADL_Instrument &o) noexcept;
     static Instrument from_wopl(const WOPLInstrument &o) noexcept;
+    WOPLInstrument to_wopl() const noexcept;
 
 public:
 #define PARAMETER(type, id, field, shift, size, opt)            \
@@ -59,7 +62,7 @@ public:
 
     bool equal_instrument(const ADL_Instrument &o) const noexcept;
 
-#if 0
+#if defined(INSTRUMENT_HAS_NAME)
     const char *name() const noexcept
         { return name_; }
     void name(const char *name) noexcept;
