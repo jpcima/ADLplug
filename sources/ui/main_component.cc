@@ -784,11 +784,25 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_btn_bank_save] -- add your button handler code here..
         FileChooser chooser(TRANS("Save bank..."), bank_directory_, "*.wopl", prefer_native_file_dialog);
-        bool warn_overwrite = true;
-        if (chooser.browseForFileToSave(warn_overwrite)) {
+        if (chooser.browseForFileToSave(false)) {
             File file = chooser.getResult();
-            bank_directory_ = file.getParentDirectory();
-            save_bank(file);
+            file = file.withFileExtension(".wopl");
+
+            bool confirm = true;
+            if (file.exists()) {
+                String title = TRANS("File already exists");
+                String message = TRANS("There's already a file called: ")
+                    + file.getFullPathName() + "\n\n" +
+                    TRANS("Are you sure you want to overwrite it?");
+                confirm = AlertWindow::showOkCancelBox(
+                    AlertWindow::WarningIcon, title, message,
+                    TRANS("Overwrite"), TRANS("Cancel"), this);
+            }
+
+            if (confirm) {
+                bank_directory_ = file.getParentDirectory();
+                save_bank(file);
+            }
         }
         //[/UserButtonCode_btn_bank_save]
     }
