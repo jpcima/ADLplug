@@ -60,8 +60,6 @@
 #define JUCE_MODULE_AVAILABLE_juce_graphics                 1
 #define JUCE_MODULE_AVAILABLE_juce_gui_basics               1
 #define JUCE_MODULE_AVAILABLE_juce_gui_extra                1
-#define JUCE_MODULE_AVAILABLE_vf_freetype                   1
-#define JUCE_MODULE_AVAILABLE_vf_gui                        1
 
 #define JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED 1
 
@@ -281,17 +279,6 @@
 
 #ifndef    JUCE_ENABLE_LIVE_CONSTANT_EDITOR
  //#define JUCE_ENABLE_LIVE_CONSTANT_EDITOR 0
-#endif
-
-//==============================================================================
-// vf_freetype flags:
-
-#ifndef    VF_USE_FREETYPE
- //#define VF_USE_FREETYPE 0
-#endif
-
-#ifndef    VF_USE_NATIVE_FREETYPE
- //#define VF_USE_NATIVE_FREETYPE 1
 #endif
 //==============================================================================
 #ifndef    JUCE_STANDALONE_APPLICATION

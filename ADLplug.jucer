@@ -112,6 +112,32 @@
     <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
       <GROUP id="{02680B2E-61B1-FA1B-3D9A-89A688227935}" name="ui">
         <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="resources/ui/knob-skin.png"/>
+        <GROUP id="{04E07FD4-726D-2E19-A08B-B84A64CCABB9}" name="fonts">
+          <FILE id="U6RVIY" name="Mono-Bold.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Mono-Bold.ttf.gz"/>
+          <FILE id="YsZ8ro" name="Mono-BoldItalic.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Mono-BoldItalic.ttf.gz"/>
+          <FILE id="zwTr71" name="Mono-Italic.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Mono-Italic.ttf.gz"/>
+          <FILE id="G4ATDw" name="Mono-Regular.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Mono-Regular.ttf.gz"/>
+          <FILE id="RTfQbX" name="Sans-Bold.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Sans-Bold.ttf.gz"/>
+          <FILE id="LxKhIg" name="Sans-BoldItalic.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Sans-BoldItalic.ttf.gz"/>
+          <FILE id="aPsrE9" name="Sans-Italic.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Sans-Italic.ttf.gz"/>
+          <FILE id="Pqymxs" name="Sans-Regular.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Sans-Regular.ttf.gz"/>
+          <FILE id="dEtnT6" name="Serif-Bold.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Serif-Bold.ttf.gz"/>
+          <FILE id="bg9APV" name="Serif-BoldItalic.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Serif-BoldItalic.ttf.gz"/>
+          <FILE id="JER5qs" name="Serif-Italic.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Serif-Italic.ttf.gz"/>
+          <FILE id="tmPi9Y" name="Serif-Regular.ttf.gz" compile="0" resource="1"
+                file="resources/ui/fonts/Serif-Regular.ttf.gz"/>
+        </GROUP>
         <GROUP id="{877CC963-FD61-84EC-01EC-E41153BC0627}" name="noto-emoji">
           <FILE id="Q6lsDQ" name="emoji_u1f4be.png" compile="0" resource="1"
                 file="resources/ui/noto-emoji/emoji_u1f4be.png"/>
@@ -209,8 +235,6 @@
         <MODULEPATH id="juce_audio_plugin_client" path="thirdparty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_utils" path="thirdparty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="thirdparty/JUCE/modules"/>
-        <MODULEPATH id="vf_gui" path="thirdparty/VFLib/modules"/>
-        <MODULEPATH id="vf_freetype" path="thirdparty/VFLib/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2017 targetFolder="juce/Builds/VisualStudio2017" vst3Folder="" aaxFolder=""
@@ -232,8 +256,6 @@
         <MODULEPATH id="juce_audio_plugin_client" path="thirdparty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_utils" path="thirdparty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="thirdparty/JUCE/modules"/>
-        <MODULEPATH id="vf_gui" path="thirdparty/VFLib/modules"/>
-        <MODULEPATH id="vf_freetype" path="thirdparty/VFLib/modules"/>
       </MODULEPATHS>
     </VS2017>
     <LINUX_MAKE targetFolder="juce/Builds/LinuxMakefile" linuxExtraPkgConfig="freetype2"
@@ -255,8 +277,6 @@
         <MODULEPATH id="juce_audio_plugin_client" path="thirdparty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_utils" path="thirdparty/JUCE/modules"/>
         <MODULEPATH id="juce_audio_formats" path="thirdparty/JUCE/modules"/>
-        <MODULEPATH id="vf_gui" path="thirdparty/VFLib/modules"/>
-        <MODULEPATH id="vf_freetype" path="thirdparty/VFLib/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
   </EXPORTFORMATS>
@@ -274,8 +294,6 @@
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="vf_freetype" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
-    <MODULE id="vf_gui" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
   <JUCEOPTIONS JUCE_WEB_BROWSER="0" JUCE_USE_CURL="1" JUCE_LOAD_CURL_SYMBOLS_LAZILY="1"
                JUCE_USE_FLAC="0" JUCE_USE_OGGVORBIS="0" JUCE_USE_WINDOWS_MEDIA_FORMAT="0"

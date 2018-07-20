@@ -10,13 +10,24 @@
 class Custom_Look_And_Feel : public LookAndFeel_V4
 {
 public:
-    Custom_Look_And_Feel();
-#if 0 && VF_USE_FREETYPE
-    Typeface::Ptr getTypefaceForFont(Font const &font) override;
-#endif
+    Typeface::Ptr getTypefaceForFont(const Font &font) override;
 
 private:
-#if 0 && VF_USE_FREETYPE
-    void initialize_fonts();
-#endif
+    static Typeface::Ptr getOrCreateFont(
+        Typeface::Ptr &font, const char *data, unsigned size);
+
+private:
+    Typeface::Ptr fontSansRegular;
+    Typeface::Ptr fontSansItalic;
+    Typeface::Ptr fontSansBold;
+    Typeface::Ptr fontSansBoldItalic;
+    Typeface::Ptr fontSerifRegular;
+    Typeface::Ptr fontSerifItalic;
+    Typeface::Ptr fontSerifBold;
+    Typeface::Ptr fontSerifBoldItalic;
+    Typeface::Ptr fontMonoRegular;
+    Typeface::Ptr fontMonoItalic;
+    Typeface::Ptr fontMonoBold;
+    Typeface::Ptr fontMonoBoldItalic;
+
 };

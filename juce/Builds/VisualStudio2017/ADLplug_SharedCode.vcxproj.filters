@@ -32,6 +32,9 @@
     <Filter Include="ADLplug\sources">
       <UniqueIdentifier>{337050D3-2325-64ED-EBA1-66A581B1107F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\resources\ui\fonts">
+      <UniqueIdentifier>{F4448B0A-9788-6744-0E54-779993089B39}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\resources\ui\noto-emoji">
       <UniqueIdentifier>{2288D80B-8FCD-D223-C21C-84DE757503F1}</UniqueIdentifier>
     </Filter>
@@ -463,15 +466,6 @@
     </Filter>
     <Filter Include="JUCE Modules\juce_gui_extra">
       <UniqueIdentifier>{A4D76113-9EDC-DA60-D89B-5BACF7F1C426}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="JUCE Modules\vf_freetype">
-      <UniqueIdentifier>{DEAFE480-C95E-9BDB-F4E5-F2C60C5402C1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="JUCE Modules\vf_gui\graphics">
-      <UniqueIdentifier>{F915AEC2-DEAD-2870-6314-294BAF95A699}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="JUCE Modules\vf_gui">
-      <UniqueIdentifier>{D7BB2F14-F732-17B9-849C-2D5FFA1DEE5F}</UniqueIdentifier>
     </Filter>
     <Filter Include="JUCE Modules">
       <UniqueIdentifier>{FE955B6B-68AC-AA07-70D8-2413F6DB65C8}</UniqueIdentifier>
@@ -2452,15 +2446,6 @@
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.mm">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\vf_freetype.c">
-      <Filter>JUCE Modules\vf_freetype</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\thirdparty\VFLib\modules\vf_gui\graphics\vf_FreeTypeFaces.cpp">
-      <Filter>JUCE Modules\vf_gui\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\thirdparty\VFLib\modules\vf_gui\vf_gui.cpp">
-      <Filter>JUCE Modules\vf_gui</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\JuceLibraryCode\BinaryData.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -2501,12 +2486,6 @@
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_gui_extra.cpp">
-      <Filter>JUCE Library Code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\JuceLibraryCode\include_vf_freetype.c">
-      <Filter>JUCE Library Code</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\JuceLibraryCode\include_vf_gui.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
   </ItemGroup>
@@ -4776,15 +4755,6 @@
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.h">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\thirdparty\VFLib\modules\vf_freetype\vf_freetype.h">
-      <Filter>JUCE Modules\vf_freetype</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\thirdparty\VFLib\modules\vf_gui\graphics\vf_FreeTypeFaces.h">
-      <Filter>JUCE Modules\vf_gui\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\thirdparty\VFLib\modules\vf_gui\vf_gui.h">
-      <Filter>JUCE Modules\vf_gui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\JuceLibraryCode\AppConfig.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
@@ -4804,6 +4774,42 @@
     </None>
     <None Include="..\..\..\resources\ui\knob-skin.png">
       <Filter>ADLplug\resources\ui</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Mono-Bold.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Mono-BoldItalic.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Mono-Italic.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Mono-Regular.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Sans-Bold.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Sans-BoldItalic.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Sans-Italic.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Sans-Regular.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Serif-Bold.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Serif-BoldItalic.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Serif-Italic.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\fonts\Serif-Regular.ttf.gz">
+      <Filter>ADLplug\resources\ui\fonts</Filter>
     </None>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png">
       <Filter>ADLplug\resources\ui\noto-emoji</Filter>

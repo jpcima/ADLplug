@@ -284,7 +284,7 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 8, y = 4, width = 36, height = 30;
+        int x = 8, y = 4, width = 40, height = 30;
         String text (TRANS("ADSR"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -296,7 +296,7 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 8, y = 60, width = 36, height = 30;
+        int x = 8, y = 60, width = 40, height = 30;
         String text (TRANS("Wave"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -535,10 +535,10 @@ BEGIN_JUCER_METADATA
   <BACKGROUND backgroundColour="ff323e44">
     <RECT pos="0 0 352 128" fill="solid: ff2e4c4d" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: fff0f8ff"/>
-    <TEXT pos="8 4 36 30" fill="solid: fff0f8ff" hasStroke="0" text="ADSR"
+    <TEXT pos="8 4 40 30" fill="solid: fff0f8ff" hasStroke="0" text="ADSR"
           fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
           italic="0" justification="33"/>
-    <TEXT pos="8 60 36 30" fill="solid: fff0f8ff" hasStroke="0" text="Wave"
+    <TEXT pos="8 60 40 30" fill="solid: fff0f8ff" hasStroke="0" text="Wave"
           fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
           italic="0" justification="33"/>
     <RECT pos="52 64 100 24" fill="solid: ff373737" hasStroke="0"/>

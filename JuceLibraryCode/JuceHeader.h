@@ -26,8 +26,6 @@
 #include <juce_graphics/juce_graphics.h>
 #include <juce_gui_basics/juce_gui_basics.h>
 #include <juce_gui_extra/juce_gui_extra.h>
-#include <vf_freetype/vf_freetype.h>
-#include <vf_gui/vf_gui.h>
 
 #include "BinaryData.h"
 
