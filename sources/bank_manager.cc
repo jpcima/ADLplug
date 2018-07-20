@@ -40,14 +40,8 @@ void Bank_Manager::update_all_banks()
         unsigned num_programs = 0;
         for (unsigned i = 0; i < 128; ++i) {
             pl.ensure_get_instrument(bank, i, ins);
-            if (!ins.blank()) {
-                ++num_programs;
-                program_notify_mask_[index].set(i);
-            }
+            num_programs += !ins.blank();
         }
-
-        if (num_programs > 0)
-            bank_notify_mask_.set(index);
 
         Bank_Info &info = bank_infos_[index];
         info.id = id;
@@ -60,39 +54,40 @@ void Bank_Manager::update_all_banks()
     trace("Clear slots %u-%u", index, bank_reserve_size - 1);
     for (; index < bank_reserve_size; ++index)
         bank_infos_[index].id = Bank_Id();
+
+    mark_everything_for_notification();
+}
+
+void Bank_Manager::mark_everything_for_notification()
+{
+    trace("Mark everything for notification");
+
+    slots_notify_flag_ = true;
+    for (unsigned i = 0; i < bank_reserve_size; ++i)
+        program_notify_mask_[i].set();
 }
 
 void Bank_Manager::send_notifications()
 {
-    Generic_Player &pl = pl_;
-    AdlplugAudioProcessor &proc = proc_;
-    Simple_Fifo &queue = proc.message_queue_to_ui();
+    if (slots_notify_flag_) {
+        if (!emit_slots())
+            return;
+        slots_notify_flag_ = false;
+    }
 
     unsigned p_n = 0;
     for (unsigned b_i = 0; b_i < bank_reserve_size; ++b_i) {
         Bank_Info &info = bank_infos_[b_i];
         if (!info)
             continue;
-
+        std::bitset<128> &program_mask = program_notify_mask_[b_i];
         for (unsigned p_i = 0; p_i < 128; ++p_i) {
-            if (!program_notify_mask_[b_i].test(p_i))
+            if (!program_mask.test(p_i))
                 continue;
-
-            Message_Header hdr(Fx_Message::NotifyInstrument, sizeof(Messages::Fx::NotifyInstrument));
-            Buffered_Message msg = write_message(queue, hdr);
-            if (!msg)
+            if (!emit_notification(info, p_i))
                 return;
-
-            auto &data = *(Messages::Fx::NotifyInstrument *)msg.data;
-            data.bank = info.id;
-            data.program = p_i;
-            pl.ensure_get_instrument(info.bank, p_i, data.instrument);
-            finish_write_message(queue, msg);
-
-            program_notify_mask_[b_i].reset(p_i);
-            ++p_n;
-
-            if (p_n == max_program_notifications)
+            program_mask.reset(p_i);
+            if (++p_n == max_program_notifications)
                 return;
         }
     }
@@ -147,7 +142,6 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
         info.num_programs = num_programs;
     }
     // mark for notification
-    bank_notify_mask_.set(index);
     program_notify_mask_[index].set(program);
     return true;
 }
@@ -186,4 +180,55 @@ unsigned Bank_Manager::find_empty_slot()
         if (!bank_infos_[i].id || bank_infos_[i].num_programs == 0)
             return i;
     return (unsigned)-1;
+}
+
+bool Bank_Manager::emit_slots()
+{
+    Generic_Player &pl = pl_;
+    AdlplugAudioProcessor &proc = proc_;
+    Simple_Fifo &queue = proc.message_queue_to_ui();
+
+    Message_Header hdr(Fx_Message::NotifyBankSlots, sizeof(Messages::Fx::NotifyBankSlots));
+    Buffered_Message msg = write_message(queue, hdr);
+    if (!msg)
+        return false;
+
+    auto &data = *(Messages::Fx::NotifyBankSlots *)msg.data;
+    unsigned count = 0;
+    for (unsigned b_i = 0; b_i < bank_reserve_size; ++b_i) {
+        Bank_Info &info = bank_infos_[b_i];
+        if (!info || info.num_programs == 0)
+            continue;
+        Messages::Fx::NotifyBankSlots::Entry &ent = data.entry[count++];
+        ent.bank = info.id;
+        Instrument ins;
+        for (unsigned p_i = 0; p_i < 128; ++p_i) {
+            pl.ensure_get_instrument(info.bank, p_i, ins);
+            ent.ins_mask.set(p_i, !ins.blank());
+        }
+    }
+    data.count = count;
+    finish_write_message(queue, msg);
+
+    return true;
+}
+
+bool Bank_Manager::emit_notification(const Bank_Info &info, unsigned program)
+{
+    Generic_Player &pl = pl_;
+    AdlplugAudioProcessor &proc = proc_;
+    Simple_Fifo &queue = proc.message_queue_to_ui();
+
+    Message_Header hdr(Fx_Message::NotifyInstrument, sizeof(Messages::Fx::NotifyInstrument));
+    Buffered_Message msg = write_message(queue, hdr);
+    if (!msg)
+        return false;
+
+    auto &data = *(Messages::Fx::NotifyInstrument *)msg.data;
+    data.bank = info.id;
+    data.program = program;
+    pl.ensure_get_instrument(info.bank, program, data.instrument);
+    finish_write_message(queue, msg);
+
+    return true;
 }

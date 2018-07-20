@@ -24,6 +24,7 @@
 #include "ui/styled_knobs.h"
 #include "adl/instrument.h"
 #include "utility/simple_fifo.h"
+#include "messages.h"
 #include <map>
 #include <vector>
 #include <array>
@@ -73,6 +74,7 @@ public:
     void send_selection_update();
     void set_instrument_parameters(const Instrument &ins, NotificationType ntf);
 
+    void receive_bank_slots(const Messages::Fx::NotifyBankSlots &msg);
     void receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins);
     void update_instrument_choices();
     void set_program_selection(int selection, NotificationType ntf);

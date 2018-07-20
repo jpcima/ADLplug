@@ -1050,6 +1050,50 @@ void Main_Component::set_instrument_parameters(const Instrument &ins, Notificati
    }
 }
 
+void Main_Component::receive_bank_slots(const Messages::Fx::NotifyBankSlots &msg)
+{
+    unsigned count = msg.count;
+    bool update = false;
+    auto &imap = instrument_map_;
+
+    trace("Receive %u bank slots", count);
+
+    // delete bank entries not in the slots
+    for (auto it = imap.begin(), end = imap.end(); it != end;) {
+        uint32_t psid = it->first;
+        bool found = false;
+        for (unsigned slotno = 0; slotno < count && !found; ++slotno)
+            found = msg.entry[slotno].bank.msb == (psid >> 7) &&
+                msg.entry[slotno].bank.lsb == (psid & 127);
+        if (!found)
+            ++it;
+        else {
+            imap.erase(it++);
+            update = true;
+        }
+    }
+
+    // enable or disable instruments according to slots
+    for (unsigned slotno = 0; slotno < count; ++slotno) {
+        uint32_t psid = msg.entry[slotno].bank.pseudo_id();
+        bool percussive = msg.entry[slotno].bank.percussive;
+        Editor_Bank &e_bank = imap[psid];
+        for (unsigned i = 0; i < 128; ++i) {
+            unsigned insno = i + (percussive ? 128 : 0);
+            bool isblank = !msg.entry[slotno].ins_mask[i];
+            if (e_bank.ins[insno].blank() != isblank) {
+                e_bank.ins[insno].blank(isblank);
+                update = true;
+            }
+        }
+    }
+
+    if (update) {
+        trace("Refresh choices because of received slots");
+        update_instrument_choices();
+    }
+}
+
 void Main_Component::receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins)
 {
     assert(pgm < 128);
@@ -1057,21 +1101,37 @@ void Main_Component::receive_instrument(Bank_Id bank, unsigned pgm, const Instru
     Editor_Bank *e_bank;
     bool update;
     unsigned insno = pgm + (bank.percussive ? 128 : 0);
+    uint32_t psid = bank.pseudo_id();
 
     trace("Receive instrument %u:%u:%u", bank.msb, bank.lsb, insno);
 
-    auto it = instrument_map_.find(bank.pseudo_id());
-    if (it == instrument_map_.end()) {
-        e_bank = &instrument_map_[bank.pseudo_id()];
+    auto &instrument_map = instrument_map_;
+    auto it = instrument_map.find(psid);
+    if (it == instrument_map.end()) {
+        if (ins.blank())
+            return;
+        it = instrument_map.insert({psid, Editor_Bank()}).first;
+        e_bank = &it->second;
+        e_bank->ins[insno] = ins;
         update = true;
     }
     else {
         e_bank = &it->second;
         update = !e_bank->ins[insno].equal_instrument(ins);
+        if (update)
+            e_bank->ins[insno] = ins;
+    }
+
+    bool empty_bank = ins.blank();
+    for (unsigned i = 0; i < 256 && empty_bank; ++i)
+        empty_bank = e_bank->ins[i].blank();
+
+    if (empty_bank) {
+        instrument_map.erase(it);
+        update = true;
     }
 
     if (update) {
-        e_bank->ins[insno] = ins;
         trace("Refresh choices because of received instrument");
         update_instrument_choices();
     }

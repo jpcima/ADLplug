@@ -15,7 +15,10 @@ class Bank_Manager
 public:
     explicit Bank_Manager(AdlplugAudioProcessor &proc, Generic_Player &pl);
     void update_all_banks();
+
+    void mark_everything_for_notification();
     void send_notifications();
+
     bool load_program(const Bank_Id &id, unsigned program, const Instrument &ins);
     bool find_program(const Bank_Id &id, unsigned program, Instrument &ins);
 
@@ -23,6 +26,11 @@ private:
     unsigned find_slot(const Bank_Id &id);
     unsigned ensure_find_slot(const Bank_Id &id);
     unsigned find_empty_slot();
+
+    struct Bank_Info;
+
+    bool emit_slots();
+    bool emit_notification(const Bank_Info &info, unsigned program);
 
     AdlplugAudioProcessor &proc_;
     Generic_Player &pl_;
@@ -36,6 +44,6 @@ private:
     };
     std::array<Bank_Info, bank_reserve_size> bank_infos_;
 
-    std::bitset<bank_reserve_size> bank_notify_mask_;
+    bool slots_notify_flag_ = false;
     std::bitset<128> program_notify_mask_[bank_reserve_size];
 };

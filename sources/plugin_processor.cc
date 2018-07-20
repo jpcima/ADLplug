@@ -89,8 +89,8 @@ void AdlplugAudioProcessor::changeProgramName(int index, const String &new_name)
 //==============================================================================
 void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 {
-    mq_from_ui_.reset(new Simple_Fifo(1024));
-    mq_to_ui_.reset(new Simple_Fifo(1024));
+    mq_from_ui_.reset(new Simple_Fifo(32 * 1024));
+    mq_to_ui_.reset(new Simple_Fifo(32 * 1024));
 
     Generic_Player *pl = instantiate_player(Player_Type::OPL3);
     player_.reset(pl);

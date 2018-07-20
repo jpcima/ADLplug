@@ -6,7 +6,9 @@
 #pragma once
 #include "adl/instrument.h"
 #include "utility/simple_fifo.h"
+#include "definitions.h"
 #include <thread>
+#include <bitset>
 #include <cstdint>
 
 enum class User_Message;
@@ -73,11 +75,21 @@ struct SelectProgram
 
 //------------------------------------------------------------------------------
 enum class Fx_Message {
+    NotifyBankSlots,  // notifies the layout of banks and instruments
     NotifyInstrument,  // notifies an instrument when changed
 };
 
 namespace Messages {
 namespace Fx {
+
+struct NotifyBankSlots {
+    struct Entry {
+        Bank_Id bank;
+        std::bitset<128> ins_mask;
+    };
+    unsigned count;
+    Entry entry[bank_reserve_size];
+};
 
 struct NotifyInstrument {
     Bank_Id bank;
