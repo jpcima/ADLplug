@@ -130,21 +130,21 @@ void AdlplugAudioProcessor::releaseResources()
     mq_from_ui_.reset();
 }
 
-unsigned AdlplugAudioProcessor::get_num_chips() const
-{
-    Generic_Player *pl = player_.get();
-    return pl->num_chips();
-}
-
 std::unique_lock<std::mutex> AdlplugAudioProcessor::acquire_player_nonrt()
 {
     return std::unique_lock<std::mutex>(player_lock_);
 }
 
+unsigned AdlplugAudioProcessor::num_chips_nonrt() const
+{
+    Generic_Player *pl = player_.get();
+    return pl->num_chips();
+}
+
 void AdlplugAudioProcessor::set_num_chips_nonrt(unsigned chips)
 {
     Generic_Player *pl = player_.get();
-    panic_nonrt();
+    pl->panic();
     pl->set_num_chips(chips);
     reconfigure_chip_nonrt();
 }
@@ -158,9 +158,22 @@ unsigned AdlplugAudioProcessor::chip_emulator_nonrt() const
 void AdlplugAudioProcessor::set_chip_emulator_nonrt(unsigned emu)
 {
     Generic_Player *pl = player_.get();
-    panic_nonrt();
+    pl->panic();
     pl->set_emulator(emu);
     reconfigure_chip_nonrt();
+}
+
+unsigned AdlplugAudioProcessor::num_4ops_nonrt() const
+{
+    Generic_Player *pl = player_.get();
+    return pl->num_4ops();
+}
+
+void AdlplugAudioProcessor::set_num_4ops_nonrt(unsigned count)
+{
+    Generic_Player *pl = player_.get();
+    pl->panic();
+    pl->set_num_4ops(count);
 }
 
 void AdlplugAudioProcessor::panic_nonrt()

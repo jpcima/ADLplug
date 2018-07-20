@@ -202,7 +202,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
                             TRANS("Chips")));
     addAndMakeVisible (label.get());
     label->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
-    label->setJustificationType (Justification::centredLeft);
+    label->setJustificationType (Justification::centredRight);
     label->setEditable (false, false, false);
     label->setColour (Label::textColourId, Colours::aliceblue);
     label->setColour (TextEditor::textColourId, Colours::black);
@@ -277,7 +277,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
                              TRANS("CPU")));
     addAndMakeVisible (label3.get());
     label3->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
-    label3->setJustificationType (Justification::centredLeft);
+    label3->setJustificationType (Justification::centredRight);
     label3->setEditable (false, false, false);
     label3->setColour (Label::textColourId, Colours::aliceblue);
     label3->setColour (TextEditor::textColourId, Colours::black);
@@ -324,7 +324,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     edt_bank_name->setColour (TextEditor::outlineColourId, Colour (0xff8e989b));
     edt_bank_name->setText (TRANS("Bank name"));
 
-    edt_bank_name->setBounds (16, 80, 208, 24);
+    edt_bank_name->setBounds (16, 74, 208, 24);
 
     cb_program.reset (new ComboBox ("new combo box"));
     addAndMakeVisible (cb_program.get());
@@ -334,22 +334,22 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     cb_program->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     cb_program->addListener (this);
 
-    cb_program->setBounds (312, 80, 280, 24);
+    cb_program->setBounds (16, 104, 262, 24);
 
     label4.reset (new Label ("new label",
-                             TRANS("Channel")));
+                             TRANS("MIDI Channel")));
     addAndMakeVisible (label4.get());
     label4->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
-    label4->setJustificationType (Justification::centredLeft);
+    label4->setJustificationType (Justification::centredRight);
     label4->setEditable (false, false, false);
     label4->setColour (Label::textColourId, Colours::aliceblue);
     label4->setColour (TextEditor::textColourId, Colours::black);
     label4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label4->setBounds (620, 80, 60, 24);
+    label4->setBounds (576, 104, 104, 24);
 
     lbl_channel.reset (new Label ("new label",
-                                  TRANS("1")));
+                                  TRANS("16")));
     addAndMakeVisible (lbl_channel.get());
     lbl_channel->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_channel->setJustificationType (Justification::centred);
@@ -359,7 +359,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     lbl_channel->setColour (TextEditor::textColourId, Colours::black);
     lbl_channel->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lbl_channel->setBounds (684, 80, 32, 24);
+    lbl_channel->setBounds (684, 104, 32, 24);
 
     btn_prev_channel.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_prev_channel.get());
@@ -367,7 +367,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_prev_channel->setConnectedEdges (Button::ConnectedOnRight);
     btn_prev_channel->addListener (this);
 
-    btn_prev_channel->setBounds (724, 80, 23, 24);
+    btn_prev_channel->setBounds (724, 104, 23, 24);
 
     btn_next_channel.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_next_channel.get());
@@ -375,7 +375,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_next_channel->setConnectedEdges (Button::ConnectedOnLeft);
     btn_next_channel->addListener (this);
 
-    btn_next_channel->setBounds (747, 80, 23, 24);
+    btn_next_channel->setBounds (747, 104, 23, 24);
 
     btn_bank_load.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_bank_load.get());
@@ -383,7 +383,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_bank_load->setConnectedEdges (Button::ConnectedOnRight);
     btn_bank_load->addListener (this);
 
-    btn_bank_load->setBounds (232, 80, 23, 24);
+    btn_bank_load->setBounds (232, 74, 23, 24);
 
     btn_bank_save.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_bank_save.get());
@@ -391,7 +391,48 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_bank_save->setConnectedEdges (Button::ConnectedOnLeft);
     btn_bank_save->addListener (this);
 
-    btn_bank_save->setBounds (255, 80, 23, 24);
+    btn_bank_save->setBounds (255, 74, 23, 24);
+
+    label5.reset (new Label ("new label",
+                             TRANS("4 ops")));
+    addAndMakeVisible (label5.get());
+    label5->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label5->setJustificationType (Justification::centredRight);
+    label5->setEditable (false, false, false);
+    label5->setColour (Label::textColourId, Colours::aliceblue);
+    label5->setColour (TextEditor::textColourId, Colours::black);
+    label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label5->setBounds (480, 72, 48, 24);
+
+    lbl_4ops.reset (new Label ("new label",
+                               TRANS("600")));
+    addAndMakeVisible (lbl_4ops.get());
+    lbl_4ops->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_4ops->setJustificationType (Justification::centred);
+    lbl_4ops->setEditable (false, false, false);
+    lbl_4ops->setColour (Label::textColourId, Colours::aliceblue);
+    lbl_4ops->setColour (Label::outlineColourId, Colour (0xff8e989b));
+    lbl_4ops->setColour (TextEditor::textColourId, Colours::black);
+    lbl_4ops->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_4ops->setBounds (528, 72, 32, 24);
+
+    btn_dec_4ops.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_dec_4ops.get());
+    btn_dec_4ops->setButtonText (TRANS("<"));
+    btn_dec_4ops->setConnectedEdges (Button::ConnectedOnRight);
+    btn_dec_4ops->addListener (this);
+
+    btn_dec_4ops->setBounds (568, 71, 23, 24);
+
+    btn_inc_4ops.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_inc_4ops.get());
+    btn_inc_4ops->setButtonText (TRANS(">"));
+    btn_inc_4ops->setConnectedEdges (Button::ConnectedOnLeft);
+    btn_inc_4ops->addListener (this);
+
+    btn_inc_4ops->setBounds (591, 71, 23, 24);
 
 
     //[UserPreSize]
@@ -435,8 +476,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     ed_op3->set_op_label(TRANS("Modulator"));
     ed_op4->set_op_label(TRANS("Carrier"));
 
-    lbl_num_chips->setText(String(proc.get_num_chips()), juce::dontSendNotification);
-
     std::vector<std::string> emus = proc.enumerate_emulators();
     for (size_t i = 0, n = emus.size(); i < n; ++i)
         cb_emulator->addItem(emus[i], i + 1);
@@ -455,7 +494,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     {
         std::unique_lock<std::mutex> lock(proc.acquire_player_nonrt());
+        lbl_num_chips->setText(String(proc.num_chips_nonrt()), dontSendNotification);
         cb_emulator->setSelectedId(1 + proc.chip_emulator_nonrt());
+        lbl_4ops->setText(String(proc.num_4ops_nonrt()), dontSendNotification);
     }
 
     {
@@ -509,6 +550,10 @@ Main_Component::~Main_Component()
     btn_next_channel = nullptr;
     btn_bank_load = nullptr;
     btn_bank_save = nullptr;
+    label5 = nullptr;
+    lbl_4ops = nullptr;
+    btn_dec_4ops = nullptr;
+    btn_inc_4ops = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -734,12 +779,23 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_btn_less_chips] -- add your button handler code here..
         AdlplugAudioProcessor &proc = *proc_;
-        unsigned nchips = proc.get_num_chips();
+        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+        unsigned nchips = proc.num_chips_nonrt();
         if (nchips > 1) {
-            std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+            unsigned n4ops = proc.num_4ops_nonrt();
+
             proc.set_num_chips_nonrt(nchips - 1);
+            nchips = proc.num_chips_nonrt();
+
+            unsigned max4ops = nchips * 6;
+            n4ops = (n4ops < max4ops) ? n4ops : max4ops;
+            proc.set_num_4ops_nonrt(n4ops);
+            n4ops = proc.num_4ops_nonrt();
+
             lock.unlock();
-            lbl_num_chips->setText(String(proc.get_num_chips()), juce::dontSendNotification);
+
+            lbl_num_chips->setText(String(nchips), dontSendNotification);
+            lbl_4ops->setText(String(n4ops), dontSendNotification);
         }
         //[/UserButtonCode_btn_less_chips]
     }
@@ -747,12 +803,23 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_btn_more_chips] -- add your button handler code here..
         AdlplugAudioProcessor &proc = *proc_;
-        unsigned nchips = proc.get_num_chips();
+        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+        unsigned nchips = proc.num_chips_nonrt();
         if (nchips < 100) {
-            std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-            proc.set_num_chips_nonrt(proc.get_num_chips() + 1);
+            unsigned n4ops = proc.num_4ops_nonrt();
+
+            proc.set_num_chips_nonrt(nchips + 1);
+            nchips = proc.num_chips_nonrt();
+
+            unsigned max4ops = nchips * 6;
+            n4ops = (n4ops < max4ops) ? n4ops : max4ops;
+            proc.set_num_4ops_nonrt(n4ops);
+            n4ops = proc.num_4ops_nonrt();
+
             lock.unlock();
-            lbl_num_chips->setText(String(proc.get_num_chips()), juce::dontSendNotification);
+
+            lbl_num_chips->setText(String(nchips), dontSendNotification);
+            lbl_4ops->setText(String(n4ops), dontSendNotification);
         }
         //[/UserButtonCode_btn_more_chips]
     }
@@ -812,6 +879,35 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
             }
         }
         //[/UserButtonCode_btn_bank_save]
+    }
+    else if (buttonThatWasClicked == btn_dec_4ops.get())
+    {
+        //[UserButtonCode_btn_dec_4ops] -- add your button handler code here..
+        AdlplugAudioProcessor &proc = *proc_;
+        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+        unsigned n4ops = proc.num_4ops_nonrt();
+        if (n4ops > 0) {
+            proc.set_num_4ops_nonrt(n4ops - 1);
+            n4ops = proc.num_4ops_nonrt();
+            lock.unlock();
+            lbl_4ops->setText(String(n4ops), dontSendNotification);
+        }
+        //[/UserButtonCode_btn_dec_4ops]
+    }
+    else if (buttonThatWasClicked == btn_inc_4ops.get())
+    {
+        //[UserButtonCode_btn_inc_4ops] -- add your button handler code here..
+        AdlplugAudioProcessor &proc = *proc_;
+        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+        unsigned n4ops = proc.num_4ops_nonrt();
+        unsigned max4ops = proc.num_chips_nonrt() * 6;
+        if (n4ops < max4ops) {
+            proc.set_num_4ops_nonrt(n4ops + 1);
+            n4ops = proc.num_4ops_nonrt();
+            lock.unlock();
+            lbl_4ops->setText(String(n4ops), dontSendNotification);
+        }
+        //[/UserButtonCode_btn_inc_4ops]
     }
 
     //[UserbuttonClicked_Post]
@@ -1554,7 +1650,7 @@ BEGIN_JUCER_METADATA
          explicitFocusOrder="0" pos="480 40 48 24" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Chips" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="34"/>
   <LABEL name="new label" id="be41a2433f6d1f03" memberName="lbl_num_chips"
          virtualName="" explicitFocusOrder="0" pos="528 40 32 24" textCol="fff0f8ff"
          outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="100"
@@ -1586,7 +1682,7 @@ BEGIN_JUCER_METADATA
          explicitFocusOrder="0" pos="684 40 40 24" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="CPU" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="34"/>
   <LABEL name="new label" id="2067136cf573bd1a" memberName="lbl_cpu" virtualName=""
          explicitFocusOrder="0" pos="724 40 48 24" textCol="fff0f8ff"
          outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="100%"
@@ -1600,34 +1696,51 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="622 40 48 24" bgColOn="ff42a2c8"
               buttonText="Panic" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="62544efea1101020" memberName="edt_bank_name"
-              virtualName="" explicitFocusOrder="0" pos="16 80 208 24" outlinecol="ff8e989b"
+              virtualName="" explicitFocusOrder="0" pos="16 74 208 24" outlinecol="ff8e989b"
               initialText="Bank name" multiline="0" retKeyStartsLine="0" readonly="0"
               scrollbars="1" caret="1" popupmenu="1"/>
   <COMBOBOX name="new combo box" id="396a835342f6b630" memberName="cb_program"
-            virtualName="" explicitFocusOrder="0" pos="312 80 280 24" editable="0"
+            virtualName="" explicitFocusOrder="0" pos="16 104 262 24" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <LABEL name="new label" id="ac425a00ee881383" memberName="label4" virtualName=""
-         explicitFocusOrder="0" pos="620 80 60 24" textCol="fff0f8ff"
-         edTextCol="ff000000" edBkgCol="0" labelText="Channel" editableSingleClick="0"
+         explicitFocusOrder="0" pos="576 104 104 24" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="MIDI Channel" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="34"/>
   <LABEL name="new label" id="1c00855603b30379" memberName="lbl_channel"
-         virtualName="" explicitFocusOrder="0" pos="684 80 32 24" textCol="fff0f8ff"
-         outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="1"
+         virtualName="" explicitFocusOrder="0" pos="684 104 32 24" textCol="fff0f8ff"
+         outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="16"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="36"/>
   <TEXTBUTTON name="new button" id="6ba2e6591ffa67ab" memberName="btn_prev_channel"
-              virtualName="" explicitFocusOrder="0" pos="724 80 23 24" buttonText="&lt;"
+              virtualName="" explicitFocusOrder="0" pos="724 104 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="f058380e7bbf63b0" memberName="btn_next_channel"
-              virtualName="" explicitFocusOrder="0" pos="747 80 23 24" buttonText="&gt;"
+              virtualName="" explicitFocusOrder="0" pos="747 104 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="c78c3c0db0e0be9a" memberName="btn_bank_load"
-              virtualName="" explicitFocusOrder="0" pos="232 80 23 24" buttonText=""
+              virtualName="" explicitFocusOrder="0" pos="232 74 23 24" buttonText=""
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="fd2ff0a2438003e5" memberName="btn_bank_save"
-              virtualName="" explicitFocusOrder="0" pos="255 80 23 24" buttonText=""
+              virtualName="" explicitFocusOrder="0" pos="255 74 23 24" buttonText=""
+              connectedEdges="1" needsCallback="1" radioGroupId="0"/>
+  <LABEL name="new label" id="42119f01315e1d9a" memberName="label5" virtualName=""
+         explicitFocusOrder="0" pos="480 72 48 24" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="4 ops" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="34"/>
+  <LABEL name="new label" id="ba4ba8efe3884070" memberName="lbl_4ops"
+         virtualName="" explicitFocusOrder="0" pos="528 72 32 24" textCol="fff0f8ff"
+         outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="600"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
+         italic="0" justification="36"/>
+  <TEXTBUTTON name="new button" id="6b21d76b169440b" memberName="btn_dec_4ops"
+              virtualName="" explicitFocusOrder="0" pos="568 71 23 24" buttonText="&lt;"
+              connectedEdges="2" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="488d64ef5fd008f7" memberName="btn_inc_4ops"
+              virtualName="" explicitFocusOrder="0" pos="591 71 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 

@@ -187,6 +187,10 @@ private:
     std::unique_ptr<TextButton> btn_next_channel;
     std::unique_ptr<TextButton> btn_bank_load;
     std::unique_ptr<TextButton> btn_bank_save;
+    std::unique_ptr<Label> label5;
+    std::unique_ptr<Label> lbl_4ops;
+    std::unique_ptr<TextButton> btn_dec_4ops;
+    std::unique_ptr<TextButton> btn_inc_4ops;
 
 
     //==============================================================================

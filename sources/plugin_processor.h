@@ -34,11 +34,13 @@ public:
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
-    unsigned get_num_chips() const;
     std::unique_lock<std::mutex> acquire_player_nonrt();
+    unsigned num_chips_nonrt() const;
     void set_num_chips_nonrt(unsigned chips);
     unsigned chip_emulator_nonrt() const;
     void set_chip_emulator_nonrt(unsigned emu);
+    unsigned num_4ops_nonrt() const;
+    void set_num_4ops_nonrt(unsigned count);
     void panic_nonrt();
     void reconfigure_chip_nonrt();
 
