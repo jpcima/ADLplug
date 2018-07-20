@@ -111,6 +111,9 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/parameter_block_834a48fd.o \
   $(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o \
   $(JUCE_OBJDIR)/vu_meter_b39aee30.o \
+  $(JUCE_OBJDIR)/dbopl_78b2e6ad.o \
+  $(JUCE_OBJDIR)/dosbox_opl3_33ec4f62.o \
+  $(JUCE_OBJDIR)/measurer_773e5778.o \
   $(JUCE_OBJDIR)/instrument_a889d85b.o \
   $(JUCE_OBJDIR)/player_38a5f121.o \
   $(JUCE_OBJDIR)/bank_manager_bcf4961e.o \
@@ -270,6 +273,21 @@ $(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o: ../../../sources/ui/styled_knobs.cc
 $(JUCE_OBJDIR)/vu_meter_b39aee30.o: ../../../sources/ui/vu_meter.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling vu_meter.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/dbopl_78b2e6ad.o: ../../../sources/adl/measurer/chips/dosbox/dbopl.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling dbopl.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/dosbox_opl3_33ec4f62.o: ../../../sources/adl/measurer/chips/dosbox_opl3.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling dosbox_opl3.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/measurer_773e5778.o: ../../../sources/adl/measurer/measurer.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling measurer.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/instrument_a889d85b.o: ../../../sources/adl/instrument.cc

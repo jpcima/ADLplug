@@ -163,6 +163,9 @@
     <ClCompile Include="..\..\..\sources\parameter_block.cc"/>
     <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc"/>
     <ClCompile Include="..\..\..\sources\ui\vu_meter.cc"/>
+    <ClCompile Include="..\..\..\sources\adl\measurer\chips\dosbox\dbopl.cpp"/>
+    <ClCompile Include="..\..\..\sources\adl\measurer\chips\dosbox_opl3.cpp"/>
+    <ClCompile Include="..\..\..\sources\adl\measurer\measurer.cpp"/>
     <ClCompile Include="..\..\..\sources\adl\instrument.cc"/>
     <ClCompile Include="..\..\..\sources\adl\player.cc"/>
     <ClCompile Include="..\..\..\sources\bank_manager.cc"/>
@@ -1960,6 +1963,10 @@
     <ClInclude Include="..\..\..\sources\parameter_block.h"/>
     <ClInclude Include="..\..\..\sources\ui\styled_knobs.h"/>
     <ClInclude Include="..\..\..\sources\ui\vu_meter.h"/>
+    <ClInclude Include="..\..\..\sources\adl\measurer\chips\dosbox\dbopl.h"/>
+    <ClInclude Include="..\..\..\sources\adl\measurer\chips\dosbox_opl3.h"/>
+    <ClInclude Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.h"/>
+    <ClInclude Include="..\..\..\sources\adl\measurer\measurer.h"/>
     <ClInclude Include="..\..\..\sources\adl\instrument.h"/>
     <ClInclude Include="..\..\..\sources\adl\player.h"/>
     <ClInclude Include="..\..\..\sources\bank_manager.h"/>
@@ -2701,6 +2708,7 @@
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png"/>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png"/>
     <None Include="..\..\..\resources\ui\knob-skin.png"/>
+    <None Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.tcc"/>
     <None Include="..\..\..\sources\adl\instrument.tcc"/>
     <None Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.tcc"/>
     <None Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.tcc"/>

@@ -26,6 +26,15 @@
     <Filter Include="ADLplug\sources\ui">
       <UniqueIdentifier>{6006179A-8107-802D-704D-F74685683401}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\sources\adl\measurer\chips\dosbox">
+      <UniqueIdentifier>{4AB166C7-9E64-F605-0991-089E2EDE328D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\sources\adl\measurer\chips">
+      <UniqueIdentifier>{3CF30704-4D3F-9AA6-5C04-FCDF82C096B8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\sources\adl\measurer">
+      <UniqueIdentifier>{E99A2A8B-AB87-331F-A165-91214CB4860E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\sources\adl">
       <UniqueIdentifier>{28E4F184-1528-C78F-B59B-C37CCB8E9989}</UniqueIdentifier>
     </Filter>
@@ -522,6 +531,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\vu_meter.cc">
       <Filter>ADLplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\adl\measurer\chips\dosbox\dbopl.cpp">
+      <Filter>ADLplug\sources\adl\measurer\chips\dosbox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\adl\measurer\chips\dosbox_opl3.cpp">
+      <Filter>ADLplug\sources\adl\measurer\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\adl\measurer\measurer.cpp">
+      <Filter>ADLplug\sources\adl\measurer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\adl\instrument.cc">
       <Filter>ADLplug\sources\adl</Filter>
@@ -2546,6 +2564,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\vu_meter.h">
       <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\adl\measurer\chips\dosbox\dbopl.h">
+      <Filter>ADLplug\sources\adl\measurer\chips\dosbox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\adl\measurer\chips\dosbox_opl3.h">
+      <Filter>ADLplug\sources\adl\measurer\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.h">
+      <Filter>ADLplug\sources\adl\measurer\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\adl\measurer\measurer.h">
+      <Filter>ADLplug\sources\adl\measurer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\adl\instrument.h">
       <Filter>ADLplug\sources\adl</Filter>
@@ -4765,6 +4795,9 @@
     </None>
     <None Include="..\..\..\resources\ui\knob-skin.png">
       <Filter>ADLplug\resources\ui</Filter>
+    </None>
+    <None Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.tcc">
+      <Filter>ADLplug\sources\adl\measurer\chips</Filter>
     </None>
     <None Include="..\..\..\sources\adl\instrument.tcc">
       <Filter>ADLplug\sources\adl</Filter>

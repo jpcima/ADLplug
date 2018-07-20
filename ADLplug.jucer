@@ -83,6 +83,21 @@
         <FILE id="QIFiOc" name="vu_meter.h" compile="0" resource="0" file="sources/ui/vu_meter.h"/>
       </GROUP>
       <GROUP id="{90BE611D-B377-7C79-171F-98F2CD7899AE}" name="adl">
+        <GROUP id="{C5504BDA-42C7-2221-038E-19766F6E41E8}" name="measurer">
+          <GROUP id="{42E8A9B9-B558-ABCF-CAB7-AB553FE919F7}" name="chips">
+            <GROUP id="{A0D5F52E-F6E5-3787-AB16-04D4437B0186}" name="dosbox">
+              <FILE id="JlL2ub" name="dbopl.cpp" compile="1" resource="0" file="sources/adl/measurer/chips/dosbox/dbopl.cpp"/>
+              <FILE id="fWj5ZZ" name="dbopl.h" compile="0" resource="0" file="sources/adl/measurer/chips/dosbox/dbopl.h"/>
+            </GROUP>
+            <FILE id="nbNAwA" name="dosbox_opl3.cpp" compile="1" resource="0" file="sources/adl/measurer/chips/dosbox_opl3.cpp"/>
+            <FILE id="lYAyQb" name="dosbox_opl3.h" compile="0" resource="0" file="sources/adl/measurer/chips/dosbox_opl3.h"/>
+            <FILE id="uhE3Eu" name="opl_chip_base.h" compile="0" resource="0" file="sources/adl/measurer/chips/opl_chip_base.h"/>
+            <FILE id="i6oA8y" name="opl_chip_base.tcc" compile="0" resource="0"
+                  file="sources/adl/measurer/chips/opl_chip_base.tcc"/>
+          </GROUP>
+          <FILE id="GRC9nZ" name="measurer.cpp" compile="1" resource="0" file="sources/adl/measurer/measurer.cpp"/>
+          <FILE id="OisWe2" name="measurer.h" compile="0" resource="0" file="sources/adl/measurer/measurer.h"/>
+        </GROUP>
         <FILE id="ZhOlLH" name="instrument.cc" compile="1" resource="0" file="sources/adl/instrument.cc"/>
         <FILE id="ivL5rz" name="instrument.h" compile="0" resource="0" file="sources/adl/instrument.h"/>
         <FILE id="I6ORD5" name="instrument.tcc" compile="0" resource="0" file="sources/adl/instrument.tcc"/>

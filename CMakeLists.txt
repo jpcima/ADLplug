@@ -131,6 +131,9 @@ add_library(ADLplug_core STATIC
   "sources/ui/image_utils.cc"
   "sources/adl/player.cc"
   "sources/adl/instrument.cc"
+  "sources/adl/measurer/measurer.cpp"
+  "sources/adl/measurer/chips/dosbox/dbopl.cpp"
+  "sources/adl/measurer/chips/dosbox_opl3.cpp"
   "sources/pch/ADLplug_core.h")
 target_include_directories(ADLplug_core PRIVATE "sources")
 target_compile_definitions(ADLplug_core PRIVATE "ADLMIDI_UNSTABLE_API")
