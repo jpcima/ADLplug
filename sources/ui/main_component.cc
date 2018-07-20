@@ -688,7 +688,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
             p1.beginChangeGesture();
             p1 = false;
             p1.endChangeGesture();
-            AudioParameterBool &p2 = *pb.p_4op;
+            AudioParameterBool &p2 = *pb.p_is4op;
             p2.beginChangeGesture();
             p2 = true;
             p2.endChangeGesture();
@@ -703,7 +703,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
             p1.beginChangeGesture();
             p1 = true;
             p1.endChangeGesture();
-            AudioParameterBool &p2 = *pb.p_4op;
+            AudioParameterBool &p2 = *pb.p_is4op;
             p2.beginChangeGesture();
             p2 = true;
             p2.endChangeGesture();
@@ -718,7 +718,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
             p1.beginChangeGesture();
             p1 = false;
             p1.endChangeGesture();
-            AudioParameterBool &p2 = *pb.p_4op;
+            AudioParameterBool &p2 = *pb.p_is4op;
             p2.beginChangeGesture();
             p2 = false;
             p2.endChangeGesture();

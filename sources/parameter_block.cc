@@ -10,7 +10,7 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
 {
     Instrument ins;
 
-    p.addParameter((p_4op = new AudioParameterBool("4op", "4op", ins.four_op(), String())));
+    p.addParameter((p_is4op = new AudioParameterBool("is4op", "4op", ins.four_op(), String())));
     p.addParameter((p_ps4op = new AudioParameterBool("ps4op", "Pseudo 4op", ins.pseudo_four_op(), String())));
     p.addParameter((p_blank = new AudioParameterBool("blank", "Blank", ins.blank(), String())));
     p.addParameter((p_con12 = new AudioParameterChoice("con12", "Mode 1-2", {"FM", "AM"}, ins.con12(), String())));

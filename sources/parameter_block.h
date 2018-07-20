@@ -7,7 +7,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 struct Parameter_Block {
-    AudioParameterBool *p_4op = nullptr;
+    AudioParameterBool *p_is4op = nullptr;
     AudioParameterBool *p_ps4op = nullptr;
     AudioParameterBool *p_blank = nullptr;
     AudioParameterChoice *p_con12 = nullptr;

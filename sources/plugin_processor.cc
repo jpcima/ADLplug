@@ -432,7 +432,7 @@ void AdlplugAudioProcessor::parameters_to_instrument(Instrument &ins) const
     ins.version = ADLMIDI_InstrumentVersion;
     ins.inst_flags = 0;
 
-    ins.four_op(pb.p_4op->get());
+    ins.four_op(pb.p_is4op->get());
     ins.pseudo_four_op(pb.p_ps4op->get());
     ins.blank(pb.p_blank->get());
     ins.con12(pb.p_con12->getIndex());
@@ -472,7 +472,7 @@ void AdlplugAudioProcessor::set_instrument_parameters_notifying_host()
 
     Parameter_Block &pb = *parameter_block_;
 
-    *pb.p_4op = ins.four_op();
+    *pb.p_is4op = ins.four_op();
     *pb.p_ps4op = ins.pseudo_four_op();
     *pb.p_blank = ins.blank();
     *pb.p_con12 = ins.con12();
