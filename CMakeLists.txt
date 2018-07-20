@@ -221,9 +221,23 @@ if(ADLplug_LV2)
   set_property(TARGET ADLplug_LV2
     PROPERTY LIBRARY_OUTPUT_DIRECTORY "lv2/ADLplug.lv2")
 
+  if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set(LV2_UI_CLASS "ui:WindowsUI")
+  elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(LV2_UI_CLASS "ui:CocoaUI")
+  else()
+    set(LV2_UI_CLASS "ui:X11UI")
+  endif()
+  set(LV2_BINARY_SUFFIX "${CMAKE_SHARED_MODULE_SUFFIX}")
+
+  configure_file(
+    "${PROJECT_SOURCE_DIR}/resources/lv2/manifest.ttl.in"
+    "${PROJECT_BINARY_DIR}/lv2build/manifest.ttl"
+    @ONLY)
+
   set(ADLplug_LV2_MANIFESTS
     "resources/lv2/ADLplug_LV2.ttl"
-    "resources/lv2/manifest.ttl"
+    "${PROJECT_BINARY_DIR}/lv2build/manifest.ttl"
     "resources/lv2/presets.ttl")
   add_custom_target(ADLplug_LV2_manifests_copy ALL
     COMMAND "${CMAKE_COMMAND}" "-E" "make_directory" "${CMAKE_CURRENT_BINARY_DIR}/lv2/ADLplug.lv2/"
