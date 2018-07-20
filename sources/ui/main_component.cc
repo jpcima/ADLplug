@@ -457,6 +457,13 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
         std::unique_lock<std::mutex> lock(proc.acquire_player_nonrt());
         cb_emulator->setSelectedId(1 + proc.chip_emulator_nonrt());
     }
+
+    {
+        Simple_Fifo &queue = proc.message_queue_for_ui();
+        Message_Header hdr(User_Message::RequestFullBankState, sizeof(Messages::User::RequestFullBankState));
+        Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
+        finish_write_message(queue, msg);
+    }
     //[/Constructor]
 }
 
@@ -1065,7 +1072,7 @@ void Main_Component::receive_bank_slots(const Messages::Fx::NotifyBankSlots &msg
         for (unsigned slotno = 0; slotno < count && !found; ++slotno)
             found = msg.entry[slotno].bank.msb == (psid >> 7) &&
                 msg.entry[slotno].bank.lsb == (psid & 127);
-        if (!found)
+        if (found)
             ++it;
         else {
             imap.erase(it++);
@@ -1258,19 +1265,31 @@ void Main_Component::load_bank(const File &file)
                              data.bank.percussive = percussive;
                              data.program = i;
                              data.instrument = Instrument::from_wopl(bank.ins[i]);
+                             data.notify_back = false;
                              finish_write_message(queue, msg);
                          }
                      };
     edt_bank_name->setText(file.getFileNameWithoutExtension());
     edt_bank_name->setCaretPosition(0);
 
-#pragma message("TODO clear existing banks")
-    
+    {
+        Message_Header hdr(User_Message::ClearBanks, sizeof(Messages::User::ClearBanks));
+        Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
+        auto &data = *(Messages::User::ClearBanks *)msg.data;
+        data.notify_back = false;
+        finish_write_message(queue, msg);
+    }
 
     for (unsigned i = 0, n = wopl->banks_count_melodic; i < n; ++i)
         send_bank(wopl->banks_melodic[i], false);
     for (unsigned i = 0, n = wopl->banks_count_percussion; i < n; ++i)
         send_bank(wopl->banks_percussive[i], true);
+
+    {
+        Message_Header hdr(User_Message::RequestFullBankState, sizeof(Messages::User::RequestFullBankState));
+        Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
+        finish_write_message(queue, msg);
+    }
 }
 
 void Main_Component::save_bank(const File &file)

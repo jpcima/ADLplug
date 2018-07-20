@@ -9,7 +9,7 @@
 #include "adl/player.h"
 #include <cassert>
 
-#if 1
+#if 0
 #   define trace(fmt, ...)
 #else
 #   define trace(fmt, ...) fprintf(stderr, "[Bank Manager] " fmt "\n", ##__VA_ARGS__)
@@ -20,7 +20,7 @@ Bank_Manager::Bank_Manager(AdlplugAudioProcessor &proc, Generic_Player &pl)
 {
 }
 
-void Bank_Manager::update_all_banks()
+void Bank_Manager::update_all_banks(bool notify)
 {
     Generic_Player &pl = pl_;
 
@@ -55,7 +55,33 @@ void Bank_Manager::update_all_banks()
     for (; index < bank_reserve_size; ++index)
         bank_infos_[index].id = Bank_Id();
 
-    mark_everything_for_notification();
+    if (notify)
+        mark_everything_for_notification();
+}
+
+void Bank_Manager::clear_banks(bool notify)
+{
+    Generic_Player &pl = pl_;
+
+    trace("Clear banks");
+
+    for (unsigned b_i = 0; b_i < bank_reserve_size; ++b_i) {
+        Bank_Info &info = bank_infos_[b_i];
+        if (!info)
+            continue;
+        pl.ensure_remove_bank(info.bank);
+        info.id = Bank_Id();
+    }
+
+    if (notify)
+        slots_notify_flag_ = true;
+}
+
+void Bank_Manager::mark_slots_for_notification()
+{
+    trace("Mark slots for notification");
+
+    slots_notify_flag_ = true;
 }
 
 void Bank_Manager::mark_everything_for_notification()
@@ -93,7 +119,7 @@ void Bank_Manager::send_notifications()
     }
 }
 
-bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instrument &ins)
+bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instrument &ins, bool notify)
 {
     Generic_Player &pl = pl_;
 
@@ -138,11 +164,15 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
     // update program counts
     if (old_ins.blank() != ins.blank()) {
         unsigned num_programs = info.num_programs;
+        unsigned old_num_programs = num_programs;
         num_programs = old_ins.blank() ? (num_programs + 1) : (num_programs - 1);
         info.num_programs = num_programs;
+        if (notify && (num_programs == 0 || old_num_programs == 0))
+            slots_notify_flag_ = true;  // bank changed from/to empty status
     }
     // mark for notification
-    program_notify_mask_[index].set(program);
+    if (notify)
+        program_notify_mask_[index].set(program);
     return true;
 }
 

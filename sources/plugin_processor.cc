@@ -116,7 +116,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 
     Bank_Manager *bm = new Bank_Manager(*this, *pl);
     bank_manager_.reset(bm);
-    bm->update_all_banks();
+    bm->update_all_banks(false);
 
     selection_id_ = Bank_Id(0, 0, 0);
     selection_pgm_ = 0;
@@ -230,7 +230,7 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         Bank_Manager &bm = *bank_manager_;
         Instrument ins;
         parameters_to_instrument(ins);
-        bm.load_program(selection_id_, selection_pgm_, ins);
+        bm.load_program(selection_id_, selection_pgm_, ins, true);
     }
 
     ScopedNoDenormals no_denormals;
@@ -345,9 +345,20 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     Bank_Manager &bm = *bank_manager_;
 
     switch (tag) {
+    case User_Message::RequestBankSlots:
+        bm.mark_slots_for_notification();
+        break;
+    case User_Message::RequestFullBankState:
+        bm.mark_everything_for_notification();
+        break;
+    case User_Message::ClearBanks: {
+        auto &body = *(const Messages::User::ClearBanks *)data;
+        bm.clear_banks(body.notify_back);
+        break;
+    }
     case User_Message::LoadInstrument: {
         auto &body = *(const Messages::User::LoadInstrument *)data;
-        if (bm.load_program(body.bank, body.program, body.instrument)) {
+        if (bm.load_program(body.bank, body.program, body.instrument, body.notify_back)) {
             if (body.bank == selection_id_ && body.program == selection_pgm_)
                 set_instrument_parameters_notifying_host();
         }

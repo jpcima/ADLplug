@@ -33,6 +33,7 @@ AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &
     // editor's size to whatever you need it to be.
     setSize(main->getWidth(), main->getHeight());
 
+    discard_notifications();
     Notification_Timer *timer = new Notification_Timer(*this);
     notification_timer_.reset(timer);
     timer->startTimer(10);
@@ -87,4 +88,12 @@ void AdlplugAudioProcessorEditor::process_notifications()
         }
         finish_read_message(queue, msg);
     }
+}
+
+void AdlplugAudioProcessorEditor::discard_notifications()
+{
+    AdlplugAudioProcessor &proc = proc_;
+    Simple_Fifo &queue = proc.message_queue_to_ui();
+    while (Buffered_Message msg = read_message(queue))
+        finish_read_message(queue, msg);
 }

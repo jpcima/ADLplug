@@ -50,6 +50,9 @@ Buffered_Message write_message_retrying(
 //------------------------------------------------------------------------------
 enum class User_Message {
     Midi,  // midi event
+    RequestBankSlots,  // requests the layout of banks and instruments
+    RequestFullBankState,  // requests all the managed bank state
+    ClearBanks,  // deletes all the managed banks
     LoadInstrument,  // edits an instrument
     SelectProgram,  // changes selected program number
 };
@@ -57,11 +60,22 @@ enum class User_Message {
 namespace Messages {
 namespace User {
 
+struct RequestBankSlots {
+};
+
+struct RequestFullBankState {
+};
+
+struct ClearBanks {
+    bool notify_back = false;
+};
+
 struct LoadInstrument
 {
     Bank_Id bank;
     uint8_t program = 0;
     Instrument instrument;
+    bool notify_back = false;
 };
 
 struct SelectProgram

@@ -33,6 +33,7 @@ private:
     std::unique_ptr<Notification_Timer> notification_timer_;
 
     void process_notifications();
+    void discard_notifications();
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessorEditor)
 };

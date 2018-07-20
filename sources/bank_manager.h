@@ -14,12 +14,14 @@ class Bank_Manager
 {
 public:
     explicit Bank_Manager(AdlplugAudioProcessor &proc, Generic_Player &pl);
-    void update_all_banks();
+    void update_all_banks(bool notify);
+    void clear_banks(bool notify);
 
     void mark_everything_for_notification();
+    void mark_slots_for_notification();
     void send_notifications();
 
-    bool load_program(const Bank_Id &id, unsigned program, const Instrument &ins);
+    bool load_program(const Bank_Id &id, unsigned program, const Instrument &ins, bool notify);
     bool find_program(const Bank_Id &id, unsigned program, Instrument &ins);
 
 private:
