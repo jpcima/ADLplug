@@ -23,7 +23,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread")
 
 enable_gnu_warning("all")
+disable_gnu_warning("unknown-warning-option")
 disable_gnu_warning("multichar")
+# this one is all over JUCE code
+disable_gnu_warning("class-memaccess")
+# fatal warnings
+enable_gnu_warning("error=return-type")
 
 if(ADLplug_RT_CHECKER)
   add_definitions("-DADLplug_RT_CHECKER=1")
