@@ -44,6 +44,12 @@
 #   define trace(fmt, ...) fprintf(stderr, "[UI Main] " fmt "\n", ##__VA_ARGS__)
 #endif
 
+#if !JUCE_LINUX
+static constexpr bool prefer_native_file_dialog = true;
+#else
+static constexpr bool prefer_native_file_dialog = false;
+#endif
+
 enum class Radio_Button_Group {
     Fm_Mode = 1,
     Algo_12,
@@ -766,7 +772,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_bank_load.get())
     {
         //[UserButtonCode_btn_bank_load] -- add your button handler code here..
-        FileChooser chooser(TRANS("Load bank..."), bank_directory_, "*.wopl");
+        FileChooser chooser(TRANS("Load bank..."), bank_directory_, "*.wopl", prefer_native_file_dialog);
         if (chooser.browseForFileToOpen()) {
             File file = chooser.getResult();
             bank_directory_ = file.getParentDirectory();
@@ -777,7 +783,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_bank_save.get())
     {
         //[UserButtonCode_btn_bank_save] -- add your button handler code here..
-        FileChooser chooser(TRANS("Save bank..."), bank_directory_, "*.wopl");
+        FileChooser chooser(TRANS("Save bank..."), bank_directory_, "*.wopl", prefer_native_file_dialog);
         bool warn_overwrite = true;
         if (chooser.browseForFileToSave(warn_overwrite)) {
             File file = chooser.getResult();
