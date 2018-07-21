@@ -175,6 +175,23 @@ macro(add_plugin NAME)
   endif()
 endmacro()
 
+macro(add_standalone NAME)
+  add_executable("${NAME}" "sources/nothing.cc" ${ARGN})
+  set_property(TARGET "${NAME}" PROPERTY PREFIX "")
+  if(CMAKE_SYSTEM_NAME STREQUAL "Windows" AND CMAKE_COMPILER_IS_GNUCXX)
+    # forces the static link of standard libraries
+    set_property(TARGET "${NAME}" APPEND_STRING
+      PROPERTY LINK_FLAGS " -static-libgcc -static-libstdc++")
+    # forces the static link of winpthread
+    set_property(TARGET "${NAME}" APPEND_STRING
+      PROPERTY LINK_FLAGS " -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,-Bdynamic,--no-whole-archive")
+  endif()
+  if(ADLplug_RT_CHECKER)
+    set_property(TARGET "${NAME}" APPEND_STRING
+      PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
+  endif()
+endmacro()
+
 if(ADLplug_VST2)
   add_plugin(ADLplug_VST2)
   target_link_libraries(ADLplug_VST2 PRIVATE juce_audio_plugin_client_VST2 ADLplug_core)
@@ -269,7 +286,7 @@ if(ADLplug_LV2)
 endif()
 
 if(ADLplug_Standalone)
-  add_executable(ADLplug_Standalone "sources/nothing.cc")
+  add_standalone(ADLplug_Standalone "sources/nothing.cc")
   target_link_libraries(ADLplug_Standalone PRIVATE juce_audio_plugin_client_Standalone ADLplug_core)
   if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     if(CMAKE_SYSTEM_PROCESSOR MATCHES "^i.86$" OR
@@ -282,22 +299,14 @@ if(ADLplug_Standalone)
     require_symbols(ADLplug_Standalone "main")
   endif()
   set_property(TARGET ADLplug_Standalone PROPERTY OUTPUT_NAME "ADLplug")
-  if(ADLplug_RT_CHECKER)
-    set_property(TARGET ADLplug_Standalone APPEND_STRING
-      PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
-  endif()
   install(TARGETS ADLplug_Standalone DESTINATION "bin")
 endif()
 
 if(ADLplug_Jack)
-  add_executable(ADLplug_Jack "sources/jack_main.cc")
+  add_standalone(ADLplug_Jack "sources/jack_main.cc")
   target_link_libraries(ADLplug_Jack PRIVATE juce_audio_plugin_client_StandaloneCustom ADLplug_core ${JACK_LIBRARIES})
   target_include_directories(ADLplug_Jack PRIVATE ${JACK_INCLUDE_DIRS})
   link_directories(${JACK_LIBRARY_DIRS})
   set_property(TARGET ADLplug_Jack PROPERTY OUTPUT_NAME "ADLplug_jack")
-  if(ADLplug_RT_CHECKER)
-    set_property(TARGET ADLplug_Jack APPEND_STRING
-      PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
-  endif()
   install(TARGETS ADLplug_Jack DESTINATION "bin")
 endif()
