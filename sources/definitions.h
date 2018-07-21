@@ -8,5 +8,8 @@
 // bank slors to reserve in the synthesizer
 static constexpr unsigned bank_reserve_size = 64;
 
-// maximum program notification in a cycle
+// maximum program notifications in a cycle
 static constexpr unsigned max_program_notifications = 32;
+
+// maximum program measurement requests in a cycle
+static constexpr unsigned max_program_measurements = 32;

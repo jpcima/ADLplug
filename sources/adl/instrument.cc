@@ -116,6 +116,14 @@ bool Instrument::equal_instrument(const ADL_Instrument &o) const noexcept
     return !memcmp(static_cast<const ADL_Instrument *>(this), &o, sizeof(ADL_Instrument));
 }
 
+bool Instrument::equal_instrument_except_delays(const ADL_Instrument &o) const noexcept
+{
+    ADL_Instrument samedelay = o;
+    samedelay.delay_on_ms = this->delay_on_ms;
+    samedelay.delay_off_ms = this->delay_off_ms;
+    return equal_instrument(samedelay);
+}
+
 #if defined(INSTRUMENT_HAS_NAME)
 void Instrument::name(const char *name) noexcept
 {

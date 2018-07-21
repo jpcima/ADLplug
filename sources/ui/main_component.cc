@@ -1361,6 +1361,7 @@ void Main_Component::load_bank(const File &file)
                              data.bank.percussive = percussive;
                              data.program = i;
                              data.instrument = Instrument::from_wopl(bank.ins[i]);
+                             data.need_measurement = false;
                              data.notify_back = false;
                              finish_write_message(queue, msg);
                          }

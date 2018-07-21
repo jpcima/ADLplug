@@ -15,17 +15,21 @@ class Bank_Manager
 {
 public:
     explicit Bank_Manager(AdlplugAudioProcessor &proc, Generic_Player &pl);
-    void update_all_banks(bool notify);
     void clear_banks(bool notify);
 
     void mark_everything_for_notification();
     void mark_slots_for_notification();
     void send_notifications();
+    void send_measurement_requests();
 
-    bool load_program(const Bank_Id &id, unsigned program, const Instrument &ins, bool notify);
+    bool load_program(const Bank_Id &id, unsigned program, const Instrument &ins, bool need_measurement, bool notify);
     bool find_program(const Bank_Id &id, unsigned program, Instrument &ins);
 
+    bool load_measurement(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned kon, unsigned koff, bool notify);
+
 private:
+    void initialize_all_banks();
+
     unsigned find_slot(const Bank_Id &id);
     unsigned ensure_find_slot(const Bank_Id &id);
     unsigned find_empty_slot();
@@ -34,6 +38,7 @@ private:
 
     bool emit_slots();
     bool emit_notification(const Bank_Info &info, unsigned program);
+    bool emit_measurement_request(const Bank_Info &info, unsigned program);
 
     AdlplugAudioProcessor &proc_;
     Generic_Player &pl_;
@@ -42,11 +47,12 @@ private:
         Bank_Id id;
         Bank_Ref bank;
         counting_bitset<128> used;
+        counting_bitset<128> to_notify;
+        counting_bitset<128> to_measure;
         explicit operator bool() const
             { return bool(id); }
     };
     std::array<Bank_Info, bank_reserve_size> bank_infos_;
 
     bool slots_notify_flag_ = false;
-    std::bitset<128> program_notify_mask_[bank_reserve_size];
 };

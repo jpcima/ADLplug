@@ -25,7 +25,7 @@ struct counting_bitset {
     size_t count() const;
 
     counting_bitset &set();
-    counting_bitset &set(size_t pos, bool value);
+    counting_bitset &set(size_t pos, bool value = true);
 
     counting_bitset &reset();
     counting_bitset &reset(size_t pos);

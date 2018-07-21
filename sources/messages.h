@@ -13,6 +13,7 @@
 
 enum class User_Message;
 enum class Fx_Message;
+enum class Worker_Message;
 
 struct Message_Header {
     unsigned tag {};
@@ -20,6 +21,8 @@ struct Message_Header {
     Message_Header(User_Message tag, unsigned size)
         : tag((unsigned)tag), size(size) {}
     Message_Header(Fx_Message tag, unsigned size)
+        : tag((unsigned)tag), size(size) {}
+    Message_Header(Worker_Message tag, unsigned size)
         : tag((unsigned)tag), size(size) {}
 };
 
@@ -49,7 +52,7 @@ Buffered_Message write_message_retrying(
 
 //------------------------------------------------------------------------------
 enum class User_Message {
-    Midi,  // midi event
+    Midi = 0x1000,  // midi event
     RequestBankSlots,  // requests the layout of banks and instruments
     RequestFullBankState,  // requests all the managed bank state
     ClearBanks,  // deletes all the managed banks
@@ -75,6 +78,7 @@ struct LoadInstrument
     Bank_Id bank;
     uint8_t program = 0;
     Instrument instrument;
+    bool need_measurement = false;
     bool notify_back = false;
 };
 
@@ -89,8 +93,9 @@ struct SelectProgram
 
 //------------------------------------------------------------------------------
 enum class Fx_Message {
-    NotifyBankSlots,  // notifies the layout of banks and instruments
+    NotifyBankSlots = 0x2000,  // notifies the layout of banks and instruments
     NotifyInstrument,  // notifies an instrument when changed
+    RequestMeasurement,  // request measurement of a program
 };
 
 namespace Messages {
@@ -111,5 +116,30 @@ struct NotifyInstrument {
     Instrument instrument;
 };
 
+struct RequestMeasurement {
+    Bank_Id bank;
+    uint8_t program = 0;
+    Instrument instrument;
+};
+
 }  // namespace Fx
+}  // namespace Messages
+
+//------------------------------------------------------------------------------
+enum class Worker_Message {
+    MeasurementResult = 0x3000,  // result of a measurement operation
+};
+
+namespace Messages {
+namespace Worker {
+
+struct MeasurementResult {
+    Bank_Id bank;
+    uint8_t program = 0;
+    Instrument instrument;
+    uint16_t ms_sound_kon = 0;
+    uint16_t ms_sound_koff = 0;
+};
+
+}  // namespace Worker
 }  // namespace Messages

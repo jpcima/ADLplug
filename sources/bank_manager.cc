@@ -5,57 +5,22 @@
 
 #include "bank_manager.h"
 #include "plugin_processor.h"
+#include "worker.h"
 #include "messages.h"
 #include "adl/player.h"
 #include <cassert>
 
-#if 0
+#if 1
 #   define trace(fmt, ...)
 #else
+#   pragma message("enabled debug messages which compromise hard realtime")
 #   define trace(fmt, ...) fprintf(stderr, "[Bank Manager] " fmt "\n", ##__VA_ARGS__)
 #endif
 
 Bank_Manager::Bank_Manager(AdlplugAudioProcessor &proc, Generic_Player &pl)
     : proc_(proc), pl_(pl)
 {
-}
-
-void Bank_Manager::update_all_banks(bool notify)
-{
-    Generic_Player &pl = pl_;
-
-    trace("Update all banks");
-
-    Bank_Ref bank;
-    unsigned index = 0;
-
-    for (bool have = pl.get_first_bank(bank); have; have = pl.get_next_bank(bank)) {
-        Bank_Id id;
-        pl.ensure_get_bank_id(bank, id);
-
-        trace("Update bank %c%u:%u at slot %u",
-              id.percussive ? 'P' : 'M', id.msb, id.lsb, index);
-
-        Bank_Info &info = bank_infos_[index];
-        info.id = id;
-        info.bank = bank;
-
-        Instrument ins;
-        info.used.reset();
-        for (unsigned i = 0; i < 128; ++i) {
-            pl.ensure_get_instrument(bank, i, ins);
-            info.used.set(i, !ins.blank());
-        }
-
-        ++index;
-    }
-
-    trace("Clear slots %u-%u", index, bank_reserve_size - 1);
-    for (; index < bank_reserve_size; ++index)
-        bank_infos_[index].id = Bank_Id();
-
-    if (notify)
-        mark_everything_for_notification();
+    initialize_all_banks();
 }
 
 void Bank_Manager::clear_banks(bool notify)
@@ -88,8 +53,12 @@ void Bank_Manager::mark_everything_for_notification()
     trace("Mark everything for notification");
 
     slots_notify_flag_ = true;
-    for (unsigned i = 0; i < bank_reserve_size; ++i)
-        program_notify_mask_[i].set();
+    for (unsigned b_i = 0; b_i < bank_reserve_size; ++b_i) {
+        Bank_Info &info = bank_infos_[b_i];
+        if (!info)
+            continue;
+        info.to_notify = info.used;
+    }
 }
 
 void Bank_Manager::send_notifications()
@@ -105,20 +74,46 @@ void Bank_Manager::send_notifications()
         Bank_Info &info = bank_infos_[b_i];
         if (!info)
             continue;
-        std::bitset<128> &program_mask = program_notify_mask_[b_i];
+        counting_bitset<128> &notify_mask = info.to_notify;
+        if (notify_mask.count() == 0)
+            continue;
         for (unsigned p_i = 0; p_i < 128; ++p_i) {
-            if (!program_mask.test(p_i))
+            if (!notify_mask.test(p_i))
                 continue;
             if (!emit_notification(info, p_i))
                 return;
-            program_mask.reset(p_i);
+            notify_mask.reset(p_i);
             if (++p_n == max_program_notifications)
                 return;
         }
     }
 }
 
-bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instrument &ins, bool notify)
+void Bank_Manager::send_measurement_requests()
+{
+    unsigned p_n = 0;
+    for (unsigned b_i = 0; b_i < bank_reserve_size; ++b_i) {
+        Bank_Info &info = bank_infos_[b_i];
+        if (!info)
+            continue;
+        counting_bitset<128> &measure_mask = info.to_measure;
+        if (measure_mask.count() == 0)
+            continue;
+        const counting_bitset<128> &used_mask = info.used;
+        for (unsigned p_i = 0; p_i < 128; ++p_i) {
+            if (!measure_mask.test(p_i))
+                continue;
+            assert(used_mask.test(p_i));
+            if (!emit_measurement_request(info, p_i))
+                return;
+            measure_mask.reset(p_i);
+            if (++p_n == max_program_measurements)
+                return;
+        }
+    }
+}
+
+bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instrument &ins, bool need_measurement, bool notify)
 {
     Generic_Player &pl = pl_;
 
@@ -166,9 +161,47 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
     if (notify && info.used.count() != old_count)
         slots_notify_flag_ = true;
 
+    // mark as needing measurement if necessary
+    info.to_measure.set(program, need_measurement && !ins.blank());
+
     // mark for notification
     if (notify)
-        program_notify_mask_[index].set(program);
+        info.to_notify.set(program);
+    return true;
+}
+
+bool Bank_Manager::load_measurement(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned kon, unsigned koff, bool notify)
+{
+    Generic_Player &pl = pl_;
+
+    trace("Loading measurement for program %c%u:%u:%u: %u ms on, %u ms off",
+          id.percussive ? 'P' : 'M', id.msb, id.lsb, program,
+          kon, koff);
+
+    unsigned index = find_slot(id);
+    if (index == (unsigned)-1) {
+        trace("The program for received measurement does not exist");
+        return false;
+    }
+
+    Bank_Info &info = bank_infos_[index];
+    Instrument ins2;
+    pl.ensure_get_instrument(info.bank, program, ins2);
+
+    if (!ins.equal_instrument_except_delays(ins2)) {
+        trace("The program for received measurement does not match");
+        return false;
+    }
+
+    trace("The program for received measurement matches");
+
+    ins2.delay_on_ms = kon;
+    ins2.delay_off_ms = koff;
+    pl.ensure_set_instrument(info.bank, program, ins2);
+
+    if (notify)
+        info.to_notify.set(program);
+
     return true;
 }
 
@@ -183,6 +216,41 @@ bool Bank_Manager::find_program(const Bank_Id &id, unsigned program, Instrument 
     Bank_Info &info = bank_infos_[index];
     pl.ensure_get_instrument(info.bank, program, ins);
     return true;
+}
+
+void Bank_Manager::initialize_all_banks()
+{
+    Generic_Player &pl = pl_;
+
+    trace("Update all banks");
+
+    Bank_Ref bank;
+    unsigned index = 0;
+
+    for (bool have = pl.get_first_bank(bank); have; have = pl.get_next_bank(bank)) {
+        Bank_Id id;
+        pl.ensure_get_bank_id(bank, id);
+
+        trace("Update bank %c%u:%u at slot %u",
+              id.percussive ? 'P' : 'M', id.msb, id.lsb, index);
+
+        Bank_Info &info = bank_infos_[index];
+        info.id = id;
+        info.bank = bank;
+
+        Instrument ins;
+        info.used.reset();
+        for (unsigned i = 0; i < 128; ++i) {
+            pl.ensure_get_instrument(bank, i, ins);
+            info.used.set(i, !ins.blank());
+        }
+
+        ++index;
+    }
+
+    trace("Clear slots %u-%u", index, bank_reserve_size - 1);
+    for (; index < bank_reserve_size; ++index)
+        bank_infos_[index].id = Bank_Id();
 }
 
 unsigned Bank_Manager::find_slot(const Bank_Id &id)
@@ -211,7 +279,6 @@ unsigned Bank_Manager::find_empty_slot()
 
 bool Bank_Manager::emit_slots()
 {
-    Generic_Player &pl = pl_;
     AdlplugAudioProcessor &proc = proc_;
     Simple_Fifo &queue = proc.message_queue_to_ui();
 
@@ -252,6 +319,29 @@ bool Bank_Manager::emit_notification(const Bank_Info &info, unsigned program)
     data.program = program;
     pl.ensure_get_instrument(info.bank, program, data.instrument);
     finish_write_message(queue, msg);
+
+    return true;
+}
+
+bool Bank_Manager::emit_measurement_request(const Bank_Info &info, unsigned program)
+{
+    Generic_Player &pl = pl_;
+    AdlplugAudioProcessor &proc = proc_;
+    Simple_Fifo &queue = proc.message_queue_to_worker();
+
+    Message_Header hdr(Fx_Message::RequestMeasurement, sizeof(Messages::Fx::RequestMeasurement));
+    Buffered_Message msg = write_message(queue, hdr);
+    if (!msg)
+        return false;
+
+    auto &data = *(Messages::Fx::RequestMeasurement *)msg.data;
+    data.bank = info.id;
+    data.program = program;
+    pl.ensure_get_instrument(info.bank, program, data.instrument);
+    finish_write_message(queue, msg);
+
+    Worker *worker = proc.worker();
+    worker->postSemaphore();
 
     return true;
 }

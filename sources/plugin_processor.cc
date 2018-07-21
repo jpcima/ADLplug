@@ -131,7 +131,6 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 
     Bank_Manager *bm = new Bank_Manager(*this, *pl);
     bank_manager_.reset(bm);
-    bm->update_all_banks(false);
 
     selection_id_ = Bank_Id(0, 0, 0);
     selection_pgm_ = 0;
@@ -262,7 +261,9 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         Bank_Manager &bm = *bank_manager_;
         Instrument ins;
         parameters_to_instrument(ins);
-        bm.load_program(selection_id_, selection_pgm_, ins, true);
+        bool notify = true;
+        bool need_measurement = true;
+        bm.load_program(selection_id_, selection_pgm_, ins, need_measurement, notify);
     }
 
     ScopedNoDenormals no_denormals;
@@ -373,10 +374,10 @@ bool AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len, Messa
 bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_Handler_Context &ctx)
 {
     const uint8_t *data = msg.data;
-    User_Message tag = (User_Message)msg.header->tag;
+    unsigned tag = msg.header->tag;
     unsigned size = msg.header->size;
 
-    if (tag == User_Message::Midi)
+    if (tag == (unsigned)User_Message::Midi)
         return handle_midi(data, size, ctx);
 
     if (!ctx.under_lock)
@@ -385,32 +386,37 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     Bank_Manager &bm = *bank_manager_;
 
     switch (tag) {
-    case User_Message::RequestBankSlots:
+    case (unsigned)User_Message::RequestBankSlots:
         bm.mark_slots_for_notification();
         break;
-    case User_Message::RequestFullBankState:
+    case (unsigned)User_Message::RequestFullBankState:
         bm.mark_everything_for_notification();
         break;
-    case User_Message::ClearBanks: {
+    case (unsigned)User_Message::ClearBanks: {
         auto &body = *(const Messages::User::ClearBanks *)data;
         bm.clear_banks(body.notify_back);
         break;
     }
-    case User_Message::LoadInstrument: {
+    case (unsigned)User_Message::LoadInstrument: {
         auto &body = *(const Messages::User::LoadInstrument *)data;
-        if (bm.load_program(body.bank, body.program, body.instrument, body.notify_back)) {
+        if (bm.load_program(body.bank, body.program, body.instrument, body.need_measurement, body.notify_back)) {
             if (body.bank == selection_id_ && body.program == selection_pgm_)
                 set_instrument_parameters_notifying_host();
         }
         break;
     }
-    case User_Message::SelectProgram: {
+    case (unsigned)User_Message::SelectProgram: {
         auto &body = *(const Messages::User::SelectProgram *)data;
         if (selection_id_ != body.bank || selection_pgm_ != body.program) {
             selection_id_ = body.bank;
             selection_pgm_ = body.program;
             set_instrument_parameters_notifying_host();
         }
+        break;
+    }
+    case (unsigned)Worker_Message::MeasurementResult: {
+        auto &body = *(const Messages::Worker::MeasurementResult *)data;
+        bm.load_measurement(body.bank, body.program, body.instrument, body.ms_sound_kon, body.ms_sound_koff, true);
         break;
     }
     default:
@@ -423,6 +429,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
 void AdlplugAudioProcessor::finish_handling_messages(Message_Handler_Context &ctx)
 {
     bank_manager_->send_notifications();
+    bank_manager_->send_measurement_requests();
 }
 
 void AdlplugAudioProcessor::parameters_to_instrument(Instrument &ins) const

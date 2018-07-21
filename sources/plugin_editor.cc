@@ -8,6 +8,7 @@
 #include "messages.h"
 #include "ui/main_component.h"
 #include "ui/look_and_feel.h"
+#include <cassert>
 
 class AdlplugAudioProcessorEditor::Notification_Timer : public Timer {
 public:
@@ -75,16 +76,18 @@ void AdlplugAudioProcessorEditor::process_notifications()
         Fx_Message tag = (Fx_Message)msg.header->tag;
 
         switch (tag) {
-            case Fx_Message::NotifyBankSlots: {
-                auto &body = *(const Messages::Fx::NotifyBankSlots *)msg.data;
-                main->receive_bank_slots(body);
-                break;
-            }
-            case Fx_Message::NotifyInstrument: {
-                auto &body = *(const Messages::Fx::NotifyInstrument *)msg.data;
-                main->receive_instrument(body.bank, body.program, body.instrument);
-                break;
-            }
+        case Fx_Message::NotifyBankSlots: {
+            auto &body = *(const Messages::Fx::NotifyBankSlots *)msg.data;
+            main->receive_bank_slots(body);
+            break;
+        }
+        case Fx_Message::NotifyInstrument: {
+            auto &body = *(const Messages::Fx::NotifyInstrument *)msg.data;
+            main->receive_instrument(body.bank, body.program, body.instrument);
+            break;
+        }
+        default:
+            assert(false);
         }
         finish_read_message(queue, msg);
     }

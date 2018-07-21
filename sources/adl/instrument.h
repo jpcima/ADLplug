@@ -61,6 +61,7 @@ public:
     void describe_operator(unsigned op, FILE *out, const char *indent = "") const noexcept;
 
     bool equal_instrument(const ADL_Instrument &o) const noexcept;
+    bool equal_instrument_except_delays(const ADL_Instrument &o) const noexcept;
 
 #if defined(INSTRUMENT_HAS_NAME)
     const char *name() const noexcept

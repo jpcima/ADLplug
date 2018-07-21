@@ -24,15 +24,15 @@ namespace Measurer
 {
     struct DurationInfo
     {
-        uint64_t    peak_amplitude_time;
-        double      peak_amplitude_value;
-        double      quarter_amplitude_time;
-        double      begin_amplitude;
-        double      interval;
-        double      keyoff_out_time;
-        int64_t     ms_sound_kon;
-        int64_t     ms_sound_koff;
-        bool        nosound;
+        unsigned long    peak_amplitude_time;
+        double            peak_amplitude_value;
+        double            quarter_amplitude_time;
+        double            begin_amplitude;
+        double            interval;
+        double            keyoff_out_time;
+        unsigned long     ms_sound_kon;
+        unsigned long     ms_sound_koff;
+        bool               nosound;
     };
 
     void ComputeDurations(const Instrument &in, DurationInfo &result);

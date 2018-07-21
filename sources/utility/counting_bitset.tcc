@@ -82,6 +82,7 @@ template <size_t N>
 auto counting_bitset<N>::reset(size_t pos) -> counting_bitset &
 {
     set(pos, false);
+    return *this;
 }
 
 template <size_t N>

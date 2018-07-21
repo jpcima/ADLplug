@@ -76,6 +76,9 @@ public:
     Simple_Fifo &message_queue_for_worker() const { return *mq_from_worker_; }
     Simple_Fifo &message_queue_to_worker() const { return *mq_to_worker_; }
 
+    Worker *worker() const
+        { return worker_.get(); }
+
     double vu_level(unsigned channel) const
         { return (channel < 2) ? lv_current_[channel] : 0; }
 
