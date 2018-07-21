@@ -17,21 +17,32 @@ namespace stc = std::chrono;
 #endif
 
 Worker::Worker(AdlplugAudioProcessor &proc)
-    : Thread("Worker"),
-      proc_(proc)
+    : proc_(proc)
 {
 }
 
 Worker::~Worker()
 {
+    std::thread &th = thread_;
+    if (th.joinable())
+        th.join();
 }
 
-void Worker::stopWorker()
+void Worker::start_worker()
 {
-    if (this->isThreadRunning()) {
-        signalThreadShouldExit();
+    std::thread &th = thread_;
+    stop_worker();
+    quit_.store(false);
+    th = std::thread([this]() { run(); });
+}
+
+void Worker::stop_worker()
+{
+    std::thread &th = thread_;
+    if (th.joinable()) {
+        quit_.store(true);
         sem_.post();
-        waitForThreadToExit(-1);
+        th.join();
     }
 }
 
@@ -48,7 +59,7 @@ void Worker::run()
     bool should_exit = false;
     while (!should_exit) {
         sem.wait();
-        should_exit = threadShouldExit();
+        should_exit = quit_.load();
         if (should_exit)
             break;
 
@@ -56,7 +67,7 @@ void Worker::run()
         assert(msg_recv);
         handle_message(msg_recv);
         finish_read_message(mq_recv, msg_recv);
-        while (sem.try_wait() && !(should_exit = threadShouldExit())) {
+        while (sem.try_wait() && !(should_exit = quit_.load())) {
             msg_recv = read_message(mq_recv);
             assert(msg_recv);
             handle_message(msg_recv);
@@ -71,7 +82,7 @@ void Worker::run()
             Buffered_Message msg_send;
             while (!should_exit && !(msg_send = write_message(mq_send, hdr))) {
                 std::this_thread::sleep_for(stc::milliseconds(1));
-                while (sem.try_wait() && !(should_exit = threadShouldExit())) {
+                while (sem.try_wait() && !(should_exit = quit_.load())) {
                     msg_recv = read_message(mq_recv);
                     assert(msg_recv);
                     handle_message(msg_recv);

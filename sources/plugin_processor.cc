@@ -35,7 +35,7 @@ AdlplugAudioProcessor::AdlplugAudioProcessor()
 AdlplugAudioProcessor::~AdlplugAudioProcessor()
 {
     if (Worker *worker = worker_.get())
-        worker->stopWorker();
+        worker->stop_worker();
 }
 
 //==============================================================================
@@ -100,14 +100,12 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 
     Worker *worker = worker_.get();
     if (worker) {
-        worker->stopWorker();
+        worker->stop_worker();
         worker_.reset();
     }
     worker = new Worker(*this);
     worker_.reset(worker);
-
-    unsigned worker_priority = 7;
-    worker->startThread(worker_priority);
+    worker->start_worker();
 
     Generic_Player *pl = instantiate_player(Player_Type::OPL3);
     player_.reset(pl);
@@ -142,7 +140,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 void AdlplugAudioProcessor::releaseResources()
 {
     if (Worker *worker = worker_.get()) {
-        worker->stopWorker();
+        worker->stop_worker();
         worker_.reset();
     }
     bank_manager_.reset();
