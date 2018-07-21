@@ -5,6 +5,7 @@
 
 #pragma once
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <cstddef>
 
 class Simple_Fifo
 {
