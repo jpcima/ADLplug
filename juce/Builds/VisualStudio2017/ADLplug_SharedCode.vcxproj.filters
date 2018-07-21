@@ -2574,6 +2574,9 @@
     <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h">
       <Filter>ADLplug\sources\ui\chips</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\sources\utility\counting_bitset.h">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\utility\midi.h">
       <Filter>ADLplug\sources\utility</Filter>
     </ClInclude>
@@ -4771,6 +4774,9 @@
     </None>
     <None Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.tcc">
       <Filter>ADLplug\sources\adl\measurer\chips</Filter>
+    </None>
+    <None Include="..\..\..\sources\utility\counting_bitset.tcc">
+      <Filter>ADLplug\sources\utility</Filter>
     </None>
     <None Include="..\..\..\resources\ui\knob-skin.png">
       <Filter>ADLplug\resources\ui</Filter>

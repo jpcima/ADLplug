@@ -1962,6 +1962,7 @@
     <ClInclude Include="..\..\..\sources\ui\styled_knobs.h"/>
     <ClInclude Include="..\..\..\sources\ui\vu_meter.h"/>
     <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h"/>
+    <ClInclude Include="..\..\..\sources\utility\counting_bitset.h"/>
     <ClInclude Include="..\..\..\sources\utility\midi.h"/>
     <ClInclude Include="..\..\..\sources\utility\rt_checker.h"/>
     <ClInclude Include="..\..\..\sources\utility\semaphore.h"/>
@@ -2696,6 +2697,7 @@
   <ItemGroup>
     <None Include="..\..\..\sources\adl\instrument.tcc"/>
     <None Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.tcc"/>
+    <None Include="..\..\..\sources\utility\counting_bitset.tcc"/>
     <None Include="..\..\..\resources\ui\knob-skin.png"/>
     <None Include="..\..\..\resources\ui\fonts\Mono-Bold.ttf.gz"/>
     <None Include="..\..\..\resources\ui\fonts\Mono-BoldItalic.ttf.gz"/>

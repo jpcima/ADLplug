@@ -6,6 +6,7 @@
 #pragma once
 #include "definitions.h"
 #include "adl/instrument.h"
+#include "utility/counting_bitset.h"
 #include <array>
 #include <bitset>
 class AdlplugAudioProcessor;
@@ -40,7 +41,7 @@ private:
     struct Bank_Info {
         Bank_Id id;
         Bank_Ref bank;
-        unsigned num_programs = 0;
+        counting_bitset<128> used;
         explicit operator bool() const
             { return bool(id); }
     };

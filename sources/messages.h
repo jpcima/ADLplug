@@ -6,9 +6,9 @@
 #pragma once
 #include "adl/instrument.h"
 #include "utility/simple_fifo.h"
+#include "utility/counting_bitset.h"
 #include "definitions.h"
 #include <thread>
-#include <bitset>
 #include <cstdint>
 
 enum class User_Message;
@@ -99,7 +99,7 @@ namespace Fx {
 struct NotifyBankSlots {
     struct Entry {
         Bank_Id bank;
-        std::bitset<128> ins_mask;
+        counting_bitset<128> used;
     };
     unsigned count;
     Entry entry[bank_reserve_size];

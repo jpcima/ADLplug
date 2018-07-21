@@ -100,6 +100,10 @@
         </GROUP>
       </GROUP>
       <GROUP id="{17C850C0-7CFF-17BC-4511-EED271A552A6}" name="utility">
+        <FILE id="Gfyh92" name="counting_bitset.h" compile="0" resource="0"
+              file="sources/utility/counting_bitset.h"/>
+        <FILE id="aFtUeC" name="counting_bitset.tcc" compile="0" resource="0"
+              file="sources/utility/counting_bitset.tcc"/>
         <FILE id="tSjcHH" name="midi.cc" compile="1" resource="0" file="sources/utility/midi.cc"/>
         <FILE id="NBzY1D" name="midi.h" compile="0" resource="0" file="sources/utility/midi.h"/>
         <FILE id="gGudmM" name="rt_checker.cc" compile="1" resource="0" file="sources/utility/rt_checker.cc"/>

@@ -36,17 +36,16 @@ void Bank_Manager::update_all_banks(bool notify)
         trace("Update bank %c%u:%u at slot %u",
               id.percussive ? 'P' : 'M', id.msb, id.lsb, index);
 
-        Instrument ins;
-        unsigned num_programs = 0;
-        for (unsigned i = 0; i < 128; ++i) {
-            pl.ensure_get_instrument(bank, i, ins);
-            num_programs += !ins.blank();
-        }
-
         Bank_Info &info = bank_infos_[index];
         info.id = id;
         info.bank = bank;
-        info.num_programs = num_programs;
+
+        Instrument ins;
+        info.used.reset();
+        for (unsigned i = 0; i < 128; ++i) {
+            pl.ensure_get_instrument(bank, i, ins);
+            info.used.set(i, !ins.blank());
+        }
 
         ++index;
     }
@@ -162,14 +161,11 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
     pl.ensure_set_instrument(info.bank, program, ins);
 
     // update program counts
-    if (old_ins.blank() != ins.blank()) {
-        unsigned num_programs = info.num_programs;
-        unsigned old_num_programs = num_programs;
-        num_programs = old_ins.blank() ? (num_programs + 1) : (num_programs - 1);
-        info.num_programs = num_programs;
-        if (notify && (num_programs == 0 || old_num_programs == 0))
-            slots_notify_flag_ = true;  // bank changed from/to empty status
-    }
+    unsigned old_count = info.used.count();
+    info.used.set(program, !ins.blank());
+    if (notify && info.used.count() != old_count)
+        slots_notify_flag_ = true;
+
     // mark for notification
     if (notify)
         program_notify_mask_[index].set(program);
@@ -206,9 +202,10 @@ inline unsigned Bank_Manager::ensure_find_slot(const Bank_Id &id)
 
 unsigned Bank_Manager::find_empty_slot()
 {
-    for (unsigned i = 0; i < bank_reserve_size; ++i)
-        if (!bank_infos_[i].id || bank_infos_[i].num_programs == 0)
+    for (unsigned i = 0; i < bank_reserve_size; ++i) {
+        if (!bank_infos_[i].id || bank_infos_[i].used.count() == 0)
             return i;
+    }
     return (unsigned)-1;
 }
 
@@ -227,15 +224,11 @@ bool Bank_Manager::emit_slots()
     unsigned count = 0;
     for (unsigned b_i = 0; b_i < bank_reserve_size; ++b_i) {
         Bank_Info &info = bank_infos_[b_i];
-        if (!info || info.num_programs == 0)
+        if (!info || info.used.count() == 0)
             continue;
         Messages::Fx::NotifyBankSlots::Entry &ent = data.entry[count++];
         ent.bank = info.id;
-        Instrument ins;
-        for (unsigned p_i = 0; p_i < 128; ++p_i) {
-            pl.ensure_get_instrument(info.bank, p_i, ins);
-            ent.ins_mask.set(p_i, !ins.blank());
-        }
+        ent.used = info.used;
     }
     data.count = count;
     finish_write_message(queue, msg);

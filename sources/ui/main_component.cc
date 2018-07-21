@@ -1183,7 +1183,7 @@ void Main_Component::receive_bank_slots(const Messages::Fx::NotifyBankSlots &msg
         Editor_Bank &e_bank = imap[psid];
         for (unsigned i = 0; i < 128; ++i) {
             unsigned insno = i + (percussive ? 128 : 0);
-            bool isblank = !msg.entry[slotno].ins_mask[i];
+            bool isblank = !msg.entry[slotno].used.test(i);
             if (e_bank.ins[insno].blank() != isblank) {
                 e_bank.ins[insno].blank(isblank);
                 update = true;
