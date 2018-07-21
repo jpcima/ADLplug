@@ -56,11 +56,20 @@ void Worker::run()
         assert(msg_recv);
         handle_message(msg_recv);
         finish_read_message(mq_recv, msg_recv);
+        while (sem.try_wait() && !(should_exit = threadShouldExit())) {
+            msg_recv = read_message(mq_recv);
+            assert(msg_recv);
+            handle_message(msg_recv);
+            finish_read_message(mq_recv, msg_recv);
+        }
+
+        if (should_exit)
+            break;
 
         if (!measure_requests_.empty()) {
             Message_Header hdr(Worker_Message::MeasurementResult, sizeof(Messages::Worker::MeasurementResult));
             Buffered_Message msg_send;
-            while (!(msg_send = write_message(mq_send, hdr))) {
+            while (!should_exit && !(msg_send = write_message(mq_send, hdr))) {
                 std::this_thread::sleep_for(stc::milliseconds(1));
                 while (sem.try_wait() && !(should_exit = threadShouldExit())) {
                     msg_recv = read_message(mq_recv);
@@ -69,13 +78,15 @@ void Worker::run()
                     finish_read_message(mq_recv, msg_recv);
                 }
             }
-            if (!should_exit) {
-                auto &body = *(Messages::Worker::MeasurementResult *)msg_send.data;
-                auto it = measure_requests_.begin();
-                measure(it->first, it->second, body);
-                finish_write_message(mq_send, msg_send);
-                measure_requests_.erase(it);
-            }
+
+            if (should_exit)
+                break;
+
+            auto &body = *(Messages::Worker::MeasurementResult *)msg_send.data;
+            auto it = measure_requests_.begin();
+            measure(it->first, it->second, body);
+            finish_write_message(mq_send, msg_send);
+            measure_requests_.erase(it);
         }
     }
 

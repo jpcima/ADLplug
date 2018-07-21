@@ -105,7 +105,9 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     }
     worker = new Worker(*this);
     worker_.reset(worker);
-    worker->startThread();
+
+    unsigned worker_priority = 7;
+    worker->startThread(worker_priority);
 
     Generic_Player *pl = instantiate_player(Player_Type::OPL3);
     player_.reset(pl);
