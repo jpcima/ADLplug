@@ -182,10 +182,6 @@ private:
     std::unique_ptr<Styled_Knob_DefaultSmall> kn_fb34;
     std::unique_ptr<MidiKeyboardComponent> midi_kb;
     std::unique_ptr<ImageButton> btn_about;
-    std::unique_ptr<Label> label;
-    std::unique_ptr<Label> lbl_num_chips;
-    std::unique_ptr<TextButton> btn_less_chips;
-    std::unique_ptr<TextButton> btn_more_chips;
     std::unique_ptr<Label> label2;
     std::unique_ptr<Vu_Meter> vu_left;
     std::unique_ptr<Vu_Meter> vu_right;
@@ -201,10 +197,6 @@ private:
     std::unique_ptr<TextButton> btn_next_channel;
     std::unique_ptr<TextButton> btn_bank_load;
     std::unique_ptr<TextButton> btn_bank_save;
-    std::unique_ptr<Label> label5;
-    std::unique_ptr<Label> lbl_4ops;
-    std::unique_ptr<TextButton> btn_dec_4ops;
-    std::unique_ptr<TextButton> btn_inc_4ops;
     std::unique_ptr<Label> label6;
     std::unique_ptr<Label> label7;
     std::unique_ptr<Label> label8;
@@ -215,6 +207,10 @@ private:
     std::unique_ptr<Label> label13;
     std::unique_ptr<ImageButton> btn_emulator;
     std::unique_ptr<Label> label14;
+    std::unique_ptr<Slider> sl_num_chips;
+    std::unique_ptr<Label> label15;
+    std::unique_ptr<Label> label16;
+    std::unique_ptr<Slider> sl_num_4ops;
 
 
     //==============================================================================

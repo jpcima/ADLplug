@@ -152,6 +152,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_tune12->setRange (-127, 127, 1);
     sl_tune12->setSliderStyle (Slider::IncDecButtons);
     sl_tune12->setTextBoxStyle (Slider::TextBoxLeft, false, 36, 20);
+    sl_tune12->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_tune12->addListener (this);
 
     sl_tune12->setBounds (696, 384, 76, 20);
@@ -161,6 +162,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_tune34->setRange (-127, 127, 1);
     sl_tune34->setSliderStyle (Slider::IncDecButtons);
     sl_tune34->setTextBoxStyle (Slider::TextBoxLeft, false, 36, 20);
+    sl_tune34->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_tune34->addListener (this);
 
     sl_tune34->setBounds (696, 408, 76, 20);
@@ -193,47 +195,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
                           Image(), 1.0f, Colour (0x00000000),
                           Image(), 1.0f, Colour (0x00000000));
     btn_about->setBounds (16, 8, 232, 40);
-
-    label.reset (new Label ("new label",
-                            TRANS("Chips")));
-    addAndMakeVisible (label.get());
-    label->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
-    label->setJustificationType (Justification::centredRight);
-    label->setEditable (false, false, false);
-    label->setColour (Label::textColourId, Colours::aliceblue);
-    label->setColour (TextEditor::textColourId, Colours::black);
-    label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    label->setBounds (480, 40, 48, 24);
-
-    lbl_num_chips.reset (new Label ("new label",
-                                    TRANS("100")));
-    addAndMakeVisible (lbl_num_chips.get());
-    lbl_num_chips->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
-    lbl_num_chips->setJustificationType (Justification::centred);
-    lbl_num_chips->setEditable (false, false, false);
-    lbl_num_chips->setColour (Label::textColourId, Colours::aliceblue);
-    lbl_num_chips->setColour (Label::outlineColourId, Colour (0xff8e989b));
-    lbl_num_chips->setColour (TextEditor::textColourId, Colours::black);
-    lbl_num_chips->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    lbl_num_chips->setBounds (528, 40, 32, 24);
-
-    btn_less_chips.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_less_chips.get());
-    btn_less_chips->setButtonText (TRANS("<"));
-    btn_less_chips->setConnectedEdges (Button::ConnectedOnRight);
-    btn_less_chips->addListener (this);
-
-    btn_less_chips->setBounds (568, 40, 23, 24);
-
-    btn_more_chips.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_more_chips.get());
-    btn_more_chips->setButtonText (TRANS(">"));
-    btn_more_chips->setConnectedEdges (Button::ConnectedOnLeft);
-    btn_more_chips->addListener (this);
-
-    btn_more_chips->setBounds (590, 40, 23, 24);
 
     label2.reset (new Label ("new label",
                              TRANS("FM synthesizer with YMF262 chip emulation")));
@@ -293,7 +254,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_panic.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_panic.get());
     btn_panic->setButtonText (TRANS("Panic"));
-    btn_panic->setConnectedEdges (Button::ConnectedOnBottom);
     btn_panic->addListener (this);
     btn_panic->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
@@ -378,47 +338,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_bank_save->addListener (this);
 
     btn_bank_save->setBounds (254, 74, 23, 24);
-
-    label5.reset (new Label ("new label",
-                             TRANS("4 ops")));
-    addAndMakeVisible (label5.get());
-    label5->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
-    label5->setJustificationType (Justification::centredRight);
-    label5->setEditable (false, false, false);
-    label5->setColour (Label::textColourId, Colours::aliceblue);
-    label5->setColour (TextEditor::textColourId, Colours::black);
-    label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    label5->setBounds (480, 72, 48, 24);
-
-    lbl_4ops.reset (new Label ("new label",
-                               TRANS("600")));
-    addAndMakeVisible (lbl_4ops.get());
-    lbl_4ops->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
-    lbl_4ops->setJustificationType (Justification::centred);
-    lbl_4ops->setEditable (false, false, false);
-    lbl_4ops->setColour (Label::textColourId, Colours::aliceblue);
-    lbl_4ops->setColour (Label::outlineColourId, Colour (0xff8e989b));
-    lbl_4ops->setColour (TextEditor::textColourId, Colours::black);
-    lbl_4ops->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    lbl_4ops->setBounds (528, 72, 32, 24);
-
-    btn_dec_4ops.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_dec_4ops.get());
-    btn_dec_4ops->setButtonText (TRANS("<"));
-    btn_dec_4ops->setConnectedEdges (Button::ConnectedOnRight);
-    btn_dec_4ops->addListener (this);
-
-    btn_dec_4ops->setBounds (568, 71, 23, 24);
-
-    btn_inc_4ops.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_inc_4ops.get());
-    btn_inc_4ops->setButtonText (TRANS(">"));
-    btn_inc_4ops->setConnectedEdges (Button::ConnectedOnLeft);
-    btn_inc_4ops->addListener (this);
-
-    btn_inc_4ops->setBounds (590, 71, 23, 24);
 
     label6.reset (new Label ("new label",
                              TRANS("FM 1-2")));
@@ -518,19 +437,66 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
                              Image(), 1.0f, Colour (0x00000000),
                              Image(), 1.0f, Colour (0x00000000),
                              Image(), 1.0f, Colour (0x00000000));
-    btn_emulator->setBounds (448, 40, 24, 24);
+    btn_emulator->setBounds (368, 52, 76, 20);
 
     label14.reset (new Label ("new label",
                               TRANS("Core")));
     addAndMakeVisible (label14.get());
-    label14->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label14->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label14->setJustificationType (Justification::centredLeft);
     label14->setEditable (false, false, false);
     label14->setColour (Label::textColourId, Colours::aliceblue);
     label14->setColour (TextEditor::textColourId, Colours::black);
     label14->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label14->setBounds (400, 40, 40, 24);
+    label14->setBounds (320, 52, 48, 20);
+
+    sl_num_chips.reset (new Slider ("new slider"));
+    addAndMakeVisible (sl_num_chips.get());
+    sl_num_chips->setRange (1, 100, 1);
+    sl_num_chips->setSliderStyle (Slider::IncDecButtons);
+    sl_num_chips->setTextBoxStyle (Slider::TextBoxLeft, false, 36, 20);
+    sl_num_chips->setColour (Slider::rotarySliderOutlineColourId, Colour (0xff8e98ff));
+    sl_num_chips->setColour (Slider::textBoxTextColourId, Colours::aliceblue);
+    sl_num_chips->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
+    sl_num_chips->addListener (this);
+
+    sl_num_chips->setBounds (368, 76, 76, 20);
+
+    label15.reset (new Label ("new label",
+                              TRANS("Chips")));
+    addAndMakeVisible (label15.get());
+    label15->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label15->setJustificationType (Justification::centredLeft);
+    label15->setEditable (false, false, false);
+    label15->setColour (Label::textColourId, Colours::aliceblue);
+    label15->setColour (TextEditor::textColourId, Colours::black);
+    label15->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label15->setBounds (320, 76, 48, 20);
+
+    label16.reset (new Label ("new label",
+                              TRANS("4 ops")));
+    addAndMakeVisible (label16.get());
+    label16->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label16->setJustificationType (Justification::centredLeft);
+    label16->setEditable (false, false, false);
+    label16->setColour (Label::textColourId, Colours::aliceblue);
+    label16->setColour (TextEditor::textColourId, Colours::black);
+    label16->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label16->setBounds (320, 100, 48, 20);
+
+    sl_num_4ops.reset (new Slider ("new slider"));
+    addAndMakeVisible (sl_num_4ops.get());
+    sl_num_4ops->setRange (1, 600, 1);
+    sl_num_4ops->setSliderStyle (Slider::IncDecButtons);
+    sl_num_4ops->setTextBoxStyle (Slider::TextBoxLeft, false, 36, 20);
+    sl_num_4ops->setColour (Slider::textBoxTextColourId, Colours::aliceblue);
+    sl_num_4ops->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
+    sl_num_4ops->addListener (this);
+
+    sl_num_4ops->setBounds (368, 100, 76, 20);
 
 
     //[UserPreSize]
@@ -564,6 +530,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
         btn->setClickingTogglesState(true);
         btn->setRadioGroupId((int)Radio_Button_Group::Algo_34);
     }
+
+    sl_num_4ops->setNumDecimalPlacesToDisplay(0);
+    sl_num_chips->setNumDecimalPlacesToDisplay(0);
 
     kn_fb12->set_range(0, 7);
     kn_fb34->set_range(0, 7);
@@ -618,8 +587,13 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     {
         std::unique_lock<std::mutex> lock(proc.acquire_player_nonrt());
         emulator_value_ = proc.chip_emulator_nonrt();
-        lbl_num_chips->setText(String(proc.num_chips_nonrt()), dontSendNotification);
-        lbl_4ops->setText(String(proc.num_4ops_nonrt()), dontSendNotification);
+        unsigned nchips = proc.num_chips_nonrt();
+        unsigned n4ops = proc.num_4ops_nonrt();
+        lock.unlock();
+        sl_num_chips->setRange(1, 100, 1);
+        sl_num_chips->setValue(nchips, dontSendNotification);
+        sl_num_4ops->setRange(0, 6 * nchips, 1);
+        sl_num_4ops->setValue(n4ops, dontSendNotification);
     }
     update_emulator_icon();
 
@@ -654,10 +628,6 @@ Main_Component::~Main_Component()
     kn_fb34 = nullptr;
     midi_kb = nullptr;
     btn_about = nullptr;
-    label = nullptr;
-    lbl_num_chips = nullptr;
-    btn_less_chips = nullptr;
-    btn_more_chips = nullptr;
     label2 = nullptr;
     vu_left = nullptr;
     vu_right = nullptr;
@@ -673,10 +643,6 @@ Main_Component::~Main_Component()
     btn_next_channel = nullptr;
     btn_bank_load = nullptr;
     btn_bank_save = nullptr;
-    label5 = nullptr;
-    lbl_4ops = nullptr;
-    btn_dec_4ops = nullptr;
-    btn_inc_4ops = nullptr;
     label6 = nullptr;
     label7 = nullptr;
     label8 = nullptr;
@@ -687,6 +653,10 @@ Main_Component::~Main_Component()
     label13 = nullptr;
     btn_emulator = nullptr;
     label14 = nullptr;
+    sl_num_chips = nullptr;
+    label15 = nullptr;
+    label16 = nullptr;
+    sl_num_4ops = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -811,6 +781,15 @@ void Main_Component::paint (Graphics& g)
         g.fillRect (x, y, width, height);
     }
 
+    {
+        int x = 316, y = 48, width = 136, height = 80;
+        Colour fillColour = Colour (0xff2e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
+    }
+
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
 }
@@ -926,54 +905,6 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         popup_about_dialog();
         //[/UserButtonCode_btn_about]
     }
-    else if (buttonThatWasClicked == btn_less_chips.get())
-    {
-        //[UserButtonCode_btn_less_chips] -- add your button handler code here..
-        AdlplugAudioProcessor &proc = *proc_;
-        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-        unsigned nchips = proc.num_chips_nonrt();
-        if (nchips > 1) {
-            unsigned n4ops = proc.num_4ops_nonrt();
-
-            proc.set_num_chips_nonrt(nchips - 1);
-            nchips = proc.num_chips_nonrt();
-
-            unsigned max4ops = nchips * 6;
-            n4ops = (n4ops < max4ops) ? n4ops : max4ops;
-            proc.set_num_4ops_nonrt(n4ops);
-            n4ops = proc.num_4ops_nonrt();
-
-            lock.unlock();
-
-            lbl_num_chips->setText(String(nchips), dontSendNotification);
-            lbl_4ops->setText(String(n4ops), dontSendNotification);
-        }
-        //[/UserButtonCode_btn_less_chips]
-    }
-    else if (buttonThatWasClicked == btn_more_chips.get())
-    {
-        //[UserButtonCode_btn_more_chips] -- add your button handler code here..
-        AdlplugAudioProcessor &proc = *proc_;
-        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-        unsigned nchips = proc.num_chips_nonrt();
-        if (nchips < 100) {
-            unsigned n4ops = proc.num_4ops_nonrt();
-
-            proc.set_num_chips_nonrt(nchips + 1);
-            nchips = proc.num_chips_nonrt();
-
-            unsigned max4ops = nchips * 6;
-            n4ops = (n4ops < max4ops) ? n4ops : max4ops;
-            proc.set_num_4ops_nonrt(n4ops);
-            n4ops = proc.num_4ops_nonrt();
-
-            lock.unlock();
-
-            lbl_num_chips->setText(String(nchips), dontSendNotification);
-            lbl_4ops->setText(String(n4ops), dontSendNotification);
-        }
-        //[/UserButtonCode_btn_more_chips]
-    }
     else if (buttonThatWasClicked == btn_panic.get())
     {
         //[UserButtonCode_btn_panic] -- add your button handler code here..
@@ -1031,35 +962,6 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         }
         //[/UserButtonCode_btn_bank_save]
     }
-    else if (buttonThatWasClicked == btn_dec_4ops.get())
-    {
-        //[UserButtonCode_btn_dec_4ops] -- add your button handler code here..
-        AdlplugAudioProcessor &proc = *proc_;
-        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-        unsigned n4ops = proc.num_4ops_nonrt();
-        if (n4ops > 0) {
-            proc.set_num_4ops_nonrt(n4ops - 1);
-            n4ops = proc.num_4ops_nonrt();
-            lock.unlock();
-            lbl_4ops->setText(String(n4ops), dontSendNotification);
-        }
-        //[/UserButtonCode_btn_dec_4ops]
-    }
-    else if (buttonThatWasClicked == btn_inc_4ops.get())
-    {
-        //[UserButtonCode_btn_inc_4ops] -- add your button handler code here..
-        AdlplugAudioProcessor &proc = *proc_;
-        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-        unsigned n4ops = proc.num_4ops_nonrt();
-        unsigned max4ops = proc.num_chips_nonrt() * 6;
-        if (n4ops < max4ops) {
-            proc.set_num_4ops_nonrt(n4ops + 1);
-            n4ops = proc.num_4ops_nonrt();
-            lock.unlock();
-            lbl_4ops->setText(String(n4ops), dontSendNotification);
-        }
-        //[/UserButtonCode_btn_inc_4ops]
-    }
     else if (buttonThatWasClicked == btn_emulator.get())
     {
         //[UserButtonCode_btn_emulator] -- add your button handler code here..
@@ -1094,7 +996,7 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
         //[UserSliderCode_sl_tune12] -- add your slider handling code here..
         AudioParameterInt &p = *pb.p_tune12;
         p.beginChangeGesture();
-        p = std::lround(sl->getValue());
+        p = sl->getValue();
         p.endChangeGesture();
         //[/UserSliderCode_sl_tune12]
     }
@@ -1103,9 +1005,34 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
         //[UserSliderCode_sl_tune34] -- add your slider handling code here..
         AudioParameterInt &p = *pb.p_tune34;
         p.beginChangeGesture();
-        p = std::lround(sl->getValue());
+        p = sl->getValue();
         p.endChangeGesture();
         //[/UserSliderCode_sl_tune34]
+    }
+    else if (sliderThatWasMoved == sl_num_chips.get())
+    {
+        //[UserSliderCode_sl_num_chips] -- add your slider handling code here..
+        AdlplugAudioProcessor &proc = *proc_;
+        unsigned nchips = sl_num_chips->getValue();
+        unsigned n4ops = sl_num_4ops->getValue();
+        unsigned max4ops = nchips * 6;
+        n4ops = (n4ops < max4ops) ? n4ops : max4ops;
+        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+        proc.set_num_chips_nonrt(nchips);
+        proc.set_num_4ops_nonrt(n4ops);
+        lock.unlock();
+        sl_num_4ops->setRange(0, max4ops, 1);
+        //[/UserSliderCode_sl_num_chips]
+    }
+    else if (sliderThatWasMoved == sl_num_4ops.get())
+    {
+        //[UserSliderCode_sl_num_4ops] -- add your slider handling code here..
+        AdlplugAudioProcessor &proc = *proc_;
+        unsigned n4ops = sl_num_4ops->getValue();
+        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+        proc.set_num_4ops_nonrt(n4ops);
+        lock.unlock();
+        //[/UserSliderCode_sl_num_4ops]
     }
 
     //[UsersliderValueChanged_Post]
@@ -1775,6 +1702,7 @@ BEGIN_JUCER_METADATA
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
     <RECT pos="586 376 188 60" fill="solid: ff2e4c4d" hasStroke="0"/>
+    <RECT pos="316 48 136 80" fill="solid: ff2e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="16 160 264 128" class="Operator_Editor"
@@ -1810,13 +1738,13 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="300 328 264 128" class="Operator_Editor"
                     params="WOPL_OP_MODULATOR2, pb"/>
   <SLIDER name="new slider" id="9cd7cc232d55ac8a" memberName="sl_tune12"
-          virtualName="" explicitFocusOrder="0" pos="696 384 76 20" min="-127.0"
-          max="127.0" int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft"
+          virtualName="" explicitFocusOrder="0" pos="696 384 76 20" textboxoutline="ff8e989b"
+          min="-127.0" max="127.0" int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft"
           textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="new slider" id="314f46c5e90647" memberName="sl_tune34"
-          virtualName="" explicitFocusOrder="0" pos="696 408 76 20" min="-127.0"
-          max="127.0" int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft"
+          virtualName="" explicitFocusOrder="0" pos="696 408 76 20" textboxoutline="ff8e989b"
+          min="-127.0" max="127.0" int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft"
           textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <GENERICCOMPONENT name="new component" id="8e0915367ccd00d3" memberName="kn_fb12"
@@ -1834,23 +1762,6 @@ BEGIN_JUCER_METADATA
                resourceNormal="logo_png" opacityNormal="1.0" colourNormal="0"
                resourceOver="" opacityOver="1.0" colourOver="0" resourceDown=""
                opacityDown="1.0" colourDown="0"/>
-  <LABEL name="new label" id="5628e38331cdf4ec" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="480 40 48 24" textCol="fff0f8ff"
-         edTextCol="ff000000" edBkgCol="0" labelText="Chips" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="34"/>
-  <LABEL name="new label" id="be41a2433f6d1f03" memberName="lbl_num_chips"
-         virtualName="" explicitFocusOrder="0" pos="528 40 32 24" textCol="fff0f8ff"
-         outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="100"
-         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
-         italic="0" justification="36"/>
-  <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="btn_less_chips"
-              virtualName="" explicitFocusOrder="0" pos="568 40 23 24" buttonText="&lt;"
-              connectedEdges="2" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="btn_more_chips"
-              virtualName="" explicitFocusOrder="0" pos="590 40 23 24" buttonText="&gt;"
-              connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <LABEL name="new label" id="9fd95e8efc5b0fe1" memberName="label2" virtualName=""
          explicitFocusOrder="0" pos="280 8 280 24" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="FM synthesizer with YMF262 chip emulation"
@@ -1879,7 +1790,7 @@ BEGIN_JUCER_METADATA
                     params="2, 8"/>
   <TEXTBUTTON name="new button" id="ec00354399da2ced" memberName="btn_panic"
               virtualName="" explicitFocusOrder="0" pos="622 40 48 24" bgColOn="ff42a2c8"
-              buttonText="Panic" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
+              buttonText="Panic" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="62544efea1101020" memberName="edt_bank_name"
               virtualName="" explicitFocusOrder="0" pos="16 74 208 24" outlinecol="ff8e989b"
               initialText="Bank name" multiline="0" retKeyStartsLine="0" readonly="0"
@@ -1909,23 +1820,6 @@ BEGIN_JUCER_METADATA
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="fd2ff0a2438003e5" memberName="btn_bank_save"
               virtualName="" explicitFocusOrder="0" pos="254 74 23 24" buttonText=""
-              connectedEdges="1" needsCallback="1" radioGroupId="0"/>
-  <LABEL name="new label" id="42119f01315e1d9a" memberName="label5" virtualName=""
-         explicitFocusOrder="0" pos="480 72 48 24" textCol="fff0f8ff"
-         edTextCol="ff000000" edBkgCol="0" labelText="4 ops" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="34"/>
-  <LABEL name="new label" id="ba4ba8efe3884070" memberName="lbl_4ops"
-         virtualName="" explicitFocusOrder="0" pos="528 72 32 24" textCol="fff0f8ff"
-         outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="600"
-         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
-         fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
-         italic="0" justification="36"/>
-  <TEXTBUTTON name="new button" id="6b21d76b169440b" memberName="btn_dec_4ops"
-              virtualName="" explicitFocusOrder="0" pos="568 71 23 24" buttonText="&lt;"
-              connectedEdges="2" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="488d64ef5fd008f7" memberName="btn_inc_4ops"
-              virtualName="" explicitFocusOrder="0" pos="590 71 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <LABEL name="new label" id="46218839ef803ea8" memberName="label6" virtualName=""
          explicitFocusOrder="0" pos="622 256 56 15" edTextCol="ff000000"
@@ -1968,16 +1862,36 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="new button" id="1df5353a837ca5f4" memberName="btn_emulator"
-               virtualName="" explicitFocusOrder="0" pos="448 40 24 24" buttonText="new button"
+               virtualName="" explicitFocusOrder="0" pos="368 52 76 20" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="" opacityNormal="1.0" colourNormal="0" resourceOver=""
                opacityOver="1.0" colourOver="0" resourceDown="" opacityDown="1.0"
                colourDown="0"/>
   <LABEL name="new label" id="61dc1fae1b35b41b" memberName="label14" virtualName=""
-         explicitFocusOrder="0" pos="400 40 40 24" textCol="fff0f8ff"
+         explicitFocusOrder="0" pos="320 52 48 20" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Core" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <SLIDER name="new slider" id="4c8fba05f57b7320" memberName="sl_num_chips"
+          virtualName="" explicitFocusOrder="0" pos="368 76 76 20" rotaryslideroutline="ff8e98ff"
+          textboxtext="fff0f8ff" textboxoutline="ff8e989b" min="1.0" max="100.0"
+          int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft" textBoxEditable="1"
+          textBoxWidth="36" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
+  <LABEL name="new label" id="7b8136bebc755c42" memberName="label15" virtualName=""
+         explicitFocusOrder="0" pos="320 76 48 20" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Chips" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <LABEL name="new label" id="e0a305f99bf634b2" memberName="label16" virtualName=""
+         explicitFocusOrder="0" pos="320 100 48 20" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="4 ops" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <SLIDER name="new slider" id="8ab12bd836d92a62" memberName="sl_num_4ops"
+          virtualName="" explicitFocusOrder="0" pos="368 100 76 20" textboxtext="fff0f8ff"
+          textboxoutline="ff8e989b" min="1.0" max="600.0" int="1.0" style="IncDecButtons"
+          textBoxPos="TextBoxLeft" textBoxEditable="1" textBoxWidth="36"
+          textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
