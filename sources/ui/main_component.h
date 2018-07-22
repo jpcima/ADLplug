@@ -211,6 +211,8 @@ private:
     std::unique_ptr<Label> label15;
     std::unique_ptr<Label> label16;
     std::unique_ptr<Slider> sl_num_4ops;
+    std::unique_ptr<Label> label5;
+    std::unique_ptr<ComboBox> cb_percussion_key;
 
 
     //==============================================================================

@@ -498,6 +498,27 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     sl_num_4ops->setBounds (368, 100, 76, 20);
 
+    label5.reset (new Label ("new label",
+                             TRANS("Percussion key")));
+    addAndMakeVisible (label5.get());
+    label5->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label5->setJustificationType (Justification::centredLeft);
+    label5->setEditable (false, false, false);
+    label5->setColour (TextEditor::textColourId, Colours::black);
+    label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label5->setBounds (590, 432, 104, 20);
+
+    cb_percussion_key.reset (new ComboBox ("new combo box"));
+    addAndMakeVisible (cb_percussion_key.get());
+    cb_percussion_key->setEditableText (false);
+    cb_percussion_key->setJustificationType (Justification::centredLeft);
+    cb_percussion_key->setTextWhenNothingSelected (String());
+    cb_percussion_key->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
+    cb_percussion_key->addListener (this);
+
+    cb_percussion_key->setBounds (696, 432, 76, 20);
+
 
     //[UserPreSize]
     kn_fb12->add_listener(this);
@@ -571,6 +592,15 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     build_emulator_info();
     build_emulator_menu(emulator_menu_);
+
+    for (unsigned note = 0; note < 127; ++note) {
+        const char *octave_names[12] =
+            {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
+        String name = octave_names[note % 12] + String((int)(note / 12) - 1);
+        cb_percussion_key->addItem(name, note + 1);
+    }
+    cb_percussion_key->setSelectedId(69 + 1, dontSendNotification);
+    cb_percussion_key->setScrollWheelEnabled(true);
 
     lbl_channel->setText(String(1 + midichannel_), dontSendNotification);
 
@@ -657,6 +687,8 @@ Main_Component::~Main_Component()
     label15 = nullptr;
     label16 = nullptr;
     sl_num_4ops = nullptr;
+    label5 = nullptr;
+    cb_percussion_key = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -773,7 +805,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 586, y = 376, width = 188, height = 60;
+        int x = 586, y = 376, width = 188, height = 84;
         Colour fillColour = Colour (0xff2e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1042,6 +1074,8 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
 void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 {
     //[UsercomboBoxChanged_Pre]
+    ComboBox *cb = comboBoxThatHasChanged;
+    Parameter_Block &pb = *parameter_block_;
     //[/UsercomboBoxChanged_Pre]
 
     if (comboBoxThatHasChanged == cb_program.get())
@@ -1081,6 +1115,15 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         reload_selected_instrument(dontSendNotification);
 
         //[/UserComboBoxCode_cb_program]
+    }
+    else if (comboBoxThatHasChanged == cb_percussion_key.get())
+    {
+        //[UserComboBoxCode_cb_percussion_key] -- add your combo box handling code here..
+        AudioParameterInt &p = *pb.p_drumnote;
+        p.beginChangeGesture();
+        p = cb->getSelectedId() - 1;
+        p.endChangeGesture();
+        //[/UserComboBoxCode_cb_percussion_key]
     }
 
     //[UsercomboBoxChanged_Post]
@@ -1227,11 +1270,13 @@ void Main_Component::set_instrument_parameters(const Instrument &ins, Notificati
    ((ins.con12()) ? btn_am12 : btn_fm12)->setToggleState(true, ntf);
    ((ins.con34()) ? btn_am34 : btn_fm34)->setToggleState(true, ntf);
 
+   kn_fb12->set_value(ins.fb12(), ntf);
+   kn_fb34->set_value(ins.fb34(), ntf);
+
    sl_tune12->setValue(ins.note_offset1, ntf);
    sl_tune34->setValue(ins.note_offset2, ntf);
 
-   kn_fb12->set_value(ins.fb12(), ntf);
-   kn_fb34->set_value(ins.fb34(), ntf);
+   cb_percussion_key->setSelectedId(ins.percussion_key_number + 1, dontSendNotification);
 
    for (unsigned op = 0; op < 4; ++op) {
        Operator_Editor *oped = op_editors[op];
@@ -1704,7 +1749,7 @@ BEGIN_JUCER_METADATA
     <TEXT pos="586 348 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Tuning"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="586 376 188 60" fill="solid: ff2e4c4d" hasStroke="0"/>
+    <RECT pos="586 376 188 84" fill="solid: ff2e4c4d" hasStroke="0"/>
     <RECT pos="316 48 136 80" fill="solid: ff2e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
@@ -1895,6 +1940,14 @@ BEGIN_JUCER_METADATA
           textboxoutline="ff8e989b" min="1.0" max="600.0" int="1.0" style="IncDecButtons"
           textBoxPos="TextBoxLeft" textBoxEditable="1" textBoxWidth="36"
           textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
+  <LABEL name="new label" id="1b1aa7f42f11af53" memberName="label5" virtualName=""
+         explicitFocusOrder="0" pos="590 432 104 20" edTextCol="ff000000"
+         edBkgCol="0" labelText="Percussion key" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <COMBOBOX name="new combo box" id="72b8aa8d99fdb9cc" memberName="cb_percussion_key"
+            virtualName="" explicitFocusOrder="0" pos="696 432 76 20" editable="0"
+            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
