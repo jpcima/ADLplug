@@ -574,8 +574,31 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     ed_op3->set_op_label(TRANS("Modulator"));
     ed_op4->set_op_label(TRANS("Carrier"));
 
-    Image img_dosbox = ImageFileFormat::loadFrom(BinaryData::DOSBox_png, BinaryData::DOSBox_pngSize);
-    Image img_nuked = ImageFileFormat::loadFrom(BinaryData::Nuked_png, BinaryData::Nuked_pngSize);
+    {
+        ImageComponent *overlay = new ImageComponent;
+        overlay_bank_load_.reset(overlay);
+        Rectangle<int> bounds = btn_bank_load->getBounds();
+        bounds = bounds.withSizeKeepingCentre(0.7f * bounds.getWidth(), 0.7f * bounds.getHeight());
+        overlay->setBounds(bounds);
+        overlay->setImage(
+            ImageCache::getFromMemory(BinaryData::emoji_u1f4c2_png, BinaryData::emoji_u1f4c2_pngSize),
+            RectanglePlacement::centred);
+        overlay->setInterceptsMouseClicks(false, true);
+        addAndMakeVisible(overlay);
+    }
+
+    {
+        ImageComponent *overlay = new ImageComponent;
+        overlay_bank_save_.reset(overlay);
+        Rectangle<int> bounds = btn_bank_save->getBounds();
+        bounds = bounds.withSizeKeepingCentre(0.7f * bounds.getWidth(), 0.7f * bounds.getHeight());
+        overlay->setBounds(bounds);
+        overlay->setImage(
+            ImageCache::getFromMemory(BinaryData::emoji_u1f4be_png, BinaryData::emoji_u1f4be_pngSize),
+            RectanglePlacement::centred);
+        overlay->setInterceptsMouseClicks(false, true);
+        addAndMakeVisible(overlay);
+    }
 
     build_emulator_info();
     build_emulator_menu(emulator_menu_);
@@ -1709,27 +1732,6 @@ void Main_Component::build_emulator_menu(PopupMenu &menu)
     menu.clear();
     for (size_t i = 0, n = count; i < n; ++i)
         menu.addItem(i + 1, emus[i].name, true, false, emus[i].icon);
-}
-
-void Main_Component::paintOverChildren(Graphics &g)
-{
-    Image img;
-    Component *cpt;
-    Rectangle<float> target;
-
-    img = ImageCache::getFromMemory(BinaryData::emoji_u1f4c2_png, BinaryData::emoji_u1f4c2_pngSize);
-    cpt = btn_bank_load.get();
-    target = cpt->getBounds().toFloat();
-    target = target.withSizeKeepingCentre(0.7f * target.getWidth(), 0.7f * target.getHeight());
-    g.drawImage(img, target, RectanglePlacement::centred);
-
-    img = ImageCache::getFromMemory(BinaryData::emoji_u1f4be_png, BinaryData::emoji_u1f4be_pngSize);
-    cpt = btn_bank_save.get();
-    target = cpt->getBounds().toFloat();
-    target = target.withSizeKeepingCentre(0.7f * target.getWidth(), 0.7f * target.getHeight());
-    g.drawImage(img, target, RectanglePlacement::centred);
-
-    Component::paintOverChildren(g);
 }
 //[/MiscUserCode]
 

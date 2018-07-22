@@ -93,8 +93,6 @@ public:
 
     void build_emulator_info();
     void build_emulator_menu(PopupMenu &menu);
-
-    void paintOverChildren(Graphics &g) override;
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -124,6 +122,9 @@ private:
 
     File bank_directory_;
     MidiKeyboardState midi_kb_state_;
+
+    std::unique_ptr<ImageComponent> overlay_bank_load_;
+    std::unique_ptr<ImageComponent> overlay_bank_save_;
 
     PopupMenu emulator_menu_;
     unsigned emulator_value_ = 0;
