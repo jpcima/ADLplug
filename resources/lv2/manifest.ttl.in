@@ -15,7 +15,7 @@
     lv2:extensionData <http://kxstudio.sf.net/ns/lv2ext/programs#UIInterface> .
 
 <https://github.com/jpcima/ADLplug#ParentUI>
-    a ui:X11UI ;
+    a @LV2_UI_CLASS@ ;
     ui:binary <ADLplug_LV2@LV2_BINARY_SUFFIX@> ;
     lv2:requiredFeature <http://lv2plug.in/ns/ext/instance-access> ;
     lv2:optionalFeature ui:noUserResize ;
