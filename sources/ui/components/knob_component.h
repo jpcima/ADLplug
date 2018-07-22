@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "ui/knobman_skin.h"
-#include "../../JuceLibraryCode/JuceHeader.h"
+#include "ui/utility/knobman_skin.h"
+#include "../../../JuceLibraryCode/JuceHeader.h"
 
 class Knob : public Component,
              public AsyncUpdater,

@@ -3,7 +3,7 @@
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "ui/knob_component.h"
+#include "ui/components/knob_component.h"
 
 Knob::Knob()
 {

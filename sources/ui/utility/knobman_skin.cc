@@ -3,8 +3,8 @@
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "ui/knobman_skin.h"
-#include "ui/image_utils.h"
+#include "ui/utility/knobman_skin.h"
+#include "ui/utility/image.h"
 
 void Km_Skin::load(const Image &img, unsigned frame_count)
 {

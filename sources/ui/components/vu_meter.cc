@@ -3,7 +3,7 @@
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "ui/vu_meter.h"
+#include "ui/components/vu_meter.h"
 #include <math.h>
 
 Vu_Meter::Vu_Meter()

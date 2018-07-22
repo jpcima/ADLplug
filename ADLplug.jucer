@@ -60,21 +60,6 @@
               file="sources/ui/about_component.cc"/>
         <FILE id="mwuHEz" name="about_component.h" compile="0" resource="0"
               file="sources/ui/about_component.h"/>
-        <FILE id="zNTqHQ" name="graphics_utils.cc" compile="1" resource="0"
-              file="sources/ui/graphics_utils.cc"/>
-        <FILE id="I3iZ1b" name="graphics_utils.h" compile="0" resource="0"
-              file="sources/ui/graphics_utils.h"/>
-        <FILE id="p3eY4I" name="image_utils.cc" compile="1" resource="0" file="sources/ui/image_utils.cc"/>
-        <FILE id="Gyog2d" name="image_utils.h" compile="0" resource="0" file="sources/ui/image_utils.h"/>
-        <FILE id="VrlRk8" name="indicator_NxM.cc" compile="1" resource="0"
-              file="sources/ui/indicator_NxM.cc"/>
-        <FILE id="wwPBb9" name="indicator_NxM.h" compile="0" resource="0" file="sources/ui/indicator_NxM.h"/>
-        <FILE id="tDUMPu" name="knob_component.cc" compile="1" resource="0"
-              file="sources/ui/knob_component.cc"/>
-        <FILE id="EJfe9K" name="knob_component.h" compile="0" resource="0"
-              file="sources/ui/knob_component.h"/>
-        <FILE id="H0oYmi" name="knobman_skin.cc" compile="1" resource="0" file="sources/ui/knobman_skin.cc"/>
-        <FILE id="OuGpce" name="knobman_skin.h" compile="0" resource="0" file="sources/ui/knobman_skin.h"/>
         <FILE id="awUfqG" name="look_and_feel.cc" compile="1" resource="0"
               file="sources/ui/look_and_feel.cc"/>
         <FILE id="Wx6Ntz" name="look_and_feel.h" compile="0" resource="0" file="sources/ui/look_and_feel.h"/>
@@ -90,13 +75,32 @@
               file="sources/parameter_block.cc"/>
         <FILE id="cKzhXr" name="parameter_block.h" compile="0" resource="0"
               file="sources/parameter_block.h"/>
-        <FILE id="P5y4Io" name="styled_knobs.cc" compile="1" resource="0" file="sources/ui/styled_knobs.cc"/>
-        <FILE id="FDBT9O" name="styled_knobs.h" compile="0" resource="0" file="sources/ui/styled_knobs.h"/>
-        <FILE id="MFvW4n" name="vu_meter.cc" compile="1" resource="0" file="sources/ui/vu_meter.cc"/>
-        <FILE id="QIFiOc" name="vu_meter.h" compile="0" resource="0" file="sources/ui/vu_meter.h"/>
         <GROUP id="{D334F30B-8548-822D-8F67-78AE712EBDBA}" name="chips">
           <FILE id="zgUEIA" name="opl3_waves.cc" compile="1" resource="0" file="sources/ui/chips/opl3_waves.cc"/>
           <FILE id="jcoZ2e" name="opl3_waves.h" compile="0" resource="0" file="sources/ui/chips/opl3_waves.h"/>
+        </GROUP>
+        <GROUP id="{62E26F51-4EDE-0DA8-04EA-9272FA6135B2}" name="components">
+          <FILE id="inz2MA" name="indicator_NxM.cc" compile="1" resource="0"
+                file="sources/ui/components/indicator_NxM.cc"/>
+          <FILE id="kCzAlO" name="indicator_NxM.h" compile="0" resource="0" file="sources/ui/components/indicator_NxM.h"/>
+          <FILE id="aMDr4C" name="knob_component.cc" compile="1" resource="0"
+                file="sources/ui/components/knob_component.cc"/>
+          <FILE id="g6wIOG" name="knob_component.h" compile="0" resource="0"
+                file="sources/ui/components/knob_component.h"/>
+          <FILE id="QI9DIC" name="styled_knobs.cc" compile="1" resource="0" file="sources/ui/components/styled_knobs.cc"/>
+          <FILE id="GEALi2" name="styled_knobs.h" compile="0" resource="0" file="sources/ui/components/styled_knobs.h"/>
+          <FILE id="ijzr9K" name="vu_meter.cc" compile="1" resource="0" file="sources/ui/components/vu_meter.cc"/>
+          <FILE id="Ya6qbN" name="vu_meter.h" compile="0" resource="0" file="sources/ui/components/vu_meter.h"/>
+          <FILE id="MFeml7" name="wave_label.cc" compile="1" resource="0" file="sources/ui/components/wave_label.cc"/>
+          <FILE id="eAPfdj" name="wave_label.h" compile="0" resource="0" file="sources/ui/components/wave_label.h"/>
+        </GROUP>
+        <GROUP id="{0AF18A03-BCBF-4450-A288-C71A6D70A41A}" name="utility">
+          <FILE id="o5g7hJ" name="graphics.cc" compile="1" resource="0" file="sources/ui/utility/graphics.cc"/>
+          <FILE id="MbV82P" name="graphics.h" compile="0" resource="0" file="sources/ui/utility/graphics.h"/>
+          <FILE id="WN4iCm" name="image.cc" compile="1" resource="0" file="sources/ui/utility/image.cc"/>
+          <FILE id="FAO15t" name="image.h" compile="0" resource="0" file="sources/ui/utility/image.h"/>
+          <FILE id="xuv18K" name="knobman_skin.cc" compile="1" resource="0" file="sources/ui/utility/knobman_skin.cc"/>
+          <FILE id="wNpCJQ" name="knobman_skin.h" compile="0" resource="0" file="sources/ui/utility/knobman_skin.h"/>
         </GROUP>
       </GROUP>
       <GROUP id="{17C850C0-7CFF-17BC-4511-EED271A552A6}" name="utility">

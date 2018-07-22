@@ -15,7 +15,7 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#include "ui/chips/opl3_waves.h"
+#include "opl3_waves.h"
 #include <cstdint>
 
 static const uint16_t logsinrom[256] =

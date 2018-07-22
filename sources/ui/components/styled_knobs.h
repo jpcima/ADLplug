@@ -4,8 +4,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #pragma once
-#include "ui/knob_component.h"
-#include "ui/knobman_skin.h"
+#include "ui/components/knob_component.h"
+#include "ui/utility/knobman_skin.h"
 
 #define EACH_STYLED_KNOB(F, ...)                \
     F(Default, ##__VA_ARGS__)                   \

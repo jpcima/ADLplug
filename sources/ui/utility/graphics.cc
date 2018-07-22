@@ -3,7 +3,7 @@
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "ui/graphics_utils.h"
+#include "ui/utility/graphics.h"
 
 namespace Graphics_Utils {
 

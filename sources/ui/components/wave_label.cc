@@ -3,7 +3,7 @@
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "ui/wave_label.h"
+#include "ui/components/wave_label.h"
 #include "ui/chips/opl3_waves.h"
 
 Wave_Label::Wave_Label()

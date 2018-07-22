@@ -18,7 +18,7 @@
 */
 
 //[Headers] You can add your own extra header files here...
-#include "ui/wave_label.h"
+#include "ui/components/wave_label.h"
 #include "adl/instrument.h"
 #include "parameter_block.h"
 #include <cmath>

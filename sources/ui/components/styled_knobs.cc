@@ -3,7 +3,7 @@
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "ui/styled_knobs.h"
+#include "ui/components/styled_knobs.h"
 
 Km_Skin_Ptr Styled_Knob_Default::skin_;
 

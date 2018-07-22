@@ -106,18 +106,19 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/dbopl_78b2e6ad.o \
   $(JUCE_OBJDIR)/insnames_5055460c.o \
   $(JUCE_OBJDIR)/about_component_574ed838.o \
-  $(JUCE_OBJDIR)/graphics_utils_35f53d7c.o \
-  $(JUCE_OBJDIR)/image_utils_a38eb576.o \
-  $(JUCE_OBJDIR)/indicator_NxM_d416d5d0.o \
-  $(JUCE_OBJDIR)/knob_component_5796d5a5.o \
-  $(JUCE_OBJDIR)/knobman_skin_53c856a1.o \
   $(JUCE_OBJDIR)/look_and_feel_f9ca8b5.o \
   $(JUCE_OBJDIR)/main_component_ffc34342.o \
   $(JUCE_OBJDIR)/operator_editor_6b1eb07b.o \
   $(JUCE_OBJDIR)/parameter_block_834a48fd.o \
-  $(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o \
-  $(JUCE_OBJDIR)/vu_meter_b39aee30.o \
   $(JUCE_OBJDIR)/opl3_waves_d1747c0e.o \
+  $(JUCE_OBJDIR)/indicator_NxM_7038265f.o \
+  $(JUCE_OBJDIR)/knob_component_3f9f96f6.o \
+  $(JUCE_OBJDIR)/styled_knobs_39562cf9.o \
+  $(JUCE_OBJDIR)/vu_meter_fc5f4041.o \
+  $(JUCE_OBJDIR)/wave_label_cff2c6fc.o \
+  $(JUCE_OBJDIR)/graphics_96335f4b.o \
+  $(JUCE_OBJDIR)/image_39a6e2b.o \
+  $(JUCE_OBJDIR)/knobman_skin_dab7d0fe.o \
   $(JUCE_OBJDIR)/midi_dde9aea4.o \
   $(JUCE_OBJDIR)/rt_checker_e98c166d.o \
   $(JUCE_OBJDIR)/simple_fifo_14f04efe.o \
@@ -249,31 +250,6 @@ $(JUCE_OBJDIR)/about_component_574ed838.o: ../../../sources/ui/about_component.c
 	@echo "Compiling about_component.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/graphics_utils_35f53d7c.o: ../../../sources/ui/graphics_utils.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling graphics_utils.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/image_utils_a38eb576.o: ../../../sources/ui/image_utils.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling image_utils.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/indicator_NxM_d416d5d0.o: ../../../sources/ui/indicator_NxM.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling indicator_NxM.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/knob_component_5796d5a5.o: ../../../sources/ui/knob_component.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling knob_component.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/knobman_skin_53c856a1.o: ../../../sources/ui/knobman_skin.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling knobman_skin.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/look_and_feel_f9ca8b5.o: ../../../sources/ui/look_and_feel.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling look_and_feel.cc"
@@ -294,19 +270,49 @@ $(JUCE_OBJDIR)/parameter_block_834a48fd.o: ../../../sources/parameter_block.cc
 	@echo "Compiling parameter_block.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/styled_knobs_6e1b4b68.o: ../../../sources/ui/styled_knobs.cc
+$(JUCE_OBJDIR)/opl3_waves_d1747c0e.o: ../../../sources/ui/chips/opl3_waves.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling opl3_waves.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/indicator_NxM_7038265f.o: ../../../sources/ui/components/indicator_NxM.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling indicator_NxM.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/knob_component_3f9f96f6.o: ../../../sources/ui/components/knob_component.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling knob_component.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/styled_knobs_39562cf9.o: ../../../sources/ui/components/styled_knobs.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling styled_knobs.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/vu_meter_b39aee30.o: ../../../sources/ui/vu_meter.cc
+$(JUCE_OBJDIR)/vu_meter_fc5f4041.o: ../../../sources/ui/components/vu_meter.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling vu_meter.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/opl3_waves_d1747c0e.o: ../../../sources/ui/chips/opl3_waves.cc
+$(JUCE_OBJDIR)/wave_label_cff2c6fc.o: ../../../sources/ui/components/wave_label.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling opl3_waves.cc"
+	@echo "Compiling wave_label.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/graphics_96335f4b.o: ../../../sources/ui/utility/graphics.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling graphics.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/image_39a6e2b.o: ../../../sources/ui/utility/image.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling image.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/knobman_skin_dab7d0fe.o: ../../../sources/ui/utility/knobman_skin.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling knobman_skin.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/midi_dde9aea4.o: ../../../sources/utility/midi.cc

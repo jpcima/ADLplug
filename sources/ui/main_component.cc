@@ -19,9 +19,9 @@
 
 //[Headers] You can add your own extra header files here...
 #include "ui/operator_editor.h"
-#include "ui/vu_meter.h"
-#include "ui/indicator_NxM.h"
 #include "ui/about_component.h"
+#include "ui/components/vu_meter.h"
+#include "ui/components/indicator_NxM.h"
 #include "adl/instrument.h"
 #include "midi/insnames.h"
 #include "plugin_processor.h"

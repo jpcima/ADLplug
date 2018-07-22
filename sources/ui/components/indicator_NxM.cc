@@ -3,7 +3,7 @@
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "ui/indicator_NxM.h"
+#include "ui/components/indicator_NxM.h"
 
 Indicator_NxM::Indicator_NxM(unsigned rows, unsigned cols)
     : rows_(rows), bits_(rows * cols)

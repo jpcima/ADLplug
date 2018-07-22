@@ -23,6 +23,12 @@
     <Filter Include="ADLplug\sources\ui\chips">
       <UniqueIdentifier>{F9089CF6-5854-F0B2-936B-D79A7E3B2E18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\sources\ui\components">
+      <UniqueIdentifier>{6A6BF5EB-8327-2396-6362-EBDD4012CCD9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\sources\ui\utility">
+      <UniqueIdentifier>{329DAAB7-87B3-5ACB-E7F6-4425093BC46C}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\sources\ui">
       <UniqueIdentifier>{6006179A-8107-802D-704D-F74685683401}</UniqueIdentifier>
     </Filter>
@@ -511,21 +517,6 @@
     <ClCompile Include="..\..\..\sources\ui\about_component.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\graphics_utils.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\image_utils.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\indicator_NxM.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\knob_component.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\knobman_skin.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\look_and_feel.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
@@ -538,14 +529,32 @@
     <ClCompile Include="..\..\..\sources\parameter_block.cc">
       <Filter>ADLplug\sources\ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\styled_knobs.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sources\ui\vu_meter.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\chips\opl3_waves.cc">
       <Filter>ADLplug\sources\ui\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\components\indicator_NxM.cc">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\components\knob_component.cc">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\components\styled_knobs.cc">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\components\vu_meter.cc">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\components\wave_label.cc">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\utility\graphics.cc">
+      <Filter>ADLplug\sources\ui\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\utility\image.cc">
+      <Filter>ADLplug\sources\ui\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\utility\knobman_skin.cc">
+      <Filter>ADLplug\sources\ui\utility</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\utility\midi.cc">
       <Filter>ADLplug\sources\utility</Filter>
@@ -2538,21 +2547,6 @@
     <ClInclude Include="..\..\..\sources\ui\about_component.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\graphics_utils.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\image_utils.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\indicator_NxM.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\knob_component.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\knobman_skin.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\look_and_feel.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
@@ -2565,14 +2559,32 @@
     <ClInclude Include="..\..\..\sources\parameter_block.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\styled_knobs.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\sources\ui\vu_meter.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h">
       <Filter>ADLplug\sources\ui\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\components\indicator_NxM.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\components\knob_component.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\components\styled_knobs.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\components\vu_meter.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\components\wave_label.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\utility\graphics.h">
+      <Filter>ADLplug\sources\ui\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\utility\image.h">
+      <Filter>ADLplug\sources\ui\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\utility\knobman_skin.h">
+      <Filter>ADLplug\sources\ui\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\utility\counting_bitset.h">
       <Filter>ADLplug\sources\utility</Filter>
