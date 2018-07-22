@@ -125,14 +125,7 @@ endif()
 macro(add_plugin NAME)
   add_library("${NAME}" MODULE "sources/nothing.cc" ${ARGN})
   set_property(TARGET "${NAME}" PROPERTY PREFIX "")
-  if(CMAKE_SYSTEM_NAME STREQUAL "Windows" AND CMAKE_COMPILER_IS_GNUCXX)
-    # forces the static link of standard libraries
-    set_property(TARGET "${NAME}" APPEND_STRING
-      PROPERTY LINK_FLAGS " -static-libgcc -static-libstdc++")
-    # forces the static link of winpthread
-    set_property(TARGET "${NAME}" APPEND_STRING
-      PROPERTY LINK_FLAGS " -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,-Bdynamic,--no-whole-archive")
-  endif()
+  static_link_mingw_crt("${NAME}")
   if(ADLplug_RT_CHECKER)
     set_property(TARGET "${NAME}" APPEND_STRING
       PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
@@ -142,14 +135,7 @@ endmacro()
 macro(add_standalone NAME)
   add_executable("${NAME}" "sources/nothing.cc" ${ARGN})
   set_property(TARGET "${NAME}" PROPERTY PREFIX "")
-  if(CMAKE_SYSTEM_NAME STREQUAL "Windows" AND CMAKE_COMPILER_IS_GNUCXX)
-    # forces the static link of standard libraries
-    set_property(TARGET "${NAME}" APPEND_STRING
-      PROPERTY LINK_FLAGS " -static-libgcc -static-libstdc++")
-    # forces the static link of winpthread
-    set_property(TARGET "${NAME}" APPEND_STRING
-      PROPERTY LINK_FLAGS " -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,-Bdynamic,--no-whole-archive")
-  endif()
+  static_link_mingw_crt("${NAME}")
   if(ADLplug_RT_CHECKER)
     set_property(TARGET "${NAME}" APPEND_STRING
       PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")

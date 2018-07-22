@@ -13,3 +13,14 @@ macro(require_symbols TARGET)
     endforeach()
   endif()
 endmacro()
+
+macro(static_link_mingw_crt TARGET)
+  if(CMAKE_SYSTEM_NAME STREQUAL "Windows" AND MINGW)
+    # forces the static link of standard libraries
+    set_property(TARGET "${TARGET}" APPEND_STRING
+      PROPERTY LINK_FLAGS " -static-libgcc -static-libstdc++")
+    # forces the static link of winpthread
+    set_property(TARGET "${TARGET}" APPEND_STRING
+      PROPERTY LINK_FLAGS " -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,-Bdynamic,--no-whole-archive")
+  endif()
+endmacro()
