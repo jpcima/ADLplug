@@ -87,7 +87,6 @@ void Application_Jack::initialise(const String &args)
     AdlplugAudioProcessorEditor *editor = static_cast<AdlplugAudioProcessorEditor *>(processor->createEditor());
     window->setContentOwned(editor, true);
 
-    window->setSize(editor->getWidth(), editor->getHeight());
     window->setVisible(true);
 }
 
