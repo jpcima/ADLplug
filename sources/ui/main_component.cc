@@ -562,9 +562,23 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     ed_op3->set_op_label(TRANS("Modulator"));
     ed_op4->set_op_label(TRANS("Carrier"));
 
+    Image img_dosbox = ImageFileFormat::loadFrom(BinaryData::DOSBox_png, BinaryData::DOSBox_pngSize);
+    Image img_nuked = ImageFileFormat::loadFrom(BinaryData::Nuked_png, BinaryData::Nuked_pngSize);
+
     std::vector<std::string> emus = proc.enumerate_emulators();
-    for (size_t i = 0, n = emus.size(); i < n; ++i)
-        cb_emulator->addItem(emus[i], i + 1);
+    for (size_t i = 0, n = emus.size(); i < n; ++i) {
+        PopupMenu *menu = cb_emulator->getRootMenu();
+        String name = emus[i];
+        Image *img = nullptr;
+        if (name.toLowerCase().startsWith("dosbox"))
+            img = &img_dosbox;
+        else if (name.toLowerCase().startsWith("nuked"))
+            img = &img_nuked;
+        if (img)
+            menu->addItem(i + 1, name, true, false, *img);
+        else
+            menu->addItem(i + 1, name, true, false);
+    }
 
     lbl_channel->setText(String(1 + midichannel_), dontSendNotification);
 

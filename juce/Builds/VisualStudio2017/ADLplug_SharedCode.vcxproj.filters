@@ -38,6 +38,9 @@
     <Filter Include="ADLplug\sources">
       <UniqueIdentifier>{337050D3-2325-64ED-EBA1-66A581B1107F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\resources\ui\cores">
+      <UniqueIdentifier>{8539FEB8-6B7D-9E80-E807-D183A955989E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\resources\ui\fonts">
       <UniqueIdentifier>{F4448B0A-9788-6744-0E54-779993089B39}</UniqueIdentifier>
     </Filter>
@@ -4792,6 +4795,12 @@
     </None>
     <None Include="..\..\..\resources\ui\knob-skin.png">
       <Filter>ADLplug\resources\ui</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\cores\DOSBox.png">
+      <Filter>ADLplug\resources\ui\cores</Filter>
+    </None>
+    <None Include="..\..\..\resources\ui\cores\Nuked.png">
+      <Filter>ADLplug\resources\ui\cores</Filter>
     </None>
     <None Include="..\..\..\resources\ui\fonts\Mono-Bold.ttf.gz">
       <Filter>ADLplug\resources\ui\fonts</Filter>

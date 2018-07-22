@@ -2701,6 +2701,8 @@
     <None Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.tcc"/>
     <None Include="..\..\..\sources\utility\counting_bitset.tcc"/>
     <None Include="..\..\..\resources\ui\knob-skin.png"/>
+    <None Include="..\..\..\resources\ui\cores\DOSBox.png"/>
+    <None Include="..\..\..\resources\ui\cores\Nuked.png"/>
     <None Include="..\..\..\resources\ui\fonts\Mono-Bold.ttf.gz"/>
     <None Include="..\..\..\resources\ui\fonts\Mono-BoldItalic.ttf.gz"/>
     <None Include="..\..\..\resources\ui\fonts\Mono-Italic.ttf.gz"/>

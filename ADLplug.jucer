@@ -120,6 +120,10 @@
     <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
       <GROUP id="{02680B2E-61B1-FA1B-3D9A-89A688227935}" name="ui">
         <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="resources/ui/knob-skin.png"/>
+        <GROUP id="{3DD686E2-DFBA-641B-F10D-41AB90380470}" name="cores">
+          <FILE id="UC8LOS" name="DOSBox.png" compile="0" resource="1" file="resources/ui/cores/DOSBox.png"/>
+          <FILE id="vnP6a4" name="Nuked.png" compile="0" resource="1" file="resources/ui/cores/Nuked.png"/>
+        </GROUP>
         <GROUP id="{04E07FD4-726D-2E19-A08B-B84A64CCABB9}" name="fonts">
           <FILE id="U6RVIY" name="Mono-Bold.ttf.gz" compile="0" resource="1"
                 file="resources/ui/fonts/Mono-Bold.ttf.gz"/>
