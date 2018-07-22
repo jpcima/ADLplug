@@ -613,10 +613,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_tune12->setNumDecimalPlacesToDisplay(0);
     sl_tune34->setNumDecimalPlacesToDisplay(0);
     sl_finetune34->setNumDecimalPlacesToDisplay(2);
-    ed_op1->set_op_label(TRANS("Modulator"));
-    ed_op2->set_op_label(TRANS("Carrier"));
-    ed_op3->set_op_label(TRANS("Modulator"));
-    ed_op4->set_op_label(TRANS("Carrier"));
 
     {
         ImageComponent *overlay = new ImageComponent;
@@ -763,6 +759,21 @@ void Main_Component::paint (Graphics& g)
     g.fillAll (Colour (0xff323e44));
 
     {
+        int x = 0, y = 0, width = 800, height = 600;
+        Colour fillColour1 = Colour (0xff3f6a8b), fillColour2 = Colour (0xff274c70);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setGradientFill (ColourGradient (fillColour1,
+                                       150.0f - 0.0f + x,
+                                       50.0f - 0.0f + y,
+                                       fillColour2,
+                                       800.0f - 0.0f + x,
+                                       600.0f - 0.0f + y,
+                                       true));
+        g.fillRect (x, y, width, height);
+    }
+
+    {
         int x = 16, y = 300, width = 264, height = 30;
         String text (TRANS("Operator 3"));
         Colour fillColour = Colours::aliceblue;
@@ -844,7 +855,7 @@ void Main_Component::paint (Graphics& g)
 
     {
         int x = 586, y = 160, width = 188, height = 130;
-        Colour fillColour = Colour (0xff2e4c4d);
+        Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
@@ -865,7 +876,7 @@ void Main_Component::paint (Graphics& g)
 
     {
         int x = 586, y = 328, width = 188, height = 106;
-        Colour fillColour = Colour (0xff2e4c4d);
+        Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
@@ -874,7 +885,7 @@ void Main_Component::paint (Graphics& g)
 
     {
         int x = 316, y = 48, width = 136, height = 80;
-        Colour fillColour = Colour (0xff2e4c4d);
+        Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
@@ -883,7 +894,43 @@ void Main_Component::paint (Graphics& g)
 
     {
         int x = 586, y = 441, width = 188, height = 32;
-        Colour fillColour = Colour (0xff2e4c4d);
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
+    }
+
+    {
+        int x = 16, y = 160, width = 264, height = 128;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
+    }
+
+    {
+        int x = 300, y = 160, width = 264, height = 128;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
+    }
+
+    {
+        int x = 300, y = 328, width = 264, height = 128;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
+    }
+
+    {
+        int x = 16, y = 328, width = 264, height = 128;
+        Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
@@ -1834,8 +1881,10 @@ BEGIN_JUCER_METADATA
                  parentClasses="public Component, public MidiKeyboardStateListener, public Knob::Listener"
                  constructorParams="AdlplugAudioProcessor &amp;proc, Parameter_Block &amp;pb"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
-                 overlayOpacity="0.33" fixedSize="0" initialWidth="800" initialHeight="600">
+                 overlayOpacity="0.66" fixedSize="0" initialWidth="800" initialHeight="600">
   <BACKGROUND backgroundColour="ff323e44">
+    <RECT pos="0 0 800 600" fill=" radial: 150 50, 800 600, 0=ff3f6a8b, 1=ff274c70"
+          hasStroke="0"/>
     <TEXT pos="16 300 264 30" fill="solid: fff0f8ff" hasStroke="0" text="Operator 3"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
@@ -1855,13 +1904,17 @@ BEGIN_JUCER_METADATA
     <TEXT pos="586 132 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Algorithm"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="586 160 188 130" fill="solid: ff2e4c4d" hasStroke="0"/>
+    <RECT pos="586 160 188 130" fill="solid: 662e4c4d" hasStroke="0"/>
     <TEXT pos="586 300 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Tuning"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="586 328 188 106" fill="solid: ff2e4c4d" hasStroke="0"/>
-    <RECT pos="316 48 136 80" fill="solid: ff2e4c4d" hasStroke="0"/>
-    <RECT pos="586 441 188 32" fill="solid: ff2e4c4d" hasStroke="0"/>
+    <RECT pos="586 328 188 106" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="316 48 136 80" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="586 441 188 32" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="16 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="300 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="300 328 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="16 328 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="16 160 264 128" class="Operator_Editor"

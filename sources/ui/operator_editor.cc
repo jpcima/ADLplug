@@ -137,18 +137,6 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
 
     sl_ksl->setBounds (195, 104, 64, 20);
 
-    lb_optype.reset (new Label ("new label",
-                                TRANS("Modulator")));
-    addAndMakeVisible (lb_optype.get());
-    lb_optype->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Bold"));
-    lb_optype->setJustificationType (Justification::centred);
-    lb_optype->setEditable (false, false, false);
-    lb_optype->setColour (Label::textColourId, Colours::aliceblue);
-    lb_optype->setColour (TextEditor::textColourId, Colours::black);
-    lb_optype->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    lb_optype->setBounds (176, 136, 78, 24);
-
     lbl_level.reset (new Label ("new label",
                                 TRANS("Lv")));
     addAndMakeVisible (lbl_level.get());
@@ -335,7 +323,6 @@ Operator_Editor::~Operator_Editor()
     sl_level = nullptr;
     sl_fmul = nullptr;
     sl_ksl = nullptr;
-    lb_optype = nullptr;
     lbl_level = nullptr;
     lbl_wave = nullptr;
     label = nullptr;
@@ -359,26 +346,6 @@ void Operator_Editor::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
-
-    g.fillAll (Colour (0xff323e44));
-
-    {
-        int x = 0, y = 0, width = 264, height = 128;
-        Colour fillColour = Colour (0xff2e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
-        float x = 84.0f, y = 140.0f, width = 78.0f, height = 24.0f;
-        Colour fillColour = Colour (0xd3a52a2a);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRoundedRectangle (x, y, width, height, 3.0f);
-    }
 
     {
         int x = 25, y = 96, width = 108, height = 24;
@@ -579,7 +546,7 @@ void Operator_Editor::knob_value_changed(Knob *k)
 void Operator_Editor::paintOverChildren(Graphics &g)
 {
     if (!operator_enabled_)
-        g.fillAll(Colour(0x66aaaaaa));
+        g.fillAll(Colour(0x66777777));
 }
 //[/MiscUserCode]
 
@@ -597,9 +564,7 @@ BEGIN_JUCER_METADATA
                  parentClasses="public Component, public Knob::Listener" constructorParams="unsigned op_id, Parameter_Block &amp;pb"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
                  overlayOpacity="0.33" fixedSize="0" initialWidth="264" initialHeight="128">
-  <BACKGROUND backgroundColour="ff323e44">
-    <RECT pos="0 0 264 128" fill="solid: ff2e4c4d" hasStroke="0"/>
-    <ROUNDRECT pos="84 140 78 24" cornerSize="3.0" fill="solid: d3a52a2a" hasStroke="0"/>
+  <BACKGROUND backgroundColour="323e44">
     <RECT pos="25 96 108 24" fill="solid: 0" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: ff8e989b"/>
   </BACKGROUND>
@@ -647,12 +612,6 @@ BEGIN_JUCER_METADATA
           explicitFocusOrder="0" pos="195 104 64 20" min="0.0" max="3.0"
           int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox" textBoxEditable="1"
           textBoxWidth="80" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
-  <LABEL name="new label" id="d5cf6971a21036bf" memberName="lb_optype"
-         virtualName="" explicitFocusOrder="0" pos="176 136 78 24" textCol="fff0f8ff"
-         edTextCol="ff000000" edBkgCol="0" labelText="Modulator" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="15.0" kerning="0.0" bold="1" italic="0" justification="36"
-         typefaceStyle="Bold"/>
   <LABEL name="new label" id="ce54b68fc1a1f1e1" memberName="lbl_level"
          virtualName="" explicitFocusOrder="0" pos="163 72 28 16" edTextCol="ff000000"
          edBkgCol="0" labelText="Lv" editableSingleClick="0" editableDoubleClick="0"

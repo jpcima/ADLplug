@@ -49,8 +49,6 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
-    void set_op_label(const String &type)
-        { lb_optype->setText(type, juce::dontSendNotification); }
     void set_operator_parameters(const Instrument &ins, unsigned op, NotificationType ntf);
 
     void set_operator_enabled(bool b);
@@ -88,7 +86,6 @@ private:
     std::unique_ptr<Slider> sl_level;
     std::unique_ptr<Slider> sl_fmul;
     std::unique_ptr<Slider> sl_ksl;
-    std::unique_ptr<Label> lb_optype;
     std::unique_ptr<Label> lbl_level;
     std::unique_ptr<Wave_Label> lbl_wave;
     std::unique_ptr<Label> label;
