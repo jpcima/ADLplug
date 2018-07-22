@@ -76,7 +76,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     btn_next_wave->setConnectedEdges (Button::ConnectedOnLeft);
     btn_next_wave->addListener (this);
 
-    btn_next_wave->setBounds (184, 64, 23, 24);
+    btn_next_wave->setBounds (183, 64, 23, 24);
 
     btn_trem.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_trem.get());
@@ -94,7 +94,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     btn_vib->addListener (this);
     btn_vib->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_vib->setBounds (80, 96, 48, 24);
+    btn_vib->setBounds (79, 96, 48, 24);
 
     btn_sus.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_sus.get());
@@ -103,7 +103,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     btn_sus->addListener (this);
     btn_sus->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_sus->setBounds (128, 96, 48, 24);
+    btn_sus->setBounds (126, 96, 48, 24);
 
     btn_env.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_env.get());
@@ -112,7 +112,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     btn_env->addListener (this);
     btn_env->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_env->setBounds (176, 96, 48, 24);
+    btn_env->setBounds (173, 96, 48, 24);
 
     sl_level.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_level.get());
@@ -560,19 +560,19 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="161 64 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="btn_next_wave"
-              virtualName="" explicitFocusOrder="0" pos="184 64 23 24" buttonText="&gt;"
+              virtualName="" explicitFocusOrder="0" pos="183 64 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="f60e70ed4f10ef32" memberName="btn_trem"
               virtualName="" explicitFocusOrder="0" pos="32 96 48 24" bgColOn="ff42a2c8"
               buttonText="TREM" connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="501ccf7ad0bc53a7" memberName="btn_vib"
-              virtualName="" explicitFocusOrder="0" pos="80 96 48 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="79 96 48 24" bgColOn="ff42a2c8"
               buttonText="VIB" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="3e46dd6b966c40b2" memberName="btn_sus"
-              virtualName="" explicitFocusOrder="0" pos="128 96 48 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="126 96 48 24" bgColOn="ff42a2c8"
               buttonText="SUS" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="eb8e9dfd42dd8f57" memberName="btn_env"
-              virtualName="" explicitFocusOrder="0" pos="176 96 48 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="173 96 48 24" bgColOn="ff42a2c8"
               buttonText="ENV" connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <SLIDER name="new slider" id="b7065e7cd8f3e951" memberName="sl_level"
           virtualName="" explicitFocusOrder="0" pos="264 32 24 70" min="0.0"

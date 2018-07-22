@@ -86,7 +86,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_pseudo4op->addListener (this);
     btn_pseudo4op->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_pseudo4op->setBounds (232, 134, 56, 24);
+    btn_pseudo4op->setBounds (231, 134, 56, 24);
 
     btn_2op.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_2op.get());
@@ -95,7 +95,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_2op->addListener (this);
     btn_2op->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_2op->setBounds (288, 134, 56, 24);
+    btn_2op->setBounds (286, 134, 56, 24);
 
     btn_fm12.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_fm12.get());
@@ -113,7 +113,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_am12->addListener (this);
     btn_am12->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_am12->setBounds (376, 224, 36, 24);
+    btn_am12->setBounds (376, 223, 36, 24);
 
     ed_op1.reset (new Operator_Editor (WOPL_OP_MODULATOR1, pb));
     addAndMakeVisible (ed_op1.get());
@@ -143,7 +143,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_am34->addListener (this);
     btn_am34->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_am34->setBounds (376, 392, 36, 24);
+    btn_am34->setBounds (376, 391, 36, 24);
 
     ed_op3.reset (new Operator_Editor (WOPL_OP_MODULATOR2, pb));
     addAndMakeVisible (ed_op3.get());
@@ -237,7 +237,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_more_chips->setConnectedEdges (Button::ConnectedOnLeft);
     btn_more_chips->addListener (this);
 
-    btn_more_chips->setBounds (591, 40, 23, 24);
+    btn_more_chips->setBounds (590, 40, 23, 24);
 
     cb_emulator.reset (new ComboBox ("new combo box"));
     addAndMakeVisible (cb_emulator.get());
@@ -375,7 +375,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_next_channel->setConnectedEdges (Button::ConnectedOnLeft);
     btn_next_channel->addListener (this);
 
-    btn_next_channel->setBounds (747, 104, 23, 24);
+    btn_next_channel->setBounds (746, 104, 23, 24);
 
     btn_bank_load.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_bank_load.get());
@@ -391,7 +391,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_bank_save->setConnectedEdges (Button::ConnectedOnLeft);
     btn_bank_save->addListener (this);
 
-    btn_bank_save->setBounds (255, 74, 23, 24);
+    btn_bank_save->setBounds (254, 74, 23, 24);
 
     label5.reset (new Label ("new label",
                              TRANS("4 ops")));
@@ -432,7 +432,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_inc_4ops->setConnectedEdges (Button::ConnectedOnLeft);
     btn_inc_4ops->addListener (this);
 
-    btn_inc_4ops->setBounds (591, 71, 23, 24);
+    btn_inc_4ops->setBounds (590, 71, 23, 24);
 
 
     //[UserPreSize]
@@ -1596,16 +1596,16 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="176 134 56 24" bgColOn="ff42a2c8"
               buttonText="4 op" connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="64d70bb49227f0d8" memberName="btn_pseudo4op"
-              virtualName="" explicitFocusOrder="0" pos="232 134 56 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="231 134 56 24" bgColOn="ff42a2c8"
               buttonText="2x2 op" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="402f6ebfee1d48e6" memberName="btn_2op"
-              virtualName="" explicitFocusOrder="0" pos="288 134 56 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="286 134 56 24" bgColOn="ff42a2c8"
               buttonText="2 op" connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="b2cb238ae0314374" memberName="btn_fm12"
               virtualName="" explicitFocusOrder="0" pos="376 200 36 24" bgColOn="ff42a2c8"
               buttonText="FM" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="f884f98bb82f318" memberName="btn_am12"
-              virtualName="" explicitFocusOrder="0" pos="376 224 36 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="376 223 36 24" bgColOn="ff42a2c8"
               buttonText="AM" connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="a00c5401e39a953e" memberName="ed_op1"
                     virtualName="" explicitFocusOrder="0" pos="421 160 352 128" class="Operator_Editor"
@@ -1617,7 +1617,7 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="376 368 36 24" bgColOn="ff42a2c8"
               buttonText="FM" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="c55383265bc18fb0" memberName="btn_am34"
-              virtualName="" explicitFocusOrder="0" pos="376 392 36 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="376 391 36 24" bgColOn="ff42a2c8"
               buttonText="AM" connectedEdges="4" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="ed_op3"
                     virtualName="" explicitFocusOrder="0" pos="421 328 352 128" class="Operator_Editor"
@@ -1662,7 +1662,7 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="568 40 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="btn_more_chips"
-              virtualName="" explicitFocusOrder="0" pos="591 40 23 24" buttonText="&gt;"
+              virtualName="" explicitFocusOrder="0" pos="590 40 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <COMBOBOX name="new combo box" id="8f8a11ca0d94343f" memberName="cb_emulator"
             virtualName="" explicitFocusOrder="0" pos="272 40 198 24" editable="0"
@@ -1718,13 +1718,13 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="724 104 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="f058380e7bbf63b0" memberName="btn_next_channel"
-              virtualName="" explicitFocusOrder="0" pos="747 104 23 24" buttonText="&gt;"
+              virtualName="" explicitFocusOrder="0" pos="746 104 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="c78c3c0db0e0be9a" memberName="btn_bank_load"
               virtualName="" explicitFocusOrder="0" pos="232 74 23 24" buttonText=""
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="fd2ff0a2438003e5" memberName="btn_bank_save"
-              virtualName="" explicitFocusOrder="0" pos="255 74 23 24" buttonText=""
+              virtualName="" explicitFocusOrder="0" pos="254 74 23 24" buttonText=""
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <LABEL name="new label" id="42119f01315e1d9a" memberName="label5" virtualName=""
          explicitFocusOrder="0" pos="480 72 48 24" textCol="fff0f8ff"
@@ -1741,7 +1741,7 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="568 71 23 24" buttonText="&lt;"
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="488d64ef5fd008f7" memberName="btn_inc_4ops"
-              virtualName="" explicitFocusOrder="0" pos="591 71 23 24" buttonText="&gt;"
+              virtualName="" explicitFocusOrder="0" pos="590 71 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
