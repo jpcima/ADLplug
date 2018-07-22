@@ -14,6 +14,8 @@ public:
 
     void drawButtonBackground(Graphics &g, Button &button, const Colour &background_colour, bool is_mouse_over_button, bool is_button_down) override;
 
+    Font getComboBoxFont(ComboBox &box) override;
+
 private:
     static Typeface::Ptr getOrCreateFont(
         Typeface::Ptr &font, const char *data, unsigned size);

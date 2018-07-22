@@ -118,3 +118,8 @@ void Custom_Look_And_Feel::drawButtonBackground(Graphics &g, Button &button, con
         g.drawRoundedRectangle(bounds, corner_size, 1.0f);
     }
 }
+
+Font Custom_Look_And_Feel::getComboBoxFont(ComboBox &box)
+{
+    return { jmin (15.0f, box.getHeight() * 0.85f) };
+}
