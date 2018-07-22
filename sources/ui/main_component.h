@@ -89,6 +89,10 @@ public:
     void cpu_load_update();
     void midi_activity_update();
     void popup_about_dialog();
+    void update_emulator_icon();
+
+    void build_emulator_info();
+    void build_emulator_menu(PopupMenu &menu);
 
     void paintOverChildren(Graphics &g) override;
     //[/UserMethods]
@@ -120,6 +124,16 @@ private:
 
     File bank_directory_;
     MidiKeyboardState midi_kb_state_;
+
+    PopupMenu emulator_menu_;
+    unsigned emulator_value_ = 0;
+
+    struct Emulator_Info {
+        String name;
+        Image icon;
+    };
+    std::unique_ptr<Emulator_Info[]> emulator_info_;
+    unsigned emulator_count_ = 0;
 
     class Vu_Timer : public Timer {
     public:
@@ -171,7 +185,6 @@ private:
     std::unique_ptr<Label> lbl_num_chips;
     std::unique_ptr<TextButton> btn_less_chips;
     std::unique_ptr<TextButton> btn_more_chips;
-    std::unique_ptr<ComboBox> cb_emulator;
     std::unique_ptr<Label> label2;
     std::unique_ptr<Vu_Meter> vu_left;
     std::unique_ptr<Vu_Meter> vu_right;
@@ -199,6 +212,8 @@ private:
     std::unique_ptr<Label> label12;
     std::unique_ptr<Label> label11;
     std::unique_ptr<Label> label13;
+    std::unique_ptr<ImageButton> btn_emulator;
+    std::unique_ptr<Label> label14;
 
 
     //==============================================================================

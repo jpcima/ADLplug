@@ -235,16 +235,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     btn_more_chips->setBounds (590, 40, 23, 24);
 
-    cb_emulator.reset (new ComboBox ("new combo box"));
-    addAndMakeVisible (cb_emulator.get());
-    cb_emulator->setEditableText (false);
-    cb_emulator->setJustificationType (Justification::centredLeft);
-    cb_emulator->setTextWhenNothingSelected (String());
-    cb_emulator->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
-    cb_emulator->addListener (this);
-
-    cb_emulator->setBounds (272, 40, 198, 24);
-
     label2.reset (new Label ("new label",
                              TRANS("FM synthesizer with YMF262 chip emulation")));
     addAndMakeVisible (label2.get());
@@ -520,6 +510,28 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     label13->setBounds (590, 408, 104, 20);
 
+    btn_emulator.reset (new ImageButton ("new button"));
+    addAndMakeVisible (btn_emulator.get());
+    btn_emulator->addListener (this);
+
+    btn_emulator->setImages (false, true, true,
+                             Image(), 1.0f, Colour (0x00000000),
+                             Image(), 1.0f, Colour (0x00000000),
+                             Image(), 1.0f, Colour (0x00000000));
+    btn_emulator->setBounds (448, 40, 24, 24);
+
+    label14.reset (new Label ("new label",
+                              TRANS("Core")));
+    addAndMakeVisible (label14.get());
+    label14->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label14->setJustificationType (Justification::centredLeft);
+    label14->setEditable (false, false, false);
+    label14->setColour (Label::textColourId, Colours::aliceblue);
+    label14->setColour (TextEditor::textColourId, Colours::black);
+    label14->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label14->setBounds (400, 40, 40, 24);
+
 
     //[UserPreSize]
     kn_fb12->add_listener(this);
@@ -565,20 +577,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     Image img_dosbox = ImageFileFormat::loadFrom(BinaryData::DOSBox_png, BinaryData::DOSBox_pngSize);
     Image img_nuked = ImageFileFormat::loadFrom(BinaryData::Nuked_png, BinaryData::Nuked_pngSize);
 
-    std::vector<std::string> emus = proc.enumerate_emulators();
-    for (size_t i = 0, n = emus.size(); i < n; ++i) {
-        PopupMenu *menu = cb_emulator->getRootMenu();
-        String name = emus[i];
-        Image *img = nullptr;
-        if (name.toLowerCase().startsWith("dosbox"))
-            img = &img_dosbox;
-        else if (name.toLowerCase().startsWith("nuked"))
-            img = &img_nuked;
-        if (img)
-            menu->addItem(i + 1, name, true, false, *img);
-        else
-            menu->addItem(i + 1, name, true, false);
-    }
+    build_emulator_info();
+    build_emulator_menu(emulator_menu_);
 
     lbl_channel->setText(String(1 + midichannel_), dontSendNotification);
 
@@ -594,10 +594,11 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     {
         std::unique_lock<std::mutex> lock(proc.acquire_player_nonrt());
+        emulator_value_ = proc.chip_emulator_nonrt();
         lbl_num_chips->setText(String(proc.num_chips_nonrt()), dontSendNotification);
-        cb_emulator->setSelectedId(1 + proc.chip_emulator_nonrt());
         lbl_4ops->setText(String(proc.num_4ops_nonrt()), dontSendNotification);
     }
+    update_emulator_icon();
 
     {
         Simple_Fifo &queue = proc.message_queue_for_ui();
@@ -634,7 +635,6 @@ Main_Component::~Main_Component()
     lbl_num_chips = nullptr;
     btn_less_chips = nullptr;
     btn_more_chips = nullptr;
-    cb_emulator = nullptr;
     label2 = nullptr;
     vu_left = nullptr;
     vu_right = nullptr;
@@ -662,6 +662,8 @@ Main_Component::~Main_Component()
     label12 = nullptr;
     label11 = nullptr;
     label13 = nullptr;
+    btn_emulator = nullptr;
+    label14 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -1035,6 +1037,23 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         }
         //[/UserButtonCode_btn_inc_4ops]
     }
+    else if (buttonThatWasClicked == btn_emulator.get())
+    {
+        //[UserButtonCode_btn_emulator] -- add your button handler code here..
+        PopupMenu &menu = emulator_menu_;
+        int selection = menu.showMenu(PopupMenu::Options()
+                                      .withParentComponent(this)
+                                      .withItemThatMustBeVisible(emulator_value_ + 1));
+        if (selection != 0 && (unsigned)(selection - 1) != emulator_value_) {
+            AdlplugAudioProcessor &proc = *proc_;
+            std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+            proc.set_chip_emulator_nonrt(selection - 1);
+            emulator_value_ = selection - 1;
+            lock.unlock();
+            update_emulator_icon();
+        }
+        //[/UserButtonCode_btn_emulator]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
@@ -1075,15 +1094,7 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     //[UsercomboBoxChanged_Pre]
     //[/UsercomboBoxChanged_Pre]
 
-    if (comboBoxThatHasChanged == cb_emulator.get())
-    {
-        //[UserComboBoxCode_cb_emulator] -- add your combo box handling code here..
-        AdlplugAudioProcessor &proc = *proc_;
-        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-        proc.set_chip_emulator_nonrt(comboBoxThatHasChanged->getSelectedId() - 1);
-        //[/UserComboBoxCode_cb_emulator]
-    }
-    else if (comboBoxThatHasChanged == cb_program.get())
+    if (comboBoxThatHasChanged == cb_program.get())
     {
         //[UserComboBoxCode_cb_program] -- add your combo box handling code here..
         int selection = comboBoxThatHasChanged->getSelectedId();
@@ -1654,6 +1665,52 @@ void Main_Component::popup_about_dialog()
     dlgopts.runModal();
 }
 
+void Main_Component::update_emulator_icon()
+{
+    const Emulator_Info &info = emulator_info_[emulator_value_];
+    const Image &icon = info.icon;
+
+    btn_emulator->setImages(
+        false, true, true,
+        icon, 1, Colour(),
+        Image(), 1, Colour(),
+        Image(), 1, Colour());
+    btn_emulator->setTooltip(info.name);
+}
+
+void Main_Component::build_emulator_info()
+{
+    AdlplugAudioProcessor &proc = *proc_;
+    std::vector<std::string> emus = proc.enumerate_emulators();
+
+    unsigned count = emus.size();
+    Emulator_Info *infos = new Emulator_Info[count];
+    emulator_info_.reset(infos);
+    emulator_count_ = count;
+
+    Image icon_dosbox = ImageFileFormat::loadFrom(BinaryData::DOSBox_png, BinaryData::DOSBox_pngSize);
+    Image icon_nuked = ImageFileFormat::loadFrom(BinaryData::Nuked_png, BinaryData::Nuked_pngSize);
+
+    for (unsigned i = 0; i < count; ++i) {
+        String name = emus[i];
+        infos[i].name = name;
+        if (name.toLowerCase().startsWith("dosbox"))
+            infos[i].icon = icon_dosbox;
+        else if (name.toLowerCase().startsWith("nuked"))
+            infos[i].icon = icon_nuked;
+    }
+}
+
+void Main_Component::build_emulator_menu(PopupMenu &menu)
+{
+    const Emulator_Info *emus = emulator_info_.get();
+    unsigned count = emulator_count_;
+
+    menu.clear();
+    for (size_t i = 0, n = count; i < n; ++i)
+        menu.addItem(i + 1, emus[i].name, true, false, emus[i].icon);
+}
+
 void Main_Component::paintOverChildren(Graphics &g)
 {
     Image img;
@@ -1792,9 +1849,6 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="btn_more_chips"
               virtualName="" explicitFocusOrder="0" pos="590 40 23 24" buttonText="&gt;"
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
-  <COMBOBOX name="new combo box" id="8f8a11ca0d94343f" memberName="cb_emulator"
-            virtualName="" explicitFocusOrder="0" pos="272 40 198 24" editable="0"
-            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <LABEL name="new label" id="9fd95e8efc5b0fe1" memberName="label2" virtualName=""
          explicitFocusOrder="0" pos="280 8 280 24" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="FM synthesizer with YMF262 chip emulation"
@@ -1911,6 +1965,17 @@ BEGIN_JUCER_METADATA
          edBkgCol="0" labelText="Note offset 3-4" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <IMAGEBUTTON name="new button" id="1df5353a837ca5f4" memberName="btn_emulator"
+               virtualName="" explicitFocusOrder="0" pos="448 40 24 24" buttonText="new button"
+               connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
+               resourceNormal="" opacityNormal="1.0" colourNormal="0" resourceOver=""
+               opacityOver="1.0" colourOver="0" resourceDown="" opacityDown="1.0"
+               colourDown="0"/>
+  <LABEL name="new label" id="61dc1fae1b35b41b" memberName="label14" virtualName=""
+         explicitFocusOrder="0" pos="400 40 40 24" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Core" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
