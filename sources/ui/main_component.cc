@@ -1640,6 +1640,9 @@ void Main_Component::build_emulator_info()
 
     Image icon_dosbox = ImageFileFormat::loadFrom(BinaryData::DOSBox_png, BinaryData::DOSBox_pngSize);
     Image icon_nuked = ImageFileFormat::loadFrom(BinaryData::Nuked_png, BinaryData::Nuked_pngSize);
+    Image icon_nuked2 = ImageFileFormat::loadFrom(BinaryData::Nuked2_png, BinaryData::Nuked2_pngSize);
+
+    unsigned nth_nuked = 0;
 
     for (unsigned i = 0; i < count; ++i) {
         String name = emus[i];
@@ -1647,7 +1650,7 @@ void Main_Component::build_emulator_info()
         if (name.toLowerCase().startsWith("dosbox"))
             infos[i].icon = icon_dosbox;
         else if (name.toLowerCase().startsWith("nuked"))
-            infos[i].icon = icon_nuked;
+            infos[i].icon = (nth_nuked++ == 0) ? icon_nuked : icon_nuked2;
     }
 }
 

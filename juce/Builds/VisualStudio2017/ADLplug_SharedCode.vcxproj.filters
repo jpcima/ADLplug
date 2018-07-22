@@ -4802,6 +4802,9 @@
     <None Include="..\..\..\resources\ui\cores\Nuked.png">
       <Filter>ADLplug\resources\ui\cores</Filter>
     </None>
+    <None Include="..\..\..\resources\ui\cores\Nuked2.png">
+      <Filter>ADLplug\resources\ui\cores</Filter>
+    </None>
     <None Include="..\..\..\resources\ui\fonts\Mono-Bold.ttf.gz">
       <Filter>ADLplug\resources\ui\fonts</Filter>
     </None>

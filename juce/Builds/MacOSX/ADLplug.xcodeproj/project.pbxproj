@@ -117,6 +117,7 @@
 		18220FD686C9B5552BB12758 = {isa = PBXFileReference; lastKnownFileType = image.png; name = DOSBox.png; path = ../../../resources/ui/cores/DOSBox.png; sourceTree = "SOURCE_ROOT"; };
 		18A5F485B348B4020690CCEE = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_basics.mm"; path = "../../../JuceLibraryCode/include_juce_audio_basics.mm"; sourceTree = "SOURCE_ROOT"; };
 		19CE5B2C68A9C60CBB9BC57F = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-AUv3_AppExtension.plist"; path = "Info-AUv3_AppExtension.plist"; sourceTree = "SOURCE_ROOT"; };
+		1A09E4F7912C1CB4136527C5 = {isa = PBXFileReference; lastKnownFileType = image.png; name = Nuked2.png; path = ../../../resources/ui/cores/Nuked2.png; sourceTree = "SOURCE_ROOT"; };
 		1D1DC6688DEDC99E07AFB1FD = {isa = PBXFileReference; lastKnownFileType = file.gz; name = "Sans-Italic.ttf.gz"; path = "../../../resources/ui/fonts/Sans-Italic.ttf.gz"; sourceTree = "SOURCE_ROOT"; };
 		1D6FC546B54D62299732F538 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "nuked_opl3.h"; path = "../../../thirdparty/libADLMIDI/src/chips/nuked_opl3.h"; sourceTree = "SOURCE_ROOT"; };
 		1DAFA431C74132A7846A220B = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = instrument.h; path = ../../../sources/adl/instrument.h; sourceTree = "SOURCE_ROOT"; };
@@ -166,7 +167,6 @@
 		66AF8028933F44CC92A4D26D = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = nukedopl3.c; path = ../../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3.c; sourceTree = "SOURCE_ROOT"; };
 		69359F629354765711B62B71 = {isa = PBXFileReference; lastKnownFileType = file.r; name = "include_juce_audio_plugin_client_RTAS.r"; path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_RTAS.r"; sourceTree = "SOURCE_ROOT"; };
 		6A0CECF8DCB3F1D25C21DA14 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_formats"; path = "../../../thirdparty/JUCE/modules/juce_audio_formats"; sourceTree = "SOURCE_ROOT"; };
-		6C79336553291299BAC6376F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = fraction.hpp; path = ../../../thirdparty/libADLMIDI/src/fraction.hpp; sourceTree = "SOURCE_ROOT"; };
 		6CA2BE713668319543E11354 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "vu_meter.h"; path = "../../../sources/ui/components/vu_meter.h"; sourceTree = "SOURCE_ROOT"; };
 		74EAF8FFD08C2DFA2CBD93F2 = {isa = PBXFileReference; lastKnownFileType = file.gz; name = "Serif-BoldItalic.ttf.gz"; path = "../../../resources/ui/fonts/Serif-BoldItalic.ttf.gz"; sourceTree = "SOURCE_ROOT"; };
 		76618899E5BC2F7A8EF60BA5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = midi.cc; path = ../../../sources/utility/midi.cc; sourceTree = "SOURCE_ROOT"; };
@@ -179,6 +179,7 @@
 		5E328B93B15866216B0BFD92 = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libADLplug.a; sourceTree = "BUILT_PRODUCTS_DIR"; };
 		645306E0190BF2B246376B16 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscRecording.framework; path = System/Library/Frameworks/DiscRecording.framework; sourceTree = SDKROOT; };
 		64AA7EC2FFADFC46E27EF10B = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "adlmidi_private.hpp"; path = "../../../thirdparty/libADLMIDI/src/adlmidi_private.hpp"; sourceTree = "SOURCE_ROOT"; };
+		6C79336553291299BAC6376F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = fraction.hpp; path = ../../../thirdparty/libADLMIDI/src/fraction.hpp; sourceTree = "SOURCE_ROOT"; };
 		6CEF9F4091C10C66DC5C24D8 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = worker.cc; path = ../../../sources/worker.cc; sourceTree = "SOURCE_ROOT"; };
 		73B5ECCC67A9A6EAA842576E = {isa = PBXFileReference; lastKnownFileType = file.gz; name = "Mono-Italic.ttf.gz"; path = "../../../resources/ui/fonts/Mono-Italic.ttf.gz"; sourceTree = "SOURCE_ROOT"; };
 		764182FD5E739A636D11084E = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../../../JuceLibraryCode/BinaryData.cpp; sourceTree = "SOURCE_ROOT"; };
@@ -380,7 +381,8 @@
 					F69E46495AE1FC809F1D5993, ); name = sources; sourceTree = "<group>"; };
 		D0BE13660FD1701C5FB1FEB9 = {isa = PBXGroup; children = (
 					18220FD686C9B5552BB12758,
-					2933416A6A80E33D57BBC054, ); name = cores; sourceTree = "<group>"; };
+					2933416A6A80E33D57BBC054,
+					1A09E4F7912C1CB4136527C5, ); name = cores; sourceTree = "<group>"; };
 		C62D693BB6CBF14DFD5B2984 = {isa = PBXGroup; children = (
 					3A66D18500C53C3146F7510C,
 					36421408507B732430C463A9,
