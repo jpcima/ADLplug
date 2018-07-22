@@ -216,6 +216,8 @@ private:
     std::unique_ptr<Label> label17;
     std::unique_ptr<Label> label18;
     std::unique_ptr<Slider> sl_finetune34;
+    std::unique_ptr<Slider> sl_veloffset;
+    std::unique_ptr<Label> label19;
 
 
     //==============================================================================

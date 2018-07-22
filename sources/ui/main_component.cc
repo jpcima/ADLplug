@@ -77,7 +77,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_4op->addListener (this);
     btn_4op->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_4op->setBounds (598, 222, 56, 24);
+    btn_4op->setBounds (598, 174, 56, 24);
 
     btn_pseudo4op.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_pseudo4op.get());
@@ -86,7 +86,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_pseudo4op->addListener (this);
     btn_pseudo4op->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_pseudo4op->setBounds (653, 222, 56, 24);
+    btn_pseudo4op->setBounds (653, 174, 56, 24);
 
     btn_2op.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_2op.get());
@@ -95,7 +95,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_2op->addListener (this);
     btn_2op->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_2op->setBounds (708, 222, 56, 24);
+    btn_2op->setBounds (708, 174, 56, 24);
 
     btn_fm12.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_fm12.get());
@@ -103,7 +103,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_fm12->addListener (this);
     btn_fm12->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_fm12->setBounds (606, 256, 15, 15);
+    btn_fm12->setBounds (606, 208, 15, 15);
 
     btn_am12.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_am12.get());
@@ -111,7 +111,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_am12->addListener (this);
     btn_am12->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_am12->setBounds (606, 273, 15, 15);
+    btn_am12->setBounds (606, 225, 15, 15);
 
     ed_op1.reset (new Operator_Editor (WOPL_OP_MODULATOR1, pb));
     addAndMakeVisible (ed_op1.get());
@@ -131,7 +131,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_fm34->addListener (this);
     btn_fm34->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_fm34->setBounds (686, 256, 15, 15);
+    btn_fm34->setBounds (686, 208, 15, 15);
 
     btn_am34.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_am34.get());
@@ -139,7 +139,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_am34->addListener (this);
     btn_am34->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_am34->setBounds (686, 273, 15, 15);
+    btn_am34->setBounds (686, 225, 15, 15);
 
     ed_op3.reset (new Operator_Editor (WOPL_OP_MODULATOR2, pb));
     addAndMakeVisible (ed_op3.get());
@@ -155,7 +155,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_tune12->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_tune12->addListener (this);
 
-    sl_tune12->setBounds (696, 384, 76, 20);
+    sl_tune12->setBounds (696, 336, 76, 20);
 
     sl_tune34.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_tune34.get());
@@ -165,19 +165,19 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_tune34->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_tune34->addListener (this);
 
-    sl_tune34->setBounds (696, 408, 76, 20);
+    sl_tune34->setBounds (696, 360, 76, 20);
 
     kn_fb12.reset (new Styled_Knob_DefaultSmall());
     addAndMakeVisible (kn_fb12.get());
     kn_fb12->setName ("new component");
 
-    kn_fb12->setBounds (646, 293, 32, 32);
+    kn_fb12->setBounds (646, 245, 32, 32);
 
     kn_fb34.reset (new Styled_Knob_DefaultSmall());
     addAndMakeVisible (kn_fb34.get());
     kn_fb34->setName ("new component");
 
-    kn_fb34->setBounds (734, 293, 32, 32);
+    kn_fb34->setBounds (734, 245, 32, 32);
 
     midi_kb.reset (new MidiKeyboardComponent (midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard));
     addAndMakeVisible (midi_kb.get());
@@ -348,7 +348,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label6->setColour (TextEditor::textColourId, Colours::black);
     label6->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label6->setBounds (622, 256, 56, 15);
+    label6->setBounds (622, 208, 56, 15);
 
     label7.reset (new Label ("new label",
                              TRANS("FM 3-4")));
@@ -359,7 +359,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label7->setColour (TextEditor::textColourId, Colours::black);
     label7->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label7->setBounds (702, 256, 56, 15);
+    label7->setBounds (702, 208, 56, 15);
 
     label8.reset (new Label ("new label",
                              TRANS("AM 1-2")));
@@ -370,7 +370,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label8->setColour (TextEditor::textColourId, Colours::black);
     label8->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label8->setBounds (622, 273, 56, 15);
+    label8->setBounds (622, 225, 56, 15);
 
     label9.reset (new Label ("new label",
                              TRANS("AM 3-4")));
@@ -381,7 +381,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label9->setColour (TextEditor::textColourId, Colours::black);
     label9->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label9->setBounds (702, 273, 56, 15);
+    label9->setBounds (702, 225, 56, 15);
 
     label10.reset (new Label ("new label",
                               TRANS("Feedback\n"
@@ -393,7 +393,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label10->setColour (TextEditor::textColourId, Colours::black);
     label10->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label10->setBounds (582, 296, 72, 24);
+    label10->setBounds (582, 248, 72, 24);
 
     label12.reset (new Label ("new label",
                               TRANS("Feedback\n"
@@ -405,7 +405,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label12->setColour (TextEditor::textColourId, Colours::black);
     label12->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label12->setBounds (670, 296, 72, 24);
+    label12->setBounds (670, 248, 72, 24);
 
     label11.reset (new Label ("new label",
                               TRANS("Note offset 1-2")));
@@ -416,7 +416,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label11->setColour (TextEditor::textColourId, Colours::black);
     label11->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label11->setBounds (590, 384, 104, 20);
+    label11->setBounds (590, 336, 104, 20);
 
     label13.reset (new Label ("new label",
                               TRANS("Note offset 3-4")));
@@ -427,7 +427,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label13->setColour (TextEditor::textColourId, Colours::black);
     label13->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label13->setBounds (590, 408, 104, 20);
+    label13->setBounds (590, 360, 104, 20);
 
     btn_emulator.reset (new ImageButton ("new button"));
     addAndMakeVisible (btn_emulator.get());
@@ -507,7 +507,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label5->setColour (TextEditor::textColourId, Colours::black);
     label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label5->setBounds (590, 432, 104, 20);
+    label5->setBounds (590, 384, 104, 20);
 
     cb_percussion_key.reset (new ComboBox ("new combo box"));
     addAndMakeVisible (cb_percussion_key.get());
@@ -517,7 +517,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     cb_percussion_key->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     cb_percussion_key->addListener (this);
 
-    cb_percussion_key->setBounds (696, 432, 76, 20);
+    cb_percussion_key->setBounds (696, 384, 76, 20);
 
     label17.reset (new Label ("new label",
                               TRANS("Percussion key")));
@@ -528,7 +528,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label17->setColour (TextEditor::textColourId, Colours::black);
     label17->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label17->setBounds (590, 432, 104, 20);
+    label17->setBounds (590, 384, 104, 20);
 
     label18.reset (new Label ("new label",
                               TRANS("Fine tune 3-4")));
@@ -539,7 +539,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label18->setColour (TextEditor::textColourId, Colours::black);
     label18->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label18->setBounds (590, 456, 104, 20);
+    label18->setBounds (590, 408, 104, 20);
 
     sl_finetune34.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_finetune34.get());
@@ -549,7 +549,28 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_finetune34->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_finetune34->addListener (this);
 
-    sl_finetune34->setBounds (696, 456, 76, 20);
+    sl_finetune34->setBounds (696, 408, 76, 20);
+
+    sl_veloffset.reset (new Slider ("new slider"));
+    addAndMakeVisible (sl_veloffset.get());
+    sl_veloffset->setRange (-127, 127, 1);
+    sl_veloffset->setSliderStyle (Slider::IncDecButtons);
+    sl_veloffset->setTextBoxStyle (Slider::TextBoxLeft, false, 36, 20);
+    sl_veloffset->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
+    sl_veloffset->addListener (this);
+
+    sl_veloffset->setBounds (696, 447, 76, 20);
+
+    label19.reset (new Label ("new label",
+                              TRANS("Velocity offset")));
+    addAndMakeVisible (label19.get());
+    label19->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label19->setJustificationType (Justification::centredLeft);
+    label19->setEditable (false, false, false);
+    label19->setColour (TextEditor::textColourId, Colours::black);
+    label19->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label19->setBounds (590, 447, 104, 20);
 
 
     //[UserPreSize]
@@ -725,6 +746,8 @@ Main_Component::~Main_Component()
     label17 = nullptr;
     label18 = nullptr;
     sl_finetune34 = nullptr;
+    sl_veloffset = nullptr;
+    label19 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -808,7 +831,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 586, y = 180, width = 188, height = 30;
+        int x = 586, y = 132, width = 188, height = 30;
         String text (TRANS("Algorithm"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -820,7 +843,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 586, y = 208, width = 188, height = 130;
+        int x = 586, y = 160, width = 188, height = 130;
         Colour fillColour = Colour (0xff2e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -829,7 +852,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 586, y = 348, width = 188, height = 30;
+        int x = 586, y = 300, width = 188, height = 30;
         String text (TRANS("Tuning"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -841,7 +864,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 586, y = 376, width = 188, height = 106;
+        int x = 586, y = 328, width = 188, height = 106;
         Colour fillColour = Colour (0xff2e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -851,6 +874,15 @@ void Main_Component::paint (Graphics& g)
 
     {
         int x = 316, y = 48, width = 136, height = 80;
+        Colour fillColour = Colour (0xff2e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
+    }
+
+    {
+        int x = 586, y = 441, width = 188, height = 32;
         Colour fillColour = Colour (0xff2e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1122,6 +1154,15 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
         p.endChangeGesture();
         //[/UserSliderCode_sl_finetune34]
     }
+    else if (sliderThatWasMoved == sl_veloffset.get())
+    {
+        //[UserSliderCode_sl_veloffset] -- add your slider handling code here..
+        AudioParameterInt &p = *pb.p_veloffset;
+        p.beginChangeGesture();
+        p = sl->getValue();
+        p.endChangeGesture();
+        //[/UserSliderCode_sl_veloffset]
+    }
 
     //[UsersliderValueChanged_Post]
     //[/UsersliderValueChanged_Post]
@@ -1343,7 +1384,9 @@ void Main_Component::set_instrument_parameters(const Instrument &ins, Notificati
    }
    sl_finetune34->setValue(finetune34, ntf);
 
-   cb_percussion_key->setSelectedId(ins.percussion_key_number + 1, dontSendNotification);
+   cb_percussion_key->setSelectedId(ins.percussion_key_number + 1, ntf);
+
+   sl_veloffset->setValue(ins.midi_velocity_offset, ntf);
 
    for (unsigned op = 0; op < 4; ++op) {
        Operator_Editor *oped = op_editors[op];
@@ -1809,33 +1852,34 @@ BEGIN_JUCER_METADATA
           strokeColour="solid: ff8e989b"/>
     <RECT pos="680 24 92 12" fill="solid: 8e989b" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: ff8e989b"/>
-    <TEXT pos="586 180 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Algorithm"
+    <TEXT pos="586 132 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Algorithm"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="586 208 188 130" fill="solid: ff2e4c4d" hasStroke="0"/>
-    <TEXT pos="586 348 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Tuning"
+    <RECT pos="586 160 188 130" fill="solid: ff2e4c4d" hasStroke="0"/>
+    <TEXT pos="586 300 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Tuning"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="586 376 188 106" fill="solid: ff2e4c4d" hasStroke="0"/>
+    <RECT pos="586 328 188 106" fill="solid: ff2e4c4d" hasStroke="0"/>
     <RECT pos="316 48 136 80" fill="solid: ff2e4c4d" hasStroke="0"/>
+    <RECT pos="586 441 188 32" fill="solid: ff2e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="16 160 264 128" class="Operator_Editor"
                     params="WOPL_OP_CARRIER1, pb"/>
   <TEXTBUTTON name="new button" id="333aa0ccccbfed24" memberName="btn_4op"
-              virtualName="" explicitFocusOrder="0" pos="598 222 56 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="598 174 56 24" bgColOn="ff42a2c8"
               buttonText="4 op" connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="64d70bb49227f0d8" memberName="btn_pseudo4op"
-              virtualName="" explicitFocusOrder="0" pos="653 222 56 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="653 174 56 24" bgColOn="ff42a2c8"
               buttonText="2x2 op" connectedEdges="3" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="402f6ebfee1d48e6" memberName="btn_2op"
-              virtualName="" explicitFocusOrder="0" pos="708 222 56 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="708 174 56 24" bgColOn="ff42a2c8"
               buttonText="2 op" connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="b2cb238ae0314374" memberName="btn_fm12"
-              virtualName="" explicitFocusOrder="0" pos="606 256 15 15" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="606 208 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="f884f98bb82f318" memberName="btn_am12"
-              virtualName="" explicitFocusOrder="0" pos="606 273 15 15" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="606 225 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="a00c5401e39a953e" memberName="ed_op1"
                     virtualName="" explicitFocusOrder="0" pos="300 160 264 128" class="Operator_Editor"
@@ -1844,29 +1888,29 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="16 328 264 128" class="Operator_Editor"
                     params="WOPL_OP_CARRIER2, pb"/>
   <TEXTBUTTON name="new button" id="6c84b2cc5c27a17f" memberName="btn_fm34"
-              virtualName="" explicitFocusOrder="0" pos="686 256 15 15" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="686 208 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="c55383265bc18fb0" memberName="btn_am34"
-              virtualName="" explicitFocusOrder="0" pos="686 273 15 15" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="686 225 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="ed_op3"
                     virtualName="" explicitFocusOrder="0" pos="300 328 264 128" class="Operator_Editor"
                     params="WOPL_OP_MODULATOR2, pb"/>
   <SLIDER name="new slider" id="9cd7cc232d55ac8a" memberName="sl_tune12"
-          virtualName="" explicitFocusOrder="0" pos="696 384 76 20" textboxoutline="ff8e989b"
+          virtualName="" explicitFocusOrder="0" pos="696 336 76 20" textboxoutline="ff8e989b"
           min="-127.0" max="127.0" int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft"
           textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="new slider" id="314f46c5e90647" memberName="sl_tune34"
-          virtualName="" explicitFocusOrder="0" pos="696 408 76 20" textboxoutline="ff8e989b"
+          virtualName="" explicitFocusOrder="0" pos="696 360 76 20" textboxoutline="ff8e989b"
           min="-127.0" max="127.0" int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft"
           textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <GENERICCOMPONENT name="new component" id="8e0915367ccd00d3" memberName="kn_fb12"
-                    virtualName="" explicitFocusOrder="0" pos="646 293 32 32" class="Styled_Knob_DefaultSmall"
+                    virtualName="" explicitFocusOrder="0" pos="646 245 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="59510781248f1393" memberName="kn_fb34"
-                    virtualName="" explicitFocusOrder="0" pos="734 293 32 32" class="Styled_Knob_DefaultSmall"
+                    virtualName="" explicitFocusOrder="0" pos="734 245 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="midi_kb"
                     virtualName="" explicitFocusOrder="0" pos="16 480 757 56" class="MidiKeyboardComponent"
@@ -1937,42 +1981,42 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="254 74 23 24" buttonText=""
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <LABEL name="new label" id="46218839ef803ea8" memberName="label6" virtualName=""
-         explicitFocusOrder="0" pos="622 256 56 15" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="622 208 56 15" edTextCol="ff000000"
          edBkgCol="0" labelText="FM 1-2" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="7daa01d81d205529" memberName="label7" virtualName=""
-         explicitFocusOrder="0" pos="702 256 56 15" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="702 208 56 15" edTextCol="ff000000"
          edBkgCol="0" labelText="FM 3-4" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="1c8f55c1c8ab019" memberName="label8" virtualName=""
-         explicitFocusOrder="0" pos="622 273 56 15" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="622 225 56 15" edTextCol="ff000000"
          edBkgCol="0" labelText="AM 1-2" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="bcca96e3f9921089" memberName="label9" virtualName=""
-         explicitFocusOrder="0" pos="702 273 56 15" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="702 225 56 15" edTextCol="ff000000"
          edBkgCol="0" labelText="AM 3-4" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="6ff60ad947a8f168" memberName="label10" virtualName=""
-         explicitFocusOrder="0" pos="582 296 72 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="582 248 72 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Feedback&#10;1-2" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="30f33e05a10bcf08" memberName="label12" virtualName=""
-         explicitFocusOrder="0" pos="670 296 72 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="670 248 72 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Feedback&#10;3-4" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="94205e2c6bef35b1" memberName="label11" virtualName=""
-         explicitFocusOrder="0" pos="590 384 104 20" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="590 336 104 20" edTextCol="ff000000"
          edBkgCol="0" labelText="Note offset 1-2" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="885b9d0baab4b5bb" memberName="label13" virtualName=""
-         explicitFocusOrder="0" pos="590 408 104 20" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="590 360 104 20" edTextCol="ff000000"
          edBkgCol="0" labelText="Note offset 3-4" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
@@ -2008,28 +2052,38 @@ BEGIN_JUCER_METADATA
           textBoxPos="TextBoxLeft" textBoxEditable="1" textBoxWidth="36"
           textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="new label" id="1b1aa7f42f11af53" memberName="label5" virtualName=""
-         explicitFocusOrder="0" pos="590 432 104 20" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="590 384 104 20" edTextCol="ff000000"
          edBkgCol="0" labelText="Percussion key" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <COMBOBOX name="new combo box" id="72b8aa8d99fdb9cc" memberName="cb_percussion_key"
-            virtualName="" explicitFocusOrder="0" pos="696 432 76 20" editable="0"
+            virtualName="" explicitFocusOrder="0" pos="696 384 76 20" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <LABEL name="new label" id="5917d9d90d014675" memberName="label17" virtualName=""
-         explicitFocusOrder="0" pos="590 432 104 20" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="590 384 104 20" edTextCol="ff000000"
          edBkgCol="0" labelText="Percussion key" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="4acd0a642a0be89a" memberName="label18" virtualName=""
-         explicitFocusOrder="0" pos="590 456 104 20" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="590 408 104 20" edTextCol="ff000000"
          edBkgCol="0" labelText="Fine tune 3-4" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <SLIDER name="new slider" id="3cc0e1cfce5f68cd" memberName="sl_finetune34"
-          virtualName="" explicitFocusOrder="0" pos="696 456 76 20" textboxoutline="ff8e989b"
+          virtualName="" explicitFocusOrder="0" pos="696 408 76 20" textboxoutline="ff8e989b"
           min="-2.0" max="2.0" int="0.015625" style="IncDecButtons" textBoxPos="TextBoxLeft"
           textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
+  <SLIDER name="new slider" id="902cdb29676bc0b6" memberName="sl_veloffset"
+          virtualName="" explicitFocusOrder="0" pos="696 447 76 20" textboxoutline="ff8e989b"
+          min="-127.0" max="127.0" int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft"
+          textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
+  <LABEL name="new label" id="b2db0b3cb9c241dc" memberName="label19" virtualName=""
+         explicitFocusOrder="0" pos="590 447 104 20" edTextCol="ff000000"
+         edBkgCol="0" labelText="Velocity offset" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
