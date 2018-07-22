@@ -90,9 +90,17 @@ private:
     std::unique_ptr<Slider> sl_ksl;
     std::unique_ptr<Label> lb_optype;
     std::unique_ptr<Label> lbl_level;
+    std::unique_ptr<Wave_Label> lbl_wave;
+    std::unique_ptr<Label> label;
+    std::unique_ptr<Label> label2;
+    std::unique_ptr<Label> label3;
+    std::unique_ptr<Label> label4;
+    std::unique_ptr<Label> label5;
+    std::unique_ptr<Label> label6;
+    std::unique_ptr<Label> label7;
+    std::unique_ptr<Label> label8;
     std::unique_ptr<Label> lbl_fmul;
     std::unique_ptr<Label> lbl_ksl;
-    std::unique_ptr<Wave_Label> lbl_wave;
 
 
     //==============================================================================

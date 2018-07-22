@@ -191,6 +191,14 @@ private:
     std::unique_ptr<Label> lbl_4ops;
     std::unique_ptr<TextButton> btn_dec_4ops;
     std::unique_ptr<TextButton> btn_inc_4ops;
+    std::unique_ptr<Label> label6;
+    std::unique_ptr<Label> label7;
+    std::unique_ptr<Label> label8;
+    std::unique_ptr<Label> label9;
+    std::unique_ptr<Label> label10;
+    std::unique_ptr<Label> label12;
+    std::unique_ptr<Label> label11;
+    std::unique_ptr<Label> label13;
 
 
     //==============================================================================
