@@ -213,6 +213,9 @@ private:
     std::unique_ptr<Slider> sl_num_4ops;
     std::unique_ptr<Label> label5;
     std::unique_ptr<ComboBox> cb_percussion_key;
+    std::unique_ptr<Label> label17;
+    std::unique_ptr<Label> label18;
+    std::unique_ptr<Slider> sl_finetune34;
 
 
     //==============================================================================

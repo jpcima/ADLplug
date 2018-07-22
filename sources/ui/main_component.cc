@@ -519,6 +519,38 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     cb_percussion_key->setBounds (696, 432, 76, 20);
 
+    label17.reset (new Label ("new label",
+                              TRANS("Percussion key")));
+    addAndMakeVisible (label17.get());
+    label17->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label17->setJustificationType (Justification::centredLeft);
+    label17->setEditable (false, false, false);
+    label17->setColour (TextEditor::textColourId, Colours::black);
+    label17->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label17->setBounds (590, 432, 104, 20);
+
+    label18.reset (new Label ("new label",
+                              TRANS("Fine tune 3-4")));
+    addAndMakeVisible (label18.get());
+    label18->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label18->setJustificationType (Justification::centredLeft);
+    label18->setEditable (false, false, false);
+    label18->setColour (TextEditor::textColourId, Colours::black);
+    label18->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label18->setBounds (590, 456, 104, 20);
+
+    sl_finetune34.reset (new Slider ("new slider"));
+    addAndMakeVisible (sl_finetune34.get());
+    sl_finetune34->setRange (-2, 2, 0.015625);
+    sl_finetune34->setSliderStyle (Slider::IncDecButtons);
+    sl_finetune34->setTextBoxStyle (Slider::TextBoxLeft, false, 36, 20);
+    sl_finetune34->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
+    sl_finetune34->addListener (this);
+
+    sl_finetune34->setBounds (696, 456, 76, 20);
+
 
     //[UserPreSize]
     kn_fb12->add_listener(this);
@@ -559,6 +591,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     kn_fb34->set_range(0, 7);
     sl_tune12->setNumDecimalPlacesToDisplay(0);
     sl_tune34->setNumDecimalPlacesToDisplay(0);
+    sl_finetune34->setNumDecimalPlacesToDisplay(2);
     ed_op1->set_op_label(TRANS("Modulator"));
     ed_op2->set_op_label(TRANS("Carrier"));
     ed_op3->set_op_label(TRANS("Modulator"));
@@ -689,6 +722,9 @@ Main_Component::~Main_Component()
     sl_num_4ops = nullptr;
     label5 = nullptr;
     cb_percussion_key = nullptr;
+    label17 = nullptr;
+    label18 = nullptr;
+    sl_finetune34 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -805,7 +841,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 586, y = 376, width = 188, height = 84;
+        int x = 586, y = 376, width = 188, height = 106;
         Colour fillColour = Colour (0xff2e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1066,6 +1102,26 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
         lock.unlock();
         //[/UserSliderCode_sl_num_4ops]
     }
+    else if (sliderThatWasMoved == sl_finetune34.get())
+    {
+        //[UserSliderCode_sl_finetune34] -- add your slider handling code here..
+        AudioParameterInt &p = *pb.p_voice2ft;
+        p.beginChangeGesture();
+        double finetune34 = sl->getValue();
+        int value;
+        if(finetune34 > 0 && finetune34 <= 0.000025)
+            value = +1;
+        else if(finetune34 < 0 && finetune34 >= -0.000025)
+            value = -1;
+        else {
+            value = std::lround(finetune34 * (1000.0 / 15.625));
+            value = (value < -127) ? -127 : value;
+            value = (value > +127) ? +127 : value;
+        }
+        p = value;
+        p.endChangeGesture();
+        //[/UserSliderCode_sl_finetune34]
+    }
 
     //[UsersliderValueChanged_Post]
     //[/UsersliderValueChanged_Post]
@@ -1275,6 +1331,17 @@ void Main_Component::set_instrument_parameters(const Instrument &ins, Notificati
 
    sl_tune12->setValue(ins.note_offset1, ntf);
    sl_tune34->setValue(ins.note_offset2, ntf);
+
+   double finetune34;
+   switch (ins.second_voice_detune) {
+   case -1:
+       finetune34 = -0.000025; break;
+   case +1:
+       finetune34 = +0.000025; break;
+   default:
+       finetune34 = ins.second_voice_detune * (15.625 / 1000.0); break;
+   }
+   sl_finetune34->setValue(finetune34, ntf);
 
    cb_percussion_key->setSelectedId(ins.percussion_key_number + 1, dontSendNotification);
 
@@ -1749,7 +1816,7 @@ BEGIN_JUCER_METADATA
     <TEXT pos="586 348 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Tuning"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="586 376 188 84" fill="solid: ff2e4c4d" hasStroke="0"/>
+    <RECT pos="586 376 188 106" fill="solid: ff2e4c4d" hasStroke="0"/>
     <RECT pos="316 48 136 80" fill="solid: ff2e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
@@ -1948,6 +2015,21 @@ BEGIN_JUCER_METADATA
   <COMBOBOX name="new combo box" id="72b8aa8d99fdb9cc" memberName="cb_percussion_key"
             virtualName="" explicitFocusOrder="0" pos="696 432 76 20" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <LABEL name="new label" id="5917d9d90d014675" memberName="label17" virtualName=""
+         explicitFocusOrder="0" pos="590 432 104 20" edTextCol="ff000000"
+         edBkgCol="0" labelText="Percussion key" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <LABEL name="new label" id="4acd0a642a0be89a" memberName="label18" virtualName=""
+         explicitFocusOrder="0" pos="590 456 104 20" edTextCol="ff000000"
+         edBkgCol="0" labelText="Fine tune 3-4" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <SLIDER name="new slider" id="3cc0e1cfce5f68cd" memberName="sl_finetune34"
+          virtualName="" explicitFocusOrder="0" pos="696 456 76 20" textboxoutline="ff8e989b"
+          min="-2.0" max="2.0" int="0.015625" style="IncDecButtons" textBoxPos="TextBoxLeft"
+          textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
