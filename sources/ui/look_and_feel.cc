@@ -85,3 +85,36 @@ Typeface::Ptr Custom_Look_And_Feel::getOrCreateFont(
     }
     return font;
 }
+
+void Custom_Look_And_Feel::drawButtonBackground(Graphics &g, Button &button, const Colour &background_colour, bool is_mouse_over_button, bool is_button_down)
+{
+    float corner_size = 6.0f;
+    Rectangle<float> bounds = button.getLocalBounds().toFloat().reduced(0.5f, 0.5f);
+
+    auto base_colour = background_colour
+        .withMultipliedSaturation(button.hasKeyboardFocus(true) ? 1.3f : 0.9f)
+        .withMultipliedAlpha(button.isEnabled() ? 1.0f : 0.5f);
+    if (is_button_down || is_mouse_over_button)
+        base_colour = base_colour.contrasting(is_button_down ? 0.2f : 0.05f);
+
+    g.setColour(base_colour);
+    if (button.isConnectedOnLeft() || button.isConnectedOnRight() ||
+        button.isConnectedOnTop() || button.isConnectedOnBottom()) {
+        Path path;
+        path.addRoundedRectangle(bounds.getX(), bounds.getY(),
+                                 bounds.getWidth(), bounds.getHeight(),
+                                 corner_size, corner_size,
+                                 !button.isConnectedOnLeft() && !button.isConnectedOnTop(),
+                                 !button.isConnectedOnRight() && !button.isConnectedOnTop(),
+                                 !button.isConnectedOnLeft() && !button.isConnectedOnBottom(),
+                                 !button.isConnectedOnRight() && !button.isConnectedOnBottom());
+        g.fillPath(path);
+        g.setColour(button.findColour(ComboBox::outlineColourId));
+        g.strokePath(path, PathStrokeType(1.0f));
+    }
+    else {
+        g.fillRoundedRectangle(bounds, corner_size);
+        g.setColour(button.findColour(ComboBox::outlineColourId));
+        g.drawRoundedRectangle(bounds, corner_size, 1.0f);
+    }
+}
