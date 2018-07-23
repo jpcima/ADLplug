@@ -68,7 +68,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (ed_op2.get());
     ed_op2->setName ("new component");
 
-    ed_op2->setBounds (16, 160, 264, 128);
+    ed_op2->setBounds (300, 160, 264, 128);
 
     btn_4op.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_4op.get());
@@ -117,13 +117,13 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (ed_op1.get());
     ed_op1->setName ("new component");
 
-    ed_op1->setBounds (300, 160, 264, 128);
+    ed_op1->setBounds (16, 160, 264, 128);
 
     ed_op4.reset (new Operator_Editor (WOPL_OP_CARRIER2, pb));
     addAndMakeVisible (ed_op4.get());
     ed_op4->setName ("new component");
 
-    ed_op4->setBounds (16, 328, 264, 128);
+    ed_op4->setBounds (300, 328, 264, 128);
 
     btn_fm34.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_fm34.get());
@@ -145,7 +145,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (ed_op3.get());
     ed_op3->setName ("new component");
 
-    ed_op3->setBounds (300, 328, 264, 128);
+    ed_op3->setBounds (16, 328, 264, 128);
 
     sl_tune12.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_tune12.get());
@@ -1917,7 +1917,7 @@ BEGIN_JUCER_METADATA
     <RECT pos="16 328 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
-                    virtualName="" explicitFocusOrder="0" pos="16 160 264 128" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="300 160 264 128" class="Operator_Editor"
                     params="WOPL_OP_CARRIER1, pb"/>
   <TEXTBUTTON name="new button" id="333aa0ccccbfed24" memberName="btn_4op"
               virtualName="" explicitFocusOrder="0" pos="598 174 56 24" bgColOn="ff42a2c8"
@@ -1935,10 +1935,10 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="606 225 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="a00c5401e39a953e" memberName="ed_op1"
-                    virtualName="" explicitFocusOrder="0" pos="300 160 264 128" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="16 160 264 128" class="Operator_Editor"
                     params="WOPL_OP_MODULATOR1, pb"/>
   <GENERICCOMPONENT name="new component" id="b7424f0838e48a08" memberName="ed_op4"
-                    virtualName="" explicitFocusOrder="0" pos="16 328 264 128" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="300 328 264 128" class="Operator_Editor"
                     params="WOPL_OP_CARRIER2, pb"/>
   <TEXTBUTTON name="new button" id="6c84b2cc5c27a17f" memberName="btn_fm34"
               virtualName="" explicitFocusOrder="0" pos="686 208 15 15" bgColOn="ff42a2c8"
@@ -1947,7 +1947,7 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="686 225 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="4bf73df293534890" memberName="ed_op3"
-                    virtualName="" explicitFocusOrder="0" pos="300 328 264 128" class="Operator_Editor"
+                    virtualName="" explicitFocusOrder="0" pos="16 328 264 128" class="Operator_Editor"
                     params="WOPL_OP_MODULATOR2, pb"/>
   <SLIDER name="new slider" id="9cd7cc232d55ac8a" memberName="sl_tune12"
           virtualName="" explicitFocusOrder="0" pos="696 336 76 20" textboxoutline="ff8e989b"
