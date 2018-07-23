@@ -72,9 +72,11 @@ public:
 
     void reload_selected_instrument(NotificationType ntf);
     void send_selection_update();
+    void set_global_parameters(NotificationType ntf);
     void set_instrument_parameters(const Instrument &ins, NotificationType ntf);
 
     void receive_bank_slots(const Messages::Fx::NotifyBankSlots &msg);
+    void receive_global_parameters(const Messages::Fx::NotifyGlobalParameters &msg);
     void receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins);
     void update_instrument_choices();
     void set_program_selection(int selection, NotificationType ntf);
@@ -116,6 +118,7 @@ private:
         std::array<Instrument, 256> ins;
     };
     std::map<uint32_t, Editor_Bank> instrument_map_;
+    Instrument_Global_Parameters instrument_gparam_;
 
     unsigned midichannel_ = 0;
     uint32_t midiprogram_[16] = {};
@@ -216,6 +219,12 @@ private:
     std::unique_ptr<Slider> sl_veloffset;
     std::unique_ptr<Label> label19;
     std::unique_ptr<Slider> sl_midi_channel;
+    std::unique_ptr<TextButton> btn_deep_tremolo;
+    std::unique_ptr<Label> label20;
+    std::unique_ptr<TextButton> btn_deep_vibrato;
+    std::unique_ptr<Label> label21;
+    std::unique_ptr<Label> label22;
+    std::unique_ptr<ComboBox> cb_volmodel;
 
 
     //==============================================================================

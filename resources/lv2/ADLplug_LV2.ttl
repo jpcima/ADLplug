@@ -600,6 +600,33 @@
         lv2:default 0.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 65 ;
+        lv2:symbol "volmodel" ;
+        lv2:name "Volume model" ;
+        lv2:default 0.000000 ;
+        lv2:minimum 0.0 ;
+        lv2:maximum 1.0 ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 66 ;
+        lv2:symbol "deeptrem" ;
+        lv2:name "Deep tremolo" ;
+        lv2:default 0.000000 ;
+        lv2:minimum 0.0 ;
+        lv2:maximum 1.0 ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 67 ;
+        lv2:symbol "deepvib" ;
+        lv2:name "Deep vibrato" ;
+        lv2:default 0.000000 ;
+        lv2:minimum 0.0 ;
+        lv2:maximum 1.0 ;
     ] ;
 
     doap:name "ADLplug" ;

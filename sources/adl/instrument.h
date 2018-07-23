@@ -83,6 +83,13 @@ private:
     static void set_bits_inverted(T_field &x, T_value v) noexcept;
 };
 
+struct Instrument_Global_Parameters
+{
+    unsigned volume_model = 0;
+    bool deep_tremolo = false;
+    bool deep_vibrato = false;
+};
+
 struct Bank_Ref : ADL_Bank
 {
     constexpr Bank_Ref() noexcept

@@ -50,6 +50,12 @@ public:
     virtual bool set_num_chips(unsigned chips) = 0;
     virtual unsigned num_4ops() const = 0;
     virtual bool set_num_4ops(unsigned count) = 0;
+    virtual unsigned volume_model() const = 0;
+    virtual void set_volume_model(unsigned model) = 0;
+    virtual bool deep_tremolo() const = 0;
+    virtual void set_deep_tremolo(bool trem) = 0;
+    virtual bool deep_vibrato() const = 0;
+    virtual void set_deep_vibrato(bool vib) = 0;
     virtual void play_midi(const uint8_t *msg, unsigned len) = 0;
     virtual void generate(float *left, float *right, unsigned nframes, unsigned stride) = 0;
 

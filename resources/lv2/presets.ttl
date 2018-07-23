@@ -253,6 +253,18 @@
     [
         lv2:symbol "m2wave" ;
         pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "volmodel" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "deeptrem" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "deepvib" ;
+        pset:value 0.000000 ;
     ] .
 
 

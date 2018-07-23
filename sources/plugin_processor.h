@@ -61,7 +61,9 @@ public:
     void begin_handling_messages(Message_Handler_Context &ctx) {}
     void finish_handling_messages(Message_Handler_Context &ctx);
 
+    void parameters_to_global(Instrument_Global_Parameters &gp) const;
     void parameters_to_instrument(Instrument &ins) const;
+    void set_global_parameters_notifying_host();
     void set_instrument_parameters_notifying_host();
 
     //==========================================================================

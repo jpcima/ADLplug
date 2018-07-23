@@ -53,6 +53,7 @@ void Bank_Manager::mark_everything_for_notification()
     trace("Mark everything for notification");
 
     slots_notify_flag_ = true;
+    global_parameters_notify_flag_ = true;
     for (unsigned b_i = 0; b_i < bank_reserve_size; ++b_i) {
         Bank_Info &info = bank_infos_[b_i];
         if (!info)
@@ -67,6 +68,12 @@ void Bank_Manager::send_notifications()
         if (!emit_slots())
             return;
         slots_notify_flag_ = false;
+    }
+
+    if (global_parameters_notify_flag_) {
+        if (!emit_global_parameters())
+            return;
+        global_parameters_notify_flag_ = false;
     }
 
     unsigned p_n = 0;
@@ -111,6 +118,31 @@ void Bank_Manager::send_measurement_requests()
                 return;
         }
     }
+}
+
+bool Bank_Manager::load_global_parameters(const Instrument_Global_Parameters &gp, bool notify)
+{
+    Generic_Player &pl = pl_;
+
+    trace("Loading global parameters");
+
+    bool update = false;
+    if (pl.volume_model() - 1 != gp.volume_model) {
+        pl.set_volume_model(gp.volume_model + 1);
+        update = true;
+    }
+    if (pl.deep_tremolo() != gp.deep_tremolo) {
+        pl.set_deep_tremolo(gp.deep_tremolo);
+        update = true;
+    }
+    if (pl.deep_vibrato() != gp.deep_vibrato) {
+        pl.set_deep_vibrato(gp.deep_vibrato);
+        update = true;
+    }
+
+    if (notify && update)
+        global_parameters_notify_flag_ = true;
+    return update;
 }
 
 bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instrument &ins, bool need_measurement, bool notify)
@@ -300,6 +332,26 @@ bool Bank_Manager::emit_slots()
     data.count = count;
     finish_write_message(queue, msg);
 
+    return true;
+}
+
+bool Bank_Manager::emit_global_parameters()
+{
+    Generic_Player &pl = pl_;
+    AdlplugAudioProcessor &proc = proc_;
+    Simple_Fifo &queue = proc.message_queue_to_ui();
+
+    Message_Header hdr(Fx_Message::NotifyGlobalParameters, sizeof(Messages::Fx::NotifyGlobalParameters));
+    Buffered_Message msg = write_message(queue, hdr);
+    if (!msg)
+        return false;
+
+    auto &data = *(Messages::Fx::NotifyGlobalParameters *)msg.data;
+    data.param.volume_model = pl.volume_model() - 1;
+    data.param.deep_tremolo = pl.deep_tremolo();
+    data.param.deep_vibrato = pl.deep_vibrato();
+
+    finish_write_message(queue, msg);
     return true;
 }
 

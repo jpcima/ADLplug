@@ -56,6 +56,7 @@ enum class User_Message {
     RequestBankSlots,  // requests the layout of banks and instruments
     RequestFullBankState,  // requests all the managed bank state
     ClearBanks,  // deletes all the managed banks
+    LoadGlobalParameters,  // edits global parameters
     LoadInstrument,  // edits an instrument
     SelectProgram,  // changes selected program number
 };
@@ -73,8 +74,12 @@ struct ClearBanks {
     bool notify_back = false;
 };
 
-struct LoadInstrument
-{
+struct LoadGlobalParameters {
+    Instrument_Global_Parameters param;
+    bool notify_back = false;
+};
+
+struct LoadInstrument {
     Bank_Id bank;
     uint8_t program = 0;
     Instrument instrument;
@@ -82,8 +87,7 @@ struct LoadInstrument
     bool notify_back = false;
 };
 
-struct SelectProgram
-{
+struct SelectProgram {
     Bank_Id bank;
     uint8_t program = 0;
 };
@@ -94,6 +98,7 @@ struct SelectProgram
 //------------------------------------------------------------------------------
 enum class Fx_Message {
     NotifyBankSlots = 0x2000,  // notifies the layout of banks and instruments
+    NotifyGlobalParameters,  // notifies the global parameters
     NotifyInstrument,  // notifies an instrument when changed
     RequestMeasurement,  // request measurement of a program
 };
@@ -108,6 +113,10 @@ struct NotifyBankSlots {
     };
     unsigned count;
     Entry entry[bank_reserve_size];
+};
+
+struct NotifyGlobalParameters {
+    Instrument_Global_Parameters param;
 };
 
 struct NotifyInstrument {

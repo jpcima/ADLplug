@@ -37,6 +37,10 @@ struct Parameter_Block {
 
     Operator c1, m1, c2, m2;
 
+    AudioParameterChoice *p_volmodel = nullptr;
+    AudioParameterBool *p_deeptrem = nullptr;
+    AudioParameterBool *p_deepvib = nullptr;
+
     Operator &nth_operator(unsigned i)
         { Operator *ops[] = {&c1, &m1, &c2, &m2}; return *ops[i]; }
     const Operator &nth_operator(unsigned i) const

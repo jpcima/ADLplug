@@ -46,4 +46,8 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
         p.addParameter((op.p_env = new AudioParameterBool(id("env"), name("Key scaling"), ins.env(opnum), String())));
         p.addParameter((op.p_wave = new AudioParameterInt(id("wave"), name("Waveform"), 0, 7, ins.wave(opnum), String())));
     }
+
+    p.addParameter((p_volmodel = new AudioParameterChoice("volmodel", "Volume model", {"Generic", "Native", "DMX", "Apogee", "Win9x"}, 0, String())));
+    p.addParameter((p_deeptrem = new AudioParameterBool("deeptrem", "Deep tremolo", false, String())));
+    p.addParameter((p_deepvib = new AudioParameterBool("deepvib", "Deep vibrato", false, String())));
 }

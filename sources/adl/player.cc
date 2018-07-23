@@ -42,6 +42,9 @@ struct Player_Traits<Player_Type::OPL3>
     static constexpr auto &set_num_chips = adl_setNumChips;
     static constexpr auto &get_num_4ops = adl_getNumFourOpsChn;
     static constexpr auto &set_num_4ops = adl_setNumFourOpsChn;
+    static constexpr auto &set_volume_model = adl_setVolumeRangeModel;
+    static constexpr auto &set_deep_tremolo = adl_setHTremolo;
+    static constexpr auto &set_deep_vibrato = adl_setHVibrato;
     static constexpr auto &switch_emulator = adl_switchEmulator;
     static constexpr auto &generate_format = adl_generateFormat;
     static constexpr auto &rt_note_on = adl_rt_noteOn;
@@ -100,11 +103,26 @@ public:
         { return traits::get_num_4ops(player_.get()); }
     bool set_num_4ops(unsigned count) override
         { return traits::set_num_4ops(player_.get(), count) >= 0; }
+    unsigned volume_model() const override
+        { return volume_model_; }
+    void set_volume_model(unsigned model) override
+        { traits::set_volume_model(player_.get(), model); volume_model_ = model; }
+    bool deep_tremolo() const override
+        { return deep_tremolo_; }
+    void set_deep_tremolo(bool trem) override
+        { traits::set_deep_tremolo(player_.get(), trem); deep_tremolo_ = trem; }
+    bool deep_vibrato() const override
+        { return deep_vibrato_; }
+    void set_deep_vibrato(bool vib) override
+        { traits::set_deep_vibrato(player_.get(), vib); deep_vibrato_ = vib; }
     void play_midi(const uint8_t *msg, unsigned len) override;
     void generate(float *left, float *right, unsigned nframes, unsigned stride) override;
 
 private:
     unsigned emu_ = 0;
+    unsigned volume_model_ = 0;
+    bool deep_tremolo_ = false;
+    bool deep_vibrato_ = false;
 };
 
 template <Player_Type Pt>

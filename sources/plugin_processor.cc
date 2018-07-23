@@ -111,6 +111,9 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     player_.reset(pl);
     pl->init(sample_rate);
     pl->reserve_banks(bank_reserve_size);
+    pl->set_volume_model(1);
+    pl->set_deep_tremolo(false);
+    pl->set_deep_vibrato(false);
     pl->set_num_chips(2);
     pl->set_num_4ops(2);
     pl->set_emulator(default_emulator_);
@@ -261,8 +264,11 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         Bank_Manager &bm = *bank_manager_;
         Instrument ins;
         parameters_to_instrument(ins);
+        Instrument_Global_Parameters gp;
+        parameters_to_global(gp);
         bool notify = true;
         bool need_measurement = true;
+        bm.load_global_parameters(gp, notify);
         bm.load_program(selection_id_, selection_pgm_, ins, need_measurement, notify);
     }
 
@@ -397,6 +403,12 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         bm.clear_banks(body.notify_back);
         break;
     }
+    case (unsigned)User_Message::LoadGlobalParameters: {
+        auto &body = *(const Messages::User::LoadGlobalParameters *)data;
+        if (bm.load_global_parameters(body.param, body.notify_back))
+            set_global_parameters_notifying_host();
+        break;
+    }
     case (unsigned)User_Message::LoadInstrument: {
         auto &body = *(const Messages::User::LoadInstrument *)data;
         if (bm.load_program(body.bank, body.program, body.instrument, body.need_measurement, body.notify_back)) {
@@ -430,6 +442,15 @@ void AdlplugAudioProcessor::finish_handling_messages(Message_Handler_Context &ct
 {
     bank_manager_->send_notifications();
     bank_manager_->send_measurement_requests();
+}
+
+void AdlplugAudioProcessor::parameters_to_global(Instrument_Global_Parameters &gp) const
+{
+    const Parameter_Block &pb = *parameter_block_;
+
+    gp.volume_model = pb.p_volmodel->getIndex();
+    gp.deep_tremolo = pb.p_deeptrem->get();
+    gp.deep_vibrato = pb.p_deepvib->get();
 }
 
 void AdlplugAudioProcessor::parameters_to_instrument(Instrument &ins) const
@@ -467,6 +488,16 @@ void AdlplugAudioProcessor::parameters_to_instrument(Instrument &ins) const
         ins.env(opnum, op.p_env->get());
         ins.wave(opnum, op.p_wave->get());
     }
+}
+
+void AdlplugAudioProcessor::set_global_parameters_notifying_host()
+{
+    Generic_Player *pl = player_.get();
+    Parameter_Block &pb = *parameter_block_;
+
+    *pb.p_volmodel = pl->volume_model() - 1;
+    *pb.p_deeptrem = pl->deep_tremolo();
+    *pb.p_deepvib = pl->deep_vibrato();
 }
 
 void AdlplugAudioProcessor::set_instrument_parameters_notifying_host()
