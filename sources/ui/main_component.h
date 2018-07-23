@@ -192,9 +192,6 @@ private:
     std::unique_ptr<TextEditor> edt_bank_name;
     std::unique_ptr<ComboBox> cb_program;
     std::unique_ptr<Label> label4;
-    std::unique_ptr<Label> lbl_channel;
-    std::unique_ptr<TextButton> btn_prev_channel;
-    std::unique_ptr<TextButton> btn_next_channel;
     std::unique_ptr<TextButton> btn_bank_load;
     std::unique_ptr<TextButton> btn_bank_save;
     std::unique_ptr<Label> label6;
@@ -218,6 +215,7 @@ private:
     std::unique_ptr<Slider> sl_finetune34;
     std::unique_ptr<Slider> sl_veloffset;
     std::unique_ptr<Label> label19;
+    std::unique_ptr<Slider> sl_midi_channel;
 
 
     //==============================================================================
