@@ -26,6 +26,10 @@ AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &
     lnf_.reset(lnf);
     LookAndFeel::setDefaultLookAndFeel(lnf);
 
+    TooltipWindow *tooltip_window = new TooltipWindow;
+    tooltip_window_.reset(tooltip_window);
+    addChildComponent(tooltip_window);
+
     Main_Component *main = new Main_Component(p, pb);
     main_.reset(main);
     addAndMakeVisible(main);

@@ -27,7 +27,7 @@ private:
     AdlplugAudioProcessor &proc_;
     std::unique_ptr<Custom_Look_And_Feel> lnf_;
     std::unique_ptr<Main_Component> main_;
-    TooltipWindow tooltip_window_;
+    std::unique_ptr<TooltipWindow> tooltip_window_;
 
     class Notification_Timer;
     std::unique_ptr<Notification_Timer> notification_timer_;
