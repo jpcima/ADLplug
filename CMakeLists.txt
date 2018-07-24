@@ -91,6 +91,8 @@ add_library(ADLplug_core STATIC
   "sources/ui/about_component.cc"
   "sources/ui/main_component.cc"
   "sources/ui/chips/opl3_waves.cc"
+  "sources/ui/components/algorithm_component.cc"
+  "sources/ui/components/algorithm_help.cc"
   "sources/ui/components/indicator_NxM.cc"
   "sources/ui/components/knob_component.cc"
   "sources/ui/components/styled_knobs.cc"

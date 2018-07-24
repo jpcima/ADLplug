@@ -8,6 +8,7 @@
 #include "messages.h"
 #include "ui/main_component.h"
 #include "ui/look_and_feel.h"
+#include "ui/components/algorithm_help.h"
 #include <cassert>
 
 class AdlplugAudioProcessorEditor::Notification_Timer : public Timer {
@@ -26,9 +27,11 @@ AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &
     lnf_.reset(lnf);
     LookAndFeel::setDefaultLookAndFeel(lnf);
 
-    TooltipWindow *tooltip_window = new TooltipWindow;
+    TooltipWindow *tooltip_window = new TooltipWindow(this);
     tooltip_window_.reset(tooltip_window);
-    addChildComponent(tooltip_window);
+
+    Algorithm_Help *algorithm_help = new Algorithm_Help;
+    lnf->add_custom_tooltip("Algorithms", algorithm_help, true);
 
     Main_Component *main = new Main_Component(p, pb);
     main_.reset(main);

@@ -163,6 +163,7 @@
     <ClCompile Include="..\..\..\sources\ui\operator_editor.cc"/>
     <ClCompile Include="..\..\..\sources\parameter_block.cc"/>
     <ClCompile Include="..\..\..\sources\ui\chips\opl3_waves.cc"/>
+    <ClCompile Include="..\..\..\sources\ui\components\algorithm_component.cc"/>
     <ClCompile Include="..\..\..\sources\ui\components\indicator_NxM.cc"/>
     <ClCompile Include="..\..\..\sources\ui\components\knob_component.cc"/>
     <ClCompile Include="..\..\..\sources\ui\components\styled_knobs.cc"/>
@@ -1956,6 +1957,8 @@
     <ClInclude Include="..\..\..\sources\ui\operator_editor.h"/>
     <ClInclude Include="..\..\..\sources\parameter_block.h"/>
     <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h"/>
+    <ClInclude Include="..\..\..\sources\ui\components\algorithm_component.h"/>
+    <ClInclude Include="..\..\..\sources\ui\components\algorithms.h"/>
     <ClInclude Include="..\..\..\sources\ui\components\indicator_NxM.h"/>
     <ClInclude Include="..\..\..\sources\ui\components\knob_component.h"/>
     <ClInclude Include="..\..\..\sources\ui\components\styled_knobs.h"/>

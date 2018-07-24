@@ -225,6 +225,7 @@ private:
     std::unique_ptr<Label> label21;
     std::unique_ptr<Label> label22;
     std::unique_ptr<ComboBox> cb_volmodel;
+    std::unique_ptr<TextButton> btn_algo_help;
 
 
     //==============================================================================

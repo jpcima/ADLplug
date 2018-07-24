@@ -111,6 +111,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/operator_editor_6b1eb07b.o \
   $(JUCE_OBJDIR)/parameter_block_834a48fd.o \
   $(JUCE_OBJDIR)/opl3_waves_d1747c0e.o \
+  $(JUCE_OBJDIR)/algorithm_component_9ae8bd65.o \
   $(JUCE_OBJDIR)/indicator_NxM_7038265f.o \
   $(JUCE_OBJDIR)/knob_component_3f9f96f6.o \
   $(JUCE_OBJDIR)/styled_knobs_39562cf9.o \
@@ -273,6 +274,11 @@ $(JUCE_OBJDIR)/parameter_block_834a48fd.o: ../../../sources/parameter_block.cc
 $(JUCE_OBJDIR)/opl3_waves_d1747c0e.o: ../../../sources/ui/chips/opl3_waves.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling opl3_waves.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/algorithm_component_9ae8bd65.o: ../../../sources/ui/components/algorithm_component.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling algorithm_component.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/indicator_NxM_7038265f.o: ../../../sources/ui/components/indicator_NxM.cc

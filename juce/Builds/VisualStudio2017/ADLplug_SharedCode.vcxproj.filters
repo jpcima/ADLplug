@@ -535,6 +535,9 @@
     <ClCompile Include="..\..\..\sources\ui\chips\opl3_waves.cc">
       <Filter>ADLplug\sources\ui\chips</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\components\algorithm_component.cc">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\components\indicator_NxM.cc">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClCompile>
@@ -2564,6 +2567,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\chips\opl3_waves.h">
       <Filter>ADLplug\sources\ui\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\components\algorithm_component.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\components\algorithms.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\components\indicator_NxM.h">
       <Filter>ADLplug\sources\ui\components</Filter>

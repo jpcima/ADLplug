@@ -80,6 +80,11 @@
           <FILE id="jcoZ2e" name="opl3_waves.h" compile="0" resource="0" file="sources/ui/chips/opl3_waves.h"/>
         </GROUP>
         <GROUP id="{62E26F51-4EDE-0DA8-04EA-9272FA6135B2}" name="components">
+          <FILE id="bUlkKl" name="algorithm_component.cc" compile="1" resource="0"
+                file="sources/ui/components/algorithm_component.cc"/>
+          <FILE id="pPtwdv" name="algorithm_component.h" compile="0" resource="0"
+                file="sources/ui/components/algorithm_component.h"/>
+          <FILE id="PRAmvt" name="algorithms.h" compile="0" resource="0" file="sources/ui/components/algorithms.h"/>
           <FILE id="inz2MA" name="indicator_NxM.cc" compile="1" resource="0"
                 file="sources/ui/components/indicator_NxM.cc"/>
           <FILE id="kCzAlO" name="indicator_NxM.h" compile="0" resource="0" file="sources/ui/components/indicator_NxM.h"/>

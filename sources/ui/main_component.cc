@@ -612,6 +612,13 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     cb_volmodel->setBounds (526, 459, 104, 20);
 
+    btn_algo_help.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_algo_help.get());
+    btn_algo_help->setButtonText (TRANS("?"));
+    btn_algo_help->addListener (this);
+
+    btn_algo_help->setBounds (754, 136, 20, 20);
+
 
     //[UserPreSize]
     kn_fb12->add_listener(this);
@@ -725,6 +732,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     }
     update_emulator_icon();
 
+    btn_algo_help->setTooltip("<<Algorithms>>");
+
     {
         Simple_Fifo &queue = proc.message_queue_for_ui();
         Message_Header hdr(User_Message::RequestFullBankState, sizeof(Messages::User::RequestFullBankState));
@@ -796,6 +805,7 @@ Main_Component::~Main_Component()
     label21 = nullptr;
     label22 = nullptr;
     cb_volmodel = nullptr;
+    btn_algo_help = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -1225,6 +1235,11 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         p = btn->getToggleState();
         p.endChangeGesture();
         //[/UserButtonCode_btn_deep_vibrato]
+    }
+    else if (buttonThatWasClicked == btn_algo_help.get())
+    {
+        //[UserButtonCode_btn_algo_help] -- add your button handler code here..
+        //[/UserButtonCode_btn_algo_help]
     }
 
     //[UserbuttonClicked_Post]
@@ -2305,6 +2320,9 @@ BEGIN_JUCER_METADATA
   <COMBOBOX name="new combo box" id="7289bfbfa6c092b0" memberName="cb_volmodel"
             virtualName="" explicitFocusOrder="0" pos="526 459 104 20" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <TEXTBUTTON name="new button" id="5a50a3a87b4f5d76" memberName="btn_algo_help"
+              virtualName="" explicitFocusOrder="0" pos="754 136 20 20" buttonText="?"
+              connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
