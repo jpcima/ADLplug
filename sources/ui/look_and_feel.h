@@ -4,17 +4,40 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #pragma once
-
 #include "../JuceLibraryCode/JuceHeader.h"
+#include <unordered_map>
+class Custom_Tooltips;
 
 class Custom_Look_And_Feel : public LookAndFeel_V4
 {
 public:
+    typedef LookAndFeel_V4 Base;
+
+    //==========================================================================
+    void add_custom_tooltip(const String &key, Component *component, bool owned);
+
+    //==========================================================================
     Typeface::Ptr getTypefaceForFont(const Font &font) override;
 
     void drawButtonBackground(Graphics &g, Button &button, const Colour &background_colour, bool is_mouse_over_button, bool is_button_down) override;
 
     Font getComboBoxFont(ComboBox &box) override;
+
+    Rectangle<int> getTooltipBounds(const String &text, Point<int> pos, Rectangle<int> parent_area) override;
+    void drawTooltip(Graphics &g, const String &text, int width, int height) override;
+
+private:
+    struct Custom_Tooltip_Entry {
+        Custom_Tooltip_Entry()
+            {}
+        Custom_Tooltip_Entry(Custom_Tooltip_Entry &&other)
+            : component(other.component) {}
+        Custom_Tooltip_Entry &operator=(Custom_Tooltip_Entry &&other)
+            { return component = other.component, *this; }
+        OptionalScopedPointer<Component> component;
+        JUCE_DECLARE_NON_COPYABLE(Custom_Tooltip_Entry)
+    };
+    std::unordered_map<String, Custom_Tooltip_Entry> custom_tooltips_;
 
 private:
     static Typeface::Ptr getOrCreateFont(

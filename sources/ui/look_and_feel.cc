@@ -12,6 +12,14 @@
 #   define trace(fmt, ...) fprintf(stderr, "[LF] " fmt "\n", ##__VA_ARGS__)
 #endif
 
+//==============================================================================
+void Custom_Look_And_Feel::add_custom_tooltip(const String &key, Component *component, bool owned)
+{
+    OptionalScopedPointer<Component> ptr(component, owned);
+    custom_tooltips_[key].component = ptr;
+}
+
+//==============================================================================
 Typeface::Ptr Custom_Look_And_Feel::getTypefaceForFont(const Font &font)
 {
     const String &name = font.getTypefaceName();
@@ -122,4 +130,42 @@ void Custom_Look_And_Feel::drawButtonBackground(Graphics &g, Button &button, con
 Font Custom_Look_And_Feel::getComboBoxFont(ComboBox &box)
 {
     return { jmin (15.0f, box.getHeight() * 0.85f) };
+}
+
+Rectangle<int> Custom_Look_And_Feel::getTooltipBounds(const String &text, Point<int> pos, Rectangle<int> parent_area)
+{
+    if (text.startsWith("<<") && text.endsWith(">>")) {
+        String key = text.substring(2, text.length() - 2);
+        auto it = custom_tooltips_.find(key);
+        if (it != custom_tooltips_.end()) {
+            Component *comp = it->second.component.get();
+            int w = comp->getWidth() + 14;
+            int h = comp->getHeight() + 6;
+            return Rectangle<int>(pos.x > parent_area.getCentreX() ? pos.x - (w + 12) : pos.x + 24,
+                                  pos.y > parent_area.getCentreY() ? pos.y - (h + 6) : pos.y + 6,
+                                  w, h).constrainedWithin(parent_area);
+        }
+    }
+    return Base::getTooltipBounds(text, pos, parent_area);
+}
+
+void Custom_Look_And_Feel::drawTooltip(Graphics &g, const String &text, int width, int height)
+{
+    if (text.startsWith("<<") && text.endsWith(">>")) {
+        String key = text.substring(2, text.length() - 2);
+        auto it = custom_tooltips_.find(key);
+        if (it != custom_tooltips_.end()) {
+            Component *comp = it->second.component.get();
+            Rectangle<int> bounds(width, height);
+            float cornerSize = 5.0f;
+            g.setColour(findColour(TooltipWindow::backgroundColourId));
+            g.fillRoundedRectangle(bounds.toFloat(), cornerSize);
+            g.setColour(findColour(TooltipWindow::outlineColourId));
+            g.drawRoundedRectangle(bounds.toFloat().reduced(0.5f, 0.5f), cornerSize, 1.0f);
+            g.setOrigin((width - comp->getWidth()) / 2, (height - comp->getHeight()) / 2);
+            comp->paintEntireComponent(g, false);
+            return;
+        }
+    }
+    return Base::drawTooltip(g, text, width, height);
 }
