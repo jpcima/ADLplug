@@ -6,7 +6,7 @@
               buildAAX="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               bundleIdentifier="jpcima.ADLplug" pluginName="ADLplug" pluginDesc="ADLplug"
               pluginManufacturer="jpcima" pluginManufacturerCode="JPCm" pluginCode="ADLM"
-              aaxIdentifier="jpcima.ADLplug" headerPath="../../../sources&#10;../../../thirdparty/libADLMIDI/include"
+              aaxIdentifier="jpcima.ADLplug" headerPath="../../../sources&#10;../../../thirdparty/libADLMIDI/include&#10;../../../thirdparty/wopl"
               defines="ADLMIDI_UNSTABLE_API&#10;ADLMIDI_DISABLE_CPP_EXTRAS&#10;ADLMIDI_DISABLE_MIDI_SEQUENCER&#10;ADLMIDI_DISABLE_MUS_SUPPORT&#10;ADLMIDI_DISABLE_XMI_SUPPORT"
               id="ojbkOL">
   <MAINGROUP id="faq0v0" name="ADLplug">
@@ -84,6 +84,10 @@
                 file="sources/ui/components/algorithm_component.cc"/>
           <FILE id="pPtwdv" name="algorithm_component.h" compile="0" resource="0"
                 file="sources/ui/components/algorithm_component.h"/>
+          <FILE id="EowRaF" name="algorithm_help.cc" compile="1" resource="0"
+                file="sources/ui/components/algorithm_help.cc"/>
+          <FILE id="jrCOdW" name="algorithm_help.h" compile="0" resource="0"
+                file="sources/ui/components/algorithm_help.h"/>
           <FILE id="PRAmvt" name="algorithms.h" compile="0" resource="0" file="sources/ui/components/algorithms.h"/>
           <FILE id="inz2MA" name="indicator_NxM.cc" compile="1" resource="0"
                 file="sources/ui/components/indicator_NxM.cc"/>

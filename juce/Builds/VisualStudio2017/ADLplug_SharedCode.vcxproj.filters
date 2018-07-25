@@ -538,6 +538,9 @@
     <ClCompile Include="..\..\..\sources\ui\components\algorithm_component.cc">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\ui\components\algorithm_help.cc">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\ui\components\indicator_NxM.cc">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClCompile>
@@ -2569,6 +2572,9 @@
       <Filter>ADLplug\sources\ui\chips</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\components\algorithm_component.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\ui\components\algorithm_help.h">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\ui\components\algorithms.h">
