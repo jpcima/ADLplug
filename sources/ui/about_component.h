@@ -58,6 +58,7 @@ private:
     std::unique_ptr<Label> label;
     std::unique_ptr<Label> label2;
     std::unique_ptr<Label> lbl_prog_version;
+    std::unique_ptr<Label> lbl_prog_version_extra;
 
 
     //==============================================================================

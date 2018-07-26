@@ -1942,6 +1942,7 @@
     <ClInclude Include="..\..\..\sources\messages.h"/>
     <ClInclude Include="..\..\..\sources\plugin_editor.h"/>
     <ClInclude Include="..\..\..\sources\plugin_processor.h"/>
+    <ClInclude Include="..\..\..\sources\version.h"/>
     <ClInclude Include="..\..\..\sources\worker.h"/>
     <ClInclude Include="..\..\..\sources\adl\instrument.h"/>
     <ClInclude Include="..\..\..\sources\adl\player.h"/>

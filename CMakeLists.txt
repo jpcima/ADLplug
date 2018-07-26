@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-project(ADLplug VERSION 1.0.0 LANGUAGES CXX C)
+project(ADLplug VERSION "1.0.0" LANGUAGES CXX C)
 set(ADLplug_URI "https://github.com/jpcima/ADLplug")
 
 include(SystemOption)
@@ -127,21 +127,27 @@ endif()
 macro(add_plugin NAME)
   add_library("${NAME}" MODULE "sources/nothing.cc" ${ARGN})
   set_property(TARGET "${NAME}" PROPERTY PREFIX "")
-  static_link_mingw_crt("${NAME}")
   if(ADLplug_RT_CHECKER)
     set_property(TARGET "${NAME}" APPEND_STRING
       PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
   endif()
+  if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_sources("${NAME}" PRIVATE "${PROJECT_SOURCE_DIR}/juce/Builds/VisualStudio2017/resources.rc")
+  endif()
+  static_link_mingw_crt("${NAME}")
 endmacro()
 
 macro(add_standalone NAME)
   add_executable("${NAME}" "sources/nothing.cc" ${ARGN})
   set_property(TARGET "${NAME}" PROPERTY PREFIX "")
-  static_link_mingw_crt("${NAME}")
   if(ADLplug_RT_CHECKER)
     set_property(TARGET "${NAME}" APPEND_STRING
       PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
   endif()
+  if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_sources("${NAME}" PRIVATE "${PROJECT_SOURCE_DIR}/juce/Builds/VisualStudio2017/resources.rc")
+  endif()
+  static_link_mingw_crt("${NAME}")
 endmacro()
 
 if(ADLplug_VST2)

@@ -19,8 +19,15 @@ macro(static_link_mingw_crt TARGET)
     # forces the static link of standard libraries
     set_property(TARGET "${TARGET}" APPEND_STRING
       PROPERTY LINK_FLAGS " -static-libgcc -static-libstdc++")
-    # forces the static link of winpthread
-    set_property(TARGET "${TARGET}" APPEND_STRING
-      PROPERTY LINK_FLAGS " -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,-Bdynamic,--no-whole-archive")
+  endif()
+endmacro()
+
+macro(target_link_static_threads TARGET)
+  if(CMAKE_SYSTEM_NAME STREQUAL "Windows" AND MINGW)
+    # use a statically link winpthread
+    target_link_libraries("${TARGET}" PRIVATE "-Wl,-Bstatic -lwinpthread -Wl,-Bdynamic")
+  else()
+    find_package(Threads REQUIRED)
+    target_link_libraries("${TARGET}" PRIVATE ${CMAKE_THREAD_LIBS_INIT})
   endif()
 endmacro()

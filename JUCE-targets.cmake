@@ -33,8 +33,8 @@ else()
   target_link_libraries(juce_gui_basics PUBLIC juce_gui_extra)
 endif()
 
-find_package(Threads REQUIRED)
-target_link_libraries(juce_core PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+include(LinkHelpers)
+target_link_static_threads(juce_core)
 
 add_library(vst3sdk INTERFACE)
 target_include_directories(vst3sdk INTERFACE "${PROJECT_SOURCE_DIR}/thirdparty/vst3sdk")
