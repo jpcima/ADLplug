@@ -114,6 +114,7 @@ private:
     Parameter_Block *parameter_block_ = nullptr;
 
     struct Editor_Bank {
+        char name[32] = {};
         PopupMenu ins_menu;
         std::array<Instrument, 256> ins;
     };

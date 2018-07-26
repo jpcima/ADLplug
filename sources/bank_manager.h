@@ -11,8 +11,7 @@
 #include <bitset>
 class AdlplugAudioProcessor;
 
-class Bank_Manager
-{
+class Bank_Manager {
 public:
     explicit Bank_Manager(AdlplugAudioProcessor &proc, Generic_Player &pl);
     void clear_banks(bool notify);
@@ -24,10 +23,18 @@ public:
 
     bool load_global_parameters(const Instrument_Global_Parameters &gp, bool notify);
 
-    bool load_program(const Bank_Id &id, unsigned program, const Instrument &ins, bool need_measurement, bool notify);
+    bool load_program(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned flags);
     bool find_program(const Bank_Id &id, unsigned program, Instrument &ins);
 
     bool load_measurement(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned kon, unsigned koff, bool notify);
+
+    void rename_bank(const Bank_Id &id, const char *name, bool notify);
+
+    enum {
+        LP_Notify          = 1,
+        LP_NeedMeasurement = 2,
+        LP_KeepName        = 4,
+    };
 
 private:
     void initialize_all_banks();
@@ -52,7 +59,9 @@ private:
         counting_bitset<128> used;
         counting_bitset<128> to_notify;
         counting_bitset<128> to_measure;
-        explicit operator bool() const
+        char bank_name[32];
+        char ins_names[128 * 32];
+        explicit operator bool() const noexcept
             { return bool(id); }
     };
     std::array<Bank_Info, bank_reserve_size> bank_infos_;

@@ -10,8 +10,6 @@
 struct WOPLInstrument;
 class Generic_Player;
 
-//#define INSTRUMENT_HAS_NAME
-
 struct Instrument : ADL_Instrument
 {
     Instrument() noexcept
@@ -57,20 +55,13 @@ public:
 #undef PARAMETER
 #undef OP_PARAMETER
 
+    char name[32] = {};
+
     void describe(FILE *out) const noexcept;
     void describe_operator(unsigned op, FILE *out, const char *indent = "") const noexcept;
 
     bool equal_instrument(const ADL_Instrument &o) const noexcept;
     bool equal_instrument_except_delays(const ADL_Instrument &o) const noexcept;
-
-#if defined(INSTRUMENT_HAS_NAME)
-    const char *name() const noexcept
-        { return name_; }
-    void name(const char *name) noexcept;
-
-    static constexpr unsigned name_size = 32;
-    char name_[name_size + 1] = {};
-#endif
 
 private:
     template <unsigned shift, unsigned size, class T_result, class T_field>

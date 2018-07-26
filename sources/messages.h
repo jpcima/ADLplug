@@ -58,6 +58,7 @@ enum class User_Message {
     ClearBanks,  // deletes all the managed banks
     LoadGlobalParameters,  // edits global parameters
     LoadInstrument,  // edits an instrument
+    RenameBank,  // set bank name
     SelectProgram,  // changes selected program number
 };
 
@@ -87,6 +88,12 @@ struct LoadInstrument {
     bool notify_back = false;
 };
 
+struct RenameBank {
+    Bank_Id bank;
+    bool notify_back = false;
+    char name[32] {};
+};
+
 struct SelectProgram {
     Bank_Id bank;
     uint8_t program = 0;
@@ -110,6 +117,7 @@ struct NotifyBankSlots {
     struct Entry {
         Bank_Id bank;
         counting_bitset<128> used;
+        char name[32] {};
     };
     unsigned count;
     Entry entry[bank_reserve_size];

@@ -7,7 +7,7 @@
 #include "adl/player.h"
 #include <wopl/wopl_file.h>
 #include <adlmidi.h>
-#include <string.h>
+#include <cstring>
 #include <cassert>
 
 #define EACH_INS_FIELD(F)                                               \
@@ -23,7 +23,7 @@
 Instrument Instrument::from_adlmidi(const ADL_Instrument &o) noexcept
 {
     Instrument ins;
-    memcpy(static_cast<ADL_Instrument *>(&ins), &o, sizeof(ADL_Instrument));
+    std::memcpy(static_cast<ADL_Instrument *>(&ins), &o, sizeof(ADL_Instrument));
     return ins;
 }
 
@@ -42,17 +42,14 @@ Instrument Instrument::from_wopl(const WOPLInstrument &o) noexcept
         #undef F
     }
 
-#if defined(INSTRUMENT_HAS_NAME)
-    ins.name(o.inst_name);
-#endif
+    std::memcpy(ins.name, o.inst_name, 32);
 
     return ins;
 }
 
 WOPLInstrument Instrument::to_wopl() const noexcept
 {
-    WOPLInstrument ins;
-    memset(&ins, 0, sizeof(WOPLInstrument));
+    WOPLInstrument ins = {};
 
     #define F(x) ins.x = this->x;
     EACH_INS_FIELD(F)
@@ -64,9 +61,7 @@ WOPLInstrument Instrument::to_wopl() const noexcept
         #undef F
     }
 
-#if defined(INSTRUMENT_HAS_NAME)
-    strncpy(ins.inst_name, name_, sizeof(ins.inst_name));
-#endif
+    std::memcpy(ins.inst_name, name, 32);
 
     return ins;
 }
@@ -113,7 +108,7 @@ void Instrument::describe_operator(unsigned op, FILE *out, const char *indent) c
 
 bool Instrument::equal_instrument(const ADL_Instrument &o) const noexcept
 {
-    return !memcmp(static_cast<const ADL_Instrument *>(this), &o, sizeof(ADL_Instrument));
+    return !std::memcmp(static_cast<const ADL_Instrument *>(this), &o, sizeof(ADL_Instrument));
 }
 
 bool Instrument::equal_instrument_except_delays(const ADL_Instrument &o) const noexcept
@@ -123,13 +118,6 @@ bool Instrument::equal_instrument_except_delays(const ADL_Instrument &o) const n
     samedelay.delay_off_ms = this->delay_off_ms;
     return equal_instrument(samedelay);
 }
-
-#if defined(INSTRUMENT_HAS_NAME)
-void Instrument::name(const char *name) noexcept
-{
-    memcpy(name_, name, strnlen(name, name_size));
-}
-#endif
 
 Bank_Ref *Bank_Lookup_Cache::get(Generic_Player &pl, const Bank_Id &id, int flags) noexcept
 {

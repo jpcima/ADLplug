@@ -263,10 +263,10 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         parameters_to_instrument(ins);
         Instrument_Global_Parameters gp;
         parameters_to_global(gp);
-        bool notify = true;
-        bool need_measurement = true;
-        bm.load_global_parameters(gp, notify);
-        bm.load_program(selection_id_, selection_pgm_, ins, need_measurement, notify);
+        bm.load_global_parameters(gp, true);
+        bm.load_program(
+            selection_id_, selection_pgm_, ins,
+            Bank_Manager::LP_Notify|Bank_Manager::LP_NeedMeasurement|Bank_Manager::LP_KeepName);
     }
 
     ScopedNoDenormals no_denormals;
@@ -408,10 +408,18 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     }
     case (unsigned)User_Message::LoadInstrument: {
         auto &body = *(const Messages::User::LoadInstrument *)data;
-        if (bm.load_program(body.bank, body.program, body.instrument, body.need_measurement, body.notify_back)) {
+        unsigned flags =
+            (body.need_measurement ? Bank_Manager::LP_NeedMeasurement : 0) |
+            (body.notify_back ? Bank_Manager::LP_Notify : 0);
+        if (bm.load_program(body.bank, body.program, body.instrument, flags)) {
             if (body.bank == selection_id_ && body.program == selection_pgm_)
                 set_instrument_parameters_notifying_host();
         }
+        break;
+    }
+    case (unsigned)User_Message::RenameBank: {
+        auto &body = *(const Messages::User::RenameBank *)data;
+        bm.rename_bank(body.bank, body.name, body.notify_back);
         break;
     }
     case (unsigned)User_Message::SelectProgram: {

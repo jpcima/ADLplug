@@ -8,6 +8,7 @@
 #include "worker.h"
 #include "messages.h"
 #include "adl/player.h"
+#include <cstring>
 #include <cassert>
 
 #if 1
@@ -145,7 +146,7 @@ bool Bank_Manager::load_global_parameters(const Instrument_Global_Parameters &gp
     return update;
 }
 
-bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instrument &ins, bool need_measurement, bool notify)
+bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned flags)
 {
     Generic_Player &pl = pl_;
 
@@ -179,6 +180,11 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
 
         info.id = id;
         pl.ensure_get_bank(id, ADLMIDI_Bank_CreateRt, info.bank);
+        info.used.reset();
+        info.to_notify.reset();
+        info.to_measure.reset();
+        std::memset(info.bank_name, 0, 32);
+        std::memset(info.ins_names, 0, 128 * 32);
     }
 
     Bank_Info &info = bank_infos_[index];
@@ -187,17 +193,21 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
     pl.ensure_get_instrument(info.bank, program, old_ins);
     pl.ensure_set_instrument(info.bank, program, ins);
 
+    // copy name
+    if (!(flags & LP_KeepName))
+        std::memcpy(&info.ins_names[program * 32], ins.name, 32);
+
     // update program counts
     unsigned old_count = info.used.count();
     info.used.set(program, !ins.blank());
-    if (notify && info.used.count() != old_count)
+    if ((flags & LP_Notify) && info.used.count() != old_count)
         slots_notify_flag_ = true;
 
     // mark as needing measurement if necessary
-    info.to_measure.set(program, need_measurement && !ins.blank());
+    info.to_measure.set(program, (flags & LP_NeedMeasurement) && !ins.blank());
 
     // mark for notification
-    if (notify)
+    if ((flags & LP_Notify))
         info.to_notify.set(program);
     return true;
 }
@@ -235,6 +245,23 @@ bool Bank_Manager::load_measurement(const Bank_Id &id, unsigned program, const I
         info.to_notify.set(program);
 
     return true;
+}
+
+void Bank_Manager::rename_bank(const Bank_Id &id, const char *name, bool notify)
+{
+    unsigned index = find_slot(id);
+    if (index == (unsigned)-1)
+        return;
+
+    Bank_Info &info = bank_infos_[index];
+    unsigned length = strnlen(name, 32);
+    if (std::memcmp(info.bank_name, name, length) == 0)
+        return;
+
+    std::memset(info.bank_name, 0, 32);
+    std::memcpy(info.bank_name, name, length);
+    if (notify)
+        slots_notify_flag_ = true;
 }
 
 bool Bank_Manager::find_program(const Bank_Id &id, unsigned program, Instrument &ins)
@@ -328,6 +355,7 @@ bool Bank_Manager::emit_slots()
         Messages::Fx::NotifyBankSlots::Entry &ent = data.entry[count++];
         ent.bank = info.id;
         ent.used = info.used;
+        std::memcpy(ent.name, info.bank_name, 32);
     }
     data.count = count;
     finish_write_message(queue, msg);
@@ -370,6 +398,7 @@ bool Bank_Manager::emit_notification(const Bank_Info &info, unsigned program)
     data.bank = info.id;
     data.program = program;
     pl.ensure_get_instrument(info.bank, program, data.instrument);
+    std::memcpy(data.instrument.name, &info.ins_names[program * 32], 32);
     finish_write_message(queue, msg);
 
     return true;

@@ -30,6 +30,7 @@
 #include <wopl/wopl_file.h>
 #include <memory>
 #include <cstdio>
+#include <cstring>
 #include <cmath>
 #include <cassert>
 //[/Headers]
@@ -1594,27 +1595,43 @@ void Main_Component::receive_bank_slots(const Messages::Fx::NotifyBankSlots &msg
         for (unsigned slotno = 0; slotno < count && !found; ++slotno)
             found = msg.entry[slotno].bank.msb == (psid >> 7) &&
                 msg.entry[slotno].bank.lsb == (psid & 127);
-        if (found)
+        if (found) {
+            it->second.name[0] = '\0';
             ++it;
+        }
         else {
             imap.erase(it++);
             update = true;
         }
     }
 
+    // extract the names
+    std::map<Bank_Id, std::array<char, 32>> bank_name_map;
+    for (unsigned slotno = 0; slotno < count; ++slotno) {
+        const Messages::Fx::NotifyBankSlots::Entry &entry = msg.entry[slotno];
+        if (entry.name[0] != '\0')
+            std::memcpy(bank_name_map[entry.bank].data(), entry.name, 32);
+    }
+
     // enable or disable instruments according to slots
     for (unsigned slotno = 0; slotno < count; ++slotno) {
-        uint32_t psid = msg.entry[slotno].bank.pseudo_id();
-        bool percussive = msg.entry[slotno].bank.percussive;
+        const Messages::Fx::NotifyBankSlots::Entry &entry = msg.entry[slotno];
+        uint32_t psid = entry.bank.pseudo_id();
+        bool percussive = entry.bank.percussive;
         Editor_Bank &e_bank = imap[psid];
         for (unsigned i = 0; i < 128; ++i) {
             unsigned insno = i + (percussive ? 128 : 0);
-            bool isblank = !msg.entry[slotno].used.test(i);
+            bool isblank = !entry.used.test(i);
             if (e_bank.ins[insno].blank() != isblank) {
                 e_bank.ins[insno].blank(isblank);
                 update = true;
             }
         }
+        auto it = bank_name_map.find(Bank_Id(entry.bank.msb, entry.bank.lsb, false));
+        if (it == bank_name_map.end())
+            it = bank_name_map.find(Bank_Id(entry.bank.msb, entry.bank.lsb, true));
+        if (it != bank_name_map.end())
+            std::memcpy(e_bank.name, it->second.data(), 32);
     }
 
     if (update) {
@@ -1690,30 +1707,35 @@ void Main_Component::update_instrument_choices()
         uint32_t psid = it->first;
         Editor_Bank &e_bank = it->second;
 
-        char bank_sid[64];
-        std::sprintf(bank_sid, "Bank %03u:%03u", psid >> 7, psid & 127);
+        String bank_sid;
+        if (e_bank.name[0] != '\0')
+            bank_sid = String::formatted("%03u:%03u %.32s", psid >> 7, psid & 127, e_bank.name);
+        else
+            bank_sid = String::formatted("%03u:%03u %s", psid >> 7, psid & 127, "<Untitled bank>");
 
         e_bank.ins_menu.clear();
         for (unsigned i = 0; i < 256; ++i) {
             const Instrument &ins = e_bank.ins[i];
             if(ins.blank())
                 continue;
-            char ins_sid[64];
 
-#pragma message("TODO instrument names from WOPL")
-            const Midi_Program_Ex *ex = midi_db.find_ex(psid >> 7, psid & 127, i);
-            const char *name = ex ?
-                ex->name : (i < 128) ?
-                midi_db.inst(i) : midi_db.perc(i & 127).name;
+            String ins_sid;
+            if (ins.name[0] != '\0')
+                ins_sid = String::formatted("%c%03u %.32s", "MP"[i >= 128], i & 127, ins.name);
+            else {
+                const Midi_Program_Ex *ex = midi_db.find_ex(psid >> 7, psid & 127, i);
+                const char *name = ex ? ex->name : (i < 128) ?
+                    midi_db.inst(i) : midi_db.perc(i & 127).name;
+                ins_sid = String::formatted("%c%03u %s", "MP"[i >= 128], i & 127, name);
+            }
 
-            std::sprintf(ins_sid, "%c%03u %s", "MP"[i >= 128], i & 127, name);
             uint32_t program = (psid << 8) + i;
             e_bank.ins_menu.addItem(program + 1, ins_sid);
 
             if (false)
                 trace("Add choice %s %s",
                       program_selection_to_string(program + 1).toRawUTF8(),
-                      ins_sid);
+                      ins_sid.toRawUTF8());
         }
 
         menu->addSubMenu(bank_sid, e_bank.ins_menu);
@@ -1793,15 +1815,20 @@ void Main_Component::load_bank(const File &file)
                              Message_Header hdr(User_Message::LoadInstrument, sizeof(Messages::User::LoadInstrument));
                              Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
                              auto &data = *(Messages::User::LoadInstrument *)msg.data;
-                             data.bank.lsb = bank.bank_midi_lsb;
-                             data.bank.msb = bank.bank_midi_msb;
-                             data.bank.percussive = percussive;
+                             data.bank = Bank_Id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
                              data.program = i;
                              data.instrument = Instrument::from_wopl(bank.ins[i]);
                              data.need_measurement = false;
                              data.notify_back = false;
                              finish_write_message(queue, msg);
                          }
+                         Message_Header hdr(User_Message::RenameBank, sizeof(Messages::User::RenameBank));
+                         Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
+                         auto &data = *(Messages::User::RenameBank *)msg.data;
+                         data.bank = Bank_Id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
+                         data.notify_back = false;
+                         std::memcpy(data.name, bank.bank_name, 32);
+                         finish_write_message(queue, msg);
                      };
     edt_bank_name->setText(file.getFileNameWithoutExtension());
     edt_bank_name->setCaretPosition(0);
