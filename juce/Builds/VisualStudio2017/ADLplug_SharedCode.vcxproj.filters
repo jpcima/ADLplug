@@ -2628,6 +2628,9 @@
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.h">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_cvt.hpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.hpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>

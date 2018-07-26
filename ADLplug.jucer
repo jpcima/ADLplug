@@ -184,6 +184,7 @@
                 file="thirdparty/libADLMIDI/src/adlmidi_bankmap.h"/>
           <FILE id="TfNuGc" name="adlmidi_bankmap.tcc" compile="0" resource="0"
                 file="thirdparty/libADLMIDI/src/adlmidi_bankmap.tcc"/>
+          <FILE id="XOls4H" name="adlmidi_cvt.hpp" compile="0" resource="0" file="thirdparty/libADLMIDI/src/adlmidi_cvt.hpp"/>
           <FILE id="IL3FEP" name="adlmidi_load.cpp" compile="1" resource="0"
                 file="thirdparty/libADLMIDI/src/adlmidi_load.cpp"/>
           <FILE id="FVJBtw" name="adlmidi_midiplay.cpp" compile="1" resource="0"

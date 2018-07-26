@@ -1977,6 +1977,7 @@
     <ClInclude Include="..\..\..\thirdparty\wopl\wopl\wopl_file.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adldata.hh"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.h"/>
+    <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_cvt.hpp"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.hpp"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_ptr.hpp"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\cvt_mus2mid.hpp"/>
