@@ -1868,8 +1868,6 @@ void Main_Component::save_bank(const File &file)
 {
     trace("Save to WOPL file: %s", file.getFullPathName().toRawUTF8());
 
-#pragma message("TODO save WOPL file")
-
     const auto &instrument_map = instrument_map_;
     size_t max_bank_count = instrument_map.size();
 
@@ -1885,6 +1883,9 @@ void Main_Component::save_bank(const File &file)
         WOPLBank drum;
         std::memset(&melo, 0, sizeof(WOPLBank));
         std::memset(&drum, 0, sizeof(WOPLBank));
+
+        std::memcpy(melo.bank_name, entry.second.name, 32);
+        std::memcpy(drum.bank_name, entry.second.name, 32);
 
         melo.bank_midi_msb = drum.bank_midi_msb = psid >> 7;
         melo.bank_midi_lsb = drum.bank_midi_lsb = psid & 127;
