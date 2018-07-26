@@ -165,7 +165,6 @@ unsigned AdlplugAudioProcessor::num_chips_nonrt() const
 void AdlplugAudioProcessor::set_num_chips_nonrt(unsigned chips)
 {
     Generic_Player *pl = player_.get();
-    pl->panic();
     pl->set_num_chips(chips);
     reconfigure_chip_nonrt();
 }
@@ -179,7 +178,6 @@ unsigned AdlplugAudioProcessor::chip_emulator_nonrt() const
 void AdlplugAudioProcessor::set_chip_emulator_nonrt(unsigned emu)
 {
     Generic_Player *pl = player_.get();
-    pl->panic();
     pl->set_emulator(emu);
     reconfigure_chip_nonrt();
 }
@@ -193,7 +191,6 @@ unsigned AdlplugAudioProcessor::num_4ops_nonrt() const
 void AdlplugAudioProcessor::set_num_4ops_nonrt(unsigned count)
 {
     Generic_Player *pl = player_.get();
-    pl->panic();
     pl->set_num_4ops(count);
 }
 
