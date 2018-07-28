@@ -46,6 +46,7 @@ struct Parameter_Block;
                                                                     //[/Comments]
 */
 class Main_Component  : public Component,
+                        FocusChangeListener,
                         public MidiKeyboardStateListener,
                         public Knob::Listener,
                         public Button::Listener,
@@ -95,6 +96,9 @@ public:
 
     void build_emulator_info();
     void build_emulator_menu(PopupMenu &menu);
+
+    void focusGained(FocusChangeType cause) override;
+    void globalFocusChanged(Component *component) override;
     //[/UserMethods]
 
     void paint (Graphics& g) override;

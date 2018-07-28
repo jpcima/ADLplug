@@ -622,6 +622,10 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
 
     //[UserPreSize]
+    Desktop::getInstance().addFocusChangeListener(this);
+
+    setWantsKeyboardFocus(true);
+
     kn_fb12->add_listener(this);
     kn_fb34->add_listener(this);
     //[/UserPreSize]
@@ -747,6 +751,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 Main_Component::~Main_Component()
 {
     //[Destructor_pre]. You can add your own custom destruction code here..
+    Desktop::getInstance().removeFocusChangeListener(this);
     //[/Destructor_pre]
 
     ed_op2 = nullptr;
@@ -2052,6 +2057,23 @@ void Main_Component::build_emulator_menu(PopupMenu &menu)
     for (size_t i = 0, n = count; i < n; ++i)
         menu.addItem(i + 1, emus[i].name, true, false, emus[i].icon);
 }
+
+void Main_Component::focusGained(FocusChangeType cause)
+{
+    if (midi_kb)
+        midi_kb->grabKeyboardFocus();
+}
+
+void Main_Component::globalFocusChanged(Component *component)
+{
+    ComponentPeer *peer = getPeer();
+    Component *window = nullptr;
+    if (peer)
+        window = &peer->getComponent();
+
+    if (component == window)
+        grabKeyboardFocus();
+}
 //[/MiscUserCode]
 
 
@@ -2065,7 +2087,7 @@ void Main_Component::build_emulator_menu(PopupMenu &menu)
 BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="Main_Component" componentName=""
-                 parentClasses="public Component, public MidiKeyboardStateListener, public Knob::Listener"
+                 parentClasses="public Component, FocusChangeListener, public MidiKeyboardStateListener, public Knob::Listener"
                  constructorParams="AdlplugAudioProcessor &amp;proc, Parameter_Block &amp;pb"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
                  overlayOpacity="0.66" fixedSize="0" initialWidth="800" initialHeight="600">
