@@ -56,16 +56,29 @@ void Application_Jack::initialise(const String &args)
         fprintf(stderr, "could not lock memory\n");
 
     jack_client_t *client = jack_client_open("ADLplug", JackNoStartServer, nullptr);
-    if (!client)
-        throw std::runtime_error("error creating Jack client");
+    if (!client) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon,
+            TRANS("JACK Audio"),
+            TRANS("Could not create a new audio client.\n\n"
+                  "Please start the JACK server and try again."));
+        setApplicationReturnValue(1);
+        return quit();
+    }
     client_.reset(client);
 
     midiport_ = jack_port_register(client, "midi", JACK_DEFAULT_MIDI_TYPE, JackPortIsInput|JackPortIsTerminal, 0);
     outport_[0] = jack_port_register(client, "left", JACK_DEFAULT_AUDIO_TYPE, JackPortIsOutput|JackPortIsTerminal, 0);
     outport_[1] = jack_port_register(client, "right", JACK_DEFAULT_AUDIO_TYPE, JackPortIsOutput|JackPortIsTerminal, 0);
 
-    if (!midiport_ || !outport_[0] || !outport_[1])
-        throw std::runtime_error("error creating Jack ports");
+    if (!midiport_ || !outport_[0] || !outport_[1]) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon,
+            TRANS("JACK Audio"),
+            TRANS("Could not create the synthesizer ports."));
+        setApplicationReturnValue(1);
+        return quit();
+    }
 
     jack_nframes_t buffer_size = jack_get_buffer_size(client);
     unsigned sample_rate = jack_get_sample_rate(client);
@@ -77,8 +90,14 @@ void Application_Jack::initialise(const String &args)
 
     jack_set_process_callback(client, &process, this);
 
-    if (jack_activate(client) != 0)
-        throw std::runtime_error("error activating Jack client");
+    if (jack_activate(client) != 0) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon,
+            TRANS("JACK Audio"),
+            TRANS("Could not start the synthesizer client."));
+        setApplicationReturnValue(1);
+        return quit();
+    }
 
     Application_Window *window = new Application_Window(
         getApplicationName() + " [jack:" + (const char *)jack_get_client_name(client) + "]");
