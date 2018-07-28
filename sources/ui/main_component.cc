@@ -531,7 +531,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_veloffset->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_veloffset->addListener (this);
 
-    sl_veloffset->setBounds (230, 460, 76, 20);
+    sl_veloffset->setBounds (126, 482, 76, 20);
 
     label19.reset (new Label ("new label",
                               TRANS("Velocity offset")));
@@ -542,7 +542,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label19->setColour (TextEditor::textColourId, Colours::black);
     label19->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label19->setBounds (124, 460, 104, 20);
+    label19->setBounds (20, 482, 104, 20);
 
     sl_midi_channel.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_midi_channel.get());
@@ -560,7 +560,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_deep_tremolo->addListener (this);
     btn_deep_tremolo->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_deep_tremolo->setBounds (414, 488, 15, 15);
+    btn_deep_tremolo->setBounds (552, 486, 15, 15);
 
     label20.reset (new Label ("new label",
                               TRANS("Deep tremolo")));
@@ -571,7 +571,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label20->setColour (TextEditor::textColourId, Colours::black);
     label20->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label20->setBounds (430, 488, 94, 15);
+    label20->setBounds (568, 486, 94, 15);
 
     btn_deep_vibrato.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_deep_vibrato.get());
@@ -579,7 +579,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_deep_vibrato->addListener (this);
     btn_deep_vibrato->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_deep_vibrato->setBounds (526, 488, 15, 15);
+    btn_deep_vibrato->setBounds (664, 486, 15, 15);
 
     label21.reset (new Label ("new label",
                               TRANS("Deep vibrato")));
@@ -590,7 +590,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label21->setColour (TextEditor::textColourId, Colours::black);
     label21->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label21->setBounds (542, 488, 94, 15);
+    label21->setBounds (680, 486, 94, 15);
 
     label22.reset (new Label ("new label",
                               TRANS("Volume model")));
@@ -601,7 +601,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label22->setColour (TextEditor::textColourId, Colours::black);
     label22->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label22->setBounds (414, 460, 106, 20);
+    label22->setBounds (552, 458, 106, 20);
 
     cb_volmodel.reset (new ComboBox ("new combo box"));
     addAndMakeVisible (cb_volmodel.get());
@@ -611,7 +611,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     cb_volmodel->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     cb_volmodel->addListener (this);
 
-    cb_volmodel->setBounds (526, 459, 104, 20);
+    cb_volmodel->setBounds (664, 457, 104, 20);
 
     btn_algo_help.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_algo_help.get());
@@ -956,7 +956,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 120, y = 452, width = 188, height = 36;
+        int x = 16, y = 474, width = 188, height = 36;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1010,7 +1010,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 20, y = 452, width = 100, height = 36;
+        int x = 16, y = 444, width = 188, height = 30;
         String text (TRANS("Misc"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -1022,7 +1022,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 308, y = 452, width = 100, height = 36;
+        int x = 586, y = 422, width = 188, height = 30;
         String text (TRANS("Global"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -1034,7 +1034,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 408, y = 452, width = 228, height = 56;
+        int x = 546, y = 450, width = 228, height = 56;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -2097,19 +2097,19 @@ BEGIN_JUCER_METADATA
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
     <RECT pos="586 316 188 106" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="638 52 136 80" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="120 452 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="16 474 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="16 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="300 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="300 316 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="16 316 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="296 72 174 60" fill="solid: 662e4c4d" hasStroke="0"/>
-    <TEXT pos="20 452 100 36" fill="solid: fff0f8ff" hasStroke="0" text="Misc"
+    <TEXT pos="16 444 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Misc"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <TEXT pos="308 452 100 36" fill="solid: fff0f8ff" hasStroke="0" text="Global"
+    <TEXT pos="586 422 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Global"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="408 452 228 56" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="546 450 228 56" fill="solid: 662e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="300 160 264 128" class="Operator_Editor"
@@ -2310,12 +2310,12 @@ BEGIN_JUCER_METADATA
           textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="new slider" id="902cdb29676bc0b6" memberName="sl_veloffset"
-          virtualName="" explicitFocusOrder="0" pos="230 460 76 20" textboxoutline="ff8e989b"
+          virtualName="" explicitFocusOrder="0" pos="126 482 76 20" textboxoutline="ff8e989b"
           min="-127.0" max="127.0" int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft"
           textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <LABEL name="new label" id="b2db0b3cb9c241dc" memberName="label19" virtualName=""
-         explicitFocusOrder="0" pos="124 460 104 20" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="20 482 104 20" edTextCol="ff000000"
          edBkgCol="0" labelText="Velocity offset" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
@@ -2325,28 +2325,28 @@ BEGIN_JUCER_METADATA
           textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <TEXTBUTTON name="new button" id="fd73fd08b6289ecb" memberName="btn_deep_tremolo"
-              virtualName="" explicitFocusOrder="0" pos="414 488 15 15" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="552 486 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <LABEL name="new label" id="bf1838a34852c77b" memberName="label20" virtualName=""
-         explicitFocusOrder="0" pos="430 488 94 15" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="568 486 94 15" edTextCol="ff000000"
          edBkgCol="0" labelText="Deep tremolo" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <TEXTBUTTON name="new button" id="e446fd30ddc83460" memberName="btn_deep_vibrato"
-              virtualName="" explicitFocusOrder="0" pos="526 488 15 15" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="664 486 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <LABEL name="new label" id="f2fdd9093e241907" memberName="label21" virtualName=""
-         explicitFocusOrder="0" pos="542 488 94 15" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="680 486 94 15" edTextCol="ff000000"
          edBkgCol="0" labelText="Deep vibrato" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="96b421fbb370c8db" memberName="label22" virtualName=""
-         explicitFocusOrder="0" pos="414 460 106 20" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="552 458 106 20" edTextCol="ff000000"
          edBkgCol="0" labelText="Volume model" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <COMBOBOX name="new combo box" id="7289bfbfa6c092b0" memberName="cb_volmodel"
-            virtualName="" explicitFocusOrder="0" pos="526 459 104 20" editable="0"
+            virtualName="" explicitFocusOrder="0" pos="664 457 104 20" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <TEXTBUTTON name="new button" id="5a50a3a87b4f5d76" memberName="btn_algo_help"
               virtualName="" explicitFocusOrder="0" pos="754 136 20 20" buttonText="?"
