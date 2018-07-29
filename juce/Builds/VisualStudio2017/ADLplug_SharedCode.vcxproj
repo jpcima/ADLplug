@@ -769,6 +769,9 @@
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_AbstractFifo.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_ArrayBase.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_DynamicObject.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -779,6 +782,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_PropertySet.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_ReferenceCountedArray.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_SparseSet.cpp">
@@ -2312,6 +2318,7 @@
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_AbstractFifo.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_Array.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_ArrayAllocationBase.h"/>
+    <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_ArrayBase.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_DynamicObject.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_ElementComparator.h"/>
     <ClInclude Include="..\..\..\thirdparty\JUCE\modules\juce_core\containers\juce_HashMap.h"/>

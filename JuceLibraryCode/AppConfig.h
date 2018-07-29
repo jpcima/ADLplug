@@ -221,6 +221,10 @@
  //#define JUCE_ALLOW_STATIC_NULL_VARIABLES 1
 #endif
 
+#ifndef    JUCE_STRICT_REFCOUNTEDPOINTER
+ #define   JUCE_STRICT_REFCOUNTEDPOINTER 1
+#endif
+
 //==============================================================================
 // juce_events flags:
 

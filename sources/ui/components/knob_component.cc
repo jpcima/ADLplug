@@ -16,7 +16,7 @@ Knob::Knob(const String &name)
 
 Km_Skin *Knob::skin() const
 {
-    return skin_;
+    return skin_.get();
 }
 
 void Knob::set_skin(Km_Skin *skin)
