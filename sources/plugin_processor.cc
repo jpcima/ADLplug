@@ -286,7 +286,7 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
     // filter out the DC component
     for (unsigned i = 0; i < nframes; ++i) {
         double left_sample = dclf.process(left[i]);
-        double right_sample = dcrf.process(left[i]);
+        double right_sample = dcrf.process(right[i]);
         left[i] = left_sample;
         right[i] = right_sample;
         lv_current[0] = lvu.process(left_sample);
