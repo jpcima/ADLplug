@@ -33,7 +33,7 @@
 #include "adl/measurer/chips/opl_chip_base.h"
 #include "adl/measurer/chips/dosbox_opl3.h"
 
-typedef DosBoxOPL3 DefaultOPL3;
+typedef ADL::DosBoxOPL3 DefaultOPL3;
 
 template <class T>
 class AudioHistory
@@ -104,14 +104,14 @@ static const unsigned g_outputRate = 49716;
 
 struct TinySynth
 {
-    OPLChipBase *m_chip;
+    ADL::OPLChipBase *m_chip;
     unsigned m_notesNum;
     int m_notenum;
     int8_t m_fineTune;
     int16_t m_noteOffsets[2];
     unsigned m_x[2];
 
-    explicit TinySynth(OPLChipBase &chip)
+    explicit TinySynth(ADL::OPLChipBase &chip)
         : m_chip(&chip)
     {
         resetChip();

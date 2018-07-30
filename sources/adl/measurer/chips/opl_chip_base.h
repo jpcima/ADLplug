@@ -31,6 +31,8 @@
 class VResampler;
 #endif
 
+namespace ADL {
+
 #if defined(ADLMIDI_AUDIO_TICK_HANDLER)
 extern void adl_audioTickHandler(void *instance, uint32_t chipId, uint32_t rate);
 #endif
@@ -141,6 +143,8 @@ private:
     unsigned m_bufferIndex;
     int16_t m_buffer[2 * Buffer];
 };
+
+}  // namespace ADL
 
 #include "opl_chip_base.tcc"
 

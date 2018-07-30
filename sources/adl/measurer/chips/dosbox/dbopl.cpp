@@ -70,6 +70,7 @@
 #define PI 3.14159265358979323846
 #endif
 
+namespace ADL {
 namespace DBOPL {
 
 #define OPLRATE		((double)(14318180.0 / 288.0))
@@ -1616,3 +1617,4 @@ void Handler::Init( Bitu rate ) {
 
 
 }		//Namespace DBOPL
+}		//Namespace ADL

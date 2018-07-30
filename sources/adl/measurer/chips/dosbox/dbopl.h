@@ -49,6 +49,7 @@ typedef int8_t          Bit8s;
 //Select the type of wave generator routine
 #define DBOPL_WAVE WAVE_TABLEMUL
 
+namespace ADL {
 namespace DBOPL {
 
 struct Chip;
@@ -281,4 +282,5 @@ struct Handler {
 };
 
 
-}		//Namespace
+}		//Namespace DBOPL
+}		//Namespace ADL

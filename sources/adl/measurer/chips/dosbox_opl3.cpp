@@ -24,6 +24,8 @@
 #include <cstdlib>
 #include <assert.h>
 
+namespace ADL {
+
 DosBoxOPL3::DosBoxOPL3() :
     OPLChipBaseBufferedT(),
     m_chip(new DBOPL::Handler)
@@ -72,3 +74,5 @@ const char *DosBoxOPL3::emulatorName()
 {
     return "DosBox 0.74-r4111 OPL3";
 }
+
+}  // namespace ADL

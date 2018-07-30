@@ -17,6 +17,8 @@
 #define UNLIKELY(x) (x)
 #endif
 
+namespace ADL {
+
 /* OPLChipBase */
 
 inline OPLChipBase::OPLChipBase() :
@@ -292,3 +294,5 @@ void OPLChipBaseBufferedT<T, Buffer>::nativeGenerate(int16_t *frame)
     bufferIndex = (bufferIndex + 1 < Buffer) ? (bufferIndex + 1) : 0;
     m_bufferIndex = bufferIndex;
 }
+
+}  // namespace ADL

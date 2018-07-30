@@ -23,6 +23,8 @@
 
 #include "opl_chip_base.h"
 
+namespace ADL {
+
 class DosBoxOPL3 final : public OPLChipBaseBufferedT<DosBoxOPL3>
 {
     void *m_chip;
@@ -39,5 +41,7 @@ public:
     void nativeGenerateN(int16_t *output, size_t frames) override;
     const char *emulatorName() override;
 };
+
+}  // namespace ADL
 
 #endif // DOSBOX_OPL3_H
