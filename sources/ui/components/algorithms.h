@@ -8,15 +8,15 @@
 namespace Algorithms {
 
 static const char16_t algorithm_2fm[] =
-    u"┌┐  \n"
-    u"│1 2\n"
-    u"└┴─┘\n";
-
-static const char16_t algorithm_2am[] =
     u"┌┐\n"
     u"│1\n"
     u"└┤\n"
     u" 2";
+
+static const char16_t algorithm_2am[] =
+    u"┌┐  \n"
+    u"│1 2\n"
+    u"└┴─┘\n";
 
 static const char16_t algorithm_4fmfm[] =
     u"┌┐\n"
