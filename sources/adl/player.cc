@@ -45,6 +45,7 @@ struct Player_Traits<Player_Type::OPL3>
     static constexpr auto &set_volume_model = adl_setVolumeRangeModel;
     static constexpr auto &set_deep_tremolo = adl_setHTremolo;
     static constexpr auto &set_deep_vibrato = adl_setHVibrato;
+    static constexpr auto &set_soft_pan_enabled = adl_setSoftPanEnabled;
     static constexpr auto &switch_emulator = adl_switchEmulator;
     static constexpr auto &generate_format = adl_generateFormat;
     static constexpr auto &rt_note_on = adl_rt_noteOn;
@@ -115,6 +116,8 @@ public:
         { return deep_vibrato_; }
     void set_deep_vibrato(bool vib) override
         { traits::set_deep_vibrato(player_.get(), vib); deep_vibrato_ = vib; }
+    void set_soft_pan_enabled(bool sp) override
+        { traits::set_soft_pan_enabled(player_.get(), sp); }
     void play_midi(const uint8_t *msg, unsigned len) override;
     void generate(float *left, float *right, unsigned nframes, unsigned stride) override;
 

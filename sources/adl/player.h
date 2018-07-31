@@ -56,6 +56,7 @@ public:
     virtual void set_deep_tremolo(bool trem) = 0;
     virtual bool deep_vibrato() const = 0;
     virtual void set_deep_vibrato(bool vib) = 0;
+    virtual void set_soft_pan_enabled(bool sp) = 0;
     virtual void play_midi(const uint8_t *msg, unsigned len) = 0;
     virtual void generate(float *left, float *right, unsigned nframes, unsigned stride) = 0;
 

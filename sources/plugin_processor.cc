@@ -117,6 +117,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     pl->set_num_chips(2);
     pl->set_num_4ops(2);
     pl->set_emulator(default_emulator_);
+    pl->set_soft_pan_enabled(true);
 
     for (unsigned i = 0; i < 2; ++i) {
         Dc_Filter &dcf = dc_filter_[i];
