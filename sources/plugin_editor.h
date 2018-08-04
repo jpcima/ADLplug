@@ -29,8 +29,7 @@ private:
     std::unique_ptr<Main_Component> main_;
     std::unique_ptr<TooltipWindow> tooltip_window_;
 
-    class Notification_Timer;
-    std::unique_ptr<Notification_Timer> notification_timer_;
+    std::unique_ptr<Timer> notification_timer_;
 
     void process_notifications();
     void discard_notifications();

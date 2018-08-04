@@ -9,17 +9,9 @@
 #include "ui/main_component.h"
 #include "ui/look_and_feel.h"
 #include "ui/components/algorithm_help.h"
+#include "utility/functional_timer.h"
 #include <cassert>
 
-class AdlplugAudioProcessorEditor::Notification_Timer : public Timer {
-public:
-    Notification_Timer(AdlplugAudioProcessorEditor &ed) : ed_(ed) {}
-    void timerCallback() override { ed_.process_notifications(); }
-private:
-    AdlplugAudioProcessorEditor &ed_;
-};
-
-//==============================================================================
 AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &p, Parameter_Block &pb)
     : AudioProcessorEditor(&p), proc_(p)
 {
@@ -42,7 +34,7 @@ AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &
     setSize(main->getWidth(), main->getHeight());
 
     discard_notifications();
-    Notification_Timer *timer = new Notification_Timer(*this);
+    Timer *timer = Functional_Timer::create([this]() { process_notifications(); });
     notification_timer_.reset(timer);
     timer->startTimer(10);
 }

@@ -2616,6 +2616,9 @@
     <ClInclude Include="..\..\..\sources\utility\counting_bitset.h">
       <Filter>ADLplug\sources\utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\sources\utility\functional_timer.h">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\sources\utility\midi.h">
       <Filter>ADLplug\sources\utility</Filter>
     </ClInclude>

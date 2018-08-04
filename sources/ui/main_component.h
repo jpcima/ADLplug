@@ -144,32 +144,9 @@ private:
     std::unique_ptr<Emulator_Info[]> emulator_info_;
     unsigned emulator_count_ = 0;
 
-    class Vu_Timer : public Timer {
-    public:
-        explicit Vu_Timer(Main_Component *mc) : mc_(mc) {}
-        void timerCallback() override { mc_->vu_update(); }
-    private:
-        Main_Component *mc_ = nullptr;
-    };
-    std::unique_ptr<Vu_Timer> vu_timer_;
-
-    class Cpu_Load_Timer : public Timer {
-    public:
-        explicit Cpu_Load_Timer(Main_Component *mc) : mc_(mc) {}
-        void timerCallback() override { mc_->cpu_load_update(); }
-    private:
-        Main_Component *mc_ = nullptr;
-    };
-    std::unique_ptr<Cpu_Load_Timer> cpu_load_timer_;
-
-    class Midi_Activity_Timer : public Timer {
-    public:
-        explicit Midi_Activity_Timer(Main_Component *mc) : mc_(mc) {}
-        void timerCallback() override { mc_->midi_activity_update(); }
-    private:
-        Main_Component *mc_ = nullptr;
-    };
-    std::unique_ptr<Midi_Activity_Timer> midi_activity_timer_;
+    std::unique_ptr<Timer> vu_timer_;
+    std::unique_ptr<Timer> cpu_load_timer_;
+    std::unique_ptr<Timer> midi_activity_timer_;
     //[/UserVariables]
 
     //==============================================================================

@@ -1977,6 +1977,7 @@
     <ClInclude Include="..\..\..\sources\ui\utility\image.h"/>
     <ClInclude Include="..\..\..\sources\ui\utility\knobman_skin.h"/>
     <ClInclude Include="..\..\..\sources\utility\counting_bitset.h"/>
+    <ClInclude Include="..\..\..\sources\utility\functional_timer.h"/>
     <ClInclude Include="..\..\..\sources\utility\midi.h"/>
     <ClInclude Include="..\..\..\sources\utility\rt_checker.h"/>
     <ClInclude Include="..\..\..\sources\utility\semaphore.h"/>

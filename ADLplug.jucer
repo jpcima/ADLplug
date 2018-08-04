@@ -118,6 +118,8 @@
               file="sources/utility/counting_bitset.h"/>
         <FILE id="aFtUeC" name="counting_bitset.tcc" compile="0" resource="0"
               file="sources/utility/counting_bitset.tcc"/>
+        <FILE id="RyY50n" name="functional_timer.h" compile="0" resource="0"
+              file="sources/utility/functional_timer.h"/>
         <FILE id="tSjcHH" name="midi.cc" compile="1" resource="0" file="sources/utility/midi.cc"/>
         <FILE id="NBzY1D" name="midi.h" compile="0" resource="0" file="sources/utility/midi.h"/>
         <FILE id="gGudmM" name="rt_checker.cc" compile="1" resource="0" file="sources/utility/rt_checker.cc"/>

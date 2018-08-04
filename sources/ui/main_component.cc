@@ -27,6 +27,7 @@
 #include "plugin_processor.h"
 #include "parameter_block.h"
 #include "messages.h"
+#include "utility/functional_timer.h"
 #include <wopl/wopl_file.h>
 #include <memory>
 #include <cstdio>
@@ -714,14 +715,14 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     }
     cb_volmodel->setScrollWheelEnabled(true);
 
-    vu_timer_.reset(new Vu_Timer(this));
+    vu_timer_.reset(Functional_Timer::create([this]() { vu_update(); }));
     vu_timer_->startTimer(10);
 
-    cpu_load_timer_.reset(new Cpu_Load_Timer(this));
+    cpu_load_timer_.reset(Functional_Timer::create([this]() { cpu_load_update(); }));
     cpu_load_timer_->startTimer(500);
     lbl_cpu->setText("0%", dontSendNotification);
 
-    midi_activity_timer_.reset(new Midi_Activity_Timer(this));
+    midi_activity_timer_.reset(Functional_Timer::create([this]() { midi_activity_update(); }));
     midi_activity_timer_->startTimer(100);
 
     {
