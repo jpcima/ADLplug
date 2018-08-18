@@ -725,6 +725,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     midi_activity_timer_.reset(Functional_Timer::create([this]() { midi_activity_update(); }));
     midi_activity_timer_->startTimer(100);
 
+    btn_algo_help->setTooltip("<<Algorithms>>");
+
     {
         std::unique_lock<std::mutex> lock(proc.acquire_player_nonrt());
         emulator_value_ = proc.chip_emulator_nonrt();
@@ -738,13 +740,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     }
     update_emulator_icon();
 
-    btn_algo_help->setTooltip("<<Algorithms>>");
-
     {
-        Simple_Fifo &queue = proc.message_queue_for_ui();
-        Message_Header hdr(User_Message::RequestFullBankState, sizeof(Messages::User::RequestFullBankState));
-        Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
-        finish_write_message(queue, msg);
+        Messages::User::RequestFullBankState msg;
+        write_to_processor(msg.tag, &msg, sizeof(msg));
     }
     //[/Constructor]
 }
@@ -1417,17 +1415,15 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 void Main_Component::handleNoteOn(MidiKeyboardState *, int channel_, int note, float velocity)
 {
     unsigned channel = (unsigned)(channel_ - 1);
-    Simple_Fifo &queue = proc_->message_queue_for_ui();
 
     if (is_percussion_channel(channel))
         note = (midiprogram_[channel] - 128) & 127;
 
-    Message_Header msghdr(User_Message::Midi, 3);
-    Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
-    msg.data[0] = channel | (0b1001u << 4);
-    msg.data[1] = note;
-    msg.data[2] = velocity * 127;
-    finish_write_message(queue, msg);
+    uint8_t midi[3];
+    midi[0] = channel | (0b1001u << 4);
+    midi[1] = note;
+    midi[2] = velocity * 127;
+    write_to_processor(User_Message::Midi, midi, 3);
 }
 
 void Main_Component::handleNoteOff(MidiKeyboardState *, int channel_, int note, float velocity)
@@ -1437,13 +1433,11 @@ void Main_Component::handleNoteOff(MidiKeyboardState *, int channel_, int note, 
     if (is_percussion_channel(channel))
         note = (midiprogram_[channel] - 128) & 127;
 
-    Simple_Fifo &queue = proc_->message_queue_for_ui();
-    Message_Header msghdr(User_Message::Midi, 3);
-    Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
-    msg.data[0] = channel | (0b1000u << 4);
-    msg.data[1] = note;
-    msg.data[2] = velocity * 127;
-    finish_write_message(queue, msg);
+    uint8_t midi[3];
+    midi[0] = channel | (0b1000u << 4);
+    midi[1] = note;
+    midi[2] = velocity * 127;
+    write_to_processor(User_Message::Midi, midi, 3);
 }
 
 void Main_Component::knob_value_changed(Knob *k)
@@ -1466,23 +1460,19 @@ void Main_Component::knob_value_changed(Knob *k)
 
 void Main_Component::send_controller(unsigned channel, unsigned ctl, unsigned value)
 {
-    Simple_Fifo &queue = proc_->message_queue_for_ui();
-    Message_Header msghdr(User_Message::Midi, 3);
-    Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
-    msg.data[0] = (channel & 15) | (0b1011u << 4);
-    msg.data[1] = ctl & 127;
-    msg.data[2] = value & 127;
-    finish_write_message(queue, msg);
+    uint8_t midi[3];
+    midi[0] = (channel & 15) | (0b1011u << 4);
+    midi[1] = ctl & 127;
+    midi[2] = value & 127;
+    write_to_processor(User_Message::Midi, midi, 3);
 }
 
 void Main_Component::send_program_change(unsigned channel, unsigned value)
 {
-    Simple_Fifo &queue = proc_->message_queue_for_ui();
-    Message_Header msghdr(User_Message::Midi, 2);
-    Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
-    msg.data[0] = (channel & 15) | (0b1100u << 4);
-    msg.data[1] = value & 127;
-    finish_write_message(queue, msg);
+    uint8_t midi[2];
+    midi[0] = (channel & 15) | (0b1100u << 4);
+    midi[1] = value & 127;
+    write_to_processor(User_Message::Midi, midi, 2);
 }
 
 bool Main_Component::is_percussion_channel(unsigned channel) const
@@ -1529,13 +1519,10 @@ void Main_Component::send_selection_update()
         trace("Send selection update 0:0:0 because of empty selection");
     }
 
-    Simple_Fifo &queue = proc_->message_queue_for_ui();
-    Message_Header msghdr(User_Message::SelectProgram, sizeof(Messages::User::SelectProgram));
-    Buffered_Message msg = write_message_retrying(queue, msghdr, std::chrono::milliseconds(1));
-    auto &body = *(Messages::User::SelectProgram *)msg.data;
-    body.bank = Bank_Id(psid >> 7, psid & 127, insno >= 128);
-    body.program = insno & 127;
-    finish_write_message(queue, msg);
+    Messages::User::SelectProgram msg;
+    msg.bank = Bank_Id(psid >> 7, psid & 127, insno >= 128);
+    msg.program = insno & 127;
+    write_to_processor(msg.tag, &msg, sizeof(msg));
 }
 
 void Main_Component::set_instrument_parameters(const Instrument &ins, NotificationType ntf)
@@ -1722,7 +1709,7 @@ void Main_Component::update_instrument_choices()
         e_bank.ins_menu.clear();
         for (unsigned i = 0; i < 256; ++i) {
             const Instrument &ins = e_bank.ins[i];
-            if(ins.blank())
+            if (ins.blank())
                 continue;
 
             String ins_sid;
@@ -1815,47 +1802,39 @@ void Main_Component::load_bank(const File &file)
         return;
     }
 
-    Simple_Fifo &queue = proc_->message_queue_for_ui();
-    auto send_bank = [&queue](const WOPLBank &bank, bool percussive) {
+    auto send_bank = [this](const WOPLBank &bank, bool percussive) {
                          for (unsigned i = 0; i < 128; ++i) {
-                             Message_Header hdr(User_Message::LoadInstrument, sizeof(Messages::User::LoadInstrument));
-                             Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
-                             auto &data = *(Messages::User::LoadInstrument *)msg.data;
-                             data.bank = Bank_Id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
-                             data.program = i;
-                             data.instrument = Instrument::from_wopl(bank.ins[i]);
-                             data.need_measurement = false;
-                             data.notify_back = false;
-                             finish_write_message(queue, msg);
+                             Messages::User::LoadInstrument msg;
+                             msg.bank = Bank_Id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
+                             msg.program = i;
+                             msg.instrument = Instrument::from_wopl(bank.ins[i]);
+                             msg.need_measurement = false;
+                             msg.notify_back = false;
+                             write_to_processor(msg.tag, &msg, sizeof(msg));
                          }
-                         Message_Header hdr(User_Message::RenameBank, sizeof(Messages::User::RenameBank));
-                         Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
-                         auto &data = *(Messages::User::RenameBank *)msg.data;
-                         data.bank = Bank_Id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
-                         data.notify_back = false;
-                         std::memcpy(data.name, bank.bank_name, 32);
-                         finish_write_message(queue, msg);
+
+                         Messages::User::RenameBank msg;
+                         msg.bank = Bank_Id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
+                         msg.notify_back = false;
+                         std::memcpy(msg.name, bank.bank_name, 32);
+                         write_to_processor(msg.tag, &msg, sizeof(msg));
                      };
     edt_bank_name->setText(file.getFileNameWithoutExtension());
     edt_bank_name->setCaretPosition(0);
 
     {
-        Message_Header hdr(User_Message::LoadGlobalParameters, sizeof(Messages::User::LoadGlobalParameters));
-        Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
-        auto &data = *(Messages::User::LoadGlobalParameters *)msg.data;
-        data.param.volume_model = wopl->volume_model;
-        data.param.deep_tremolo = wopl->opl_flags & WOPL_FLAG_DEEP_TREMOLO;
-        data.param.deep_vibrato = wopl->opl_flags & WOPL_FLAG_DEEP_VIBRATO;
-        data.notify_back = true;
-        finish_write_message(queue, msg);
+        Messages::User::LoadGlobalParameters msg;
+        msg.param.volume_model = wopl->volume_model;
+        msg.param.deep_tremolo = wopl->opl_flags & WOPL_FLAG_DEEP_TREMOLO;
+        msg.param.deep_vibrato = wopl->opl_flags & WOPL_FLAG_DEEP_VIBRATO;
+        msg.notify_back = true;
+        write_to_processor(msg.tag, &msg, sizeof(msg));
     }
 
     {
-        Message_Header hdr(User_Message::ClearBanks, sizeof(Messages::User::ClearBanks));
-        Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
-        auto &data = *(Messages::User::ClearBanks *)msg.data;
-        data.notify_back = false;
-        finish_write_message(queue, msg);
+        Messages::User::ClearBanks msg;
+        msg.notify_back = false;
+        write_to_processor(msg.tag, &msg, sizeof(msg));
     }
 
     for (unsigned i = 0, n = wopl->banks_count_melodic; i < n; ++i)
@@ -1864,9 +1843,8 @@ void Main_Component::load_bank(const File &file)
         send_bank(wopl->banks_percussive[i], true);
 
     {
-        Message_Header hdr(User_Message::RequestFullBankState, sizeof(Messages::User::RequestFullBankState));
-        Buffered_Message msg = write_message_retrying(queue, hdr, std::chrono::milliseconds(1));
-        finish_write_message(queue, msg);
+        Messages::User::RequestFullBankState msg;
+        write_to_processor(msg.tag, &msg, sizeof(msg));
     }
 }
 
@@ -2074,6 +2052,30 @@ void Main_Component::globalFocusChanged(Component *component)
 
     if (component == window)
         grabKeyboardFocus();
+}
+
+bool Main_Component::write_to_processor(
+    User_Message tag, const void *msgbody, unsigned msgsize)
+{
+    AdlplugAudioProcessor &proc = *proc_;
+
+    Message_Header hdr(tag, msgsize);
+
+    Buffered_Message msg;
+    while (!msg) {
+        std::shared_ptr<Simple_Fifo> queue = proc.message_queue_for_ui();
+        if (!queue)
+            return false;
+        msg = Messages::write(*queue, hdr);
+        if (!msg)
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        else {
+            std::memcpy(msg.data, msgbody, msgsize);
+            Messages::finish_write(*queue, msg);
+        }
+    }
+
+    return true;
 }
 //[/MiscUserCode]
 

@@ -111,6 +111,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     player_.reset(pl);
     pl->init(sample_rate);
     pl->reserve_banks(bank_reserve_size);
+    pl->load_bank_data(BinaryData::default_wopl, BinaryData::default_woplSize);
     pl->set_volume_model(1);
     pl->set_deep_tremolo(false);
     pl->set_deep_vibrato(false);
@@ -138,6 +139,8 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 
     selection_id_ = Bank_Id(0, 0, 0);
     selection_pgm_ = 0;
+
+    // ready_ = true;
     set_instrument_parameters_notifying_host();
 }
 
@@ -147,9 +150,18 @@ void AdlplugAudioProcessor::releaseResources()
         worker->stop_worker();
         worker_.reset();
     }
+
+    // ready_ = false;
+
+    // avoid destroying the player while the UI is working on it
+    std::unique_lock<std::mutex> lock(player_lock_);
+
     bank_manager_.reset();
     player_.reset();
     mq_from_ui_.reset();
+    mq_to_ui_.reset();
+    mq_from_worker_.reset();
+    mq_to_worker_.reset();
 }
 
 std::unique_lock<std::mutex> AdlplugAudioProcessor::acquire_player_nonrt()
@@ -311,18 +323,18 @@ void AdlplugAudioProcessor::process_messages(Midi_Input_Source &midi, bool under
 
     // handle events from GUI
     Simple_Fifo &mq_from_ui = *mq_from_ui_;
-    while (Buffered_Message msg = read_message(mq_from_ui)) {
+    while (Buffered_Message msg = Messages::read(mq_from_ui)) {
         if (!handle_message(msg, ctx))
             break;
-        finish_read_message(mq_from_ui, msg);
+        Messages::finish_read(mq_from_ui, msg);
     }
 
     // handle events from worker
     Simple_Fifo &mq_from_worker = *mq_from_worker_;
-    while (Buffered_Message msg = read_message(mq_from_worker)) {
+    while (Buffered_Message msg = Messages::read(mq_from_worker)) {
         if (!handle_message(msg, ctx))
             break;
-        finish_read_message(mq_from_worker, msg);
+        Messages::finish_read(mq_from_worker, msg);
     }
 
     // handle events from MIDI

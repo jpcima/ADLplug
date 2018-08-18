@@ -84,7 +84,7 @@
         lv2:index 7 ;
         lv2:symbol "blank" ;
         lv2:name "Blank" ;
-        lv2:default 1.000000 ;
+        lv2:default 0.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -129,7 +129,7 @@
         lv2:index 12 ;
         lv2:symbol "fb12" ;
         lv2:name "Feedback 1-2" ;
-        lv2:default 0.000000 ;
+        lv2:default 0.571429 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -183,7 +183,7 @@
         lv2:index 18 ;
         lv2:symbol "c1decay" ;
         lv2:name "Carrier 1 Decay" ;
-        lv2:default 0.000000 ;
+        lv2:default 0.866667 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -192,7 +192,7 @@
         lv2:index 19 ;
         lv2:symbol "c1sustain" ;
         lv2:name "Carrier 1 Sustain" ;
-        lv2:default 1.000000 ;
+        lv2:default 0.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -201,7 +201,7 @@
         lv2:index 20 ;
         lv2:symbol "c1release" ;
         lv2:name "Carrier 1 Release" ;
-        lv2:default 0.000000 ;
+        lv2:default 0.533333 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -210,7 +210,7 @@
         lv2:index 21 ;
         lv2:symbol "c1level" ;
         lv2:name "Carrier 1 Level" ;
-        lv2:default 1.000000 ;
+        lv2:default 0.904762 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -228,7 +228,7 @@
         lv2:index 23 ;
         lv2:symbol "c1fmul" ;
         lv2:name "Carrier 1 Frequency multiplier" ;
-        lv2:default 0.000000 ;
+        lv2:default 0.066667 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -291,7 +291,7 @@
         lv2:index 30 ;
         lv2:symbol "m1decay" ;
         lv2:name "Modulator 1 Decay" ;
-        lv2:default 0.000000 ;
+        lv2:default 0.866667 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -300,7 +300,7 @@
         lv2:index 31 ;
         lv2:symbol "m1sustain" ;
         lv2:name "Modulator 1 Sustain" ;
-        lv2:default 1.000000 ;
+        lv2:default 0.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -309,7 +309,7 @@
         lv2:index 32 ;
         lv2:symbol "m1release" ;
         lv2:name "Modulator 1 Release" ;
-        lv2:default 0.000000 ;
+        lv2:default 0.733333 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -318,7 +318,7 @@
         lv2:index 33 ;
         lv2:symbol "m1level" ;
         lv2:name "Modulator 1 Level" ;
-        lv2:default 1.000000 ;
+        lv2:default 0.761905 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -327,7 +327,7 @@
         lv2:index 34 ;
         lv2:symbol "m1ksl" ;
         lv2:name "Modulator 1 Key scale level" ;
-        lv2:default 0.000000 ;
+        lv2:default 0.666667 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -336,7 +336,7 @@
         lv2:index 35 ;
         lv2:symbol "m1fmul" ;
         lv2:name "Modulator 1 Frequency multiplier" ;
-        lv2:default 0.000000 ;
+        lv2:default 0.066667 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -390,7 +390,7 @@
         lv2:index 41 ;
         lv2:symbol "c2attack" ;
         lv2:name "Carrier 2 Attack" ;
-        lv2:default 0.000000 ;
+        lv2:default 1.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -399,7 +399,7 @@
         lv2:index 42 ;
         lv2:symbol "c2decay" ;
         lv2:name "Carrier 2 Decay" ;
-        lv2:default 0.000000 ;
+        lv2:default 1.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -408,7 +408,7 @@
         lv2:index 43 ;
         lv2:symbol "c2sustain" ;
         lv2:name "Carrier 2 Sustain" ;
-        lv2:default 1.000000 ;
+        lv2:default 0.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -417,7 +417,7 @@
         lv2:index 44 ;
         lv2:symbol "c2release" ;
         lv2:name "Carrier 2 Release" ;
-        lv2:default 0.000000 ;
+        lv2:default 1.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -426,7 +426,7 @@
         lv2:index 45 ;
         lv2:symbol "c2level" ;
         lv2:name "Carrier 2 Level" ;
-        lv2:default 1.000000 ;
+        lv2:default 0.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -498,7 +498,7 @@
         lv2:index 53 ;
         lv2:symbol "m2attack" ;
         lv2:name "Modulator 2 Attack" ;
-        lv2:default 0.000000 ;
+        lv2:default 1.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -507,7 +507,7 @@
         lv2:index 54 ;
         lv2:symbol "m2decay" ;
         lv2:name "Modulator 2 Decay" ;
-        lv2:default 0.000000 ;
+        lv2:default 1.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -516,7 +516,7 @@
         lv2:index 55 ;
         lv2:symbol "m2sustain" ;
         lv2:name "Modulator 2 Sustain" ;
-        lv2:default 1.000000 ;
+        lv2:default 0.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -525,7 +525,7 @@
         lv2:index 56 ;
         lv2:symbol "m2release" ;
         lv2:name "Modulator 2 Release" ;
-        lv2:default 0.000000 ;
+        lv2:default 1.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -534,7 +534,7 @@
         lv2:index 57 ;
         lv2:symbol "m2level" ;
         lv2:name "Modulator 2 Level" ;
-        lv2:default 1.000000 ;
+        lv2:default 0.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,

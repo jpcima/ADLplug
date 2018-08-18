@@ -5,7 +5,9 @@
 
 #include "messages.h"
 
-Buffered_Message read_message(Simple_Fifo &fifo) noexcept
+namespace Messages {
+
+Buffered_Message read(Simple_Fifo &fifo) noexcept
 {
     Buffered_Message msg;
     msg.header = (Message_Header *)fifo.read(sizeof(Message_Header), msg.offset);
@@ -17,12 +19,12 @@ Buffered_Message read_message(Simple_Fifo &fifo) noexcept
     return msg;
 }
 
-void finish_read_message(Simple_Fifo &fifo, const Buffered_Message &msg) noexcept
+void finish_read(Simple_Fifo &fifo, const Buffered_Message &msg) noexcept
 {
     fifo.finish_read(msg.offset);
 }
 
-Buffered_Message write_message(Simple_Fifo &fifo, const Message_Header &hdr) noexcept
+Buffered_Message write(Simple_Fifo &fifo, const Message_Header &hdr) noexcept
 {
     Buffered_Message msg;
     msg.header = (Message_Header *)fifo.write(sizeof(Message_Header), msg.offset);
@@ -35,7 +37,9 @@ Buffered_Message write_message(Simple_Fifo &fifo, const Message_Header &hdr) noe
     return msg;
 }
 
-void finish_write_message(Simple_Fifo &fifo, Buffered_Message &msg) noexcept
+void finish_write(Simple_Fifo &fifo, Buffered_Message &msg) noexcept
 {
     fifo.finish_write(msg.offset);
 }
+
+}  // namespace Messages

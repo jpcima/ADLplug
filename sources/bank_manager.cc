@@ -297,6 +297,9 @@ void Bank_Manager::initialize_all_banks()
         info.id = id;
         info.bank = bank;
 
+        std::memset(info.bank_name, 0, 32);
+        std::memset(info.ins_names, 0, 128 * 32);
+
         Instrument ins;
         info.used.reset();
         for (unsigned i = 0; i < 128; ++i) {
@@ -339,10 +342,10 @@ unsigned Bank_Manager::find_empty_slot()
 bool Bank_Manager::emit_slots()
 {
     AdlplugAudioProcessor &proc = proc_;
-    Simple_Fifo &queue = proc.message_queue_to_ui();
+    Simple_Fifo &queue = *proc.message_queue_to_ui();
 
     Message_Header hdr(Fx_Message::NotifyBankSlots, sizeof(Messages::Fx::NotifyBankSlots));
-    Buffered_Message msg = write_message(queue, hdr);
+    Buffered_Message msg = Messages::write(queue, hdr);
     if (!msg)
         return false;
 
@@ -358,7 +361,7 @@ bool Bank_Manager::emit_slots()
         std::memcpy(ent.name, info.bank_name, 32);
     }
     data.count = count;
-    finish_write_message(queue, msg);
+    Messages::finish_write(queue, msg);
 
     return true;
 }
@@ -367,10 +370,10 @@ bool Bank_Manager::emit_global_parameters()
 {
     Generic_Player &pl = pl_;
     AdlplugAudioProcessor &proc = proc_;
-    Simple_Fifo &queue = proc.message_queue_to_ui();
+    Simple_Fifo &queue = *proc.message_queue_to_ui();
 
     Message_Header hdr(Fx_Message::NotifyGlobalParameters, sizeof(Messages::Fx::NotifyGlobalParameters));
-    Buffered_Message msg = write_message(queue, hdr);
+    Buffered_Message msg = Messages::write(queue, hdr);
     if (!msg)
         return false;
 
@@ -379,7 +382,7 @@ bool Bank_Manager::emit_global_parameters()
     data.param.deep_tremolo = pl.deep_tremolo();
     data.param.deep_vibrato = pl.deep_vibrato();
 
-    finish_write_message(queue, msg);
+    Messages::finish_write(queue, msg);
     return true;
 }
 
@@ -387,10 +390,10 @@ bool Bank_Manager::emit_notification(const Bank_Info &info, unsigned program)
 {
     Generic_Player &pl = pl_;
     AdlplugAudioProcessor &proc = proc_;
-    Simple_Fifo &queue = proc.message_queue_to_ui();
+    Simple_Fifo &queue = *proc.message_queue_to_ui();
 
     Message_Header hdr(Fx_Message::NotifyInstrument, sizeof(Messages::Fx::NotifyInstrument));
-    Buffered_Message msg = write_message(queue, hdr);
+    Buffered_Message msg = Messages::write(queue, hdr);
     if (!msg)
         return false;
 
@@ -399,7 +402,7 @@ bool Bank_Manager::emit_notification(const Bank_Info &info, unsigned program)
     data.program = program;
     pl.ensure_get_instrument(info.bank, program, data.instrument);
     std::memcpy(data.instrument.name, &info.ins_names[program * 32], 32);
-    finish_write_message(queue, msg);
+    Messages::finish_write(queue, msg);
 
     return true;
 }
@@ -411,7 +414,7 @@ bool Bank_Manager::emit_measurement_request(const Bank_Info &info, unsigned prog
     Simple_Fifo &queue = proc.message_queue_to_worker();
 
     Message_Header hdr(Fx_Message::RequestMeasurement, sizeof(Messages::Fx::RequestMeasurement));
-    Buffered_Message msg = write_message(queue, hdr);
+    Buffered_Message msg = Messages::write(queue, hdr);
     if (!msg)
         return false;
 
@@ -419,7 +422,7 @@ bool Bank_Manager::emit_measurement_request(const Bank_Info &info, unsigned prog
     data.bank = info.id;
     data.program = program;
     pl.ensure_get_instrument(info.bank, program, data.instrument);
-    finish_write_message(queue, msg);
+    Messages::finish_write(queue, msg);
 
     Worker *worker = proc.worker();
     worker->postSemaphore();

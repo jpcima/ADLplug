@@ -34,6 +34,9 @@ public:
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
+    // bool is_playback_ready() const
+    //     { return ready_.load(); }
+
     std::unique_lock<std::mutex> acquire_player_nonrt();
     unsigned num_chips_nonrt() const;
     void set_num_chips_nonrt(unsigned chips);
@@ -72,8 +75,10 @@ public:
 
     unsigned default_emulator() const { return default_emulator_; }
 
-    Simple_Fifo &message_queue_for_ui() const { return *mq_from_ui_; }
-    Simple_Fifo &message_queue_to_ui() const { return *mq_to_ui_; }
+    const std::shared_ptr<Simple_Fifo> &message_queue_for_ui() const
+        { return mq_from_ui_; }
+    const std::shared_ptr<Simple_Fifo> &message_queue_to_ui() const
+        { return mq_to_ui_; }
 
     Simple_Fifo &message_queue_for_worker() const { return *mq_from_worker_; }
     Simple_Fifo &message_queue_to_worker() const { return *mq_to_worker_; }
@@ -120,8 +125,10 @@ private:
 
     std::unique_ptr<Bank_Manager> bank_manager_;
 
-    std::unique_ptr<Simple_Fifo> mq_from_ui_;
-    std::unique_ptr<Simple_Fifo> mq_to_ui_;
+    // std::atomic<bool> ready_;
+
+    std::shared_ptr<Simple_Fifo> mq_from_ui_;
+    std::shared_ptr<Simple_Fifo> mq_to_ui_;
 
     std::unique_ptr<Simple_Fifo> mq_from_worker_;
     std::unique_ptr<Simple_Fifo> mq_to_worker_;

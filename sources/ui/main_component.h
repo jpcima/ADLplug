@@ -117,6 +117,9 @@ private:
     AdlplugAudioProcessor *proc_ = nullptr;
     Parameter_Block *parameter_block_ = nullptr;
 
+    bool write_to_processor(
+        User_Message tag, const void *msgbody, unsigned msgsize);
+
     struct Editor_Bank {
         char name[32] = {};
         PopupMenu ins_menu;

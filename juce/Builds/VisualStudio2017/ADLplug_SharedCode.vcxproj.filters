@@ -38,6 +38,9 @@
     <Filter Include="ADLplug\sources">
       <UniqueIdentifier>{337050D3-2325-64ED-EBA1-66A581B1107F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\resources\banks">
+      <UniqueIdentifier>{C98F95AB-FBC6-21B1-C25D-99C2151C049B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\resources\ui\cores">
       <UniqueIdentifier>{8539FEB8-6B7D-9E80-E807-D183A955989E}</UniqueIdentifier>
     </Filter>
@@ -4825,6 +4828,9 @@
     </None>
     <None Include="..\..\..\sources\utility\counting_bitset.tcc">
       <Filter>ADLplug\sources\utility</Filter>
+    </None>
+    <None Include="..\..\..\resources\banks\default.wopl">
+      <Filter>ADLplug\resources\banks</Filter>
     </None>
     <None Include="..\..\..\resources\ui\knob-skin.png">
       <Filter>ADLplug\resources\ui</Filter>

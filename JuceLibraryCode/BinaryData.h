@@ -8,6 +8,9 @@
 
 namespace BinaryData
 {
+    extern const char*   default_wopl;
+    const int            default_woplSize = 16983;
+
     extern const char*   knobskin_png;
     const int            knobskin_pngSize = 21416;
 
@@ -63,7 +66,7 @@ namespace BinaryData
     const int            emoji_u1f4c2_pngSize = 2181;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 18;
+    const int namedResourceListSize = 19;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];

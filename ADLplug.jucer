@@ -130,6 +130,9 @@
       </GROUP>
     </GROUP>
     <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
+      <GROUP id="{426F9D63-7ED2-C70C-62C0-7A782D9BBA77}" name="banks">
+        <FILE id="sB78Hw" name="default.wopl" compile="0" resource="1" file="resources/banks/default.wopl"/>
+      </GROUP>
       <GROUP id="{02680B2E-61B1-FA1B-3D9A-89A688227935}" name="ui">
         <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="resources/ui/knob-skin.png"/>
         <GROUP id="{3DD686E2-DFBA-641B-F10D-41AB90380470}" name="cores">

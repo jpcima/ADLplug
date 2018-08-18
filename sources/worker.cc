@@ -63,15 +63,15 @@ void Worker::run()
         if (should_exit)
             break;
 
-        Buffered_Message msg_recv = read_message(mq_recv);
+        Buffered_Message msg_recv = Messages::read(mq_recv);
         assert(msg_recv);
         handle_message(msg_recv);
-        finish_read_message(mq_recv, msg_recv);
+        Messages::finish_read(mq_recv, msg_recv);
         while (sem.try_wait() && !(should_exit = quit_.load())) {
-            msg_recv = read_message(mq_recv);
+            msg_recv = Messages::read(mq_recv);
             assert(msg_recv);
             handle_message(msg_recv);
-            finish_read_message(mq_recv, msg_recv);
+            Messages::finish_read(mq_recv, msg_recv);
         }
 
         if (should_exit)
@@ -80,13 +80,13 @@ void Worker::run()
         if (!measure_requests_.empty()) {
             Message_Header hdr(Worker_Message::MeasurementResult, sizeof(Messages::Worker::MeasurementResult));
             Buffered_Message msg_send;
-            while (!should_exit && !(msg_send = write_message(mq_send, hdr))) {
+            while (!should_exit && !(msg_send = Messages::write(mq_send, hdr))) {
                 std::this_thread::sleep_for(stc::milliseconds(1));
                 while (sem.try_wait() && !(should_exit = quit_.load())) {
-                    msg_recv = read_message(mq_recv);
+                    msg_recv = Messages::read(mq_recv);
                     assert(msg_recv);
                     handle_message(msg_recv);
-                    finish_read_message(mq_recv, msg_recv);
+                    Messages::finish_read(mq_recv, msg_recv);
                 }
             }
 
@@ -96,7 +96,7 @@ void Worker::run()
             auto &body = *(Messages::Worker::MeasurementResult *)msg_send.data;
             auto it = measure_requests_.begin();
             measure(it->first, it->second, body);
-            finish_write_message(mq_send, msg_send);
+            Messages::finish_write(mq_send, msg_send);
             measure_requests_.erase(it);
         }
     }

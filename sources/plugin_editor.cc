@@ -33,7 +33,7 @@ AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &
     // editor's size to whatever you need it to be.
     setSize(main->getWidth(), main->getHeight());
 
-    discard_notifications();
+    // discard_notifications();
     Timer *timer = Functional_Timer::create([this]() { process_notifications(); });
     notification_timer_.reset(timer);
     timer->startTimer(10);
@@ -69,9 +69,12 @@ void AdlplugAudioProcessorEditor::process_notifications()
 {
     AdlplugAudioProcessor &proc = proc_;
     Main_Component *main = main_.get();
-    Simple_Fifo &queue = proc.message_queue_to_ui();
+    std::shared_ptr<Simple_Fifo> queue = proc.message_queue_to_ui();
 
-    while (Buffered_Message msg = read_message(queue)) {
+    if (!queue)
+        return;
+
+    while (Buffered_Message msg = Messages::read(*queue)) {
         Fx_Message tag = (Fx_Message)msg.header->tag;
 
         switch (tag) {
@@ -93,14 +96,18 @@ void AdlplugAudioProcessorEditor::process_notifications()
         default:
             assert(false);
         }
-        finish_read_message(queue, msg);
+        Messages::finish_read(*queue, msg);
     }
 }
 
 void AdlplugAudioProcessorEditor::discard_notifications()
 {
     AdlplugAudioProcessor &proc = proc_;
-    Simple_Fifo &queue = proc.message_queue_to_ui();
-    while (Buffered_Message msg = read_message(queue))
-        finish_read_message(queue, msg);
+    std::shared_ptr<Simple_Fifo> queue = proc.message_queue_to_ui();
+
+    if (!queue)
+        return;
+
+    while (Buffered_Message msg = Messages::read(*queue))
+        Messages::finish_read(*queue, msg);
 }

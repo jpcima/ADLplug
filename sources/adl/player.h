@@ -36,6 +36,7 @@ public:
     virtual void reset() = 0;
     virtual void panic() = 0;
     virtual unsigned reserve_banks(unsigned banks) = 0;
+    virtual bool load_bank_data(const void *mem, size_t size) = 0;
     virtual bool get_bank(const Bank_Id &id, int flags, Bank_Ref &bank) = 0;
     virtual bool get_first_bank(Bank_Ref &bank) = 0;
     virtual bool get_next_bank(Bank_Ref &bank) = 0;

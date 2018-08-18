@@ -24,7 +24,7 @@
     ] ,
     [
         lv2:symbol "blank" ;
-        pset:value 1.000000 ;
+        pset:value 0.000000 ;
     ] ,
     [
         lv2:symbol "con12" ;
@@ -44,7 +44,7 @@
     ] ,
     [
         lv2:symbol "fb12" ;
-        pset:value 0.000000 ;
+        pset:value 0.571429 ;
     ] ,
     [
         lv2:symbol "fb34" ;
@@ -68,19 +68,19 @@
     ] ,
     [
         lv2:symbol "c1decay" ;
-        pset:value 0.000000 ;
+        pset:value 0.866667 ;
     ] ,
     [
         lv2:symbol "c1sustain" ;
-        pset:value 1.000000 ;
-    ] ,
-    [
-        lv2:symbol "c1release" ;
         pset:value 0.000000 ;
     ] ,
     [
+        lv2:symbol "c1release" ;
+        pset:value 0.533333 ;
+    ] ,
+    [
         lv2:symbol "c1level" ;
-        pset:value 1.000000 ;
+        pset:value 0.904762 ;
     ] ,
     [
         lv2:symbol "c1ksl" ;
@@ -88,7 +88,7 @@
     ] ,
     [
         lv2:symbol "c1fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0.066667 ;
     ] ,
     [
         lv2:symbol "c1trem" ;
@@ -116,27 +116,27 @@
     ] ,
     [
         lv2:symbol "m1decay" ;
-        pset:value 0.000000 ;
+        pset:value 0.866667 ;
     ] ,
     [
         lv2:symbol "m1sustain" ;
-        pset:value 1.000000 ;
+        pset:value 0.000000 ;
     ] ,
     [
         lv2:symbol "m1release" ;
-        pset:value 0.000000 ;
+        pset:value 0.733333 ;
     ] ,
     [
         lv2:symbol "m1level" ;
-        pset:value 1.000000 ;
+        pset:value 0.761905 ;
     ] ,
     [
         lv2:symbol "m1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0.666667 ;
     ] ,
     [
         lv2:symbol "m1fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0.066667 ;
     ] ,
     [
         lv2:symbol "m1trem" ;
@@ -160,23 +160,23 @@
     ] ,
     [
         lv2:symbol "c2attack" ;
-        pset:value 0.000000 ;
+        pset:value 1.000000 ;
     ] ,
     [
         lv2:symbol "c2decay" ;
-        pset:value 0.000000 ;
+        pset:value 1.000000 ;
     ] ,
     [
         lv2:symbol "c2sustain" ;
-        pset:value 1.000000 ;
-    ] ,
-    [
-        lv2:symbol "c2release" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "c2level" ;
+        lv2:symbol "c2release" ;
         pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "c2level" ;
+        pset:value 0.000000 ;
     ] ,
     [
         lv2:symbol "c2ksl" ;
@@ -208,23 +208,23 @@
     ] ,
     [
         lv2:symbol "m2attack" ;
-        pset:value 0.000000 ;
+        pset:value 1.000000 ;
     ] ,
     [
         lv2:symbol "m2decay" ;
-        pset:value 0.000000 ;
+        pset:value 1.000000 ;
     ] ,
     [
         lv2:symbol "m2sustain" ;
-        pset:value 1.000000 ;
-    ] ,
-    [
-        lv2:symbol "m2release" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "m2level" ;
+        lv2:symbol "m2release" ;
         pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "m2level" ;
+        pset:value 0.000000 ;
     ] ,
     [
         lv2:symbol "m2ksl" ;

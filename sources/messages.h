@@ -34,21 +34,23 @@ struct Buffered_Message {
         { return data; }
 };
 
-Buffered_Message read_message(Simple_Fifo &fifo) noexcept;
-void finish_read_message(Simple_Fifo &fifo, const Buffered_Message &msg) noexcept;
+namespace Messages {
+    Buffered_Message read(Simple_Fifo &fifo) noexcept;
+    void finish_read(Simple_Fifo &fifo, const Buffered_Message &msg) noexcept;
 
-Buffered_Message write_message(Simple_Fifo &fifo, const Message_Header &hdr) noexcept;
-void finish_write_message(Simple_Fifo &fifo, Buffered_Message &msg) noexcept;
+    Buffered_Message write(Simple_Fifo &fifo, const Message_Header &hdr) noexcept;
+    void finish_write(Simple_Fifo &fifo, Buffered_Message &msg) noexcept;
 
-template <class R, class P>
-Buffered_Message write_message_retrying(
-    Simple_Fifo &fifo, const Message_Header &hdr, std::chrono::duration<R, P> delay)
-{
-    Buffered_Message msg;
-    while (!(msg = write_message(fifo, hdr)))
-        std::this_thread::sleep_for(delay);
-    return msg;
-}
+    template <class R, class P>
+    Buffered_Message write_retrying(
+        Simple_Fifo &fifo, const Message_Header &hdr, std::chrono::duration<R, P> delay)
+    {
+        Buffered_Message msg;
+        while (!(msg = write(fifo, hdr)))
+            std::this_thread::sleep_for(delay);
+        return msg;
+    }
+}  // namespace Messages
 
 //------------------------------------------------------------------------------
 enum class User_Message {
@@ -66,21 +68,26 @@ namespace Messages {
 namespace User {
 
 struct RequestBankSlots {
+    static constexpr User_Message tag = User_Message::RequestBankSlots;
 };
 
 struct RequestFullBankState {
+    static constexpr User_Message tag = User_Message::RequestFullBankState;
 };
 
 struct ClearBanks {
+    static constexpr User_Message tag = User_Message::ClearBanks;
     bool notify_back = false;
 };
 
 struct LoadGlobalParameters {
+    static constexpr User_Message tag = User_Message::LoadGlobalParameters;
     Instrument_Global_Parameters param;
     bool notify_back = false;
 };
 
 struct LoadInstrument {
+    static constexpr User_Message tag = User_Message::LoadInstrument;
     Bank_Id bank;
     uint8_t program = 0;
     Instrument instrument;
@@ -89,12 +96,14 @@ struct LoadInstrument {
 };
 
 struct RenameBank {
+    static constexpr User_Message tag = User_Message::RenameBank;
     Bank_Id bank;
     bool notify_back = false;
     char name[32] {};
 };
 
 struct SelectProgram {
+    static constexpr User_Message tag = User_Message::SelectProgram;
     Bank_Id bank;
     uint8_t program = 0;
 };
@@ -114,6 +123,7 @@ namespace Messages {
 namespace Fx {
 
 struct NotifyBankSlots {
+    static constexpr Fx_Message tag = Fx_Message::NotifyBankSlots;
     struct Entry {
         Bank_Id bank;
         counting_bitset<128> used;
@@ -124,16 +134,19 @@ struct NotifyBankSlots {
 };
 
 struct NotifyGlobalParameters {
+    static constexpr Fx_Message tag = Fx_Message::NotifyGlobalParameters;
     Instrument_Global_Parameters param;
 };
 
 struct NotifyInstrument {
+    static constexpr Fx_Message tag = Fx_Message::NotifyInstrument;
     Bank_Id bank;
     uint8_t program = 0;
     Instrument instrument;
 };
 
 struct RequestMeasurement {
+    static constexpr Fx_Message tag = Fx_Message::RequestMeasurement;
     Bank_Id bank;
     uint8_t program = 0;
     Instrument instrument;
@@ -151,6 +164,7 @@ namespace Messages {
 namespace Worker {
 
 struct MeasurementResult {
+    static constexpr Worker_Message tag = Worker_Message::MeasurementResult;
     Bank_Id bank;
     uint8_t program = 0;
     Instrument instrument;

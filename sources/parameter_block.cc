@@ -5,10 +5,29 @@
 
 #include "parameter_block.h"
 #include "adl/instrument.h"
+#include <wopl/wopl_file.h>
+#include <cassert>
+
+static Instrument default_instrument()
+{
+    WOPLFile_Ptr file(WOPL_LoadBankFromMem((void *)BinaryData::default_wopl, BinaryData::default_woplSize, nullptr));
+    if (!file)
+        throw std::bad_alloc();
+
+    WOPLBank *bank = nullptr;
+    for (unsigned i = 0, n = file->banks_count_melodic; i < n && !bank; ++i) {
+        WOPLBank *cur = &file->banks_melodic[i];
+        if (cur->bank_midi_lsb == 0 && cur->bank_midi_msb == 0)
+            bank = cur;
+    }
+
+    assert(bank);
+    return Instrument::from_wopl(bank->ins[0]);
+}
 
 void Parameter_Block::setup_parameters(AudioProcessor &p)
 {
-    Instrument ins;
+    Instrument ins = default_instrument();
 
     p.addParameter((p_is4op = new AudioParameterBool("is4op", "4op", ins.four_op(), String())));
     p.addParameter((p_ps4op = new AudioParameterBool("ps4op", "Pseudo 4op", ins.pseudo_four_op(), String())));
@@ -39,7 +58,7 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
         p.addParameter((op.p_release = new AudioParameterInt(id("release"), name("Release"), 0, 15, ins.release(opnum), String())));
         p.addParameter((op.p_level = new AudioParameterInt(id("level"), name("Level"), 0, 63, ins.level(opnum), String())));
         p.addParameter((op.p_ksl = new AudioParameterInt(id("ksl"), name("Key scale level"), 0, 3, ins.ksl(opnum), String())));
-        p.addParameter((op.p_fmul = new AudioParameterInt(id("fmul"), name("Frequency multiplier"), 0, 15, ins.ksl(opnum), String())));
+        p.addParameter((op.p_fmul = new AudioParameterInt(id("fmul"), name("Frequency multiplier"), 0, 15, ins.fmul(opnum), String())));
         p.addParameter((op.p_trem = new AudioParameterBool(id("trem"), name("Tremolo"), ins.trem(opnum), String())));
         p.addParameter((op.p_vib = new AudioParameterBool(id("vib"), name("Vibrato"), ins.vib(opnum), String())));
         p.addParameter((op.p_sus = new AudioParameterBool(id("sus"), name("Sustaining"), ins.sus(opnum), String())));

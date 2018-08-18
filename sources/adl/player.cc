@@ -30,6 +30,7 @@ struct Player_Traits<Player_Type::OPL3>
     static constexpr auto &reset = adl_reset;
     static constexpr auto &panic = adl_panic;
     static constexpr auto &reserve_banks = adl_reserveBanks;
+    static constexpr auto &load_bank_data = adl_openBankData;
     static constexpr auto &get_bank = adl_getBank;
     static constexpr auto &get_first_bank = adl_getFirstBank;
     static constexpr auto &get_next_bank = adl_getNextBank;
@@ -76,6 +77,8 @@ public:
         { traits::panic(player_.get()); }
     unsigned reserve_banks(unsigned banks) override
         { return traits::reserve_banks(player_.get(), banks); }
+    bool load_bank_data(const void *mem, size_t size) override
+        { return traits::load_bank_data(player_.get(), mem, size) >= 0; }
     bool get_bank(const Bank_Id &id, int flags, Bank_Ref &bank) override
         { return traits::get_bank(player_.get(), &id, flags, &bank) >= 0; }
     bool get_first_bank(Bank_Ref &bank) override
