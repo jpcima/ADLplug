@@ -726,24 +726,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     midi_activity_timer_->startTimer(100);
 
     btn_algo_help->setTooltip("<<Algorithms>>");
-
-    {
-        std::unique_lock<std::mutex> lock(proc.acquire_player_nonrt());
-        emulator_value_ = proc.chip_emulator_nonrt();
-        unsigned nchips = proc.num_chips_nonrt();
-        unsigned n4ops = proc.num_4ops_nonrt();
-        lock.unlock();
-        sl_num_chips->setRange(1, 100, 1);
-        sl_num_chips->setValue(nchips, dontSendNotification);
-        sl_num_4ops->setRange(0, 6 * nchips, 1);
-        sl_num_4ops->setValue(n4ops, dontSendNotification);
-    }
-    update_emulator_icon();
-
-    {
-        Messages::User::RequestFullBankState msg;
-        write_to_processor(msg.tag, &msg, sizeof(msg));
-    }
     //[/Constructor]
 }
 
@@ -1412,6 +1394,29 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+void Main_Component::on_ready_processor()
+{
+    AdlplugAudioProcessor &proc = *proc_;
+
+    std::unique_lock<std::mutex> lock(proc.acquire_player_nonrt());
+    if (!proc.is_playback_ready())
+        return;
+
+    emulator_value_ = proc.chip_emulator_nonrt();
+    unsigned nchips = proc.num_chips_nonrt();
+    unsigned n4ops = proc.num_4ops_nonrt();
+    lock.unlock();
+
+    sl_num_chips->setRange(1, 100, 1);
+    sl_num_chips->setValue(nchips, dontSendNotification);
+    sl_num_4ops->setRange(0, 6 * nchips, 1);
+    sl_num_4ops->setValue(n4ops, dontSendNotification);
+    update_emulator_icon();
+
+    Messages::User::RequestFullBankState msg;
+    write_to_processor(msg.tag, &msg, sizeof(msg));
+}
+
 void Main_Component::handleNoteOn(MidiKeyboardState *, int channel_, int note, float velocity)
 {
     unsigned channel = (unsigned)(channel_ - 1);

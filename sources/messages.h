@@ -113,7 +113,8 @@ struct SelectProgram {
 
 //------------------------------------------------------------------------------
 enum class Fx_Message {
-    NotifyBankSlots = 0x2000,  // notifies the layout of banks and instruments
+    NotifyReady = 0x2000,  // notifies readiness
+    NotifyBankSlots,  // notifies the layout of banks and instruments
     NotifyGlobalParameters,  // notifies the global parameters
     NotifyInstrument,  // notifies an instrument when changed
     RequestMeasurement,  // request measurement of a program
@@ -121,6 +122,10 @@ enum class Fx_Message {
 
 namespace Messages {
 namespace Fx {
+
+struct NotifyReady {
+    static constexpr Fx_Message tag = Fx_Message::NotifyReady;
+};
 
 struct NotifyBankSlots {
     static constexpr Fx_Message tag = Fx_Message::NotifyBankSlots;

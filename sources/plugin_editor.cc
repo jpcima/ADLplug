@@ -78,6 +78,9 @@ void AdlplugAudioProcessorEditor::process_notifications()
         Fx_Message tag = (Fx_Message)msg.header->tag;
 
         switch (tag) {
+        case Fx_Message::NotifyReady:
+            main->on_ready_processor();
+            break;
         case Fx_Message::NotifyBankSlots: {
             auto &body = *(const Messages::Fx::NotifyBankSlots *)msg.data;
             main->receive_bank_slots(body);

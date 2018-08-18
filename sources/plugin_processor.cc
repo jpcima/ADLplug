@@ -92,11 +92,11 @@ void AdlplugAudioProcessor::changeProgramName(int index, const String &new_name)
 //==============================================================================
 void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 {
+    Simple_Fifo *mq_to_ui = new Simple_Fifo(32 * 1024);
+    mq_to_ui_.reset(mq_to_ui);
     mq_from_ui_.reset(new Simple_Fifo(32 * 1024));
-    mq_to_ui_.reset(new Simple_Fifo(32 * 1024));
-
-    mq_from_worker_.reset(new Simple_Fifo(32 * 1024));
     mq_to_worker_.reset(new Simple_Fifo(32 * 1024));
+    mq_from_worker_.reset(new Simple_Fifo(32 * 1024));
 
     Worker *worker = worker_.get();
     if (worker) {
@@ -140,8 +140,13 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     selection_id_ = Bank_Id(0, 0, 0);
     selection_pgm_ = 0;
 
-    // ready_ = true;
+    ready_ = true;
     set_instrument_parameters_notifying_host();
+
+    Message_Header hdr{Fx_Message::NotifyReady, sizeof(Messages::Fx::NotifyReady)};
+    Buffered_Message msg = Messages::write(*mq_to_ui, hdr);
+    assert(msg);
+    Messages::finish_write(*mq_to_ui, msg);
 }
 
 void AdlplugAudioProcessor::releaseResources()
@@ -151,7 +156,7 @@ void AdlplugAudioProcessor::releaseResources()
         worker_.reset();
     }
 
-    // ready_ = false;
+    ready_ = false;
 
     // avoid destroying the player while the UI is working on it
     std::unique_lock<std::mutex> lock(player_lock_);

@@ -34,8 +34,8 @@ public:
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
-    // bool is_playback_ready() const
-    //     { return ready_.load(); }
+    bool is_playback_ready() const
+        { return ready_.load(); }
 
     std::unique_lock<std::mutex> acquire_player_nonrt();
     unsigned num_chips_nonrt() const;
@@ -125,7 +125,7 @@ private:
 
     std::unique_ptr<Bank_Manager> bank_manager_;
 
-    // std::atomic<bool> ready_;
+    std::atomic<bool> ready_;
 
     std::shared_ptr<Simple_Fifo> mq_from_ui_;
     std::shared_ptr<Simple_Fifo> mq_to_ui_;
