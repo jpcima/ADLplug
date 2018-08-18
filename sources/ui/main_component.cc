@@ -1148,7 +1148,8 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_btn_panic] -- add your button handler code here..
         AdlplugAudioProcessor &proc = *proc_;
         std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-        proc.panic_nonrt();
+        if (proc.is_playback_ready())
+            proc.panic_nonrt();
         //[/UserButtonCode_btn_panic]
     }
     else if (buttonThatWasClicked == btn_bank_load.get())
@@ -1198,10 +1199,12 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         if (selection != 0 && (unsigned)(selection - 1) != emulator_value_) {
             AdlplugAudioProcessor &proc = *proc_;
             std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-            proc.set_chip_emulator_nonrt(selection - 1);
-            emulator_value_ = selection - 1;
-            lock.unlock();
-            update_emulator_icon();
+            if (proc.is_playback_ready()) {
+                proc.set_chip_emulator_nonrt(selection - 1);
+                emulator_value_ = selection - 1;
+                lock.unlock();
+                update_emulator_icon();
+            }
         }
         //[/UserButtonCode_btn_emulator]
     }
@@ -1267,10 +1270,12 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
         unsigned max4ops = nchips * 6;
         n4ops = (n4ops < max4ops) ? n4ops : max4ops;
         std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-        proc.set_num_chips_nonrt(nchips);
-        proc.set_num_4ops_nonrt(n4ops);
-        lock.unlock();
-        sl_num_4ops->setRange(0, max4ops, 1);
+        if (proc.is_playback_ready()) {
+            proc.set_num_chips_nonrt(nchips);
+            proc.set_num_4ops_nonrt(n4ops);
+            lock.unlock();
+            sl_num_4ops->setRange(0, max4ops, 1);
+        }
         //[/UserSliderCode_sl_num_chips]
     }
     else if (sliderThatWasMoved == sl_num_4ops.get())
@@ -1279,8 +1284,8 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
         AdlplugAudioProcessor &proc = *proc_;
         unsigned n4ops = sl_num_4ops->getValue();
         std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-        proc.set_num_4ops_nonrt(n4ops);
-        lock.unlock();
+        if (proc.is_playback_ready())
+            proc.set_num_4ops_nonrt(n4ops);
         //[/UserSliderCode_sl_num_4ops]
     }
     else if (sliderThatWasMoved == sl_finetune34.get())
