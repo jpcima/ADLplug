@@ -23,6 +23,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=thread")
 
+set(CMAKE_C_VISIBILITY_PRESET "hidden")
+set(CMAKE_CXX_VISIBILITY_PRESET "hidden")
+set(CMAKE_VISIBILITY_INLINES_HIDDEN ON)
+
 enable_gnu_warning("all")
 disable_gnu_warning("unknown-warning-option")
 disable_gnu_warning("multichar")
@@ -57,6 +61,7 @@ set(WITH_EMBEDDED_BANKS OFF CACHE STRING "" FORCE)
 set(libADLMIDI_STATIC ON CACHE STRING "" FORCE)
 set(libADLMIDI_SHARED OFF CACHE STRING "" FORCE)
 add_subdirectory("thirdparty/libADLMIDI" EXCLUDE_FROM_ALL)
+target_compile_definitions(ADLMIDI_static PRIVATE "ADLMIDI_EXPORT=")
 
 if(ADLplug_Jack)
   include(FindPkgConfig)
