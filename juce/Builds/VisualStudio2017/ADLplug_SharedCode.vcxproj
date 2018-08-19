@@ -151,6 +151,7 @@
     <ClCompile Include="..\..\..\sources\plugin_editor.cc"/>
     <ClCompile Include="..\..\..\sources\plugin_processor.cc"/>
     <ClCompile Include="..\..\..\sources\worker.cc"/>
+    <ClCompile Include="..\..\..\sources\adl\chip_settings.cc"/>
     <ClCompile Include="..\..\..\sources\adl\instrument.cc"/>
     <ClCompile Include="..\..\..\sources\adl\player.cc"/>
     <ClCompile Include="..\..\..\sources\adl\measurer\measurer.cpp"/>
@@ -1950,6 +1951,7 @@
     <ClInclude Include="..\..\..\sources\plugin_processor.h"/>
     <ClInclude Include="..\..\..\sources\version.h"/>
     <ClInclude Include="..\..\..\sources\worker.h"/>
+    <ClInclude Include="..\..\..\sources\adl\chip_settings.h"/>
     <ClInclude Include="..\..\..\sources\adl\instrument.h"/>
     <ClInclude Include="..\..\..\sources\adl\player.h"/>
     <ClInclude Include="..\..\..\sources\adl\measurer\measurer.h"/>

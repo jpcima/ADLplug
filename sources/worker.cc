@@ -5,6 +5,7 @@
 
 #include "worker.h"
 #include "plugin_processor.h"
+#include "parameter_block.h"
 #include "adl/measurer/measurer.h"
 #include <chrono>
 #include <cassert>
@@ -106,8 +107,10 @@ void Worker::run()
 
 void Worker::handle_message(Buffered_Message &msg)
 {
-    Fx_Message tag = (Fx_Message)msg.header->tag;
+    AdlplugAudioProcessor &proc = proc_;
+    Parameter_Block &pb = proc.parameter_block();
 
+    Fx_Message tag = (Fx_Message)msg.header->tag;
     switch (tag) {
     case Fx_Message::RequestMeasurement: {
         const auto &body = *(const Messages::Fx::RequestMeasurement *)msg.data;
@@ -117,6 +120,20 @@ void Worker::handle_message(Buffered_Message &msg)
               id.percussive ? 'P' : 'M', id.msb, id.lsb, program);
         uint32_t full_id = (id.to_integer() << 7) | program;
         measure_requests_[full_id] = body.instrument;
+        break;
+    }
+    case Fx_Message::RequestChipSettings: {
+        const auto &body = *(const Messages::Fx::RequestChipSettings *)msg.data;
+        unsigned emulator = body.cs.emulator;
+        unsigned nchip = std::min(body.cs.chip_count, 100u);
+        unsigned n4op = std::min(body.cs.fourop_count, 6 * nchip);
+        trace("Chip settings requested");
+        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
+        proc.panic_nonrt();
+        proc.set_chip_emulator_nonrt(emulator);
+        proc.set_num_chips_nonrt(nchip);
+        proc.set_num_4ops_nonrt(n4op);
+        proc.mark_chip_settings_for_notification();
         break;
     }
     default:

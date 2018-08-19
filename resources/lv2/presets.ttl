@@ -15,6 +15,18 @@
     ] ;
 
     lv2:port [
+        lv2:symbol "emulator" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "nchip" ;
+        pset:value 0.010101 ;
+    ] ,
+    [
+        lv2:symbol "n4op" ;
+        pset:value 0.003333 ;
+    ] ,
+    [
         lv2:symbol "is4op" ;
         pset:value 0.000000 ;
     ] ,

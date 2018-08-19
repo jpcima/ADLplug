@@ -4,7 +4,9 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "parameter_block.h"
+#include "adl/chip_settings.h"
 #include "adl/instrument.h"
+#include "adl/player.h"
 #include <wopl/wopl_file.h>
 #include <cassert>
 
@@ -25,10 +27,26 @@ static Instrument default_instrument()
     return Instrument::from_wopl(bank->ins[0]);
 }
 
+static Chip_Settings default_chip_settings()
+{
+    Chip_Settings cs;
+    cs.emulator = ::get_emulator_defaults().default_index;
+    return cs;
+}
+
 void Parameter_Block::setup_parameters(AudioProcessor &p)
 {
+    Chip_Settings cs = default_chip_settings();
+
+    first_chip_setting = p.getParameters().size();
+    p.addParameter((p_emulator = new AudioParameterChoice("emulator", "Emulator", get_emulator_defaults().choices, cs.emulator, String())));
+    p.addParameter((p_nchip = new AudioParameterInt("nchip", "Chip count", 1, 100, cs.chip_count, String())));
+    p.addParameter((p_n4op = new AudioParameterInt("n4op", "4op channel count", 0, 600, cs.fourop_count, String())));
+    last_chip_setting = p.getParameters().size() - 1;
+
     Instrument ins = default_instrument();
 
+    first_instrument_parameter = p.getParameters().size();
     p.addParameter((p_is4op = new AudioParameterBool("is4op", "4op", ins.four_op(), String())));
     p.addParameter((p_ps4op = new AudioParameterBool("ps4op", "Pseudo 4op", ins.pseudo_four_op(), String())));
     p.addParameter((p_blank = new AudioParameterBool("blank", "Blank", ins.blank(), String())));
@@ -65,8 +83,11 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
         p.addParameter((op.p_env = new AudioParameterBool(id("env"), name("Key scaling"), ins.env(opnum), String())));
         p.addParameter((op.p_wave = new AudioParameterInt(id("wave"), name("Waveform"), 0, 7, ins.wave(opnum), String())));
     }
+    last_instrument_parameter = p.getParameters().size() - 1;
 
+    first_global_parameter = p.getParameters().size();
     p.addParameter((p_volmodel = new AudioParameterChoice("volmodel", "Volume model", {"Generic", "Native", "DMX", "Apogee", "Win9x"}, 0, String())));
     p.addParameter((p_deeptrem = new AudioParameterBool("deeptrem", "Deep tremolo", false, String())));
     p.addParameter((p_deepvib = new AudioParameterBool("deepvib", "Deep vibrato", false, String())));
+    last_global_parameter = p.getParameters().size() - 1;
 }

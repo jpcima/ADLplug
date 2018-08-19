@@ -33,6 +33,7 @@
 		7D36B56F49C4342FFEF29BC8 = {isa = PBXBuildFile; fileRef = 9772EDFE9BF4E5ACBA2FEF96; };
 		CBFF4F6D4800707FBA459A51 = {isa = PBXBuildFile; fileRef = A5BC03C97A3AF9EA35828D1D; };
 		DF0EE7B9C430C26C61F83036 = {isa = PBXBuildFile; fileRef = 6CEF9F4091C10C66DC5C24D8; };
+		C78F0380D5C52B0D7087FAFF = {isa = PBXBuildFile; fileRef = 174DB24BF7C2DF26FDA5A31E; };
 		BB8B1E710FB08C7FBD6698E4 = {isa = PBXBuildFile; fileRef = F19A4AE0F8ABCE221FEADC58; };
 		3EA0CF4D831D953DF34D1421 = {isa = PBXBuildFile; fileRef = B5B16D1F67134463EFA4B96F; };
 		31063556E90AF5D86DCDCE8E = {isa = PBXBuildFile; fileRef = C9CA1FF2091933F615AA49D7; };
@@ -112,6 +113,7 @@
 		11A5281CA4A2E141FCA8F5E3 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "include_juce_audio_plugin_client_RTAS_3.cpp"; path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_RTAS_3.cpp"; sourceTree = "SOURCE_ROOT"; };
 		11F8DE49D964871DF81D0902 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = insnames.cc; path = ../../../sources/midi/insnames.cc; sourceTree = "SOURCE_ROOT"; };
 		132AE673FE550B63BAE5F95F = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_processors"; path = "../../../thirdparty/JUCE/modules/juce_audio_processors"; sourceTree = "SOURCE_ROOT"; };
+		174DB24BF7C2DF26FDA5A31E = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "chip_settings.cc"; path = "../../../sources/adl/chip_settings.cc"; sourceTree = "SOURCE_ROOT"; };
 		17811F6CFA5061A250E3A2E6 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "adlmidi_private.cpp"; path = "../../../thirdparty/libADLMIDI/src/adlmidi_private.cpp"; sourceTree = "SOURCE_ROOT"; };
 		178F961504CDE0260AD9F550 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "algorithm_help.h"; path = "../../../sources/ui/components/algorithm_help.h"; sourceTree = "SOURCE_ROOT"; };
 		18220FD686C9B5552BB12758 = {isa = PBXFileReference; lastKnownFileType = image.png; name = DOSBox.png; path = ../../../resources/ui/cores/DOSBox.png; sourceTree = "SOURCE_ROOT"; };
@@ -252,6 +254,7 @@
 		B9D9F72DEA13E76AFEBE177D = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "midi_sequencer.h"; path = "../../../thirdparty/libADLMIDI/src/midi_sequencer.h"; sourceTree = "SOURCE_ROOT"; };
 		BACE5DEE59CE50A3E252898E = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_plugin_client"; path = "../../../thirdparty/JUCE/modules/juce_audio_plugin_client"; sourceTree = "SOURCE_ROOT"; };
 		BD7259EA4903E46C7E0AE061 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "include_juce_audio_plugin_client_RTAS_1.cpp"; path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_RTAS_1.cpp"; sourceTree = "SOURCE_ROOT"; };
+		C053F2CEBC8CB818342C913A = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "chip_settings.h"; path = "../../../sources/adl/chip_settings.h"; sourceTree = "SOURCE_ROOT"; };
 		C08F67C4A85357AFCC769D76 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_plugin_client_RTAS_utils.mm"; path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_RTAS_utils.mm"; sourceTree = "SOURCE_ROOT"; };
 		C1C5022F7B14C8117A7A3C59 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_gui_basics"; path = "../../../thirdparty/JUCE/modules/juce_gui_basics"; sourceTree = "SOURCE_ROOT"; };
 		C237DA57833ACF55EB451A0D = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "opl_chip_base.h"; path = "../../../sources/adl/measurer/chips/opl_chip_base.h"; sourceTree = "SOURCE_ROOT"; };
@@ -316,6 +319,8 @@
 					372D434906AB3F96B7CEDEE6,
 					C01B5A88D938F07094552854, ); name = measurer; sourceTree = "<group>"; };
 		0B35D66E96610B76C2679935 = {isa = PBXGroup; children = (
+					174DB24BF7C2DF26FDA5A31E,
+					C053F2CEBC8CB818342C913A,
 					F19A4AE0F8ABCE221FEADC58,
 					1DAFA431C74132A7846A220B,
 					48175FDEEF1AB4635B242F8F,
@@ -1589,6 +1594,7 @@
 					7D36B56F49C4342FFEF29BC8,
 					CBFF4F6D4800707FBA459A51,
 					DF0EE7B9C430C26C61F83036,
+					C78F0380D5C52B0D7087FAFF,
 					BB8B1E710FB08C7FBD6698E4,
 					3EA0CF4D831D953DF34D1421,
 					31063556E90AF5D86DCDCE8E,

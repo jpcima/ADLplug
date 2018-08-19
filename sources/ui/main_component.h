@@ -23,6 +23,7 @@
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "ui/components/styled_knobs.h"
 #include "adl/instrument.h"
+#include "adl/chip_settings.h"
 #include "utility/simple_fifo.h"
 #include "messages.h"
 #include <map>
@@ -77,10 +78,12 @@ public:
     void send_selection_update();
     void set_global_parameters(NotificationType ntf);
     void set_instrument_parameters(const Instrument &ins, NotificationType ntf);
+    void set_chip_settings(NotificationType ntf);
 
     void receive_bank_slots(const Messages::Fx::NotifyBankSlots &msg);
-    void receive_global_parameters(const Messages::Fx::NotifyGlobalParameters &msg);
+    void receive_global_parameters(const Instrument_Global_Parameters &gp);
     void receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins);
+    void receive_chip_settings(const Chip_Settings &cs);
     void update_instrument_choices();
     void set_program_selection(int selection, NotificationType ntf);
     static String program_selection_to_string(int selection);
@@ -95,8 +98,6 @@ public:
     void midi_activity_update();
     void popup_about_dialog();
     void update_emulator_icon();
-
-    void build_emulator_info();
     void build_emulator_menu(PopupMenu &menu);
 
     void focusGained(FocusChangeType cause) override;
@@ -129,6 +130,7 @@ private:
     };
     std::map<uint32_t, Editor_Bank> instrument_map_;
     Instrument_Global_Parameters instrument_gparam_;
+    Chip_Settings chip_settings_;
 
     unsigned midichannel_ = 0;
     uint32_t midiprogram_[16] = {};
@@ -140,14 +142,6 @@ private:
     std::unique_ptr<ImageComponent> overlay_bank_save_;
 
     PopupMenu emulator_menu_;
-    unsigned emulator_value_ = 0;
-
-    struct Emulator_Info {
-        String name;
-        Image icon;
-    };
-    std::unique_ptr<Emulator_Info[]> emulator_info_;
-    unsigned emulator_count_ = 0;
 
     std::unique_ptr<Timer> vu_timer_;
     std::unique_ptr<Timer> cpu_load_timer_;

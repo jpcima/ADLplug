@@ -88,12 +88,17 @@ void AdlplugAudioProcessorEditor::process_notifications()
         }
         case Fx_Message::NotifyGlobalParameters: {
             auto &body = *(const Messages::Fx::NotifyGlobalParameters *)msg.data;
-            main->receive_global_parameters(body);
+            main->receive_global_parameters(body.param);
             break;
         }
         case Fx_Message::NotifyInstrument: {
             auto &body = *(const Messages::Fx::NotifyInstrument *)msg.data;
             main->receive_instrument(body.bank, body.program, body.instrument);
+            break;
+        }
+        case Fx_Message::NotifyChipSettings: {
+            auto &body = *(const Messages::Fx::NotifyChipSettings *)msg.data;
+            main->receive_chip_settings(body.cs);
             break;
         }
         default:

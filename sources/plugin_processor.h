@@ -7,6 +7,7 @@
 #include "dsp/dc_filter.h"
 #include "dsp/vu_monitor.h"
 #include "adl/instrument.h"
+#include "adl/chip_settings.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <bitset>
 #include <memory>
@@ -47,9 +48,6 @@ public:
     void panic_nonrt();
     void reconfigure_chip_nonrt();
 
-    static std::vector<std::string> enumerate_emulators();
-    static unsigned identify_default_emulator();
-
     bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
 
     void processBlock(AudioBuffer<float> &, MidiBuffer &) override;
@@ -64,6 +62,7 @@ public:
     void begin_handling_messages(Message_Handler_Context &ctx) {}
     void finish_handling_messages(Message_Handler_Context &ctx);
 
+    void parameters_to_chip_settings(Chip_Settings &cs) const;
     void parameters_to_global(Instrument_Global_Parameters &gp) const;
     void parameters_to_instrument(Instrument &ins) const;
     void set_global_parameters_notifying_host();
@@ -73,8 +72,6 @@ public:
     AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override;
 
-    unsigned default_emulator() const { return default_emulator_; }
-
     const std::shared_ptr<Simple_Fifo> &message_queue_for_ui() const
         { return mq_from_ui_; }
     const std::shared_ptr<Simple_Fifo> &message_queue_to_ui() const
@@ -82,6 +79,11 @@ public:
 
     Simple_Fifo &message_queue_for_worker() const { return *mq_from_worker_; }
     Simple_Fifo &message_queue_to_worker() const { return *mq_to_worker_; }
+
+    Parameter_Block &parameter_block() const { return *parameter_block_; }
+
+    void mark_chip_settings_for_notification()
+        { chip_settings_need_notification_ = true; }
 
     Worker *worker() const
         { return worker_.get(); }
@@ -121,7 +123,6 @@ protected:
 
 private:
     std::unique_ptr<Generic_Player> player_;
-    unsigned default_emulator_ = 0;
 
     std::unique_ptr<Bank_Manager> bank_manager_;
 
@@ -138,7 +139,12 @@ private:
     double lv_current_[2] {};
     double cpu_load_ = 0;
 
-    Atomic<bool> parameters_changed_;
+    Atomic<bool> chip_settings_changed_;
+    Atomic<bool> global_parameters_changed_;
+    Atomic<bool> instrument_parameters_changed_;
+
+    Atomic<bool> chip_settings_need_notification_;
+
     std::unique_ptr<Parameter_Block> parameter_block_;
     Bank_Id selection_id_ {0, 0, false};
     uint8_t selection_pgm_ = 0;

@@ -502,6 +502,9 @@
     <ClCompile Include="..\..\..\sources\worker.cc">
       <Filter>ADLplug\sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\adl\chip_settings.cc">
+      <Filter>ADLplug\sources\adl</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\adl\instrument.cc">
       <Filter>ADLplug\sources\adl</Filter>
     </ClCompile>
@@ -2537,6 +2540,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\sources\worker.h">
       <Filter>ADLplug\sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\adl\chip_settings.h">
+      <Filter>ADLplug\sources\adl</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\adl\instrument.h">
       <Filter>ADLplug\sources\adl</Filter>

@@ -22,8 +22,6 @@
 AdlplugAudioProcessor::AdlplugAudioProcessor()
     : AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true))
 {
-    default_emulator_ = identify_default_emulator();
-
     Parameter_Block *pb = new Parameter_Block;
     parameter_block_.reset(pb);
     pb->setup_parameters(*this);
@@ -115,10 +113,14 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     pl->set_volume_model(1);
     pl->set_deep_tremolo(false);
     pl->set_deep_vibrato(false);
-    pl->set_num_chips(2);
-    pl->set_num_4ops(2);
-    pl->set_emulator(default_emulator_);
     pl->set_soft_pan_enabled(true);
+
+    Chip_Settings cs;
+    cs.emulator = get_emulator_defaults().default_index;
+    pl->set_num_chips(cs.chip_count);
+    pl->set_num_4ops(cs.fourop_count);
+    pl->set_emulator(cs.emulator);
+    chip_settings_need_notification_ = true;
 
     for (unsigned i = 0; i < 2; ++i) {
         Dc_Filter &dcf = dc_filter_[i];
@@ -224,27 +226,6 @@ void AdlplugAudioProcessor::reconfigure_chip_nonrt()
     // TODO any necessary reconfiguration after reset
 }
 
-std::vector<std::string> AdlplugAudioProcessor::enumerate_emulators()
-{
-    std::unique_ptr<Generic_Player> pl(instantiate_player(Player_Type::OPL3));
-    return ::enumerate_emulators(pl->type());
-}
-
-unsigned AdlplugAudioProcessor::identify_default_emulator()
-{
-    int emu = -1;
-    std::vector<std::string> emulators = enumerate_emulators();
-    for (unsigned i = 0, n = emulators.size(); i < n && emu == -1; ++i) {
-        std::string name = emulators[i];
-        std::transform(name.begin(), name.end(), name.begin(),
-                       [](unsigned char c) -> unsigned char
-                           { return (c >= 'A' && c <= 'Z') ? (c - 'A' + 'a') : c; });
-        if (name.size() >= 6 && !memcmp(name.data(), "dosbox", 6))
-            emu = i;
-    }
-    return (emu != -1) ? (unsigned)emu : 0;
-}
-
 bool AdlplugAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
 {
     return layouts.getMainOutputChannelSet() == AudioChannelSet::stereo();
@@ -275,16 +256,50 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         return;
     }
 
-    if (parameters_changed_.compareAndSetBool(false, true)) {
+    if (chip_settings_changed_.compareAndSetBool(false, true)) {
+        Simple_Fifo &queue = *mq_to_worker_;
+        Message_Header hdr(Fx_Message::RequestChipSettings, sizeof(Messages::Fx::RequestChipSettings));
+        Buffered_Message msg = Messages::write(queue, hdr);
+        if (!msg)
+            chip_settings_changed_ = true;  // do later
+        else {
+            auto &body = *(Messages::Fx::RequestChipSettings *)msg.data;
+            parameters_to_chip_settings(body.cs);
+            Messages::finish_write(queue, msg);
+            Worker &worker = *worker_;
+            worker.postSemaphore();
+        }
+    }
+
+    if (instrument_parameters_changed_.compareAndSetBool(false, true)) {
         Bank_Manager &bm = *bank_manager_;
         Instrument ins;
         parameters_to_instrument(ins);
-        Instrument_Global_Parameters gp;
-        parameters_to_global(gp);
-        bm.load_global_parameters(gp, true);
         bm.load_program(
             selection_id_, selection_pgm_, ins,
             Bank_Manager::LP_Notify|Bank_Manager::LP_NeedMeasurement|Bank_Manager::LP_KeepName);
+    }
+
+    if (global_parameters_changed_.compareAndSetBool(false, true)) {
+        Bank_Manager &bm = *bank_manager_;
+        Instrument_Global_Parameters gp;
+        parameters_to_global(gp);
+        bm.load_global_parameters(gp, true);
+    }
+
+    if (chip_settings_need_notification_.compareAndSetBool(false, true)) {
+        Simple_Fifo &queue = *mq_to_ui_;
+        Message_Header hdr(Fx_Message::NotifyChipSettings, sizeof(Messages::Fx::NotifyChipSettings));
+        Buffered_Message msg = Messages::write(queue, hdr);
+        if (!msg)
+            chip_settings_need_notification_ = true;  // do later
+        else {
+            auto &body = *(Messages::Fx::NotifyChipSettings *)msg.data;
+            body.cs.emulator = pl->emulator();
+            body.cs.chip_count = pl->num_chips();
+            body.cs.fourop_count = pl->num_4ops();
+            Messages::finish_write(queue, msg);
+        }
     }
 
     ScopedNoDenormals no_denormals;
@@ -413,6 +428,9 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     case (unsigned)User_Message::RequestFullBankState:
         bm.mark_everything_for_notification();
         break;
+    case (unsigned)User_Message::RequestChipSettings:
+        chip_settings_need_notification_ = true;
+        break;
     case (unsigned)User_Message::ClearBanks: {
         auto &body = *(const Messages::User::ClearBanks *)data;
         bm.clear_banks(body.notify_back);
@@ -465,6 +483,15 @@ void AdlplugAudioProcessor::finish_handling_messages(Message_Handler_Context &ct
 {
     bank_manager_->send_notifications();
     bank_manager_->send_measurement_requests();
+}
+
+void AdlplugAudioProcessor::parameters_to_chip_settings(Chip_Settings &cs) const
+{
+    const Parameter_Block &pb = *parameter_block_;
+
+    cs.emulator = pb.p_emulator->getIndex();
+    cs.chip_count = pb.p_nchip->get();
+    cs.fourop_count = pb.p_n4op->get();
 }
 
 void AdlplugAudioProcessor::parameters_to_global(Instrument_Global_Parameters &gp) const
@@ -617,7 +644,14 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
 //==============================================================================
 void AdlplugAudioProcessor::parameterValueChanged(int index, float value)
 {
-    parameters_changed_ = true;
+    const Parameter_Block &pb = *parameter_block_;
+
+    if (index >= pb.first_chip_setting && index <= pb.last_chip_setting)
+        chip_settings_changed_ = true;
+    else if (index >= pb.first_global_parameter && index <= pb.last_global_parameter)
+        global_parameters_changed_ = true;
+    else if (index >= pb.first_instrument_parameter && index <= pb.last_instrument_parameter)
+        instrument_parameters_changed_ = true;
 }
 
 //==============================================================================

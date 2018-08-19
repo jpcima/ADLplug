@@ -27,6 +27,9 @@
       <FILE id="M4xlwY" name="worker.cc" compile="1" resource="0" file="sources/worker.cc"/>
       <FILE id="ymYAK6" name="worker.h" compile="0" resource="0" file="sources/worker.h"/>
       <GROUP id="{90BE611D-B377-7C79-171F-98F2CD7899AE}" name="adl">
+        <FILE id="bEOlG4" name="chip_settings.cc" compile="1" resource="0"
+              file="sources/adl/chip_settings.cc"/>
+        <FILE id="v5Q8Jc" name="chip_settings.h" compile="0" resource="0" file="sources/adl/chip_settings.h"/>
         <FILE id="ZhOlLH" name="instrument.cc" compile="1" resource="0" file="sources/adl/instrument.cc"/>
         <FILE id="ivL5rz" name="instrument.h" compile="0" resource="0" file="sources/adl/instrument.h"/>
         <FILE id="I6ORD5" name="instrument.tcc" compile="0" resource="0" file="sources/adl/instrument.tcc"/>

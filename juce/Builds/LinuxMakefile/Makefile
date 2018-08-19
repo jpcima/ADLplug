@@ -99,6 +99,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/plugin_editor_4e133bb.o \
   $(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o \
   $(JUCE_OBJDIR)/worker_c96aa64a.o \
+  $(JUCE_OBJDIR)/chip_settings_f8822d84.o \
   $(JUCE_OBJDIR)/instrument_a889d85b.o \
   $(JUCE_OBJDIR)/player_38a5f121.o \
   $(JUCE_OBJDIR)/measurer_773e5778.o \
@@ -215,6 +216,11 @@ $(JUCE_OBJDIR)/plugin_processor_d1dd99c2.o: ../../../sources/plugin_processor.cc
 $(JUCE_OBJDIR)/worker_c96aa64a.o: ../../../sources/worker.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling worker.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/chip_settings_f8822d84.o: ../../../sources/adl/chip_settings.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling chip_settings.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/instrument_a889d85b.o: ../../../sources/adl/instrument.cc

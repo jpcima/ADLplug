@@ -5,6 +5,7 @@
 
 #pragma once
 #include "adl/instrument.h"
+#include "adl/chip_settings.h"
 #include "utility/simple_fifo.h"
 #include "utility/counting_bitset.h"
 #include "definitions.h"
@@ -57,6 +58,7 @@ enum class User_Message {
     Midi = 0x1000,  // midi event
     RequestBankSlots,  // requests the layout of banks and instruments
     RequestFullBankState,  // requests all the managed bank state
+    RequestChipSettings,  // requests chip settings
     ClearBanks,  // deletes all the managed banks
     LoadGlobalParameters,  // edits global parameters
     LoadInstrument,  // edits an instrument
@@ -73,6 +75,10 @@ struct RequestBankSlots {
 
 struct RequestFullBankState {
     static constexpr User_Message tag = User_Message::RequestFullBankState;
+};
+
+struct RequestChipSettings {
+    static constexpr User_Message tag = User_Message::RequestChipSettings;
 };
 
 struct ClearBanks {
@@ -117,7 +123,9 @@ enum class Fx_Message {
     NotifyBankSlots,  // notifies the layout of banks and instruments
     NotifyGlobalParameters,  // notifies the global parameters
     NotifyInstrument,  // notifies an instrument when changed
+    NotifyChipSettings,  // notifies chip settings when changed
     RequestMeasurement,  // request measurement of a program
+    RequestChipSettings,  // request a change of chip settings
 };
 
 namespace Messages {
@@ -150,11 +158,21 @@ struct NotifyInstrument {
     Instrument instrument;
 };
 
+struct NotifyChipSettings {
+    static constexpr Fx_Message tag = Fx_Message::NotifyChipSettings;
+    Chip_Settings cs;
+};
+
 struct RequestMeasurement {
     static constexpr Fx_Message tag = Fx_Message::RequestMeasurement;
     Bank_Id bank;
     uint8_t program = 0;
     Instrument instrument;
+};
+
+struct RequestChipSettings {
+    static constexpr Fx_Message tag = Fx_Message::RequestChipSettings;
+    Chip_Settings cs;
 };
 
 }  // namespace Fx

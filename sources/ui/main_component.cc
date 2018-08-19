@@ -696,7 +696,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
         addAndMakeVisible(overlay);
     }
 
-    build_emulator_info();
     build_emulator_menu(emulator_menu_);
 
     for (unsigned note = 0; note < 127; ++note) {
@@ -1193,18 +1192,15 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_btn_emulator] -- add your button handler code here..
         PopupMenu &menu = emulator_menu_;
+        unsigned emulator = chip_settings_.emulator;
         int selection = menu.showMenu(PopupMenu::Options()
                                       .withParentComponent(this)
-                                      .withItemThatMustBeVisible(emulator_value_ + 1));
-        if (selection != 0 && (unsigned)(selection - 1) != emulator_value_) {
-            AdlplugAudioProcessor &proc = *proc_;
-            std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-            if (proc.is_playback_ready()) {
-                proc.set_chip_emulator_nonrt(selection - 1);
-                emulator_value_ = selection - 1;
-                lock.unlock();
-                update_emulator_icon();
-            }
+                                      .withItemThatMustBeVisible(emulator + 1));
+        if (selection != 0 && (unsigned)(selection - 1) != emulator) {
+            AudioParameterChoice &p = *pb.p_emulator;
+            p.beginChangeGesture();
+            p = selection - 1;
+            p.endChangeGesture();
         }
         //[/UserButtonCode_btn_emulator]
     }
@@ -1264,28 +1260,19 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
     else if (sliderThatWasMoved == sl_num_chips.get())
     {
         //[UserSliderCode_sl_num_chips] -- add your slider handling code here..
-        AdlplugAudioProcessor &proc = *proc_;
-        unsigned nchips = sl_num_chips->getValue();
-        unsigned n4ops = sl_num_4ops->getValue();
-        unsigned max4ops = nchips * 6;
-        n4ops = (n4ops < max4ops) ? n4ops : max4ops;
-        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-        if (proc.is_playback_ready()) {
-            proc.set_num_chips_nonrt(nchips);
-            proc.set_num_4ops_nonrt(n4ops);
-            lock.unlock();
-            sl_num_4ops->setRange(0, max4ops, 1);
-        }
+        AudioParameterInt &p = *pb.p_nchip;
+        p.beginChangeGesture();
+        p = sl->getValue();
+        p.endChangeGesture();
         //[/UserSliderCode_sl_num_chips]
     }
     else if (sliderThatWasMoved == sl_num_4ops.get())
     {
         //[UserSliderCode_sl_num_4ops] -- add your slider handling code here..
-        AdlplugAudioProcessor &proc = *proc_;
-        unsigned n4ops = sl_num_4ops->getValue();
-        std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
-        if (proc.is_playback_ready())
-            proc.set_num_4ops_nonrt(n4ops);
+        AudioParameterInt &p = *pb.p_n4op;
+        p.beginChangeGesture();
+        p = sl->getValue();
+        p.endChangeGesture();
         //[/UserSliderCode_sl_num_4ops]
     }
     else if (sliderThatWasMoved == sl_finetune34.get())
@@ -1401,25 +1388,11 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
 void Main_Component::on_ready_processor()
 {
-    AdlplugAudioProcessor &proc = *proc_;
+    Messages::User::RequestChipSettings msg_chip;
+    write_to_processor(msg_chip.tag, &msg_chip, sizeof(msg_chip));
 
-    std::unique_lock<std::mutex> lock(proc.acquire_player_nonrt());
-    if (!proc.is_playback_ready())
-        return;
-
-    emulator_value_ = proc.chip_emulator_nonrt();
-    unsigned nchips = proc.num_chips_nonrt();
-    unsigned n4ops = proc.num_4ops_nonrt();
-    lock.unlock();
-
-    sl_num_chips->setRange(1, 100, 1);
-    sl_num_chips->setValue(nchips, dontSendNotification);
-    sl_num_4ops->setRange(0, 6 * nchips, 1);
-    sl_num_4ops->setValue(n4ops, dontSendNotification);
-    update_emulator_icon();
-
-    Messages::User::RequestFullBankState msg;
-    write_to_processor(msg.tag, &msg, sizeof(msg));
+    Messages::User::RequestFullBankState msg_bank;
+    write_to_processor(msg_bank.tag, &msg_bank, sizeof(msg_bank));
 }
 
 void Main_Component::handleNoteOn(MidiKeyboardState *, int channel_, int note, float velocity)
@@ -1576,6 +1549,15 @@ void Main_Component::set_instrument_parameters(const Instrument &ins, Notificati
    }
 }
 
+void Main_Component::set_chip_settings(NotificationType ntf)
+{
+    const Chip_Settings &cs = chip_settings_;
+    update_emulator_icon();
+    sl_num_chips->setValue(cs.chip_count, ntf);
+    sl_num_4ops->setRange(0, 6 * cs.chip_count, 1);
+    sl_num_4ops->setValue(cs.fourop_count, ntf);
+}
+
 void Main_Component::set_global_parameters(NotificationType ntf)
 {
     cb_volmodel->setSelectedId(instrument_gparam_.volume_model + 1, ntf);
@@ -1643,14 +1625,11 @@ void Main_Component::receive_bank_slots(const Messages::Fx::NotifyBankSlots &msg
     }
 }
 
-void Main_Component::receive_global_parameters(const Messages::Fx::NotifyGlobalParameters &msg)
+void Main_Component::receive_global_parameters(const Instrument_Global_Parameters &gp)
 {
     trace("Receive global parameters");
 
-    instrument_gparam_.volume_model = msg.param.volume_model;
-    instrument_gparam_.deep_tremolo = msg.param.deep_tremolo;
-    instrument_gparam_.deep_vibrato = msg.param.deep_vibrato;
-
+    instrument_gparam_ = gp;
     set_global_parameters(dontSendNotification);
 }
 
@@ -1695,6 +1674,20 @@ void Main_Component::receive_instrument(Bank_Id bank, unsigned pgm, const Instru
         trace("Refresh choices because of received instrument");
         update_instrument_choices();
     }
+}
+
+void Main_Component::receive_chip_settings(const Chip_Settings &cs)
+{
+    trace("Receive chip settings");
+
+    unsigned nchip = std::min(cs.chip_count, 100u);
+    unsigned n4op = std::min(cs.fourop_count, 6 * nchip);
+
+    chip_settings_.emulator = cs.emulator;
+    chip_settings_.chip_count = nchip;
+    chip_settings_.fourop_count = n4op;
+
+    set_chip_settings(dontSendNotification);
 }
 
 void Main_Component::update_instrument_choices()
@@ -2000,51 +1993,25 @@ void Main_Component::popup_about_dialog()
 
 void Main_Component::update_emulator_icon()
 {
-    const Emulator_Info &info = emulator_info_[emulator_value_];
-    const Image &icon = info.icon;
+    const Emulator_Defaults &defaults = get_emulator_defaults();
+    unsigned emulator = chip_settings_.emulator;
 
     btn_emulator->setImages(
         false, true, true,
-        icon, 1, Colour(),
+        defaults.images[emulator], 1, Colour(),
         Image(), 1, Colour(),
         Image(), 1, Colour());
-    btn_emulator->setTooltip(info.name);
-}
-
-void Main_Component::build_emulator_info()
-{
-    AdlplugAudioProcessor &proc = *proc_;
-    std::vector<std::string> emus = proc.enumerate_emulators();
-
-    unsigned count = emus.size();
-    Emulator_Info *infos = new Emulator_Info[count];
-    emulator_info_.reset(infos);
-    emulator_count_ = count;
-
-    Image icon_dosbox = ImageFileFormat::loadFrom(BinaryData::DOSBox_png, BinaryData::DOSBox_pngSize);
-    Image icon_nuked = ImageFileFormat::loadFrom(BinaryData::Nuked_png, BinaryData::Nuked_pngSize);
-    Image icon_nuked2 = ImageFileFormat::loadFrom(BinaryData::Nuked2_png, BinaryData::Nuked2_pngSize);
-
-    unsigned nth_nuked = 0;
-
-    for (unsigned i = 0; i < count; ++i) {
-        String name = emus[i];
-        infos[i].name = name;
-        if (name.toLowerCase().startsWith("dosbox"))
-            infos[i].icon = icon_dosbox;
-        else if (name.toLowerCase().startsWith("nuked"))
-            infos[i].icon = (nth_nuked++ == 0) ? icon_nuked : icon_nuked2;
-    }
+    btn_emulator->setTooltip(defaults.choices[emulator]);
 }
 
 void Main_Component::build_emulator_menu(PopupMenu &menu)
 {
-    const Emulator_Info *emus = emulator_info_.get();
-    unsigned count = emulator_count_;
+    const Emulator_Defaults &defaults = get_emulator_defaults();
+    unsigned count = defaults.choices.size();
 
     menu.clear();
-    for (size_t i = 0, n = count; i < n; ++i)
-        menu.addItem(i + 1, emus[i].name, true, false, emus[i].icon);
+    for (size_t i = 0; i < count; ++i)
+        menu.addItem(i + 1, defaults.choices[i], true, false, defaults.images[i]);
 }
 
 void Main_Component::focusGained(FocusChangeType cause)

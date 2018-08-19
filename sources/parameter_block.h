@@ -7,6 +7,10 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 
 struct Parameter_Block {
+    AudioParameterChoice *p_emulator = nullptr;
+    AudioParameterInt *p_nchip = nullptr;
+    AudioParameterInt *p_n4op = nullptr;
+
     AudioParameterBool *p_is4op = nullptr;
     AudioParameterBool *p_ps4op = nullptr;
     AudioParameterBool *p_blank = nullptr;
@@ -47,4 +51,13 @@ struct Parameter_Block {
         { return const_cast<Parameter_Block *>(this)->nth_operator(i); }
 
     void setup_parameters(AudioProcessor &p);
+
+    unsigned first_chip_setting {};
+    unsigned last_chip_setting {};
+
+    unsigned first_instrument_parameter {};
+    unsigned last_instrument_parameter {};
+
+    unsigned first_global_parameter {};
+    unsigned last_global_parameter {};
 };
