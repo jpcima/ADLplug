@@ -29,6 +29,7 @@
 #include "messages.h"
 #include "utility/functional_timer.h"
 #include <wopl/wopl_file.h>
+#include <fmt/format.h>
 #include <memory>
 #include <cstdio>
 #include <cstring>
@@ -1705,9 +1706,9 @@ void Main_Component::update_instrument_choices()
 
         String bank_sid;
         if (e_bank.name[0] != '\0')
-            bank_sid = String::formatted("%03u:%03u %.32s", psid >> 7, psid & 127, e_bank.name);
+            bank_sid = fmt::format("{:03d}:{:03d} {:.32s}", psid >> 7, psid & 127, e_bank.name);
         else
-            bank_sid = String::formatted("%03u:%03u %s", psid >> 7, psid & 127, "<Untitled bank>");
+            bank_sid = fmt::format("{:03d}:{:03d} {:s}", psid >> 7, psid & 127, "<Untitled bank>");
 
         e_bank.ins_menu.clear();
         for (unsigned i = 0; i < 256; ++i) {
@@ -1717,12 +1718,12 @@ void Main_Component::update_instrument_choices()
 
             String ins_sid;
             if (ins.name[0] != '\0')
-                ins_sid = String::formatted("%c%03u %.32s", "MP"[i >= 128], i & 127, ins.name);
+                ins_sid = fmt::format("{:c}{:03d} {:.32s}", "MP"[i >= 128], i & 127, ins.name);
             else {
                 const Midi_Program_Ex *ex = midi_db.find_ex(psid >> 7, psid & 127, i);
                 const char *name = ex ? ex->name : (i < 128) ?
                     midi_db.inst(i) : midi_db.perc(i & 127).name;
-                ins_sid = String::formatted("%c%03u %s", "MP"[i >= 128], i & 127, name);
+                ins_sid = fmt::format("{:c}{:03d} {:s}", "MP"[i >= 128], i & 127, name);
             }
 
             uint32_t program = (psid << 8) + i;

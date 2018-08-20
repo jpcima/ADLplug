@@ -116,13 +116,20 @@ add_library(ADLplug_core STATIC
   "sources/pch/ADLplug_core.h")
 target_include_directories(ADLplug_core PRIVATE "sources")
 target_compile_definitions(ADLplug_core PRIVATE "ADLMIDI_UNSTABLE_API")
-target_link_libraries(ADLplug_core
+target_link_libraries(ADLplug_core PRIVATE
   juce_core juce_events juce_data_structures
   juce_audio_basics juce_audio_devices juce_audio_formats juce_audio_processors juce_audio_utils
   juce_graphics juce_gui_basics juce_gui_extra
   ADLMIDI_static wopl)
 set_property(TARGET ADLplug_core
   PROPERTY POSITION_INDEPENDENT_CODE ON)
+
+add_library(fmt STATIC
+  "thirdparty/fmt/src/format.cc"
+  "thirdparty/fmt/src/posix.cc")
+target_include_directories(fmt PUBLIC "thirdparty/fmt/include")
+
+target_link_libraries(ADLplug_core PRIVATE fmt)
 
 if(ADLplug_PCH)
   include(PrecompiledHeader)
