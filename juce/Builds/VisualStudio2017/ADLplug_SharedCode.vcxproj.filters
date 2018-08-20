@@ -56,6 +56,18 @@
     <Filter Include="ADLplug\resources">
       <UniqueIdentifier>{95FAA976-2189-7683-BA44-3180A641CA15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\thirdparty\fmt\include\fmt">
+      <UniqueIdentifier>{39F51082-C900-FABA-CE85-D9E1B9C1E5C3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\fmt\include">
+      <UniqueIdentifier>{DB180549-431E-B971-1507-D38589AB2B0D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\fmt\src">
+      <UniqueIdentifier>{D3963462-FF1E-1641-8FFC-BBB609FC09FC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\fmt">
+      <UniqueIdentifier>{555CF3F7-C702-CDE3-7CE8-C43F02103B1F}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\thirdparty\wopl\wopl">
       <UniqueIdentifier>{57412E37-DB20-0F75-B7AA-6E53A1FD1109}</UniqueIdentifier>
     </Filter>
@@ -579,6 +591,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc">
       <Filter>ADLplug\sources\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\fmt\src\format.cc">
+      <Filter>ADLplug\thirdparty\fmt\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\thirdparty\fmt\src\posix.cc">
+      <Filter>ADLplug\thirdparty\fmt\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\thirdparty\wopl\wopl\wopl_file.c">
       <Filter>ADLplug\thirdparty\wopl\wopl</Filter>
@@ -2639,6 +2657,30 @@
     </ClInclude>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h">
       <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\core.h">
+      <Filter>ADLplug\thirdparty\fmt\include\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\format-inl.h">
+      <Filter>ADLplug\thirdparty\fmt\include\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\format.h">
+      <Filter>ADLplug\thirdparty\fmt\include\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\ostream.h">
+      <Filter>ADLplug\thirdparty\fmt\include\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\posix.h">
+      <Filter>ADLplug\thirdparty\fmt\include\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\printf.h">
+      <Filter>ADLplug\thirdparty\fmt\include\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\ranges.h">
+      <Filter>ADLplug\thirdparty\fmt\include\fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\time.h">
+      <Filter>ADLplug\thirdparty\fmt\include\fmt</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\thirdparty\wopl\wopl\wopl_file.h">
       <Filter>ADLplug\thirdparty\wopl\wopl</Filter>

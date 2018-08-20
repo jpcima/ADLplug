@@ -125,6 +125,8 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/midi_dde9aea4.o \
   $(JUCE_OBJDIR)/rt_checker_e98c166d.o \
   $(JUCE_OBJDIR)/simple_fifo_14f04efe.o \
+  $(JUCE_OBJDIR)/format_eaff5969.o \
+  $(JUCE_OBJDIR)/posix_ff201db9.o \
   $(JUCE_OBJDIR)/wopl_file_21aeabfb.o \
   $(JUCE_OBJDIR)/adldata_9238d314.o \
   $(JUCE_OBJDIR)/adlmidi_c578730b.o \
@@ -346,6 +348,16 @@ $(JUCE_OBJDIR)/rt_checker_e98c166d.o: ../../../sources/utility/rt_checker.cc
 $(JUCE_OBJDIR)/simple_fifo_14f04efe.o: ../../../sources/utility/simple_fifo.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling simple_fifo.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/format_eaff5969.o: ../../../thirdparty/fmt/src/format.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling format.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/posix_ff201db9.o: ../../../thirdparty/fmt/src/posix.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling posix.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/wopl_file_21aeabfb.o: ../../../thirdparty/wopl/wopl/wopl_file.c

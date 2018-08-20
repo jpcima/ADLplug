@@ -177,6 +177,8 @@
     <ClCompile Include="..\..\..\sources\utility\midi.cc"/>
     <ClCompile Include="..\..\..\sources\utility\rt_checker.cc"/>
     <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc"/>
+    <ClCompile Include="..\..\..\thirdparty\fmt\src\format.cc"/>
+    <ClCompile Include="..\..\..\thirdparty\fmt\src\posix.cc"/>
     <ClCompile Include="..\..\..\thirdparty\wopl\wopl\wopl_file.c"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adldata.cpp"/>
     <ClCompile Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi.cpp"/>
@@ -1984,6 +1986,14 @@
     <ClInclude Include="..\..\..\sources\utility\rt_checker.h"/>
     <ClInclude Include="..\..\..\sources\utility\semaphore.h"/>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\core.h"/>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\format-inl.h"/>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\format.h"/>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\ostream.h"/>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\posix.h"/>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\printf.h"/>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\ranges.h"/>
+    <ClInclude Include="..\..\..\thirdparty\fmt\include\fmt\time.h"/>
     <ClInclude Include="..\..\..\thirdparty\wopl\wopl\wopl_file.h"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adldata.hh"/>
     <ClInclude Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.h"/>

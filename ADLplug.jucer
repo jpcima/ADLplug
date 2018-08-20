@@ -178,6 +178,24 @@
       </GROUP>
     </GROUP>
     <GROUP id="{C55CC9DB-ED0F-DE1B-46CB-A28A61433406}" name="thirdparty">
+      <GROUP id="{10DE0817-C209-0E4C-0D54-242A418D9A01}" name="fmt">
+        <GROUP id="{E1C3D2FC-866E-F91F-A702-2F806A402A33}" name="include">
+          <GROUP id="{625C4E64-2BB8-F438-8EB1-4C4AA5577CB3}" name="fmt">
+            <FILE id="eZbf0R" name="core.h" compile="0" resource="0" file="thirdparty/fmt/include/fmt/core.h"/>
+            <FILE id="V73dfB" name="format-inl.h" compile="0" resource="0" file="thirdparty/fmt/include/fmt/format-inl.h"/>
+            <FILE id="D8COBD" name="format.h" compile="0" resource="0" file="thirdparty/fmt/include/fmt/format.h"/>
+            <FILE id="tz8rK9" name="ostream.h" compile="0" resource="0" file="thirdparty/fmt/include/fmt/ostream.h"/>
+            <FILE id="NJIY9o" name="posix.h" compile="0" resource="0" file="thirdparty/fmt/include/fmt/posix.h"/>
+            <FILE id="UdRgRi" name="printf.h" compile="0" resource="0" file="thirdparty/fmt/include/fmt/printf.h"/>
+            <FILE id="QWprJP" name="ranges.h" compile="0" resource="0" file="thirdparty/fmt/include/fmt/ranges.h"/>
+            <FILE id="i93avn" name="time.h" compile="0" resource="0" file="thirdparty/fmt/include/fmt/time.h"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{08010B22-FCB6-1FA5-A7AB-2D1380B47480}" name="src">
+          <FILE id="w9cpKq" name="format.cc" compile="1" resource="0" file="thirdparty/fmt/src/format.cc"/>
+          <FILE id="XARmSd" name="posix.cc" compile="1" resource="0" file="thirdparty/fmt/src/posix.cc"/>
+        </GROUP>
+      </GROUP>
       <GROUP id="{55F90F3C-3521-0BD5-0978-A6334B278C70}" name="wopl">
         <GROUP id="{A9210AD0-C405-73DB-95F8-F22346CD4FCC}" name="wopl">
           <FILE id="NQlYCa" name="wopl_file.c" compile="1" resource="0" file="thirdparty/wopl/wopl/wopl_file.c"/>
