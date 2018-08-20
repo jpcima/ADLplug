@@ -7,5 +7,5 @@
 #include "../JuceLibraryCode/AppConfig.h"
 
 #define ADLplug_Version JucePlugin_VersionString
-#define ADLplug_VersionExtra "Alpha 1"
-#define ADLplug_SemVer JucePlugin_VersionString "-alpha.1"
+#define ADLplug_VersionExtra "Alpha 2"
+#define ADLplug_SemVer JucePlugin_VersionString "-alpha.2"
