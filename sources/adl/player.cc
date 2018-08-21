@@ -6,7 +6,8 @@
 #include "adl/player.h"
 #include "adl/instrument.h"
 #include <memory>
-#include <assert.h>
+#include <cmath>
+#include <cassert>
 
 template <Player_Type>
 class Player;
@@ -24,6 +25,8 @@ struct Player_Traits<Player_Type::OPL3>
     };
 
     static const char *name() { return "ADLMIDI"; }
+    static double output_gain();
+
     static constexpr auto &version = adl_linkedLibraryVersion;
     static constexpr auto &init = adl_init;
     static constexpr auto &close = adl_close;
@@ -57,6 +60,12 @@ struct Player_Traits<Player_Type::OPL3>
     static constexpr auto &rt_program_change = adl_rt_patchChange;
     static constexpr auto &rt_pitchbend_ml = adl_rt_pitchBendML;
 };
+
+static const double gain_3dB = std::pow(10.0, 3.0 / 20.0);
+double Player_Traits<Player_Type::OPL3>::output_gain()
+{
+    return gain_3dB;
+}
 
 template <Player_Type Pt>
 class Player : public Generic_Player
@@ -123,6 +132,8 @@ public:
         { traits::set_soft_pan_enabled(player_.get(), sp); }
     void play_midi(const uint8_t *msg, unsigned len) override;
     void generate(float *left, float *right, unsigned nframes, unsigned stride) override;
+    double output_gain() const override
+        { return traits::output_gain(); }
 
 private:
     unsigned emu_ = 0;

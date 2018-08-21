@@ -315,11 +315,14 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
     Vu_Monitor &lvu = vu_monitor_[0];
     Vu_Monitor &rvu = vu_monitor_[1];
     double lv_current[2];
+    double output_gain = pl->output_gain();
 
-    // filter out the DC component
     for (unsigned i = 0; i < nframes; ++i) {
-        double left_sample = dclf.process(left[i]);
-        double right_sample = dcrf.process(right[i]);
+        double left_sample = left[i] * output_gain;
+        double right_sample = right[i] * output_gain;
+        // filter out the DC component
+        left_sample = dclf.process(left_sample);
+        right_sample = dcrf.process(right_sample);
         left[i] = left_sample;
         right[i] = right_sample;
         lv_current[0] = lvu.process(left_sample);

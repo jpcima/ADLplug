@@ -60,6 +60,7 @@ public:
     virtual void set_soft_pan_enabled(bool sp) = 0;
     virtual void play_midi(const uint8_t *msg, unsigned len) = 0;
     virtual void generate(float *left, float *right, unsigned nframes, unsigned stride) = 0;
+    virtual double output_gain() const = 0;
 
     void ensure_get_bank_id(const Bank_Ref &bank, Bank_Id &id)
         { bool success = get_bank_id(bank, id); assert(success); (void)success; }
