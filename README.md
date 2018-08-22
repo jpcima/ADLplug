@@ -1,6 +1,8 @@
 # ADLplug
 Synthesizer plugin for ADLMIDI (VST/LV2)
 
+![screenshot](docs/screen.png)
+
 ## Introduction
 
 This is a FM synthesizer based on [OPL3](https://en.wikipedia.org/wiki/Yamaha_YMF262) sound chip emulation.  
