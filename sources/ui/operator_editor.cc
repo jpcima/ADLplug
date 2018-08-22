@@ -374,7 +374,8 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
     Parameter_Block &pb = *parameter_block_;
-    Parameter_Block::Operator &op = pb.nth_operator(operator_id_);
+    Parameter_Block::Part &part = pb.part[midichannel_];
+    Parameter_Block::Operator &op = part.nth_operator(operator_id_);
     Button *btn = buttonThatWasClicked;
     //[/UserbuttonClicked_Pre]
 
@@ -445,7 +446,8 @@ void Operator_Editor::sliderValueChanged (Slider* sliderThatWasMoved)
 {
     //[UsersliderValueChanged_Pre]
     Parameter_Block &pb = *parameter_block_;
-    Parameter_Block::Operator &op = pb.nth_operator(operator_id_);
+    Parameter_Block::Part &part = pb.part[midichannel_];
+    Parameter_Block::Operator &op = part.nth_operator(operator_id_);
     Slider *sl = sliderThatWasMoved;
     //[/UsersliderValueChanged_Pre]
 
@@ -515,7 +517,8 @@ void Operator_Editor::set_operator_enabled(bool b)
 void Operator_Editor::knob_value_changed(Knob *k)
 {
     Parameter_Block &pb = *parameter_block_;
-    Parameter_Block::Operator &op = pb.nth_operator(operator_id_);
+    Parameter_Block::Part &part = pb.part[midichannel_];
+    Parameter_Block::Operator &op = part.nth_operator(operator_id_);
 
     if (k == kn_attack.get()) {
         AudioParameterInt &p = *op.p_attack;

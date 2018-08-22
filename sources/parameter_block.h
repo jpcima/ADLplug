@@ -11,19 +11,6 @@ struct Parameter_Block {
     AudioParameterInt *p_nchip = nullptr;
     AudioParameterInt *p_n4op = nullptr;
 
-    AudioParameterBool *p_is4op = nullptr;
-    AudioParameterBool *p_ps4op = nullptr;
-    AudioParameterBool *p_blank = nullptr;
-    AudioParameterChoice *p_con12 = nullptr;
-    AudioParameterChoice *p_con34 = nullptr;
-    AudioParameterInt *p_tune12 = nullptr;
-    AudioParameterInt *p_tune34 = nullptr;
-    AudioParameterInt *p_fb12 = nullptr;
-    AudioParameterInt *p_fb34 = nullptr;
-    AudioParameterInt *p_veloffset = nullptr;
-    AudioParameterInt *p_voice2ft = nullptr;
-    AudioParameterInt *p_drumnote = nullptr;
-
     struct Operator {
         AudioParameterInt *p_attack = nullptr;
         AudioParameterInt *p_decay = nullptr;
@@ -39,16 +26,33 @@ struct Parameter_Block {
         AudioParameterInt *p_wave = nullptr;
     };
 
-    Operator c1, m1, c2, m2;
+    struct Part {
+        AudioParameterBool *p_is4op = nullptr;
+        AudioParameterBool *p_ps4op = nullptr;
+        AudioParameterBool *p_blank = nullptr;
+        AudioParameterChoice *p_con12 = nullptr;
+        AudioParameterChoice *p_con34 = nullptr;
+        AudioParameterInt *p_tune12 = nullptr;
+        AudioParameterInt *p_tune34 = nullptr;
+        AudioParameterInt *p_fb12 = nullptr;
+        AudioParameterInt *p_fb34 = nullptr;
+        AudioParameterInt *p_veloffset = nullptr;
+        AudioParameterInt *p_voice2ft = nullptr;
+        AudioParameterInt *p_drumnote = nullptr;
+
+        Operator c1, m1, c2, m2;
+
+        Operator &nth_operator(unsigned i)
+            { Operator *ops[] = {&c1, &m1, &c2, &m2}; return *ops[i]; }
+        const Operator &nth_operator(unsigned i) const
+            { return const_cast<Part *>(this)->nth_operator(i); }
+    };
+
+    Part part[16];
 
     AudioParameterChoice *p_volmodel = nullptr;
     AudioParameterBool *p_deeptrem = nullptr;
     AudioParameterBool *p_deepvib = nullptr;
-
-    Operator &nth_operator(unsigned i)
-        { Operator *ops[] = {&c1, &m1, &c2, &m2}; return *ops[i]; }
-    const Operator &nth_operator(unsigned i) const
-        { return const_cast<Parameter_Block *>(this)->nth_operator(i); }
 
     void setup_parameters(AudioProcessor &p);
 

@@ -94,6 +94,7 @@ struct LoadGlobalParameters {
 
 struct LoadInstrument {
     static constexpr User_Message tag = User_Message::LoadInstrument;
+    unsigned part = 0;
     Bank_Id bank;
     uint8_t program = 0;
     Instrument instrument;
@@ -110,6 +111,7 @@ struct RenameBank {
 
 struct SelectProgram {
     static constexpr User_Message tag = User_Message::SelectProgram;
+    unsigned part = 0;
     Bank_Id bank;
     uint8_t program = 0;
 };

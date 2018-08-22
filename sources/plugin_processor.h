@@ -64,9 +64,9 @@ public:
 
     void parameters_to_chip_settings(Chip_Settings &cs) const;
     void parameters_to_global(Instrument_Global_Parameters &gp) const;
-    void parameters_to_instrument(Instrument &ins) const;
+    void parameters_to_instrument(unsigned part_number, Instrument &ins) const;
     void set_global_parameters_notifying_host();
-    void set_instrument_parameters_notifying_host();
+    void set_instrument_parameters_notifying_host(unsigned part_number);
 
     //==========================================================================
     AudioProcessorEditor *createEditor() override;
@@ -141,13 +141,17 @@ private:
 
     Atomic<bool> chip_settings_changed_;
     Atomic<bool> global_parameters_changed_;
-    Atomic<bool> instrument_parameters_changed_;
+    Atomic<bool> instrument_parameters_changed_[16];
 
     Atomic<bool> chip_settings_need_notification_;
 
     std::unique_ptr<Parameter_Block> parameter_block_;
-    Bank_Id selection_id_ {0, 0, false};
-    uint8_t selection_pgm_ = 0;
+
+    struct Selection {
+        Bank_Id bank {0, 0, false};
+        uint8_t program = 0;
+    };
+    Selection selection_[16];
 
     std::bitset<16> midi_channel_mask_;
     unsigned midi_channel_note_count_[16] = {};

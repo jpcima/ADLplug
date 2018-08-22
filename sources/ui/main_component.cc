@@ -1045,6 +1045,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
 {
     //[UserbuttonClicked_Pre]
     Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
     Button *btn = buttonThatWasClicked;
     //[/UserbuttonClicked_Pre]
 
@@ -1052,11 +1053,11 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_btn_4op] -- add your button handler code here..
         if (btn->getToggleState()) {
-            AudioParameterBool &p1 = *pb.p_ps4op;
+            AudioParameterBool &p1 = *part.p_ps4op;
             p1.beginChangeGesture();
             p1 = false;
             p1.endChangeGesture();
-            AudioParameterBool &p2 = *pb.p_is4op;
+            AudioParameterBool &p2 = *part.p_is4op;
             p2.beginChangeGesture();
             p2 = true;
             p2.endChangeGesture();
@@ -1067,11 +1068,11 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_btn_pseudo4op] -- add your button handler code here..
         if (btn->getToggleState()) {
-            AudioParameterBool &p1 = *pb.p_ps4op;
+            AudioParameterBool &p1 = *part.p_ps4op;
             p1.beginChangeGesture();
             p1 = true;
             p1.endChangeGesture();
-            AudioParameterBool &p2 = *pb.p_is4op;
+            AudioParameterBool &p2 = *part.p_is4op;
             p2.beginChangeGesture();
             p2 = true;
             p2.endChangeGesture();
@@ -1082,11 +1083,11 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_btn_2op] -- add your button handler code here..
         if (btn->getToggleState()) {
-            AudioParameterBool &p1 = *pb.p_ps4op;
+            AudioParameterBool &p1 = *part.p_ps4op;
             p1.beginChangeGesture();
             p1 = false;
             p1.endChangeGesture();
-            AudioParameterBool &p2 = *pb.p_is4op;
+            AudioParameterBool &p2 = *part.p_is4op;
             p2.beginChangeGesture();
             p2 = false;
             p2.endChangeGesture();
@@ -1097,7 +1098,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_btn_fm12] -- add your button handler code here..
         if (btn->getToggleState()) {
-            AudioParameterChoice &p = *pb.p_con12;
+            AudioParameterChoice &p = *part.p_con12;
             p.beginChangeGesture();
             p = 0;
             p.endChangeGesture();
@@ -1108,7 +1109,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_btn_am12] -- add your button handler code here..
         if (btn->getToggleState()) {
-            AudioParameterChoice &p = *pb.p_con12;
+            AudioParameterChoice &p = *part.p_con12;
             p.beginChangeGesture();
             p = 1;
             p.endChangeGesture();
@@ -1119,7 +1120,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_btn_fm34] -- add your button handler code here..
         if (btn->getToggleState()) {
-            AudioParameterChoice &p = *pb.p_con34;
+            AudioParameterChoice &p = *part.p_con34;
             p.beginChangeGesture();
             p = 0;
             p.endChangeGesture();
@@ -1130,7 +1131,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     {
         //[UserButtonCode_btn_am34] -- add your button handler code here..
         if (btn->getToggleState()) {
-            AudioParameterChoice &p = *pb.p_con34;
+            AudioParameterChoice &p = *part.p_con34;
             p.beginChangeGesture();
             p = 1;
             p.endChangeGesture();
@@ -1237,13 +1238,14 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
 {
     //[UsersliderValueChanged_Pre]
     Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
     Slider *sl = sliderThatWasMoved;
     //[/UsersliderValueChanged_Pre]
 
     if (sliderThatWasMoved == sl_tune12.get())
     {
         //[UserSliderCode_sl_tune12] -- add your slider handling code here..
-        AudioParameterInt &p = *pb.p_tune12;
+        AudioParameterInt &p = *part.p_tune12;
         p.beginChangeGesture();
         p = sl->getValue();
         p.endChangeGesture();
@@ -1252,7 +1254,7 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
     else if (sliderThatWasMoved == sl_tune34.get())
     {
         //[UserSliderCode_sl_tune34] -- add your slider handling code here..
-        AudioParameterInt &p = *pb.p_tune34;
+        AudioParameterInt &p = *part.p_tune34;
         p.beginChangeGesture();
         p = sl->getValue();
         p.endChangeGesture();
@@ -1279,7 +1281,7 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
     else if (sliderThatWasMoved == sl_finetune34.get())
     {
         //[UserSliderCode_sl_finetune34] -- add your slider handling code here..
-        AudioParameterInt &p = *pb.p_voice2ft;
+        AudioParameterInt &p = *part.p_voice2ft;
         p.beginChangeGesture();
         double finetune34 = sl->getValue();
         int value;
@@ -1299,7 +1301,7 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
     else if (sliderThatWasMoved == sl_veloffset.get())
     {
         //[UserSliderCode_sl_veloffset] -- add your slider handling code here..
-        AudioParameterInt &p = *pb.p_veloffset;
+        AudioParameterInt &p = *part.p_veloffset;
         p.beginChangeGesture();
         p = sl->getValue();
         p.endChangeGesture();
@@ -1321,6 +1323,7 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     //[UsercomboBoxChanged_Pre]
     ComboBox *cb = comboBoxThatHasChanged;
     Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
     //[/UsercomboBoxChanged_Pre]
 
     if (comboBoxThatHasChanged == cb_program.get())
@@ -1364,7 +1367,7 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
     else if (comboBoxThatHasChanged == cb_percussion_key.get())
     {
         //[UserComboBoxCode_cb_percussion_key] -- add your combo box handling code here..
-        AudioParameterInt &p = *pb.p_drumnote;
+        AudioParameterInt &p = *part.p_drumnote;
         p.beginChangeGesture();
         p = cb->getSelectedId() - 1;
         p.endChangeGesture();
@@ -1427,15 +1430,16 @@ void Main_Component::handleNoteOff(MidiKeyboardState *, int channel_, int note, 
 void Main_Component::knob_value_changed(Knob *k)
 {
     Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
 
     if (k == kn_fb12.get()) {
-        AudioParameterInt &p = *pb.p_fb12;
+        AudioParameterInt &p = *part.p_fb12;
         p.beginChangeGesture();
         p = std::lround(k->value());
         p.endChangeGesture();
     }
     else if (k == kn_fb34.get()) {
-        AudioParameterInt &p = *pb.p_fb34;
+        AudioParameterInt &p = *part.p_fb34;
         p.beginChangeGesture();
         p = std::lround(k->value());
         p.endChangeGesture();
@@ -1504,6 +1508,7 @@ void Main_Component::send_selection_update()
     }
 
     Messages::User::SelectProgram msg;
+    msg.part = midichannel_;
     msg.bank = Bank_Id(psid >> 7, psid & 127, insno >= 128);
     msg.program = insno & 127;
     write_to_processor(msg.tag, &msg, sizeof(msg));
@@ -1809,6 +1814,7 @@ void Main_Component::load_bank(const File &file)
     auto send_bank = [this](const WOPLBank &bank, bool percussive) {
                          for (unsigned i = 0; i < 128; ++i) {
                              Messages::User::LoadInstrument msg;
+                             msg.part = midichannel_;
                              msg.bank = Bank_Id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
                              msg.program = i;
                              msg.instrument = Instrument::from_wopl(bank.ins[i]);
@@ -1952,6 +1958,12 @@ void Main_Component::on_change_midi_channel(unsigned channel)
     trace("Change MIDI channel to %u", channel + 1);
 
     midichannel_ = channel;
+
+    Operator_Editor *op_editors[4] =
+        { ed_op2.get(), ed_op1.get(), ed_op4.get(), ed_op3.get() };
+    for (Operator_Editor *oped : op_editors)
+        oped->set_midi_channel(channel);
+
     midi_kb->setMidiChannel(channel + 1);
     set_program_selection(midiprogram_[channel] + 1, dontSendNotification);
     reload_selected_instrument(dontSendNotification);

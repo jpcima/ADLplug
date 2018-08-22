@@ -53,6 +53,9 @@ public:
 
     void set_operator_enabled(bool b);
 
+    void set_midi_channel(unsigned c)
+        { midichannel_ = c; }
+
     void knob_value_changed(Knob *k) override;
 
     void paintOverChildren(Graphics &g) override;
@@ -70,6 +73,7 @@ private:
     unsigned operator_id_ = 0;
     bool operator_enabled_ = true;
     Parameter_Block *parameter_block_ = nullptr;
+    unsigned midichannel_ = 0;
     //[/UserVariables]
 
     //==============================================================================
