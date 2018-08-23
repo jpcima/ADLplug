@@ -153,6 +153,7 @@
     <ClCompile Include="..\..\..\sources\worker.cc"/>
     <ClCompile Include="..\..\..\sources\adl\chip_settings.cc"/>
     <ClCompile Include="..\..\..\sources\adl\instrument.cc"/>
+    <ClCompile Include="..\..\..\sources\adl\instrument_properties.cc"/>
     <ClCompile Include="..\..\..\sources\adl\player.cc"/>
     <ClCompile Include="..\..\..\sources\adl\measurer\measurer.cpp"/>
     <ClCompile Include="..\..\..\sources\adl\measurer\chips\dosbox_opl3.cpp"/>

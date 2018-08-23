@@ -108,7 +108,6 @@ void Worker::run()
 void Worker::handle_message(Buffered_Message &msg)
 {
     AdlplugAudioProcessor &proc = proc_;
-    Parameter_Block &pb = proc.parameter_block();
 
     Fx_Message tag = (Fx_Message)msg.header->tag;
     switch (tag) {

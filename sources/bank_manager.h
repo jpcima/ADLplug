@@ -36,14 +36,14 @@ public:
         LP_KeepName        = 4,
     };
 
+    struct Bank_Info;
+
 private:
     void initialize_all_banks();
 
     unsigned find_slot(const Bank_Id &id);
     unsigned ensure_find_slot(const Bank_Id &id);
     unsigned find_empty_slot();
-
-    struct Bank_Info;
 
     bool emit_slots();
     bool emit_global_parameters();
@@ -53,6 +53,7 @@ private:
     AdlplugAudioProcessor &proc_;
     Generic_Player &pl_;
 
+public:
     struct Bank_Info {
         Bank_Id id;
         Bank_Ref bank;
@@ -64,6 +65,11 @@ private:
         explicit operator bool() const noexcept
             { return bool(id); }
     };
+
+    const Bank_Info *bank_infos() const noexcept
+        { return bank_infos_.data(); }
+
+private:
     std::array<Bank_Info, bank_reserve_size> bank_infos_;
 
     bool global_parameters_notify_flag_ = false;

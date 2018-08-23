@@ -9,6 +9,7 @@
 #include <stdio.h>
 struct WOPLInstrument;
 class Generic_Player;
+namespace juce { class PropertySet; }
 
 struct Instrument : ADL_Instrument
 {
@@ -18,6 +19,9 @@ struct Instrument : ADL_Instrument
     static Instrument from_adlmidi(const ADL_Instrument &o) noexcept;
     static Instrument from_wopl(const WOPLInstrument &o) noexcept;
     WOPLInstrument to_wopl() const noexcept;
+
+    void to_properties(juce::PropertySet &set, const char *key_prefix) const;
+    static Instrument from_properties(const juce::PropertySet &set, const char *key_prefix);
 
 public:
 #define PARAMETER(type, id, field, shift, size, opt)            \

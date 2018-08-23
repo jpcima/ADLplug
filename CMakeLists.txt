@@ -109,6 +109,8 @@ add_library(ADLplug_core STATIC
   "sources/ui/utility/image.cc"
   "sources/adl/player.cc"
   "sources/adl/instrument.cc"
+  "sources/adl/instrument.cc"
+  "sources/adl/instrument_properties.cc"
   "sources/adl/chip_settings.cc"
   "sources/adl/measurer/measurer.cpp"
   "sources/adl/measurer/chips/dosbox/dbopl.cpp"

@@ -20,3 +20,13 @@ struct Chip_Settings {
     unsigned chip_count = 2;
     unsigned fourop_count = 2;
 };
+
+inline bool operator==(const Chip_Settings &a, const Chip_Settings &b)
+{
+    return a.emulator == b.emulator && a.chip_count == b.chip_count && a.fourop_count == b.fourop_count;
+}
+
+inline bool operator!=(const Chip_Settings &a, const Chip_Settings &b)
+{
+    return !operator==(a, b);
+}

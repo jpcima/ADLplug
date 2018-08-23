@@ -520,6 +520,9 @@
     <ClCompile Include="..\..\..\sources\adl\instrument.cc">
       <Filter>ADLplug\sources\adl</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\sources\adl\instrument_properties.cc">
+      <Filter>ADLplug\sources\adl</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\sources\adl\player.cc">
       <Filter>ADLplug\sources\adl</Filter>
     </ClCompile>

@@ -101,6 +101,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/worker_c96aa64a.o \
   $(JUCE_OBJDIR)/chip_settings_f8822d84.o \
   $(JUCE_OBJDIR)/instrument_a889d85b.o \
+  $(JUCE_OBJDIR)/instrument_properties_24dd4b8f.o \
   $(JUCE_OBJDIR)/player_38a5f121.o \
   $(JUCE_OBJDIR)/measurer_773e5778.o \
   $(JUCE_OBJDIR)/dosbox_opl3_33ec4f62.o \
@@ -228,6 +229,11 @@ $(JUCE_OBJDIR)/chip_settings_f8822d84.o: ../../../sources/adl/chip_settings.cc
 $(JUCE_OBJDIR)/instrument_a889d85b.o: ../../../sources/adl/instrument.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling instrument.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/instrument_properties_24dd4b8f.o: ../../../sources/adl/instrument_properties.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling instrument_properties.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/player_38a5f121.o: ../../../sources/adl/player.cc

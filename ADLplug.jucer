@@ -33,6 +33,8 @@
         <FILE id="ZhOlLH" name="instrument.cc" compile="1" resource="0" file="sources/adl/instrument.cc"/>
         <FILE id="ivL5rz" name="instrument.h" compile="0" resource="0" file="sources/adl/instrument.h"/>
         <FILE id="I6ORD5" name="instrument.tcc" compile="0" resource="0" file="sources/adl/instrument.tcc"/>
+        <FILE id="FQv2Kb" name="instrument_properties.cc" compile="1" resource="0"
+              file="sources/adl/instrument_properties.cc"/>
         <FILE id="YNeRaV" name="player.cc" compile="1" resource="0" file="sources/adl/player.cc"/>
         <FILE id="cktZse" name="player.h" compile="0" resource="0" file="sources/adl/player.h"/>
         <GROUP id="{C5504BDA-42C7-2221-038E-19766F6E41E8}" name="measurer">

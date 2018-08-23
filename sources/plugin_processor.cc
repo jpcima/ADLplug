@@ -145,6 +145,9 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
         sel.program = 0;
     }
 
+    setStateInformation(
+        last_state_information_.getData(), last_state_information_.getSize());
+
     ready_ = true;
 
     for (unsigned p = 0; p < 16; ++p)
@@ -162,6 +165,8 @@ void AdlplugAudioProcessor::releaseResources()
         worker->stop_worker();
         worker_.reset();
     }
+
+    getStateInformation(last_state_information_);
 
     ready_ = false;
 
@@ -262,17 +267,22 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
     }
 
     if (chip_settings_changed_.compareAndSetBool(false, true)) {
-        Simple_Fifo &queue = *mq_to_worker_;
-        Message_Header hdr(Fx_Message::RequestChipSettings, sizeof(Messages::Fx::RequestChipSettings));
-        Buffered_Message msg = Messages::write(queue, hdr);
-        if (!msg)
-            chip_settings_changed_ = true;  // do later
-        else {
-            auto &body = *(Messages::Fx::RequestChipSettings *)msg.data;
-            parameters_to_chip_settings(body.cs);
-            Messages::finish_write(queue, msg);
-            Worker &worker = *worker_;
-            worker.postSemaphore();
+        Chip_Settings cs, cs_current;
+        parameters_to_chip_settings(cs);
+        chip_settings_from_emulator(cs_current);
+        if (cs != cs_current) {
+            Simple_Fifo &queue = *mq_to_worker_;
+            Message_Header hdr(Fx_Message::RequestChipSettings, sizeof(Messages::Fx::RequestChipSettings));
+            Buffered_Message msg = Messages::write(queue, hdr);
+            if (!msg)
+                chip_settings_changed_ = true;  // do later
+            else {
+                auto &body = *(Messages::Fx::RequestChipSettings *)msg.data;
+                parameters_to_chip_settings(body.cs);
+                Messages::finish_write(queue, msg);
+                Worker &worker = *worker_;
+                worker.postSemaphore();
+            }
         }
     }
 
@@ -554,6 +564,16 @@ void AdlplugAudioProcessor::parameters_to_instrument(unsigned part_number, Instr
     }
 }
 
+void AdlplugAudioProcessor::set_chip_settings_notifying_host()
+{
+    Generic_Player *pl = player_.get();
+    Parameter_Block &pb = *parameter_block_;
+
+    *pb.p_emulator = pl->emulator();
+    *pb.p_nchip = pl->num_chips();
+    *pb.p_n4op = pl->num_4ops();
+}
+
 void AdlplugAudioProcessor::set_global_parameters_notifying_host()
 {
     Generic_Player *pl = player_.get();
@@ -606,6 +626,15 @@ void AdlplugAudioProcessor::set_instrument_parameters_notifying_host(unsigned pa
     }
 }
 
+void AdlplugAudioProcessor::chip_settings_from_emulator(Chip_Settings &cs) const
+{
+    const Generic_Player &pl = *player_;
+
+    cs.emulator = pl.emulator();
+    cs.chip_count = pl.num_chips();
+    cs.fourop_count = pl.num_4ops();
+}
+
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                          MidiBuffer &midi_messages)
 {
@@ -645,16 +674,150 @@ AudioProcessorEditor *AdlplugAudioProcessor::createEditor()
 //==============================================================================
 void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
 {
-    // You should use this method to store your parameters in the memory block.
-    // You could do that either as raw data, or use the XML or ValueTree classes
-    // as intermediaries to make it easy to save and load complex data.
+    std::lock_guard<std::mutex> lock(player_lock_);
+    Generic_Player &pl = *player_;
+    const Bank_Manager &bm = *bank_manager_;
+    const Bank_Manager::Bank_Info *infos = bm.bank_infos();
+
+    XmlElement root("ADLMIDI-state");
+
+    for (unsigned b_i = 0; b_i < bank_reserve_size; ++b_i) {
+        const Bank_Manager::Bank_Info &info = infos[b_i];
+        if (!info)
+            continue;
+        PropertySet bank_set;
+        char name[33];
+        name[32] = '\0';
+        memcpy(name, info.bank_name, 32);
+        bank_set.setValue("bank", (int)info.id.to_integer());
+        bank_set.setValue("name", name);
+        std::unique_ptr<XmlElement> elt(bank_set.createXml("bank"));
+        root.addChildElement(elt.get());
+        elt.release();
+    }
+
+    for (unsigned b_i = 0; b_i < bank_reserve_size; ++b_i) {
+        const Bank_Manager::Bank_Info &info = infos[b_i];
+        if (!info)
+            continue;
+        Instrument ins;
+        for (unsigned p_i = 0; p_i < 128; ++p_i) {
+            if (!info.used.test(p_i))
+                continue;
+            pl.ensure_get_instrument(info.bank, p_i, ins);
+            PropertySet ins_set;
+            ins_set.setValue("bank", (int)info.id.to_integer());
+            ins_set.setValue("program", (int)p_i);
+            char name[33];
+            name[32] = '\0';
+            memcpy(name, info.ins_names + 32 * p_i, 32);
+            ins_set.setValue("name", name);
+            ins.to_properties(ins_set, "");
+            std::unique_ptr<XmlElement> elt(ins_set.createXml("instrument"));
+            root.addChildElement(elt.get());
+            elt.release();
+        }
+    }
+
+    // chip settings
+    {
+        PropertySet chip_set;
+        chip_set.setValue("emulator", (int)pl.emulator());
+        chip_set.setValue("chip_count", (int)pl.num_chips());
+        chip_set.setValue("4op_count", (int)pl.num_4ops());
+        std::unique_ptr<XmlElement> elt(chip_set.createXml("chip"));
+        root.addChildElement(elt.get());
+        elt.release();
+    }
+
+    // global parameters
+    {
+        PropertySet global_set;
+        global_set.setValue("volume_model", (int)pl.volume_model() - 1);
+        global_set.setValue("deep_tremolo", pl.deep_tremolo());
+        global_set.setValue("deep_vibrato", pl.deep_vibrato());
+        std::unique_ptr<XmlElement> elt(global_set.createXml("global"));
+        root.addChildElement(elt.get());
+        elt.release();
+    }
+
+    copyXmlToBinary(root, data);
 }
 
 void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
 {
-    // You should use this method to restore your parameters from this memory
-    // block, whose contents will have been created by the getStateInformation()
-    // call.
+    std::lock_guard<std::mutex> lock(player_lock_);
+    Generic_Player &pl = *player_;
+    Bank_Manager &bm = *bank_manager_;
+
+    last_state_information_.replaceWith(data, size);
+
+    std::unique_ptr<XmlElement> root(
+        getXmlFromBinary(data, size));
+    if (!root)
+        return;
+
+    if (root->getTagName() != "ADLMIDI-state")
+        return;
+
+    bm.clear_banks(false);
+
+    for (XmlElement *elt = root->getFirstChildElement(); elt; elt = elt->getNextElement()) {
+        if (elt->getTagName() != "instrument")
+            continue;
+        PropertySet ins_set;
+        ins_set.restoreFromXml(*elt);
+        Bank_Id bank = Bank_Id::from_integer(ins_set.getIntValue("bank"));
+        unsigned program = ins_set.getIntValue("program");
+        if (bank.lsb > 127 || bank.msb > 127 || program > 127)
+            continue;
+        Instrument ins = Instrument::from_properties(ins_set, "");
+        String name = ins_set.getValue("name");
+        const char *name_utf8  = name.toRawUTF8();
+        memset(ins.name, 0, 32);
+        memcpy(ins.name, name_utf8, strnlen(name_utf8, 32));
+        bm.load_program(bank, program, ins, 0);
+    }
+
+    for (XmlElement *elt = root->getFirstChildElement(); elt; elt = elt->getNextElement()) {
+        if (elt->getTagName() != "bank")
+            continue;
+        PropertySet bank_set;
+        bank_set.restoreFromXml(*elt);
+        String name = bank_set.getValue("name");
+        Bank_Id bank = Bank_Id::from_integer(bank_set.getIntValue("bank"));
+        if (bank.lsb > 127 || bank.msb > 127)
+            continue;
+        bm.rename_bank(bank, name.toRawUTF8(), false);
+    }
+
+    // chip settings
+    PropertySet chip_set;
+    if (XmlElement *elt = root->getChildByName("chip"))
+        chip_set.restoreFromXml(*elt);
+    pl.set_emulator(chip_set.getIntValue("emulator"));
+    pl.set_num_chips(chip_set.getIntValue("chip_count"));
+    pl.set_num_4ops(chip_set.getIntValue("4op_count"));
+
+    // global parameters
+    PropertySet global_set;
+    if (XmlElement *elt = root->getChildByName("global"))
+        global_set.restoreFromXml(*elt);
+    Instrument_Global_Parameters gp;
+    gp.volume_model = global_set.getIntValue("volume_model");
+    gp.deep_tremolo = global_set.getBoolValue("deep_tremolo");
+    gp.deep_vibrato = global_set.getBoolValue("deep_vibrato");
+    bm.load_global_parameters(gp, false);
+
+    // notify everything
+    mark_chip_settings_for_notification();
+    bm.mark_everything_for_notification();
+
+    // make the host aware of changed parameters
+    set_chip_settings_notifying_host();
+    set_global_parameters_notifying_host();
+    for (unsigned p = 0; p < 16; ++p)
+        set_instrument_parameters_notifying_host(p);
 }
 
 //==============================================================================

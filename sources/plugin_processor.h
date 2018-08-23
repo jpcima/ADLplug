@@ -65,8 +65,11 @@ public:
     void parameters_to_chip_settings(Chip_Settings &cs) const;
     void parameters_to_global(Instrument_Global_Parameters &gp) const;
     void parameters_to_instrument(unsigned part_number, Instrument &ins) const;
+    void set_chip_settings_notifying_host();
     void set_global_parameters_notifying_host();
     void set_instrument_parameters_notifying_host(unsigned part_number);
+
+    void chip_settings_from_emulator(Chip_Settings &cs) const;
 
     //==========================================================================
     AudioProcessorEditor *createEditor() override;
@@ -160,6 +163,8 @@ private:
     std::mutex player_lock_;
 
     std::unique_ptr<Worker> worker_;
+
+    MemoryBlock last_state_information_;
 
     //==========================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AdlplugAudioProcessor)
