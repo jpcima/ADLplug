@@ -22,6 +22,7 @@
 #include "ui/about_component.h"
 #include "ui/components/vu_meter.h"
 #include "ui/components/indicator_NxM.h"
+#include "ui/components/algorithm_help.h"
 #include "adl/instrument.h"
 #include "midi/insnames.h"
 #include "plugin_processor.h"
@@ -724,8 +725,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     midi_activity_timer_.reset(Functional_Timer::create([this]() { midi_activity_update(); }));
     midi_activity_timer_->startTimer(100);
-
-    btn_algo_help->setTooltip("<<Algorithms>>");
     //[/Constructor]
 }
 
@@ -1227,6 +1226,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_algo_help.get())
     {
         //[UserButtonCode_btn_algo_help] -- add your button handler code here..
+        CallOutBox::launchAsynchronously(new Algorithm_Help, btn_algo_help->getBounds(), this);
         //[/UserButtonCode_btn_algo_help]
     }
 
