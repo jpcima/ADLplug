@@ -11,6 +11,7 @@ class Functional_Timer : public Timer {
 public:
     virtual ~Functional_Timer() {}
     template <class T> static Timer *create(T fn);
+    template <class T> static Timer *create1(T fn);
 };
 
 template <class T>
@@ -26,4 +27,19 @@ template <class T>
 Timer *Functional_Timer::create(T fn)
 {
     return new Functional_Timer_T<T>(std::move(fn));
+}
+
+template <class T>
+class Functional_Timer1_T : public Functional_Timer {
+public:
+    explicit Functional_Timer1_T(T fn) : fn_(std::move(fn)) {}
+    void timerCallback() override { fn_(this); }
+private:
+    T fn_;
+};
+
+template <class T>
+Timer *Functional_Timer::create1(T fn)
+{
+    return new Functional_Timer1_T<T>(std::move(fn));
 }

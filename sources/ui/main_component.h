@@ -91,6 +91,8 @@ public:
     void load_bank(const File &file);
     void save_bank(const File &file);
 
+    void set_int_parameter_with_delay(unsigned delay, AudioParameterInt &p, int v);
+
     void on_change_midi_channel(unsigned channel);
 
     void vu_update();
@@ -146,6 +148,8 @@ private:
     std::unique_ptr<Timer> vu_timer_;
     std::unique_ptr<Timer> cpu_load_timer_;
     std::unique_ptr<Timer> midi_activity_timer_;
+
+    std::map<String, std::unique_ptr<Timer>> parameters_delayed_;
     //[/UserVariables]
 
     //==============================================================================

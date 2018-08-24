@@ -1264,18 +1264,14 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
     {
         //[UserSliderCode_sl_num_chips] -- add your slider handling code here..
         AudioParameterInt &p = *pb.p_nchip;
-        p.beginChangeGesture();
-        p = sl->getValue();
-        p.endChangeGesture();
+        set_int_parameter_with_delay(500, p, sl->getValue());
         //[/UserSliderCode_sl_num_chips]
     }
     else if (sliderThatWasMoved == sl_num_4ops.get())
     {
         //[UserSliderCode_sl_num_4ops] -- add your slider handling code here..
         AudioParameterInt &p = *pb.p_n4op;
-        p.beginChangeGesture();
-        p = sl->getValue();
-        p.endChangeGesture();
+        set_int_parameter_with_delay(500, p, sl->getValue());
         //[/UserSliderCode_sl_num_4ops]
     }
     else if (sliderThatWasMoved == sl_finetune34.get())
@@ -1948,6 +1944,25 @@ void Main_Component::save_bank(const File &file)
             AlertWindow::WarningIcon, error_title, "The output operation has failed.");
         return;
     }
+}
+
+void Main_Component::set_int_parameter_with_delay(unsigned delay, AudioParameterInt &p, int v)
+{
+    const String &id = p.paramID;
+    std::unique_ptr<Timer> &slot = parameters_delayed_[id];
+
+    if (slot)
+        trace("Cancel delayed parameter %s", id.toRawUTF8());
+    trace("Schedule delayed parameter %s in %u ms", id.toRawUTF8(), delay);
+
+    Timer *timer = Functional_Timer::create1(
+                    [&p, v](Timer *t){
+                        t->stopTimer();
+                        trace("Set delayed parameter %s now", p.paramID.toRawUTF8());
+                        p = v;
+                    });
+    slot.reset(timer);
+    timer->startTimer(delay);
 }
 
 void Main_Component::on_change_midi_channel(unsigned channel)
