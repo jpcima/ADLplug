@@ -130,6 +130,7 @@ add_library(fmt STATIC
   "thirdparty/fmt/src/format.cc"
   "thirdparty/fmt/src/posix.cc")
 target_include_directories(fmt PUBLIC "thirdparty/fmt/include")
+set_property(TARGET fmt PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 target_link_libraries(ADLplug_core PRIVATE fmt)
 
