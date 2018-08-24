@@ -67,6 +67,8 @@ public:
     void handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity) override;
 
     void knob_value_changed(Knob *k) override;
+    void knob_drag_started(Knob *k) override;
+    void knob_drag_ended(Knob *k) override;
 
     void send_controller(unsigned channel, unsigned ctl, unsigned value);
     void send_program_change(unsigned channel, unsigned value);

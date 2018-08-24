@@ -455,27 +455,21 @@ void Operator_Editor::sliderValueChanged (Slider* sliderThatWasMoved)
     {
         //[UserSliderCode_sl_level] -- add your slider handling code here..
         AudioParameterInt &p = *op.p_level;
-        p.beginChangeGesture();
         p = std::lround(sl->getValue());
-        p.endChangeGesture();
         //[/UserSliderCode_sl_level]
     }
     else if (sliderThatWasMoved == sl_fmul.get())
     {
         //[UserSliderCode_sl_fmul] -- add your slider handling code here..
         AudioParameterInt &p = *op.p_fmul;
-        p.beginChangeGesture();
         p = std::lround(sl->getValue());
-        p.endChangeGesture();
         //[/UserSliderCode_sl_fmul]
     }
     else if (sliderThatWasMoved == sl_ksl.get())
     {
         //[UserSliderCode_sl_ksl] -- add your slider handling code here..
         AudioParameterInt &p = *op.p_ksl;
-        p.beginChangeGesture();
         p = std::lround(sl->getValue());
-        p.endChangeGesture();
         //[/UserSliderCode_sl_ksl]
     }
 
@@ -486,6 +480,52 @@ void Operator_Editor::sliderValueChanged (Slider* sliderThatWasMoved)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+void Operator_Editor::sliderDragStarted(Slider *slider)
+{
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
+    Parameter_Block::Operator &op = part.nth_operator(operator_id_);
+
+    if (slider == sl_level.get())
+    {
+        AudioParameterInt &p = *op.p_level;
+        p.beginChangeGesture();
+    }
+    else if (slider == sl_fmul.get())
+    {
+        AudioParameterInt &p = *op.p_fmul;
+        p.beginChangeGesture();
+    }
+    else if (slider == sl_ksl.get())
+    {
+        AudioParameterInt &p = *op.p_ksl;
+        p.beginChangeGesture();
+    }
+}
+
+void Operator_Editor::sliderDragEnded(Slider *slider)
+{
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
+    Parameter_Block::Operator &op = part.nth_operator(operator_id_);
+
+    if (slider == sl_level.get())
+    {
+        AudioParameterInt &p = *op.p_level;
+        p.endChangeGesture();
+    }
+    else if (slider == sl_fmul.get())
+    {
+        AudioParameterInt &p = *op.p_fmul;
+        p.endChangeGesture();
+    }
+    else if (slider == sl_ksl.get())
+    {
+        AudioParameterInt &p = *op.p_ksl;
+        p.endChangeGesture();
+    }
+}
+
 void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op, NotificationType ntf)
 {
     kn_attack->set_value(ins.attack(op), ntf);
@@ -522,26 +562,66 @@ void Operator_Editor::knob_value_changed(Knob *k)
 
     if (k == kn_attack.get()) {
         AudioParameterInt &p = *op.p_attack;
-        p.beginChangeGesture();
         p = k->value();
-        p.endChangeGesture();
+    }
+    else if (k == kn_decay.get()) {
+        AudioParameterInt &p = *op.p_decay;
+        p = std::lround(k->value());
+    }
+    else if (k == kn_sustain.get()) {
+        AudioParameterInt &p = *op.p_sustain;
+        p = std::lround(k->value());
+    }
+    else if (k == kn_release.get()) {
+        AudioParameterInt &p = *op.p_release;
+        p = std::lround(k->value());
+    }
+}
+
+void Operator_Editor::knob_drag_started(Knob *k)
+{
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
+    Parameter_Block::Operator &op = part.nth_operator(operator_id_);
+
+    if (k == kn_attack.get()) {
+        AudioParameterInt &p = *op.p_attack;
+        p.beginChangeGesture();
     }
     else if (k == kn_decay.get()) {
         AudioParameterInt &p = *op.p_decay;
         p.beginChangeGesture();
-        p = std::lround(k->value());
-        p.endChangeGesture();
     }
     else if (k == kn_sustain.get()) {
         AudioParameterInt &p = *op.p_sustain;
         p.beginChangeGesture();
-        p = std::lround(k->value());
-        p.endChangeGesture();
     }
     else if (k == kn_release.get()) {
         AudioParameterInt &p = *op.p_release;
         p.beginChangeGesture();
-        p = std::lround(k->value());
+    }
+}
+
+void Operator_Editor::knob_drag_ended(Knob *k)
+{
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
+    Parameter_Block::Operator &op = part.nth_operator(operator_id_);
+
+    if (k == kn_attack.get()) {
+        AudioParameterInt &p = *op.p_attack;
+        p.endChangeGesture();
+    }
+    else if (k == kn_decay.get()) {
+        AudioParameterInt &p = *op.p_decay;
+        p.endChangeGesture();
+    }
+    else if (k == kn_sustain.get()) {
+        AudioParameterInt &p = *op.p_sustain;
+        p.endChangeGesture();
+    }
+    else if (k == kn_release.get()) {
+        AudioParameterInt &p = *op.p_release;
         p.endChangeGesture();
     }
 }

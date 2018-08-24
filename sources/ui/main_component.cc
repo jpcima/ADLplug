@@ -1430,14 +1430,40 @@ void Main_Component::knob_value_changed(Knob *k)
 
     if (k == kn_fb12.get()) {
         AudioParameterInt &p = *part.p_fb12;
-        p.beginChangeGesture();
         p = std::lround(k->value());
-        p.endChangeGesture();
+    }
+    else if (k == kn_fb34.get()) {
+        AudioParameterInt &p = *part.p_fb34;
+        p = std::lround(k->value());
+    }
+}
+
+void Main_Component::knob_drag_started(Knob *k)
+{
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
+
+    if (k == kn_fb12.get()) {
+        AudioParameterInt &p = *part.p_fb12;
+        p.beginChangeGesture();
     }
     else if (k == kn_fb34.get()) {
         AudioParameterInt &p = *part.p_fb34;
         p.beginChangeGesture();
-        p = std::lround(k->value());
+    }
+}
+
+void Main_Component::knob_drag_ended(Knob *k)
+{
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
+
+    if (k == kn_fb12.get()) {
+        AudioParameterInt &p = *part.p_fb12;
+        p.endChangeGesture();
+    }
+    else if (k == kn_fb34.get()) {
+        AudioParameterInt &p = *part.p_fb34;
         p.endChangeGesture();
     }
 }

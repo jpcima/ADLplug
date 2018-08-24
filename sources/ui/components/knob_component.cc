@@ -103,49 +103,63 @@ void Knob::paint(Graphics &g)
 
 void Knob::mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &wheel)
 {
-    Rectangle<int> frame_bounds = get_frame_bounds().toType<int>();
-    if (wheel.deltaY && frame_bounds.contains(event.getPosition())) {
-        const float k = 0.5f * (max_ - min_);
-        set_value(value_ + k * wheel.deltaY, sendNotification);
+    if (in_drag_ || wheel.deltaY == 0)
         return;
-    }
-    Component::mouseWheelMove(event, wheel);
+
+    Rectangle<int> frame_bounds = get_frame_bounds().toType<int>();
+    if (!frame_bounds.contains(event.getPosition()))
+        return;
+
+    Component::BailOutChecker checker(this);
+    listeners_.callChecked(checker, [this](Knob::Listener &l) { l.knob_drag_started(this); });
+    if (checker.shouldBailOut())
+        return;
+    const float k = 0.5f * (max_ - min_);
+    set_value(value_ + k * wheel.deltaY, sendNotificationSync);
+    listeners_.callChecked(checker, [this](Knob::Listener &l) { l.knob_drag_ended(this); });
 }
 
 void Knob::mouseDown(const MouseEvent &event)
 {
+    if (in_drag_)
+        return;
+
     Point<int> pos = event.getPosition();
     Rectangle<int> frame_bounds = get_frame_bounds().toType<int>();
-    if (event.mods.isLeftButtonDown() && frame_bounds.contains(pos)) {
-        in_drag_ = true;
-        value_at_drag_start_ = value_;
-    }
-    Component::mouseDown(event);
+    if (!frame_bounds.contains(pos))
+        return;
+
+    in_drag_ = true;
+    value_at_drag_start_ = value_;
+    Component::BailOutChecker checker(this);
+    listeners_.callChecked(checker, [this](Knob::Listener &l) { l.knob_drag_started(this); });
 }
 
 void Knob::mouseUp(const MouseEvent &event)
 {
-    if (in_drag_ && !event.mods.isLeftButtonDown()) {
-        in_drag_ = false;
-    }
-    Component::mouseUp(event);
+    if (!in_drag_)
+        return;
+
+    in_drag_ = false;
+    Component::BailOutChecker checker(this);
+    listeners_.callChecked(checker, [this](Knob::Listener &l) { l.knob_drag_ended(this); });
 }
 
 void Knob::mouseDrag(const MouseEvent &event)
 {
+    if (!in_drag_)
+        return;
+
     Point<int> pos = event.getPosition();
     Point<int> off = event.getOffsetFromDragStart();
     Rectangle<int> frame_bounds = get_frame_bounds().toType<int>();
-    if (in_drag_ && event.mods.isLeftButtonDown()) {
-        const float k = 0.5f * (max_ - min_);
-        Point<int> center = frame_bounds.getCentre();
-        float xamt = k * (pos - center).getX() / frame_bounds.getWidth();
-        float yamt = -k * (pos - center).getY() / frame_bounds.getHeight();
-        float amt = (std::abs(xamt) > std::abs(yamt)) ? xamt : yamt;
-        set_value(value_at_drag_start_ + amt, sendNotification);
-        return;
-    }
-    Component::mouseDrag(event);
+
+    const float k = 0.5f * (max_ - min_);
+    Point<int> center = frame_bounds.getCentre();
+    float xamt = k * (pos - center).getX() / frame_bounds.getWidth();
+    float yamt = -k * (pos - center).getY() / frame_bounds.getHeight();
+    float amt = (std::abs(xamt) > std::abs(yamt)) ? xamt : yamt;
+    set_value(value_at_drag_start_ + amt, sendNotificationSync);
 }
 
 Rectangle<float> Knob::get_frame_bounds() const

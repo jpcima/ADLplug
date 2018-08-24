@@ -57,8 +57,13 @@ public:
         { midichannel_ = c; }
 
     void knob_value_changed(Knob *k) override;
+    void knob_drag_started(Knob *k) override;
+    void knob_drag_ended(Knob *k) override;
 
     void paintOverChildren(Graphics &g) override;
+
+    void sliderDragStarted(Slider *slider) override;
+    void sliderDragEnded(Slider *slider) override;
     //[/UserMethods]
 
     void paint (Graphics& g) override;

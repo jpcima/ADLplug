@@ -30,10 +30,15 @@ public:
         { return max_; }
     void set_range(float min, float max);
 
+    bool is_dragging() const
+        { return in_drag_; }
+
     class Listener {
     public:
         virtual ~Listener() {}
         virtual void knob_value_changed(Knob *k) {}
+        virtual void knob_drag_started(Knob *k) {}
+        virtual void knob_drag_ended(Knob *k) {}
     };
 
     void add_listener(Listener *l);
