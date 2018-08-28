@@ -36,3 +36,13 @@ cmake --build .
 ```
 sudo cmake --build . --target install
 ```
+
+### Change Log
+
+**1.0.0.alpha.3 (dev)**
+
+- fixed a mismanagement of the 4-op channel map
+- fixed cases of bad channel allocations following a long idle period
+- improved internal timing precision
+- gained an ability to save and restore the current state
+- enhanced the UI in various ways
