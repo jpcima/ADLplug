@@ -187,7 +187,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (midi_kb.get());
     midi_kb->setName ("new component");
 
-    midi_kb->setBounds (0, 520, 800, 56);
+    midi_kb->setBounds (16, 520, 758, 64);
 
     btn_about.reset (new ImageButton ("new button"));
     addAndMakeVisible (btn_about.get());
@@ -2217,7 +2217,7 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="736 245 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="midi_kb"
-                    virtualName="" explicitFocusOrder="0" pos="0 520 800 56" class="MidiKeyboardComponent"
+                    virtualName="" explicitFocusOrder="0" pos="16 520 758 64" class="MidiKeyboardComponent"
                     params="midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard"/>
   <IMAGEBUTTON name="new button" id="1c21a98bd6493eb8" memberName="btn_about"
                virtualName="" explicitFocusOrder="0" pos="16 8 232 40" buttonText=""
