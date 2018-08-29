@@ -45,4 +45,5 @@ sudo cmake --build . --target install
 - fixed cases of bad channel allocations following a long idle period
 - improved internal timing precision
 - gained an ability to save and restore the current state
+- added a large collection of embedded banks
 - enhanced the UI in various ways
