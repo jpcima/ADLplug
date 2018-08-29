@@ -57,6 +57,7 @@ protected:
     void mouseDrag(const MouseEvent &event) override;
 
 private:
+    void handle_drag(const MouseEvent &event);
     Rectangle<float> get_frame_bounds() const;
     Km_Skin_Ptr skin_;
     float value_ = 0;
@@ -64,7 +65,7 @@ private:
     float max_ = 1;
     ListenerList<Listener> listeners_;
     bool in_drag_ = false;
-    float value_at_drag_start_ = 0;
-
+    float min_angle_ = M_PI * -3.0 / 4.0;
+    float max_angle_ = M_PI * +3.0 / 4.0;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Knob);
 };

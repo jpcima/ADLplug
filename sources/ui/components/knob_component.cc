@@ -87,11 +87,6 @@ void Knob::paint(Graphics &g)
 
     const std::vector<Image> &frames = skin->frames;
     size_t frame_count = frames.size();
-    Rectangle<int> bounds = getLocalBounds();
-    int x = bounds.getX();
-    int y = bounds.getY();
-    int w = bounds.getWidth();
-    int h = bounds.getHeight();
 
     const float value = value_;
     const float ratio = (value - min_) / (max_ - min_);
@@ -130,9 +125,10 @@ void Knob::mouseDown(const MouseEvent &event)
         return;
 
     in_drag_ = true;
-    value_at_drag_start_ = value_;
     Component::BailOutChecker checker(this);
     listeners_.callChecked(checker, [this](Knob::Listener &l) { l.knob_drag_started(this); });
+
+    handle_drag(event);
 }
 
 void Knob::mouseUp(const MouseEvent &event)
@@ -150,16 +146,23 @@ void Knob::mouseDrag(const MouseEvent &event)
     if (!in_drag_)
         return;
 
-    Point<int> pos = event.getPosition();
-    Point<int> off = event.getOffsetFromDragStart();
-    Rectangle<int> frame_bounds = get_frame_bounds().toType<int>();
+    handle_drag(event);
+}
 
-    const float k = 0.5f * (max_ - min_);
-    Point<int> center = frame_bounds.getCentre();
-    float xamt = k * (pos - center).getX() / frame_bounds.getWidth();
-    float yamt = -k * (pos - center).getY() / frame_bounds.getHeight();
-    float amt = (std::abs(xamt) > std::abs(yamt)) ? xamt : yamt;
-    set_value(value_at_drag_start_ + amt, sendNotificationSync);
+void Knob:: handle_drag(const MouseEvent &event)
+{
+    Rectangle<float> bounds = get_frame_bounds();
+    float dx = event.position.x - bounds.getCentreX();
+    float dy = event.position.y - bounds.getCentreY();
+
+    if (dx * dx + dy * dy > 25.0f) {
+        float angle = std::atan2(dx, -dy);
+        angle = std::max(angle, min_angle_);
+        angle = std::min(angle, max_angle_);
+        float r = (angle - min_angle_) / (max_angle_ - min_angle_);
+        float new_value = min_ + r * (max_ - min_);
+        set_value(new_value, sendNotificationSync);
+    }
 }
 
 Rectangle<float> Knob::get_frame_bounds() const
