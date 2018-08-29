@@ -124,6 +124,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/image_39a6e2b.o \
   $(JUCE_OBJDIR)/knobman_skin_dab7d0fe.o \
   $(JUCE_OBJDIR)/midi_dde9aea4.o \
+  $(JUCE_OBJDIR)/pak_45a72afd.o \
   $(JUCE_OBJDIR)/rt_checker_e98c166d.o \
   $(JUCE_OBJDIR)/simple_fifo_14f04efe.o \
   $(JUCE_OBJDIR)/format_eaff5969.o \
@@ -344,6 +345,11 @@ $(JUCE_OBJDIR)/knobman_skin_dab7d0fe.o: ../../../sources/ui/utility/knobman_skin
 $(JUCE_OBJDIR)/midi_dde9aea4.o: ../../../sources/utility/midi.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling midi.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/pak_45a72afd.o: ../../../sources/utility/pak.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling pak.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/rt_checker_e98c166d.o: ../../../sources/utility/rt_checker.cc

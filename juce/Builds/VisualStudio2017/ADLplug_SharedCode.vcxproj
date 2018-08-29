@@ -176,6 +176,7 @@
     <ClCompile Include="..\..\..\sources\ui\utility\image.cc"/>
     <ClCompile Include="..\..\..\sources\ui\utility\knobman_skin.cc"/>
     <ClCompile Include="..\..\..\sources\utility\midi.cc"/>
+    <ClCompile Include="..\..\..\sources\utility\pak.cc"/>
     <ClCompile Include="..\..\..\sources\utility\rt_checker.cc"/>
     <ClCompile Include="..\..\..\sources\utility\simple_fifo.cc"/>
     <ClCompile Include="..\..\..\thirdparty\fmt\src\format.cc"/>
@@ -1984,6 +1985,7 @@
     <ClInclude Include="..\..\..\sources\utility\counting_bitset.h"/>
     <ClInclude Include="..\..\..\sources\utility\functional_timer.h"/>
     <ClInclude Include="..\..\..\sources\utility\midi.h"/>
+    <ClInclude Include="..\..\..\sources\utility\pak.h"/>
     <ClInclude Include="..\..\..\sources\utility\rt_checker.h"/>
     <ClInclude Include="..\..\..\sources\utility\semaphore.h"/>
     <ClInclude Include="..\..\..\sources\utility\simple_fifo.h"/>
@@ -2728,7 +2730,6 @@
     <None Include="..\..\..\sources\adl\instrument.tcc"/>
     <None Include="..\..\..\sources\adl\measurer\chips\opl_chip_base.tcc"/>
     <None Include="..\..\..\sources\utility\counting_bitset.tcc"/>
-    <None Include="..\..\..\resources\banks\default.wopl"/>
     <None Include="..\..\..\resources\ui\knob-skin.png"/>
     <None Include="..\..\..\resources\ui\cores\DOSBox.png"/>
     <None Include="..\..\..\resources\ui\cores\Nuked.png"/>
@@ -2747,6 +2748,7 @@
     <None Include="..\..\..\resources\ui\fonts\Serif-Regular.ttf.gz"/>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png"/>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png"/>
+    <None Include="..\..\..\resources\banks.pak"/>
     <None Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.tcc"/>
     <None Include="..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.tcc"/>
     <None Include="..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>

@@ -84,6 +84,7 @@ add_library(ADLplug_core STATIC
   "JuceLibraryCode/BinaryData.cpp"
   "sources/utility/midi.cc"
   "sources/utility/simple_fifo.cc"
+  "sources/utility/pak.cc"
   "sources/utility/rt_checker.cc"
   "sources/midi/insnames.cc"
   "sources/plugin_editor.cc"

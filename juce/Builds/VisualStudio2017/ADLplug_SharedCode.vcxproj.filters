@@ -38,9 +38,6 @@
     <Filter Include="ADLplug\sources">
       <UniqueIdentifier>{337050D3-2325-64ED-EBA1-66A581B1107F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ADLplug\resources\banks">
-      <UniqueIdentifier>{C98F95AB-FBC6-21B1-C25D-99C2151C049B}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ADLplug\resources\ui\cores">
       <UniqueIdentifier>{8539FEB8-6B7D-9E80-E807-D183A955989E}</UniqueIdentifier>
     </Filter>
@@ -587,6 +584,9 @@
       <Filter>ADLplug\sources\ui\utility</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\utility\midi.cc">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sources\utility\pak.cc">
       <Filter>ADLplug\sources\utility</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sources\utility\rt_checker.cc">
@@ -2650,6 +2650,9 @@
       <Filter>ADLplug\sources\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\utility\midi.h">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sources\utility\pak.h">
       <Filter>ADLplug\sources\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\sources\utility\rt_checker.h">
@@ -4880,9 +4883,6 @@
     <None Include="..\..\..\sources\utility\counting_bitset.tcc">
       <Filter>ADLplug\sources\utility</Filter>
     </None>
-    <None Include="..\..\..\resources\banks\default.wopl">
-      <Filter>ADLplug\resources\banks</Filter>
-    </None>
     <None Include="..\..\..\resources\ui\knob-skin.png">
       <Filter>ADLplug\resources\ui</Filter>
     </None>
@@ -4936,6 +4936,9 @@
     </None>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png">
       <Filter>ADLplug\resources\ui\noto-emoji</Filter>
+    </None>
+    <None Include="..\..\..\resources\banks.pak">
+      <Filter>ADLplug\resources</Filter>
     </None>
     <None Include="..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.tcc">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>

@@ -29,6 +29,7 @@
 #include "parameter_block.h"
 #include "messages.h"
 #include "utility/functional_timer.h"
+#include "utility/pak.h"
 #include <wopl/wopl_file.h>
 #include <fmt/format.h>
 #include <memory>
@@ -1155,11 +1156,35 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_bank_load.get())
     {
         //[UserButtonCode_btn_bank_load] -- add your button handler code here..
-        FileChooser chooser(TRANS("Load bank..."), bank_directory_, "*.wopl", prefer_native_file_dialog);
-        if (chooser.browseForFileToOpen()) {
-            File file = chooser.getResult();
-            bank_directory_ = file.getParentDirectory();
-            load_bank(file);
+        PopupMenu menu;
+        menu.addItem(1, "Load bank file...");
+
+        Pak_File_Reader pak;
+        if (!pak.init_with_data((const uint8_t *)BinaryData::banks_pak, BinaryData::banks_pakSize))
+            assert(false);
+
+        PopupMenu pak_submenu;
+        uint32_t pak_entries = pak.entry_count();
+        if (pak_entries > 0) {
+            for (uint32_t i = 0; i < pak_entries; ++i)
+                pak_submenu.addItem(2 + i, pak.name(i));
+            menu.addSubMenu("Load from collection", pak_submenu);
+        }
+
+        int selection = menu.showAt(buttonThatWasClicked);
+        if (selection == 1) {
+            FileChooser chooser(TRANS("Load bank..."), bank_directory_, "*.wopl", prefer_native_file_dialog);
+            if (chooser.browseForFileToOpen()) {
+                File file = chooser.getResult();
+                bank_directory_ = file.getParentDirectory();
+                load_bank(file);
+            }
+        }
+        else if (selection >= 2) {
+            uint32_t index = selection - 2;
+            const std::string &name = pak.name(index);
+            std::string wopl = pak.extract(index);
+            load_bank_mem((const uint8_t *)wopl.data(), wopl.size(), name);
         }
         //[/UserButtonCode_btn_bank_load]
     }
@@ -1800,7 +1825,6 @@ void Main_Component::load_bank(const File &file)
 {
     trace("Load from WOPL file: %s", file.getFullPathName().toRawUTF8());
 
-    WOPLFile_Ptr wopl;
     std::unique_ptr<uint8_t[]> filedata;
     std::unique_ptr<FileInputStream> stream(file.createInputStream());
     uint64_t length;
@@ -1826,7 +1850,14 @@ void Main_Component::load_bank(const File &file)
         return;
     }
 
-    wopl.reset(WOPL_LoadBankFromMem(filedata.get(), length, nullptr));
+    load_bank_mem(filedata.get(), length, file.getFileNameWithoutExtension());
+}
+
+void Main_Component::load_bank_mem(const uint8_t *mem, size_t length, const String &bank_name)
+{
+    const char *error_title = "Error loading bank";
+
+    WOPLFile_Ptr wopl(WOPL_LoadBankFromMem((void *)mem, length, nullptr));
     if (!wopl) {
         AlertWindow::showMessageBox(
             AlertWindow::WarningIcon, error_title, "The input file is not in WOPL format.");
@@ -1851,7 +1882,7 @@ void Main_Component::load_bank(const File &file)
                          std::memcpy(msg.name, bank.bank_name, 32);
                          write_to_processor(msg.tag, &msg, sizeof(msg));
                      };
-    edt_bank_name->setText(file.getFileNameWithoutExtension());
+    edt_bank_name->setText(bank_name);
     edt_bank_name->setCaretPosition(0);
 
     {

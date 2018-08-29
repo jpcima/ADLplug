@@ -7,6 +7,7 @@
 #include "midi/insnames.h"
 #include "utility/midi.h"
 #include "utility/simple_fifo.h"
+#include "utility/pak.h"
 #include "utility/rt_checker.h"
 #include "bank_manager.h"
 #include "parameter_block.h"
@@ -105,11 +106,17 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     worker_.reset(worker);
     worker->start_worker();
 
+    Pak_File_Reader pak;
+    if (!pak.init_with_data((const uint8_t *)BinaryData::banks_pak, BinaryData::banks_pakSize))
+        assert(false);
+    std::string default_wopl = pak.extract(0);
+    assert(default_wopl.size() != 0);
+
     Generic_Player *pl = instantiate_player(Player_Type::OPL3);
     player_.reset(pl);
     pl->init(sample_rate);
     pl->reserve_banks(bank_reserve_size);
-    pl->load_bank_data(BinaryData::default_wopl, BinaryData::default_woplSize);
+    pl->load_bank_data(default_wopl.data(), default_wopl.size());
     pl->set_volume_model(1);
     pl->set_deep_tremolo(false);
     pl->set_deep_vibrato(false);

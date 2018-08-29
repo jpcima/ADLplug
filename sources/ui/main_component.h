@@ -91,6 +91,7 @@ public:
     static String program_selection_to_string(int selection);
 
     void load_bank(const File &file);
+    void load_bank_mem(const uint8_t *mem, size_t length, const String &bank_name);
     void save_bank(const File &file);
 
     void set_int_parameter_with_delay(unsigned delay, AudioParameterInt &p, int v);

@@ -127,6 +127,8 @@
               file="sources/utility/functional_timer.h"/>
         <FILE id="tSjcHH" name="midi.cc" compile="1" resource="0" file="sources/utility/midi.cc"/>
         <FILE id="NBzY1D" name="midi.h" compile="0" resource="0" file="sources/utility/midi.h"/>
+        <FILE id="goEb2p" name="pak.cc" compile="1" resource="0" file="sources/utility/pak.cc"/>
+        <FILE id="Ky3BDX" name="pak.h" compile="0" resource="0" file="sources/utility/pak.h"/>
         <FILE id="gGudmM" name="rt_checker.cc" compile="1" resource="0" file="sources/utility/rt_checker.cc"/>
         <FILE id="WXCDdV" name="rt_checker.h" compile="0" resource="0" file="sources/utility/rt_checker.h"/>
         <FILE id="QNh3sf" name="semaphore.h" compile="0" resource="0" file="sources/utility/semaphore.h"/>
@@ -135,9 +137,6 @@
       </GROUP>
     </GROUP>
     <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
-      <GROUP id="{426F9D63-7ED2-C70C-62C0-7A782D9BBA77}" name="banks">
-        <FILE id="sB78Hw" name="default.wopl" compile="0" resource="1" file="resources/banks/default.wopl"/>
-      </GROUP>
       <GROUP id="{02680B2E-61B1-FA1B-3D9A-89A688227935}" name="ui">
         <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="resources/ui/knob-skin.png"/>
         <GROUP id="{3DD686E2-DFBA-641B-F10D-41AB90380470}" name="cores">
@@ -178,6 +177,7 @@
                 file="resources/ui/noto-emoji/emoji_u1f4c2.png"/>
         </GROUP>
       </GROUP>
+      <FILE id="Lxy3QZ" name="banks.pak" compile="0" resource="1" file="resources/banks.pak"/>
     </GROUP>
     <GROUP id="{C55CC9DB-ED0F-DE1B-46CB-A28A61433406}" name="thirdparty">
       <GROUP id="{10DE0817-C209-0E4C-0D54-242A418D9A01}" name="fmt">

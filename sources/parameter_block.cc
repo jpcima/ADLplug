@@ -7,13 +7,20 @@
 #include "adl/chip_settings.h"
 #include "adl/instrument.h"
 #include "adl/player.h"
+#include "utility/pak.h"
 #include <wopl/wopl_file.h>
 #include <fmt/format.h>
 #include <cassert>
 
 static Instrument default_instrument()
 {
-    WOPLFile_Ptr file(WOPL_LoadBankFromMem((void *)BinaryData::default_wopl, BinaryData::default_woplSize, nullptr));
+    Pak_File_Reader pak;
+    if (!pak.init_with_data((const uint8_t *)BinaryData::banks_pak, BinaryData::banks_pakSize))
+        assert(false);
+    std::string default_wopl = pak.extract(0);
+    assert(default_wopl.size() != 0);
+
+    WOPLFile_Ptr file(WOPL_LoadBankFromMem((void *)default_wopl.data(), default_wopl.size(), nullptr));
     if (!file)
         throw std::bad_alloc();
 
