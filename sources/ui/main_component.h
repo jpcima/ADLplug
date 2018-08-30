@@ -104,6 +104,7 @@ public:
     void popup_about_dialog();
     void update_emulator_icon();
     void build_emulator_menu(PopupMenu &menu);
+    void create_image_overlay(Component &component, Image image, float ratio);
 
     void focusGained(FocusChangeType cause) override;
     void globalFocusChanged(Component *component) override;
@@ -143,8 +144,7 @@ private:
     File bank_directory_;
     MidiKeyboardState midi_kb_state_;
 
-    std::unique_ptr<ImageComponent> overlay_bank_load_;
-    std::unique_ptr<ImageComponent> overlay_bank_save_;
+    std::vector<std::unique_ptr<ImageComponent>> image_overlays_;
 
     PopupMenu emulator_menu_;
 
@@ -214,6 +214,7 @@ private:
     std::unique_ptr<Label> label22;
     std::unique_ptr<ComboBox> cb_volmodel;
     std::unique_ptr<TextButton> btn_algo_help;
+    std::unique_ptr<TextButton> btn_auto4ops;
 
 
     //==============================================================================

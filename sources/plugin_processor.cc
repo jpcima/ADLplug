@@ -125,7 +125,6 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     Chip_Settings cs;
     cs.emulator = get_emulator_defaults().default_index;
     pl->set_num_chips(cs.chip_count);
-    pl->set_num_4ops(cs.fourop_count);
     pl->set_emulator(cs.emulator);
     chip_settings_need_notification_ = true;
 
@@ -447,7 +446,9 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     if (!ctx.under_lock)
         return false;
 
+    Generic_Player &pl = *player_;
     Bank_Manager &bm = *bank_manager_;
+    Parameter_Block &pb = *parameter_block_;
 
     switch (tag) {
     case (unsigned)User_Message::RequestBankSlots:
@@ -495,6 +496,12 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
             sel.program = body.program;
             set_instrument_parameters_notifying_host(body.part);
         }
+        break;
+    }
+    case (unsigned)User_Message::SelectOptimal4Ops: {
+        pl.set_num_4ops(~0u);
+        *pb.p_n4op = pl.num_4ops();
+        chip_settings_need_notification_ = true;
         break;
     }
     case (unsigned)Worker_Message::MeasurementResult: {

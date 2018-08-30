@@ -9,6 +9,9 @@
 #include <cmath>
 #include <cassert>
 
+// XXX for automatic 4op setting
+extern int adlRefreshNumCards(ADL_MIDIPlayer *device);
+
 template <Player_Type>
 class Player;
 
@@ -115,7 +118,13 @@ public:
     unsigned num_4ops() const override
         { return traits::get_num_4ops(player_.get()); }
     bool set_num_4ops(unsigned count) override
-        { return traits::set_num_4ops(player_.get(), count) >= 0; }
+        {
+            if (count == ~0u) {
+                adlRefreshNumCards(player_.get());
+                return true;
+            }
+            return traits::set_num_4ops(player_.get(), count) >= 0;
+        }
     unsigned volume_model() const override
         { return volume_model_; }
     void set_volume_model(unsigned model) override

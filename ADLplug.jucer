@@ -171,6 +171,8 @@
                 file="resources/ui/fonts/Serif-Regular.ttf.gz"/>
         </GROUP>
         <GROUP id="{877CC963-FD61-84EC-01EC-E41153BC0627}" name="noto-emoji">
+          <FILE id="ez1xcm" name="emoji_u1f4a1.png" compile="0" resource="1"
+                file="resources/ui/noto-emoji/emoji_u1f4a1.png"/>
           <FILE id="Q6lsDQ" name="emoji_u1f4be.png" compile="0" resource="1"
                 file="resources/ui/noto-emoji/emoji_u1f4be.png"/>
           <FILE id="zQcn4S" name="emoji_u1f4c2.png" compile="0" resource="1"

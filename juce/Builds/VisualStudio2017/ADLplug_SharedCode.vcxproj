@@ -2746,6 +2746,7 @@
     <None Include="..\..\..\resources\ui\fonts\Serif-BoldItalic.ttf.gz"/>
     <None Include="..\..\..\resources\ui\fonts\Serif-Italic.ttf.gz"/>
     <None Include="..\..\..\resources\ui\fonts\Serif-Regular.ttf.gz"/>
+    <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4a1.png"/>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png"/>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png"/>
     <None Include="..\..\..\resources\banks.pak"/>

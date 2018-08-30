@@ -64,6 +64,7 @@ enum class User_Message {
     LoadInstrument,  // edits an instrument
     RenameBank,  // set bank name
     SelectProgram,  // changes selected program number
+    SelectOptimal4Ops,  // sets the optimal 4op channel count
 };
 
 namespace Messages {
@@ -114,6 +115,10 @@ struct SelectProgram {
     unsigned part = 0;
     Bank_Id bank;
     uint8_t program = 0;
+};
+
+struct SelectOptimal4Ops {
+    static constexpr User_Message tag = User_Message::SelectOptimal4Ops;
 };
 
 }  // namespace User

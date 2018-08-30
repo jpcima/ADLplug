@@ -413,7 +413,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
                              Image(), 1.0f, Colour (0x00000000),
                              Image(), 1.0f, Colour (0x00000000),
                              Image(), 1.0f, Colour (0x00000000));
-    btn_emulator->setBounds (690, 56, 76, 20);
+    btn_emulator->setBounds (659, 56, 76, 20);
 
     label14.reset (new Label ("new label",
                               TRANS("Core")));
@@ -425,7 +425,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label14->setColour (TextEditor::textColourId, Colours::black);
     label14->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label14->setBounds (642, 56, 48, 20);
+    label14->setBounds (611, 56, 48, 20);
 
     sl_num_chips.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_num_chips.get());
@@ -437,7 +437,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_num_chips->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_num_chips->addListener (this);
 
-    sl_num_chips->setBounds (690, 80, 76, 20);
+    sl_num_chips->setBounds (659, 80, 76, 20);
 
     label15.reset (new Label ("new label",
                               TRANS("Chips")));
@@ -449,7 +449,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label15->setColour (TextEditor::textColourId, Colours::black);
     label15->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label15->setBounds (642, 80, 48, 20);
+    label15->setBounds (611, 80, 48, 20);
 
     label16.reset (new Label ("new label",
                               TRANS("4 ops")));
@@ -461,7 +461,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label16->setColour (TextEditor::textColourId, Colours::black);
     label16->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label16->setBounds (642, 104, 48, 20);
+    label16->setBounds (611, 104, 48, 20);
 
     sl_num_4ops.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_num_4ops.get());
@@ -472,7 +472,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_num_4ops->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_num_4ops->addListener (this);
 
-    sl_num_4ops->setBounds (690, 104, 76, 20);
+    sl_num_4ops->setBounds (659, 104, 76, 20);
 
     label5.reset (new Label ("new label",
                              TRANS("Percussion key")));
@@ -624,6 +624,14 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     btn_algo_help->setBounds (754, 136, 20, 20);
 
+    btn_auto4ops.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_auto4ops.get());
+    btn_auto4ops->setTooltip (TRANS("Choose a recommended value"));
+    btn_auto4ops->setButtonText (String());
+    btn_auto4ops->addListener (this);
+
+    btn_auto4ops->setBounds (739, 102, 24, 24);
+
 
     //[UserPreSize]
     Desktop::getInstance().addFocusChangeListener(this);
@@ -673,31 +681,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_deep_tremolo->setClickingTogglesState(true);
     btn_deep_vibrato->setClickingTogglesState(true);
 
-    {
-        ImageComponent *overlay = new ImageComponent;
-        overlay_bank_load_.reset(overlay);
-        Rectangle<int> bounds = btn_bank_load->getBounds();
-        bounds = bounds.withSizeKeepingCentre(0.7f * bounds.getWidth(), 0.7f * bounds.getHeight());
-        overlay->setBounds(bounds);
-        overlay->setImage(
-            ImageCache::getFromMemory(BinaryData::emoji_u1f4c2_png, BinaryData::emoji_u1f4c2_pngSize),
-            RectanglePlacement::centred);
-        overlay->setInterceptsMouseClicks(false, true);
-        addAndMakeVisible(overlay);
-    }
-
-    {
-        ImageComponent *overlay = new ImageComponent;
-        overlay_bank_save_.reset(overlay);
-        Rectangle<int> bounds = btn_bank_save->getBounds();
-        bounds = bounds.withSizeKeepingCentre(0.7f * bounds.getWidth(), 0.7f * bounds.getHeight());
-        overlay->setBounds(bounds);
-        overlay->setImage(
-            ImageCache::getFromMemory(BinaryData::emoji_u1f4be_png, BinaryData::emoji_u1f4be_pngSize),
-            RectanglePlacement::centred);
-        overlay->setInterceptsMouseClicks(false, true);
-        addAndMakeVisible(overlay);
-    }
+    create_image_overlay(*btn_bank_load, ImageCache::getFromMemory(BinaryData::emoji_u1f4c2_png, BinaryData::emoji_u1f4c2_pngSize), 0.7f);
+    create_image_overlay(*btn_bank_save, ImageCache::getFromMemory(BinaryData::emoji_u1f4be_png, BinaryData::emoji_u1f4be_pngSize), 0.7f);
+    create_image_overlay(*btn_auto4ops, ImageCache::getFromMemory(BinaryData::emoji_u1f4a1_png, BinaryData::emoji_u1f4a1_pngSize), 0.7f);
 
     build_emulator_menu(emulator_menu_);
 
@@ -793,6 +779,7 @@ Main_Component::~Main_Component()
     label22 = nullptr;
     cb_volmodel = nullptr;
     btn_algo_help = nullptr;
+    btn_auto4ops = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -933,7 +920,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 638, y = 52, width = 136, height = 80;
+        int x = 606, y = 52, width = 168, height = 80;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1253,6 +1240,13 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         //[UserButtonCode_btn_algo_help] -- add your button handler code here..
         CallOutBox::launchAsynchronously(new Algorithm_Help, btn_algo_help->getBounds(), this);
         //[/UserButtonCode_btn_algo_help]
+    }
+    else if (buttonThatWasClicked == btn_auto4ops.get())
+    {
+        //[UserButtonCode_btn_auto4ops] -- add your button handler code here..
+        Messages::User::SelectOptimal4Ops msg;
+        write_to_processor(msg.tag, &msg, sizeof(msg));
+        //[/UserButtonCode_btn_auto4ops]
     }
 
     //[UserbuttonClicked_Post]
@@ -2099,6 +2093,18 @@ void Main_Component::build_emulator_menu(PopupMenu &menu)
         menu.addItem(i + 1, defaults.choices[i], true, false, defaults.images[i]);
 }
 
+void Main_Component::create_image_overlay(Component &component, Image image, float ratio)
+{
+    ImageComponent *overlay = new ImageComponent;
+    image_overlays_.push_back(std::unique_ptr<ImageComponent>(overlay));
+    Rectangle<int> bounds = component.getBounds();
+    bounds = bounds.withSizeKeepingCentre(ratio * bounds.getWidth(), ratio * bounds.getHeight());
+    overlay->setBounds(bounds);
+    overlay->setImage(image, RectanglePlacement::centred);
+    overlay->setInterceptsMouseClicks(false, true);
+    addAndMakeVisible(overlay);
+}
+
 void Main_Component::focusGained(FocusChangeType cause)
 {
     if (midi_kb)
@@ -2183,7 +2189,7 @@ BEGIN_JUCER_METADATA
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
     <RECT pos="586 316 188 106" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="638 52 136 80" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="606 52 168 80" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="16 474 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="16 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="300 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
@@ -2343,33 +2349,33 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="new button" id="1df5353a837ca5f4" memberName="btn_emulator"
-               virtualName="" explicitFocusOrder="0" pos="690 56 76 20" buttonText="new button"
+               virtualName="" explicitFocusOrder="0" pos="659 56 76 20" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="" opacityNormal="1.0" colourNormal="0" resourceOver=""
                opacityOver="1.0" colourOver="0" resourceDown="" opacityDown="1.0"
                colourDown="0"/>
   <LABEL name="new label" id="61dc1fae1b35b41b" memberName="label14" virtualName=""
-         explicitFocusOrder="0" pos="642 56 48 20" textCol="fff0f8ff"
+         explicitFocusOrder="0" pos="611 56 48 20" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Core" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <SLIDER name="new slider" id="4c8fba05f57b7320" memberName="sl_num_chips"
-          virtualName="" explicitFocusOrder="0" pos="690 80 76 20" rotaryslideroutline="ff8e98ff"
+          virtualName="" explicitFocusOrder="0" pos="659 80 76 20" rotaryslideroutline="ff8e98ff"
           textboxtext="fff0f8ff" textboxoutline="ff8e989b" min="1.0" max="100.0"
           int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft" textBoxEditable="1"
           textBoxWidth="36" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="new label" id="7b8136bebc755c42" memberName="label15" virtualName=""
-         explicitFocusOrder="0" pos="642 80 48 20" textCol="fff0f8ff"
+         explicitFocusOrder="0" pos="611 80 48 20" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Chips" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="e0a305f99bf634b2" memberName="label16" virtualName=""
-         explicitFocusOrder="0" pos="642 104 48 20" textCol="fff0f8ff"
+         explicitFocusOrder="0" pos="611 104 48 20" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="4 ops" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <SLIDER name="new slider" id="8ab12bd836d92a62" memberName="sl_num_4ops"
-          virtualName="" explicitFocusOrder="0" pos="690 104 76 20" textboxtext="fff0f8ff"
+          virtualName="" explicitFocusOrder="0" pos="659 104 76 20" textboxtext="fff0f8ff"
           textboxoutline="ff8e989b" min="1.0" max="600.0" int="1.0" style="IncDecButtons"
           textBoxPos="TextBoxLeft" textBoxEditable="1" textBoxWidth="36"
           textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
@@ -2438,6 +2444,9 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="new button" id="5a50a3a87b4f5d76" memberName="btn_algo_help"
               virtualName="" explicitFocusOrder="0" pos="754 136 20 20" buttonText="?"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="988d753c82121162" memberName="btn_auto4ops"
+              virtualName="" explicitFocusOrder="0" pos="739 102 24 24" tooltip="Choose a recommended value"
+              buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

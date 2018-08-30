@@ -4931,6 +4931,9 @@
     <None Include="..\..\..\resources\ui\fonts\Serif-Regular.ttf.gz">
       <Filter>ADLplug\resources\ui\fonts</Filter>
     </None>
+    <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4a1.png">
+      <Filter>ADLplug\resources\ui\noto-emoji</Filter>
+    </None>
     <None Include="..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png">
       <Filter>ADLplug\resources\ui\noto-emoji</Filter>
     </None>

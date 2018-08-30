@@ -56,6 +56,9 @@ namespace BinaryData
     extern const char*   SerifRegular_ttf_gz;
     const int            SerifRegular_ttf_gzSize = 27031;
 
+    extern const char*   emoji_u1f4a1_png;
+    const int            emoji_u1f4a1_pngSize = 6808;
+
     extern const char*   emoji_u1f4be_png;
     const int            emoji_u1f4be_pngSize = 1505;
 
@@ -66,7 +69,7 @@ namespace BinaryData
     const int            banks_pakSize = 149159;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 19;
+    const int namedResourceListSize = 20;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];
