@@ -33,7 +33,7 @@ void Worker::start_worker()
 {
     std::thread &th = thread_;
     stop_worker();
-    quit_.store(false);
+    quit_.store(0);
     th = std::thread([this]() { run(); });
 }
 
@@ -41,7 +41,7 @@ void Worker::stop_worker()
 {
     std::thread &th = thread_;
     if (th.joinable()) {
-        quit_.store(true);
+        quit_.store(1);
         sem_.post();
         th.join();
     }

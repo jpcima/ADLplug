@@ -29,6 +29,13 @@ AdlplugAudioProcessor::AdlplugAudioProcessor()
 
     for (AudioProcessorParameter *p : getParameters())
         p->addListener(this);
+
+    ready_.store(0);
+    chip_settings_changed_.store(0);
+    global_parameters_changed_.store(0);
+    for (unsigned i = 0; i < 16; ++i)
+        instrument_parameters_changed_[i].store(0);
+    chip_settings_need_notification_.store(0);
 }
 
 AdlplugAudioProcessor::~AdlplugAudioProcessor()
@@ -126,7 +133,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     cs.emulator = get_emulator_defaults().default_index;
     pl->set_num_chips(cs.chip_count);
     pl->set_emulator(cs.emulator);
-    chip_settings_need_notification_ = true;
+    chip_settings_need_notification_.store(1);
 
     for (unsigned i = 0; i < 2; ++i) {
         Dc_Filter &dcf = dc_filter_[i];
@@ -154,7 +161,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     setStateInformation(
         last_state_information_.getData(), last_state_information_.getSize());
 
-    ready_ = true;
+    ready_.store(1);
 
     for (unsigned p = 0; p < 16; ++p)
         set_instrument_parameters_notifying_host(p);
@@ -174,7 +181,7 @@ void AdlplugAudioProcessor::releaseResources()
 
     getStateInformation(last_state_information_);
 
-    ready_ = false;
+    ready_.store(0);
 
     // avoid destroying the player while the UI is working on it
     std::unique_lock<std::mutex> lock(player_lock_);
@@ -272,7 +279,8 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         return;
     }
 
-    if (chip_settings_changed_.compareAndSetBool(false, true)) {
+    int chip_settings_changed = 1;
+    if (chip_settings_changed_.compare_exchange_weak(chip_settings_changed, false)) {
         Chip_Settings cs, cs_current;
         parameters_to_chip_settings(cs);
         chip_settings_from_emulator(cs_current);
@@ -281,7 +289,7 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
             Message_Header hdr(Fx_Message::RequestChipSettings, sizeof(Messages::Fx::RequestChipSettings));
             Buffered_Message msg = Messages::write(queue, hdr);
             if (!msg)
-                chip_settings_changed_ = true;  // do later
+                chip_settings_changed_.store(1);  // do later
             else {
                 auto &body = *(Messages::Fx::RequestChipSettings *)msg.data;
                 parameters_to_chip_settings(body.cs);
@@ -293,7 +301,8 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
     }
 
     for (unsigned p = 0; p < 16; ++p) {
-        if (instrument_parameters_changed_[p].compareAndSetBool(false, true)) {
+        int instrument_parameters_changed = 1;
+        if (instrument_parameters_changed_[p].compare_exchange_weak(instrument_parameters_changed, false)) {
             Bank_Manager &bm = *bank_manager_;
             Instrument ins;
             parameters_to_instrument(p, ins);
@@ -304,19 +313,21 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         }
     }
 
-    if (global_parameters_changed_.compareAndSetBool(false, true)) {
+    int global_parameters_changed = 1;
+    if (global_parameters_changed_.compare_exchange_weak(global_parameters_changed, false)) {
         Bank_Manager &bm = *bank_manager_;
         Instrument_Global_Parameters gp;
         parameters_to_global(gp);
         bm.load_global_parameters(gp, true);
     }
 
-    if (chip_settings_need_notification_.compareAndSetBool(false, true)) {
+    int chip_settings_need_notification = 1;
+    if (chip_settings_need_notification_.compare_exchange_weak(chip_settings_need_notification, false)) {
         Simple_Fifo &queue = *mq_to_ui_;
         Message_Header hdr(Fx_Message::NotifyChipSettings, sizeof(Messages::Fx::NotifyChipSettings));
         Buffered_Message msg = Messages::write(queue, hdr);
         if (!msg)
-            chip_settings_need_notification_ = true;  // do later
+            chip_settings_need_notification_.store(1);  // do later
         else {
             auto &body = *(Messages::Fx::NotifyChipSettings *)msg.data;
             body.cs.emulator = pl->emulator();
@@ -458,7 +469,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         bm.mark_everything_for_notification();
         break;
     case (unsigned)User_Message::RequestChipSettings:
-        chip_settings_need_notification_ = true;
+        chip_settings_need_notification_.store(1);
         break;
     case (unsigned)User_Message::ClearBanks: {
         auto &body = *(const Messages::User::ClearBanks *)data;
@@ -501,7 +512,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     case (unsigned)User_Message::SelectOptimal4Ops: {
         pl.set_num_4ops(~0u);
         *pb.p_n4op = pl.num_4ops();
-        chip_settings_need_notification_ = true;
+        chip_settings_need_notification_.store(1);
         break;
     }
     case (unsigned)Worker_Message::MeasurementResult: {
@@ -840,14 +851,14 @@ void AdlplugAudioProcessor::parameterValueChanged(int index, float value)
     const Parameter_Block &pb = *parameter_block_;
 
     if (index >= pb.first_chip_setting && index <= pb.last_chip_setting)
-        chip_settings_changed_ = true;
+        chip_settings_changed_.store(1);
     else if (index >= pb.first_global_parameter && index <= pb.last_global_parameter)
-        global_parameters_changed_ = true;
+        global_parameters_changed_.store(1);
     else if (index >= pb.first_instrument_parameter && index <= pb.last_instrument_parameter)
     {
         unsigned part_num = (index - pb.first_instrument_parameter) /
             (1 + pb.last_instrument_parameter - pb.first_instrument_parameter);
-        instrument_parameters_changed_[part_num] = true;
+        instrument_parameters_changed_[part_num].store(1);
     }
 }
 

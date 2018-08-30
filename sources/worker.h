@@ -32,7 +32,7 @@ private:
 private:
     AdlplugAudioProcessor &proc_;
     std::thread thread_;
-    std::atomic<bool> quit_;
+    std::atomic<int> quit_;
     Semaphore sem_;
     std::unordered_map<uint32_t, Instrument> measure_requests_;
 

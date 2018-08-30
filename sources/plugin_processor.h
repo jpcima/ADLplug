@@ -129,7 +129,7 @@ private:
 
     std::unique_ptr<Bank_Manager> bank_manager_;
 
-    std::atomic<bool> ready_;
+    std::atomic<int> ready_;
 
     std::shared_ptr<Simple_Fifo> mq_from_ui_;
     std::shared_ptr<Simple_Fifo> mq_to_ui_;
@@ -142,11 +142,11 @@ private:
     double lv_current_[2] {};
     double cpu_load_ = 0;
 
-    Atomic<bool> chip_settings_changed_;
-    Atomic<bool> global_parameters_changed_;
-    Atomic<bool> instrument_parameters_changed_[16];
+    std::atomic<int> chip_settings_changed_;
+    std::atomic<int> global_parameters_changed_;
+    std::atomic<int> instrument_parameters_changed_[16];
 
-    Atomic<bool> chip_settings_need_notification_;
+    std::atomic<int> chip_settings_need_notification_;
 
     std::unique_ptr<Parameter_Block> parameter_block_;
 
