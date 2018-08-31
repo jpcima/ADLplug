@@ -66,7 +66,7 @@ namespace BinaryData
     const int            emoji_u1f4c2_pngSize = 2181;
 
     extern const char*   banks_pak;
-    const int            banks_pakSize = 161656;
+    const int            banks_pakSize = 161637;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
     const int namedResourceListSize = 20;
