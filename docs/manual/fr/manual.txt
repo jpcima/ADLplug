@@ -1,0 +1,124 @@
+// -*- mode: adoc; -*-
+
+:lang: fr
+:toc-title: Table des Matières
+:last-update-label: Dernière mise à jour
+
+= Manuel de l'utilisateur
+Jean Pierre Cimalando
+v1.0
+:toc:
+
+[.Lead]
+Ce manuel documente l'utilisation du programme ADLplug, le synthétiseur FM basé sur la technologie OPL3. +
+ADLplug est un logiciel libre et gratuit. +
+Si le logiciel présente un problème, merci de déposer un rapport sur la page de projet&nbsp;: +
+https://github.com/jpcima/ADLplug
+
+== Description
+
+ADLplug est un synthétiseur FM, construit sur le standard OPL3 développé par Yamaha.
+La réalisation de cette synthèse est basée sur une émulation fidèle du circuit intégré YMF262.
+
+Le circuit est capable de synthèse FM en 2 ou 4 opérateurs, pour une polyphonie allant de 12 à 18 voix, variant selon les conditions d'usage.
+Il permet de travailler avec 6 algorithmes et 8 formes d'ondes.
+
+À l'aide de ce greffon, on peut piloter par entrée MIDI un nombre au choix de circuits YMF262 virtuels.
+Cela permet de réaliser des configurations à haut niveau de polyphonie, qui sont difficiles voire impossibles à obtenir sur du vrai matériel.
+
+Par ailleurs, le programme est capable d'utiliser une multitude de banques d'instruments, dont une collection est préchargée.
+La compatibilité General MIDI permet la synthèse de pistes multiples simultanées sur un même instrument.
+
+== Installation
+
+Le projet met à disposition des téléchargements pour les systèmes Windows et Mac. +
+https://github.com/jpcima/ADLplug/releases
+
+À défaut de disposer d'une version téléchargeable pour son système d'exploitation, il faudra récupérer le code source et le construire soi-même.
+Visitez alors la page d'accueil du projet, et suivez les étapes de construction indiquées.
+
+Dès lors qu'on dispose d'un fichier en format VST ou LV2, il faut rendre celui-ci reconnaissable par les logiciels musicaux.
+On peut le déposer dans un des chemins reconnus par la plupart des logiciels.
+
+- Windows&nbsp;: C:\Program Files\Steinberg\VSTPlugins
+- Mac&nbsp;: Library/Audio/Plug-ins/VST
+- Linux&nbsp;: /usr/lib/vst, /usr/lib/lv2
+
+== Utilisation
+
+À l'ouverture de l'éditeur, une fenêtre s'affiche, contenant une multitude de contrôles et afficheurs.
+
+.La fenêtre d'édition
+image::../resources/screen.png[500,500]
+
+Le disposition de l'éditeur est la suivante&nbsp;:
+
+- au coin supérieur gauche, on trouve la sélection des banques et des programmes et le canal MIDI associé&nbsp;;
+- au coin supérieure droit, on trouve le paramétrage des circuits YMF262 virtuels&nbsp;;
+- au centre, on trouve l'ensemble des contrôles manipulant le programme actuel, qui se constitue des parties&nbsp;: Opérateur, Algorithme, Ton, et Divers&nbsp;;
+- au coin inférieur droit, on trouve la partie Globale, paramètres s'appliquant à l'ensemble des programmes d'une banque&nbsp;;
+- en bas, on dispose d'un clavier virtuel pour jouer le programme actuel.
+
+=== Démarrage rapide
+
+Une banque par défaut en algorithmes 2 opérateurs est chargée initialisement dans l'instrument.
+Pour obtenir ses premiers sons avec ADLplug, rien n'est plus simple&nbsp;: il suffit de connecter un clavier en MIDI et de jouer immédiatement.
+
+Le principe de General MIDI s'applique&nbsp;: les canaux MIDI à l'exception du 10 sont associés chacun à leur instrument mélodique, et le 10 est associé aux instruments percussifs.
+
+On peut basculer sur une banque de son choix parmi celles de la collection préchargée.
+Pour cela, on clique sur image:../resources/emoji_u1f4c2.png[24,24] puis on visite le sous-menu "Charger depuis la collection".
+
+=== Les algorithmes
+
+Pour comprendre l'édition des programmes, il convient de poser quelques notions propres à la synthèse FM, et d'autres spécifiques à l'OPL3.
+
+La synthèse FM, ou modulation de fréquence, fait appel à des arrangements d'oscillateurs, que l'on appelle pour l'occasion des opérateurs.
+On désigne un tel arrangement par le terme d'algorithme, dans lequel les opérateurs jouent chacun soit le rôle d'une modulatrice, soit d'une porteuse.
+
+- une porteuse produit le signal qui est destiné à la sortie audio ;
+- une modulatrice applique des changements rapide de fréquence sur l'opérateur qu'elle module, qui est le plus souvent une porteuse, mais peut être aussi une autre modulatrice.
+Moduler un opérateur en fréquence modifie son spectre, en l'enrichissant d'une multitude d'harmoniques.
+
+Les algorithmes de l'OPL3 appartiennent à 3 classes&nbsp;:
+
+- les algorithmes à 2 opérateurs&nbsp;: les 2op
+- les algorithmes à 4 opérateurs&nbsp;: les 4op
+- les algorithmes pseudo 4 opérateurs&nbsp;: les pseudo-4op ou 2x2op
+
+Le pseudo-4op se définit simplement comme une paire de voix 2op jouées à l'unisson.
+Dans ce mode, une particularité est qu'il est possible d'appliquer un décalage tonal à la seconde voix par rapport à la première.
+
+.Les algorithmes
+image::../resources/algorithm.png[200,200]
+
+Dans l'éditeur, on choisit d'abord la classe d'algorithme désirée parmi les 3.
+
+Voici comment interpréter les boutons FM et AM&nbsp; qui déterminent l'algorithme&nbsp;:
+
+- en 2op, seule la paire 1-2 est considérée, 3-4 est ignorée&nbsp;;
+- en 4op, toutes deux sont prises en compte&nbsp;;
+- en pseudo-4op, la paire 1-2 s'applique à la première voix, 3-4 s'applique à la seconde.
+
+En connaissance de cela, la référence des algorithmes, obtenue par un clic sur "?", affiche le schéma de connexion correspondant à toute combinaison de FM et AM.
+
+- lorsque le mode choisi est 2op ou pseudo-4op&nbsp;:
+
+.Les algorithmes à 2 opérateurs
+image::../resources/algo2op.png[270,270]
+
+- lorsque le mode choisi est 4op&nbsp;:
+
+.Les algorithmes à 4 opérateurs
+image::../resources/algo4op.png[600,600]
+
+Le schéma se lit ainsi&nbsp;: tout bloc désigné de 1 à 4 est un opérateur.
+Tout opérateur de la rangée d'en bas joue le rôle de porteuse, tout autre joue le rôle de modulatrice.
+Le schéma met également en évidence la boucle de rétroaction sur l'opérateur 1.
+
+Au sujet de la rétroaction, il est possible de contrôler la quantité de signal réinjectée par un opérateur 1 sur lui-même&nbsp;:
+ceci est contrôlé par les paramètres "Retour 1-2", "Retour 3-4". +
+Remarque&nbsp;: "Retour 3-4" n'est effectif que sur la seconde des voix instruments pseudo-4op, dans les autres cas il est sans effet.
+
+.Le ton
+image::../resources/tuning.png[200,200]
