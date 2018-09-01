@@ -12,7 +12,7 @@
 #include <fmt/format.h>
 #include <cassert>
 
-static Instrument default_instrument()
+static WOPLFile_Ptr default_wopl()
 {
     Pak_File_Reader pak;
     if (!pak.init_with_data((const uint8_t *)BinaryData::banks_pak, BinaryData::banks_pakSize))
@@ -24,13 +24,17 @@ static Instrument default_instrument()
     if (!file)
         throw std::bad_alloc();
 
+    return file;
+}
+
+static Instrument default_instrument(const WOPLFile &file)
+{
     WOPLBank *bank = nullptr;
-    for (unsigned i = 0, n = file->banks_count_melodic; i < n && !bank; ++i) {
-        WOPLBank *cur = &file->banks_melodic[i];
+    for (unsigned i = 0, n = file.banks_count_melodic; i < n && !bank; ++i) {
+        WOPLBank *cur = &file.banks_melodic[i];
         if (cur->bank_midi_lsb == 0 && cur->bank_midi_msb == 0)
             bank = cur;
     }
-
     assert(bank);
     return Instrument::from_wopl(bank->ins[0]);
 }
@@ -52,7 +56,8 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
     p.addParameter((p_n4op = new AudioParameterInt("n4op", "4op channel count", 0, 600, cs.fourop_count, String())));
     last_chip_setting = p.getParameters().size() - 1;
 
-    Instrument ins = default_instrument();
+    WOPLFile_Ptr wopl = default_wopl();
+    Instrument ins = default_instrument(*wopl);
 
     first_instrument_parameter = p.getParameters().size();
     for (unsigned pn = 0; pn < 16; ++pn) {
@@ -108,8 +113,8 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
     last_instrument_parameter = p.getParameters().size() - 1;
 
     first_global_parameter = p.getParameters().size();
-    p.addParameter((p_volmodel = new AudioParameterChoice("volmodel", "Volume model", {"Generic", "Native", "DMX", "Apogee", "Win9x"}, 0, String())));
-    p.addParameter((p_deeptrem = new AudioParameterBool("deeptrem", "Deep tremolo", false, String())));
-    p.addParameter((p_deepvib = new AudioParameterBool("deepvib", "Deep vibrato", false, String())));
+    p.addParameter((p_volmodel = new AudioParameterChoice("volmodel", "Volume model", {"Generic", "Native", "DMX", "Apogee", "Win9x"}, wopl->volume_model, String())));
+    p.addParameter((p_deeptrem = new AudioParameterBool("deeptrem", "Deep tremolo", wopl->opl_flags & WOPL_FLAG_DEEP_TREMOLO, String())));
+    p.addParameter((p_deepvib = new AudioParameterBool("deepvib", "Deep vibrato", wopl->opl_flags & WOPL_FLAG_DEEP_VIBRATO, String())));
     last_global_parameter = p.getParameters().size() - 1;
 }

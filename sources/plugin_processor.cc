@@ -123,16 +123,10 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     player_.reset(pl);
     pl->init(sample_rate);
     pl->reserve_banks(bank_reserve_size);
-    pl->load_bank_data(default_wopl.data(), default_wopl.size());
-    pl->set_volume_model(1);
-    pl->set_deep_tremolo(false);
-    pl->set_deep_vibrato(false);
     pl->set_soft_pan_enabled(true);
-
-    Chip_Settings cs;
-    cs.emulator = get_emulator_defaults().default_index;
-    pl->set_num_chips(cs.chip_count);
-    pl->set_emulator(cs.emulator);
+    pl->set_num_chips(Chip_Settings{}.chip_count);
+    pl->set_emulator(get_emulator_defaults().default_index);
+    pl->load_bank_data(default_wopl.data(), default_wopl.size());
     chip_settings_need_notification_.store(1);
 
     for (unsigned i = 0; i < 2; ++i) {
@@ -163,6 +157,8 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 
     ready_.store(1);
 
+    set_chip_settings_notifying_host();
+    set_global_parameters_notifying_host();
     for (unsigned p = 0; p < 16; ++p)
         set_instrument_parameters_notifying_host(p);
 
@@ -708,7 +704,11 @@ AudioProcessorEditor *AdlplugAudioProcessor::createEditor()
 void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
 {
     std::lock_guard<std::mutex> lock(player_lock_);
-    Generic_Player &pl = *player_;
+
+    Generic_Player *pl = player_.get();
+    if (!pl)
+        return;
+
     const Bank_Manager &bm = *bank_manager_;
     const Bank_Manager::Bank_Info *infos = bm.bank_infos();
 
@@ -737,7 +737,7 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
         for (unsigned p_i = 0; p_i < 128; ++p_i) {
             if (!info.used.test(p_i))
                 continue;
-            pl.ensure_get_instrument(info.bank, p_i, ins);
+            pl->ensure_get_instrument(info.bank, p_i, ins);
             PropertySet ins_set;
             ins_set.setValue("bank", (int)info.id.to_integer());
             ins_set.setValue("program", (int)p_i);
@@ -755,9 +755,9 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
     // chip settings
     {
         PropertySet chip_set;
-        chip_set.setValue("emulator", (int)pl.emulator());
-        chip_set.setValue("chip_count", (int)pl.num_chips());
-        chip_set.setValue("4op_count", (int)pl.num_4ops());
+        chip_set.setValue("emulator", (int)pl->emulator());
+        chip_set.setValue("chip_count", (int)pl->num_chips());
+        chip_set.setValue("4op_count", (int)pl->num_4ops());
         std::unique_ptr<XmlElement> elt(chip_set.createXml("chip"));
         root.addChildElement(elt.get());
         elt.release();
@@ -766,9 +766,9 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
     // global parameters
     {
         PropertySet global_set;
-        global_set.setValue("volume_model", (int)pl.volume_model() - 1);
-        global_set.setValue("deep_tremolo", pl.deep_tremolo());
-        global_set.setValue("deep_vibrato", pl.deep_vibrato());
+        global_set.setValue("volume_model", (int)pl->volume_model() - 1);
+        global_set.setValue("deep_tremolo", pl->deep_tremolo());
+        global_set.setValue("deep_vibrato", pl->deep_vibrato());
         std::unique_ptr<XmlElement> elt(global_set.createXml("global"));
         root.addChildElement(elt.get());
         elt.release();

@@ -18,7 +18,7 @@ struct Emulator_Defaults {
 struct Chip_Settings {
     unsigned emulator = 0;
     unsigned chip_count = 2;
-    unsigned fourop_count = 2;
+    unsigned fourop_count = 0;
 };
 
 inline bool operator==(const Chip_Settings &a, const Chip_Settings &b)

@@ -84,7 +84,7 @@
         lv2:index 7 ;
         lv2:symbol "n4op" ;
         lv2:name "4op channel count" ;
-        lv2:default 0.003333 ;
+        lv2:default 0.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -8742,7 +8742,7 @@
         lv2:index 969 ;
         lv2:symbol "deeptrem" ;
         lv2:name "Deep tremolo" ;
-        lv2:default 0.000000 ;
+        lv2:default 1.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ,
@@ -8751,7 +8751,7 @@
         lv2:index 970 ;
         lv2:symbol "deepvib" ;
         lv2:name "Deep vibrato" ;
-        lv2:default 0.000000 ;
+        lv2:default 1.000000 ;
         lv2:minimum 0.0 ;
         lv2:maximum 1.0 ;
     ] ;

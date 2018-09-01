@@ -24,7 +24,7 @@
     ] ,
     [
         lv2:symbol "n4op" ;
-        pset:value 0.003333 ;
+        pset:value 0.000000 ;
     ] ,
     [
         lv2:symbol "p1is4op" ;
@@ -3872,11 +3872,11 @@
     ] ,
     [
         lv2:symbol "deeptrem" ;
-        pset:value 0.000000 ;
+        pset:value 1.000000 ;
     ] ,
     [
         lv2:symbol "deepvib" ;
-        pset:value 0.000000 ;
+        pset:value 1.000000 ;
     ] .
 
 
