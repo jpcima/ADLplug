@@ -1,0 +1,58 @@
+diff --git a/modules/juce_core/native/juce_win32_ComSmartPtr.h b/modules/juce_core/native/juce_win32_ComSmartPtr.h
+index 29b455d2c..6a8b72926 100644
+--- a/modules/juce_core/native/juce_win32_ComSmartPtr.h
++++ b/modules/juce_core/native/juce_win32_ComSmartPtr.h
+@@ -22,23 +22,20 @@
+ 
+ namespace juce
+ {
+-
+-#if JUCE_MINGW || (! (defined (_MSC_VER) || defined (__uuidof)))
+- #ifdef __uuidof
+-  #undef __uuidof
+- #endif
+-
+- template<typename Type> struct UUIDGetter { static CLSID get() { jassertfalse; return {}; } };
+- #define __uuidof(x)  UUIDGetter<x>::get()
+-
+- template <>
+- struct UUIDGetter<::IUnknown>
+- {
+-     static CLSID get()     { return { 0, 0, 0, { 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46 } }; }
+- };
+-
+- #define JUCE_DECLARE_UUID_GETTER(name, uuid) \
+-    template<> struct UUIDGetter<name> { static CLSID get()  { return uuidFromString (uuid); } };
++#if JUCE_MINGW
++    template <class T> const GUID& juce_uuidof();
++}
++template <class T> const GUID& __mingw_uuidof()
++{
++    return juce::juce_uuidof<T>();
++}
++namespace juce {
++  #define JUCE_DECLARE_UUID_GETTER(name, uuid) \
++    template<> const GUID& juce_uuidof<name>() \
++    { \
++        static const CLSID id = uuidFromString (uuid); \
++        return id; \
++    };
+ 
+  #define JUCE_COMCLASS(name, guid) \
+     struct name; \
+diff --git a/modules/juce_graphics/juce_graphics.cpp b/modules/juce_graphics/juce_graphics.cpp
+index 2dcbc5e8b..6989fcfd2 100644
+--- a/modules/juce_graphics/juce_graphics.cpp
++++ b/modules/juce_graphics/juce_graphics.cpp
+@@ -52,11 +52,6 @@
+   #pragma warning (disable : 4458)
+  #endif
+ 
+- #if JUCE_MINGW && JUCE_USE_DIRECTWRITE
+-  #warning "DirectWrite not currently implemented with mingw..."
+-  #undef JUCE_USE_DIRECTWRITE
+- #endif
+-
+  #if JUCE_USE_DIRECTWRITE || JUCE_DIRECT2D
+   /* If you hit a compile error trying to include these files, you may need to update
+      your version of the Windows SDK to the latest one. The DirectWrite and Direct2D
