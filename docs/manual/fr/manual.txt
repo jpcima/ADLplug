@@ -42,7 +42,7 @@ On peut le déposer dans un des chemins reconnus par la plupart des logiciels.
 
 - Windows&nbsp;: C:\Program Files\Steinberg\VSTPlugins
 - Mac&nbsp;: Library/Audio/Plug-ins/VST
-- Linux&nbsp;: /usr/lib/vst, /usr/lib/lv2
+- Linux&nbsp;: /usr/lib/vst, /usr/lib/lv2 , /usr/local/lib/vst, /usr/local/lib/lv2 , ~/.vst , ~/.lv2
 
 == Utilisation
 
@@ -54,17 +54,17 @@ image::../resources/screen.png[500,500]
 Le disposition de l'éditeur est la suivante&nbsp;:
 
 - au coin supérieur gauche, on trouve la sélection des banques et des programmes et le canal MIDI associé&nbsp;;
-- au coin supérieure droit, on trouve le paramétrage des circuits YMF262 virtuels&nbsp;;
+- au coin supérieur droit, on trouve le paramétrage des circuits YMF262 virtuels&nbsp;;
 - au centre, on trouve l'ensemble des contrôles manipulant le programme actuel, qui se constitue des parties&nbsp;: Opérateur, Algorithme, Ton, et Divers&nbsp;;
 - au coin inférieur droit, on trouve la partie Globale, paramètres s'appliquant à l'ensemble des programmes d'une banque&nbsp;;
 - en bas, on dispose d'un clavier virtuel pour jouer le programme actuel.
 
 === Démarrage rapide
 
-Une banque par défaut en algorithmes 2 opérateurs est chargée initialisement dans l'instrument.
+Une banque par défaut en algorithmes 2 opérateurs est chargée initialement dans l'instrument.
 Pour obtenir ses premiers sons avec ADLplug, rien n'est plus simple&nbsp;: il suffit de connecter un clavier en MIDI et de jouer immédiatement.
 
-Le principe de General MIDI s'applique&nbsp;: les canaux MIDI à l'exception du 10 sont associés chacun à leur instrument mélodique, et le 10 est associé aux instruments percussifs.
+Le principe de General MIDI s'applique&nbsp;: les canaux MIDI, à l'exception du 10, sont associés chacun à leur instrument mélodique, et le 10 est associé aux instruments percussifs.
 
 On peut basculer sur une banque de son choix parmi celles de la collection préchargée.
 Pour cela, on clique sur image:../resources/emoji_u1f4c2.png[24,24] puis on visite le sous-menu "Charger depuis la collection".
@@ -136,9 +136,9 @@ Chacun de ces canaux peut accueillir une voix d'instrument en 2op.
 
 Dès qu'il est question d'instruments plus complexes, ça se complique un peu.
 
-- Pour une instrument en pseudo-4op, il y a 2 canaux occupés par voix, assignés de la même manière qu'en 2op.
+- Pour un instrument en pseudo-4op, il y a 2 canaux occupés par voix, assignés de la même manière qu'en 2op.
 Par rapport à 2op, cela double simplement la consommation de capacité de polyphonie.
-Un circuit pourrait donc s'acommoder de 9 voix en pseudo-4op.
+Un circuit pourrait donc s'accommoder de 9 voix en pseudo-4op.
 
 - Pour un instrument en 4op, il y a également 2 canaux occupés par voix, mais ces canaux ne peuvent pas être pris n'importe comment.
 Ils doivent être réservés comme canaux 4op, et sont au maximum de 12 par circuit, pour 6 voix d'instrument 4op.
