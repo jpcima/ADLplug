@@ -122,3 +122,42 @@ Remarque&nbsp;: "Retour 3-4" n'est effectif que sur la seconde des voix instrume
 
 .Le ton
 image::../resources/tuning.png[200,200]
+
+Du côté du réglage du ton, "Décalage de note" désigne le décalage appliqué à la note jouée, exprimé en demi-tons.
+Le "Réglage fin" est un décalage supplémentaire exprimé en centièmes de demi-tons. +
+Remarque&nbsp;: "Décalage de note 3-4" et "Réglage fin 3-4" ne sont effectifs que sur la seconde des voix instruments pseudo-4op, dans les autres cas ils sont sans effet.
+
+La "Note percussive" désigne la note qui sera jouée, dans le cas ou l'instrument serait utilisé comme percussion.
+
+=== La polyphonie
+
+Le programme joue sur les 18 canaux à usage général du circuit OPL3. +
+Chacun de ces canaux peut accueillir une voix d'instrument en 2op.
+
+Dès qu'il est question d'instruments plus complexes, ça se complique un peu.
+
+- Pour une instrument en pseudo-4op, il y a 2 canaux occupés par voix, assignés de la même manière qu'en 2op.
+Par rapport à 2op, cela double simplement la consommation de capacité de polyphonie.
+Un circuit pourrait donc s'acommoder de 9 voix en pseudo-4op.
+
+- Pour un instrument en 4op, il y a également 2 canaux occupés par voix, mais ces canaux ne peuvent pas être pris n'importe comment.
+Ils doivent être réservés comme canaux 4op, et sont au maximum de 12 par circuit, pour 6 voix d'instrument 4op.
+
+.Réservation des canaux 4op
+image::../resources/voices4op.png[400,400]
+
+Voici un exemple illustratif du principe. Ici, nous avons 2 circuits OPL3 à 18 canaux chacun.
+Nous avons réservé 8 voix en mode 4op. Ces voix se composent de 2 canaux chacune, l'un coloré en rouge et l'autre en bleu.
+Au total, cela fait 16 canaux réservés au 4op. Les canaux restants en gris, au nombre de 20, sont disponibles pour 2op et pseudo-4op,
+laissant à ces derniers une polyphonie de 20 ou 10 voix respectivement.
+
+.Les circuits
+image::../resources/chip.png[180,180]
+
+La polyphonie se contrôle au moyen des paramètres "Circuits" et "4 ops".
+En ce qui concerne "4 ops", nous pouvons désormais comprendre de quoi il s'agit&nbsp;:
+la quantité maximale de voix en 4op, ce qui ne peut dépasser 6 fois le nombre de circuits virtuels.
+
+En cliquant sur image:../resources/emoji_u1f4a1.png[24,24], on peut faire choisir au programme une quantité de "4 ops"
+automatiquement calculée, sur la base du nombre de circuits et de la banque chargée.
+Cette valeur sera simplement une suggestion, elle n'est pas à considérer comme optimale.

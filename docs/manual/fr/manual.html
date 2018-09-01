@@ -447,6 +447,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_démarrage_rapide">Démarrage rapide</a></li>
 <li><a href="#_les_algorithmes">Les algorithmes</a></li>
+<li><a href="#_la_polyphonie">La polyphonie</a></li>
 </ul>
 </li>
 </ul>
@@ -672,6 +673,65 @@ Remarque&nbsp;: "Retour 3-4" n&#8217;est effectif que sur la seconde des voix in
 </div>
 <div class="title">Figure 5. Le ton</div>
 </div>
+<div class="paragraph">
+<p>Du côté du réglage du ton, "Décalage de note" désigne le décalage appliqué à la note jouée, exprimé en demi-tons.
+Le "Réglage fin" est un décalage supplémentaire exprimé en centièmes de demi-tons.<br>
+Remarque&nbsp;: "Décalage de note 3-4" et "Réglage fin 3-4" ne sont effectifs que sur la seconde des voix instruments pseudo-4op, dans les autres cas ils sont sans effet.</p>
+</div>
+<div class="paragraph">
+<p>La "Note percussive" désigne la note qui sera jouée, dans le cas ou l&#8217;instrument serait utilisé comme percussion.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_la_polyphonie">La polyphonie</h3>
+<div class="paragraph">
+<p>Le programme joue sur les 18 canaux à usage général du circuit OPL3.<br>
+Chacun de ces canaux peut accueillir une voix d&#8217;instrument en 2op.</p>
+</div>
+<div class="paragraph">
+<p>Dès qu&#8217;il est question d&#8217;instruments plus complexes, ça se complique un peu.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pour une instrument en pseudo-4op, il y a 2 canaux occupés par voix, assignés de la même manière qu&#8217;en 2op.
+Par rapport à 2op, cela double simplement la consommation de capacité de polyphonie.
+Un circuit pourrait donc s&#8217;acommoder de 9 voix en pseudo-4op.</p>
+</li>
+<li>
+<p>Pour un instrument en 4op, il y a également 2 canaux occupés par voix, mais ces canaux ne peuvent pas être pris n&#8217;importe comment.
+Ils doivent être réservés comme canaux 4op, et sont au maximum de 12 par circuit, pour 6 voix d&#8217;instrument 4op.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../resources/voices4op.png" alt="400" width="400">
+</div>
+<div class="title">Figure 6. Réservation des canaux 4op</div>
+</div>
+<div class="paragraph">
+<p>Voici un exemple illustratif du principe. Ici, nous avons 2 circuits OPL3 à 18 canaux chacun.
+Nous avons réservé 8 voix en mode 4op. Ces voix se composent de 2 canaux chacune, l&#8217;un coloré en rouge et l&#8217;autre en bleu.
+Au total, cela fait 16 canaux réservés au 4op. Les canaux restants en gris, au nombre de 20, sont disponibles pour 2op et pseudo-4op,
+laissant à ces derniers une polyphonie de 20 ou 10 voix respectivement.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../resources/chip.png" alt="180" width="180">
+</div>
+<div class="title">Figure 7. Les circuits</div>
+</div>
+<div class="paragraph">
+<p>La polyphonie se contrôle au moyen des paramètres "Circuits" et "4 ops".
+En ce qui concerne "4 ops", nous pouvons désormais comprendre de quoi il s&#8217;agit&nbsp;:
+la quantité maximale de voix en 4op, ce qui ne peut dépasser 6 fois le nombre de circuits virtuels.</p>
+</div>
+<div class="paragraph">
+<p>En cliquant sur <span class="image"><img src="../resources/emoji_u1f4a1.png" alt="24" width="24"></span>, on peut faire choisir au programme une quantité de "4 ops"
+automatiquement calculée, sur la base du nombre de circuits et de la banque chargée.
+Cette valeur sera simplement une suggestion, elle n&#8217;est pas à considérer comme optimale.</p>
+</div>
 </div>
 </div>
 </div>
@@ -679,7 +739,7 @@ Remarque&nbsp;: "Retour 3-4" n&#8217;est effectif que sur la seconde des voix in
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Dernière mise à jour 2018-09-01 18:48:45 CEST
+Dernière mise à jour 2018-09-01 19:47:09 CEST
 </div>
 </div>
 </body>
