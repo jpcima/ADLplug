@@ -136,7 +136,7 @@ int Application_Jack::process(jack_nframes_t nframes, void *user_data)
         Midi_Cb_Context &ctx = *reinterpret_cast<Midi_Cb_Context *>(user_data);
         jack_midi_event_t event;
         return (jack_midi_event_get(&event, ctx.port_buffer, ctx.index++) == 0) ?
-            Midi_Input_Message(event.buffer, event.size) : Midi_Input_Message();
+            Midi_Input_Message(event.buffer, event.size, event.time) : Midi_Input_Message();
     };
     Midi_Cb_Context midi_ctx = { midi, 0, nframes };
 

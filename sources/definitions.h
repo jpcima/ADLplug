@@ -13,3 +13,6 @@ static constexpr unsigned max_program_notifications = 32;
 
 // maximum program measurement requests in a cycle
 static constexpr unsigned max_program_measurements = 32;
+
+// maximum interval between midi processing cycles
+static constexpr unsigned midi_interval_max = 256;

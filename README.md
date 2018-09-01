@@ -41,6 +41,7 @@ sudo cmake --build . --target install
 
 **1.0.0.alpha.3 (dev)**
 
+- compensation of MIDI latency at high buffer sizes
 - fixed a mismanagement of the 4-op channel map
 - fixed cases of bad channel allocations following a long idle period
 - improved internal timing precision

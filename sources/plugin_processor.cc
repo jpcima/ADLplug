@@ -270,7 +270,7 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
     float *right = outputs[1];
 
     std::unique_lock<std::mutex> lock(player_lock_, std::try_to_lock);
-    process_messages(midi, lock.owns_lock());
+    process_messages(lock.owns_lock());
 
     if (!lock.owns_lock()) {
         // can't use the player while non-rt modifies it
@@ -341,7 +341,22 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
     double sample_period = 1.0 / getSampleRate();
 
     int64_t time_before_generate = Time::getHighResolutionTicks();
-    pl->generate(left, right, nframes, 1);
+    for (unsigned iframe = 0; iframe != nframes;) {
+        unsigned segment_nframes = std::min(nframes - iframe, midi_interval_max);
+        bool final_segment = iframe + segment_nframes == nframes;
+
+        // handle events from MIDI
+        Midi_Input_Message msg;
+        while ((msg = midi.peek_next_event()) &&
+               (final_segment || msg.time < (int)iframe ||
+                (msg.time - (int)iframe) < (int)(midi_interval_max / 2))) {
+            handle_midi(msg.data, msg.size);
+            midi.get_next_event();
+        }
+
+        pl->generate(&left[iframe], &right[iframe], segment_nframes, 1);
+        iframe += segment_nframes;
+    }
     int64_t time_after_generate = Time::getHighResolutionTicks();
     lock.unlock();
 
@@ -372,7 +387,7 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
     cpu_load_ = generate_duration / buffer_duration;
 }
 
-void AdlplugAudioProcessor::process_messages(Midi_Input_Source &midi, bool under_lock)
+void AdlplugAudioProcessor::process_messages(bool under_lock)
 {
     Message_Handler_Context ctx;
     ctx.under_lock = under_lock;
@@ -395,18 +410,11 @@ void AdlplugAudioProcessor::process_messages(Midi_Input_Source &midi, bool under
         Messages::finish_read(mq_from_worker, msg);
     }
 
-    // handle events from MIDI
-    while (Midi_Input_Message msg = midi.get_next_event())
-        handle_midi(msg.data, msg.size, ctx);
-
     finish_handling_messages(ctx);
 }
 
-bool AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len, Message_Handler_Context &ctx)
+bool AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len)
 {
-    if (!ctx.under_lock)
-        return false;  // TODO save messages for later processing?
-
     Generic_Player *pl = player_.get();
     pl->play_midi(data, len);
 
@@ -452,7 +460,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     unsigned size = msg.header->size;
 
     if (tag == (unsigned)User_Message::Midi)
-        return handle_midi(data, size, ctx);
+        return handle_midi(data, size);
 
     if (!ctx.under_lock)
         return false;
@@ -678,7 +686,7 @@ void AdlplugAudioProcessor::processBlockBypassed(AudioBuffer<float> &buffer, Mid
     Midi_Input_Source midi_source(midi_iterator);
 
     std::unique_lock<std::mutex> lock(player_lock_, std::try_to_lock);
-    process_messages(midi_source, lock.owns_lock());
+    process_messages(lock.owns_lock());
     lock.unlock();
 
     cpu_load_ = 0;

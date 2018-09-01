@@ -54,10 +54,10 @@ public:
     void processBlockBypassed(AudioBuffer<float> &, MidiBuffer &) override;
 
     void process(float *outputs[], unsigned nframes, Midi_Input_Source &midi);
-    void process_messages(Midi_Input_Source &midi, bool under_lock);
+    void process_messages(bool under_lock);
 
     struct Message_Handler_Context;
-    bool handle_midi(const uint8_t *data, unsigned len, Message_Handler_Context &ctx);
+    bool handle_midi(const uint8_t *data, unsigned len);
     bool handle_message(const Buffered_Message &msg, Message_Handler_Context &ctx);
     void begin_handling_messages(Message_Handler_Context &ctx) {}
     void finish_handling_messages(Message_Handler_Context &ctx);
