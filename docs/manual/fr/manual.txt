@@ -20,7 +20,7 @@ https://github.com/jpcima/ADLplug
 ADLplug est un synthétiseur FM, construit sur le standard OPL3 développé par Yamaha.
 La réalisation de cette synthèse est basée sur une émulation fidèle du circuit intégré YMF262.
 
-Le circuit est capable de synthèse FM en 2 ou 4 opérateurs, pour une polyphonie allant de 12 à 18 voix, variant selon les conditions d'usage.
+Le circuit est capable de synthèse FM en 2 ou 4 opérateurs, pour une polyphonie allant de 6 à 18 voix, variant selon les conditions d'usage.
 Il permet de travailler avec 6 algorithmes et 8 formes d'ondes.
 
 À l'aide de ce greffon, on peut piloter par entrée MIDI un nombre au choix de circuits YMF262 virtuels.
