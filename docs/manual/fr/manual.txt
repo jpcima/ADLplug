@@ -3,6 +3,7 @@
 :lang: fr
 :toc-title: Table des Matières
 :last-update-label: Dernière mise à jour
+:warning-caption: Attention
 
 = Manuel de l'utilisateur
 Jean Pierre Cimalando
@@ -42,7 +43,7 @@ On peut le déposer dans un des chemins reconnus par la plupart des logiciels.
 
 - Windows&nbsp;: C:\Program Files\Steinberg\VSTPlugins
 - Mac&nbsp;: Library/Audio/Plug-ins/VST
-- Linux&nbsp;: /usr/lib/vst, /usr/lib/lv2 , /usr/local/lib/vst, /usr/local/lib/lv2 , ~/.vst , ~/.lv2
+- GNU/Linux et autres&nbsp;: /usr/lib/vst, /usr/lib/lv2 , /usr/local/lib/vst, /usr/local/lib/lv2 , ~/.vst , ~/.lv2
 
 == Utilisation
 
@@ -77,7 +78,7 @@ La synthèse FM, ou modulation de fréquence, fait appel à des arrangements d'o
 On désigne un tel arrangement par le terme d'algorithme, dans lequel les opérateurs jouent chacun soit le rôle d'une modulatrice, soit d'une porteuse.
 
 - une porteuse produit le signal qui est destiné à la sortie audio ;
-- une modulatrice applique des changements rapide de fréquence sur l'opérateur qu'elle module, qui est le plus souvent une porteuse, mais peut être aussi une autre modulatrice.
+- une modulatrice applique des changements rapides de fréquence sur l'opérateur qu'elle module, qui est le plus souvent une porteuse, mais peut être aussi une autre modulatrice.
 Moduler un opérateur en fréquence modifie son spectre, en l'enrichissant d'une multitude d'harmoniques.
 
 Les algorithmes de l'OPL3 appartiennent à 3 classes&nbsp;:
@@ -118,14 +119,14 @@ Le schéma met également en évidence la boucle de rétroaction sur l'opérateu
 
 Au sujet de la rétroaction, il est possible de contrôler la quantité de signal réinjectée par un opérateur 1 sur lui-même&nbsp;:
 ceci est contrôlé par les paramètres "Retour 1-2", "Retour 3-4". +
-Remarque&nbsp;: "Retour 3-4" n'est effectif que sur la seconde des voix instruments pseudo-4op, dans les autres cas il est sans effet.
+Remarque&nbsp;: "Retour 3-4" n'est effectif que sur la seconde voix des instruments pseudo-4op, dans les autres cas il est sans effet.
 
 .Le ton
 image::../resources/tuning.png[200,200]
 
 Du côté du réglage du ton, "Décalage de note" désigne le décalage appliqué à la note jouée, exprimé en demi-tons.
 Le "Réglage fin" est un décalage supplémentaire exprimé en centièmes de demi-tons. +
-Remarque&nbsp;: "Décalage de note 3-4" et "Réglage fin 3-4" ne sont effectifs que sur la seconde des voix instruments pseudo-4op, dans les autres cas ils sont sans effet.
+Remarque&nbsp;: "Décalage de note 3-4" et "Réglage fin 3-4" ne sont effectifs que sur la seconde voix des instruments pseudo-4op, dans les autres cas ils sont sans effet.
 
 La "Note percussive" désigne la note qui sera jouée, dans le cas ou l'instrument serait utilisé comme percussion.
 
@@ -161,3 +162,146 @@ la quantité maximale de voix en 4op, ce qui ne peut dépasser 6 fois le nombre 
 En cliquant sur image:../resources/emoji_u1f4a1.png[24,24], on peut faire choisir au programme une quantité de "4 ops"
 automatiquement calculée, sur la base du nombre de circuits et de la banque chargée.
 Cette valeur sera simplement une suggestion, elle n'est pas à considérer comme optimale.
+
+WARNING: Lorsque la banque choisie utilise des instruments 4op, et que le nombre de voix 4op réservées est 0,
+ces instruments seront inaudibles.
+
+=== L'arpeggio
+
+Le synthétiseur est doté d'une gestion polyphonique intelligente qui optimise la distribution des canaux.
+Néanmoins, lorsque la congestion est très grande et qu'il n'y a pas de place vacante pour loger une nouvelle voix,
+un mécanisme d'arpeggio se met en marche.
+
+L'arpeggio consiste à partager un canal entre 2 voix ou plus, en donnant tour à tour la propriété du canal à chaque
+voix lui étant associé. Cela peut créer une illusion de polyphonie, mais aussi une gêne auditive plus ou moins
+dérangeante selon le contexte où elle se déclenche.
+
+.Accord joué sur l'instrument "Clavecin", sans arpeggio
+audio::../resources/arpeggio-no.opus[]
+
+.Accord joué sur l'instrument "Clavecin", avec arpeggio
+audio::../resources/arpeggio-yes.opus[]
+
+L'arpeggio signale un défaut de polyphonie. Pour faire disparaître l'arpeggio, la solution consiste à augmenter soit
+la quantité de circuits, soit la quantité de voix 4op, selon le cas.
+
+=== Les émulateurs
+
+Le programme permet de choisir un émulateur de circuit YMF262 parmi plusieurs qui sont disponibles. De manière dynamique,
+il est possible de basculer de l'un à l'autre.
+
+Durant le laps de temps nécessaire à réaliser la bascule, le son sera coupé et le flux MIDI non-traité. Cela ne perturbera
+pas pour autant le fonctionnement en temps réel.
+
+.Les émulateurs
+image::../resources/emulators.png[200,200]
+
+- DOSBox OPL&nbsp;: cet émulateur est un choix équilibré qui produit une sortie sonore de bonne fidélité, consommant une
+quantité de ressource processeur très raisonnable.
+- Nuked OPL&nbsp;: cet émulateur propose un excellent niveau de fidélité, aspirant à proposer une émulation quasi exacte
+et précise au cycle près. La consommation de ressource processeur est importante&nbsp;: il est donc plutôt
+recommandé de limiter son usage au cas d'un faible nombre de circuits, ou du rendu en différé.
+
+=== Les opérateurs
+
+Les opérateurs, au nombre de 4, et quels que soient leur rôle de modulatrice ou porteuse, présentent un paramétrage semblable.
+
+.Un opérateur
+image::../resources/operator.png[270,270]
+
+==== Forme d'onde
+
+Le premier paramètre est la forme d'onde de l'oscillateur, situé au coin inférieur gauche. On peut choisir une forme d'onde
+parmi 8 disponibles.
+
+. sinus
+. demi-sinus
+. sinus redressé
+. sinus-impulsion
+. sinus - périodes paires uniquement
+. sinus redressé - périodes paires uniquement
+. carré
+. carré dérivé
+
+==== Enveloppe
+
+Le générateur d'enveloppe se contrôle au moyen des quatre potentiomètres étiquetés "ADSR". +
+L'enveloppe est une variation d'amplitude au fil du temps qui applique un volume à l'oscillateur.
+
+.Enveloppe ADSR
+image::../resources/adsr.svg[250,250]
+
+Les paramètres d'attaque "A" et de déclin "D" sont les durées des étapes "A" et "D" correspondantes.
+
+Le paramètre "S" est le niveau de volume correspondant au maintien, une étape active une fois "A" et
+"D" passées, et tant que la touche du clavier reste enfoncée.
+De plus, si le fanion "Maintien" est désactivé, l'étape "S" est simplement outrepassée et il y a un
+passage direct de "D" à "R", faisant alors de l'enveloppe non plus une "ADSR" mais une "ADR".
+
+Le relâchement "R" fait suite à l´étape précédente et son paramètre désigne une durée, comme précédemment avec "A" et "D".
+
+==== Fanions
+
+Les fanions "Tremolo" et "Vibrato" appliquent des modulations sur l'opérateur, qui affectent respectivement le volume et la fréquence.
+
+Le "Maintien" rend active ou inactive la phase "S" du générateur d'enveloppe. Se référer à l'explication concernant les enveloppes.
+
+Le "Suivi de clavier" permet d'activer un raccourcissement de la durée de l'enveloppe en fonction de la hauteur de note.
+
+==== Niveaux
+
+Le niveau de sortie "Nv" détermine le volume appliqué globalement à l'opérateur.
+Il est à noter qu'il n'y a pas de volume zéro, un opérateur pourra toujours se faire entendre, même faiblement, au niveau de signal le plus bas.
+
+Le multiplicateur de fréquence "F*" élève le ton de l'opérateur d'un nombre d'octaves correspondant approximativement à sa valeur.
+
+Le taux de suivi de clavier "Tsc" est une valeur indicant la quantité de variation appliquée à la durée d'enveloppe en fonction de la hauteur de note.
+Le "Tsc" s'applique à condition que le fanion "Suivi de clavier" soit actif, autrement il est ignoré.
+
+=== Les autres paramètres
+
+Les paramètres restants se classifient en deux groupes&nbsp;: Divers et Globaux.
+
+Un paramètre divers fait partie du programme actif dans l'éditeur.
+A contrario, un paramètre global fait partie de la banque et il s'applique à tous les programmes.
+
+.Paramètres divers
+image::../resources/misc.png[200,200]
+
+Le "Décalage de vélocité" est un modificateur fixe appliquée à la vélocité de base de notes en MIDI,
+des valeurs comprises dans l'intervalle [0, 127]. Une valeur positive augmente la vélocité, une valeur
+négative la diminue.
+
+.Paramètres globaux
+image::../resources/global.png[230,230]
+
+Les fanions "Tremolo augmenté" et "Vibrato augmenté" rendent les effets correspondants plus prononcés,
+dans le cas où ils sont actifs. Les taux d'augmentation sont des valeurs non-réglables qui sont spécifiques
+à la conception du circuit YMF262.
+
+Le "Modèle de volume" désigne une formule qui transforme les paramètres discrets associés au volume en valeurs
+de gain effectives. Dans la plupart des cas, le modèle générique fera l'affaire.
+
+En revanche, lorsqu'il s'agit de charger des banques provenant d'autres logiciels, il faut choisir la formule
+qui reproduit bien le fonctionnement du logiciel original. Par exemple, si on charge une banque issue du jeu vidéo
+Doom, il conviendra de choisir le modèle DMX&nbsp;; pour Duke Nukem 3D, le modèle approprié sera Apogee.
+
+== À propos
+
+ADLplug est un logiciel développé par Jean Pierre Cimalando en 2018. +
+Il est basé sur un travail préalable de plusieurs groupes de personnes.
+
+Les émulations de YMF262 sont développées par l'équipe DOSBox d'une part,
+et par Alexey Khokholov "Nuke.YKT" pour Nuked OPL d'autre part.
+
+Le pilote MIDI qui interagit avec l'émulateur est un travail initial de Joel Yliluoma "Bisqwit".
+Au départ, ce programme, ADLMIDI, est un simple lecteur de fichiers MIDI.
+
+Vitaly Novichkov "Wohlstand" a réorganisé ADLMIDI en bibliothèque réutilisable,
+ajoutant les briques de base du pilotage MIDI en temps réel.
+Jean Pierre Cimalando a contribué une série d'améliorations qui rendent ce pilote
+plus utilisable pour un usage en MAO sous contraintes de temps réel.
+
+ADLplug est un logiciel réalisé avec un objectif&nbsp;: faciliter l'utilisation de
+la FM en OPL3 dans la MAO, qui représente une certaine niche de la création musicale
+"chiptune", en la rendant accessible au plus grand nombre de musiciens.
