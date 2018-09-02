@@ -1,6 +1,6 @@
 
-ADOC=asciidoctor
-ADOCFLAGS=-a docdate="$(shell date "+%d/%m/%Y")" -a doctime="$(shell date "+%R %Z")"
+ADOC = asciidoctor
+ADOCFLAGS = -a docdate="$(shell date "+%d/%m/%Y")" -a doctime="$(shell date "+%R %Z")"
 
 all:
 	$(ADOC) $(ADOCFLAGS) manual.txt
