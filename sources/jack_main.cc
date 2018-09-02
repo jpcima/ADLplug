@@ -9,6 +9,7 @@
 #include <jack/jack.h>
 #include <jack/midiport.h>
 #include <memory>
+#include <string.h>
 #include <sys/mman.h>
 extern AudioProcessor *JUCE_CALLTYPE createPluginFilter();
 
@@ -119,12 +120,20 @@ void Application_Jack::shutdown()
 int Application_Jack::process(jack_nframes_t nframes, void *user_data)
 {
     Application_Jack *self = reinterpret_cast<Application_Jack *>(user_data);
+    AdlplugAudioProcessor *processor = self->processor_.get();
 
     void *midi = jack_port_get_buffer(self->midiport_, nframes);
     float *outputs[2] = {
         (float *)jack_port_get_buffer(self->outport_[0], nframes),
         (float *)jack_port_get_buffer(self->outport_[1], nframes),
     };
+
+    const ScopedLock lock(processor->getCallbackLock());
+    if (processor->isSuspended()) {
+        for (float *output : outputs)
+            memset(output, 0, nframes * sizeof(float));
+        return 0;
+    }
 
     struct Midi_Cb_Context {
         void *port_buffer;
@@ -141,7 +150,7 @@ int Application_Jack::process(jack_nframes_t nframes, void *user_data)
     Midi_Cb_Context midi_ctx = { midi, 0, nframes };
 
     Midi_Input_Source midi_source(+midi_cb, &midi_ctx);
-    self->processor_->process(outputs, nframes, midi_source);
+    processor->process(outputs, nframes, midi_source);
 
     return 0;
 }
