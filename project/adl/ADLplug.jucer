@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT name="ADLplug" projectType="audioplug" buildStandalone="1" jucerVersion="5.3.2"
+              pluginFormats="buildVST,buildVST3,buildAU,buildAUv3,buildRTAS,buildAAX,buildStandalone"
+              buildVST="1" buildVST3="1" buildAU="1" buildAUv3="1" buildRTAS="1"
+              buildAAX="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              bundleIdentifier="jpcima.ADLplug" pluginName="ADLplug" pluginDesc="ADLplug"
+              pluginManufacturer="jpcima" pluginManufacturerCode="JPCm" pluginCode="ADLM"
+              aaxIdentifier="jpcima.ADLplug" headerPath="../../../../../sources&#10;../../../../../thirdparty/libADLMIDI/include&#10;../../../../../thirdparty/wopl"
+              defines="ADLMIDI_UNSTABLE_API&#10;ADLMIDI_DISABLE_CPP_EXTRAS&#10;ADLMIDI_DISABLE_MIDI_SEQUENCER&#10;ADLMIDI_DISABLE_MUS_SUPPORT&#10;ADLMIDI_DISABLE_XMI_SUPPORT"
+              id="ojbkOL" version="1.0.0">
+  <MAINGROUP id="faq0v0" name="ADLplug">
+    <GROUP id="{57FD1426-D8BF-7CCC-6B25-2A7108A4390B}" name="sources">
+      <FILE id="dneZUm" name="bank_manager.cc" compile="1" resource="0" file="../../sources/bank_manager.cc"/>
+      <FILE id="hFbd2C" name="bank_manager.h" compile="0" resource="0" file="../../sources/bank_manager.h"/>
+      <FILE id="oFvaCp" name="definitions.h" compile="0" resource="0" file="../../sources/definitions.h"/>
+      <FILE id="vUM9TO" name="messages.cc" compile="1" resource="0" file="../../sources/messages.cc"/>
+      <FILE id="W3uPOQ" name="messages.h" compile="0" resource="0" file="../../sources/messages.h"/>
+      <FILE id="LbE9y8" name="plugin_editor.cc" compile="1" resource="0"
+            file="../../sources/plugin_editor.cc"/>
+      <FILE id="QxGCKT" name="plugin_editor.h" compile="0" resource="0" file="../../sources/plugin_editor.h"/>
+      <FILE id="UBnJeF" name="plugin_processor.cc" compile="1" resource="0"
+            file="../../sources/plugin_processor.cc"/>
+      <FILE id="QkXWb6" name="plugin_processor.h" compile="0" resource="0"
+            file="../../sources/plugin_processor.h"/>
+      <FILE id="OwCQmr" name="version.h" compile="0" resource="0" file="../../sources/version.h"/>
+      <FILE id="M4xlwY" name="worker.cc" compile="1" resource="0" file="../../sources/worker.cc"/>
+      <FILE id="ymYAK6" name="worker.h" compile="0" resource="0" file="../../sources/worker.h"/>
+      <GROUP id="{90BE611D-B377-7C79-171F-98F2CD7899AE}" name="adl">
+        <FILE id="bEOlG4" name="chip_settings.cc" compile="1" resource="0"
+              file="../../sources/adl/chip_settings.cc"/>
+        <FILE id="v5Q8Jc" name="chip_settings.h" compile="0" resource="0" file="../../sources/adl/chip_settings.h"/>
+        <FILE id="ZhOlLH" name="instrument.cc" compile="1" resource="0" file="../../sources/adl/instrument.cc"/>
+        <FILE id="ivL5rz" name="instrument.h" compile="0" resource="0" file="../../sources/adl/instrument.h"/>
+        <FILE id="I6ORD5" name="instrument.tcc" compile="0" resource="0" file="../../sources/adl/instrument.tcc"/>
+        <FILE id="FQv2Kb" name="instrument_properties.cc" compile="1" resource="0"
+              file="../../sources/adl/instrument_properties.cc"/>
+        <FILE id="YNeRaV" name="player.cc" compile="1" resource="0" file="../../sources/adl/player.cc"/>
+        <FILE id="cktZse" name="player.h" compile="0" resource="0" file="../../sources/adl/player.h"/>
+        <GROUP id="{C5504BDA-42C7-2221-038E-19766F6E41E8}" name="measurer">
+          <FILE id="GRC9nZ" name="measurer.cpp" compile="1" resource="0" file="../../sources/adl/measurer/measurer.cpp"/>
+          <FILE id="OisWe2" name="measurer.h" compile="0" resource="0" file="../../sources/adl/measurer/measurer.h"/>
+          <GROUP id="{42E8A9B9-B558-ABCF-CAB7-AB553FE919F7}" name="chips">
+            <FILE id="nbNAwA" name="dosbox_opl3.cpp" compile="1" resource="0" file="../../sources/adl/measurer/chips/dosbox_opl3.cpp"/>
+            <FILE id="lYAyQb" name="dosbox_opl3.h" compile="0" resource="0" file="../../sources/adl/measurer/chips/dosbox_opl3.h"/>
+            <FILE id="uhE3Eu" name="opl_chip_base.h" compile="0" resource="0" file="../../sources/adl/measurer/chips/opl_chip_base.h"/>
+            <FILE id="i6oA8y" name="opl_chip_base.tcc" compile="0" resource="0"
+                  file="../../sources/adl/measurer/chips/opl_chip_base.tcc"/>
+            <GROUP id="{A0D5F52E-F6E5-3787-AB16-04D4437B0186}" name="dosbox">
+              <FILE id="JlL2ub" name="dbopl.cpp" compile="1" resource="0" file="../../sources/adl/measurer/chips/dosbox/dbopl.cpp"/>
+              <FILE id="fWj5ZZ" name="dbopl.h" compile="0" resource="0" file="../../sources/adl/measurer/chips/dosbox/dbopl.h"/>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{2E9ABF3F-6195-1F35-766C-4D30B755E87E}" name="dsp">
+        <FILE id="jnXF8V" name="dc_filter.h" compile="0" resource="0" file="../../sources/dsp/dc_filter.h"/>
+        <FILE id="vP3pf2" name="vu_monitor.h" compile="0" resource="0" file="../../sources/dsp/vu_monitor.h"/>
+      </GROUP>
+      <GROUP id="{9F9BED11-2146-7232-EF2D-915B05556466}" name="midi">
+        <FILE id="aBpHSz" name="insnames.cc" compile="1" resource="0" file="../../sources/midi/insnames.cc"/>
+        <FILE id="PHRogf" name="insnames.h" compile="0" resource="0" file="../../sources/midi/insnames.h"/>
+      </GROUP>
+      <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">
+        <FILE id="JdskR5" name="about_component.cc" compile="1" resource="0"
+              file="../../sources/ui/about_component.cc"/>
+        <FILE id="mwuHEz" name="about_component.h" compile="0" resource="0"
+              file="../../sources/ui/about_component.h"/>
+        <FILE id="awUfqG" name="look_and_feel.cc" compile="1" resource="0"
+              file="../../sources/ui/look_and_feel.cc"/>
+        <FILE id="Wx6Ntz" name="look_and_feel.h" compile="0" resource="0" file="../../sources/ui/look_and_feel.h"/>
+        <FILE id="N6HR3L" name="main_component.cc" compile="1" resource="0"
+              file="../../sources/ui/main_component.cc"/>
+        <FILE id="TOEmqc" name="main_component.h" compile="0" resource="0"
+              file="../../sources/ui/main_component.h"/>
+        <FILE id="WAXJXE" name="operator_editor.cc" compile="1" resource="0"
+              file="../../sources/ui/operator_editor.cc"/>
+        <FILE id="qbk60K" name="operator_editor.h" compile="0" resource="0"
+              file="../../sources/ui/operator_editor.h"/>
+        <FILE id="bAnyMi" name="parameter_block.cc" compile="1" resource="0"
+              file="../../sources/parameter_block.cc"/>
+        <FILE id="cKzhXr" name="parameter_block.h" compile="0" resource="0"
+              file="../../sources/parameter_block.h"/>
+        <GROUP id="{D334F30B-8548-822D-8F67-78AE712EBDBA}" name="chips">
+          <FILE id="zgUEIA" name="opl3_waves.cc" compile="1" resource="0" file="../../sources/ui/chips/opl3_waves.cc"/>
+          <FILE id="jcoZ2e" name="opl3_waves.h" compile="0" resource="0" file="../../sources/ui/chips/opl3_waves.h"/>
+        </GROUP>
+        <GROUP id="{62E26F51-4EDE-0DA8-04EA-9272FA6135B2}" name="components">
+          <FILE id="bUlkKl" name="algorithm_component.cc" compile="1" resource="0"
+                file="../../sources/ui/components/algorithm_component.cc"/>
+          <FILE id="pPtwdv" name="algorithm_component.h" compile="0" resource="0"
+                file="../../sources/ui/components/algorithm_component.h"/>
+          <FILE id="EowRaF" name="algorithm_help.cc" compile="1" resource="0"
+                file="../../sources/ui/components/algorithm_help.cc"/>
+          <FILE id="jrCOdW" name="algorithm_help.h" compile="0" resource="0"
+                file="../../sources/ui/components/algorithm_help.h"/>
+          <FILE id="PRAmvt" name="algorithms.h" compile="0" resource="0" file="../../sources/ui/components/algorithms.h"/>
+          <FILE id="inz2MA" name="indicator_NxM.cc" compile="1" resource="0"
+                file="../../sources/ui/components/indicator_NxM.cc"/>
+          <FILE id="kCzAlO" name="indicator_NxM.h" compile="0" resource="0" file="../../sources/ui/components/indicator_NxM.h"/>
+          <FILE id="aMDr4C" name="knob_component.cc" compile="1" resource="0"
+                file="../../sources/ui/components/knob_component.cc"/>
+          <FILE id="g6wIOG" name="knob_component.h" compile="0" resource="0"
+                file="../../sources/ui/components/knob_component.h"/>
+          <FILE id="QI9DIC" name="styled_knobs.cc" compile="1" resource="0" file="../../sources/ui/components/styled_knobs.cc"/>
+          <FILE id="GEALi2" name="styled_knobs.h" compile="0" resource="0" file="../../sources/ui/components/styled_knobs.h"/>
+          <FILE id="ijzr9K" name="vu_meter.cc" compile="1" resource="0" file="../../sources/ui/components/vu_meter.cc"/>
+          <FILE id="Ya6qbN" name="vu_meter.h" compile="0" resource="0" file="../../sources/ui/components/vu_meter.h"/>
+          <FILE id="MFeml7" name="wave_label.cc" compile="1" resource="0" file="../../sources/ui/components/wave_label.cc"/>
+          <FILE id="eAPfdj" name="wave_label.h" compile="0" resource="0" file="../../sources/ui/components/wave_label.h"/>
+        </GROUP>
+        <GROUP id="{0AF18A03-BCBF-4450-A288-C71A6D70A41A}" name="utility">
+          <FILE id="o5g7hJ" name="graphics.cc" compile="1" resource="0" file="../../sources/ui/utility/graphics.cc"/>
+          <FILE id="MbV82P" name="graphics.h" compile="0" resource="0" file="../../sources/ui/utility/graphics.h"/>
+          <FILE id="WN4iCm" name="image.cc" compile="1" resource="0" file="../../sources/ui/utility/image.cc"/>
+          <FILE id="FAO15t" name="image.h" compile="0" resource="0" file="../../sources/ui/utility/image.h"/>
+          <FILE id="xuv18K" name="knobman_skin.cc" compile="1" resource="0" file="../../sources/ui/utility/knobman_skin.cc"/>
+          <FILE id="wNpCJQ" name="knobman_skin.h" compile="0" resource="0" file="../../sources/ui/utility/knobman_skin.h"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{17C850C0-7CFF-17BC-4511-EED271A552A6}" name="utility">
+        <FILE id="Gfyh92" name="counting_bitset.h" compile="0" resource="0"
+              file="../../sources/utility/counting_bitset.h"/>
+        <FILE id="aFtUeC" name="counting_bitset.tcc" compile="0" resource="0"
+              file="../../sources/utility/counting_bitset.tcc"/>
+        <FILE id="RyY50n" name="functional_timer.h" compile="0" resource="0"
+              file="../../sources/utility/functional_timer.h"/>
+        <FILE id="tSjcHH" name="midi.cc" compile="1" resource="0" file="../../sources/utility/midi.cc"/>
+        <FILE id="NBzY1D" name="midi.h" compile="0" resource="0" file="../../sources/utility/midi.h"/>
+        <FILE id="goEb2p" name="pak.cc" compile="1" resource="0" file="../../sources/utility/pak.cc"/>
+        <FILE id="Ky3BDX" name="pak.h" compile="0" resource="0" file="../../sources/utility/pak.h"/>
+        <FILE id="gGudmM" name="rt_checker.cc" compile="1" resource="0" file="../../sources/utility/rt_checker.cc"/>
+        <FILE id="WXCDdV" name="rt_checker.h" compile="0" resource="0" file="../../sources/utility/rt_checker.h"/>
+        <FILE id="QNh3sf" name="semaphore.h" compile="0" resource="0" file="../../sources/utility/semaphore.h"/>
+        <FILE id="MYO38b" name="simple_fifo.cc" compile="1" resource="0" file="../../sources/utility/simple_fifo.cc"/>
+        <FILE id="fr1vaj" name="simple_fifo.h" compile="0" resource="0" file="../../sources/utility/simple_fifo.h"/>
+      </GROUP>
+    </GROUP>
+    <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
+      <GROUP id="{02680B2E-61B1-FA1B-3D9A-89A688227935}" name="ui">
+        <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="../../resources/ui/knob-skin.png"/>
+        <GROUP id="{3DD686E2-DFBA-641B-F10D-41AB90380470}" name="cores">
+          <FILE id="UC8LOS" name="DOSBox.png" compile="0" resource="1" file="../../resources/ui/cores/DOSBox.png"/>
+          <FILE id="vnP6a4" name="Nuked.png" compile="0" resource="1" file="../../resources/ui/cores/Nuked.png"/>
+          <FILE id="I6ZknX" name="Nuked2.png" compile="0" resource="1" file="../../resources/ui/cores/Nuked2.png"/>
+        </GROUP>
+        <GROUP id="{04E07FD4-726D-2E19-A08B-B84A64CCABB9}" name="fonts">
+          <FILE id="U6RVIY" name="Mono-Bold.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Mono-Bold.ttf.gz"/>
+          <FILE id="YsZ8ro" name="Mono-BoldItalic.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Mono-BoldItalic.ttf.gz"/>
+          <FILE id="zwTr71" name="Mono-Italic.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Mono-Italic.ttf.gz"/>
+          <FILE id="G4ATDw" name="Mono-Regular.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Mono-Regular.ttf.gz"/>
+          <FILE id="RTfQbX" name="Sans-Bold.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Sans-Bold.ttf.gz"/>
+          <FILE id="LxKhIg" name="Sans-BoldItalic.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Sans-BoldItalic.ttf.gz"/>
+          <FILE id="aPsrE9" name="Sans-Italic.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Sans-Italic.ttf.gz"/>
+          <FILE id="Pqymxs" name="Sans-Regular.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Sans-Regular.ttf.gz"/>
+          <FILE id="dEtnT6" name="Serif-Bold.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Serif-Bold.ttf.gz"/>
+          <FILE id="bg9APV" name="Serif-BoldItalic.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Serif-BoldItalic.ttf.gz"/>
+          <FILE id="JER5qs" name="Serif-Italic.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Serif-Italic.ttf.gz"/>
+          <FILE id="tmPi9Y" name="Serif-Regular.ttf.gz" compile="0" resource="1"
+                file="../../resources/ui/fonts/Serif-Regular.ttf.gz"/>
+        </GROUP>
+        <GROUP id="{877CC963-FD61-84EC-01EC-E41153BC0627}" name="noto-emoji">
+          <FILE id="ez1xcm" name="emoji_u1f4a1.png" compile="0" resource="1"
+                file="../../resources/ui/noto-emoji/emoji_u1f4a1.png"/>
+          <FILE id="Q6lsDQ" name="emoji_u1f4be.png" compile="0" resource="1"
+                file="../../resources/ui/noto-emoji/emoji_u1f4be.png"/>
+          <FILE id="zQcn4S" name="emoji_u1f4c2.png" compile="0" resource="1"
+                file="../../resources/ui/noto-emoji/emoji_u1f4c2.png"/>
+        </GROUP>
+      </GROUP>
+      <FILE id="Lxy3QZ" name="banks.pak" compile="0" resource="1" file="../../resources/banks.pak"/>
+    </GROUP>
+    <GROUP id="{C55CC9DB-ED0F-DE1B-46CB-A28A61433406}" name="thirdparty">
+      <GROUP id="{10DE0817-C209-0E4C-0D54-242A418D9A01}" name="fmt">
+        <GROUP id="{E1C3D2FC-866E-F91F-A702-2F806A402A33}" name="include">
+          <GROUP id="{625C4E64-2BB8-F438-8EB1-4C4AA5577CB3}" name="fmt">
+            <FILE id="eZbf0R" name="core.h" compile="0" resource="0" file="../../thirdparty/fmt/include/fmt/core.h"/>
+            <FILE id="V73dfB" name="format-inl.h" compile="0" resource="0" file="../../thirdparty/fmt/include/fmt/format-inl.h"/>
+            <FILE id="D8COBD" name="format.h" compile="0" resource="0" file="../../thirdparty/fmt/include/fmt/format.h"/>
+            <FILE id="tz8rK9" name="ostream.h" compile="0" resource="0" file="../../thirdparty/fmt/include/fmt/ostream.h"/>
+            <FILE id="NJIY9o" name="posix.h" compile="0" resource="0" file="../../thirdparty/fmt/include/fmt/posix.h"/>
+            <FILE id="UdRgRi" name="printf.h" compile="0" resource="0" file="../../thirdparty/fmt/include/fmt/printf.h"/>
+            <FILE id="QWprJP" name="ranges.h" compile="0" resource="0" file="../../thirdparty/fmt/include/fmt/ranges.h"/>
+            <FILE id="i93avn" name="time.h" compile="0" resource="0" file="../../thirdparty/fmt/include/fmt/time.h"/>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{08010B22-FCB6-1FA5-A7AB-2D1380B47480}" name="src">
+          <FILE id="w9cpKq" name="format.cc" compile="1" resource="0" file="../../thirdparty/fmt/src/format.cc"/>
+          <FILE id="XARmSd" name="posix.cc" compile="1" resource="0" file="../../thirdparty/fmt/src/posix.cc"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{55F90F3C-3521-0BD5-0978-A6334B278C70}" name="wopl">
+        <GROUP id="{A9210AD0-C405-73DB-95F8-F22346CD4FCC}" name="wopl">
+          <FILE id="NQlYCa" name="wopl_file.c" compile="1" resource="0" file="../../thirdparty/wopl/wopl/wopl_file.c"/>
+          <FILE id="gC1weA" name="wopl_file.h" compile="0" resource="0" file="../../thirdparty/wopl/wopl/wopl_file.h"/>
+        </GROUP>
+      </GROUP>
+      <GROUP id="{46FD1D8A-303F-2543-5E20-D07F19C1C62D}" name="libADLMIDI">
+        <GROUP id="{27FCCD7E-2B41-8DEA-8B6B-3033713471D2}" name="src">
+          <FILE id="Nx4vf0" name="adldata.cpp" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/adldata.cpp"/>
+          <FILE id="e59kxG" name="adldata.hh" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/adldata.hh"/>
+          <FILE id="qcLa76" name="adlmidi.cpp" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/adlmidi.cpp"/>
+          <FILE id="QI8VTw" name="adlmidi_bankmap.h" compile="0" resource="0"
+                file="../../thirdparty/libADLMIDI/src/adlmidi_bankmap.h"/>
+          <FILE id="TfNuGc" name="adlmidi_bankmap.tcc" compile="0" resource="0"
+                file="../../thirdparty/libADLMIDI/src/adlmidi_bankmap.tcc"/>
+          <FILE id="XOls4H" name="adlmidi_cvt.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/adlmidi_cvt.hpp"/>
+          <FILE id="IL3FEP" name="adlmidi_load.cpp" compile="1" resource="0"
+                file="../../thirdparty/libADLMIDI/src/adlmidi_load.cpp"/>
+          <FILE id="FVJBtw" name="adlmidi_midiplay.cpp" compile="1" resource="0"
+                file="../../thirdparty/libADLMIDI/src/adlmidi_midiplay.cpp"/>
+          <FILE id="NMGdm7" name="adlmidi_opl3.cpp" compile="1" resource="0"
+                file="../../thirdparty/libADLMIDI/src/adlmidi_opl3.cpp"/>
+          <FILE id="zqawzn" name="adlmidi_private.cpp" compile="1" resource="0"
+                file="../../thirdparty/libADLMIDI/src/adlmidi_private.cpp"/>
+          <FILE id="mkAlRT" name="adlmidi_private.hpp" compile="0" resource="0"
+                file="../../thirdparty/libADLMIDI/src/adlmidi_private.hpp"/>
+          <FILE id="RKcUrt" name="adlmidi_ptr.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/adlmidi_ptr.hpp"/>
+          <FILE id="m29EGf" name="adlmidi_sequencer.cpp" compile="1" resource="0"
+                file="../../thirdparty/libADLMIDI/src/adlmidi_sequencer.cpp"/>
+          <FILE id="y5Dy0d" name="cvt_mus2mid.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/cvt_mus2mid.hpp"/>
+          <FILE id="XlwCY3" name="cvt_xmi2mid.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/cvt_xmi2mid.hpp"/>
+          <FILE id="t1ENkt" name="file_reader.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/file_reader.hpp"/>
+          <FILE id="GQ6FoP" name="fraction.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/fraction.hpp"/>
+          <FILE id="wI0cN4" name="midi_sequencer.h" compile="0" resource="0"
+                file="../../thirdparty/libADLMIDI/src/midi_sequencer.h"/>
+          <FILE id="XZzw35" name="midi_sequencer.hpp" compile="0" resource="0"
+                file="../../thirdparty/libADLMIDI/src/midi_sequencer.hpp"/>
+          <FILE id="ud0W3L" name="midi_sequencer_impl.hpp" compile="0" resource="0"
+                file="../../thirdparty/libADLMIDI/src/midi_sequencer_impl.hpp"/>
+          <GROUP id="{8038FC48-896F-DD32-B76F-C79A56D89109}" name="chips">
+            <FILE id="nDZkuv" name="dosbox_opl3.cpp" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.cpp"/>
+            <FILE id="hFk0JH" name="dosbox_opl3.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.h"/>
+            <FILE id="Cydl53" name="nuked_opl3.cpp" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/nuked_opl3.cpp"/>
+            <FILE id="BmbU6j" name="nuked_opl3.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/nuked_opl3.h"/>
+            <FILE id="fZLmA0" name="nuked_opl3_v174.cpp" compile="1" resource="0"
+                  file="../../thirdparty/libADLMIDI/src/chips/nuked_opl3_v174.cpp"/>
+            <FILE id="oqO4Qv" name="nuked_opl3_v174.h" compile="0" resource="0"
+                  file="../../thirdparty/libADLMIDI/src/chips/nuked_opl3_v174.h"/>
+            <FILE id="AqlSwH" name="opl_chip_base.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/opl_chip_base.h"/>
+            <FILE id="ruZYLd" name="opl_chip_base.tcc" compile="0" resource="0"
+                  file="../../thirdparty/libADLMIDI/src/chips/opl_chip_base.tcc"/>
+            <GROUP id="{CF0534B4-86BC-E498-762F-02D7AD5D1840}" name="dosbox">
+              <FILE id="JZgeDc" name="dbopl.cpp" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/dosbox/dbopl.cpp"/>
+              <FILE id="UIoUFf" name="dbopl.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/dosbox/dbopl.h"/>
+            </GROUP>
+            <GROUP id="{D3C43548-B6B2-A539-012A-49047148E75C}" name="nuked">
+              <FILE id="Y7vSRY" name="nukedopl3.c" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3.c"/>
+              <FILE id="np3F4A" name="nukedopl3.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3.h"/>
+              <FILE id="Gvz4rD" name="nukedopl3_174.c" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3_174.c"/>
+              <FILE id="dVM2T9" name="nukedopl3_174.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3_174.h"/>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+      </GROUP>
+    </GROUP>
+  </MAINGROUP>
+  <LIVE_SETTINGS>
+    <LINUX/>
+  </LIVE_SETTINGS>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="juce/Builds/MacOSX" vst3Folder="" aaxFolder=""
+               rtasFolder="" extraDefs="VF_USE_FREETYPE=0">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../thirdparty/JUCE/modules"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2017 targetFolder="juce/Builds/VisualStudio2017" vst3Folder="" aaxFolder=""
+            rtasFolder="" extraDefs="VF_USE_FREETYPE=0">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../thirdparty/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2017>
+    <LINUX_MAKE targetFolder="juce/Builds/LinuxMakefile" linuxExtraPkgConfig="freetype2"
+                extraDefs="VF_USE_FREETYPE=1&#10;VF_USE_NATIVE_FREETYPE=1&#10;">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../thirdparty/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../thirdparty/JUCE/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"
+            useGlobalPath="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_WEB_BROWSER="0" JUCE_USE_CURL="1" JUCE_LOAD_CURL_SYMBOLS_LAZILY="1"
+               JUCE_USE_FLAC="0" JUCE_USE_OGGVORBIS="0" JUCE_USE_WINDOWS_MEDIA_FORMAT="0"
+               JUCE_ASIO="1" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
+</JUCERPROJECT>

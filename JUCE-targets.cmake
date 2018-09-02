@@ -104,10 +104,10 @@ endif()
 
 if(ADLplug_VST2)
   set(VST2_SOURCES
-    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
-    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_VST2.cpp")
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_VST2.cpp")
   if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    list(APPEND VST2_SOURCES "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm")
+    list(APPEND VST2_SOURCES "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm")
   endif()
   add_juce_module(juce_audio_plugin_client_VST2 ${VST2_SOURCES})
   target_link_libraries(juce_audio_plugin_client_VST2 PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)
@@ -115,10 +115,10 @@ endif()
 
 if(ADLplug_VST3)
   set(VST3_SOURCES
-    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
-    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp")
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp")
   if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    list(APPEND VST3_SOURCES "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm")
+    list(APPEND VST3_SOURCES "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_VST_utils.mm")
   endif()
   add_juce_module(juce_audio_plugin_client_VST3 ${VST3_SOURCES})
   target_link_libraries(juce_audio_plugin_client_VST3 PUBLIC vst3sdk juce_gui_basics juce_audio_basics juce_audio_processors)
@@ -126,8 +126,8 @@ endif()
 
 if(ADLplug_LV2)
   set(LV2_SOURCES
-    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
-    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_LV2.cpp")
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_LV2.cpp")
   add_juce_module(juce_audio_plugin_client_LV2 ${LV2_SOURCES})
   target_link_libraries(juce_audio_plugin_client_LV2 PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)
 
@@ -138,16 +138,16 @@ endif()
 
 if(ADLplug_Standalone)
   set(Standalone_SOURCES
-    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
-    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_Standalone.cpp")
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_Standalone.cpp")
   add_juce_module(juce_audio_plugin_client_Standalone ${Standalone_SOURCES})
   target_link_libraries(juce_audio_plugin_client_Standalone PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)
 endif()
 
 if(ADLplug_Jack)
   set(StandaloneCustom_SOURCES
-    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
-    "${PROJECT_SOURCE_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_Standalone.cpp")
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_Standalone.cpp")
   add_juce_module(juce_audio_plugin_client_StandaloneCustom ${StandaloneCustom_SOURCES})
   target_compile_definitions(juce_audio_plugin_client_StandaloneCustom PUBLIC "JUCE_USE_CUSTOM_PLUGIN_STANDALONE_APP=1")
   target_link_libraries(juce_audio_plugin_client_StandaloneCustom PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)

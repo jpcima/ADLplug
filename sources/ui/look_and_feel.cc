@@ -4,7 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "ui/look_and_feel.h"
-#include "../../JuceLibraryCode/BinaryData.h"
+#include "BinaryData.h"
 
 #if 0
 #   define trace(fmt, ...)

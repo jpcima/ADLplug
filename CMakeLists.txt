@@ -74,14 +74,15 @@ message("Build LV2: ${ADLplug_LV2}")
 message("Build Standalone: ${ADLplug_Standalone}")
 message("Build Jack: ${ADLplug_Jack}")
 
+set(JUCE_PROJECT_DIR "${PROJECT_SOURCE_DIR}/project/adl")
 include("${CMAKE_SOURCE_DIR}/JUCE-targets.cmake")
 
 add_library(wopl STATIC "thirdparty/wopl/wopl/wopl_file.c")
 target_include_directories(wopl PUBLIC "thirdparty/wopl")
 set_property(TARGET wopl PROPERTY POSITION_INDEPENDENT_CODE ON)
 
-add_library(ADLplug_core STATIC
-  "JuceLibraryCode/BinaryData.cpp"
+add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
+  "${JUCE_PROJECT_DIR}/JuceLibraryCode/BinaryData.cpp"
   "sources/utility/midi.cc"
   "sources/utility/simple_fifo.cc"
   "sources/utility/pak.cc"
@@ -117,7 +118,7 @@ add_library(ADLplug_core STATIC
   "sources/adl/measurer/chips/dosbox/dbopl.cpp"
   "sources/adl/measurer/chips/dosbox_opl3.cpp"
   "sources/pch/ADLplug_core.h")
-target_include_directories(ADLplug_core PUBLIC "sources" "JuceLibraryCode")
+target_include_directories(ADLplug_core PUBLIC "sources" "${JUCE_PROJECT_DIR}/JuceLibraryCode")
 target_link_libraries(ADLplug_core PUBLIC
   juce_core juce_events juce_data_structures
   juce_audio_basics juce_audio_devices juce_audio_formats juce_audio_processors juce_audio_utils
@@ -149,7 +150,7 @@ macro(add_plugin NAME)
       PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
   endif()
   if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    target_sources("${NAME}" PRIVATE "${PROJECT_SOURCE_DIR}/juce/Builds/VisualStudio2017/resources.rc")
+    target_sources("${NAME}" PRIVATE "${JUCE_PROJECT_DIR}/juce/Builds/VisualStudio2017/resources.rc")
   endif()
   static_link_mingw_crt("${NAME}")
 endmacro()
@@ -162,7 +163,7 @@ macro(add_standalone NAME)
       PROPERTY LINK_FLAGS " ${ADLplug_RT_CHECKER_LINK_FLAGS}")
   endif()
   if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    target_sources("${NAME}" PRIVATE "${PROJECT_SOURCE_DIR}/juce/Builds/VisualStudio2017/resources.rc")
+    target_sources("${NAME}" PRIVATE "${JUCE_PROJECT_DIR}/juce/Builds/VisualStudio2017/resources.rc")
   endif()
   static_link_mingw_crt("${NAME}")
 endmacro()
@@ -189,11 +190,11 @@ if(ADLplug_VST2)
     file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/vst2/ADLplug.vst/Contents/PkgInfo" "BNDL????")
     add_custom_target(ADLplug_VST2_InfoPlist ALL
       "${CMAKE_COMMAND}"
-      "-DCONFIGURE_FILE_INPUT=${PROJECT_SOURCE_DIR}/juce/Builds/MacOSX/Info-VST.plist"
+      "-DCONFIGURE_FILE_INPUT=${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST.plist"
       "-DCONFIGURE_FILE_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/vst2/ADLplug.vst/Contents/Info.plist"
       "-DEXECUTABLE_NAME=ADLplug"
       "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
-      DEPENDS "${PROJECT_SOURCE_DIR}/juce/Builds/MacOSX/Info-VST.plist")
+      DEPENDS "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST.plist")
   elseif(NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
     install(TARGETS ADLplug_VST2 DESTINATION "lib/vst")
   endif()
@@ -219,11 +220,11 @@ if(ADLplug_VST3)
     file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/vst3/ADLplug.vst3/Contents/PkgInfo" "BNDL????")
     add_custom_target(ADLplug_VST3_InfoPlist ALL
       "${CMAKE_COMMAND}"
-      "-DCONFIGURE_FILE_INPUT=${PROJECT_SOURCE_DIR}/juce/Builds/MacOSX/Info-VST3.plist"
+      "-DCONFIGURE_FILE_INPUT=${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST3.plist"
       "-DCONFIGURE_FILE_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/vst3/ADLplug.vst3/Contents/Info.plist"
       "-DEXECUTABLE_NAME=ADLplug"
       "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
-      DEPENDS "${PROJECT_SOURCE_DIR}/juce/Builds/MacOSX/Info-VST3.plist")
+      DEPENDS "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST3.plist")
   endif()
 endif()
 
