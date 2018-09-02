@@ -514,6 +514,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         break;
     }
     case (unsigned)User_Message::SelectOptimal4Ops: {
+        pl.panic();
         pl.set_num_4ops(~0u);
         *pb.p_n4op = pl.num_4ops();
         chip_settings_need_notification_.store(1);
