@@ -20,7 +20,7 @@
 #pragma once
 
 //[Headers]     -- You can add your own extra header files here --
-#include "../../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include "ui/components/styled_knobs.h"
 #include "adl/instrument.h"
 #include "adl/chip_settings.h"

@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 class AdlplugAudioProcessor;
 class Custom_Look_And_Feel;
 class Main_Component;

@@ -8,7 +8,7 @@
 #include "dsp/vu_monitor.h"
 #include "adl/instrument.h"
 #include "adl/chip_settings.h"
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include <bitset>
 #include <memory>
 #include <mutex>

@@ -117,8 +117,7 @@ add_library(ADLplug_core STATIC
   "sources/adl/measurer/chips/dosbox/dbopl.cpp"
   "sources/adl/measurer/chips/dosbox_opl3.cpp"
   "sources/pch/ADLplug_core.h")
-target_include_directories(ADLplug_core PRIVATE "sources")
-target_compile_definitions(ADLplug_core PRIVATE "ADLMIDI_UNSTABLE_API")
+target_include_directories(ADLplug_core PUBLIC "sources" "JuceLibraryCode")
 target_link_libraries(ADLplug_core PUBLIC
   juce_core juce_events juce_data_structures
   juce_audio_basics juce_audio_devices juce_audio_formats juce_audio_processors juce_audio_utils
