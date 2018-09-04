@@ -39,7 +39,7 @@ sudo cmake --build . --target install
 
 ### Change Log
 
-**1.0.0.alpha.3 (dev)**
+**1.0.0.alpha.3**
 
 - compensation of MIDI latency at high buffer sizes
 - fixed a mismanagement of the 4-op channel map
