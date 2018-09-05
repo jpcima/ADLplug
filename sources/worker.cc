@@ -6,7 +6,7 @@
 #include "worker.h"
 #include "plugin_processor.h"
 #include "parameter_block.h"
-#include "adl/measurer/measurer.h"
+#include "adl/measurer.h"
 #include <chrono>
 #include <cassert>
 namespace stc = std::chrono;

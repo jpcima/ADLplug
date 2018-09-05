@@ -3,15 +3,16 @@
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
-#include "ui/components/wave_label.h"
-#include "ui/chips/opl3_waves.h"
+#include "wave_label.h"
+#include "waves.h"
 
-Wave_Label::Wave_Label()
+Wave_Label::Wave_Label(const Waves &waves)
+    : waves_(waves)
 {
 }
 
-Wave_Label::Wave_Label(const String &name)
-    : Component(name)
+Wave_Label::Wave_Label(const Waves &waves, const String &name)
+    : Component(name), waves_(waves)
 {
 }
 
@@ -56,6 +57,7 @@ void Wave_Label::paint(Graphics &g)
     int y = rect.getY();
     int w = rect.getWidth();
     int h = rect.getHeight();
+    const Waves &waves = waves_;
     unsigned wave = wave_;
 
     g.setColour(Colour::fromRGBA(0xa0, 0xa0, 0xa0, 0xff));
@@ -69,7 +71,7 @@ void Wave_Label::paint(Graphics &g)
     Point<float> xy_last;
     for (int i = -1; i < w; ++i) {
         double phase = i * (1.0 / (w - 1));
-        double value = OPL3_Waves::compute_wave(wave, phase);
+        double value = waves.compute_wave(wave, phase);
         Point<float> xy_new(x + i, y + h * 0.5 * (1.0 - value));
         if (i >= 0)
             g.drawLine(Line<float>(xy_last, xy_new), 1.5);

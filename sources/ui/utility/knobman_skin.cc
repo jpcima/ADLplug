@@ -5,6 +5,7 @@
 
 #include "ui/utility/knobman_skin.h"
 #include "ui/utility/image.h"
+#include "BinaryData.h"
 
 void Km_Skin::load(const Image &img, unsigned frame_count)
 {

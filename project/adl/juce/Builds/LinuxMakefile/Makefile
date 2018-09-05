@@ -35,7 +35,7 @@ ifeq ($(CONFIG),Debug)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DADLMIDI_UNSTABLE_API -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DVF_USE_FREETYPE=1 -DVF_USE_NATIVE_FREETYPE=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I$(HOME)/Documents/SDKs/VST_SDK/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libADLMIDI/include -I../../../../../thirdparty/wopl $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DADLPLUG_OPL3 -DADLMIDI_UNSTABLE_API -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DVF_USE_FREETYPE=1 -DVF_USE_NATIVE_FREETYPE=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I$(HOME)/Documents/SDKs/VST_SDK/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libADLMIDI/include -I../../../../../thirdparty/wopl $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST := -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_Unity=0
   JUCE_CFLAGS_VST := -fPIC -fvisibility=hidden
@@ -49,7 +49,7 @@ ifeq ($(CONFIG),Debug)
   JUCE_TARGET_SHARED_CODE := ADLplug.a
 
   JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -fPIC -g -ggdb -O0 $(CFLAGS)
-  JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++14 $(CXXFLAGS)
+  JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++11 $(CXXFLAGS)
   JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs freetype2 alsa x11 xext xinerama) -ldl -lpthread -lrt $(LDFLAGS)
 
   CLEANCMD = rm -rf $(JUCE_OUTDIR)/$(TARGET) $(JUCE_OBJDIR)
@@ -65,7 +65,7 @@ ifeq ($(CONFIG),Release)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DADLMIDI_UNSTABLE_API -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DVF_USE_FREETYPE=1 -DVF_USE_NATIVE_FREETYPE=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I$(HOME)/Documents/SDKs/VST_SDK/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libADLMIDI/include -I../../../../../thirdparty/wopl $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DADLPLUG_OPL3 -DADLMIDI_UNSTABLE_API -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DVF_USE_FREETYPE=1 -DVF_USE_NATIVE_FREETYPE=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I$(HOME)/Documents/SDKs/VST_SDK/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libADLMIDI/include -I../../../../../thirdparty/wopl $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST := -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_Unity=0
   JUCE_CFLAGS_VST := -fPIC -fvisibility=hidden
@@ -79,7 +79,7 @@ ifeq ($(CONFIG),Release)
   JUCE_TARGET_SHARED_CODE := ADLplug.a
 
   JUCE_CFLAGS += $(JUCE_CPPFLAGS) $(TARGET_ARCH) -fPIC -O3 $(CFLAGS)
-  JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++14 $(CXXFLAGS)
+  JUCE_CXXFLAGS += $(JUCE_CFLAGS) -std=c++11 $(CXXFLAGS)
   JUCE_LDFLAGS += $(TARGET_ARCH) -L$(JUCE_BINDIR) -L$(JUCE_LIBDIR) $(shell pkg-config --libs freetype2 alsa x11 xext xinerama) -fvisibility=hidden -ldl -lpthread -lrt $(LDFLAGS)
 
   CLEANCMD = rm -rf $(JUCE_OUTDIR)/$(TARGET) $(JUCE_OBJDIR)
@@ -99,22 +99,22 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/plugin_editor_d2d9321b.o \
   $(JUCE_OBJDIR)/plugin_processor_a0287f62.o \
   $(JUCE_OBJDIR)/worker_5b6a13ea.o \
-  $(JUCE_OBJDIR)/chip_settings_f393fbe4.o \
-  $(JUCE_OBJDIR)/instrument_9991a5fb.o \
-  $(JUCE_OBJDIR)/instrument_properties_29eab9ef.o \
-  $(JUCE_OBJDIR)/player_bbf58ec1.o \
-  $(JUCE_OBJDIR)/measurer_e8ee8518.o \
-  $(JUCE_OBJDIR)/dosbox_opl3_3f0575c2.o \
-  $(JUCE_OBJDIR)/dbopl_d0be8c4d.o \
   $(JUCE_OBJDIR)/insnames_1e4d446c.o \
-  $(JUCE_OBJDIR)/about_component_be76d5d8.o \
+  $(JUCE_OBJDIR)/chip_settings_ba52771f.o \
+  $(JUCE_OBJDIR)/instrument_d2606ca0.o \
+  $(JUCE_OBJDIR)/instrument_properties_5fc3ca2a.o \
+  $(JUCE_OBJDIR)/player_26936fe6.o \
+  $(JUCE_OBJDIR)/measurer_f1b2d6bd.o \
+  $(JUCE_OBJDIR)/dosbox_opl3_82e22dbd.o \
+  $(JUCE_OBJDIR)/dbopl_878d3b2.o \
+  $(JUCE_OBJDIR)/algorithm_component_3e07100.o \
+  $(JUCE_OBJDIR)/algorithm_help_d8b076be.o \
+  $(JUCE_OBJDIR)/opl3_waves_901efa8c.o \
+  $(JUCE_OBJDIR)/about_component_cf87c1fd.o \
+  $(JUCE_OBJDIR)/main_component_c1938cdd.o \
+  $(JUCE_OBJDIR)/operator_editor_e3579a40.o \
+  $(JUCE_OBJDIR)/parameter_block_94463d58.o \
   $(JUCE_OBJDIR)/look_and_feel_dde78e55.o \
-  $(JUCE_OBJDIR)/main_component_fad511a2.o \
-  $(JUCE_OBJDIR)/operator_editor_d246ae1b.o \
-  $(JUCE_OBJDIR)/parameter_block_b33c2f5d.o \
-  $(JUCE_OBJDIR)/opl3_waves_4f4c326e.o \
-  $(JUCE_OBJDIR)/algorithm_component_4451cbc5.o \
-  $(JUCE_OBJDIR)/algorithm_help_81c8b4d9.o \
   $(JUCE_OBJDIR)/indicator_NxM_67a37cbf.o \
   $(JUCE_OBJDIR)/knob_component_359f0c96.o \
   $(JUCE_OBJDIR)/styled_knobs_d5f68a99.o \
@@ -136,7 +136,6 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/adlmidi_midiplay_2e06b3.o \
   $(JUCE_OBJDIR)/adlmidi_opl3_7c6ef2c6.o \
   $(JUCE_OBJDIR)/adlmidi_private_9ef84ef.o \
-  $(JUCE_OBJDIR)/adlmidi_sequencer_3d0fd77d.o \
   $(JUCE_OBJDIR)/dosbox_opl3_ebf2971d.o \
   $(JUCE_OBJDIR)/nuked_opl3_15408e75.o \
   $(JUCE_OBJDIR)/nuked_opl3_v174_fe6526ec.o \
@@ -222,84 +221,84 @@ $(JUCE_OBJDIR)/worker_5b6a13ea.o: ../../../../../sources/worker.cc
 	@echo "Compiling worker.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/chip_settings_f393fbe4.o: ../../../../../sources/adl/chip_settings.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling chip_settings.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/instrument_9991a5fb.o: ../../../../../sources/adl/instrument.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling instrument.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/instrument_properties_29eab9ef.o: ../../../../../sources/adl/instrument_properties.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling instrument_properties.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/player_bbf58ec1.o: ../../../../../sources/adl/player.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling player.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/measurer_e8ee8518.o: ../../../../../sources/adl/measurer/measurer.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling measurer.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/dosbox_opl3_3f0575c2.o: ../../../../../sources/adl/measurer/chips/dosbox_opl3.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling dosbox_opl3.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/dbopl_d0be8c4d.o: ../../../../../sources/adl/measurer/chips/dosbox/dbopl.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling dbopl.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/insnames_1e4d446c.o: ../../../../../sources/midi/insnames.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling insnames.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/about_component_be76d5d8.o: ../../../../../sources/ui/about_component.cc
+$(JUCE_OBJDIR)/chip_settings_ba52771f.o: ../../../../../sources/opl3/adl/chip_settings.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling chip_settings.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/instrument_d2606ca0.o: ../../../../../sources/opl3/adl/instrument.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling instrument.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/instrument_properties_5fc3ca2a.o: ../../../../../sources/opl3/adl/instrument_properties.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling instrument_properties.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/player_26936fe6.o: ../../../../../sources/opl3/adl/player.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling player.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/measurer_f1b2d6bd.o: ../../../../../sources/opl3/adl/measurer/measurer.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling measurer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/dosbox_opl3_82e22dbd.o: ../../../../../sources/opl3/adl/measurer/chips/dosbox_opl3.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling dosbox_opl3.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/dbopl_878d3b2.o: ../../../../../sources/opl3/adl/measurer/chips/dosbox/dbopl.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling dbopl.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/algorithm_component_3e07100.o: ../../../../../sources/opl3/ui/components/algorithm_component.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling algorithm_component.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/algorithm_help_d8b076be.o: ../../../../../sources/opl3/ui/components/algorithm_help.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling algorithm_help.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/opl3_waves_901efa8c.o: ../../../../../sources/opl3/ui/components/opl3_waves.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling opl3_waves.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/about_component_cf87c1fd.o: ../../../../../sources/opl3/ui/about_component.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling about_component.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/main_component_c1938cdd.o: ../../../../../sources/opl3/ui/main_component.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling main_component.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/operator_editor_e3579a40.o: ../../../../../sources/opl3/ui/operator_editor.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling operator_editor.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/parameter_block_94463d58.o: ../../../../../sources/opl3/parameter_block.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling parameter_block.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/look_and_feel_dde78e55.o: ../../../../../sources/ui/look_and_feel.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling look_and_feel.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/main_component_fad511a2.o: ../../../../../sources/ui/main_component.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling main_component.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/operator_editor_d246ae1b.o: ../../../../../sources/ui/operator_editor.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling operator_editor.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/parameter_block_b33c2f5d.o: ../../../../../sources/parameter_block.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling parameter_block.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/opl3_waves_4f4c326e.o: ../../../../../sources/ui/chips/opl3_waves.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling opl3_waves.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/algorithm_component_4451cbc5.o: ../../../../../sources/ui/components/algorithm_component.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling algorithm_component.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/algorithm_help_81c8b4d9.o: ../../../../../sources/ui/components/algorithm_help.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling algorithm_help.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/indicator_NxM_67a37cbf.o: ../../../../../sources/ui/components/indicator_NxM.cc
@@ -405,11 +404,6 @@ $(JUCE_OBJDIR)/adlmidi_opl3_7c6ef2c6.o: ../../../../../thirdparty/libADLMIDI/src
 $(JUCE_OBJDIR)/adlmidi_private_9ef84ef.o: ../../../../../thirdparty/libADLMIDI/src/adlmidi_private.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling adlmidi_private.cpp"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
-$(JUCE_OBJDIR)/adlmidi_sequencer_3d0fd77d.o: ../../../../../thirdparty/libADLMIDI/src/adlmidi_sequencer.cpp
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling adlmidi_sequencer.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/dosbox_opl3_ebf2971d.o: ../../../../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.cpp

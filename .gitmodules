@@ -8,3 +8,6 @@
 [submodule "thirdparty/fmt"]
 	path = thirdparty/fmt
 	url = https://github.com/fmtlib/fmt.git
+[submodule "thirdparty/libOPNMIDI"]
+	path = thirdparty/libOPNMIDI
+	url = https://github.com/Wohlstand/libOPNMIDI.git

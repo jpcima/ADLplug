@@ -2,15 +2,6 @@
 
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ADLplug\sources\adl\measurer\chips\dosbox">
-      <UniqueIdentifier>{4AB166C7-9E64-F605-0991-089E2EDE328D}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ADLplug\sources\adl\measurer\chips">
-      <UniqueIdentifier>{3CF30704-4D3F-9AA6-5C04-FCDF82C096B8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ADLplug\sources\adl\measurer">
-      <UniqueIdentifier>{E99A2A8B-AB87-331F-A165-91214CB4860E}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ADLplug\sources\adl">
       <UniqueIdentifier>{28E4F184-1528-C78F-B59B-C37CCB8E9989}</UniqueIdentifier>
     </Filter>
@@ -20,8 +11,26 @@
     <Filter Include="ADLplug\sources\midi">
       <UniqueIdentifier>{5AEB3953-23AB-E997-455B-B424B0C98272}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ADLplug\sources\ui\chips">
-      <UniqueIdentifier>{F9089CF6-5854-F0B2-936B-D79A7E3B2E18}</UniqueIdentifier>
+    <Filter Include="ADLplug\sources\opl3\adl\measurer\chips\dosbox">
+      <UniqueIdentifier>{029770EA-9033-45CB-81CE-18D71336C9BE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\sources\opl3\adl\measurer\chips">
+      <UniqueIdentifier>{4875042F-7E7B-4E7D-C3E5-01E602A424A0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\sources\opl3\adl\measurer">
+      <UniqueIdentifier>{6B0B1122-7BA7-59D4-0C64-9ED0C4E900BD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\sources\opl3\adl">
+      <UniqueIdentifier>{B40E71F3-7194-C4D2-F93D-C0DF0B343296}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\sources\opl3\ui\components">
+      <UniqueIdentifier>{96DB5F5E-DE40-2FE2-4E84-CB0929C1B76C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\sources\opl3\ui">
+      <UniqueIdentifier>{854E8C89-2630-0EFF-E7B4-D4A2E8612155}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\sources\opl3">
+      <UniqueIdentifier>{CA472A35-0B77-463C-2C62-D05B00D21059}</UniqueIdentifier>
     </Filter>
     <Filter Include="ADLplug\sources\ui\components">
       <UniqueIdentifier>{6A6BF5EB-8327-2396-6362-EBDD4012CCD9}</UniqueIdentifier>
@@ -37,6 +46,9 @@
     </Filter>
     <Filter Include="ADLplug\sources">
       <UniqueIdentifier>{337050D3-2325-64ED-EBA1-66A581B1107F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\resources\opl3">
+      <UniqueIdentifier>{E2BB5530-897F-8B56-CFC6-0EC309D34920}</UniqueIdentifier>
     </Filter>
     <Filter Include="ADLplug\resources\ui\cores">
       <UniqueIdentifier>{8539FEB8-6B7D-9E80-E807-D183A955989E}</UniqueIdentifier>
@@ -511,53 +523,53 @@
     <ClCompile Include="..\..\..\..\..\sources\worker.cc">
       <Filter>ADLplug\sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\adl\chip_settings.cc">
-      <Filter>ADLplug\sources\adl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\adl\instrument.cc">
-      <Filter>ADLplug\sources\adl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\adl\instrument_properties.cc">
-      <Filter>ADLplug\sources\adl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\adl\player.cc">
-      <Filter>ADLplug\sources\adl</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\adl\measurer\measurer.cpp">
-      <Filter>ADLplug\sources\adl\measurer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\adl\measurer\chips\dosbox_opl3.cpp">
-      <Filter>ADLplug\sources\adl\measurer\chips</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\adl\measurer\chips\dosbox\dbopl.cpp">
-      <Filter>ADLplug\sources\adl\measurer\chips\dosbox</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\midi\insnames.cc">
       <Filter>ADLplug\sources\midi</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\ui\about_component.cc">
-      <Filter>ADLplug\sources\ui</Filter>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\adl\chip_settings.cc">
+      <Filter>ADLplug\sources\opl3\adl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\adl\instrument.cc">
+      <Filter>ADLplug\sources\opl3\adl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\adl\instrument_properties.cc">
+      <Filter>ADLplug\sources\opl3\adl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\adl\player.cc">
+      <Filter>ADLplug\sources\opl3\adl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\adl\measurer\measurer.cpp">
+      <Filter>ADLplug\sources\opl3\adl\measurer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\dosbox_opl3.cpp">
+      <Filter>ADLplug\sources\opl3\adl\measurer\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\dosbox\dbopl.cpp">
+      <Filter>ADLplug\sources\opl3\adl\measurer\chips\dosbox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\ui\components\algorithm_component.cc">
+      <Filter>ADLplug\sources\opl3\ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\ui\components\algorithm_help.cc">
+      <Filter>ADLplug\sources\opl3\ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\ui\components\opl3_waves.cc">
+      <Filter>ADLplug\sources\opl3\ui\components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\ui\about_component.cc">
+      <Filter>ADLplug\sources\opl3\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\ui\main_component.cc">
+      <Filter>ADLplug\sources\opl3\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\ui\operator_editor.cc">
+      <Filter>ADLplug\sources\opl3\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opl3\parameter_block.cc">
+      <Filter>ADLplug\sources\opl3</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\look_and_feel.cc">
       <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\ui\main_component.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\ui\operator_editor.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\parameter_block.cc">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\ui\chips\opl3_waves.cc">
-      <Filter>ADLplug\sources\ui\chips</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\ui\components\algorithm_component.cc">
-      <Filter>ADLplug\sources\ui\components</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\sources\ui\components\algorithm_help.cc">
-      <Filter>ADLplug\sources\ui\components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\indicator_NxM.cc">
       <Filter>ADLplug\sources\ui\components</Filter>
@@ -620,9 +632,6 @@
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.cpp">
-      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_sequencer.cpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.cpp">
@@ -2550,6 +2559,9 @@
     <ClInclude Include="..\..\..\..\..\sources\messages.h">
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\parameter_block.h">
+      <Filter>ADLplug\sources</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\plugin_editor.h">
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
@@ -2571,18 +2583,6 @@
     <ClInclude Include="..\..\..\..\..\sources\adl\player.h">
       <Filter>ADLplug\sources\adl</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\adl\measurer\measurer.h">
-      <Filter>ADLplug\sources\adl\measurer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\adl\measurer\chips\dosbox_opl3.h">
-      <Filter>ADLplug\sources\adl\measurer\chips</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\adl\measurer\chips\opl_chip_base.h">
-      <Filter>ADLplug\sources\adl\measurer\chips</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\adl\measurer\chips\dosbox\dbopl.h">
-      <Filter>ADLplug\sources\adl\measurer\chips\dosbox</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\dsp\dc_filter.h">
       <Filter>ADLplug\sources\dsp</Filter>
     </ClInclude>
@@ -2592,32 +2592,56 @@
     <ClInclude Include="..\..\..\..\..\sources\midi\insnames.h">
       <Filter>ADLplug\sources\midi</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\ui\about_component.h">
-      <Filter>ADLplug\sources\ui</Filter>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\adl\chip_settings.h">
+      <Filter>ADLplug\sources\opl3\adl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\adl\instrument.h">
+      <Filter>ADLplug\sources\opl3\adl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\adl\player.h">
+      <Filter>ADLplug\sources\opl3\adl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\adl\measurer\measurer.h">
+      <Filter>ADLplug\sources\opl3\adl\measurer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\dosbox_opl3.h">
+      <Filter>ADLplug\sources\opl3\adl\measurer\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\opl_chip_base.h">
+      <Filter>ADLplug\sources\opl3\adl\measurer\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\dosbox\dbopl.h">
+      <Filter>ADLplug\sources\opl3\adl\measurer\chips\dosbox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\ui\components\algorithm_component.h">
+      <Filter>ADLplug\sources\opl3\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\ui\components\algorithm_help.h">
+      <Filter>ADLplug\sources\opl3\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\ui\components\algorithms.h">
+      <Filter>ADLplug\sources\opl3\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\ui\components\opl3_waves.h">
+      <Filter>ADLplug\sources\opl3\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\ui\about_component.h">
+      <Filter>ADLplug\sources\opl3\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\ui\main_component.h">
+      <Filter>ADLplug\sources\opl3\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\ui\operator_editor.h">
+      <Filter>ADLplug\sources\opl3\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opl3\parameter_block.h">
+      <Filter>ADLplug\sources\opl3</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\look_and_feel.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\main_component.h">
       <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\ui\operator_editor.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\parameter_block.h">
-      <Filter>ADLplug\sources\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\ui\chips\opl3_waves.h">
-      <Filter>ADLplug\sources\ui\chips</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\ui\components\algorithm_component.h">
-      <Filter>ADLplug\sources\ui\components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\ui\components\algorithm_help.h">
-      <Filter>ADLplug\sources\ui\components</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\ui\components\algorithms.h">
-      <Filter>ADLplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\indicator_NxM.h">
       <Filter>ADLplug\sources\ui\components</Filter>
@@ -2632,6 +2656,9 @@
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\wave_label.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\ui\components\waves.h">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\utility\graphics.h">
@@ -2706,25 +2733,7 @@
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_ptr.hpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\cvt_mus2mid.hpp">
-      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\cvt_xmi2mid.hpp">
-      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\file_reader.hpp">
-      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\fraction.hpp">
-      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\midi_sequencer.h">
-      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\midi_sequencer.hpp">
-      <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\midi_sequencer_impl.hpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.h">
@@ -4874,14 +4883,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\sources\adl\instrument.tcc">
-      <Filter>ADLplug\sources\adl</Filter>
+    <None Include="..\..\..\..\..\sources\opl3\adl\instrument.tcc">
+      <Filter>ADLplug\sources\opl3\adl</Filter>
     </None>
-    <None Include="..\..\..\..\..\sources\adl\measurer\chips\opl_chip_base.tcc">
-      <Filter>ADLplug\sources\adl\measurer\chips</Filter>
+    <None Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\opl_chip_base.tcc">
+      <Filter>ADLplug\sources\opl3\adl\measurer\chips</Filter>
     </None>
     <None Include="..\..\..\..\..\sources\utility\counting_bitset.tcc">
       <Filter>ADLplug\sources\utility</Filter>
+    </None>
+    <None Include="..\..\..\..\..\resources\opl3\banks.pak">
+      <Filter>ADLplug\resources\opl3</Filter>
     </None>
     <None Include="..\..\..\..\..\resources\ui\knob-skin.png">
       <Filter>ADLplug\resources\ui</Filter>
@@ -4939,9 +4951,6 @@
     </None>
     <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png">
       <Filter>ADLplug\resources\ui\noto-emoji</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\banks.pak">
-      <Filter>ADLplug\resources</Filter>
     </None>
     <None Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.tcc">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>

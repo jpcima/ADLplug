@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "ui/components/styled_knobs.h"
+#include "BinaryData.h"
 
 Km_Skin_Ptr Styled_Knob_Default::skin_;
 

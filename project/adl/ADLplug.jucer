@@ -7,8 +7,8 @@
               bundleIdentifier="jpcima.ADLplug" pluginName="ADLplug" pluginDesc="ADLplug"
               pluginManufacturer="jpcima" pluginManufacturerCode="JPCm" pluginCode="ADLM"
               aaxIdentifier="jpcima.ADLplug" headerPath="../../../../../sources&#10;../../../../../thirdparty/libADLMIDI/include&#10;../../../../../thirdparty/wopl"
-              defines="ADLMIDI_UNSTABLE_API&#10;ADLMIDI_DISABLE_CPP_EXTRAS&#10;ADLMIDI_DISABLE_MIDI_SEQUENCER&#10;ADLMIDI_DISABLE_MUS_SUPPORT&#10;ADLMIDI_DISABLE_XMI_SUPPORT"
-              id="ojbkOL" version="1.0.0">
+              defines="ADLPLUG_OPL3&#10;ADLMIDI_UNSTABLE_API&#10;ADLMIDI_DISABLE_CPP_EXTRAS&#10;ADLMIDI_DISABLE_MIDI_SEQUENCER&#10;ADLMIDI_DISABLE_MUS_SUPPORT&#10;ADLMIDI_DISABLE_XMI_SUPPORT"
+              id="ojbkOL" version="1.0.0" includeBinaryInJuceHeader="0" cppLanguageStandard="11">
   <MAINGROUP id="faq0v0" name="ADLplug">
     <GROUP id="{57FD1426-D8BF-7CCC-6B25-2A7108A4390B}" name="sources">
       <FILE id="dneZUm" name="bank_manager.cc" compile="1" resource="0" file="../../sources/bank_manager.cc"/>
@@ -16,6 +16,8 @@
       <FILE id="oFvaCp" name="definitions.h" compile="0" resource="0" file="../../sources/definitions.h"/>
       <FILE id="vUM9TO" name="messages.cc" compile="1" resource="0" file="../../sources/messages.cc"/>
       <FILE id="W3uPOQ" name="messages.h" compile="0" resource="0" file="../../sources/messages.h"/>
+      <FILE id="cKzhXr" name="parameter_block.h" compile="0" resource="0"
+            file="../../sources/parameter_block.h"/>
       <FILE id="LbE9y8" name="plugin_editor.cc" compile="1" resource="0"
             file="../../sources/plugin_editor.cc"/>
       <FILE id="QxGCKT" name="plugin_editor.h" compile="0" resource="0" file="../../sources/plugin_editor.h"/>
@@ -27,31 +29,9 @@
       <FILE id="M4xlwY" name="worker.cc" compile="1" resource="0" file="../../sources/worker.cc"/>
       <FILE id="ymYAK6" name="worker.h" compile="0" resource="0" file="../../sources/worker.h"/>
       <GROUP id="{90BE611D-B377-7C79-171F-98F2CD7899AE}" name="adl">
-        <FILE id="bEOlG4" name="chip_settings.cc" compile="1" resource="0"
-              file="../../sources/adl/chip_settings.cc"/>
         <FILE id="v5Q8Jc" name="chip_settings.h" compile="0" resource="0" file="../../sources/adl/chip_settings.h"/>
-        <FILE id="ZhOlLH" name="instrument.cc" compile="1" resource="0" file="../../sources/adl/instrument.cc"/>
         <FILE id="ivL5rz" name="instrument.h" compile="0" resource="0" file="../../sources/adl/instrument.h"/>
-        <FILE id="I6ORD5" name="instrument.tcc" compile="0" resource="0" file="../../sources/adl/instrument.tcc"/>
-        <FILE id="FQv2Kb" name="instrument_properties.cc" compile="1" resource="0"
-              file="../../sources/adl/instrument_properties.cc"/>
-        <FILE id="YNeRaV" name="player.cc" compile="1" resource="0" file="../../sources/adl/player.cc"/>
         <FILE id="cktZse" name="player.h" compile="0" resource="0" file="../../sources/adl/player.h"/>
-        <GROUP id="{C5504BDA-42C7-2221-038E-19766F6E41E8}" name="measurer">
-          <FILE id="GRC9nZ" name="measurer.cpp" compile="1" resource="0" file="../../sources/adl/measurer/measurer.cpp"/>
-          <FILE id="OisWe2" name="measurer.h" compile="0" resource="0" file="../../sources/adl/measurer/measurer.h"/>
-          <GROUP id="{42E8A9B9-B558-ABCF-CAB7-AB553FE919F7}" name="chips">
-            <FILE id="nbNAwA" name="dosbox_opl3.cpp" compile="1" resource="0" file="../../sources/adl/measurer/chips/dosbox_opl3.cpp"/>
-            <FILE id="lYAyQb" name="dosbox_opl3.h" compile="0" resource="0" file="../../sources/adl/measurer/chips/dosbox_opl3.h"/>
-            <FILE id="uhE3Eu" name="opl_chip_base.h" compile="0" resource="0" file="../../sources/adl/measurer/chips/opl_chip_base.h"/>
-            <FILE id="i6oA8y" name="opl_chip_base.tcc" compile="0" resource="0"
-                  file="../../sources/adl/measurer/chips/opl_chip_base.tcc"/>
-            <GROUP id="{A0D5F52E-F6E5-3787-AB16-04D4437B0186}" name="dosbox">
-              <FILE id="JlL2ub" name="dbopl.cpp" compile="1" resource="0" file="../../sources/adl/measurer/chips/dosbox/dbopl.cpp"/>
-              <FILE id="fWj5ZZ" name="dbopl.h" compile="0" resource="0" file="../../sources/adl/measurer/chips/dosbox/dbopl.h"/>
-            </GROUP>
-          </GROUP>
-        </GROUP>
       </GROUP>
       <GROUP id="{2E9ABF3F-6195-1F35-766C-4D30B755E87E}" name="dsp">
         <FILE id="jnXF8V" name="dc_filter.h" compile="0" resource="0" file="../../sources/dsp/dc_filter.h"/>
@@ -61,40 +41,73 @@
         <FILE id="aBpHSz" name="insnames.cc" compile="1" resource="0" file="../../sources/midi/insnames.cc"/>
         <FILE id="PHRogf" name="insnames.h" compile="0" resource="0" file="../../sources/midi/insnames.h"/>
       </GROUP>
+      <GROUP id="{CF57B707-82F8-1C68-D7BE-4532B607DEE4}" name="opl3">
+        <GROUP id="{638BA01C-2BD7-5F12-590B-876E1F00C023}" name="adl">
+          <FILE id="DBqAYy" name="chip_settings.cc" compile="1" resource="0"
+                file="../../sources/opl3/adl/chip_settings.cc"/>
+          <FILE id="utO8oo" name="chip_settings.h" compile="0" resource="0" file="../../sources/opl3/adl/chip_settings.h"/>
+          <FILE id="CT2nJo" name="instrument.cc" compile="1" resource="0" file="../../sources/opl3/adl/instrument.cc"/>
+          <FILE id="DUJv2I" name="instrument.h" compile="0" resource="0" file="../../sources/opl3/adl/instrument.h"/>
+          <FILE id="uDoJus" name="instrument.tcc" compile="0" resource="0" file="../../sources/opl3/adl/instrument.tcc"/>
+          <FILE id="x6WVdJ" name="instrument_properties.cc" compile="1" resource="0"
+                file="../../sources/opl3/adl/instrument_properties.cc"/>
+          <FILE id="L6vSEX" name="player.cc" compile="1" resource="0" file="../../sources/opl3/adl/player.cc"/>
+          <FILE id="y4LQNs" name="player.h" compile="0" resource="0" file="../../sources/opl3/adl/player.h"/>
+          <GROUP id="{5A2ED440-39BF-4752-C5CA-15E08DF19588}" name="measurer">
+            <FILE id="gRROhr" name="measurer.cpp" compile="1" resource="0" file="../../sources/opl3/adl/measurer/measurer.cpp"/>
+            <FILE id="DXu7cr" name="measurer.h" compile="0" resource="0" file="../../sources/opl3/adl/measurer/measurer.h"/>
+            <GROUP id="{2DF86BCD-12D3-905A-F23C-089D7EBCB81F}" name="chips">
+              <FILE id="h4vy1R" name="dosbox_opl3.cpp" compile="1" resource="0" file="../../sources/opl3/adl/measurer/chips/dosbox_opl3.cpp"/>
+              <FILE id="NOkDJs" name="dosbox_opl3.h" compile="0" resource="0" file="../../sources/opl3/adl/measurer/chips/dosbox_opl3.h"/>
+              <FILE id="WQbBx1" name="opl_chip_base.h" compile="0" resource="0" file="../../sources/opl3/adl/measurer/chips/opl_chip_base.h"/>
+              <FILE id="DLk2lE" name="opl_chip_base.tcc" compile="0" resource="0"
+                    file="../../sources/opl3/adl/measurer/chips/opl_chip_base.tcc"/>
+              <GROUP id="{15947148-67D1-79D0-556C-E9E2FEFAC2EA}" name="dosbox">
+                <FILE id="aP0TH6" name="dbopl.cpp" compile="1" resource="0" file="../../sources/opl3/adl/measurer/chips/dosbox/dbopl.cpp"/>
+                <FILE id="NE4qmg" name="dbopl.h" compile="0" resource="0" file="../../sources/opl3/adl/measurer/chips/dosbox/dbopl.h"/>
+              </GROUP>
+            </GROUP>
+          </GROUP>
+        </GROUP>
+        <GROUP id="{85EC75EA-38B6-7354-B24A-EA30EBC116A0}" name="ui">
+          <GROUP id="{16428EC7-343F-28BC-6957-70956388C216}" name="components">
+            <FILE id="fEY2IE" name="algorithm_component.cc" compile="1" resource="0"
+                  file="../../sources/opl3/ui/components/algorithm_component.cc"/>
+            <FILE id="zdZhAa" name="algorithm_component.h" compile="0" resource="0"
+                  file="../../sources/opl3/ui/components/algorithm_component.h"/>
+            <FILE id="L1199X" name="algorithm_help.cc" compile="1" resource="0"
+                  file="../../sources/opl3/ui/components/algorithm_help.cc"/>
+            <FILE id="cDvnG8" name="algorithm_help.h" compile="0" resource="0"
+                  file="../../sources/opl3/ui/components/algorithm_help.h"/>
+            <FILE id="ELjjAg" name="algorithms.h" compile="0" resource="0" file="../../sources/opl3/ui/components/algorithms.h"/>
+            <FILE id="zYC7jP" name="opl3_waves.cc" compile="1" resource="0" file="../../sources/opl3/ui/components/opl3_waves.cc"/>
+            <FILE id="Res9YE" name="opl3_waves.h" compile="0" resource="0" file="../../sources/opl3/ui/components/opl3_waves.h"/>
+          </GROUP>
+          <FILE id="YlUeRP" name="about_component.cc" compile="1" resource="0"
+                file="../../sources/opl3/ui/about_component.cc"/>
+          <FILE id="C6YCyq" name="about_component.h" compile="0" resource="0"
+                file="../../sources/opl3/ui/about_component.h"/>
+          <FILE id="ZucMur" name="main_component.cc" compile="1" resource="0"
+                file="../../sources/opl3/ui/main_component.cc"/>
+          <FILE id="eU2rFi" name="main_component.h" compile="0" resource="0"
+                file="../../sources/opl3/ui/main_component.h"/>
+          <FILE id="mUN1ML" name="operator_editor.cc" compile="1" resource="0"
+                file="../../sources/opl3/ui/operator_editor.cc"/>
+          <FILE id="kcgFFN" name="operator_editor.h" compile="0" resource="0"
+                file="../../sources/opl3/ui/operator_editor.h"/>
+        </GROUP>
+        <FILE id="ukwuQb" name="parameter_block.cc" compile="1" resource="0"
+              file="../../sources/opl3/parameter_block.cc"/>
+        <FILE id="QbDRad" name="parameter_block.h" compile="0" resource="0"
+              file="../../sources/opl3/parameter_block.h"/>
+      </GROUP>
       <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">
-        <FILE id="JdskR5" name="about_component.cc" compile="1" resource="0"
-              file="../../sources/ui/about_component.cc"/>
-        <FILE id="mwuHEz" name="about_component.h" compile="0" resource="0"
-              file="../../sources/ui/about_component.h"/>
         <FILE id="awUfqG" name="look_and_feel.cc" compile="1" resource="0"
               file="../../sources/ui/look_and_feel.cc"/>
         <FILE id="Wx6Ntz" name="look_and_feel.h" compile="0" resource="0" file="../../sources/ui/look_and_feel.h"/>
-        <FILE id="N6HR3L" name="main_component.cc" compile="1" resource="0"
-              file="../../sources/ui/main_component.cc"/>
         <FILE id="TOEmqc" name="main_component.h" compile="0" resource="0"
               file="../../sources/ui/main_component.h"/>
-        <FILE id="WAXJXE" name="operator_editor.cc" compile="1" resource="0"
-              file="../../sources/ui/operator_editor.cc"/>
-        <FILE id="qbk60K" name="operator_editor.h" compile="0" resource="0"
-              file="../../sources/ui/operator_editor.h"/>
-        <FILE id="bAnyMi" name="parameter_block.cc" compile="1" resource="0"
-              file="../../sources/parameter_block.cc"/>
-        <FILE id="cKzhXr" name="parameter_block.h" compile="0" resource="0"
-              file="../../sources/parameter_block.h"/>
-        <GROUP id="{D334F30B-8548-822D-8F67-78AE712EBDBA}" name="chips">
-          <FILE id="zgUEIA" name="opl3_waves.cc" compile="1" resource="0" file="../../sources/ui/chips/opl3_waves.cc"/>
-          <FILE id="jcoZ2e" name="opl3_waves.h" compile="0" resource="0" file="../../sources/ui/chips/opl3_waves.h"/>
-        </GROUP>
         <GROUP id="{62E26F51-4EDE-0DA8-04EA-9272FA6135B2}" name="components">
-          <FILE id="bUlkKl" name="algorithm_component.cc" compile="1" resource="0"
-                file="../../sources/ui/components/algorithm_component.cc"/>
-          <FILE id="pPtwdv" name="algorithm_component.h" compile="0" resource="0"
-                file="../../sources/ui/components/algorithm_component.h"/>
-          <FILE id="EowRaF" name="algorithm_help.cc" compile="1" resource="0"
-                file="../../sources/ui/components/algorithm_help.cc"/>
-          <FILE id="jrCOdW" name="algorithm_help.h" compile="0" resource="0"
-                file="../../sources/ui/components/algorithm_help.h"/>
-          <FILE id="PRAmvt" name="algorithms.h" compile="0" resource="0" file="../../sources/ui/components/algorithms.h"/>
           <FILE id="inz2MA" name="indicator_NxM.cc" compile="1" resource="0"
                 file="../../sources/ui/components/indicator_NxM.cc"/>
           <FILE id="kCzAlO" name="indicator_NxM.h" compile="0" resource="0" file="../../sources/ui/components/indicator_NxM.h"/>
@@ -108,6 +121,7 @@
           <FILE id="Ya6qbN" name="vu_meter.h" compile="0" resource="0" file="../../sources/ui/components/vu_meter.h"/>
           <FILE id="MFeml7" name="wave_label.cc" compile="1" resource="0" file="../../sources/ui/components/wave_label.cc"/>
           <FILE id="eAPfdj" name="wave_label.h" compile="0" resource="0" file="../../sources/ui/components/wave_label.h"/>
+          <FILE id="Rn9ZEP" name="waves.h" compile="0" resource="0" file="../../sources/ui/components/waves.h"/>
         </GROUP>
         <GROUP id="{0AF18A03-BCBF-4450-A288-C71A6D70A41A}" name="utility">
           <FILE id="o5g7hJ" name="graphics.cc" compile="1" resource="0" file="../../sources/ui/utility/graphics.cc"/>
@@ -137,6 +151,9 @@
       </GROUP>
     </GROUP>
     <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
+      <GROUP id="{426F9D63-7ED2-C70C-62C0-7A782D9BBA77}" name="opl3">
+        <FILE id="gPZH4Q" name="banks.pak" compile="0" resource="1" file="../../resources/opl3/banks.pak"/>
+      </GROUP>
       <GROUP id="{02680B2E-61B1-FA1B-3D9A-89A688227935}" name="ui">
         <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="../../resources/ui/knob-skin.png"/>
         <GROUP id="{3DD686E2-DFBA-641B-F10D-41AB90380470}" name="cores">
@@ -179,7 +196,6 @@
                 file="../../resources/ui/noto-emoji/emoji_u1f4c2.png"/>
         </GROUP>
       </GROUP>
-      <FILE id="Lxy3QZ" name="banks.pak" compile="0" resource="1" file="../../resources/banks.pak"/>
     </GROUP>
     <GROUP id="{C55CC9DB-ED0F-DE1B-46CB-A28A61433406}" name="thirdparty">
       <GROUP id="{10DE0817-C209-0E4C-0D54-242A418D9A01}" name="fmt">
@@ -227,18 +243,7 @@
           <FILE id="mkAlRT" name="adlmidi_private.hpp" compile="0" resource="0"
                 file="../../thirdparty/libADLMIDI/src/adlmidi_private.hpp"/>
           <FILE id="RKcUrt" name="adlmidi_ptr.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/adlmidi_ptr.hpp"/>
-          <FILE id="m29EGf" name="adlmidi_sequencer.cpp" compile="1" resource="0"
-                file="../../thirdparty/libADLMIDI/src/adlmidi_sequencer.cpp"/>
-          <FILE id="y5Dy0d" name="cvt_mus2mid.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/cvt_mus2mid.hpp"/>
-          <FILE id="XlwCY3" name="cvt_xmi2mid.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/cvt_xmi2mid.hpp"/>
           <FILE id="t1ENkt" name="file_reader.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/file_reader.hpp"/>
-          <FILE id="GQ6FoP" name="fraction.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/fraction.hpp"/>
-          <FILE id="wI0cN4" name="midi_sequencer.h" compile="0" resource="0"
-                file="../../thirdparty/libADLMIDI/src/midi_sequencer.h"/>
-          <FILE id="XZzw35" name="midi_sequencer.hpp" compile="0" resource="0"
-                file="../../thirdparty/libADLMIDI/src/midi_sequencer.hpp"/>
-          <FILE id="ud0W3L" name="midi_sequencer_impl.hpp" compile="0" resource="0"
-                file="../../thirdparty/libADLMIDI/src/midi_sequencer_impl.hpp"/>
           <GROUP id="{8038FC48-896F-DD32-B76F-C79A56D89109}" name="chips">
             <FILE id="nDZkuv" name="dosbox_opl3.cpp" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.cpp"/>
             <FILE id="hFk0JH" name="dosbox_opl3.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.h"/>

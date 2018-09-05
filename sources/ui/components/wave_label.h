@@ -5,13 +5,14 @@
 
 #pragma once
 #include "JuceHeader.h"
+class Waves;
 
 class Wave_Label : public Component,
                    public AsyncUpdater
 {
 public:
-    Wave_Label();
-    explicit Wave_Label(const String &name);
+    explicit Wave_Label(const Waves &waves);
+    explicit Wave_Label(const Waves &waves, const String &name);
 
     unsigned wave() const
         { return wave_; }
@@ -35,6 +36,7 @@ protected:
     void paint(Graphics &g) override;
 
 private:
+    const Waves &waves_;
     unsigned wave_ = 0;
     ListenerList<Listener> listeners_;
 };

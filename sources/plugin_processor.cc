@@ -16,6 +16,7 @@
 #include "plugin_processor.h"
 #include "plugin_editor.h"
 #include "worker.h"
+#include "BinaryData.h"
 #include <wopl/wopl_file.h>
 #include <cassert>
 

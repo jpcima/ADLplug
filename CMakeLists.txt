@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.5)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 project(ADLplug VERSION "1.0.0" LANGUAGES CXX C)
-set(ADLplug_URI "https://github.com/jpcima/ADLplug")
 
 include(SystemOption)
 system_option(ADLplug_VST2 "Build VST2" ON)
@@ -14,6 +13,8 @@ system_option(ADLplug_Jack "Build Jack" ON "Windows" OFF "Darwin" OFF)
 option(ADLplug_PCH "Enable precompiled headers" OFF)
 option(ADLplug_RT_CHECKER "Enable a detector of RT programming errors" OFF)
 option(ADLplug_ASSERTIONS "Enable assertions" OFF)
+
+set(ADLplug_CHIP "OPL3" CACHE STRING "Kind of synthesizer chip (OPL3, OPN2)")
 
 include(GNUWarnings)
 include(LinkHelpers)
@@ -62,6 +63,10 @@ set(libADLMIDI_STATIC ON CACHE STRING "" FORCE)
 set(libADLMIDI_SHARED OFF CACHE STRING "" FORCE)
 add_subdirectory("thirdparty/libADLMIDI" EXCLUDE_FROM_ALL)
 target_compile_definitions(ADLMIDI_static PRIVATE "ADLMIDI_EXPORT=")
+set(libOPNMIDI_STATIC ON CACHE STRING "" FORCE)
+set(libOPNMIDI_SHARED OFF CACHE STRING "" FORCE)
+add_subdirectory("thirdparty/libOPNMIDI" EXCLUDE_FROM_ALL)
+target_compile_definitions(OPNMIDI_static PRIVATE "OPNMIDI_EXPORT=")
 
 if(ADLplug_Jack)
   include(FindPkgConfig)
@@ -74,12 +79,16 @@ message("Build LV2: ${ADLplug_LV2}")
 message("Build Standalone: ${ADLplug_Standalone}")
 message("Build Jack: ${ADLplug_Jack}")
 
-set(JUCE_PROJECT_DIR "${PROJECT_SOURCE_DIR}/project/adl")
+if(ADLplug_CHIP STREQUAL "OPL3")
+  set(ADLplug_URI "https://github.com/jpcima/ADLplug")
+  set(JUCE_PROJECT_DIR "${PROJECT_SOURCE_DIR}/project/adl")
+elseif(ADLplug_CHIP STREQUAL "OPN2")
+  set(ADLplug_URI "https://github.com/jpcima/OPNplug")
+  set(JUCE_PROJECT_DIR "${PROJECT_SOURCE_DIR}/project/opn")
+else()
+  message(FATAL_ERROR "unsupported chip ${ADLplug_CHIP}")
+endif()
 include("${CMAKE_SOURCE_DIR}/JUCE-targets.cmake")
-
-add_library(wopl STATIC "thirdparty/wopl/wopl/wopl_file.c")
-target_include_directories(wopl PUBLIC "thirdparty/wopl")
-set_property(TARGET wopl PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
   "${JUCE_PROJECT_DIR}/JuceLibraryCode/BinaryData.cpp"
@@ -90,17 +99,10 @@ add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
   "sources/midi/insnames.cc"
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
-  "sources/parameter_block.cc"
   "sources/bank_manager.cc"
   "sources/messages.cc"
   "sources/worker.cc"
   "sources/ui/look_and_feel.cc"
-  "sources/ui/operator_editor.cc"
-  "sources/ui/about_component.cc"
-  "sources/ui/main_component.cc"
-  "sources/ui/chips/opl3_waves.cc"
-  "sources/ui/components/algorithm_component.cc"
-  "sources/ui/components/algorithm_help.cc"
   "sources/ui/components/indicator_NxM.cc"
   "sources/ui/components/knob_component.cc"
   "sources/ui/components/styled_knobs.cc"
@@ -109,23 +111,52 @@ add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
   "sources/ui/utility/knobman_skin.cc"
   "sources/ui/utility/graphics.cc"
   "sources/ui/utility/image.cc"
-  "sources/adl/player.cc"
-  "sources/adl/instrument.cc"
-  "sources/adl/instrument.cc"
-  "sources/adl/instrument_properties.cc"
-  "sources/adl/chip_settings.cc"
-  "sources/adl/measurer/measurer.cpp"
-  "sources/adl/measurer/chips/dosbox/dbopl.cpp"
-  "sources/adl/measurer/chips/dosbox_opl3.cpp"
   "sources/pch/ADLplug_core.h")
 target_include_directories(ADLplug_core PUBLIC "sources" "${JUCE_PROJECT_DIR}/JuceLibraryCode")
 target_link_libraries(ADLplug_core PUBLIC
   juce_core juce_events juce_data_structures
   juce_audio_basics juce_audio_devices juce_audio_formats juce_audio_processors juce_audio_utils
   juce_graphics juce_gui_basics juce_gui_extra
-  ADLMIDI_static wopl)
+  ADLMIDI_static)
 set_property(TARGET ADLplug_core
   PROPERTY POSITION_INDEPENDENT_CODE ON)
+
+if(ADLplug_CHIP STREQUAL "OPL3")
+  target_compile_definitions(ADLplug_core PUBLIC "ADLPLUG_OPL3")
+
+  target_sources(ADLplug_core PRIVATE
+    "sources/opl3/parameter_block.cc"
+    "sources/opl3/adl/chip_settings.cc"
+    "sources/opl3/adl/instrument.cc"
+    "sources/opl3/adl/instrument.cc"
+    "sources/opl3/adl/instrument_properties.cc"
+    "sources/opl3/adl/player.cc"
+    "sources/opl3/adl/measurer/measurer.cpp"
+    "sources/opl3/adl/measurer/chips/dosbox/dbopl.cpp"
+    "sources/opl3/adl/measurer/chips/dosbox_opl3.cpp"
+    "sources/opl3/ui/operator_editor.cc"
+    "sources/opl3/ui/about_component.cc"
+    "sources/opl3/ui/main_component.cc"
+    "sources/opl3/ui/components/algorithm_component.cc"
+    "sources/opl3/ui/components/algorithm_help.cc"
+    "sources/opl3/ui/components/opl3_waves.cc")
+
+  add_library(wopl STATIC "thirdparty/wopl/wopl/wopl_file.c")
+  target_include_directories(wopl PUBLIC "thirdparty/wopl")
+  set_property(TARGET wopl PROPERTY POSITION_INDEPENDENT_CODE ON)
+  target_link_libraries(ADLplug_core PUBLIC wopl)
+
+  target_link_libraries(ADLplug_core PUBLIC ADLMIDI_static)
+elseif(ADLplug_CHIP STREQUAL "OPN2")
+  target_compile_definitions(ADLplug_core PUBLIC "ADLPLUG_OPN2")
+
+  add_library(wopn STATIC "thirdparty/wopn/wopn/wopn_file.c")
+  target_include_directories(wopn PUBLIC "thirdparty/wopn")
+  set_property(TARGET wopn PROPERTY POSITION_INDEPENDENT_CODE ON)
+  target_link_libraries(ADLplug_core PUBLIC wopn)
+
+  target_link_libraries(ADLplug_core PUBLIC OPNMIDI_static)
+endif()
 
 add_library(fmt STATIC
   "thirdparty/fmt/src/format.cc"

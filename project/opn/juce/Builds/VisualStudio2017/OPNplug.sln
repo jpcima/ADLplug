@@ -1,0 +1,65 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2017
+
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OPNplug - Standalone Plugin", "OPNplug_StandalonePlugin.vcxproj", "{6D16340F-6C22-8637-D85E-ADEC75382021}"
+	ProjectSection(ProjectDependencies) = postProject
+		{55EB88E2-DED7-A832-F732-BA02F1857909} = {55EB88E2-DED7-A832-F732-BA02F1857909}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OPNplug - VST", "OPNplug_VST.vcxproj", "{F86C027A-6B3B-550B-6128-5E5AF17C29EB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{55EB88E2-DED7-A832-F732-BA02F1857909} = {55EB88E2-DED7-A832-F732-BA02F1857909}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OPNplug - VST3", "OPNplug_VST3.vcxproj", "{32632D1D-5AF3-AEC6-761F-AD5DD90C64D0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{55EB88E2-DED7-A832-F732-BA02F1857909} = {55EB88E2-DED7-A832-F732-BA02F1857909}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OPNplug - AAX", "OPNplug_AAX.vcxproj", "{BFC5740E-6CBE-D81D-D950-D72C541275A0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{55EB88E2-DED7-A832-F732-BA02F1857909} = {55EB88E2-DED7-A832-F732-BA02F1857909}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OPNplug - RTAS", "OPNplug_RTAS.vcxproj", "{80880407-7B21-FDBE-7FA3-62A25125B0E3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{55EB88E2-DED7-A832-F732-BA02F1857909} = {55EB88E2-DED7-A832-F732-BA02F1857909}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OPNplug - Shared Code", "OPNplug_SharedCode.vcxproj", "{55EB88E2-DED7-A832-F732-BA02F1857909}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F86C027A-6B3B-550B-6128-5E5AF17C29EB}.Debug|x64.ActiveCfg = Debug|x64
+		{F86C027A-6B3B-550B-6128-5E5AF17C29EB}.Debug|x64.Build.0 = Debug|x64
+		{F86C027A-6B3B-550B-6128-5E5AF17C29EB}.Release|x64.ActiveCfg = Release|x64
+		{F86C027A-6B3B-550B-6128-5E5AF17C29EB}.Release|x64.Build.0 = Release|x64
+		{32632D1D-5AF3-AEC6-761F-AD5DD90C64D0}.Debug|x64.ActiveCfg = Debug|x64
+		{32632D1D-5AF3-AEC6-761F-AD5DD90C64D0}.Debug|x64.Build.0 = Debug|x64
+		{32632D1D-5AF3-AEC6-761F-AD5DD90C64D0}.Release|x64.ActiveCfg = Release|x64
+		{32632D1D-5AF3-AEC6-761F-AD5DD90C64D0}.Release|x64.Build.0 = Release|x64
+		{BFC5740E-6CBE-D81D-D950-D72C541275A0}.Debug|x64.ActiveCfg = Debug|x64
+		{BFC5740E-6CBE-D81D-D950-D72C541275A0}.Debug|x64.Build.0 = Debug|x64
+		{BFC5740E-6CBE-D81D-D950-D72C541275A0}.Release|x64.ActiveCfg = Release|x64
+		{BFC5740E-6CBE-D81D-D950-D72C541275A0}.Release|x64.Build.0 = Release|x64
+		{80880407-7B21-FDBE-7FA3-62A25125B0E3}.Debug|x64.ActiveCfg = Debug|x64
+		{80880407-7B21-FDBE-7FA3-62A25125B0E3}.Debug|x64.Build.0 = Debug|x64
+		{80880407-7B21-FDBE-7FA3-62A25125B0E3}.Release|x64.ActiveCfg = Release|x64
+		{80880407-7B21-FDBE-7FA3-62A25125B0E3}.Release|x64.Build.0 = Release|x64
+		{6D16340F-6C22-8637-D85E-ADEC75382021}.Debug|x64.ActiveCfg = Debug|x64
+		{6D16340F-6C22-8637-D85E-ADEC75382021}.Debug|x64.Build.0 = Debug|x64
+		{6D16340F-6C22-8637-D85E-ADEC75382021}.Release|x64.ActiveCfg = Release|x64
+		{6D16340F-6C22-8637-D85E-ADEC75382021}.Release|x64.Build.0 = Release|x64
+		{55EB88E2-DED7-A832-F732-BA02F1857909}.Debug|x64.ActiveCfg = Debug|x64
+		{55EB88E2-DED7-A832-F732-BA02F1857909}.Debug|x64.Build.0 = Debug|x64
+		{55EB88E2-DED7-A832-F732-BA02F1857909}.Release|x64.ActiveCfg = Release|x64
+		{55EB88E2-DED7-A832-F732-BA02F1857909}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
