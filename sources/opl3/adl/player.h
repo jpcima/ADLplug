@@ -4,63 +4,78 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #pragma once
+#include "instrument.h"
 #include <adlmidi.h>
 #include <string>
 #include <vector>
+#include <memory>
+#include <cmath>
 #include <cassert>
 
-#define EACH_PLAYER_TYPE(F, ...)                \
-    F(OPL3, ##__VA_ARGS__)                      \
-    /* F(OPN2, ##__VA_ARGS__) */
-
-enum class Player_Type {
-    #define ENUMVAL(x) x,
-    EACH_PLAYER_TYPE(ENUMVAL)
-    #undef ENUMVAL
-};
-
-struct Bank_Id;
-struct Bank_Ref;
-struct Instrument;
-
-template <Player_Type>
-struct Player_Traits;
-
-class Generic_Player
-{
+class Player {
 public:
-    virtual ~Generic_Player() {}
-    virtual Player_Type type() const = 0;
-    virtual void init(unsigned sample_rate) = 0;
-    virtual void close() = 0;
-    virtual void reset() = 0;
-    virtual void panic() = 0;
-    virtual unsigned reserve_banks(unsigned banks) = 0;
-    virtual bool load_bank_data(const void *mem, size_t size) = 0;
-    virtual bool get_bank(const Bank_Id &id, int flags, Bank_Ref &bank) = 0;
-    virtual bool get_first_bank(Bank_Ref &bank) = 0;
-    virtual bool get_next_bank(Bank_Ref &bank) = 0;
-    virtual bool get_bank_id(const Bank_Ref &bank, Bank_Id &id) = 0;
-    virtual bool remove_bank(Bank_Ref &bank) = 0;
-    virtual bool get_instrument(const Bank_Ref &bank, unsigned index, Instrument &ins) = 0;
-    virtual bool set_instrument(Bank_Ref &bank, unsigned index, const Instrument &ins) = 0;
-    virtual const char *emulator_name() const = 0;
-    virtual unsigned emulator() const = 0;
-    virtual void set_emulator(unsigned emu) = 0;
-    virtual unsigned num_chips() const = 0;
-    virtual bool set_num_chips(unsigned chips) = 0;
-    virtual unsigned num_4ops() const = 0;
-    virtual bool set_num_4ops(unsigned count) = 0;
-    virtual unsigned volume_model() const = 0;
-    virtual void set_volume_model(unsigned model) = 0;
-    virtual bool deep_tremolo() const = 0;
-    virtual void set_deep_tremolo(bool trem) = 0;
-    virtual bool deep_vibrato() const = 0;
-    virtual void set_deep_vibrato(bool vib) = 0;
-    virtual void set_soft_pan_enabled(bool sp) = 0;
-    virtual void play_midi(const uint8_t *msg, unsigned len) = 0;
-    virtual void generate(float *left, float *right, unsigned nframes, unsigned stride) = 0;
-    virtual double output_gain() const = 0;
+    void init(unsigned sample_rate);
+    void close()
+        { player_.reset(); }
+
+    static const char *name()
+        { return "ADLMIDI"; }
+    static double output_gain()
+        { return std::pow(10.0, 3.0 / 20.0); }
+    static std::vector<std::string> enumerate_emulators();
+
+    void reset()
+        { adl_reset(player_.get()); }
+    void panic()
+        { adl_panic(player_.get()); }
+    unsigned reserve_banks(unsigned banks)
+        { return adl_reserveBanks(player_.get(), banks); }
+    bool load_bank_data(const void *mem, size_t size)
+        { return adl_openBankData(player_.get(), mem, size) >= 0; }
+    bool get_bank(const Bank_Id &id, int flags, Bank_Ref &bank)
+        { return adl_getBank(player_.get(), &id, flags, &bank) >= 0; }
+    bool get_first_bank(Bank_Ref &bank)
+        { return adl_getFirstBank(player_.get(), &bank) >= 0; }
+    bool get_next_bank(Bank_Ref &bank)
+        { return adl_getNextBank(player_.get(), &bank) >= 0; }
+    bool get_bank_id(const Bank_Ref &bank, Bank_Id &id)
+        { return adl_getBankId(player_.get(), &bank, &id) >= 0; }
+    bool remove_bank(Bank_Ref &bank)
+        { return adl_removeBank(player_.get(), &bank) >= 0; }
+    bool get_instrument(const Bank_Ref &bank, unsigned index, Instrument &ins)
+        { return adl_getInstrument(player_.get(), &bank, index, &ins) >= 0; }
+    bool set_instrument(Bank_Ref &bank, unsigned index, const Instrument &ins)
+        { return adl_setInstrument(player_.get(), &bank, index, &ins) >= 0; }
+    const char *emulator_name() const
+        { return adl_chipEmulatorName(player_.get()); }
+    unsigned emulator() const
+        { return emu_; }
+    void set_emulator(unsigned emu)
+        { if (adl_switchEmulator(player_.get(), emu) >= 0) emu_ = emu; }
+    unsigned num_chips() const
+        { return adl_getNumChips(player_.get()); }
+    bool set_num_chips(unsigned chips)
+        { return adl_setNumChips(player_.get(), chips) == 0; }
+    unsigned num_4ops() const
+        { return adl_getNumFourOpsChn(player_.get()); }
+    bool set_num_4ops(unsigned count)
+        { return adl_setNumFourOpsChn(player_.get(), count) >= 0; }
+    unsigned volume_model() const
+        { return volume_model_; }
+    void set_volume_model(unsigned model)
+        { adl_setVolumeRangeModel(player_.get(), model); volume_model_ = model; }
+    bool deep_tremolo() const
+        { return deep_tremolo_; }
+    void set_deep_tremolo(bool trem)
+        { adl_setHTremolo(player_.get(), trem); deep_tremolo_ = trem; }
+    bool deep_vibrato() const
+        { return deep_vibrato_; }
+    void set_deep_vibrato(bool vib)
+        { adl_setHVibrato(player_.get(), vib); deep_vibrato_ = vib; }
+    void set_soft_pan_enabled(bool sp)
+        { adl_setSoftPanEnabled(player_.get(), sp); }
+    void play_midi(const uint8_t *msg, unsigned len);
+    void generate(float *left, float *right, unsigned nframes, unsigned stride);
 
     void ensure_get_bank_id(const Bank_Ref &bank, Bank_Id &id)
         { bool success = get_bank_id(bank, id); assert(success); (void)success; }
@@ -72,13 +87,14 @@ public:
         { bool success = get_instrument(bank, index, ins); assert(success); (void)success; }
     void ensure_set_instrument(Bank_Ref &bank, unsigned index, const Instrument &ins)
         { bool success = set_instrument(bank, index, ins); assert(success); (void)success; }
-};
 
-std::vector<std::string> enumerate_emulators(Player_Type pt);
-Generic_Player *instantiate_player(Player_Type pt);
-
-static constexpr Player_Type all_player_types[] {
-    #define ARRAYVAL(x) Player_Type::x,
-    EACH_PLAYER_TYPE(ARRAYVAL)
-    #undef ARRAYVAL
+private:
+    unsigned emu_ = 0;
+    unsigned volume_model_ = 0;
+    bool deep_tremolo_ = false;
+    bool deep_vibrato_ = false;
+    struct Player_Deleter {
+        void operator()(ADL_MIDIPlayer *p) const { adl_close(p); }
+    };
+    std::unique_ptr<ADL_MIDIPlayer, Player_Deleter> player_;
 };

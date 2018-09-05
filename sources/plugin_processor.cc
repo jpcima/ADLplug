@@ -120,7 +120,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     std::string default_wopl = pak.extract(0);
     assert(default_wopl.size() != 0);
 
-    Generic_Player *pl = instantiate_player(Player_Type::OPL3);
+    Player *pl = new Player;
     player_.reset(pl);
     pl->init(sample_rate);
     pl->reserve_banks(bank_reserve_size);
@@ -198,51 +198,51 @@ std::unique_lock<std::mutex> AdlplugAudioProcessor::acquire_player_nonrt()
 
 unsigned AdlplugAudioProcessor::num_chips_nonrt() const
 {
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     return pl->num_chips();
 }
 
 void AdlplugAudioProcessor::set_num_chips_nonrt(unsigned chips)
 {
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     pl->set_num_chips(chips);
     reconfigure_chip_nonrt();
 }
 
 unsigned AdlplugAudioProcessor::chip_emulator_nonrt() const
 {
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     return pl->emulator();
 }
 
 void AdlplugAudioProcessor::set_chip_emulator_nonrt(unsigned emu)
 {
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     pl->set_emulator(emu);
     reconfigure_chip_nonrt();
 }
 
 unsigned AdlplugAudioProcessor::num_4ops_nonrt() const
 {
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     return pl->num_4ops();
 }
 
 void AdlplugAudioProcessor::set_num_4ops_nonrt(unsigned count)
 {
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     pl->set_num_4ops(count);
 }
 
 void AdlplugAudioProcessor::panic_nonrt()
 {
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     pl->panic();
 }
 
 void AdlplugAudioProcessor::reconfigure_chip_nonrt()
 {
-    // Generic_Player *pl = player_.get();
+    // Player *pl = player_.get();
     // TODO any necessary reconfiguration after reset
 }
 
@@ -262,7 +262,7 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
     rt_checker_init();
 #endif
 
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     float *left = outputs[0];
     float *right = outputs[1];
 
@@ -412,7 +412,7 @@ void AdlplugAudioProcessor::process_messages(bool under_lock)
 
 bool AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len)
 {
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     pl->play_midi(data, len);
 
     unsigned status = (len > 0) ? data[0] : 0;
@@ -462,7 +462,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     if (!ctx.under_lock)
         return false;
 
-    Generic_Player &pl = *player_;
+    Player &pl = *player_;
     Bank_Manager &bm = *bank_manager_;
     Parameter_Block &pb = *parameter_block_;
 
@@ -597,7 +597,7 @@ void AdlplugAudioProcessor::parameters_to_instrument(unsigned part_number, Instr
 
 void AdlplugAudioProcessor::set_chip_settings_notifying_host()
 {
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     Parameter_Block &pb = *parameter_block_;
 
     *pb.p_emulator = pl->emulator();
@@ -607,7 +607,7 @@ void AdlplugAudioProcessor::set_chip_settings_notifying_host()
 
 void AdlplugAudioProcessor::set_global_parameters_notifying_host()
 {
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     Parameter_Block &pb = *parameter_block_;
 
     *pb.p_volmodel = pl->volume_model() - 1;
@@ -659,7 +659,7 @@ void AdlplugAudioProcessor::set_instrument_parameters_notifying_host(unsigned pa
 
 void AdlplugAudioProcessor::chip_settings_from_emulator(Chip_Settings &cs) const
 {
-    const Generic_Player &pl = *player_;
+    const Player &pl = *player_;
 
     cs.emulator = pl.emulator();
     cs.chip_count = pl.num_chips();
@@ -707,7 +707,7 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
 {
     std::lock_guard<std::mutex> lock(player_lock_);
 
-    Generic_Player *pl = player_.get();
+    Player *pl = player_.get();
     if (!pl)
         return;
 
@@ -782,7 +782,7 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
 void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
 {
     std::lock_guard<std::mutex> lock(player_lock_);
-    Generic_Player &pl = *player_;
+    Player &pl = *player_;
     Bank_Manager &bm = *bank_manager_;
 
     last_state_information_.replaceWith(data, size);

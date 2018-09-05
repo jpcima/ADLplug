@@ -119,7 +119,7 @@ bool Instrument::equal_instrument_except_delays(const ADL_Instrument &o) const n
     return equal_instrument(samedelay);
 }
 
-Bank_Ref *Bank_Lookup_Cache::get(Generic_Player &pl, const Bank_Id &id, int flags) noexcept
+Bank_Ref *Bank_Lookup_Cache::get(Player &pl, const Bank_Id &id, int flags) noexcept
 {
     if (id == last_bank_id_)
         return &last_bank_;
@@ -129,7 +129,7 @@ Bank_Ref *Bank_Lookup_Cache::get(Generic_Player &pl, const Bank_Id &id, int flag
     return &last_bank_;
 }
 
-Bank_Ref &Bank_Lookup_Cache::ensure_get(Generic_Player &pl, const Bank_Id &id, int flags) noexcept
+Bank_Ref &Bank_Lookup_Cache::ensure_get(Player &pl, const Bank_Id &id, int flags) noexcept
 {
     Bank_Ref *bank = get(pl, id, flags);
     assert(bank);

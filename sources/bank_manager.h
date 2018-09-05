@@ -10,10 +10,11 @@
 #include <array>
 #include <bitset>
 class AdlplugAudioProcessor;
+class Player;
 
 class Bank_Manager {
 public:
-    explicit Bank_Manager(AdlplugAudioProcessor &proc, Generic_Player &pl);
+    explicit Bank_Manager(AdlplugAudioProcessor &proc, Player &pl);
     void clear_banks(bool notify);
 
     void mark_everything_for_notification();
@@ -51,7 +52,7 @@ private:
     bool emit_measurement_request(const Bank_Info &info, unsigned program);
 
     AdlplugAudioProcessor &proc_;
-    Generic_Player &pl_;
+    Player &pl_;
 
 public:
     struct Bank_Info {

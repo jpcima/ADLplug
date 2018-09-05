@@ -8,7 +8,7 @@
 #include <stdint.h>
 #include <stdio.h>
 struct WOPLInstrument;
-class Generic_Player;
+class Player;
 namespace juce { class PropertySet; }
 
 struct Instrument : ADL_Instrument
@@ -119,8 +119,8 @@ inline bool operator<(Bank_Id a, Bank_Id b)
 class Bank_Lookup_Cache
 {
 public:
-    Bank_Ref *get(Generic_Player &pl, const Bank_Id &id, int flags) noexcept;
-    Bank_Ref &ensure_get(Generic_Player &pl, const Bank_Id &id, int flags) noexcept;
+    Bank_Ref *get(Player &pl, const Bank_Id &id, int flags) noexcept;
+    Bank_Ref &ensure_get(Player &pl, const Bank_Id &id, int flags) noexcept;
     void clear() noexcept { last_bank_id_ = Bank_Id(); }
 private:
     Bank_Id last_bank_id_;

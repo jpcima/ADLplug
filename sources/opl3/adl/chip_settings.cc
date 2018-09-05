@@ -26,7 +26,7 @@ Emulator_Defaults &get_emulator_defaults()
     std::unique_ptr<Emulator_Defaults> defaults_u(defaults);
 
     //
-    std::vector<std::string> choices = ::enumerate_emulators(Player_Type::OPL3);
+    std::vector<std::string> choices = Player::enumerate_emulators();
     unsigned count = choices.size();
     defaults->choices.ensureStorageAllocated(count);
     for (const std::string &choice : choices)

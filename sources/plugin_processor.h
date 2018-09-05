@@ -12,7 +12,7 @@
 #include <bitset>
 #include <memory>
 #include <mutex>
-class Generic_Player;
+class Player;
 class Bank_Manager;
 class Simple_Fifo;
 class Midi_Input_Source;
@@ -125,7 +125,7 @@ protected:
     void parameterGestureChanged(int index, bool is_starting) override {}
 
 private:
-    std::unique_ptr<Generic_Player> player_;
+    std::unique_ptr<Player> player_;
 
     std::unique_ptr<Bank_Manager> bank_manager_;
 

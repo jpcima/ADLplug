@@ -18,7 +18,7 @@
 #   define trace(fmt, ...) fprintf(stderr, "[Bank Manager] " fmt "\n", ##__VA_ARGS__)
 #endif
 
-Bank_Manager::Bank_Manager(AdlplugAudioProcessor &proc, Generic_Player &pl)
+Bank_Manager::Bank_Manager(AdlplugAudioProcessor &proc, Player &pl)
     : proc_(proc), pl_(pl)
 {
     initialize_all_banks();
@@ -26,7 +26,7 @@ Bank_Manager::Bank_Manager(AdlplugAudioProcessor &proc, Generic_Player &pl)
 
 void Bank_Manager::clear_banks(bool notify)
 {
-    Generic_Player &pl = pl_;
+    Player &pl = pl_;
 
     trace("Clear banks");
 
@@ -123,7 +123,7 @@ void Bank_Manager::send_measurement_requests()
 
 bool Bank_Manager::load_global_parameters(const Instrument_Global_Parameters &gp, bool notify)
 {
-    Generic_Player &pl = pl_;
+    Player &pl = pl_;
 
     trace("Loading global parameters");
 
@@ -148,7 +148,7 @@ bool Bank_Manager::load_global_parameters(const Instrument_Global_Parameters &gp
 
 bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned flags)
 {
-    Generic_Player &pl = pl_;
+    Player &pl = pl_;
 
     unsigned index = find_slot(id);
     if (index != (unsigned)-1) {
@@ -214,7 +214,7 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
 
 bool Bank_Manager::load_measurement(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned kon, unsigned koff, bool notify)
 {
-    Generic_Player &pl = pl_;
+    Player &pl = pl_;
 
     trace("Loading measurement for program %c%u:%u:%u: %u ms on, %u ms off",
           id.percussive ? 'P' : 'M', id.msb, id.lsb, program,
@@ -266,7 +266,7 @@ void Bank_Manager::rename_bank(const Bank_Id &id, const char *name, bool notify)
 
 bool Bank_Manager::find_program(const Bank_Id &id, unsigned program, Instrument &ins)
 {
-    Generic_Player &pl = pl_;
+    Player &pl = pl_;
 
     unsigned index = find_slot(id);
     if (index == (unsigned)-1)
@@ -279,7 +279,7 @@ bool Bank_Manager::find_program(const Bank_Id &id, unsigned program, Instrument 
 
 void Bank_Manager::initialize_all_banks()
 {
-    Generic_Player &pl = pl_;
+    Player &pl = pl_;
 
     trace("Update all banks");
 
@@ -368,7 +368,7 @@ bool Bank_Manager::emit_slots()
 
 bool Bank_Manager::emit_global_parameters()
 {
-    Generic_Player &pl = pl_;
+    Player &pl = pl_;
     AdlplugAudioProcessor &proc = proc_;
     Simple_Fifo &queue = *proc.message_queue_to_ui();
 
@@ -388,7 +388,7 @@ bool Bank_Manager::emit_global_parameters()
 
 bool Bank_Manager::emit_notification(const Bank_Info &info, unsigned program)
 {
-    Generic_Player &pl = pl_;
+    Player &pl = pl_;
     AdlplugAudioProcessor &proc = proc_;
     Simple_Fifo &queue = *proc.message_queue_to_ui();
 
@@ -409,7 +409,7 @@ bool Bank_Manager::emit_notification(const Bank_Info &info, unsigned program)
 
 bool Bank_Manager::emit_measurement_request(const Bank_Info &info, unsigned program)
 {
-    Generic_Player &pl = pl_;
+    Player &pl = pl_;
     AdlplugAudioProcessor &proc = proc_;
     Simple_Fifo &queue = proc.message_queue_to_worker();
 
