@@ -63,10 +63,12 @@ set(libADLMIDI_STATIC ON CACHE STRING "" FORCE)
 set(libADLMIDI_SHARED OFF CACHE STRING "" FORCE)
 add_subdirectory("thirdparty/libADLMIDI" EXCLUDE_FROM_ALL)
 target_compile_definitions(ADLMIDI_static PRIVATE "ADLMIDI_EXPORT=")
+target_compile_definitions(ADLMIDI_static PUBLIC "ADLMIDI_UNSTABLE_API=")
 set(libOPNMIDI_STATIC ON CACHE STRING "" FORCE)
 set(libOPNMIDI_SHARED OFF CACHE STRING "" FORCE)
 add_subdirectory("thirdparty/libOPNMIDI" EXCLUDE_FROM_ALL)
 target_compile_definitions(OPNMIDI_static PRIVATE "OPNMIDI_EXPORT=")
+target_compile_definitions(OPNMIDI_static PUBLIC "OPNMIDI_UNSTABLE_API=")
 
 if(ADLplug_Jack)
   include(FindPkgConfig)
@@ -149,6 +151,13 @@ if(ADLplug_CHIP STREQUAL "OPL3")
   target_link_libraries(ADLplug_core PUBLIC ADLMIDI_static)
 elseif(ADLplug_CHIP STREQUAL "OPN2")
   target_compile_definitions(ADLplug_core PUBLIC "ADLPLUG_OPN2")
+
+  target_sources(ADLplug_core PRIVATE
+    "sources/opn2/adl/chip_settings.cc"
+    "sources/opn2/adl/instrument.cc"
+    "sources/opn2/adl/instrument.cc"
+    "sources/opn2/adl/instrument_properties.cc"
+    "sources/opn2/adl/player.cc")
 
   add_library(wopn STATIC "thirdparty/wopn/wopn/wopn_file.c")
   target_include_directories(wopn PUBLIC "thirdparty/wopn")

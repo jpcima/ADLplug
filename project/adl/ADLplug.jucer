@@ -48,7 +48,6 @@
           <FILE id="utO8oo" name="chip_settings.h" compile="0" resource="0" file="../../sources/opl3/adl/chip_settings.h"/>
           <FILE id="CT2nJo" name="instrument.cc" compile="1" resource="0" file="../../sources/opl3/adl/instrument.cc"/>
           <FILE id="DUJv2I" name="instrument.h" compile="0" resource="0" file="../../sources/opl3/adl/instrument.h"/>
-          <FILE id="uDoJus" name="instrument.tcc" compile="0" resource="0" file="../../sources/opl3/adl/instrument.tcc"/>
           <FILE id="x6WVdJ" name="instrument_properties.cc" compile="1" resource="0"
                 file="../../sources/opl3/adl/instrument_properties.cc"/>
           <FILE id="L6vSEX" name="player.cc" compile="1" resource="0" file="../../sources/opl3/adl/player.cc"/>
@@ -137,6 +136,7 @@
               file="../../sources/utility/counting_bitset.h"/>
         <FILE id="aFtUeC" name="counting_bitset.tcc" compile="0" resource="0"
               file="../../sources/utility/counting_bitset.tcc"/>
+        <FILE id="h28NEs" name="field_bitops.h" compile="0" resource="0" file="../../sources/utility/field_bitops.h"/>
         <FILE id="RyY50n" name="functional_timer.h" compile="0" resource="0"
               file="../../sources/utility/functional_timer.h"/>
         <FILE id="tSjcHH" name="midi.cc" compile="1" resource="0" file="../../sources/utility/midi.cc"/>

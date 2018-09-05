@@ -152,6 +152,10 @@
     <ClCompile Include="..\..\..\..\..\sources\plugin_processor.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\worker.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\midi\insnames.cc"/>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\chip_settings.cc"/>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\instrument.cc"/>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\instrument_properties.cc"/>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\player.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\look_and_feel.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\indicator_NxM.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\knob_component.cc"/>
@@ -1947,6 +1951,9 @@
     <ClInclude Include="..\..\..\..\..\sources\dsp\dc_filter.h"/>
     <ClInclude Include="..\..\..\..\..\sources\dsp\vu_monitor.h"/>
     <ClInclude Include="..\..\..\..\..\sources\midi\insnames.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\chip_settings.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\instrument.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\player.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\look_and_feel.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\main_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\indicator_NxM.h"/>
@@ -1959,6 +1966,7 @@
     <ClInclude Include="..\..\..\..\..\sources\ui\utility\image.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\utility\knobman_skin.h"/>
     <ClInclude Include="..\..\..\..\..\sources\utility\counting_bitset.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\utility\field_bitops.h"/>
     <ClInclude Include="..\..\..\..\..\sources\utility\functional_timer.h"/>
     <ClInclude Include="..\..\..\..\..\sources\utility\midi.h"/>
     <ClInclude Include="..\..\..\..\..\sources\utility\pak.h"/>

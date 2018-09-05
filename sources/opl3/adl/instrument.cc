@@ -118,20 +118,3 @@ bool Instrument::equal_instrument_except_delays(const ADL_Instrument &o) const n
     samedelay.delay_off_ms = this->delay_off_ms;
     return equal_instrument(samedelay);
 }
-
-Bank_Ref *Bank_Lookup_Cache::get(Player &pl, const Bank_Id &id, int flags) noexcept
-{
-    if (id == last_bank_id_)
-        return &last_bank_;
-    if (!pl.get_bank(id, flags, last_bank_))
-        return nullptr;
-    last_bank_id_ = id;
-    return &last_bank_;
-}
-
-Bank_Ref &Bank_Lookup_Cache::ensure_get(Player &pl, const Bank_Id &id, int flags) noexcept
-{
-    Bank_Ref *bank = get(pl, id, flags);
-    assert(bank);
-    return *bank;
-}

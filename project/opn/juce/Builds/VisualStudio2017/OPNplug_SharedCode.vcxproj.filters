@@ -11,6 +11,12 @@
     <Filter Include="OPNplug\sources\midi">
       <UniqueIdentifier>{218F1570-832C-D829-C16B-738284406BB7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OPNplug\sources\opn2\adl">
+      <UniqueIdentifier>{2CFEDDE0-233E-64FC-1B01-F08BD3294CE2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OPNplug\sources\opn2">
+      <UniqueIdentifier>{9BA00EF2-2B9D-0F89-DF03-B7744230675D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="OPNplug\sources\ui\components">
       <UniqueIdentifier>{522600BF-DA87-2C3D-0454-DA7CEE7F3930}</UniqueIdentifier>
     </Filter>
@@ -507,6 +513,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\midi\insnames.cc">
       <Filter>OPNplug\sources\midi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\chip_settings.cc">
+      <Filter>OPNplug\sources\opn2\adl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\instrument.cc">
+      <Filter>OPNplug\sources\opn2\adl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\instrument_properties.cc">
+      <Filter>OPNplug\sources\opn2\adl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\player.cc">
+      <Filter>OPNplug\sources\opn2\adl</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\look_and_feel.cc">
       <Filter>OPNplug\sources\ui</Filter>
@@ -2532,6 +2550,15 @@
     <ClInclude Include="..\..\..\..\..\sources\midi\insnames.h">
       <Filter>OPNplug\sources\midi</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\chip_settings.h">
+      <Filter>OPNplug\sources\opn2\adl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\instrument.h">
+      <Filter>OPNplug\sources\opn2\adl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\player.h">
+      <Filter>OPNplug\sources\opn2\adl</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\look_and_feel.h">
       <Filter>OPNplug\sources\ui</Filter>
     </ClInclude>
@@ -2566,6 +2593,9 @@
       <Filter>OPNplug\sources\ui\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\utility\counting_bitset.h">
+      <Filter>OPNplug\sources\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\utility\field_bitops.h">
       <Filter>OPNplug\sources\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\utility\functional_timer.h">

@@ -1988,6 +1988,7 @@
     <ClInclude Include="..\..\..\..\..\sources\ui\utility\image.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\utility\knobman_skin.h"/>
     <ClInclude Include="..\..\..\..\..\sources\utility\counting_bitset.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\utility\field_bitops.h"/>
     <ClInclude Include="..\..\..\..\..\sources\utility\functional_timer.h"/>
     <ClInclude Include="..\..\..\..\..\sources\utility\midi.h"/>
     <ClInclude Include="..\..\..\..\..\sources\utility\pak.h"/>
@@ -2726,7 +2727,6 @@
     <ClInclude Include="..\..\..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\sources\opl3\adl\instrument.tcc"/>
     <None Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\opl_chip_base.tcc"/>
     <None Include="..\..\..\..\..\sources\utility\counting_bitset.tcc"/>
     <None Include="..\..\..\..\..\resources\opl3\banks.pak"/>

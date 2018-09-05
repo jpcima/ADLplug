@@ -5,21 +5,21 @@
 
 #pragma once
 #include "utility/field_bitops.h"
-#include <adlmidi.h>
+#include <opnmidi.h>
 #include <stdint.h>
 #include <stdio.h>
-struct WOPLInstrument;
+struct WOPNInstrument;
 class Player;
 namespace juce { class PropertySet; }
 
-struct Instrument : ADL_Instrument
+struct Instrument : OPN2_Instrument
 {
     Instrument() noexcept
-        : ADL_Instrument{} { inst_flags = ADLMIDI_Ins_IsBlank; }
+        : OPN2_Instrument{} { inst_flags = OPNMIDI_Ins_IsBlank; }
 
-    static Instrument from_adlmidi(const ADL_Instrument &o) noexcept;
-    static Instrument from_wopl(const WOPLInstrument &o) noexcept;
-    WOPLInstrument to_wopl() const noexcept;
+    static Instrument from_adlmidi(const OPN2_Instrument &o) noexcept;
+    static Instrument from_wopl(const WOPNInstrument &o) noexcept;
+    WOPNInstrument to_wopl() const noexcept;
 
     void to_properties(juce::PropertySet &set, const char *key_prefix) const;
     static Instrument from_properties(const juce::PropertySet &set, const char *key_prefix);
@@ -37,25 +37,26 @@ public:
     void id(unsigned op, type value) noexcept                           \
         { Field_Bitops::set##opt<shift, size, type>(operators[op].field, value); }
 
-    PARAMETER(bool, four_op, inst_flags, 0, 1,)
-    PARAMETER(bool, pseudo_four_op, inst_flags, 1, 1,)
-    PARAMETER(bool, blank, inst_flags, 2, 1,)
-    PARAMETER(bool, con12, fb_conn1_C0, 0, 1,)
-    PARAMETER(bool, con34, fb_conn2_C0, 0, 1,)
-    PARAMETER(unsigned, fb12, fb_conn1_C0, 1, 3,)
-    PARAMETER(unsigned, fb34, fb_conn2_C0, 1, 3,)
-    OP_PARAMETER(unsigned, attack, atdec_60, 4, 4, _inverted)
-    OP_PARAMETER(unsigned, decay, atdec_60, 0, 4, _inverted)
-    OP_PARAMETER(unsigned, sustain, susrel_80, 4, 4, _inverted)
-    OP_PARAMETER(unsigned, release, susrel_80, 0, 4, _inverted)
-    OP_PARAMETER(unsigned, level, ksl_l_40, 0, 6, _inverted)
-    OP_PARAMETER(unsigned, ksl, ksl_l_40, 6, 2,)
-    OP_PARAMETER(unsigned, fmul, avekf_20, 0, 4,)
-    OP_PARAMETER(bool, trem, avekf_20, 7, 1,)
-    OP_PARAMETER(bool, vib, avekf_20, 6, 1,)
-    OP_PARAMETER(bool, sus, avekf_20, 5, 1,)
-    OP_PARAMETER(bool, env, avekf_20, 4, 1,)
-    OP_PARAMETER(unsigned, wave, waveform_E0, 0, 3,)
+    PARAMETER(bool, blank, inst_flags, 1, 1,)
+    // PARAMETER(bool, pseudo_eight_op, inst_flags, 2, 1,)
+    PARAMETER(unsigned, feedback, fbalg, 3, 3,)
+    PARAMETER(unsigned, algorithm, fbalg, 0, 3,)
+    PARAMETER(unsigned, ams, lfosens, 4, 2,)
+    PARAMETER(unsigned, fms, lfosens, 0, 3,)
+    OP_PARAMETER(unsigned, detune, dtfm_30, 4, 3,)
+    OP_PARAMETER(unsigned, fmul, dtfm_30, 0, 4,)
+    OP_PARAMETER(unsigned, level, level_40, 0, 7,)
+    OP_PARAMETER(unsigned, ratescale, rsatk_50, 6, 2,)
+    OP_PARAMETER(unsigned, attack, rsatk_50, 0, 5,)
+    OP_PARAMETER(bool, am, amdecay1_60, 7, 1,)
+    OP_PARAMETER(unsigned, decay1, amdecay1_60, 0, 5,)
+    OP_PARAMETER(unsigned, decay2, decay2_70, 0, 5,)
+    OP_PARAMETER(unsigned, sustain, susrel_80, 4, 4,)
+    OP_PARAMETER(unsigned, release, susrel_80, 0, 4,)
+    OP_PARAMETER(bool, cont, ssgeg_90, 3, 1,)
+    OP_PARAMETER(bool, att, ssgeg_90, 2, 1,)
+    OP_PARAMETER(bool, alt, ssgeg_90, 1, 1,)
+    OP_PARAMETER(bool, hold, ssgeg_90, 0, 1,)
 
 #undef PARAMETER
 #undef OP_PARAMETER
@@ -65,29 +66,29 @@ public:
     void describe(FILE *out) const noexcept;
     void describe_operator(unsigned op, FILE *out, const char *indent = "") const noexcept;
 
-    bool equal_instrument(const ADL_Instrument &o) const noexcept;
-    bool equal_instrument_except_delays(const ADL_Instrument &o) const noexcept;
+    bool equal_instrument(const OPN2_Instrument &o) const noexcept;
+    bool equal_instrument_except_delays(const OPN2_Instrument &o) const noexcept;
 };
 
 struct Instrument_Global_Parameters
 {
     unsigned volume_model = 0;
-    bool deep_tremolo = false;
-    bool deep_vibrato = false;
+    bool lfo_enable = false;
+    unsigned lfo_frequency = 0;
 };
 
-struct Bank_Ref : ADL_Bank
+struct Bank_Ref : OPN2_Bank
 {
     constexpr Bank_Ref() noexcept
-        : ADL_Bank{} {}
+        : OPN2_Bank{} {}
 };
 
-struct Bank_Id : ADL_BankId
+struct Bank_Id : OPN2_BankId
 {
     constexpr Bank_Id() noexcept
-        : ADL_BankId{false, 0xff, 0xff} {}
+        : OPN2_BankId{false, 0xff, 0xff} {}
     constexpr Bank_Id(uint8_t msb, uint8_t lsb, bool percussive) noexcept
-        : ADL_BankId{percussive, msb, lsb} {}
+        : OPN2_BankId{percussive, msb, lsb} {}
     constexpr explicit operator bool() const noexcept
         { return msb < 0x7f; }
     constexpr bool operator==(const Bank_Id &o) const noexcept

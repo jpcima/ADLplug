@@ -2673,6 +2673,9 @@
     <ClInclude Include="..\..\..\..\..\sources\utility\counting_bitset.h">
       <Filter>ADLplug\sources\utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\utility\field_bitops.h">
+      <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\utility\functional_timer.h">
       <Filter>ADLplug\sources\utility</Filter>
     </ClInclude>
@@ -4883,9 +4886,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\sources\opl3\adl\instrument.tcc">
-      <Filter>ADLplug\sources\opl3\adl</Filter>
-    </None>
     <None Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\opl_chip_base.tcc">
       <Filter>ADLplug\sources\opl3\adl\measurer\chips</Filter>
     </None>

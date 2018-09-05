@@ -41,7 +41,19 @@
         <FILE id="aBpHSz" name="insnames.cc" compile="1" resource="0" file="../../sources/midi/insnames.cc"/>
         <FILE id="PHRogf" name="insnames.h" compile="0" resource="0" file="../../sources/midi/insnames.h"/>
       </GROUP>
-      <GROUP id="{CF57B707-82F8-1C68-D7BE-4532B607DEE4}" name="opn2"/>
+      <GROUP id="{CF57B707-82F8-1C68-D7BE-4532B607DEE4}" name="opn2">
+        <GROUP id="{D07194C1-A7BE-6FBC-D9EC-E536913D419F}" name="adl">
+          <FILE id="Wuq81m" name="chip_settings.cc" compile="1" resource="0"
+                file="../../sources/opn2/adl/chip_settings.cc"/>
+          <FILE id="Mgdqv3" name="chip_settings.h" compile="0" resource="0" file="../../sources/opn2/adl/chip_settings.h"/>
+          <FILE id="qFHwMZ" name="instrument.cc" compile="1" resource="0" file="../../sources/opn2/adl/instrument.cc"/>
+          <FILE id="b7purZ" name="instrument.h" compile="0" resource="0" file="../../sources/opn2/adl/instrument.h"/>
+          <FILE id="BBcBJO" name="instrument_properties.cc" compile="1" resource="0"
+                file="../../sources/opn2/adl/instrument_properties.cc"/>
+          <FILE id="UAf4EG" name="player.cc" compile="1" resource="0" file="../../sources/opn2/adl/player.cc"/>
+          <FILE id="YVKuXB" name="player.h" compile="0" resource="0" file="../../sources/opn2/adl/player.h"/>
+        </GROUP>
+      </GROUP>
       <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">
         <FILE id="awUfqG" name="look_and_feel.cc" compile="1" resource="0"
               file="../../sources/ui/look_and_feel.cc"/>
@@ -78,6 +90,7 @@
               file="../../sources/utility/counting_bitset.h"/>
         <FILE id="aFtUeC" name="counting_bitset.tcc" compile="0" resource="0"
               file="../../sources/utility/counting_bitset.tcc"/>
+        <FILE id="H2A09B" name="field_bitops.h" compile="0" resource="0" file="../../sources/utility/field_bitops.h"/>
         <FILE id="RyY50n" name="functional_timer.h" compile="0" resource="0"
               file="../../sources/utility/functional_timer.h"/>
         <FILE id="tSjcHH" name="midi.cc" compile="1" resource="0" file="../../sources/utility/midi.cc"/>
