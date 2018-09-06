@@ -55,10 +55,11 @@ About_Component::About_Component ()
     label->setBounds (8, 88, 488, 40);
 
     label2.reset (new Label ("new label",
-                             TRANS("Vitaly Novichkov for the ADLMIDI library\n"
+                             CharPointer_UTF8 ("Vitaly Novichkov for the OPNMIDI library\n"
                              "Joel Yliluoma for the original ADLMIDI software\n"
-                             "Alexey Khokholov for Nuked OPL3\n"
-                             "The DOSBox Team for DOSBox OPL")));
+                             "Alexey Khokholov for Nuked OPN2\n"
+                             "MAMEDev and contributors for MAME YM2612\n"
+                             "St\xc3\xa9phane Dallongeville and Shay Green for GENS OPN2")));
     addAndMakeVisible (label2.get());
     label2->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     label2->setJustificationType (Justification::centredLeft);
@@ -67,7 +68,7 @@ About_Component::About_Component ()
     label2->setColour (TextEditor::textColourId, Colours::black);
     label2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label2->setBounds (8, 136, 488, 56);
+    label2->setBounds (8, 136, 488, 80);
 
     lbl_prog_version.reset (new Label ("new label",
                                        TRANS("Foobar 1.0")));
@@ -97,7 +98,7 @@ About_Component::About_Component ()
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (500, 210);
+    setSize (500, 234);
 
 
     //[Constructor] You can add your own custom stuff here..
@@ -161,7 +162,7 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="About_Component" componentName=""
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.33"
-                 fixedSize="0" initialWidth="500" initialHeight="210">
+                 fixedSize="0" initialWidth="500" initialHeight="234">
   <BACKGROUND backgroundColour="ff323e44"/>
   <HYPERLINKBUTTON name="new hyperlink" id="ab6eab2236ebdf3d" memberName="hyperlinkButton"
                    virtualName="" explicitFocusOrder="0" pos="8 56 88 24" tooltip="https://github.com/jpcima/ADLplug"
@@ -174,8 +175,8 @@ BEGIN_JUCER_METADATA
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="33"/>
   <LABEL name="new label" id="5ed4be24f6c40a04" memberName="label2" virtualName=""
-         explicitFocusOrder="0" pos="8 136 488 56" textCol="fff0f8ff"
-         edTextCol="ff000000" edBkgCol="0" labelText="Vitaly Novichkov for the ADLMIDI library&#10;Joel Yliluoma for the original ADLMIDI software&#10;Alexey Khokholov for Nuked OPL3&#10;The DOSBox Team for DOSBox OPL"
+         explicitFocusOrder="0" pos="8 136 488 80" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Vitaly Novichkov for the OPNMIDI library&#10;Joel Yliluoma for the original ADLMIDI software&#10;Alexey Khokholov for Nuked OPN2&#10;MAMEDev and contributors for MAME YM2612&#10;St&#233;phane Dallongeville and Shay Green for GENS OPN2"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="15.0" kerning="0.0" bold="0"
          italic="0" justification="33"/>
