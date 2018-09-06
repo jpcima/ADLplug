@@ -65,6 +65,14 @@ public:
         { return volume_model_; }
     void set_volume_model(unsigned model)
         { opn2_setVolumeRangeModel(player_.get(), model); volume_model_ = model; }
+    bool lfo_enabled() const
+        { return opn2_getLfoEnabled(player_.get()); }
+    void set_lfo_enabled(int enable)
+        { opn2_setLfoEnabled(player_.get(), enable); }
+    unsigned lfo_frequency() const
+        { return opn2_getLfoFrequency(player_.get()); }
+    void set_lfo_frequency(int frequency)
+        { opn2_setLfoFrequency(player_.get(), frequency); }
     void set_soft_pan_enabled(bool sp)
         { /* opn2_setSoftPanEnabled(player_.get(), sp); */ }
     void play_midi(const uint8_t *msg, unsigned len);

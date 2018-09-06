@@ -66,17 +66,17 @@ public:
     bool set_num_4ops(unsigned count)
         { return adl_setNumFourOpsChn(player_.get(), count) >= 0; }
     unsigned volume_model() const
-        { return volume_model_; }
-    void set_volume_model(unsigned model)
-        { adl_setVolumeRangeModel(player_.get(), model); volume_model_ = model; }
+        { return adl_getVolumeRangeModel(player_.get()); }
+    void set_volume_model(int model)
+        { adl_setVolumeRangeModel(player_.get(), model); }
     bool deep_tremolo() const
-        { return deep_tremolo_; }
-    void set_deep_tremolo(bool trem)
-        { adl_setHTremolo(player_.get(), trem); deep_tremolo_ = trem; }
+        { return adl_getHTremolo(player_.get()); }
+    void set_deep_tremolo(int trem)
+        { adl_setHTremolo(player_.get(), trem); }
     bool deep_vibrato() const
-        { return deep_vibrato_; }
-    void set_deep_vibrato(bool vib)
-        { adl_setHVibrato(player_.get(), vib); deep_vibrato_ = vib; }
+        { return adl_getHVibrato(player_.get()); }
+    void set_deep_vibrato(int vib)
+        { adl_setHVibrato(player_.get(), vib); }
     void set_soft_pan_enabled(bool sp)
         { adl_setSoftPanEnabled(player_.get(), sp); }
     void play_midi(const uint8_t *msg, unsigned len);
@@ -95,9 +95,6 @@ public:
 
 private:
     unsigned emu_ = 0;
-    unsigned volume_model_ = 0;
-    bool deep_tremolo_ = false;
-    bool deep_vibrato_ = false;
     struct Player_Deleter {
         void operator()(ADL_MIDIPlayer *p) const { adl_close(p); }
     };

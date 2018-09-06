@@ -125,13 +125,15 @@ void Worker::handle_message(Buffered_Message &msg)
         const auto &body = *(const Messages::Fx::RequestChipSettings *)msg.data;
         unsigned emulator = body.cs.emulator;
         unsigned nchip = std::min(body.cs.chip_count, 100u);
-        unsigned n4op = std::min(body.cs.fourop_count, 6 * nchip);
         trace("Chip settings requested");
         std::unique_lock<std::mutex> lock = proc.acquire_player_nonrt();
         proc.panic_nonrt();
         proc.set_chip_emulator_nonrt(emulator);
         proc.set_num_chips_nonrt(nchip);
+#if defined(ADLPLUG_OPL3)
+        unsigned n4op = std::min(body.cs.fourop_count, 6 * nchip);
         proc.set_num_4ops_nonrt(n4op);
+#endif
         proc.mark_chip_settings_for_notification();
         break;
     }

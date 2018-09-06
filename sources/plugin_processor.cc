@@ -221,6 +221,7 @@ void AdlplugAudioProcessor::set_chip_emulator_nonrt(unsigned emu)
     reconfigure_chip_nonrt();
 }
 
+#if defined(ADLPLUG_OPL3)
 unsigned AdlplugAudioProcessor::num_4ops_nonrt() const
 {
     Player *pl = player_.get();
@@ -232,6 +233,7 @@ void AdlplugAudioProcessor::set_num_4ops_nonrt(unsigned count)
     Player *pl = player_.get();
     pl->set_num_4ops(count);
 }
+#endif  // defined(ADLPLUG_OPL3)
 
 void AdlplugAudioProcessor::panic_nonrt()
 {
@@ -328,7 +330,9 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
             auto &body = *(Messages::Fx::NotifyChipSettings *)msg.data;
             body.cs.emulator = pl->emulator();
             body.cs.chip_count = pl->num_chips();
+#if defined(ADLPLUG_OPL3)
             body.cs.fourop_count = pl->num_4ops();
+#endif
             Messages::finish_write(queue, msg);
         }
     }
@@ -513,6 +517,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         }
         break;
     }
+#if defined(ADLPLUG_OPL3)
     case (unsigned)User_Message::SelectOptimal4Ops: {
         pl.panic();
         pl.set_num_4ops(~0u);
@@ -520,6 +525,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         chip_settings_need_notification_.store(1);
         break;
     }
+#endif
     case (unsigned)Worker_Message::MeasurementResult: {
         auto &body = *(const Messages::Worker::MeasurementResult *)data;
         bm.load_measurement(body.bank, body.program, body.instrument, body.ms_sound_kon, body.ms_sound_koff, true);
@@ -544,7 +550,9 @@ void AdlplugAudioProcessor::parameters_to_chip_settings(Chip_Settings &cs) const
 
     cs.emulator = pb.p_emulator->getIndex();
     cs.chip_count = pb.p_nchip->get();
+#if defined(ADLPLUG_OPL3)
     cs.fourop_count = pb.p_n4op->get();
+#endif
 }
 
 void AdlplugAudioProcessor::parameters_to_global(Instrument_Global_Parameters &gp) const
@@ -552,8 +560,13 @@ void AdlplugAudioProcessor::parameters_to_global(Instrument_Global_Parameters &g
     const Parameter_Block &pb = *parameter_block_;
 
     gp.volume_model = pb.p_volmodel->getIndex();
+#if defined(ADLPLUG_OPL3)
     gp.deep_tremolo = pb.p_deeptrem->get();
     gp.deep_vibrato = pb.p_deepvib->get();
+#elif defined(ADLPLUG_OPN2)
+    gp.lfo_enable = pb.p_lfoenable->get();
+    gp.lfo_frequency = pb.p_lfofreq->get();
+#endif
 }
 
 void AdlplugAudioProcessor::parameters_to_instrument(unsigned part_number, Instrument &ins) const
@@ -601,7 +614,9 @@ void AdlplugAudioProcessor::set_chip_settings_notifying_host()
 
     *pb.p_emulator = pl->emulator();
     *pb.p_nchip = pl->num_chips();
+#if defined(ADLPLUG_OPL3)
     *pb.p_n4op = pl->num_4ops();
+#endif
 }
 
 void AdlplugAudioProcessor::set_global_parameters_notifying_host()
@@ -610,8 +625,13 @@ void AdlplugAudioProcessor::set_global_parameters_notifying_host()
     Parameter_Block &pb = *parameter_block_;
 
     *pb.p_volmodel = pl->volume_model() - 1;
+#if defined(ADLPLUG_OPL3)
     *pb.p_deeptrem = pl->deep_tremolo();
     *pb.p_deepvib = pl->deep_vibrato();
+#elif defined(ADLPLUG_OPN2)
+    *pb.p_lfoenable = pl->lfo_enabled();
+    *pb.p_lfofreq = pl->lfo_frequency();
+#endif
 }
 
 void AdlplugAudioProcessor::set_instrument_parameters_notifying_host(unsigned part_number)

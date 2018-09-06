@@ -64,7 +64,9 @@ enum class User_Message {
     LoadInstrument,  // edits an instrument
     RenameBank,  // set bank name
     SelectProgram,  // changes selected program number
+#if defined(ADLPLUG_OPL3)
     SelectOptimal4Ops,  // sets the optimal 4op channel count
+#endif
 };
 
 namespace Messages {
@@ -117,9 +119,11 @@ struct SelectProgram {
     uint8_t program = 0;
 };
 
+#if defined(ADLPLUG_OPL3)
 struct SelectOptimal4Ops {
     static constexpr User_Message tag = User_Message::SelectOptimal4Ops;
 };
+#endif
 
 }  // namespace User
 }  // namespace Messages
