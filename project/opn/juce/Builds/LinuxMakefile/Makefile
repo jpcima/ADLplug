@@ -100,6 +100,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/plugin_processor_a0287f62.o \
   $(JUCE_OBJDIR)/worker_5b6a13ea.o \
   $(JUCE_OBJDIR)/insnames_1e4d446c.o \
+  $(JUCE_OBJDIR)/parameter_block_c5d651fb.o \
   $(JUCE_OBJDIR)/chip_settings_c82fef02.o \
   $(JUCE_OBJDIR)/instrument_d3f9b79d.o \
   $(JUCE_OBJDIR)/instrument_properties_88e8af0d.o \
@@ -217,6 +218,11 @@ $(JUCE_OBJDIR)/worker_5b6a13ea.o: ../../../../../sources/worker.cc
 $(JUCE_OBJDIR)/insnames_1e4d446c.o: ../../../../../sources/midi/insnames.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling insnames.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/parameter_block_c5d651fb.o: ../../../../../sources/opn2/parameter_block.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling parameter_block.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/chip_settings_c82fef02.o: ../../../../../sources/opn2/adl/chip_settings.cc

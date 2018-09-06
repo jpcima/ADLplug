@@ -152,6 +152,7 @@
     <ClCompile Include="..\..\..\..\..\sources\plugin_processor.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\worker.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\midi\insnames.cc"/>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\parameter_block.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opn2\adl\chip_settings.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opn2\adl\instrument.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opn2\adl\instrument_properties.cc"/>
@@ -1954,6 +1955,7 @@
     <ClInclude Include="..\..\..\..\..\sources\dsp\dc_filter.h"/>
     <ClInclude Include="..\..\..\..\..\sources\dsp\vu_monitor.h"/>
     <ClInclude Include="..\..\..\..\..\sources\midi\insnames.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\parameter_block.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opn2\adl\chip_settings.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opn2\adl\instrument.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opn2\adl\player.h"/>

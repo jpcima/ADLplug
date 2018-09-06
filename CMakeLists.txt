@@ -153,6 +153,7 @@ elseif(ADLplug_CHIP STREQUAL "OPN2")
   target_compile_definitions(ADLplug_core PUBLIC "ADLPLUG_OPN2")
 
   target_sources(ADLplug_core PRIVATE
+    "sources/opn2/parameter_block.cc"
     "sources/opn2/adl/chip_settings.cc"
     "sources/opn2/adl/instrument.cc"
     "sources/opn2/adl/instrument.cc"

@@ -34,6 +34,7 @@
 		5B04C6E7526CE5A59099F63B = {isa = PBXBuildFile; fileRef = ACC517C2B8C4F347E6EF835E; };
 		09A8CCFD4FE0354337D72C5D = {isa = PBXBuildFile; fileRef = BAAE4D6492B736A0C7A695FB; };
 		13D90770C30B994E3771AF5D = {isa = PBXBuildFile; fileRef = 2A45EF801DC6C2465177ABB3; };
+		1B16C869E919206C3C3F3555 = {isa = PBXBuildFile; fileRef = FE3DB1C547991FED42C27C70; };
 		B603136AEECE6A3C76B65855 = {isa = PBXBuildFile; fileRef = 58DD4E6A7392E2E0F6B5E46A; };
 		97D7F313AE9B4F4034B92EED = {isa = PBXBuildFile; fileRef = 706268D88D6327B337A4BD09; };
 		FD4685E191ED2E42F6BB27E3 = {isa = PBXBuildFile; fileRef = 58A34CA74908FF34441164CF; };
@@ -98,11 +99,11 @@
 		B1B4AFACCD650B5C93F8BD56 = {isa = PBXBuildFile; fileRef = AD250D12290EE583761436AC; };
 		83773AB2EF3910E78F744AFA = {isa = PBXBuildFile; fileRef = E4514B1F92F5A295EE779F74; };
 		891EDFF79CFE1AB3139BF5E6 = {isa = PBXBuildFile; fileRef = 2D6B54C0F1F04E72335CB9C6; };
+		00F9B3A9134C4F1271FD9B2A = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = time.h; path = ../../../../../thirdparty/fmt/include/fmt/time.h; sourceTree = "SOURCE_ROOT"; };
 		03045BBBAA289263821AA261 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-RTAS.plist"; path = "Info-RTAS.plist"; sourceTree = "SOURCE_ROOT"; };
 		618957C5589DF62914319906 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPNplug.vst; sourceTree = "BUILT_PRODUCTS_DIR"; };
 		1FE6432314326CD46CC3A939 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPNplug.vst3; sourceTree = "BUILT_PRODUCTS_DIR"; };
 		00E1C668B04697F94F345DEB = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPNplug.aaxplugin; sourceTree = "BUILT_PRODUCTS_DIR"; };
-		00F9B3A9134C4F1271FD9B2A = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = time.h; path = ../../../../../thirdparty/fmt/include/fmt/time.h; sourceTree = "SOURCE_ROOT"; };
 		040CEC3F3E16111BD7A729D9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = opnbank.h; path = ../../../../../thirdparty/libOPNMIDI/src/opnbank.h; sourceTree = "SOURCE_ROOT"; };
 		06144E68C7BF63EDF65275F5 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = measurer.cpp; path = ../../../../../sources/opn2/adl/measurer/measurer.cpp; sourceTree = "SOURCE_ROOT"; };
 		06A2EDB3108DD46D6AADC93A = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-AAX.plist"; path = "Info-AAX.plist"; sourceTree = "SOURCE_ROOT"; };
@@ -150,6 +151,8 @@
 		4F4130D7715BF9BDDAACA1A7 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = image.cc; path = ../../../../../sources/ui/utility/image.cc; sourceTree = "SOURCE_ROOT"; };
 		50B7419A236577CF0BF7DF4B = {isa = PBXFileReference; lastKnownFileType = file.gz; name = "Serif-Italic.ttf.gz"; path = "../../../../../resources/ui/fonts/Serif-Italic.ttf.gz"; sourceTree = "SOURCE_ROOT"; };
 		5168A5F8BA65150C4E77BE80 = {isa = PBXFileReference; lastKnownFileType = file.gz; name = "Mono-Bold.ttf.gz"; path = "../../../../../resources/ui/fonts/Mono-Bold.ttf.gz"; sourceTree = "SOURCE_ROOT"; };
+		556E30B6839750D2E9AD75FF = {isa = PBXFileReference; lastKnownFileType = file.gz; name = "Mono-Regular.ttf.gz"; path = "../../../../../resources/ui/fonts/Mono-Regular.ttf.gz"; sourceTree = "SOURCE_ROOT"; };
+		55DAC68698963440C17D7639 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "parameter_block.h"; path = "../../../../../sources/opn2/parameter_block.h"; sourceTree = "SOURCE_ROOT"; };
 		58BB6179A1ADA743CE1756D8 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		58DD4E6A7392E2E0F6B5E46A = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "chip_settings.cc"; path = "../../../../../sources/opn2/adl/chip_settings.cc"; sourceTree = "SOURCE_ROOT"; };
 		5CABECC930802C9F125DF1D0 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-VST3.plist"; path = "Info-VST3.plist"; sourceTree = "SOURCE_ROOT"; };
@@ -160,7 +163,6 @@
 		5189F33ED9D651D2CBCA51DB = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "parameter_block.h"; path = "../../../../../sources/parameter_block.h"; sourceTree = "SOURCE_ROOT"; };
 		52C1CCB50ECEDA7371BC9156 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "opnmidi_load.cpp"; path = "../../../../../thirdparty/libOPNMIDI/src/opnmidi_load.cpp"; sourceTree = "SOURCE_ROOT"; };
 		533668A3389E9A0587FA9E69 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "knob_component.cc"; path = "../../../../../sources/ui/components/knob_component.cc"; sourceTree = "SOURCE_ROOT"; };
-		556E30B6839750D2E9AD75FF = {isa = PBXFileReference; lastKnownFileType = file.gz; name = "Mono-Regular.ttf.gz"; path = "../../../../../resources/ui/fonts/Mono-Regular.ttf.gz"; sourceTree = "SOURCE_ROOT"; };
 		56B6F0D526579EBE100C46FD = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "indicator_NxM.cc"; path = "../../../../../sources/ui/components/indicator_NxM.cc"; sourceTree = "SOURCE_ROOT"; };
 		58A34CA74908FF34441164CF = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "instrument_properties.cc"; path = "../../../../../sources/opn2/adl/instrument_properties.cc"; sourceTree = "SOURCE_ROOT"; };
 		89662A4B682CED20B2AAD51F = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OPNplug.appex; sourceTree = "BUILT_PRODUCTS_DIR"; };
@@ -302,6 +304,7 @@
 		FA5C0884AB53DC604679BD22 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "mame_ym2612fm.h"; path = "../../../../../sources/opn2/adl/measurer/chips/mame/mame_ym2612fm.h"; sourceTree = "SOURCE_ROOT"; };
 		FC36A6BCD8BAACB4ED2C6CEB = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		FCEBFFE10A55D836EA467780 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "opn_chip_base.h"; path = "../../../../../thirdparty/libOPNMIDI/src/chips/opn_chip_base.h"; sourceTree = "SOURCE_ROOT"; };
+		FE3DB1C547991FED42C27C70 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "parameter_block.cc"; path = "../../../../../sources/opn2/parameter_block.cc"; sourceTree = "SOURCE_ROOT"; };
 		0B35D66E96610B76C2679935 = {isa = PBXGroup; children = (
 					BDD746BA0471AD9C33981817,
 					A2BB51B390487BBDF8796A96,
@@ -336,6 +339,8 @@
 					D2C48280F0DCD4B1F679FA13,
 					A63EF030920AB1D05213EEFF, ); name = adl; sourceTree = "<group>"; };
 		82D5E5DF974EF2384BDF4104 = {isa = PBXGroup; children = (
+					FE3DB1C547991FED42C27C70,
+					55DAC68698963440C17D7639,
 					67F7441C71DF8C5A749C0ACB, ); name = opn2; sourceTree = "<group>"; };
 		1FB8E3745BBF3FA3259C52B2 = {isa = PBXGroup; children = (
 					56B6F0D526579EBE100C46FD,
@@ -1637,6 +1642,7 @@
 					5B04C6E7526CE5A59099F63B,
 					09A8CCFD4FE0354337D72C5D,
 					13D90770C30B994E3771AF5D,
+					1B16C869E919206C3C3F3555,
 					B603136AEECE6A3C76B65855,
 					97D7F313AE9B4F4034B92EED,
 					FD4685E191ED2E42F6BB27E3,

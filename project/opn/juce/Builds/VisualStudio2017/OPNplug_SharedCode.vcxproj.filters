@@ -523,6 +523,9 @@
     <ClCompile Include="..\..\..\..\..\sources\midi\insnames.cc">
       <Filter>OPNplug\sources\midi</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\parameter_block.cc">
+      <Filter>OPNplug\sources\opn2</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\opn2\adl\chip_settings.cc">
       <Filter>OPNplug\sources\opn2\adl</Filter>
     </ClCompile>
@@ -2567,6 +2570,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\midi\insnames.h">
       <Filter>OPNplug\sources\midi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\parameter_block.h">
+      <Filter>OPNplug\sources\opn2</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\opn2\adl\chip_settings.h">
       <Filter>OPNplug\sources\opn2\adl</Filter>

@@ -42,6 +42,10 @@
         <FILE id="PHRogf" name="insnames.h" compile="0" resource="0" file="../../sources/midi/insnames.h"/>
       </GROUP>
       <GROUP id="{CF57B707-82F8-1C68-D7BE-4532B607DEE4}" name="opn2">
+        <FILE id="Z9ouKN" name="parameter_block.cc" compile="1" resource="0"
+              file="../../sources/opn2/parameter_block.cc"/>
+        <FILE id="yy0aqc" name="parameter_block.h" compile="0" resource="0"
+              file="../../sources/opn2/parameter_block.h"/>
         <GROUP id="{D07194C1-A7BE-6FBC-D9EC-E536913D419F}" name="adl">
           <FILE id="Wuq81m" name="chip_settings.cc" compile="1" resource="0"
                 file="../../sources/opn2/adl/chip_settings.cc"/>
