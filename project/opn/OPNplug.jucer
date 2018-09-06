@@ -52,6 +52,23 @@
                 file="../../sources/opn2/adl/instrument_properties.cc"/>
           <FILE id="UAf4EG" name="player.cc" compile="1" resource="0" file="../../sources/opn2/adl/player.cc"/>
           <FILE id="YVKuXB" name="player.h" compile="0" resource="0" file="../../sources/opn2/adl/player.h"/>
+          <GROUP id="{99B325CB-DB23-9D80-645A-B3A4BBF61F2D}" name="measurer">
+            <FILE id="g86fRN" name="measurer.cpp" compile="1" resource="0" file="../../sources/opn2/adl/measurer/measurer.cpp"/>
+            <FILE id="W5GX0C" name="measurer.h" compile="0" resource="0" file="../../sources/opn2/adl/measurer/measurer.h"/>
+            <GROUP id="{B39AE28B-70D4-1E1A-04A0-2262046A236F}" name="chips">
+              <FILE id="kOfL5H" name="mame_opn2.cpp" compile="1" resource="0" file="../../sources/opn2/adl/measurer/chips/mame_opn2.cpp"/>
+              <FILE id="n1EIBV" name="mame_opn2.h" compile="0" resource="0" file="../../sources/opn2/adl/measurer/chips/mame_opn2.h"/>
+              <FILE id="wuzyjP" name="opn_chip_base.h" compile="0" resource="0" file="../../sources/opn2/adl/measurer/chips/opn_chip_base.h"/>
+              <FILE id="IoknMm" name="opn_chip_base.tcc" compile="0" resource="0"
+                    file="../../sources/opn2/adl/measurer/chips/opn_chip_base.tcc"/>
+              <GROUP id="{580AF101-FB6C-1C16-BF64-DE6B14BB6B9B}" name="mame">
+                <FILE id="egZzRK" name="mame_ym2612fm.cpp" compile="1" resource="0"
+                      file="../../sources/opn2/adl/measurer/chips/mame/mame_ym2612fm.cpp"/>
+                <FILE id="CV2bor" name="mame_ym2612fm.h" compile="0" resource="0" file="../../sources/opn2/adl/measurer/chips/mame/mame_ym2612fm.h"/>
+                <FILE id="lTjOcR" name="mamedef.h" compile="0" resource="0" file="../../sources/opn2/adl/measurer/chips/mame/mamedef.h"/>
+              </GROUP>
+            </GROUP>
+          </GROUP>
         </GROUP>
       </GROUP>
       <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">

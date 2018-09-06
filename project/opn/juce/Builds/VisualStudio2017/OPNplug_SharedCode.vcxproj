@@ -156,6 +156,9 @@
     <ClCompile Include="..\..\..\..\..\sources\opn2\adl\instrument.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opn2\adl\instrument_properties.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opn2\adl\player.cc"/>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\measurer\measurer.cpp"/>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\mame_opn2.cpp"/>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\mame\mame_ym2612fm.cpp"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\look_and_feel.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\indicator_NxM.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\knob_component.cc"/>
@@ -1954,6 +1957,11 @@
     <ClInclude Include="..\..\..\..\..\sources\opn2\adl\chip_settings.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opn2\adl\instrument.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opn2\adl\player.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\measurer\measurer.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\mame_opn2.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\opn_chip_base.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\mame\mame_ym2612fm.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\mame\mamedef.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\look_and_feel.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\main_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\indicator_NxM.h"/>
@@ -2707,6 +2715,7 @@
     <ClInclude Include="..\..\..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\opn_chip_base.tcc"/>
     <None Include="..\..\..\..\..\sources\utility\counting_bitset.tcc"/>
     <None Include="..\..\..\..\..\resources\opn2\banks.pak"/>
     <None Include="..\..\..\..\..\resources\ui\knob-skin.png"/>

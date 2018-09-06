@@ -104,6 +104,9 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/instrument_d3f9b79d.o \
   $(JUCE_OBJDIR)/instrument_properties_88e8af0d.o \
   $(JUCE_OBJDIR)/player_8fdbc163.o \
+  $(JUCE_OBJDIR)/measurer_9a03d4ba.o \
+  $(JUCE_OBJDIR)/mame_opn2_15456754.o \
+  $(JUCE_OBJDIR)/mame_ym2612fm_47977c5e.o \
   $(JUCE_OBJDIR)/look_and_feel_dde78e55.o \
   $(JUCE_OBJDIR)/indicator_NxM_67a37cbf.o \
   $(JUCE_OBJDIR)/knob_component_359f0c96.o \
@@ -234,6 +237,21 @@ $(JUCE_OBJDIR)/instrument_properties_88e8af0d.o: ../../../../../sources/opn2/adl
 $(JUCE_OBJDIR)/player_8fdbc163.o: ../../../../../sources/opn2/adl/player.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling player.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/measurer_9a03d4ba.o: ../../../../../sources/opn2/adl/measurer/measurer.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling measurer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/mame_opn2_15456754.o: ../../../../../sources/opn2/adl/measurer/chips/mame_opn2.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling mame_opn2.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/mame_ym2612fm_47977c5e.o: ../../../../../sources/opn2/adl/measurer/chips/mame/mame_ym2612fm.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling mame_ym2612fm.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/look_and_feel_dde78e55.o: ../../../../../sources/ui/look_and_feel.cc

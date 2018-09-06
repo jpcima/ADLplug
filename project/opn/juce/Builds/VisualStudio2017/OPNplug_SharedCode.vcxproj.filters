@@ -11,6 +11,15 @@
     <Filter Include="OPNplug\sources\midi">
       <UniqueIdentifier>{218F1570-832C-D829-C16B-738284406BB7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OPNplug\sources\opn2\adl\measurer\chips\mame">
+      <UniqueIdentifier>{4162E5A5-15A9-A985-21F0-7BCE0DB3D170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OPNplug\sources\opn2\adl\measurer\chips">
+      <UniqueIdentifier>{ED9FD739-CCF7-C578-77B7-6560C673F244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OPNplug\sources\opn2\adl\measurer">
+      <UniqueIdentifier>{A3CC0A72-E7D9-6546-24E1-688DE088D5E1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="OPNplug\sources\opn2\adl">
       <UniqueIdentifier>{2CFEDDE0-233E-64FC-1B01-F08BD3294CE2}</UniqueIdentifier>
     </Filter>
@@ -525,6 +534,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\opn2\adl\player.cc">
       <Filter>OPNplug\sources\opn2\adl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\measurer\measurer.cpp">
+      <Filter>OPNplug\sources\opn2\adl\measurer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\mame_opn2.cpp">
+      <Filter>OPNplug\sources\opn2\adl\measurer\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\mame\mame_ym2612fm.cpp">
+      <Filter>OPNplug\sources\opn2\adl\measurer\chips\mame</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\look_and_feel.cc">
       <Filter>OPNplug\sources\ui</Filter>
@@ -2558,6 +2576,21 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\opn2\adl\player.h">
       <Filter>OPNplug\sources\opn2\adl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\measurer\measurer.h">
+      <Filter>OPNplug\sources\opn2\adl\measurer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\mame_opn2.h">
+      <Filter>OPNplug\sources\opn2\adl\measurer\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\opn_chip_base.h">
+      <Filter>OPNplug\sources\opn2\adl\measurer\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\mame\mame_ym2612fm.h">
+      <Filter>OPNplug\sources\opn2\adl\measurer\chips\mame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\mame\mamedef.h">
+      <Filter>OPNplug\sources\opn2\adl\measurer\chips\mame</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\look_and_feel.h">
       <Filter>OPNplug\sources\ui</Filter>
@@ -4814,6 +4847,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\opn_chip_base.tcc">
+      <Filter>OPNplug\sources\opn2\adl\measurer\chips</Filter>
+    </None>
     <None Include="..\..\..\..\..\sources\utility\counting_bitset.tcc">
       <Filter>OPNplug\sources\utility</Filter>
     </None>
