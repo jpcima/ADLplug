@@ -562,7 +562,7 @@ void Operator_Editor::knob_value_changed(Knob *k)
 
     if (k == kn_attack.get()) {
         AudioParameterInt &p = *op.p_attack;
-        p = k->value();
+        p = std::lround(k->value());
     }
     else if (k == kn_decay.get()) {
         AudioParameterInt &p = *op.p_decay;

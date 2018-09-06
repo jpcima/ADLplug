@@ -42,57 +42,33 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     addAndMakeVisible (kn_attack.get());
     kn_attack->setName ("new component");
 
-    kn_attack->setBounds (24, 3, 48, 48);
+    kn_attack->setBounds (16, 3, 40, 40);
 
     kn_decay.reset (new Styled_Knob_Default());
     addAndMakeVisible (kn_decay.get());
     kn_decay->setName ("new component");
 
-    kn_decay->setBounds (96, 3, 48, 48);
+    kn_decay->setBounds (64, 3, 40, 40);
 
     kn_sustain.reset (new Styled_Knob_Default());
     addAndMakeVisible (kn_sustain.get());
     kn_sustain->setName ("new component");
 
-    kn_sustain->setBounds (24, 48, 48, 48);
+    kn_sustain->setBounds (16, 48, 40, 40);
 
     kn_release.reset (new Styled_Knob_Default());
     addAndMakeVisible (kn_release.get());
     kn_release->setName ("new component");
 
-    kn_release->setBounds (96, 48, 48, 48);
+    kn_release->setBounds (64, 48, 40, 40);
 
-    btn_trem.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_trem.get());
-    btn_trem->setButtonText (String());
-    btn_trem->addListener (this);
-    btn_trem->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
+    btn_ssgeg_cont.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_ssgeg_cont.get());
+    btn_ssgeg_cont->setButtonText (String());
+    btn_ssgeg_cont->addListener (this);
+    btn_ssgeg_cont->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_trem->setBounds (168, 3, 15, 15);
-
-    btn_vib.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_vib.get());
-    btn_vib->setButtonText (String());
-    btn_vib->addListener (this);
-    btn_vib->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
-
-    btn_vib->setBounds (168, 20, 15, 15);
-
-    btn_sus.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_sus.get());
-    btn_sus->setButtonText (String());
-    btn_sus->addListener (this);
-    btn_sus->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
-
-    btn_sus->setBounds (168, 37, 15, 15);
-
-    btn_env.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_env.get());
-    btn_env->setButtonText (String());
-    btn_env->addListener (this);
-    btn_env->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
-
-    btn_env->setBounds (168, 54, 15, 15);
+    btn_ssgeg_cont->setBounds (40, 100, 15, 15);
 
     sl_level.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_level.get());
@@ -101,7 +77,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     sl_level->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     sl_level->addListener (this);
 
-    sl_level->setBounds (195, 72, 64, 20);
+    sl_level->setBounds (195, 0, 64, 20);
 
     sl_fmul.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_fmul.get());
@@ -110,16 +86,16 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     sl_fmul->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     sl_fmul->addListener (this);
 
-    sl_fmul->setBounds (195, 88, 64, 20);
+    sl_fmul->setBounds (195, 16, 64, 20);
 
-    sl_ksl.reset (new Slider ("new slider"));
-    addAndMakeVisible (sl_ksl.get());
-    sl_ksl->setRange (0, 3, 0);
-    sl_ksl->setSliderStyle (Slider::LinearHorizontal);
-    sl_ksl->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
-    sl_ksl->addListener (this);
+    sl_rsl.reset (new Slider ("new slider"));
+    addAndMakeVisible (sl_rsl.get());
+    sl_rsl->setRange (0, 3, 0);
+    sl_rsl->setSliderStyle (Slider::LinearHorizontal);
+    sl_rsl->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
+    sl_rsl->addListener (this);
 
-    sl_ksl->setBounds (195, 104, 64, 20);
+    sl_rsl->setBounds (195, 32, 64, 20);
 
     lbl_level.reset (new Label ("new label",
                                 TRANS("Lv")));
@@ -130,7 +106,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     lbl_level->setColour (TextEditor::textColourId, Colours::black);
     lbl_level->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lbl_level->setBounds (163, 72, 28, 16);
+    lbl_level->setBounds (163, 0, 28, 16);
 
     label.reset (new Label ("new label",
                             TRANS("A")));
@@ -152,7 +128,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     label2->setColour (TextEditor::textColourId, Colours::black);
     label2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label2->setBounds (76, 0, 20, 16);
+    label2->setBounds (52, 0, 20, 16);
 
     label3.reset (new Label ("new label",
                              TRANS("S")));
@@ -174,51 +150,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     label4->setColour (TextEditor::textColourId, Colours::black);
     label4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label4->setBounds (76, 48, 20, 16);
-
-    label5.reset (new Label ("new label",
-                             TRANS("Tremolo")));
-    addAndMakeVisible (label5.get());
-    label5->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
-    label5->setJustificationType (Justification::centredLeft);
-    label5->setEditable (false, false, false);
-    label5->setColour (TextEditor::textColourId, Colours::black);
-    label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    label5->setBounds (184, 3, 80, 15);
-
-    label6.reset (new Label ("new label",
-                             TRANS("Vibrato")));
-    addAndMakeVisible (label6.get());
-    label6->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
-    label6->setJustificationType (Justification::centredLeft);
-    label6->setEditable (false, false, false);
-    label6->setColour (TextEditor::textColourId, Colours::black);
-    label6->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    label6->setBounds (184, 20, 80, 15);
-
-    label7.reset (new Label ("new label",
-                             TRANS("Sustain")));
-    addAndMakeVisible (label7.get());
-    label7->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
-    label7->setJustificationType (Justification::centredLeft);
-    label7->setEditable (false, false, false);
-    label7->setColour (TextEditor::textColourId, Colours::black);
-    label7->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    label7->setBounds (184, 37, 80, 15);
-
-    label8.reset (new Label ("new label",
-                             TRANS("Key scaling")));
-    addAndMakeVisible (label8.get());
-    label8->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
-    label8->setJustificationType (Justification::centredLeft);
-    label8->setEditable (false, false, false);
-    label8->setColour (TextEditor::textColourId, Colours::black);
-    label8->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
-
-    label8->setBounds (184, 54, 80, 15);
+    label4->setBounds (52, 48, 20, 16);
 
     lbl_fmul.reset (new Label ("new label",
                                TRANS("F*")));
@@ -229,55 +161,127 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     lbl_fmul->setColour (TextEditor::textColourId, Colours::black);
     lbl_fmul->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lbl_fmul->setBounds (163, 88, 28, 16);
+    lbl_fmul->setBounds (163, 16, 28, 16);
 
-    lbl_ksl.reset (new Label ("new label",
-                              TRANS("Ksl")));
-    addAndMakeVisible (lbl_ksl.get());
-    lbl_ksl->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
-    lbl_ksl->setJustificationType (Justification::centredLeft);
-    lbl_ksl->setEditable (false, false, false);
-    lbl_ksl->setColour (TextEditor::textColourId, Colours::black);
-    lbl_ksl->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+    lbl_rsl.reset (new Label ("new label",
+                              TRANS("Rsl")));
+    addAndMakeVisible (lbl_rsl.get());
+    lbl_rsl->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_rsl->setJustificationType (Justification::centredLeft);
+    lbl_rsl->setEditable (false, false, false);
+    lbl_rsl->setColour (TextEditor::textColourId, Colours::black);
+    lbl_rsl->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lbl_ksl->setBounds (163, 104, 28, 16);
+    lbl_rsl->setBounds (163, 32, 28, 16);
+
+    kn_decay2.reset (new Styled_Knob_Default());
+    addAndMakeVisible (kn_decay2.get());
+    kn_decay2->setName ("new component");
+
+    kn_decay2->setBounds (112, 3, 40, 40);
+
+    label9.reset (new Label ("new label",
+                             TRANS("D")));
+    addAndMakeVisible (label9.get());
+    label9->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label9->setJustificationType (Justification::centredTop);
+    label9->setEditable (false, false, false);
+    label9->setColour (TextEditor::textColourId, Colours::black);
+    label9->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label9->setBounds (100, 0, 20, 16);
+
+    btn_am.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_am.get());
+    btn_am->setButtonText (TRANS("AM"));
+    btn_am->addListener (this);
+    btn_am->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
+
+    btn_am->setBounds (112, 55, 40, 24);
+
+    sl_tune.reset (new Slider ("new slider"));
+    addAndMakeVisible (sl_tune.get());
+    sl_tune->setRange (0, 7, 0);
+    sl_tune->setSliderStyle (Slider::LinearHorizontal);
+    sl_tune->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
+    sl_tune->addListener (this);
+
+    sl_tune->setBounds (195, 48, 64, 20);
+
+    lbl_tune.reset (new Label ("new label",
+                               TRANS("Tune")));
+    addAndMakeVisible (lbl_tune.get());
+    lbl_tune->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_tune->setJustificationType (Justification::centredLeft);
+    lbl_tune->setEditable (false, false, false);
+    lbl_tune->setColour (TextEditor::textColourId, Colours::black);
+    lbl_tune->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_tune->setBounds (152, 48, 39, 16);
+
+    btn_ssgeg_att.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_ssgeg_att.get());
+    btn_ssgeg_att->setButtonText (String());
+    btn_ssgeg_att->addListener (this);
+    btn_ssgeg_att->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
+
+    btn_ssgeg_att->setBounds (60, 100, 15, 15);
+
+    btn_ssgeg_alt.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_ssgeg_alt.get());
+    btn_ssgeg_alt->setButtonText (String());
+    btn_ssgeg_alt->addListener (this);
+    btn_ssgeg_alt->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
+
+    btn_ssgeg_alt->setBounds (80, 100, 15, 15);
+
+    btn_ssgeg_hold.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_ssgeg_hold.get());
+    btn_ssgeg_hold->setButtonText (String());
+    btn_ssgeg_hold->addListener (this);
+    btn_ssgeg_hold->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
+
+    btn_ssgeg_hold->setBounds (100, 100, 15, 15);
 
 
     //[UserPreSize]
     kn_attack->add_listener(this);
     kn_decay->add_listener(this);
+    kn_decay2->add_listener(this);
     kn_sustain->add_listener(this);
     kn_release->add_listener(this);
 
-    btn_trem->setClickingTogglesState(true);
-    btn_vib->setClickingTogglesState(true);
-    btn_sus->setClickingTogglesState(true);
-    btn_env->setClickingTogglesState(true);
+    btn_am->setClickingTogglesState(true);
+
+    btn_ssgeg_cont->setClickingTogglesState(true);
+    btn_ssgeg_att->setClickingTogglesState(true);
+    btn_ssgeg_alt->setClickingTogglesState(true);
+    btn_ssgeg_hold->setClickingTogglesState(true);
 
     kn_attack->setTooltip(TRANS("Attack"));
     kn_decay->setTooltip(TRANS("Decay"));
     kn_sustain->setTooltip(TRANS("Sustain"));
     kn_release->setTooltip(TRANS("Release"));
 
-    btn_trem->setTooltip(TRANS("Tremolo"));
-    btn_vib->setTooltip(TRANS("Vibrato"));
-    btn_sus->setTooltip(TRANS("Sustaining voice"));
-    btn_env->setTooltip(TRANS("Envelope scale"));
+    btn_am->setTooltip(TRANS("Amplitude modulation"));
 
     sl_level->setTooltip(TRANS("Level"));
     lbl_level->setTooltip(TRANS("Level"));
     sl_fmul->setTooltip(TRANS("Frequency multiplication"));
     lbl_fmul->setTooltip(TRANS("Frequency multiplication"));
-    sl_ksl->setTooltip(TRANS("Key scale level"));
-    lbl_ksl->setTooltip(TRANS("Key scale level"));
+    sl_rsl->setTooltip(TRANS("Rate scale level"));
+    lbl_rsl->setTooltip(TRANS("Rate scale level"));
+    sl_tune->setTooltip(TRANS("Detune"));
+    lbl_tune->setTooltip(TRANS("Detune"));
     //[/UserPreSize]
 
     setSize (264, 128);
 
 
     //[Constructor] You can add your own custom stuff here..
-    kn_attack->set_range(0, 15);
-    kn_decay->set_range(0, 15);
+    kn_attack->set_range(0, 31);
+    kn_decay->set_range(0, 31);
+    kn_decay2->set_range(0, 31);
     kn_sustain->set_range(0, 15);
     kn_release->set_range(0, 15);
     //[/Constructor]
@@ -292,24 +296,25 @@ Operator_Editor::~Operator_Editor()
     kn_decay = nullptr;
     kn_sustain = nullptr;
     kn_release = nullptr;
-    btn_trem = nullptr;
-    btn_vib = nullptr;
-    btn_sus = nullptr;
-    btn_env = nullptr;
+    btn_ssgeg_cont = nullptr;
     sl_level = nullptr;
     sl_fmul = nullptr;
-    sl_ksl = nullptr;
+    sl_rsl = nullptr;
     lbl_level = nullptr;
     label = nullptr;
     label2 = nullptr;
     label3 = nullptr;
     label4 = nullptr;
-    label5 = nullptr;
-    label6 = nullptr;
-    label7 = nullptr;
-    label8 = nullptr;
     lbl_fmul = nullptr;
-    lbl_ksl = nullptr;
+    lbl_rsl = nullptr;
+    kn_decay2 = nullptr;
+    label9 = nullptr;
+    btn_am = nullptr;
+    sl_tune = nullptr;
+    lbl_tune = nullptr;
+    btn_ssgeg_att = nullptr;
+    btn_ssgeg_alt = nullptr;
+    btn_ssgeg_hold = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -344,25 +349,50 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
     Button *btn = buttonThatWasClicked;
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == btn_trem.get())
+    if (buttonThatWasClicked == btn_ssgeg_cont.get())
     {
-        //[UserButtonCode_btn_trem] -- add your button handler code here..
-        //[/UserButtonCode_btn_trem]
+        //[UserButtonCode_btn_ssgeg_cont] -- add your button handler code here..
+        AudioParameterBool &p = *op.p_cont;
+        p.beginChangeGesture();
+        p = btn->getToggleState();
+        p.endChangeGesture();
+        //[/UserButtonCode_btn_ssgeg_cont]
     }
-    else if (buttonThatWasClicked == btn_vib.get())
+    else if (buttonThatWasClicked == btn_am.get())
     {
-        //[UserButtonCode_btn_vib] -- add your button handler code here..
-        //[/UserButtonCode_btn_vib]
+        //[UserButtonCode_btn_am] -- add your button handler code here..
+        AudioParameterBool &p = *op.p_am;
+        p.beginChangeGesture();
+        p = btn->getToggleState();
+        p.endChangeGesture();
+        //[/UserButtonCode_btn_am]
     }
-    else if (buttonThatWasClicked == btn_sus.get())
+    else if (buttonThatWasClicked == btn_ssgeg_att.get())
     {
-        //[UserButtonCode_btn_sus] -- add your button handler code here..
-        //[/UserButtonCode_btn_sus]
+        //[UserButtonCode_btn_ssgeg_att] -- add your button handler code here..
+        AudioParameterBool &p = *op.p_att;
+        p.beginChangeGesture();
+        p = btn->getToggleState();
+        p.endChangeGesture();
+        //[/UserButtonCode_btn_ssgeg_att]
     }
-    else if (buttonThatWasClicked == btn_env.get())
+    else if (buttonThatWasClicked == btn_ssgeg_alt.get())
     {
-        //[UserButtonCode_btn_env] -- add your button handler code here..
-        //[/UserButtonCode_btn_env]
+        //[UserButtonCode_btn_ssgeg_alt] -- add your button handler code here..
+        AudioParameterBool &p = *op.p_alt;
+        p.beginChangeGesture();
+        p = btn->getToggleState();
+        p.endChangeGesture();
+        //[/UserButtonCode_btn_ssgeg_alt]
+    }
+    else if (buttonThatWasClicked == btn_ssgeg_hold.get())
+    {
+        //[UserButtonCode_btn_ssgeg_hold] -- add your button handler code here..
+        AudioParameterBool &p = *op.p_hold;
+        p.beginChangeGesture();
+        p = btn->getToggleState();
+        p.endChangeGesture();
+        //[/UserButtonCode_btn_ssgeg_hold]
     }
 
     //[UserbuttonClicked_Post]
@@ -381,17 +411,30 @@ void Operator_Editor::sliderValueChanged (Slider* sliderThatWasMoved)
     if (sliderThatWasMoved == sl_level.get())
     {
         //[UserSliderCode_sl_level] -- add your slider handling code here..
+        AudioParameterInt &p = *op.p_level;
+        p = std::lround(sl->getValue());
         //[/UserSliderCode_sl_level]
     }
     else if (sliderThatWasMoved == sl_fmul.get())
     {
         //[UserSliderCode_sl_fmul] -- add your slider handling code here..
+        AudioParameterInt &p = *op.p_fmul;
+        p = std::lround(sl->getValue());
         //[/UserSliderCode_sl_fmul]
     }
-    else if (sliderThatWasMoved == sl_ksl.get())
+    else if (sliderThatWasMoved == sl_rsl.get())
     {
-        //[UserSliderCode_sl_ksl] -- add your slider handling code here..
-        //[/UserSliderCode_sl_ksl]
+        //[UserSliderCode_sl_rsl] -- add your slider handling code here..
+        AudioParameterInt &p = *op.p_ratescale;
+        p = std::lround(sl->getValue());
+        //[/UserSliderCode_sl_rsl]
+    }
+    else if (sliderThatWasMoved == sl_tune.get())
+    {
+        //[UserSliderCode_sl_tune] -- add your slider handling code here..
+        AudioParameterInt &p = *op.p_detune;
+        p = std::lround(sl->getValue());
+        //[/UserSliderCode_sl_tune]
     }
 
     //[UsersliderValueChanged_Post]
@@ -407,7 +450,22 @@ void Operator_Editor::sliderDragStarted(Slider *slider)
     Parameter_Block::Part &part = pb.part[midichannel_];
     Parameter_Block::Operator &op = part.nth_operator(operator_id_);
 
-    /* TODO OPN2 */
+    if (slider == sl_level.get()) {
+        AudioParameterInt &p = *op.p_level;
+        p.beginChangeGesture();
+    }
+    else if (slider == sl_fmul.get()) {
+        AudioParameterInt &p = *op.p_fmul;
+        p.beginChangeGesture();
+    }
+    else if (slider == sl_rsl.get()) {
+        AudioParameterInt &p = *op.p_ratescale;
+        p.beginChangeGesture();
+    }
+    else if (slider == sl_tune.get()) {
+        AudioParameterInt &p = *op.p_detune;
+        p.beginChangeGesture();
+    }
 }
 
 void Operator_Editor::sliderDragEnded(Slider *slider)
@@ -416,12 +474,42 @@ void Operator_Editor::sliderDragEnded(Slider *slider)
     Parameter_Block::Part &part = pb.part[midichannel_];
     Parameter_Block::Operator &op = part.nth_operator(operator_id_);
 
-    /* TODO OPN2 */
+    if (slider == sl_level.get()) {
+        AudioParameterInt &p = *op.p_level;
+        p.endChangeGesture();
+    }
+    else if (slider == sl_fmul.get()) {
+        AudioParameterInt &p = *op.p_fmul;
+        p.endChangeGesture();
+    }
+    else if (slider == sl_rsl.get()) {
+        AudioParameterInt &p = *op.p_ratescale;
+        p.endChangeGesture();
+    }
+    else if (slider == sl_tune.get()) {
+        AudioParameterInt &p = *op.p_detune;
+        p.endChangeGesture();
+    }
 }
 
 void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op, NotificationType ntf)
 {
-    /* TODO OPN2 */
+    kn_attack->set_value(ins.attack(op), ntf);
+    kn_decay->set_value(ins.decay1(op), ntf);
+    kn_decay2->set_value(ins.decay2(op), ntf);
+    kn_sustain->set_value(ins.sustain(op), ntf);
+    kn_release->set_value(ins.release(op), ntf);
+
+    sl_level->setValue(ins.level(op), ntf);
+    sl_fmul->setValue(ins.fmul(op), ntf);
+    sl_rsl->setValue(ins.ratescale(op), ntf);
+    sl_tune->setValue(ins.detune(op), ntf);
+
+    btn_am->setToggleState(ins.am(op), ntf);
+    btn_ssgeg_cont->setToggleState(ins.cont(op), ntf);
+    btn_ssgeg_att->setToggleState(ins.att(op), ntf);
+    btn_ssgeg_alt->setToggleState(ins.alt(op), ntf);
+    btn_ssgeg_hold->setToggleState(ins.hold(op), ntf);
 }
 
 void Operator_Editor::set_operator_enabled(bool b)
@@ -439,7 +527,26 @@ void Operator_Editor::knob_value_changed(Knob *k)
     Parameter_Block::Part &part = pb.part[midichannel_];
     Parameter_Block::Operator &op = part.nth_operator(operator_id_);
 
-    /* TODO OPN2 */
+    if (k == kn_attack.get()) {
+        AudioParameterInt &p = *op.p_attack;
+        p = std::lround(k->value());
+    }
+    else if (k == kn_decay.get()) {
+        AudioParameterInt &p = *op.p_decay1;
+        p = std::lround(k->value());
+    }
+    else if (k == kn_decay2.get()) {
+        AudioParameterInt &p = *op.p_decay2;
+        p = std::lround(k->value());
+    }
+    else if (k == kn_sustain.get()) {
+        AudioParameterInt &p = *op.p_sustain;
+        p = std::lround(k->value());
+    }
+    else if (k == kn_release.get()) {
+        AudioParameterInt &p = *op.p_release;
+        p = std::lround(k->value());
+    }
 }
 
 void Operator_Editor::knob_drag_started(Knob *k)
@@ -448,7 +555,26 @@ void Operator_Editor::knob_drag_started(Knob *k)
     Parameter_Block::Part &part = pb.part[midichannel_];
     Parameter_Block::Operator &op = part.nth_operator(operator_id_);
 
-    /* TODO OPN2 */
+    if (k == kn_attack.get()) {
+        AudioParameterInt &p = *op.p_attack;
+        p.beginChangeGesture();
+    }
+    else if (k == kn_decay.get()) {
+        AudioParameterInt &p = *op.p_decay1;
+        p.beginChangeGesture();
+    }
+    else if (k == kn_decay2.get()) {
+        AudioParameterInt &p = *op.p_decay2;
+        p.beginChangeGesture();
+    }
+    else if (k == kn_sustain.get()) {
+        AudioParameterInt &p = *op.p_sustain;
+        p.beginChangeGesture();
+    }
+    else if (k == kn_release.get()) {
+        AudioParameterInt &p = *op.p_release;
+        p.beginChangeGesture();
+    }
 }
 
 void Operator_Editor::knob_drag_ended(Knob *k)
@@ -457,7 +583,26 @@ void Operator_Editor::knob_drag_ended(Knob *k)
     Parameter_Block::Part &part = pb.part[midichannel_];
     Parameter_Block::Operator &op = part.nth_operator(operator_id_);
 
-    /* TODO OPN2 */
+    if (k == kn_attack.get()) {
+        AudioParameterInt &p = *op.p_attack;
+        p.endChangeGesture();
+    }
+    else if (k == kn_decay.get()) {
+        AudioParameterInt &p = *op.p_decay1;
+        p.endChangeGesture();
+    }
+    else if (k == kn_decay2.get()) {
+        AudioParameterInt &p = *op.p_decay2;
+        p.endChangeGesture();
+    }
+    else if (k == kn_sustain.get()) {
+        AudioParameterInt &p = *op.p_sustain;
+        p.endChangeGesture();
+    }
+    else if (k == kn_release.get()) {
+        AudioParameterInt &p = *op.p_release;
+        p.endChangeGesture();
+    }
 }
 
 void Operator_Editor::paintOverChildren(Graphics &g)
@@ -483,45 +628,36 @@ BEGIN_JUCER_METADATA
                  overlayOpacity="0.33" fixedSize="0" initialWidth="264" initialHeight="128">
   <BACKGROUND backgroundColour="323e44"/>
   <GENERICCOMPONENT name="new component" id="7c54ff103d9f5d" memberName="kn_attack"
-                    virtualName="" explicitFocusOrder="0" pos="24 3 48 48" class="Styled_Knob_Default"
+                    virtualName="" explicitFocusOrder="0" pos="16 3 40 40" class="Styled_Knob_Default"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="be39ad00dcf6efe1" memberName="kn_decay"
-                    virtualName="" explicitFocusOrder="0" pos="96 3 48 48" class="Styled_Knob_Default"
+                    virtualName="" explicitFocusOrder="0" pos="64 3 40 40" class="Styled_Knob_Default"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="8d88729c124c7b16" memberName="kn_sustain"
-                    virtualName="" explicitFocusOrder="0" pos="24 48 48 48" class="Styled_Knob_Default"
+                    virtualName="" explicitFocusOrder="0" pos="16 48 40 40" class="Styled_Knob_Default"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="7d576b68e9b588f" memberName="kn_release"
-                    virtualName="" explicitFocusOrder="0" pos="96 48 48 48" class="Styled_Knob_Default"
+                    virtualName="" explicitFocusOrder="0" pos="64 48 40 40" class="Styled_Knob_Default"
                     params=""/>
-  <TEXTBUTTON name="new button" id="f60e70ed4f10ef32" memberName="btn_trem"
-              virtualName="" explicitFocusOrder="0" pos="168 3 15 15" bgColOn="ff42a2c8"
-              buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="501ccf7ad0bc53a7" memberName="btn_vib"
-              virtualName="" explicitFocusOrder="0" pos="168 20 15 15" bgColOn="ff42a2c8"
-              buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="3e46dd6b966c40b2" memberName="btn_sus"
-              virtualName="" explicitFocusOrder="0" pos="168 37 15 15" bgColOn="ff42a2c8"
-              buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="eb8e9dfd42dd8f57" memberName="btn_env"
-              virtualName="" explicitFocusOrder="0" pos="168 54 15 15" bgColOn="ff42a2c8"
+  <TEXTBUTTON name="new button" id="f60e70ed4f10ef32" memberName="btn_ssgeg_cont"
+              virtualName="" explicitFocusOrder="0" pos="40 100 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <SLIDER name="new slider" id="b7065e7cd8f3e951" memberName="sl_level"
-          virtualName="" explicitFocusOrder="0" pos="195 72 64 20" min="0.0"
+          virtualName="" explicitFocusOrder="0" pos="195 0 64 20" min="0.0"
           max="63.0" int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="new slider" id="47c9497e72aa0068" memberName="sl_fmul"
-          virtualName="" explicitFocusOrder="0" pos="195 88 64 20" min="0.0"
+          virtualName="" explicitFocusOrder="0" pos="195 16 64 20" min="0.0"
           max="15.0" int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
-  <SLIDER name="new slider" id="7da3d626504f1592" memberName="sl_ksl" virtualName=""
-          explicitFocusOrder="0" pos="195 104 64 20" min="0.0" max="3.0"
+  <SLIDER name="new slider" id="7da3d626504f1592" memberName="sl_rsl" virtualName=""
+          explicitFocusOrder="0" pos="195 32 64 20" min="0.0" max="3.0"
           int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox" textBoxEditable="1"
           textBoxWidth="80" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="new label" id="ce54b68fc1a1f1e1" memberName="lbl_level"
-         virtualName="" explicitFocusOrder="0" pos="163 72 28 16" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="163 0 28 16" edTextCol="ff000000"
          edBkgCol="0" labelText="Lv" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="33"/>
@@ -531,7 +667,7 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
          kerning="0.0" bold="0" italic="0" justification="12"/>
   <LABEL name="new label" id="360efe252ecea296" memberName="label2" virtualName=""
-         explicitFocusOrder="0" pos="76 0 20 16" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="52 0 20 16" edTextCol="ff000000"
          edBkgCol="0" labelText="D" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
          kerning="0.0" bold="0" italic="0" justification="12"/>
@@ -541,40 +677,50 @@ BEGIN_JUCER_METADATA
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
          kerning="0.0" bold="0" italic="0" justification="12"/>
   <LABEL name="new label" id="2ad02ec8c7135a27" memberName="label4" virtualName=""
-         explicitFocusOrder="0" pos="76 48 20 16" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="52 48 20 16" edTextCol="ff000000"
          edBkgCol="0" labelText="R" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
          kerning="0.0" bold="0" italic="0" justification="12"/>
-  <LABEL name="new label" id="ffcd49be138de78b" memberName="label5" virtualName=""
-         explicitFocusOrder="0" pos="184 3 80 15" edTextCol="ff000000"
-         edBkgCol="0" labelText="Tremolo" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="33"/>
-  <LABEL name="new label" id="37e7947c4443e047" memberName="label6" virtualName=""
-         explicitFocusOrder="0" pos="184 20 80 15" edTextCol="ff000000"
-         edBkgCol="0" labelText="Vibrato" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="33"/>
-  <LABEL name="new label" id="f04d949c957007e" memberName="label7" virtualName=""
-         explicitFocusOrder="0" pos="184 37 80 15" edTextCol="ff000000"
-         edBkgCol="0" labelText="Sustain" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="33"/>
-  <LABEL name="new label" id="e8cd7412f499955d" memberName="label8" virtualName=""
-         explicitFocusOrder="0" pos="184 54 80 15" edTextCol="ff000000"
-         edBkgCol="0" labelText="Key scaling" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="e77fa8c6c00316b7" memberName="lbl_fmul"
-         virtualName="" explicitFocusOrder="0" pos="163 88 28 16" edTextCol="ff000000"
+         virtualName="" explicitFocusOrder="0" pos="163 16 28 16" edTextCol="ff000000"
          edBkgCol="0" labelText="F*" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="33"/>
-  <LABEL name="new label" id="dbcb4d45f32ea3e9" memberName="lbl_ksl" virtualName=""
-         explicitFocusOrder="0" pos="163 104 28 16" edTextCol="ff000000"
-         edBkgCol="0" labelText="Ksl" editableSingleClick="0" editableDoubleClick="0"
+  <LABEL name="new label" id="dbcb4d45f32ea3e9" memberName="lbl_rsl" virtualName=""
+         explicitFocusOrder="0" pos="163 32 28 16" edTextCol="ff000000"
+         edBkgCol="0" labelText="Rsl" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="33"/>
+  <GENERICCOMPONENT name="new component" id="d3ebb26d44d99705" memberName="kn_decay2"
+                    virtualName="" explicitFocusOrder="0" pos="112 3 40 40" class="Styled_Knob_Default"
+                    params=""/>
+  <LABEL name="new label" id="739d50c231ea95f4" memberName="label9" virtualName=""
+         explicitFocusOrder="0" pos="100 0 20 16" edTextCol="ff000000"
+         edBkgCol="0" labelText="D" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
+         kerning="0.0" bold="0" italic="0" justification="12"/>
+  <TEXTBUTTON name="new button" id="17b8bc55dead908d" memberName="btn_am" virtualName=""
+              explicitFocusOrder="0" pos="112 55 40 24" bgColOn="ff42a2c8"
+              buttonText="AM" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <SLIDER name="new slider" id="953c644c5cb22272" memberName="sl_tune"
+          virtualName="" explicitFocusOrder="0" pos="195 48 64 20" min="0.0"
+          max="7.0" int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox"
+          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
+          needsCallback="1"/>
+  <LABEL name="new label" id="13046618f23c99f6" memberName="lbl_tune"
+         virtualName="" explicitFocusOrder="0" pos="152 48 39 16" edTextCol="ff000000"
+         edBkgCol="0" labelText="Tune" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
+         kerning="0.0" bold="0" italic="0" justification="33"/>
+  <TEXTBUTTON name="new button" id="46d7039e0854b4ca" memberName="btn_ssgeg_att"
+              virtualName="" explicitFocusOrder="0" pos="60 100 15 15" bgColOn="ff42a2c8"
+              buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="166006f27c07054d" memberName="btn_ssgeg_alt"
+              virtualName="" explicitFocusOrder="0" pos="80 100 15 15" bgColOn="ff42a2c8"
+              buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="9b021a4b8f53096" memberName="btn_ssgeg_hold"
+              virtualName="" explicitFocusOrder="0" pos="100 100 15 15" bgColOn="ff42a2c8"
+              buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

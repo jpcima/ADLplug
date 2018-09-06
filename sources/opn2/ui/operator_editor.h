@@ -85,24 +85,25 @@ private:
     std::unique_ptr<Styled_Knob_Default> kn_decay;
     std::unique_ptr<Styled_Knob_Default> kn_sustain;
     std::unique_ptr<Styled_Knob_Default> kn_release;
-    std::unique_ptr<TextButton> btn_trem;
-    std::unique_ptr<TextButton> btn_vib;
-    std::unique_ptr<TextButton> btn_sus;
-    std::unique_ptr<TextButton> btn_env;
+    std::unique_ptr<TextButton> btn_ssgeg_cont;
     std::unique_ptr<Slider> sl_level;
     std::unique_ptr<Slider> sl_fmul;
-    std::unique_ptr<Slider> sl_ksl;
+    std::unique_ptr<Slider> sl_rsl;
     std::unique_ptr<Label> lbl_level;
     std::unique_ptr<Label> label;
     std::unique_ptr<Label> label2;
     std::unique_ptr<Label> label3;
     std::unique_ptr<Label> label4;
-    std::unique_ptr<Label> label5;
-    std::unique_ptr<Label> label6;
-    std::unique_ptr<Label> label7;
-    std::unique_ptr<Label> label8;
     std::unique_ptr<Label> lbl_fmul;
-    std::unique_ptr<Label> lbl_ksl;
+    std::unique_ptr<Label> lbl_rsl;
+    std::unique_ptr<Styled_Knob_Default> kn_decay2;
+    std::unique_ptr<Label> label9;
+    std::unique_ptr<TextButton> btn_am;
+    std::unique_ptr<Slider> sl_tune;
+    std::unique_ptr<Label> lbl_tune;
+    std::unique_ptr<TextButton> btn_ssgeg_att;
+    std::unique_ptr<TextButton> btn_ssgeg_alt;
+    std::unique_ptr<TextButton> btn_ssgeg_hold;
 
 
     //==============================================================================
