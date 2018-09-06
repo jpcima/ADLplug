@@ -394,7 +394,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (label20.get());
     label20->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label20->setJustificationType (Justification::centredLeft);
-    label20->setEditable (false, false, false);
+    label20->setEditable (false, false, false);
     label20->setColour (TextEditor::textColourId, Colours::black);
     label20->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -410,11 +410,40 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     cb_lfofreq->setBounds (664, 482, 104, 20);
 
+    cb_algorithm.reset (new ComboBox ("new combo box"));
+    addAndMakeVisible (cb_algorithm.get());
+    cb_algorithm->setEditableText (false);
+    cb_algorithm->setJustificationType (Justification::centredLeft);
+    cb_algorithm->setTextWhenNothingSelected (String());
+    cb_algorithm->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
+    cb_algorithm->addListener (this);
+
+    cb_algorithm->setBounds (590, 168, 180, 24);
+
+    kn_feedback.reset (new Styled_Knob_DefaultSmall());
+    addAndMakeVisible (kn_feedback.get());
+    kn_feedback->setName ("new component");
+
+    kn_feedback->setBounds (654, 192, 32, 32);
+
+    label10.reset (new Label ("new label",
+                              TRANS("Feedback")));
+    addAndMakeVisible (label10.get());
+    label10->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label10->setJustificationType (Justification::centred);
+    label10->setEditable (false, false, false);
+    label10->setColour (TextEditor::textColourId, Colours::black);
+    label10->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label10->setBounds (590, 195, 72, 24);
+
 
     //[UserPreSize]
     Desktop::getInstance().addFocusChangeListener(this);
 
     setWantsKeyboardFocus(true);
+
+    kn_feedback->add_listener(this);
     //[/UserPreSize]
 
     setSize (800, 600);
@@ -433,6 +462,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     sl_num_chips->setNumDecimalPlacesToDisplay(0);
 
+    kn_feedback->set_range(0, 7);
     sl_tune->setNumDecimalPlacesToDisplay(0);
 
     btn_lfo_enable->setClickingTogglesState(true);
@@ -464,6 +494,23 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
             cb_lfofreq->addItem(strings[i], i + 1);
     }
     cb_lfofreq->setScrollWheelEnabled(true);
+
+    const char *algorithms[8] = {
+        u8"1→2→3→4",
+        u8"(1+2)→3→4",
+        u8"(1+(2→3))→4",
+        u8"((1→2)+3)→4",
+        u8"(1→2)+(3→4)",
+        u8"(1→2)+(1→3)+(1→4)",
+        u8"(1→2)+3+4",
+        u8"1+2+3+4",
+    };
+
+    for (unsigned i = 0; i < 8; ++i) {
+        std::string text = fmt::format("{:d} : {:s}", i + 1, algorithms[i]);
+        cb_algorithm->addItem(text, i + 1);
+    }
+    cb_algorithm->setScrollWheelEnabled(true);
 
     vu_timer_.reset(Functional_Timer::create([this]() { vu_update(); }));
     vu_timer_->startTimer(10);
@@ -519,6 +566,9 @@ Main_Component::~Main_Component()
     btn_lfo_enable = nullptr;
     label20 = nullptr;
     cb_lfofreq = nullptr;
+    cb_algorithm = nullptr;
+    kn_feedback = nullptr;
+    label10 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -1004,6 +1054,15 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         p.endChangeGesture();
         //[/UserComboBoxCode_cb_lfofreq]
     }
+    else if (comboBoxThatHasChanged == cb_algorithm.get())
+    {
+        //[UserComboBoxCode_cb_algorithm] -- add your combo box handling code here..
+        AudioParameterInt &p = *part.p_algorithm;
+        p.beginChangeGesture();
+        p = cb->getSelectedId() - 1;
+        p.endChangeGesture();
+        //[/UserComboBoxCode_cb_algorithm]
+    }
 
     //[UsercomboBoxChanged_Post]
     //[/UsercomboBoxChanged_Post]
@@ -1055,6 +1114,10 @@ void Main_Component::knob_value_changed(Knob *k)
     Parameter_Block::Part &part = pb.part[midichannel_];
 
     /* TODO OPN2 */
+    if (k == kn_feedback.get()) {
+        AudioParameterInt &p = *part.p_feedback;
+        p = std::lround(k->value());
+    }
 }
 
 void Main_Component::knob_drag_started(Knob *k)
@@ -1063,6 +1126,10 @@ void Main_Component::knob_drag_started(Knob *k)
     Parameter_Block::Part &part = pb.part[midichannel_];
 
     /* TODO OPN2 */
+    if (k == kn_feedback.get()) {
+        AudioParameterInt &p = *part.p_feedback;
+        p.beginChangeGesture();
+    }
 }
 
 void Main_Component::knob_drag_ended(Knob *k)
@@ -1071,6 +1138,10 @@ void Main_Component::knob_drag_ended(Knob *k)
     Parameter_Block::Part &part = pb.part[midichannel_];
 
     /* TODO OPN2 */
+    if (k == kn_feedback.get()) {
+        AudioParameterInt &p = *part.p_feedback;
+        p.endChangeGesture();
+    }
 }
 
 void Main_Component::send_controller(unsigned channel, unsigned ctl, unsigned value)
@@ -1149,6 +1220,10 @@ void Main_Component::set_instrument_parameters(const Instrument &ins, Notificati
         { ed_op1.get(), ed_op3.get(), ed_op2.get(), ed_op4.get() };
 
     /* TODO OPN2 */
+
+    cb_algorithm->setSelectedId(ins.algorithm() + 1, ntf);
+
+    kn_feedback->set_value(ins.feedback(), ntf);
 
     sl_tune->setValue(ins.note_offset, ntf);
 
@@ -1915,6 +1990,17 @@ BEGIN_JUCER_METADATA
   <COMBOBOX name="new combo box" id="e1df7689d7d9db6e" memberName="cb_lfofreq"
             virtualName="" explicitFocusOrder="0" pos="664 482 104 20" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <COMBOBOX name="new combo box" id="53eb24e86e9015c0" memberName="cb_algorithm"
+            virtualName="" explicitFocusOrder="0" pos="590 168 180 24" editable="0"
+            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <GENERICCOMPONENT name="new component" id="8e0915367ccd00d3" memberName="kn_feedback"
+                    virtualName="" explicitFocusOrder="0" pos="654 192 32 32" class="Styled_Knob_DefaultSmall"
+                    params=""/>
+  <LABEL name="new label" id="6ff60ad947a8f168" memberName="label10" virtualName=""
+         explicitFocusOrder="0" pos="590 195 72 24" edTextCol="ff000000"
+         edBkgCol="0" labelText="Feedback" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

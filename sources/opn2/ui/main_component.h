@@ -192,6 +192,9 @@ private:
     std::unique_ptr<TextButton> btn_lfo_enable;
     std::unique_ptr<Label> label20;
     std::unique_ptr<ComboBox> cb_lfofreq;
+    std::unique_ptr<ComboBox> cb_algorithm;
+    std::unique_ptr<Styled_Knob_DefaultSmall> kn_feedback;
+    std::unique_ptr<Label> label10;
 
 
     //==============================================================================

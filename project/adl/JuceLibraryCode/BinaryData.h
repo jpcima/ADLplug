@@ -24,40 +24,40 @@ namespace BinaryData
     const int            Nuked2_pngSize = 18518;
 
     extern const char*   MonoBold_ttf_gz;
-    const int            MonoBold_ttf_gzSize = 20006;
+    const int            MonoBold_ttf_gzSize = 19967;
 
     extern const char*   MonoBoldItalic_ttf_gz;
-    const int            MonoBoldItalic_ttf_gzSize = 18727;
+    const int            MonoBoldItalic_ttf_gzSize = 18750;
 
     extern const char*   MonoItalic_ttf_gz;
-    const int            MonoItalic_ttf_gzSize = 18408;
+    const int            MonoItalic_ttf_gzSize = 18358;
 
     extern const char*   MonoRegular_ttf_gz;
-    const int            MonoRegular_ttf_gzSize = 19970;
+    const int            MonoRegular_ttf_gzSize = 19989;
 
     extern const char*   SansBold_ttf_gz;
-    const int            SansBold_ttf_gzSize = 23070;
+    const int            SansBold_ttf_gzSize = 23007;
 
     extern const char*   SansBoldItalic_ttf_gz;
-    const int            SansBoldItalic_ttf_gzSize = 23095;
+    const int            SansBoldItalic_ttf_gzSize = 23000;
 
     extern const char*   SansItalic_ttf_gz;
-    const int            SansItalic_ttf_gzSize = 23233;
+    const int            SansItalic_ttf_gzSize = 23130;
 
     extern const char*   SansRegular_ttf_gz;
-    const int            SansRegular_ttf_gzSize = 23807;
+    const int            SansRegular_ttf_gzSize = 23654;
 
     extern const char*   SerifBold_ttf_gz;
-    const int            SerifBold_ttf_gzSize = 24164;
+    const int            SerifBold_ttf_gzSize = 24045;
 
     extern const char*   SerifBoldItalic_ttf_gz;
-    const int            SerifBoldItalic_ttf_gzSize = 24863;
+    const int            SerifBoldItalic_ttf_gzSize = 24753;
 
     extern const char*   SerifItalic_ttf_gz;
-    const int            SerifItalic_ttf_gzSize = 25879;
+    const int            SerifItalic_ttf_gzSize = 25705;
 
     extern const char*   SerifRegular_ttf_gz;
-    const int            SerifRegular_ttf_gzSize = 27031;
+    const int            SerifRegular_ttf_gzSize = 27211;
 
     extern const char*   emoji_u1f4a1_png;
     const int            emoji_u1f4a1_pngSize = 6808;

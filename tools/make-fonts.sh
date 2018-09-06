@@ -1,6 +1,8 @@
 #!/bin/bash -e
 
-ranges="U+0000-000FF"
+#ranges="U+0000-000FF"
+#ranges="U+0000-000FF,U+2190–21FF"
+ranges="U+0000-000FF,U+2190-21FF"
 
 convert_font() {
     pyftsubset --unicodes="$ranges" --output-file="subset-$1" "$1"
