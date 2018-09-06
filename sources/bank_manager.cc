@@ -132,6 +132,7 @@ bool Bank_Manager::load_global_parameters(const Instrument_Global_Parameters &gp
         pl.set_volume_model(gp.volume_model + 1);
         update = true;
     }
+#if defined(ADLPLUG_OPL3)
     if (pl.deep_tremolo() != gp.deep_tremolo) {
         pl.set_deep_tremolo(gp.deep_tremolo);
         update = true;
@@ -140,6 +141,16 @@ bool Bank_Manager::load_global_parameters(const Instrument_Global_Parameters &gp
         pl.set_deep_vibrato(gp.deep_vibrato);
         update = true;
     }
+#elif defined(ADLPLUG_OPN2)
+    if (pl.lfo_enabled() != gp.lfo_enable) {
+        pl.set_lfo_enabled(gp.lfo_enable);
+        update = true;
+    }
+    if (pl.lfo_frequency() != gp.lfo_frequency) {
+        pl.set_lfo_frequency(gp.lfo_frequency);
+        update = true;
+    }
+#endif
 
     if (notify && update)
         global_parameters_notify_flag_ = true;
@@ -379,8 +390,13 @@ bool Bank_Manager::emit_global_parameters()
 
     auto &data = *(Messages::Fx::NotifyGlobalParameters *)msg.data;
     data.param.volume_model = pl.volume_model() - 1;
+#if defined(ADLPLUG_OPL3)
     data.param.deep_tremolo = pl.deep_tremolo();
     data.param.deep_vibrato = pl.deep_vibrato();
+#elif defined(ADLPLUG_OPN2)
+    data.param.lfo_enable = pl.lfo_enabled();
+    data.param.lfo_frequency = pl.lfo_frequency();
+#endif
 
     Messages::finish_write(queue, msg);
     return true;
