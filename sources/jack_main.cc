@@ -56,7 +56,7 @@ void Application_Jack::initialise(const String &args)
     if (mlockall(MCL_CURRENT|MCL_FUTURE) != 0)
         fprintf(stderr, "could not lock memory\n");
 
-    jack_client_t *client = jack_client_open("ADLplug", JackNoStartServer, nullptr);
+    jack_client_t *client = jack_client_open(JucePlugin_Name, JackNoStartServer, nullptr);
     if (!client) {
         AlertWindow::showMessageBox(
             AlertWindow::WarningIcon,

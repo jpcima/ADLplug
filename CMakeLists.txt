@@ -161,7 +161,10 @@ elseif(ADLplug_CHIP STREQUAL "OPN2")
     "sources/opn2/adl/player.cc"
     "sources/opn2/adl/measurer/measurer.cpp"
     "sources/opn2/adl/measurer/chips/mame/mame_ym2612fm.cpp"
-    "sources/opn2/adl/measurer/chips/mame_opn2.cpp")
+    "sources/opn2/adl/measurer/chips/mame_opn2.cpp"
+    "sources/opn2/ui/operator_editor.cc"
+    "sources/opn2/ui/about_component.cc"
+    "sources/opn2/ui/main_component.cc")
 
   add_library(wopn STATIC "thirdparty/wopn/wopn/wopn_file.c")
   target_include_directories(wopn PUBLIC "thirdparty/wopn")

@@ -74,6 +74,20 @@
             </GROUP>
           </GROUP>
         </GROUP>
+        <GROUP id="{D363DB61-2702-1ED4-BC19-1F2FD78583CD}" name="ui">
+          <FILE id="fPWZM7" name="about_component.cc" compile="1" resource="0"
+                file="../../sources/opn2/ui/about_component.cc"/>
+          <FILE id="htsphu" name="about_component.h" compile="0" resource="0"
+                file="../../sources/opn2/ui/about_component.h"/>
+          <FILE id="K4mndt" name="main_component.cc" compile="1" resource="0"
+                file="../../sources/opn2/ui/main_component.cc"/>
+          <FILE id="g1DxDK" name="main_component.h" compile="0" resource="0"
+                file="../../sources/opn2/ui/main_component.h"/>
+          <FILE id="jsW8jR" name="operator_editor.cc" compile="1" resource="0"
+                file="../../sources/opn2/ui/operator_editor.cc"/>
+          <FILE id="rzEmKR" name="operator_editor.h" compile="0" resource="0"
+                file="../../sources/opn2/ui/operator_editor.h"/>
+        </GROUP>
       </GROUP>
       <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">
         <FILE id="awUfqG" name="look_and_feel.cc" compile="1" resource="0"

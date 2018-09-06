@@ -108,6 +108,9 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/measurer_9a03d4ba.o \
   $(JUCE_OBJDIR)/mame_opn2_15456754.o \
   $(JUCE_OBJDIR)/mame_ym2612fm_47977c5e.o \
+  $(JUCE_OBJDIR)/about_component_7d59467a.o \
+  $(JUCE_OBJDIR)/main_component_cf7104c0.o \
+  $(JUCE_OBJDIR)/operator_editor_91291ebd.o \
   $(JUCE_OBJDIR)/look_and_feel_dde78e55.o \
   $(JUCE_OBJDIR)/indicator_NxM_67a37cbf.o \
   $(JUCE_OBJDIR)/knob_component_359f0c96.o \
@@ -258,6 +261,21 @@ $(JUCE_OBJDIR)/mame_opn2_15456754.o: ../../../../../sources/opn2/adl/measurer/ch
 $(JUCE_OBJDIR)/mame_ym2612fm_47977c5e.o: ../../../../../sources/opn2/adl/measurer/chips/mame/mame_ym2612fm.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling mame_ym2612fm.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/about_component_7d59467a.o: ../../../../../sources/opn2/ui/about_component.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling about_component.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/main_component_cf7104c0.o: ../../../../../sources/opn2/ui/main_component.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling main_component.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/operator_editor_91291ebd.o: ../../../../../sources/opn2/ui/operator_editor.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling operator_editor.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/look_and_feel_dde78e55.o: ../../../../../sources/ui/look_and_feel.cc
