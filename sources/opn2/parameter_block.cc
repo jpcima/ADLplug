@@ -9,7 +9,6 @@
 #include "adl/player.h"
 #include "utility/pak.h"
 #include "BinaryData.h"
-#include <wopn/wopn_file.h>
 #include <fmt/format.h>
 #include <cassert>
 

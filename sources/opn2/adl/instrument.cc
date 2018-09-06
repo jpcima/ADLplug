@@ -5,7 +5,6 @@
 
 #include "instrument.h"
 #include "player.h"
-#include <wopn/wopn_file.h>
 #include <opnmidi.h>
 #include <cstring>
 #include <cassert>

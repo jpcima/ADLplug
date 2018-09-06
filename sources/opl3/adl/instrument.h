@@ -5,6 +5,7 @@
 
 #pragma once
 #include "utility/field_bitops.h"
+#include <wopl/wopl_file.h>
 #include <adlmidi.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -16,6 +17,10 @@ struct Instrument : ADL_Instrument
 {
     Instrument() noexcept
         : ADL_Instrument{} { inst_flags = ADLMIDI_Ins_IsBlank; }
+
+    enum {
+        latest_version = ADLMIDI_InstrumentVersion
+    };
 
     static Instrument from_adlmidi(const ADL_Instrument &o) noexcept;
     static Instrument from_wopl(const WOPLInstrument &o) noexcept;

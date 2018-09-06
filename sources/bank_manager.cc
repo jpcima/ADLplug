@@ -179,7 +179,7 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
         }
 
         info.id = id;
-        pl.ensure_get_bank(id, ADLMIDI_Bank_CreateRt, info.bank);
+        pl.ensure_get_bank(id, Player::Bank_CreateRt, info.bank);
         info.used.reset();
         info.to_notify.reset();
         info.to_measure.reset();

@@ -5,6 +5,7 @@
 
 #pragma once
 #include "utility/field_bitops.h"
+#include <wopn/wopn_file.h>
 #include <opnmidi.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -16,6 +17,10 @@ struct Instrument : OPN2_Instrument
 {
     Instrument() noexcept
         : OPN2_Instrument{} { inst_flags = OPNMIDI_Ins_IsBlank; }
+
+    enum {
+        latest_version = OPNMIDI_InstrumentVersion
+    };
 
     static Instrument from_adlmidi(const OPN2_Instrument &o) noexcept;
     static Instrument from_wopl(const WOPNInstrument &o) noexcept;

@@ -5,7 +5,6 @@
 
 #include "instrument.h"
 #include "player.h"
-#include <wopl/wopl_file.h>
 #include <adlmidi.h>
 #include <cstring>
 #include <cassert>

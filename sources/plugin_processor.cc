@@ -17,7 +17,6 @@
 #include "plugin_editor.h"
 #include "worker.h"
 #include "BinaryData.h"
-#include <wopl/wopl_file.h>
 #include <cassert>
 
 //==============================================================================
@@ -562,7 +561,7 @@ void AdlplugAudioProcessor::parameters_to_instrument(unsigned part_number, Instr
     const Parameter_Block &pb = *parameter_block_;
     const Parameter_Block::Part &part = pb.part[part_number];
 
-    ins.version = ADLMIDI_InstrumentVersion;
+    ins.version = Instrument::latest_version;
     ins.inst_flags = 0;
 
     ins.four_op(part.p_is4op->get());

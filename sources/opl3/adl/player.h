@@ -14,6 +14,11 @@
 
 class Player {
 public:
+    enum {
+        Bank_Create = ADLMIDI_Bank_Create,
+        Bank_CreateRt = ADLMIDI_Bank_CreateRt,
+    };
+
     void init(unsigned sample_rate);
     void close()
         { player_.reset(); }
