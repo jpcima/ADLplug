@@ -189,6 +189,9 @@ private:
     std::unique_ptr<Label> label22;
     std::unique_ptr<ComboBox> cb_volmodel;
     std::unique_ptr<TextButton> btn_algo_help;
+    std::unique_ptr<TextButton> btn_lfo_enable;
+    std::unique_ptr<Label> label20;
+    std::unique_ptr<ComboBox> cb_lfofreq;
 
 
     //==============================================================================

@@ -52,7 +52,7 @@ struct Parameter_Block {
 
     AudioParameterChoice *p_volmodel = nullptr;
     AudioParameterBool *p_lfoenable = nullptr;
-    AudioParameterInt *p_lfofreq = nullptr;
+    AudioParameterChoice *p_lfofreq = nullptr;
 
     void setup_parameters(AudioProcessor &p);
 

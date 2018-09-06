@@ -1,0 +1,30 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+
+<https://github.com/jpcima/OPNplug>
+    a lv2:Plugin ;
+    lv2:binary <OPNplug@LV2_BINARY_SUFFIX@> ;
+    rdfs:seeAlso <OPNplug.ttl> .
+
+<https://github.com/jpcima/OPNplug#ExternalUI>
+    a <http://kxstudio.sf.net/ns/lv2ext/external-ui#Widget> ;
+    ui:binary <OPNplug@LV2_BINARY_SUFFIX@> ;
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:extensionData <http://kxstudio.sf.net/ns/lv2ext/programs#UIInterface> .
+
+<https://github.com/jpcima/OPNplug#ParentUI>
+    a @LV2_UI_CLASS@ ;
+    ui:binary <OPNplug@LV2_BINARY_SUFFIX@> ;
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:optionalFeature ui:noUserResize ;
+    lv2:extensionData <http://kxstudio.sf.net/ns/lv2ext/programs#UIInterface> .
+
+<https://github.com/jpcima/OPNplug#preset001>
+    a pset:Preset ;
+    lv2:appliesTo <https://github.com/jpcima/OPNplug> ;
+    rdfs:label "" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

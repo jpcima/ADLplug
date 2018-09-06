@@ -1,0 +1,4134 @@
+@prefix atom:  <http://lv2plug.in/ns/ext/atom#> .
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix state: <http://lv2plug.in/ns/ext/state#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+<https://github.com/jpcima/OPNplug#preset001> a pset:Preset ;
+    state:state [
+        <urn:juce:stateBinary> [
+            a atom:Chunk ;
+            rdf:value ""^^xsd:base64Binary ;
+        ] ;
+    ] ;
+
+    lv2:port [
+        lv2:symbol "emulator" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "nchip" ;
+        pset:value 0.010101 ;
+    ] ,
+    [
+        lv2:symbol "p1blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p1feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p1ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p1drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p1op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p1op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p1op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p1op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p1op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p1op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p1op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p1op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p1op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p1op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p1op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p1op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p1op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p1op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p1op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p1op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p1op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p1op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p1op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p1op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p1op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p1op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p1op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p1op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p1op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p1op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p1op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p1op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p1op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p1op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p1op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p1op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p1op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p2feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p2ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p2drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p2op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p2op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p2op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p2op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p2op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p2op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p2op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p2op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p2op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p2op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p2op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p2op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p2op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p2op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p2op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p2op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p2op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p2op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p2op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p2op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p2op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p2op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p2op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p2op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p2op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p2op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p2op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p2op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p2op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p2op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p2op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p2op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p2op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p3feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p3ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p3drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p3op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p3op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p3op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p3op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p3op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p3op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p3op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p3op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p3op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p3op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p3op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p3op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p3op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p3op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p3op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p3op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p3op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p3op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p3op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p3op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p3op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p3op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p3op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p3op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p3op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p3op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p3op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p3op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p3op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p3op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p3op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p3op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p3op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p4feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p4ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p4drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p4op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p4op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p4op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p4op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p4op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p4op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p4op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p4op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p4op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p4op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p4op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p4op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p4op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p4op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p4op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p4op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p4op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p4op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p4op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p4op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p4op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p4op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p4op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p4op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p4op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p4op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p4op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p4op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p4op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p4op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p4op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p4op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p4op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p5feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p5ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p5drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p5op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p5op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p5op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p5op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p5op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p5op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p5op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p5op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p5op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p5op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p5op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p5op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p5op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p5op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p5op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p5op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p5op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p5op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p5op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p5op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p5op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p5op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p5op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p5op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p5op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p5op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p5op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p5op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p5op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p5op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p5op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p5op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p5op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p6feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p6ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p6drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p6op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p6op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p6op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p6op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p6op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p6op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p6op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p6op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p6op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p6op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p6op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p6op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p6op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p6op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p6op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p6op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p6op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p6op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p6op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p6op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p6op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p6op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p6op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p6op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p6op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p6op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p6op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p6op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p6op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p6op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p6op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p6op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p6op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p7feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p7ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p7drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p7op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p7op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p7op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p7op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p7op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p7op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p7op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p7op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p7op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p7op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p7op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p7op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p7op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p7op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p7op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p7op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p7op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p7op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p7op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p7op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p7op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p7op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p7op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p7op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p7op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p7op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p7op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p7op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p7op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p7op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p7op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p7op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p7op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p8feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p8ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p8drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p8op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p8op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p8op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p8op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p8op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p8op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p8op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p8op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p8op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p8op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p8op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p8op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p8op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p8op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p8op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p8op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p8op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p8op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p8op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p8op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p8op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p8op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p8op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p8op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p8op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p8op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p8op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p8op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p8op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p8op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p8op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p8op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p8op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p9feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p9ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p9drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p9op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p9op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p9op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p9op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p9op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p9op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p9op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p9op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p9op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p9op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p9op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p9op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p9op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p9op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p9op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p9op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p9op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p9op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p9op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p9op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p9op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p9op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p9op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p9op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p9op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p9op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p9op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p9op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p9op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p9op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p9op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p9op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p9op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p10feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p10ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p10drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p10op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p10op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p10op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p10op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p10op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p10op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p10op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p10op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p10op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p10op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p10op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p10op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p10op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p10op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p10op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p10op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p10op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p10op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p10op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p10op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p10op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p10op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p10op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p10op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p10op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p10op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p10op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p10op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p10op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p10op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p10op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p10op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p10op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p11feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p11ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p11drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p11op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p11op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p11op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p11op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p11op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p11op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p11op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p11op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p11op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p11op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p11op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p11op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p11op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p11op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p11op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p11op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p11op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p11op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p11op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p11op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p11op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p11op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p11op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p11op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p11op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p11op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p11op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p11op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p11op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p11op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p11op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p11op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p11op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p12feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p12ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p12drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p12op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p12op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p12op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p12op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p12op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p12op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p12op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p12op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p12op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p12op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p12op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p12op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p12op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p12op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p12op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p12op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p12op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p12op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p12op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p12op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p12op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p12op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p12op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p12op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p12op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p12op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p12op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p12op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p12op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p12op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p12op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p12op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p12op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p13feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p13ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p13drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p13op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p13op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p13op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p13op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p13op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p13op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p13op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p13op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p13op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p13op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p13op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p13op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p13op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p13op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p13op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p13op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p13op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p13op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p13op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p13op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p13op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p13op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p13op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p13op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p13op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p13op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p13op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p13op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p13op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p13op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p13op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p13op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p13op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p14feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p14ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p14drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p14op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p14op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p14op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p14op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p14op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p14op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p14op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p14op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p14op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p14op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p14op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p14op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p14op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p14op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p14op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p14op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p14op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p14op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p14op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p14op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p14op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p14op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p14op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p14op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p14op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p14op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p14op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p14op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p14op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p14op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p14op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p14op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p14op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p15feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p15ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p15drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p15op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p15op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p15op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p15op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p15op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p15op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p15op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p15op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p15op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p15op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p15op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p15op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p15op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p15op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p15op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p15op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p15op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p15op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p15op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p15op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p15op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p15op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p15op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p15op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p15op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p15op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p15op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p15op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p15op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p15op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p15op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p15op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p15op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16blank" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p16feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16algorithm" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "p16ams" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16fms" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16veloffset" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "p16drumnote" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op1detune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op1fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p16op1level" ;
+        pset:value 0.307087 ;
+    ] ,
+    [
+        lv2:symbol "p16op1ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p16op1attack" ;
+        pset:value 0.838710 ;
+    ] ,
+    [
+        lv2:symbol "p16op1am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op1decay1" ;
+        pset:value 0.225806 ;
+    ] ,
+    [
+        lv2:symbol "p16op1decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p16op1sustain" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p16op1release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p16op1cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op1att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op1alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op1hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op3detune" ;
+        pset:value 0.857143 ;
+    ] ,
+    [
+        lv2:symbol "p16op3fmul" ;
+        pset:value 0.266667 ;
+    ] ,
+    [
+        lv2:symbol "p16op3level" ;
+        pset:value 0.283465 ;
+    ] ,
+    [
+        lv2:symbol "p16op3ratescale" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "p16op3attack" ;
+        pset:value 0.774194 ;
+    ] ,
+    [
+        lv2:symbol "p16op3am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op3decay1" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p16op3decay2" ;
+        pset:value 0.290323 ;
+    ] ,
+    [
+        lv2:symbol "p16op3sustain" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p16op3release" ;
+        pset:value 0.466667 ;
+    ] ,
+    [
+        lv2:symbol "p16op3cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op3att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op3alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op3hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op2detune" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op2fmul" ;
+        pset:value 0.133333 ;
+    ] ,
+    [
+        lv2:symbol "p16op2level" ;
+        pset:value 0.031496 ;
+    ] ,
+    [
+        lv2:symbol "p16op2ratescale" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op2attack" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op2am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op2decay1" ;
+        pset:value 0.741935 ;
+    ] ,
+    [
+        lv2:symbol "p16op2decay2" ;
+        pset:value 0.483871 ;
+    ] ,
+    [
+        lv2:symbol "p16op2sustain" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "p16op2release" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p16op2cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op2att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op2alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op2hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op4detune" ;
+        pset:value 0.428571 ;
+    ] ,
+    [
+        lv2:symbol "p16op4fmul" ;
+        pset:value 0.066667 ;
+    ] ,
+    [
+        lv2:symbol "p16op4level" ;
+        pset:value 0.015748 ;
+    ] ,
+    [
+        lv2:symbol "p16op4ratescale" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p16op4attack" ;
+        pset:value 0.870968 ;
+    ] ,
+    [
+        lv2:symbol "p16op4am" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op4decay1" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p16op4decay2" ;
+        pset:value 0.129032 ;
+    ] ,
+    [
+        lv2:symbol "p16op4sustain" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "p16op4release" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "p16op4cont" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op4att" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op4alt" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "p16op4hold" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "volmodel" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfoenable" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfofreq" ;
+        pset:value 0.142857 ;
+    ] .
+
+

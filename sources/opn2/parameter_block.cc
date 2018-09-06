@@ -115,6 +115,6 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
     first_global_parameter = p.getParameters().size();
     p.addParameter((p_volmodel = new AudioParameterChoice("volmodel", "Volume model", {"Generic"}, wopn->volume_model, String())));
     p.addParameter((p_lfoenable = new AudioParameterBool("lfoenable", "LFO enable", (wopn->lfo_freq & 8) != 0, String())));
-    p.addParameter((p_lfofreq = new AudioParameterInt("lfofreq", "LFO frequency", 0, 7, wopn->lfo_freq & 7, String())));
+    p.addParameter((p_lfofreq = new AudioParameterChoice("lfofreq", "LFO frequency", {"3.98 Hz", "5.56 Hz", "6.02 Hz", "6.37 Hz", "6.88 Hz", "9.63 Hz", "48.1 Hz", "72.2 Hz"}, wopn->lfo_freq & 7, String())));
     last_global_parameter = p.getParameters().size() - 1;
 }

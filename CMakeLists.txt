@@ -82,9 +82,11 @@ message("Build Standalone: ${ADLplug_Standalone}")
 message("Build Jack: ${ADLplug_Jack}")
 
 if(ADLplug_CHIP STREQUAL "OPL3")
+  set(ADLplug_NAME "ADLplug")
   set(ADLplug_URI "https://github.com/jpcima/ADLplug")
   set(JUCE_PROJECT_DIR "${PROJECT_SOURCE_DIR}/project/adl")
 elseif(ADLplug_CHIP STREQUAL "OPN2")
+  set(ADLplug_NAME "OPNplug")
   set(ADLplug_URI "https://github.com/jpcima/OPNplug")
   set(JUCE_PROJECT_DIR "${PROJECT_SOURCE_DIR}/project/opn")
 else()
@@ -229,16 +231,16 @@ if(ADLplug_VST2)
     require_symbols(ADLplug_VST2 "VSTPluginMain")
   endif()
   set_target_properties(ADLplug_VST2 PROPERTIES
-    OUTPUT_NAME "ADLplug" LIBRARY_OUTPUT_DIRECTORY "vst2")
+    OUTPUT_NAME "${ADLplug_NAME}" LIBRARY_OUTPUT_DIRECTORY "vst2")
   if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set_target_properties(ADLplug_VST2 PROPERTIES
-      PREFIX "" SUFFIX "" LIBRARY_OUTPUT_DIRECTORY "vst2/ADLplug.vst/Contents/MacOS")
-    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/vst2/ADLplug.vst/Contents/")
-    file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/vst2/ADLplug.vst/Contents/PkgInfo" "BNDL????")
+      PREFIX "" SUFFIX "" LIBRARY_OUTPUT_DIRECTORY "vst2/${ADLplug_NAME}.vst/Contents/MacOS")
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/vst2/${ADLplug_NAME}.vst/Contents/")
+    file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/vst2/${ADLplug_NAME}.vst/Contents/PkgInfo" "BNDL????")
     add_custom_target(ADLplug_VST2_InfoPlist ALL
       "${CMAKE_COMMAND}"
       "-DCONFIGURE_FILE_INPUT=${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST.plist"
-      "-DCONFIGURE_FILE_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/vst2/ADLplug.vst/Contents/Info.plist"
+      "-DCONFIGURE_FILE_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/vst2/${ADLplug_NAME}.vst/Contents/Info.plist"
       "-DEXECUTABLE_NAME=ADLplug"
       "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
       DEPENDS "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST.plist")
@@ -259,16 +261,16 @@ if(ADLplug_VST3)
     require_symbols(ADLplug_VST3 "GetPluginFactory")
   endif()
   set_target_properties(ADLplug_VST3 PROPERTIES
-    OUTPUT_NAME "ADLplug" LIBRARY_OUTPUT_DIRECTORY "vst3")
+    OUTPUT_NAME "${ADLplug_NAME}" LIBRARY_OUTPUT_DIRECTORY "vst3")
   if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set_target_properties(ADLplug_VST3 PROPERTIES
-      PREFIX "" SUFFIX "" LIBRARY_OUTPUT_DIRECTORY "vst3/ADLplug.vst3/Contents/MacOS")
-    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/vst3/ADLplug.vst3/Contents/")
-    file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/vst3/ADLplug.vst3/Contents/PkgInfo" "BNDL????")
+      PREFIX "" SUFFIX "" LIBRARY_OUTPUT_DIRECTORY "vst3/${ADLplug_NAME}.vst3/Contents/MacOS")
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/vst3/${ADLplug_NAME}.vst3/Contents/")
+    file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/vst3/${ADLplug_NAME}.vst3/Contents/PkgInfo" "BNDL????")
     add_custom_target(ADLplug_VST3_InfoPlist ALL
       "${CMAKE_COMMAND}"
       "-DCONFIGURE_FILE_INPUT=${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST3.plist"
-      "-DCONFIGURE_FILE_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/vst3/ADLplug.vst3/Contents/Info.plist"
+      "-DCONFIGURE_FILE_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/vst3/${ADLplug_NAME}.vst3/Contents/Info.plist"
       "-DEXECUTABLE_NAME=ADLplug"
       "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
       DEPENDS "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST3.plist")
@@ -284,7 +286,7 @@ if(ADLplug_LV2)
     require_symbols(ADLplug_LV2 "lv2_generate_ttl" "lv2_descriptor" "lv2ui_descriptor")
   endif()
   set_target_properties(ADLplug_LV2 PROPERTIES
-    OUTPUT_NAME "ADLplug" LIBRARY_OUTPUT_DIRECTORY "lv2/ADLplug.lv2")
+    OUTPUT_NAME "${ADLplug_NAME}" LIBRARY_OUTPUT_DIRECTORY "lv2/${ADLplug_NAME}.lv2")
 
   if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(LV2_UI_CLASS "ui:WindowsUI")
@@ -296,23 +298,23 @@ if(ADLplug_LV2)
   set(LV2_BINARY_SUFFIX "${CMAKE_SHARED_MODULE_SUFFIX}")
 
   configure_file(
-    "${PROJECT_SOURCE_DIR}/resources/lv2/manifest.ttl.in"
+    "${PROJECT_SOURCE_DIR}/resources/lv2/${ADLplug_NAME}.lv2/manifest.ttl.in"
     "${PROJECT_BINARY_DIR}/lv2build/manifest.ttl"
     @ONLY)
 
   set(ADLplug_LV2_MANIFESTS
-    "resources/lv2/ADLplug.ttl"
+    "resources/lv2/${ADLplug_NAME}.lv2/${ADLplug_NAME}.ttl"
     "${PROJECT_BINARY_DIR}/lv2build/manifest.ttl"
-    "resources/lv2/presets.ttl")
+    "resources/lv2/${ADLplug_NAME}.lv2/presets.ttl")
   add_custom_target(ADLplug_LV2_manifests_copy ALL
-    COMMAND "${CMAKE_COMMAND}" "-E" "make_directory" "${CMAKE_CURRENT_BINARY_DIR}/lv2/ADLplug.lv2/"
-    COMMAND "${CMAKE_COMMAND}" "-E" "copy" ${ADLplug_LV2_MANIFESTS} "${CMAKE_CURRENT_BINARY_DIR}/lv2/ADLplug.lv2/"
+    COMMAND "${CMAKE_COMMAND}" "-E" "make_directory" "${CMAKE_CURRENT_BINARY_DIR}/lv2/${ADLplug_NAME}.lv2/"
+    COMMAND "${CMAKE_COMMAND}" "-E" "copy" ${ADLplug_LV2_MANIFESTS} "${CMAKE_CURRENT_BINARY_DIR}/lv2/${ADLplug_NAME}.lv2/"
     DEPENDS ${ADLplug_LV2_MANIFESTS}
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
 
   if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Darwin" OR CMAKE_SYSTEM_NAME STREQUAL "Windows"))
-    install(TARGETS ADLplug_LV2 DESTINATION "lib/lv2/ADLplug.lv2")
-    install(FILES ${ADLplug_LV2_MANIFESTS} DESTINATION "lib/lv2/ADLplug.lv2")
+    install(TARGETS ADLplug_LV2 DESTINATION "lib/lv2/${ADLplug_NAME}.lv2")
+    install(FILES ${ADLplug_LV2_MANIFESTS} DESTINATION "lib/lv2/${ADLplug_NAME}.lv2")
   endif()
 endif()
 
@@ -330,7 +332,7 @@ if(ADLplug_Standalone)
     require_symbols(ADLplug_Standalone "main")
   endif()
   set_target_properties(ADLplug_Standalone PROPERTIES
-    OUTPUT_NAME "ADLplug" RUNTIME_OUTPUT_DIRECTORY "standalone")
+    OUTPUT_NAME "${ADLplug_NAME}" RUNTIME_OUTPUT_DIRECTORY "standalone")
   if(NOT ADLplug_Jack)
     install(TARGETS ADLplug_Standalone DESTINATION "bin")
   endif()
@@ -342,6 +344,6 @@ if(ADLplug_Jack)
   target_include_directories(ADLplug_Jack PRIVATE ${JACK_INCLUDE_DIRS})
   link_directories(${JACK_LIBRARY_DIRS})
   set_target_properties(ADLplug_Jack PROPERTIES
-    OUTPUT_NAME "ADLplug" RUNTIME_OUTPUT_DIRECTORY "jack")
+    OUTPUT_NAME "${ADLplug_NAME}" RUNTIME_OUTPUT_DIRECTORY "jack")
   install(TARGETS ADLplug_Jack DESTINATION "bin")
 endif()

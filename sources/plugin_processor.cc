@@ -565,7 +565,7 @@ void AdlplugAudioProcessor::parameters_to_global(Instrument_Global_Parameters &g
     gp.deep_vibrato = pb.p_deepvib->get();
 #elif defined(ADLPLUG_OPN2)
     gp.lfo_enable = pb.p_lfoenable->get();
-    gp.lfo_frequency = pb.p_lfofreq->get();
+    gp.lfo_frequency = pb.p_lfofreq->getIndex();
 #endif
 }
 

@@ -381,6 +381,35 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     btn_algo_help->setBounds (754, 136, 20, 20);
 
+    btn_lfo_enable.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_lfo_enable.get());
+    btn_lfo_enable->setButtonText (String());
+    btn_lfo_enable->addListener (this);
+    btn_lfo_enable->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
+
+    btn_lfo_enable->setBounds (552, 486, 15, 15);
+
+    label20.reset (new Label ("new label",
+                              TRANS("LFO enabled")));
+    addAndMakeVisible (label20.get());
+    label20->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label20->setJustificationType (Justification::centredLeft);
+    label20->setEditable (false, false, false);
+    label20->setColour (TextEditor::textColourId, Colours::black);
+    label20->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label20->setBounds (568, 486, 94, 15);
+
+    cb_lfofreq.reset (new ComboBox ("new combo box"));
+    addAndMakeVisible (cb_lfofreq.get());
+    cb_lfofreq->setEditableText (false);
+    cb_lfofreq->setJustificationType (Justification::centredLeft);
+    cb_lfofreq->setTextWhenNothingSelected (String());
+    cb_lfofreq->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
+    cb_lfofreq->addListener (this);
+
+    cb_lfofreq->setBounds (664, 482, 104, 20);
+
 
     //[UserPreSize]
     Desktop::getInstance().addFocusChangeListener(this);
@@ -406,6 +435,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     sl_tune->setNumDecimalPlacesToDisplay(0);
 
+    btn_lfo_enable->setClickingTogglesState(true);
+
     create_image_overlay(*btn_bank_load, ImageCache::getFromMemory(BinaryData::emoji_u1f4c2_png, BinaryData::emoji_u1f4c2_pngSize), 0.7f);
     create_image_overlay(*btn_bank_save, ImageCache::getFromMemory(BinaryData::emoji_u1f4be_png, BinaryData::emoji_u1f4be_pngSize), 0.7f);
 
@@ -426,6 +457,13 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
             cb_volmodel->addItem(strings[i], i + 1);
     }
     cb_volmodel->setScrollWheelEnabled(true);
+
+    {
+        StringArray strings = pb.p_lfofreq->getAllValueStrings();
+        for (unsigned i = 0, n = strings.size(); i < n; ++i)
+            cb_lfofreq->addItem(strings[i], i + 1);
+    }
+    cb_lfofreq->setScrollWheelEnabled(true);
 
     vu_timer_.reset(Functional_Timer::create([this]() { vu_update(); }));
     vu_timer_->startTimer(10);
@@ -478,6 +516,9 @@ Main_Component::~Main_Component()
     label22 = nullptr;
     cb_volmodel = nullptr;
     btn_algo_help = nullptr;
+    btn_lfo_enable = nullptr;
+    label20 = nullptr;
+    cb_lfofreq = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -876,6 +917,15 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         /* TODO OPN2 */
         //[/UserButtonCode_btn_algo_help]
     }
+    else if (buttonThatWasClicked == btn_lfo_enable.get())
+    {
+        //[UserButtonCode_btn_lfo_enable] -- add your button handler code here..
+        AudioParameterBool &p = *pb.p_lfoenable;
+        p.beginChangeGesture();
+        p = btn->getToggleState();
+        p.endChangeGesture();
+        //[/UserButtonCode_btn_lfo_enable]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
@@ -944,6 +994,15 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         p = cb->getSelectedId() - 1;
         p.endChangeGesture();
         //[/UserComboBoxCode_cb_volmodel]
+    }
+    else if (comboBoxThatHasChanged == cb_lfofreq.get())
+    {
+        //[UserComboBoxCode_cb_lfofreq] -- add your combo box handling code here..
+        AudioParameterChoice &p = *pb.p_lfofreq;
+        p.beginChangeGesture();
+        p = cb->getSelectedId() - 1;
+        p.endChangeGesture();
+        //[/UserComboBoxCode_cb_lfofreq]
     }
 
     //[UsercomboBoxChanged_Post]
@@ -1091,17 +1150,17 @@ void Main_Component::set_instrument_parameters(const Instrument &ins, Notificati
 
     /* TODO OPN2 */
 
-   sl_tune->setValue(ins.note_offset, ntf);
+    sl_tune->setValue(ins.note_offset, ntf);
 
-   cb_percussion_key->setSelectedId(ins.percussion_key_number + 1, ntf);
+    cb_percussion_key->setSelectedId(ins.percussion_key_number + 1, ntf);
 
-   sl_veloffset->setValue(ins.midi_velocity_offset, ntf);
+    sl_veloffset->setValue(ins.midi_velocity_offset, ntf);
 
-   for (unsigned op = 0; op < 4; ++op) {
-       Operator_Editor *oped = op_editors[op];
-       oped->set_operator_parameters(ins, op, ntf);
-       oped->set_operator_enabled(true);
-   }
+    for (unsigned op = 0; op < 4; ++op) {
+        Operator_Editor *oped = op_editors[op];
+        oped->set_operator_parameters(ins, op, ntf);
+        oped->set_operator_enabled(true);
+    }
 }
 
 void Main_Component::set_chip_settings(NotificationType ntf)
@@ -1114,8 +1173,8 @@ void Main_Component::set_chip_settings(NotificationType ntf)
 void Main_Component::set_global_parameters(NotificationType ntf)
 {
     cb_volmodel->setSelectedId(instrument_gparam_.volume_model + 1, ntf);
-
-    /* TODO OPN2 */
+    btn_lfo_enable->setToggleState(instrument_gparam_.lfo_enable, ntf);
+    cb_lfofreq->setSelectedId(instrument_gparam_.lfo_frequency + 1, ntf);
 }
 
 void Main_Component::receive_bank_slots(const Messages::Fx::NotifyBankSlots &msg)
@@ -1845,6 +1904,17 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="new button" id="5a50a3a87b4f5d76" memberName="btn_algo_help"
               virtualName="" explicitFocusOrder="0" pos="754 136 20 20" buttonText="?"
               connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="fd73fd08b6289ecb" memberName="btn_lfo_enable"
+              virtualName="" explicitFocusOrder="0" pos="552 486 15 15" bgColOn="ff42a2c8"
+              buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <LABEL name="new label" id="bf1838a34852c77b" memberName="label20" virtualName=""
+         explicitFocusOrder="0" pos="568 486 94 15" edTextCol="ff000000"
+         edBkgCol="0" labelText="LFO enabled" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <COMBOBOX name="new combo box" id="e1df7689d7d9db6e" memberName="cb_lfofreq"
+            virtualName="" explicitFocusOrder="0" pos="664 482 104 20" editable="0"
+            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
