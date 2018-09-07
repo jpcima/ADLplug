@@ -299,7 +299,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label5->setColour (TextEditor::textColourId, Colours::black);
     label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label5->setBounds (590, 372, 104, 20);
+    label5->setBounds (590, 348, 104, 20);
 
     cb_percussion_key.reset (new ComboBox ("new combo box"));
     addAndMakeVisible (cb_percussion_key.get());
@@ -309,7 +309,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     cb_percussion_key->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     cb_percussion_key->addListener (this);
 
-    cb_percussion_key->setBounds (696, 372, 74, 20);
+    cb_percussion_key->setBounds (696, 348, 74, 20);
 
     label17.reset (new Label ("new label",
                               TRANS("Percussion key")));
@@ -320,7 +320,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label17->setColour (TextEditor::textColourId, Colours::black);
     label17->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label17->setBounds (590, 372, 104, 20);
+    label17->setBounds (590, 348, 104, 20);
 
     sl_veloffset.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_veloffset.get());
@@ -394,7 +394,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (label20.get());
     label20->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label20->setJustificationType (Justification::centredLeft);
-    label20->setEditable (false, false, false);
+    label20->setEditable (false, false, false);
     label20->setColour (TextEditor::textColourId, Colours::black);
     label20->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -424,7 +424,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (kn_feedback.get());
     kn_feedback->setName ("new component");
 
-    kn_feedback->setBounds (654, 192, 32, 32);
+    kn_feedback->setBounds (692, 192, 32, 32);
 
     label10.reset (new Label ("new label",
                               TRANS("Feedback")));
@@ -435,13 +435,13 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label10->setColour (TextEditor::textColourId, Colours::black);
     label10->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label10->setBounds (590, 195, 72, 24);
+    label10->setBounds (628, 195, 72, 24);
 
     kn_ams.reset (new Styled_Knob_DefaultSmall());
     addAndMakeVisible (kn_ams.get());
     kn_ams->setName ("new component");
 
-    kn_ams->setBounds (636, 252, 32, 32);
+    kn_ams->setBounds (636, 254, 32, 32);
 
     label6.reset (new Label ("new label",
                              TRANS("AM")));
@@ -452,13 +452,13 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label6->setColour (TextEditor::textColourId, Colours::black);
     label6->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label6->setBounds (608, 255, 36, 24);
+    label6->setBounds (608, 257, 36, 24);
 
     kn_fms.reset (new Styled_Knob_DefaultSmall());
     addAndMakeVisible (kn_fms.get());
     kn_fms->setName ("new component");
 
-    kn_fms->setBounds (718, 252, 32, 32);
+    kn_fms->setBounds (714, 254, 32, 32);
 
     label7.reset (new Label ("new label",
                              TRANS("FM")));
@@ -469,7 +469,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label7->setColour (TextEditor::textColourId, Colours::black);
     label7->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label7->setBounds (690, 255, 36, 24);
+    label7->setBounds (686, 257, 36, 24);
 
 
     //[UserPreSize]
@@ -743,7 +743,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 586, y = 316, width = 188, height = 106;
+        int x = 586, y = 316, width = 188, height = 60;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -752,7 +752,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 606, y = 52, width = 168, height = 80;
+        int x = 606, y = 52, width = 168, height = 56;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1914,8 +1914,8 @@ BEGIN_JUCER_METADATA
     <TEXT pos="586 288 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Tuning"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="586 316 188 106" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="606 52 168 80" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="586 316 188 60" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="606 52 168 56" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="16 474 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="16 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="300 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
@@ -2033,15 +2033,15 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="1b1aa7f42f11af53" memberName="label5" virtualName=""
-         explicitFocusOrder="0" pos="590 372 104 20" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="590 348 104 20" edTextCol="ff000000"
          edBkgCol="0" labelText="Percussion key" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <COMBOBOX name="new combo box" id="72b8aa8d99fdb9cc" memberName="cb_percussion_key"
-            virtualName="" explicitFocusOrder="0" pos="696 372 74 20" editable="0"
+            virtualName="" explicitFocusOrder="0" pos="696 348 74 20" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <LABEL name="new label" id="5917d9d90d014675" memberName="label17" virtualName=""
-         explicitFocusOrder="0" pos="590 372 104 20" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="590 348 104 20" edTextCol="ff000000"
          edBkgCol="0" labelText="Percussion key" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
@@ -2086,26 +2086,26 @@ BEGIN_JUCER_METADATA
             virtualName="" explicitFocusOrder="0" pos="590 168 180 24" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <GENERICCOMPONENT name="new component" id="8e0915367ccd00d3" memberName="kn_feedback"
-                    virtualName="" explicitFocusOrder="0" pos="654 192 32 32" class="Styled_Knob_DefaultSmall"
+                    virtualName="" explicitFocusOrder="0" pos="692 192 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <LABEL name="new label" id="6ff60ad947a8f168" memberName="label10" virtualName=""
-         explicitFocusOrder="0" pos="590 195 72 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="628 195 72 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Feedback" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="36"/>
   <GENERICCOMPONENT name="new component" id="68cccf59111ab75a" memberName="kn_ams"
-                    virtualName="" explicitFocusOrder="0" pos="636 252 32 32" class="Styled_Knob_DefaultSmall"
+                    virtualName="" explicitFocusOrder="0" pos="636 254 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <LABEL name="new label" id="bc635c855613f35a" memberName="label6" virtualName=""
-         explicitFocusOrder="0" pos="608 255 36 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="608 257 36 24" edTextCol="ff000000"
          edBkgCol="0" labelText="AM" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="36"/>
   <GENERICCOMPONENT name="new component" id="3d549e9f57e5f19c" memberName="kn_fms"
-                    virtualName="" explicitFocusOrder="0" pos="718 252 32 32" class="Styled_Knob_DefaultSmall"
+                    virtualName="" explicitFocusOrder="0" pos="714 254 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <LABEL name="new label" id="5775323ab5508477" memberName="label7" virtualName=""
-         explicitFocusOrder="0" pos="690 255 36 24" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="686 257 36 24" edTextCol="ff000000"
          edBkgCol="0" labelText="FM" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="36"/>
