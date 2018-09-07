@@ -462,7 +462,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph Lead">
-<p>Ce manuel documente l&#8217;utilisation du programme ADLplug, le synthétiseur FM basé sur la technologie OPL3.<br>
+<p>Ce manuel documente l&#8217;utilisation du programme ADLplug, le synthétiseur à modulation de fréquence (FM) basé sur la technologie OPL3.<br>
 ADLplug est un logiciel libre et gratuit.<br>
 Si le logiciel présente un problème, merci de déposer un rapport sur la page de projet&nbsp;:<br>
 <a href="https://github.com/jpcima/ADLplug" class="bare">https://github.com/jpcima/ADLplug</a></p>
@@ -544,13 +544,13 @@ On peut le déposer dans un des chemins reconnus par la plupart des logiciels.</
 <p>au coin supérieur droit, on trouve le paramétrage des circuits YMF262 virtuels&nbsp;;</p>
 </li>
 <li>
-<p>au centre, on trouve l&#8217;ensemble des contrôles manipulant le programme actuel, qui se constitue des parties&nbsp;: Opérateur, Algorithme, Ton, et Divers&nbsp;;</p>
+<p>au centre, on trouve l&#8217;ensemble des contrôles manipulant le programme actuellement sélectionné, qui se constitue des parties&nbsp;: Opérateur, Algorithme, Ton, et Divers&nbsp;;</p>
 </li>
 <li>
 <p>au coin inférieur droit, on trouve la partie Globale, paramètres s&#8217;appliquant à l&#8217;ensemble des programmes d&#8217;une banque&nbsp;;</p>
 </li>
 <li>
-<p>en bas, on dispose d&#8217;un clavier virtuel pour jouer le programme actuel.</p>
+<p>en bas, on dispose d&#8217;un clavier virtuel pour jouer le programme actuellement sélectionné.</p>
 </li>
 </ul>
 </div>
@@ -679,8 +679,8 @@ Remarque&nbsp;: "Retour 3-4" n&#8217;est effectif que sur la seconde voix des in
 <div class="title">Figure 5. Le ton</div>
 </div>
 <div class="paragraph">
-<p>Du côté du réglage du ton, "Décalage de note" désigne le décalage appliqué à la note jouée, exprimé en demi-tons.
-Le "Réglage fin" est un décalage supplémentaire exprimé en centièmes de demi-tons.<br>
+<p>Du côté du réglage du ton, "Décalage de note" désigne le décalage appliqué à la note jouée, exprimé en demi-ton.
+Le "Réglage fin" est un décalage supplémentaire exprimé en centièmes de demi-ton.<br>
 Remarque&nbsp;: "Décalage de note 3-4" et "Réglage fin 3-4" ne sont effectifs que sur la seconde voix des instruments pseudo-4op, dans les autres cas ils sont sans effet.</p>
 </div>
 <div class="paragraph">
@@ -787,8 +787,7 @@ la quantité de circuits, soit la quantité de voix 4op, selon le cas.</p>
 <div class="sect2">
 <h3 id="_les_émulateurs">Les émulateurs</h3>
 <div class="paragraph">
-<p>Le programme permet de choisir un émulateur de circuit YMF262 parmi plusieurs qui sont disponibles. De manière dynamique,
-il est possible de basculer de l&#8217;un à l&#8217;autre.</p>
+<p>Le programme permet de choisir un émulateur de circuit YMF262 parmi plusieurs qui sont disponibles. Il est possible de basculer de l&#8217;un à l&#8217;autre de manière dynamique.</p>
 </div>
 <div class="paragraph">
 <p>Durant le laps de temps nécessaire à réaliser la bascule, le son sera coupé et le flux MIDI non-traité. Cela ne perturbera
@@ -928,7 +927,7 @@ A contrario, un paramètre global fait partie de la banque et il s&#8217;appliqu
 <div class="title">Figure 11. Paramètres divers</div>
 </div>
 <div class="paragraph">
-<p>Le "Décalage de vélocité" est un modificateur fixe appliquée à la vélocité de base de notes en MIDI,
+<p>Le "Décalage de vélocité" est un modificateur fixe appliqué à la vélocité de base de notes en MIDI,
 des valeurs comprises dans l&#8217;intervalle [0, 127]. Une valeur positive augmente la vélocité, une valeur
 négative la diminue.</p>
 </div>
