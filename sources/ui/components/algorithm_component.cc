@@ -4,20 +4,18 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "algorithm_component.h"
-#include "algorithms.h"
+
+void Algorithm_Component::scale(double s)
+{
+    if (s == scale_)
+        return;
+    scale_ = s;
+    repaint();
+}
 
 void Algorithm_Component::paint(Graphics &g)
 {
-    const char16_t *drawing = u"";
-    switch (algorithm_) {
-    case 0: drawing = Algorithms::algorithm_2fm; break;
-    case 1: drawing = Algorithms::algorithm_2am; break;
-    case 2: drawing = Algorithms::algorithm_4fmfm; break;
-    case 3: drawing = Algorithms::algorithm_4amfm; break;
-    case 4: drawing = Algorithms::algorithm_4fmam; break;
-    case 5: drawing = Algorithms::algorithm_4amam; break;
-    }
-
+    const char16_t *drawing = algorithm_;
     double scale = scale_;
     unsigned row = 0;
     unsigned col = 0;
@@ -84,12 +82,33 @@ void Algorithm_Component::paint(Graphics &g)
             g.drawLine(Line<float>(bounds.getRelativePoint(0.5f, 0.0f),
                                    bounds.getRelativePoint(0.5f, 1.0f)));
             break;
+        case u'├':
+            g.setColour(pen_color);
+            g.drawLine(Line<float>(bounds.getRelativePoint(0.5f, 0.5f),
+                                   bounds.getRelativePoint(1.0f, 0.5f)));
+            g.drawLine(Line<float>(bounds.getRelativePoint(0.5f, 0.0f),
+                                   bounds.getRelativePoint(0.5f, 1.0f)));
+            break;
         case u'┴':
             g.setColour(pen_color);
             g.drawLine(Line<float>(bounds.getRelativePoint(0.0f, 0.5f),
                                    bounds.getRelativePoint(1.0f, 0.5f)));
             g.drawLine(Line<float>(bounds.getRelativePoint(0.5f, 0.5f),
                                    bounds.getRelativePoint(0.5f, 0.0f)));
+            break;
+        case u'┬':
+            g.setColour(pen_color);
+            g.drawLine(Line<float>(bounds.getRelativePoint(0.0f, 0.5f),
+                                   bounds.getRelativePoint(1.0f, 0.5f)));
+            g.drawLine(Line<float>(bounds.getRelativePoint(0.5f, 0.5f),
+                                   bounds.getRelativePoint(0.5f, 1.0f)));
+            break;
+        case u'┼':
+            g.setColour(pen_color);
+            g.drawLine(Line<float>(bounds.getRelativePoint(0.0f, 0.5f),
+                                   bounds.getRelativePoint(1.0f, 0.5f)));
+            g.drawLine(Line<float>(bounds.getRelativePoint(0.5f, 0.0f),
+                                   bounds.getRelativePoint(0.5f, 1.0f)));
             break;
         case u' ':
         case u'\n':

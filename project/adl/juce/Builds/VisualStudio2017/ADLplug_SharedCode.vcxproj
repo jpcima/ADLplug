@@ -159,7 +159,6 @@
     <ClCompile Include="..\..\..\..\..\sources\opl3\adl\measurer\measurer.cpp"/>
     <ClCompile Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\dosbox_opl3.cpp"/>
     <ClCompile Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\dosbox\dbopl.cpp"/>
-    <ClCompile Include="..\..\..\..\..\sources\opl3\ui\components\algorithm_component.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opl3\ui\components\algorithm_help.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opl3\ui\components\opl3_waves.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opl3\ui\about_component.cc"/>
@@ -167,6 +166,7 @@
     <ClCompile Include="..\..\..\..\..\sources\opl3\ui\operator_editor.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opl3\parameter_block.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\look_and_feel.cc"/>
+    <ClCompile Include="..\..\..\..\..\sources\ui\components\algorithm_component.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\indicator_NxM.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\knob_component.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\styled_knobs.cc"/>
@@ -1968,7 +1968,6 @@
     <ClInclude Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\dosbox_opl3.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\opl_chip_base.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\dosbox\dbopl.h"/>
-    <ClInclude Include="..\..\..\..\..\sources\opl3\ui\components\algorithm_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opl3\ui\components\algorithm_help.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opl3\ui\components\algorithms.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opl3\ui\components\opl3_waves.h"/>
@@ -1978,6 +1977,7 @@
     <ClInclude Include="..\..\..\..\..\sources\opl3\parameter_block.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\look_and_feel.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\main_component.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\ui\components\algorithm_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\indicator_NxM.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\knob_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\styled_knobs.h"/>

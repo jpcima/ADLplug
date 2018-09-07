@@ -8,12 +8,13 @@
 
 class Algorithm_Component : public Component {
 public:
-    explicit Algorithm_Component(int number)
-        : algorithm_(number) {}
+    explicit Algorithm_Component(const char16_t *algorithm)
+        : algorithm_(algorithm) {}
 
+    void scale(double s);
     void paint(Graphics &g) override;
 
 private:
-    int algorithm_ = 0;
+    const char16_t *algorithm_ = 0;
     double scale_ = 24.0;
 };

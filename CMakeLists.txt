@@ -107,6 +107,7 @@ add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
   "sources/messages.cc"
   "sources/worker.cc"
   "sources/ui/look_and_feel.cc"
+  "sources/ui/components/algorithm_component.cc"
   "sources/ui/components/indicator_NxM.cc"
   "sources/ui/components/knob_component.cc"
   "sources/ui/components/styled_knobs.cc"
@@ -141,7 +142,6 @@ if(ADLplug_CHIP STREQUAL "OPL3")
     "sources/opl3/ui/operator_editor.cc"
     "sources/opl3/ui/about_component.cc"
     "sources/opl3/ui/main_component.cc"
-    "sources/opl3/ui/components/algorithm_component.cc"
     "sources/opl3/ui/components/algorithm_help.cc"
     "sources/opl3/ui/components/opl3_waves.cc")
 
@@ -167,6 +167,7 @@ elseif(ADLplug_CHIP STREQUAL "OPN2")
     "sources/opn2/ui/operator_editor.cc"
     "sources/opn2/ui/about_component.cc"
     "sources/opn2/ui/main_component.cc"
+    "sources/opn2/ui/components/algorithm_help.cc"
     "sources/opn2/ui/components/ssgeg_waves.cc")
 
   add_library(wopn STATIC "thirdparty/wopn/wopn/wopn_file.c")

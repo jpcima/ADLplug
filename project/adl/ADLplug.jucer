@@ -70,10 +70,6 @@
         </GROUP>
         <GROUP id="{85EC75EA-38B6-7354-B24A-EA30EBC116A0}" name="ui">
           <GROUP id="{16428EC7-343F-28BC-6957-70956388C216}" name="components">
-            <FILE id="fEY2IE" name="algorithm_component.cc" compile="1" resource="0"
-                  file="../../sources/opl3/ui/components/algorithm_component.cc"/>
-            <FILE id="zdZhAa" name="algorithm_component.h" compile="0" resource="0"
-                  file="../../sources/opl3/ui/components/algorithm_component.h"/>
             <FILE id="L1199X" name="algorithm_help.cc" compile="1" resource="0"
                   file="../../sources/opl3/ui/components/algorithm_help.cc"/>
             <FILE id="cDvnG8" name="algorithm_help.h" compile="0" resource="0"
@@ -107,6 +103,10 @@
         <FILE id="TOEmqc" name="main_component.h" compile="0" resource="0"
               file="../../sources/ui/main_component.h"/>
         <GROUP id="{62E26F51-4EDE-0DA8-04EA-9272FA6135B2}" name="components">
+          <FILE id="S4kcAC" name="algorithm_component.cc" compile="1" resource="0"
+                file="../../sources/ui/components/algorithm_component.cc"/>
+          <FILE id="sY88Uw" name="algorithm_component.h" compile="0" resource="0"
+                file="../../sources/ui/components/algorithm_component.h"/>
           <FILE id="inz2MA" name="indicator_NxM.cc" compile="1" resource="0"
                 file="../../sources/ui/components/indicator_NxM.cc"/>
           <FILE id="kCzAlO" name="indicator_NxM.h" compile="0" resource="0" file="../../sources/ui/components/indicator_NxM.h"/>

@@ -107,7 +107,6 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/measurer_f1b2d6bd.o \
   $(JUCE_OBJDIR)/dosbox_opl3_82e22dbd.o \
   $(JUCE_OBJDIR)/dbopl_878d3b2.o \
-  $(JUCE_OBJDIR)/algorithm_component_3e07100.o \
   $(JUCE_OBJDIR)/algorithm_help_d8b076be.o \
   $(JUCE_OBJDIR)/opl3_waves_901efa8c.o \
   $(JUCE_OBJDIR)/about_component_cf87c1fd.o \
@@ -115,6 +114,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/operator_editor_e3579a40.o \
   $(JUCE_OBJDIR)/parameter_block_94463d58.o \
   $(JUCE_OBJDIR)/look_and_feel_dde78e55.o \
+  $(JUCE_OBJDIR)/algorithm_component_4451cbc5.o \
   $(JUCE_OBJDIR)/indicator_NxM_67a37cbf.o \
   $(JUCE_OBJDIR)/knob_component_359f0c96.o \
   $(JUCE_OBJDIR)/styled_knobs_d5f68a99.o \
@@ -261,11 +261,6 @@ $(JUCE_OBJDIR)/dbopl_878d3b2.o: ../../../../../sources/opl3/adl/measurer/chips/d
 	@echo "Compiling dbopl.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
-$(JUCE_OBJDIR)/algorithm_component_3e07100.o: ../../../../../sources/opl3/ui/components/algorithm_component.cc
-	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
-	@echo "Compiling algorithm_component.cc"
-	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
-
 $(JUCE_OBJDIR)/algorithm_help_d8b076be.o: ../../../../../sources/opl3/ui/components/algorithm_help.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling algorithm_help.cc"
@@ -299,6 +294,11 @@ $(JUCE_OBJDIR)/parameter_block_94463d58.o: ../../../../../sources/opl3/parameter
 $(JUCE_OBJDIR)/look_and_feel_dde78e55.o: ../../../../../sources/ui/look_and_feel.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling look_and_feel.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/algorithm_component_4451cbc5.o: ../../../../../sources/ui/components/algorithm_component.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling algorithm_component.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/indicator_NxM_67a37cbf.o: ../../../../../sources/ui/components/indicator_NxM.cc

@@ -20,6 +20,7 @@
 //[Headers] You can add your own extra header files here...
 #include "operator_editor.h"
 #include "about_component.h"
+#include "components/algorithm_help.h"
 #include "ui/components/vu_meter.h"
 #include "ui/components/indicator_NxM.h"
 #include "adl/instrument.h"
@@ -1028,7 +1029,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_algo_help.get())
     {
         //[UserButtonCode_btn_algo_help] -- add your button handler code here..
-        /* TODO OPN2 */
+        CallOutBox::launchAsynchronously(new Algorithm_Help, btn_algo_help->getBounds(), this);
         //[/UserButtonCode_btn_algo_help]
     }
     else if (buttonThatWasClicked == btn_lfo_enable.get())

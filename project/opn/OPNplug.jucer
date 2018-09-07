@@ -88,6 +88,11 @@
           <FILE id="rzEmKR" name="operator_editor.h" compile="0" resource="0"
                 file="../../sources/opn2/ui/operator_editor.h"/>
           <GROUP id="{AE07C4AC-6825-FBFB-9231-109A1E5EC556}" name="components">
+            <FILE id="N3zZPC" name="algorithm_help.cc" compile="1" resource="0"
+                  file="../../sources/opn2/ui/components/algorithm_help.cc"/>
+            <FILE id="TgikmH" name="algorithm_help.h" compile="0" resource="0"
+                  file="../../sources/opn2/ui/components/algorithm_help.h"/>
+            <FILE id="XSxNDC" name="algorithms.h" compile="0" resource="0" file="../../sources/opn2/ui/components/algorithms.h"/>
             <FILE id="mTnTEL" name="ssgeg_waves.cc" compile="1" resource="0" file="../../sources/opn2/ui/components/ssgeg_waves.cc"/>
             <FILE id="tsA0N8" name="ssgeg_waves.h" compile="0" resource="0" file="../../sources/opn2/ui/components/ssgeg_waves.h"/>
           </GROUP>
@@ -100,6 +105,10 @@
         <FILE id="TOEmqc" name="main_component.h" compile="0" resource="0"
               file="../../sources/ui/main_component.h"/>
         <GROUP id="{62E26F51-4EDE-0DA8-04EA-9272FA6135B2}" name="components">
+          <FILE id="RMnrUp" name="algorithm_component.cc" compile="1" resource="0"
+                file="../../sources/ui/components/algorithm_component.cc"/>
+          <FILE id="q8znFj" name="algorithm_component.h" compile="0" resource="0"
+                file="../../sources/ui/components/algorithm_component.h"/>
           <FILE id="inz2MA" name="indicator_NxM.cc" compile="1" resource="0"
                 file="../../sources/ui/components/indicator_NxM.cc"/>
           <FILE id="kCzAlO" name="indicator_NxM.h" compile="0" resource="0" file="../../sources/ui/components/indicator_NxM.h"/>

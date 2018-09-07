@@ -562,11 +562,17 @@
     <ClCompile Include="..\..\..\..\..\sources\opn2\ui\operator_editor.cc">
       <Filter>OPNplug\sources\opn2\ui</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\ui\components\algorithm_help.cc">
+      <Filter>OPNplug\sources\opn2\ui\components</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\opn2\ui\components\ssgeg_waves.cc">
       <Filter>OPNplug\sources\opn2\ui\components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\look_and_feel.cc">
       <Filter>OPNplug\sources\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\ui\components\algorithm_component.cc">
+      <Filter>OPNplug\sources\ui\components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\indicator_NxM.cc">
       <Filter>OPNplug\sources\ui\components</Filter>
@@ -2625,6 +2631,12 @@
     <ClInclude Include="..\..\..\..\..\sources\opn2\ui\operator_editor.h">
       <Filter>OPNplug\sources\opn2\ui</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\ui\components\algorithm_help.h">
+      <Filter>OPNplug\sources\opn2\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\ui\components\algorithms.h">
+      <Filter>OPNplug\sources\opn2\ui\components</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\opn2\ui\components\ssgeg_waves.h">
       <Filter>OPNplug\sources\opn2\ui\components</Filter>
     </ClInclude>
@@ -2633,6 +2645,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\main_component.h">
       <Filter>OPNplug\sources\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\ui\components\algorithm_component.h">
+      <Filter>OPNplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\indicator_NxM.h">
       <Filter>OPNplug\sources\ui\components</Filter>
