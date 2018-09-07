@@ -6,8 +6,8 @@
 :warning-caption: Attention
 
 = Manuel de l'utilisateur
-Jean Pierre Cimalando
-v1.0
+Jean Pierre Cimalando, Olivier Humbert
+v1.1
 :toc:
 
 [.Lead]
