@@ -1,12 +1,22 @@
 # ADLplug
-Synthesizer plugin for ADLMIDI (VST/LV2)
+Synthesizer plugin for ADLMIDI and OPNMIDI (VST/LV2)
 
 ![screenshot](docs/screen.png)
 
 ## Introduction
 
-This is a FM synthesizer based on [OPL3](https://en.wikipedia.org/wiki/Yamaha_YMF262) sound chip emulation.  
-The emulation and the driver are provided by [libADLMIDI](https://github.com/Wohlstand/libADLMIDI).
+This software package provides FM synthesizer plugins, based on [OPL3](https://en.wikipedia.org/wiki/Yamaha_YMF262) and [OPN2](https://en.wikipedia.org/wiki/Yamaha_YM2612) sound chip emulations.  
+The emulations and the drivers are provided by [libADLMIDI](https://github.com/Wohlstand/libADLMIDI) and [libOPNMIDI](https://github.com/Wohlstand/libOPNMIDI).
+
+- [x] control of multiple YMF262/YM2612 emulated chips
+- [x] high fidelity emulation, with choice of compromise level (good fidelity/fast, excellent fidelity/slow)
+- [x] synthesis of melodic and percussive instruments
+- [x] extensible polyphony
+- [x] bundled collection of instruments
+- [x] support for dynamic parameterization and automation
+- [x] rigorous implementation of the MIDI standard
+- [x] multi-channel operation with General MIDI compatibility
+- [x] ability to synthesize entire MIDI files out of the box
 
 ## Development builds
 
@@ -27,9 +37,24 @@ Install required dependencies:
 git clone --recursive https://github.com/jpcima/ADLplug.git
 mkdir ADLplug/build
 cd ADLplug/build
-cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake -DCMAKE_BUILD_TYPE=Release ..  #<more build options...>
 cmake --build .
 ```
+
+This package is able to build several plugins from a single source:
+- to build the OPL3 variant, define the option `ADLplug_CHIP` to `OPL3`;
+- to build the OPN2 variant, define the option `ADLplug_CHIP` to `OPN2`.
+
+| Build option                                  | Description                                                     |
+| --------------------------------------------- | --------------------------------------------------------------- |
+| -DADLplug_VST2=ON/OFF                         | Build a VST2 plugin                                             |
+| -DADLplug_VST3=ON/OFF                         | Build a VST3 plugin                                             |
+| -DADLplug_LV2=ON/OFF                          | Build a LV2 plugin                                              |
+| -DADLplug_Standalone=ON/OFF                   | Build a standalone program                                      |
+| -DADLplug_Jack=ON/OFF                         | Build a standalone program for Jack with better features        |
+| -DADLplug_CHIP=OPL3/OPN2                      | Build a variant for the given chip type (default: OPL3)         |
+| -DADLplug_PCH=ON/OFF                          | Use precompiled headers, on a compiler which supports it        |
+| -DADLplug_ASSERTIONS=ON/OFF                   | Force building with assertions regardless of build type         |
 
 ### Installing
 
@@ -38,6 +63,9 @@ sudo cmake --build . --target install
 ```
 
 ### Change Log
+
+**1.0.0.alpha.4 (dev)**
+- support of OPN2 synthesis in a distinct plugin
 
 **1.0.0.alpha.3**
 
