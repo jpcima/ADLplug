@@ -11,4 +11,7 @@ class SSGEG_Waves : public Waves
 public:
     unsigned wave_count() const override { return 8; }
     double compute_wave(unsigned wave, double phase) const override;
+
+private:
+    unsigned num_periods_ = 4;
 };
