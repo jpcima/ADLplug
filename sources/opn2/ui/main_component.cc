@@ -252,7 +252,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
                              Image(), 1.0f, Colour (0x00000000),
                              Image(), 1.0f, Colour (0x00000000),
                              Image(), 1.0f, Colour (0x00000000));
-    btn_emulator->setBounds (659, 56, 76, 20);
+    btn_emulator->setBounds (659, 80, 76, 20);
 
     label14.reset (new Label ("new label",
                               TRANS("Core")));
@@ -264,7 +264,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label14->setColour (TextEditor::textColourId, Colours::black);
     label14->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label14->setBounds (611, 56, 48, 20);
+    label14->setBounds (611, 80, 48, 20);
 
     sl_num_chips.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_num_chips.get());
@@ -276,7 +276,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_num_chips->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_num_chips->addListener (this);
 
-    sl_num_chips->setBounds (659, 80, 76, 20);
+    sl_num_chips->setBounds (659, 104, 76, 20);
 
     label15.reset (new Label ("new label",
                               TRANS("Chips")));
@@ -288,7 +288,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label15->setColour (TextEditor::textColourId, Colours::black);
     label15->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label15->setBounds (611, 80, 48, 20);
+    label15->setBounds (611, 104, 48, 20);
 
     label5.reset (new Label ("new label",
                              TRANS("Percussion key")));
@@ -752,7 +752,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 606, y = 52, width = 168, height = 56;
+        int x = 606, y = 76, width = 168, height = 56;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1915,7 +1915,7 @@ BEGIN_JUCER_METADATA
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
     <RECT pos="586 316 188 60" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="606 52 168 56" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="606 76 168 56" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="16 474 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="16 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="300 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
@@ -2012,23 +2012,23 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="new button" id="1df5353a837ca5f4" memberName="btn_emulator"
-               virtualName="" explicitFocusOrder="0" pos="659 56 76 20" buttonText="new button"
+               virtualName="" explicitFocusOrder="0" pos="659 80 76 20" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="" opacityNormal="1.0" colourNormal="0" resourceOver=""
                opacityOver="1.0" colourOver="0" resourceDown="" opacityDown="1.0"
                colourDown="0"/>
   <LABEL name="new label" id="61dc1fae1b35b41b" memberName="label14" virtualName=""
-         explicitFocusOrder="0" pos="611 56 48 20" textCol="fff0f8ff"
+         explicitFocusOrder="0" pos="611 80 48 20" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Core" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <SLIDER name="new slider" id="4c8fba05f57b7320" memberName="sl_num_chips"
-          virtualName="" explicitFocusOrder="0" pos="659 80 76 20" rotaryslideroutline="ff8e98ff"
+          virtualName="" explicitFocusOrder="0" pos="659 104 76 20" rotaryslideroutline="ff8e98ff"
           textboxtext="fff0f8ff" textboxoutline="ff8e989b" min="1.0" max="100.0"
           int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft" textBoxEditable="1"
           textBoxWidth="36" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="new label" id="7b8136bebc755c42" memberName="label15" virtualName=""
-         explicitFocusOrder="0" pos="611 80 48 20" textCol="fff0f8ff"
+         explicitFocusOrder="0" pos="611 104 48 20" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Chips" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
