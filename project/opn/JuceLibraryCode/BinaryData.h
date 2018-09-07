@@ -9,7 +9,7 @@
 namespace BinaryData
 {
     extern const char*   banks_pak;
-    const int            banks_pakSize = 18613;
+    const int            banks_pakSize = 30251;
 
     extern const char*   knobskin_png;
     const int            knobskin_pngSize = 21416;
