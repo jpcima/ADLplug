@@ -265,7 +265,8 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     btn_ssgenable->setClickingTogglesState(true);
 
     kn_attack->setTooltip(TRANS("Attack"));
-    kn_decay->setTooltip(TRANS("Decay"));
+    kn_decay->setTooltip(TRANS("Primary Decay"));
+    kn_decay2->setTooltip(TRANS("Secondary Decay"));
     kn_sustain->setTooltip(TRANS("Sustain"));
     kn_release->setTooltip(TRANS("Release"));
 
