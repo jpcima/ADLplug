@@ -21,6 +21,7 @@
 #include "ui/components/wave_label.h"
 #include "adl/instrument.h"
 #include "parameter_block.h"
+#include <fmt/format.h>
 #include <cmath>
 //[/Headers]
 
@@ -199,25 +200,16 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
 
     btn_am->setBounds (112, 55, 40, 24);
 
-    sl_tune.reset (new Slider ("new slider"));
-    addAndMakeVisible (sl_tune.get());
-    sl_tune->setRange (0, 7, 0);
-    sl_tune->setSliderStyle (Slider::LinearHorizontal);
-    sl_tune->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
-    sl_tune->addListener (this);
-
-    sl_tune->setBounds (195, 48, 64, 20);
-
     lbl_tune.reset (new Label ("new label",
-                               TRANS("Tune")));
+                               TRANS("Detune")));
     addAndMakeVisible (lbl_tune.get());
     lbl_tune->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
-    lbl_tune->setJustificationType (Justification::centredLeft);
+    lbl_tune->setJustificationType (Justification::centred);
     lbl_tune->setEditable (false, false, false);
     lbl_tune->setColour (TextEditor::textColourId, Colours::black);
     lbl_tune->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lbl_tune->setBounds (152, 48, 39, 16);
+    lbl_tune->setBounds (163, 48, 96, 16);
 
     label5.reset (new Label ("new label",
                              TRANS("SSG-EG")));
@@ -252,6 +244,16 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
 
     lbl_ssgwave->setBounds (105, 96, 106, 24);
 
+    cb_detune.reset (new ComboBox ("new combo box"));
+    addAndMakeVisible (cb_detune.get());
+    cb_detune->setEditableText (false);
+    cb_detune->setJustificationType (Justification::centredLeft);
+    cb_detune->setTextWhenNothingSelected (String());
+    cb_detune->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
+    cb_detune->addListener (this);
+
+    cb_detune->setBounds (163, 65, 96, 24);
+
 
     //[UserPreSize]
     kn_attack->add_listener(this);
@@ -278,7 +280,6 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     lbl_fmul->setTooltip(TRANS("Frequency multiplication"));
     sl_rsl->setTooltip(TRANS("Rate scale level"));
     lbl_rsl->setTooltip(TRANS("Rate scale level"));
-    sl_tune->setTooltip(TRANS("Detune"));
     lbl_tune->setTooltip(TRANS("Detune"));
     //[/UserPreSize]
 
@@ -291,6 +292,23 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     kn_decay2->set_range(0, 31);
     kn_sustain->set_range(0, 15);
     kn_release->set_range(0, 15);
+
+    const char *detunes[8] = {
+        u8"×1",
+        u8"×(1+ε)",
+        u8"×(1+2ε)",
+        u8"×(1+3ε)",
+        u8"×1",
+        u8"×(1-ε)",
+        u8"×(1-2ε)",
+        u8"×(1-3ε)",
+    };
+
+    for (unsigned i = 0; i < 8; ++i) {
+        std::string text = fmt::format("{:d} : {:s}", i + 1, detunes[i]);
+        cb_detune->addItem(text, i + 1);
+    }
+    cb_detune->setScrollWheelEnabled(true);
     //[/Constructor]
 }
 
@@ -317,12 +335,12 @@ Operator_Editor::~Operator_Editor()
     kn_decay2 = nullptr;
     label9 = nullptr;
     btn_am = nullptr;
-    sl_tune = nullptr;
     lbl_tune = nullptr;
     label5 = nullptr;
     btn_prev_ssgwave = nullptr;
     btn_next_ssgwave = nullptr;
     lbl_ssgwave = nullptr;
+    cb_detune = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -442,16 +460,31 @@ void Operator_Editor::sliderValueChanged (Slider* sliderThatWasMoved)
         p = std::lround(sl->getValue());
         //[/UserSliderCode_sl_rsl]
     }
-    else if (sliderThatWasMoved == sl_tune.get())
-    {
-        //[UserSliderCode_sl_tune] -- add your slider handling code here..
-        AudioParameterInt &p = *op.p_detune;
-        p = std::lround(sl->getValue());
-        //[/UserSliderCode_sl_tune]
-    }
 
     //[UsersliderValueChanged_Post]
     //[/UsersliderValueChanged_Post]
+}
+
+void Operator_Editor::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
+{
+    //[UsercomboBoxChanged_Pre]
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
+    Parameter_Block::Operator &op = part.nth_operator(operator_id_);
+    //[/UsercomboBoxChanged_Pre]
+
+    if (comboBoxThatHasChanged == cb_detune.get())
+    {
+        //[UserComboBoxCode_cb_detune] -- add your combo box handling code here..
+        AudioParameterInt &p = *op.p_detune;
+        p.beginChangeGesture();
+        p = cb_detune->getSelectedId() - 1;
+        p.endChangeGesture();
+        //[/UserComboBoxCode_cb_detune]
+    }
+
+    //[UsercomboBoxChanged_Post]
+    //[/UsercomboBoxChanged_Post]
 }
 
 
@@ -475,10 +508,6 @@ void Operator_Editor::sliderDragStarted(Slider *slider)
         AudioParameterInt &p = *op.p_ratescale;
         p.beginChangeGesture();
     }
-    else if (slider == sl_tune.get()) {
-        AudioParameterInt &p = *op.p_detune;
-        p.beginChangeGesture();
-    }
 }
 
 void Operator_Editor::sliderDragEnded(Slider *slider)
@@ -499,10 +528,6 @@ void Operator_Editor::sliderDragEnded(Slider *slider)
         AudioParameterInt &p = *op.p_ratescale;
         p.endChangeGesture();
     }
-    else if (slider == sl_tune.get()) {
-        AudioParameterInt &p = *op.p_detune;
-        p.endChangeGesture();
-    }
 }
 
 void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op, NotificationType ntf)
@@ -516,7 +541,7 @@ void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op
     sl_level->setValue(ins.level(op), ntf);
     sl_fmul->setValue(ins.fmul(op), ntf);
     sl_rsl->setValue(ins.ratescale(op), ntf);
-    sl_tune->setValue(ins.detune(op), ntf);
+    cb_detune->setSelectedId(ins.detune(op) + 1, ntf);
 
     btn_am->setToggleState(ins.am(op), ntf);
     btn_ssgenable->setToggleState(ins.ssgenable(op), ntf);
@@ -716,16 +741,11 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="new button" id="17b8bc55dead908d" memberName="btn_am" virtualName=""
               explicitFocusOrder="0" pos="112 55 40 24" bgColOn="ff42a2c8"
               buttonText="AM" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <SLIDER name="new slider" id="953c644c5cb22272" memberName="sl_tune"
-          virtualName="" explicitFocusOrder="0" pos="195 48 64 20" min="0.0"
-          max="7.0" int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox"
-          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
-          needsCallback="1"/>
   <LABEL name="new label" id="13046618f23c99f6" memberName="lbl_tune"
-         virtualName="" explicitFocusOrder="0" pos="152 48 39 16" edTextCol="ff000000"
-         edBkgCol="0" labelText="Tune" editableSingleClick="0" editableDoubleClick="0"
+         virtualName="" explicitFocusOrder="0" pos="163 48 96 16" edTextCol="ff000000"
+         edBkgCol="0" labelText="Detune" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="33"/>
+         kerning="0.0" bold="0" italic="0" justification="36"/>
   <LABEL name="new label" id="1e3f006eb3ae12a5" memberName="label5" virtualName=""
          explicitFocusOrder="0" pos="20 99 56 16" edTextCol="ff000000"
          edBkgCol="0" labelText="SSG-EG" editableSingleClick="0" editableDoubleClick="0"
@@ -740,6 +760,9 @@ BEGIN_JUCER_METADATA
   <GENERICCOMPONENT name="new component" id="dd16fb8d4c488877" memberName="lbl_ssgwave"
                     virtualName="" explicitFocusOrder="0" pos="105 96 106 24" class="Wave_Label"
                     params="ssgeg_waves_"/>
+  <COMBOBOX name="new combo box" id="53eb24e86e9015c0" memberName="cb_detune"
+            virtualName="" explicitFocusOrder="0" pos="163 65 96 24" editable="0"
+            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

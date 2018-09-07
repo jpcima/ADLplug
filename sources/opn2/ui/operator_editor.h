@@ -41,7 +41,8 @@ struct Parameter_Block;
 class Operator_Editor  : public Component,
                          public Knob::Listener,
                          public Button::Listener,
-                         public Slider::Listener
+                         public Slider::Listener,
+                         public ComboBox::Listener
 {
 public:
     //==============================================================================
@@ -71,6 +72,7 @@ public:
     void resized() override;
     void buttonClicked (Button* buttonThatWasClicked) override;
     void sliderValueChanged (Slider* sliderThatWasMoved) override;
+    void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
 
 
 
@@ -102,12 +104,12 @@ private:
     std::unique_ptr<Styled_Knob_Default> kn_decay2;
     std::unique_ptr<Label> label9;
     std::unique_ptr<TextButton> btn_am;
-    std::unique_ptr<Slider> sl_tune;
     std::unique_ptr<Label> lbl_tune;
     std::unique_ptr<Label> label5;
     std::unique_ptr<TextButton> btn_prev_ssgwave;
     std::unique_ptr<TextButton> btn_next_ssgwave;
     std::unique_ptr<Wave_Label> lbl_ssgwave;
+    std::unique_ptr<ComboBox> cb_detune;
 
 
     //==============================================================================

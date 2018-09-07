@@ -95,19 +95,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p1op1cont" ;
+        lv2:symbol "p1op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p1op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p1op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p1op1hold" ;
+        lv2:symbol "p1op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -151,19 +143,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p1op3cont" ;
+        lv2:symbol "p1op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p1op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p1op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p1op3hold" ;
+        lv2:symbol "p1op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -207,19 +191,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p1op2cont" ;
+        lv2:symbol "p1op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p1op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p1op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p1op2hold" ;
+        lv2:symbol "p1op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -263,19 +239,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p1op4cont" ;
+        lv2:symbol "p1op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p1op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p1op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p1op4hold" ;
+        lv2:symbol "p1op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -351,19 +319,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p2op1cont" ;
+        lv2:symbol "p2op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p2op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p2op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p2op1hold" ;
+        lv2:symbol "p2op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -407,19 +367,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p2op3cont" ;
+        lv2:symbol "p2op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p2op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p2op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p2op3hold" ;
+        lv2:symbol "p2op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -463,19 +415,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p2op2cont" ;
+        lv2:symbol "p2op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p2op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p2op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p2op2hold" ;
+        lv2:symbol "p2op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -519,19 +463,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p2op4cont" ;
+        lv2:symbol "p2op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p2op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p2op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p2op4hold" ;
+        lv2:symbol "p2op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -607,19 +543,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p3op1cont" ;
+        lv2:symbol "p3op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p3op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p3op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p3op1hold" ;
+        lv2:symbol "p3op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -663,19 +591,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p3op3cont" ;
+        lv2:symbol "p3op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p3op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p3op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p3op3hold" ;
+        lv2:symbol "p3op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -719,19 +639,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p3op2cont" ;
+        lv2:symbol "p3op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p3op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p3op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p3op2hold" ;
+        lv2:symbol "p3op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -775,19 +687,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p3op4cont" ;
+        lv2:symbol "p3op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p3op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p3op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p3op4hold" ;
+        lv2:symbol "p3op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -863,19 +767,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p4op1cont" ;
+        lv2:symbol "p4op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p4op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p4op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p4op1hold" ;
+        lv2:symbol "p4op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -919,19 +815,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p4op3cont" ;
+        lv2:symbol "p4op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p4op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p4op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p4op3hold" ;
+        lv2:symbol "p4op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -975,19 +863,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p4op2cont" ;
+        lv2:symbol "p4op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p4op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p4op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p4op2hold" ;
+        lv2:symbol "p4op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1031,19 +911,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p4op4cont" ;
+        lv2:symbol "p4op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p4op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p4op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p4op4hold" ;
+        lv2:symbol "p4op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1119,19 +991,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p5op1cont" ;
+        lv2:symbol "p5op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p5op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p5op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p5op1hold" ;
+        lv2:symbol "p5op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1175,19 +1039,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p5op3cont" ;
+        lv2:symbol "p5op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p5op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p5op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p5op3hold" ;
+        lv2:symbol "p5op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1231,19 +1087,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p5op2cont" ;
+        lv2:symbol "p5op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p5op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p5op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p5op2hold" ;
+        lv2:symbol "p5op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1287,19 +1135,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p5op4cont" ;
+        lv2:symbol "p5op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p5op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p5op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p5op4hold" ;
+        lv2:symbol "p5op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1375,19 +1215,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p6op1cont" ;
+        lv2:symbol "p6op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p6op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p6op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p6op1hold" ;
+        lv2:symbol "p6op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1431,19 +1263,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p6op3cont" ;
+        lv2:symbol "p6op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p6op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p6op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p6op3hold" ;
+        lv2:symbol "p6op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1487,19 +1311,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p6op2cont" ;
+        lv2:symbol "p6op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p6op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p6op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p6op2hold" ;
+        lv2:symbol "p6op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1543,19 +1359,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p6op4cont" ;
+        lv2:symbol "p6op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p6op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p6op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p6op4hold" ;
+        lv2:symbol "p6op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1631,19 +1439,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p7op1cont" ;
+        lv2:symbol "p7op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p7op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p7op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p7op1hold" ;
+        lv2:symbol "p7op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1687,19 +1487,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p7op3cont" ;
+        lv2:symbol "p7op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p7op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p7op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p7op3hold" ;
+        lv2:symbol "p7op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1743,19 +1535,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p7op2cont" ;
+        lv2:symbol "p7op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p7op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p7op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p7op2hold" ;
+        lv2:symbol "p7op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1799,19 +1583,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p7op4cont" ;
+        lv2:symbol "p7op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p7op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p7op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p7op4hold" ;
+        lv2:symbol "p7op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1887,19 +1663,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p8op1cont" ;
+        lv2:symbol "p8op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p8op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p8op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p8op1hold" ;
+        lv2:symbol "p8op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1943,19 +1711,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p8op3cont" ;
+        lv2:symbol "p8op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p8op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p8op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p8op3hold" ;
+        lv2:symbol "p8op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -1999,19 +1759,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p8op2cont" ;
+        lv2:symbol "p8op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p8op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p8op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p8op2hold" ;
+        lv2:symbol "p8op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2055,19 +1807,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p8op4cont" ;
+        lv2:symbol "p8op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p8op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p8op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p8op4hold" ;
+        lv2:symbol "p8op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2143,19 +1887,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p9op1cont" ;
+        lv2:symbol "p9op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p9op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p9op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p9op1hold" ;
+        lv2:symbol "p9op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2199,19 +1935,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p9op3cont" ;
+        lv2:symbol "p9op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p9op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p9op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p9op3hold" ;
+        lv2:symbol "p9op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2255,19 +1983,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p9op2cont" ;
+        lv2:symbol "p9op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p9op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p9op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p9op2hold" ;
+        lv2:symbol "p9op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2311,19 +2031,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p9op4cont" ;
+        lv2:symbol "p9op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p9op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p9op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p9op4hold" ;
+        lv2:symbol "p9op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2399,19 +2111,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p10op1cont" ;
+        lv2:symbol "p10op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p10op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p10op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p10op1hold" ;
+        lv2:symbol "p10op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2455,19 +2159,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p10op3cont" ;
+        lv2:symbol "p10op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p10op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p10op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p10op3hold" ;
+        lv2:symbol "p10op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2511,19 +2207,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p10op2cont" ;
+        lv2:symbol "p10op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p10op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p10op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p10op2hold" ;
+        lv2:symbol "p10op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2567,19 +2255,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p10op4cont" ;
+        lv2:symbol "p10op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p10op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p10op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p10op4hold" ;
+        lv2:symbol "p10op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2655,19 +2335,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p11op1cont" ;
+        lv2:symbol "p11op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p11op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p11op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p11op1hold" ;
+        lv2:symbol "p11op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2711,19 +2383,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p11op3cont" ;
+        lv2:symbol "p11op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p11op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p11op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p11op3hold" ;
+        lv2:symbol "p11op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2767,19 +2431,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p11op2cont" ;
+        lv2:symbol "p11op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p11op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p11op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p11op2hold" ;
+        lv2:symbol "p11op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2823,19 +2479,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p11op4cont" ;
+        lv2:symbol "p11op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p11op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p11op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p11op4hold" ;
+        lv2:symbol "p11op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2911,19 +2559,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p12op1cont" ;
+        lv2:symbol "p12op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p12op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p12op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p12op1hold" ;
+        lv2:symbol "p12op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -2967,19 +2607,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p12op3cont" ;
+        lv2:symbol "p12op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p12op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p12op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p12op3hold" ;
+        lv2:symbol "p12op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3023,19 +2655,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p12op2cont" ;
+        lv2:symbol "p12op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p12op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p12op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p12op2hold" ;
+        lv2:symbol "p12op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3079,19 +2703,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p12op4cont" ;
+        lv2:symbol "p12op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p12op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p12op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p12op4hold" ;
+        lv2:symbol "p12op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3167,19 +2783,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p13op1cont" ;
+        lv2:symbol "p13op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p13op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p13op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p13op1hold" ;
+        lv2:symbol "p13op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3223,19 +2831,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p13op3cont" ;
+        lv2:symbol "p13op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p13op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p13op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p13op3hold" ;
+        lv2:symbol "p13op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3279,19 +2879,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p13op2cont" ;
+        lv2:symbol "p13op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p13op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p13op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p13op2hold" ;
+        lv2:symbol "p13op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3335,19 +2927,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p13op4cont" ;
+        lv2:symbol "p13op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p13op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p13op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p13op4hold" ;
+        lv2:symbol "p13op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3423,19 +3007,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p14op1cont" ;
+        lv2:symbol "p14op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p14op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p14op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p14op1hold" ;
+        lv2:symbol "p14op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3479,19 +3055,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p14op3cont" ;
+        lv2:symbol "p14op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p14op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p14op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p14op3hold" ;
+        lv2:symbol "p14op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3535,19 +3103,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p14op2cont" ;
+        lv2:symbol "p14op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p14op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p14op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p14op2hold" ;
+        lv2:symbol "p14op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3591,19 +3151,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p14op4cont" ;
+        lv2:symbol "p14op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p14op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p14op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p14op4hold" ;
+        lv2:symbol "p14op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3679,19 +3231,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p15op1cont" ;
+        lv2:symbol "p15op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p15op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p15op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p15op1hold" ;
+        lv2:symbol "p15op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3735,19 +3279,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p15op3cont" ;
+        lv2:symbol "p15op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p15op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p15op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p15op3hold" ;
+        lv2:symbol "p15op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3791,19 +3327,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p15op2cont" ;
+        lv2:symbol "p15op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p15op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p15op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p15op2hold" ;
+        lv2:symbol "p15op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3847,19 +3375,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p15op4cont" ;
+        lv2:symbol "p15op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p15op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p15op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p15op4hold" ;
+        lv2:symbol "p15op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3935,19 +3455,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p16op1cont" ;
+        lv2:symbol "p16op1ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p16op1att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p16op1alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p16op1hold" ;
+        lv2:symbol "p16op1ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -3991,19 +3503,11 @@
         pset:value 0.466667 ;
     ] ,
     [
-        lv2:symbol "p16op3cont" ;
+        lv2:symbol "p16op3ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p16op3att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p16op3alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p16op3hold" ;
+        lv2:symbol "p16op3ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -4047,19 +3551,11 @@
         pset:value 0.066667 ;
     ] ,
     [
-        lv2:symbol "p16op2cont" ;
+        lv2:symbol "p16op2ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p16op2att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p16op2alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p16op2hold" ;
+        lv2:symbol "p16op2ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
@@ -4103,19 +3599,11 @@
         pset:value 0.400000 ;
     ] ,
     [
-        lv2:symbol "p16op4cont" ;
+        lv2:symbol "p16op4ssgenable" ;
         pset:value 0.000000 ;
     ] ,
     [
-        lv2:symbol "p16op4att" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p16op4alt" ;
-        pset:value 0.000000 ;
-    ] ,
-    [
-        lv2:symbol "p16op4hold" ;
+        lv2:symbol "p16op4ssgwave" ;
         pset:value 0.000000 ;
     ] ,
     [
