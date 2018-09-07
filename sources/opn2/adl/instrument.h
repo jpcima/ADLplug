@@ -58,10 +58,8 @@ public:
     OP_PARAMETER(unsigned, decay2, decay2_70, 0, 5,)
     OP_PARAMETER(unsigned, sustain, susrel_80, 4, 4,)
     OP_PARAMETER(unsigned, release, susrel_80, 0, 4,)
-    OP_PARAMETER(bool, cont, ssgeg_90, 3, 1,)
-    OP_PARAMETER(bool, att, ssgeg_90, 2, 1,)
-    OP_PARAMETER(bool, alt, ssgeg_90, 1, 1,)
-    OP_PARAMETER(bool, hold, ssgeg_90, 0, 1,)
+    OP_PARAMETER(bool, ssgenable, ssgeg_90, 3, 1,)
+    OP_PARAMETER(unsigned, ssgwave, ssgeg_90, 0, 3,)
 
 #undef PARAMETER
 #undef OP_PARAMETER

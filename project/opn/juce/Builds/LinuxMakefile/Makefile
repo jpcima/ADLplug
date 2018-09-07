@@ -111,6 +111,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/about_component_7d59467a.o \
   $(JUCE_OBJDIR)/main_component_cf7104c0.o \
   $(JUCE_OBJDIR)/operator_editor_91291ebd.o \
+  $(JUCE_OBJDIR)/ssgeg_waves_4ccbf4ec.o \
   $(JUCE_OBJDIR)/look_and_feel_dde78e55.o \
   $(JUCE_OBJDIR)/indicator_NxM_67a37cbf.o \
   $(JUCE_OBJDIR)/knob_component_359f0c96.o \
@@ -276,6 +277,11 @@ $(JUCE_OBJDIR)/main_component_cf7104c0.o: ../../../../../sources/opn2/ui/main_co
 $(JUCE_OBJDIR)/operator_editor_91291ebd.o: ../../../../../sources/opn2/ui/operator_editor.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling operator_editor.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ssgeg_waves_4ccbf4ec.o: ../../../../../sources/opn2/ui/components/ssgeg_waves.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ssgeg_waves.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/look_and_feel_dde78e55.o: ../../../../../sources/ui/look_and_feel.cc

@@ -21,7 +21,9 @@
 
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
+#include "components/ssgeg_waves.h"
 #include "ui/components/styled_knobs.h"
+class Wave_Label;
 struct Instrument;
 struct Parameter_Block;
 //[/Headers]
@@ -78,6 +80,7 @@ private:
     bool operator_enabled_ = true;
     Parameter_Block *parameter_block_ = nullptr;
     unsigned midichannel_ = 0;
+    SSGEG_Waves ssgeg_waves_;
     //[/UserVariables]
 
     //==============================================================================
@@ -85,7 +88,7 @@ private:
     std::unique_ptr<Styled_Knob_Default> kn_decay;
     std::unique_ptr<Styled_Knob_Default> kn_sustain;
     std::unique_ptr<Styled_Knob_Default> kn_release;
-    std::unique_ptr<TextButton> btn_ssgeg_cont;
+    std::unique_ptr<TextButton> btn_ssgenable;
     std::unique_ptr<Slider> sl_level;
     std::unique_ptr<Slider> sl_fmul;
     std::unique_ptr<Slider> sl_rsl;
@@ -101,9 +104,10 @@ private:
     std::unique_ptr<TextButton> btn_am;
     std::unique_ptr<Slider> sl_tune;
     std::unique_ptr<Label> lbl_tune;
-    std::unique_ptr<TextButton> btn_ssgeg_att;
-    std::unique_ptr<TextButton> btn_ssgeg_alt;
-    std::unique_ptr<TextButton> btn_ssgeg_hold;
+    std::unique_ptr<Label> label5;
+    std::unique_ptr<TextButton> btn_prev_ssgwave;
+    std::unique_ptr<TextButton> btn_next_ssgwave;
+    std::unique_ptr<Wave_Label> lbl_ssgwave;
 
 
     //==============================================================================

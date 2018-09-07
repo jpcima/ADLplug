@@ -33,10 +33,8 @@ void Instrument::to_properties(PropertySet &set, const char *key_prefix) const
         set.setValue(opfx + "decay2", (int)decay2(opnum));
         set.setValue(opfx + "sustain", (int)sustain(opnum));
         set.setValue(opfx + "release", (int)release(opnum));
-        set.setValue(opfx + "cont", cont(opnum));
-        set.setValue(opfx + "att", att(opnum));
-        set.setValue(opfx + "alt", alt(opnum));
-        set.setValue(opfx + "hold", hold(opnum));
+        set.setValue(opfx + "ssgenable", ssgenable(opnum));
+        set.setValue(opfx + "ssgwave", (int)ssgwave(opnum));
     }
 }
 
@@ -68,10 +66,8 @@ Instrument Instrument::from_properties(const juce::PropertySet &set, const char 
         ins.decay2(opnum, set.getIntValue(opfx + "decay2"));
         ins.sustain(opnum, set.getIntValue(opfx + "sustain"));
         ins.release(opnum, set.getIntValue(opfx + "release"));
-        ins.cont(opnum, set.getIntValue(opfx + "cont"));
-        ins.att(opnum, set.getIntValue(opfx + "att"));
-        ins.alt(opnum, set.getIntValue(opfx + "alt"));
-        ins.hold(opnum, set.getIntValue(opfx + "hold"));
+        ins.ssgenable(opnum, set.getIntValue(opfx + "ssgenable"));
+        ins.ssgwave(opnum, set.getIntValue(opfx + "ssgwave"));
     }
 
     return ins;

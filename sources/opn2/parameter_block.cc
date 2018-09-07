@@ -104,10 +104,8 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
             p.addParameter((op.p_decay2 = new AudioParameterInt(id("decay2"), name("Decay 2"), 0, 31, ins.decay2(opnum), String())));
             p.addParameter((op.p_sustain = new AudioParameterInt(id("sustain"), name("Sustain"), 0, 15, ins.sustain(opnum), String())));
             p.addParameter((op.p_release = new AudioParameterInt(id("release"), name("Release"), 0, 15, ins.release(opnum), String())));
-            p.addParameter((op.p_cont = new AudioParameterBool(id("cont"), name("SSG-EG Cont"), ins.cont(opnum), String())));
-            p.addParameter((op.p_att = new AudioParameterBool(id("att"), name("SSG-EG Att"), ins.att(opnum), String())));
-            p.addParameter((op.p_alt = new AudioParameterBool(id("alt"), name("SSG-EG Alt"), ins.alt(opnum), String())));
-            p.addParameter((op.p_hold = new AudioParameterBool(id("hold"), name("SSG-EG Hold"), ins.hold(opnum), String())));
+            p.addParameter((op.p_ssgenable = new AudioParameterBool(id("ssgenable"), name("SSG-EG enable"), ins.ssgenable(opnum), String())));
+            p.addParameter((op.p_ssgwave = new AudioParameterInt(id("ssgwave"), name("SSG-EG wave"), 0, 7, ins.ssgwave(opnum), String())));
         }
     }
     last_instrument_parameter = p.getParameters().size() - 1;

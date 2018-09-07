@@ -62,13 +62,13 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
 
     kn_release->setBounds (64, 48, 40, 40);
 
-    btn_ssgeg_cont.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_ssgeg_cont.get());
-    btn_ssgeg_cont->setButtonText (String());
-    btn_ssgeg_cont->addListener (this);
-    btn_ssgeg_cont->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
+    btn_ssgenable.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_ssgenable.get());
+    btn_ssgenable->setButtonText (String());
+    btn_ssgenable->addListener (this);
+    btn_ssgenable->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_ssgeg_cont->setBounds (40, 100, 15, 15);
+    btn_ssgenable->setBounds (4, 100, 15, 15);
 
     sl_level.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_level.get());
@@ -219,29 +219,38 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
 
     lbl_tune->setBounds (152, 48, 39, 16);
 
-    btn_ssgeg_att.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_ssgeg_att.get());
-    btn_ssgeg_att->setButtonText (String());
-    btn_ssgeg_att->addListener (this);
-    btn_ssgeg_att->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
+    label5.reset (new Label ("new label",
+                             TRANS("SSG-EG")));
+    addAndMakeVisible (label5.get());
+    label5->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label5->setJustificationType (Justification::centredLeft);
+    label5->setEditable (false, false, false);
+    label5->setColour (TextEditor::textColourId, Colours::black);
+    label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    btn_ssgeg_att->setBounds (60, 100, 15, 15);
+    label5->setBounds (20, 99, 56, 16);
 
-    btn_ssgeg_alt.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_ssgeg_alt.get());
-    btn_ssgeg_alt->setButtonText (String());
-    btn_ssgeg_alt->addListener (this);
-    btn_ssgeg_alt->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
+    btn_prev_ssgwave.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_prev_ssgwave.get());
+    btn_prev_ssgwave->setButtonText (TRANS("<"));
+    btn_prev_ssgwave->setConnectedEdges (Button::ConnectedOnRight);
+    btn_prev_ssgwave->addListener (this);
 
-    btn_ssgeg_alt->setBounds (80, 100, 15, 15);
+    btn_prev_ssgwave->setBounds (82, 96, 23, 24);
 
-    btn_ssgeg_hold.reset (new TextButton ("new button"));
-    addAndMakeVisible (btn_ssgeg_hold.get());
-    btn_ssgeg_hold->setButtonText (String());
-    btn_ssgeg_hold->addListener (this);
-    btn_ssgeg_hold->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
+    btn_next_ssgwave.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_next_ssgwave.get());
+    btn_next_ssgwave->setButtonText (TRANS(">"));
+    btn_next_ssgwave->setConnectedEdges (Button::ConnectedOnLeft);
+    btn_next_ssgwave->addListener (this);
 
-    btn_ssgeg_hold->setBounds (100, 100, 15, 15);
+    btn_next_ssgwave->setBounds (211, 96, 23, 24);
+
+    lbl_ssgwave.reset (new Wave_Label (ssgeg_waves_));
+    addAndMakeVisible (lbl_ssgwave.get());
+    lbl_ssgwave->setName ("new component");
+
+    lbl_ssgwave->setBounds (105, 96, 106, 24);
 
 
     //[UserPreSize]
@@ -253,10 +262,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
 
     btn_am->setClickingTogglesState(true);
 
-    btn_ssgeg_cont->setClickingTogglesState(true);
-    btn_ssgeg_att->setClickingTogglesState(true);
-    btn_ssgeg_alt->setClickingTogglesState(true);
-    btn_ssgeg_hold->setClickingTogglesState(true);
+    btn_ssgenable->setClickingTogglesState(true);
 
     kn_attack->setTooltip(TRANS("Attack"));
     kn_decay->setTooltip(TRANS("Decay"));
@@ -296,7 +302,7 @@ Operator_Editor::~Operator_Editor()
     kn_decay = nullptr;
     kn_sustain = nullptr;
     kn_release = nullptr;
-    btn_ssgeg_cont = nullptr;
+    btn_ssgenable = nullptr;
     sl_level = nullptr;
     sl_fmul = nullptr;
     sl_rsl = nullptr;
@@ -312,9 +318,10 @@ Operator_Editor::~Operator_Editor()
     btn_am = nullptr;
     sl_tune = nullptr;
     lbl_tune = nullptr;
-    btn_ssgeg_att = nullptr;
-    btn_ssgeg_alt = nullptr;
-    btn_ssgeg_hold = nullptr;
+    label5 = nullptr;
+    btn_prev_ssgwave = nullptr;
+    btn_next_ssgwave = nullptr;
+    lbl_ssgwave = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -326,6 +333,16 @@ void Operator_Editor::paint (Graphics& g)
 {
     //[UserPrePaint] Add your own custom painting code here..
     //[/UserPrePaint]
+
+    {
+        int x = 104, y = 96, width = 108, height = 24;
+        Colour strokeColour = Colour (0xff8e989b);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (strokeColour);
+        g.drawRect (x, y, width, height, 1);
+
+    }
 
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
@@ -349,14 +366,14 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
     Button *btn = buttonThatWasClicked;
     //[/UserbuttonClicked_Pre]
 
-    if (buttonThatWasClicked == btn_ssgeg_cont.get())
+    if (buttonThatWasClicked == btn_ssgenable.get())
     {
-        //[UserButtonCode_btn_ssgeg_cont] -- add your button handler code here..
-        AudioParameterBool &p = *op.p_cont;
+        //[UserButtonCode_btn_ssgenable] -- add your button handler code here..
+        AudioParameterBool &p = *op.p_ssgenable;
         p.beginChangeGesture();
         p = btn->getToggleState();
         p.endChangeGesture();
-        //[/UserButtonCode_btn_ssgeg_cont]
+        //[/UserButtonCode_btn_ssgenable]
     }
     else if (buttonThatWasClicked == btn_am.get())
     {
@@ -367,32 +384,27 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
         p.endChangeGesture();
         //[/UserButtonCode_btn_am]
     }
-    else if (buttonThatWasClicked == btn_ssgeg_att.get())
+    else if (buttonThatWasClicked == btn_prev_ssgwave.get())
     {
-        //[UserButtonCode_btn_ssgeg_att] -- add your button handler code here..
-        AudioParameterBool &p = *op.p_att;
+        //[UserButtonCode_btn_prev_ssgwave] -- add your button handler code here..
+        AudioParameterInt &p = *op.p_ssgwave;
         p.beginChangeGesture();
-        p = btn->getToggleState();
+        int wave = p.getRange().clipValue(p.get() - 1);
+        p = wave;
         p.endChangeGesture();
-        //[/UserButtonCode_btn_ssgeg_att]
+        lbl_ssgwave->set_wave(wave, dontSendNotification);
+        //[/UserButtonCode_btn_prev_ssgwave]
     }
-    else if (buttonThatWasClicked == btn_ssgeg_alt.get())
+    else if (buttonThatWasClicked == btn_next_ssgwave.get())
     {
-        //[UserButtonCode_btn_ssgeg_alt] -- add your button handler code here..
-        AudioParameterBool &p = *op.p_alt;
+        //[UserButtonCode_btn_next_ssgwave] -- add your button handler code here..
+        AudioParameterInt &p = *op.p_ssgwave;
         p.beginChangeGesture();
-        p = btn->getToggleState();
+        int wave = p.getRange().clipValue(p.get() + 1);
+        p = wave;
         p.endChangeGesture();
-        //[/UserButtonCode_btn_ssgeg_alt]
-    }
-    else if (buttonThatWasClicked == btn_ssgeg_hold.get())
-    {
-        //[UserButtonCode_btn_ssgeg_hold] -- add your button handler code here..
-        AudioParameterBool &p = *op.p_hold;
-        p.beginChangeGesture();
-        p = btn->getToggleState();
-        p.endChangeGesture();
-        //[/UserButtonCode_btn_ssgeg_hold]
+        lbl_ssgwave->set_wave(wave, dontSendNotification);
+        //[/UserButtonCode_btn_next_ssgwave]
     }
 
     //[UserbuttonClicked_Post]
@@ -506,10 +518,8 @@ void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op
     sl_tune->setValue(ins.detune(op), ntf);
 
     btn_am->setToggleState(ins.am(op), ntf);
-    btn_ssgeg_cont->setToggleState(ins.cont(op), ntf);
-    btn_ssgeg_att->setToggleState(ins.att(op), ntf);
-    btn_ssgeg_alt->setToggleState(ins.alt(op), ntf);
-    btn_ssgeg_hold->setToggleState(ins.hold(op), ntf);
+    btn_ssgenable->setToggleState(ins.ssgenable(op), ntf);
+    lbl_ssgwave->set_wave(ins.ssgwave(op), ntf);
 }
 
 void Operator_Editor::set_operator_enabled(bool b)
@@ -626,7 +636,10 @@ BEGIN_JUCER_METADATA
                  parentClasses="public Component, public Knob::Listener" constructorParams="unsigned op_id, Parameter_Block &amp;pb"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
                  overlayOpacity="0.33" fixedSize="0" initialWidth="264" initialHeight="128">
-  <BACKGROUND backgroundColour="323e44"/>
+  <BACKGROUND backgroundColour="323e44">
+    <RECT pos="104 96 108 24" fill="solid: 0" hasStroke="1" stroke="1, mitered, butt"
+          strokeColour="solid: ff8e989b"/>
+  </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="7c54ff103d9f5d" memberName="kn_attack"
                     virtualName="" explicitFocusOrder="0" pos="16 3 40 40" class="Styled_Knob_Default"
                     params=""/>
@@ -639,8 +652,8 @@ BEGIN_JUCER_METADATA
   <GENERICCOMPONENT name="new component" id="7d576b68e9b588f" memberName="kn_release"
                     virtualName="" explicitFocusOrder="0" pos="64 48 40 40" class="Styled_Knob_Default"
                     params=""/>
-  <TEXTBUTTON name="new button" id="f60e70ed4f10ef32" memberName="btn_ssgeg_cont"
-              virtualName="" explicitFocusOrder="0" pos="40 100 15 15" bgColOn="ff42a2c8"
+  <TEXTBUTTON name="new button" id="f60e70ed4f10ef32" memberName="btn_ssgenable"
+              virtualName="" explicitFocusOrder="0" pos="4 100 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <SLIDER name="new slider" id="b7065e7cd8f3e951" memberName="sl_level"
           virtualName="" explicitFocusOrder="0" pos="195 0 64 20" min="0.0"
@@ -712,15 +725,20 @@ BEGIN_JUCER_METADATA
          edBkgCol="0" labelText="Tune" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="33"/>
-  <TEXTBUTTON name="new button" id="46d7039e0854b4ca" memberName="btn_ssgeg_att"
-              virtualName="" explicitFocusOrder="0" pos="60 100 15 15" bgColOn="ff42a2c8"
-              buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="166006f27c07054d" memberName="btn_ssgeg_alt"
-              virtualName="" explicitFocusOrder="0" pos="80 100 15 15" bgColOn="ff42a2c8"
-              buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <TEXTBUTTON name="new button" id="9b021a4b8f53096" memberName="btn_ssgeg_hold"
-              virtualName="" explicitFocusOrder="0" pos="100 100 15 15" bgColOn="ff42a2c8"
-              buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <LABEL name="new label" id="1e3f006eb3ae12a5" memberName="label5" virtualName=""
+         explicitFocusOrder="0" pos="20 99 56 16" edTextCol="ff000000"
+         edBkgCol="0" labelText="SSG-EG" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
+         kerning="0.0" bold="0" italic="0" justification="33"/>
+  <TEXTBUTTON name="new button" id="cbf65c7349d1d293" memberName="btn_prev_ssgwave"
+              virtualName="" explicitFocusOrder="0" pos="82 96 23 24" buttonText="&lt;"
+              connectedEdges="2" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="6fc5dc04c6c5d6b9" memberName="btn_next_ssgwave"
+              virtualName="" explicitFocusOrder="0" pos="211 96 23 24" buttonText="&gt;"
+              connectedEdges="1" needsCallback="1" radioGroupId="0"/>
+  <GENERICCOMPONENT name="new component" id="dd16fb8d4c488877" memberName="lbl_ssgwave"
+                    virtualName="" explicitFocusOrder="0" pos="105 96 106 24" class="Wave_Label"
+                    params="ssgeg_waves_"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

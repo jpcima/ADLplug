@@ -630,10 +630,8 @@ void AdlplugAudioProcessor::parameters_to_instrument(unsigned part_number, Instr
         ins.decay2(opnum, op.p_decay2->get());
         ins.sustain(opnum, op.p_sustain->get());
         ins.release(opnum, op.p_release->get());
-        ins.cont(opnum, op.p_cont->get());
-        ins.att(opnum, op.p_att->get());
-        ins.alt(opnum, op.p_alt->get());
-        ins.hold(opnum, op.p_hold->get());
+        ins.ssgenable(opnum, op.p_ssgenable->get());
+        ins.ssgwave(opnum, op.p_ssgwave->get());
 #endif
     }
 }
@@ -730,10 +728,8 @@ void AdlplugAudioProcessor::set_instrument_parameters_notifying_host(unsigned pa
         *op.p_decay2 = ins.decay2(opnum);
         *op.p_sustain = ins.sustain(opnum);
         *op.p_release = ins.release(opnum);
-        *op.p_cont = ins.cont(opnum);
-        *op.p_att = ins.att(opnum);
-        *op.p_alt = ins.alt(opnum);
-        *op.p_hold = ins.hold(opnum);
+        *op.p_ssgenable = ins.ssgenable(opnum);
+        *op.p_ssgwave = ins.ssgwave(opnum);
 #endif
     }
 }

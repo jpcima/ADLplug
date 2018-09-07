@@ -23,6 +23,9 @@
     <Filter Include="OPNplug\sources\opn2\adl">
       <UniqueIdentifier>{2CFEDDE0-233E-64FC-1B01-F08BD3294CE2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OPNplug\sources\opn2\ui\components">
+      <UniqueIdentifier>{8315B77E-6642-A1DD-E5E2-9112EC7E1705}</UniqueIdentifier>
+    </Filter>
     <Filter Include="OPNplug\sources\opn2\ui">
       <UniqueIdentifier>{823ABA6F-541B-579C-0184-7C621946F4B0}</UniqueIdentifier>
     </Filter>
@@ -558,6 +561,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\opn2\ui\operator_editor.cc">
       <Filter>OPNplug\sources\opn2\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\ui\components\ssgeg_waves.cc">
+      <Filter>OPNplug\sources\opn2\ui\components</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\look_and_feel.cc">
       <Filter>OPNplug\sources\ui</Filter>
@@ -2618,6 +2624,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\opn2\ui\operator_editor.h">
       <Filter>OPNplug\sources\opn2\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\ui\components\ssgeg_waves.h">
+      <Filter>OPNplug\sources\opn2\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\look_and_feel.h">
       <Filter>OPNplug\sources\ui</Filter>

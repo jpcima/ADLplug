@@ -21,10 +21,8 @@ struct Parameter_Block {
         AudioParameterInt *p_decay2 = nullptr;
         AudioParameterInt *p_sustain = nullptr;
         AudioParameterInt *p_release = nullptr;
-        AudioParameterBool *p_cont = nullptr;
-        AudioParameterBool *p_att = nullptr;
-        AudioParameterBool *p_alt = nullptr;
-        AudioParameterBool *p_hold = nullptr;
+        AudioParameterBool *p_ssgenable = nullptr;
+        AudioParameterInt *p_ssgwave = nullptr;
     };
 
     struct Part {

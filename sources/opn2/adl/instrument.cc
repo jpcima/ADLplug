@@ -88,11 +88,11 @@ void Instrument::describe_operator(unsigned op, FILE *out, const char *indent) c
             "%sOperator %u\n"
             "%s - ADSR %u %u,%u %u %u\n"
             "%s - AM %u Level %u Rate scale %u Detune %u FMul %u\n"
-            "%s - Cont %u Att %u Alt %u Hold %u\n",
+            "%s - SSG-EG Enable %u Wave %u\n",
             indent, op,
             indent, attack(op), decay2(op), decay1(op), sustain(op), release(op),
             indent, am(op), level(op), ratescale(op), detune(op), fmul(op),
-            indent, cont(op), att(op), alt(op), hold(op));
+            indent, ssgenable(op), ssgwave(op));
 }
 
 bool Instrument::equal_instrument(const OPN2_Instrument &o) const noexcept

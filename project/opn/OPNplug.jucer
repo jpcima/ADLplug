@@ -87,6 +87,10 @@
                 file="../../sources/opn2/ui/operator_editor.cc"/>
           <FILE id="rzEmKR" name="operator_editor.h" compile="0" resource="0"
                 file="../../sources/opn2/ui/operator_editor.h"/>
+          <GROUP id="{AE07C4AC-6825-FBFB-9231-109A1E5EC556}" name="components">
+            <FILE id="mTnTEL" name="ssgeg_waves.cc" compile="1" resource="0" file="../../sources/opn2/ui/components/ssgeg_waves.cc"/>
+            <FILE id="tsA0N8" name="ssgeg_waves.h" compile="0" resource="0" file="../../sources/opn2/ui/components/ssgeg_waves.h"/>
+          </GROUP>
         </GROUP>
       </GROUP>
       <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">

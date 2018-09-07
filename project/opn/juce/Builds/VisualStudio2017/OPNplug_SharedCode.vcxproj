@@ -163,6 +163,7 @@
     <ClCompile Include="..\..\..\..\..\sources\opn2\ui\about_component.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opn2\ui\main_component.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opn2\ui\operator_editor.cc"/>
+    <ClCompile Include="..\..\..\..\..\sources\opn2\ui\components\ssgeg_waves.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\look_and_feel.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\indicator_NxM.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\knob_component.cc"/>
@@ -1970,6 +1971,7 @@
     <ClInclude Include="..\..\..\..\..\sources\opn2\ui\about_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opn2\ui\main_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opn2\ui\operator_editor.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\opn2\ui\components\ssgeg_waves.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\look_and_feel.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\main_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\indicator_NxM.h"/>
