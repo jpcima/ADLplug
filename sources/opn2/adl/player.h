@@ -26,7 +26,7 @@ public:
     static const char *name()
         { return "OPNMIDI"; }
     static double output_gain()
-        { return 1.0; }
+        { return /*1.0*/std::pow(10.0, 3.0 / 20.0); }
     static std::vector<std::string> enumerate_emulators();
 
     void reset()
