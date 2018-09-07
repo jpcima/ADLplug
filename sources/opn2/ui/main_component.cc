@@ -394,7 +394,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (label20.get());
     label20->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label20->setJustificationType (Justification::centredLeft);
-    label20->setEditable (false, false, false);
+    label20->setEditable (false, false, false);
     label20->setColour (TextEditor::textColourId, Colours::black);
     label20->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -437,6 +437,40 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     label10->setBounds (590, 195, 72, 24);
 
+    kn_ams.reset (new Styled_Knob_DefaultSmall());
+    addAndMakeVisible (kn_ams.get());
+    kn_ams->setName ("new component");
+
+    kn_ams->setBounds (636, 252, 32, 32);
+
+    label6.reset (new Label ("new label",
+                             TRANS("AM")));
+    addAndMakeVisible (label6.get());
+    label6->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label6->setJustificationType (Justification::centred);
+    label6->setEditable (false, false, false);
+    label6->setColour (TextEditor::textColourId, Colours::black);
+    label6->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label6->setBounds (608, 255, 36, 24);
+
+    kn_fms.reset (new Styled_Knob_DefaultSmall());
+    addAndMakeVisible (kn_fms.get());
+    kn_fms->setName ("new component");
+
+    kn_fms->setBounds (718, 252, 32, 32);
+
+    label7.reset (new Label ("new label",
+                             TRANS("FM")));
+    addAndMakeVisible (label7.get());
+    label7->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label7->setJustificationType (Justification::centred);
+    label7->setEditable (false, false, false);
+    label7->setColour (TextEditor::textColourId, Colours::black);
+    label7->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label7->setBounds (690, 255, 36, 24);
+
 
     //[UserPreSize]
     Desktop::getInstance().addFocusChangeListener(this);
@@ -444,6 +478,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     setWantsKeyboardFocus(true);
 
     kn_feedback->add_listener(this);
+    kn_ams->add_listener(this);
+    kn_fms->add_listener(this);
     //[/UserPreSize]
 
     setSize (800, 600);
@@ -464,6 +500,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     kn_feedback->set_range(0, 7);
     sl_tune->setNumDecimalPlacesToDisplay(0);
+
+    kn_ams->set_range(0, 3);
+    kn_fms->set_range(0, 7);
 
     btn_lfo_enable->setClickingTogglesState(true);
 
@@ -569,6 +608,10 @@ Main_Component::~Main_Component()
     cb_algorithm = nullptr;
     kn_feedback = nullptr;
     label10 = nullptr;
+    kn_ams = nullptr;
+    label6 = nullptr;
+    kn_fms = nullptr;
+    label7 = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -679,7 +722,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 586, y = 160, width = 188, height = 128;
+        int x = 586, y = 160, width = 188, height = 64;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -797,6 +840,27 @@ void Main_Component::paint (Graphics& g)
 
     {
         int x = 546, y = 450, width = 228, height = 56;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
+    }
+
+    {
+        int x = 586, y = 224, width = 188, height = 30;
+        String text (TRANS("LFO Sensitivity"));
+        Colour fillColour = Colours::aliceblue;
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.setFont (Font (20.0f, Font::plain).withTypefaceStyle ("Bold Italic"));
+        g.drawText (text, x, y, width, height,
+                    Justification::centred, true);
+    }
+
+    {
+        int x = 586, y = 252, width = 188, height = 36;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1113,9 +1177,16 @@ void Main_Component::knob_value_changed(Knob *k)
     Parameter_Block &pb = *parameter_block_;
     Parameter_Block::Part &part = pb.part[midichannel_];
 
-    /* TODO OPN2 */
     if (k == kn_feedback.get()) {
         AudioParameterInt &p = *part.p_feedback;
+        p = std::lround(k->value());
+    }
+    else if (k == kn_ams.get()) {
+        AudioParameterInt &p = *part.p_ams;
+        p = std::lround(k->value());
+    }
+    else if (k == kn_fms.get()) {
+        AudioParameterInt &p = *part.p_fms;
         p = std::lround(k->value());
     }
 }
@@ -1125,9 +1196,16 @@ void Main_Component::knob_drag_started(Knob *k)
     Parameter_Block &pb = *parameter_block_;
     Parameter_Block::Part &part = pb.part[midichannel_];
 
-    /* TODO OPN2 */
     if (k == kn_feedback.get()) {
         AudioParameterInt &p = *part.p_feedback;
+        p.beginChangeGesture();
+    }
+    else if (k == kn_ams.get()) {
+        AudioParameterInt &p = *part.p_ams;
+        p.beginChangeGesture();
+    }
+    else if (k == kn_fms.get()) {
+        AudioParameterInt &p = *part.p_fms;
         p.beginChangeGesture();
     }
 }
@@ -1137,9 +1215,16 @@ void Main_Component::knob_drag_ended(Knob *k)
     Parameter_Block &pb = *parameter_block_;
     Parameter_Block::Part &part = pb.part[midichannel_];
 
-    /* TODO OPN2 */
     if (k == kn_feedback.get()) {
         AudioParameterInt &p = *part.p_feedback;
+        p.endChangeGesture();
+    }
+    else if (k == kn_ams.get()) {
+        AudioParameterInt &p = *part.p_ams;
+        p.endChangeGesture();
+    }
+    else if (k == kn_fms.get()) {
+        AudioParameterInt &p = *part.p_fms;
         p.endChangeGesture();
     }
 }
@@ -1226,6 +1311,9 @@ void Main_Component::set_instrument_parameters(const Instrument &ins, Notificati
     kn_feedback->set_value(ins.feedback(), ntf);
 
     sl_tune->setValue(ins.note_offset, ntf);
+
+    kn_ams->set_value(ins.ams(), ntf);
+    kn_fms->set_value(ins.fms(), ntf);
 
     cb_percussion_key->setSelectedId(ins.percussion_key_number + 1, ntf);
 
@@ -1822,7 +1910,7 @@ BEGIN_JUCER_METADATA
     <TEXT pos="586 132 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Algorithm"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="586 160 188 128" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="586 160 188 64" fill="solid: 662e4c4d" hasStroke="0"/>
     <TEXT pos="586 288 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Tuning"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
@@ -1841,6 +1929,10 @@ BEGIN_JUCER_METADATA
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
     <RECT pos="546 450 228 56" fill="solid: 662e4c4d" hasStroke="0"/>
+    <TEXT pos="586 224 188 30" fill="solid: fff0f8ff" hasStroke="0" text="LFO Sensitivity"
+          fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
+          italic="1" justification="36" typefaceStyle="Bold Italic"/>
+    <RECT pos="586 252 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="300 160 264 128" class="Operator_Editor"
@@ -1999,6 +2091,22 @@ BEGIN_JUCER_METADATA
   <LABEL name="new label" id="6ff60ad947a8f168" memberName="label10" virtualName=""
          explicitFocusOrder="0" pos="590 195 72 24" edTextCol="ff000000"
          edBkgCol="0" labelText="Feedback" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
+  <GENERICCOMPONENT name="new component" id="68cccf59111ab75a" memberName="kn_ams"
+                    virtualName="" explicitFocusOrder="0" pos="636 252 32 32" class="Styled_Knob_DefaultSmall"
+                    params=""/>
+  <LABEL name="new label" id="bc635c855613f35a" memberName="label6" virtualName=""
+         explicitFocusOrder="0" pos="608 255 36 24" edTextCol="ff000000"
+         edBkgCol="0" labelText="AM" editableSingleClick="0" editableDoubleClick="0"
+         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
+         kerning="0.0" bold="0" italic="0" justification="36"/>
+  <GENERICCOMPONENT name="new component" id="3d549e9f57e5f19c" memberName="kn_fms"
+                    virtualName="" explicitFocusOrder="0" pos="718 252 32 32" class="Styled_Knob_DefaultSmall"
+                    params=""/>
+  <LABEL name="new label" id="5775323ab5508477" memberName="label7" virtualName=""
+         explicitFocusOrder="0" pos="690 255 36 24" edTextCol="ff000000"
+         edBkgCol="0" labelText="FM" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>

@@ -195,6 +195,10 @@ private:
     std::unique_ptr<ComboBox> cb_algorithm;
     std::unique_ptr<Styled_Knob_DefaultSmall> kn_feedback;
     std::unique_ptr<Label> label10;
+    std::unique_ptr<Styled_Knob_DefaultSmall> kn_ams;
+    std::unique_ptr<Label> label6;
+    std::unique_ptr<Styled_Knob_DefaultSmall> kn_fms;
+    std::unique_ptr<Label> label7;
 
 
     //==============================================================================
