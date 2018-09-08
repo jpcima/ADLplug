@@ -1007,7 +1007,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 546, y = 450, width = 228, height = 56;
+        int x = 546, y = 450, width = 228, height = 60;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -2202,7 +2202,7 @@ BEGIN_JUCER_METADATA
     <TEXT pos="586 422 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Global"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="546 450 228 56" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="546 450 228 60" fill="solid: 662e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="300 160 264 128" class="Operator_Editor"
