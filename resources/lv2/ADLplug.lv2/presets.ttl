@@ -16,3867 +16,3867 @@
 
     lv2:port [
         lv2:symbol "emulator" ;
-        pset:value 1.000000 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "nchip" ;
-        pset:value 0.010101 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "n4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p1fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p1c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p1c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p1c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p1c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p1m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p1m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p1m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p1m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p1m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p1c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p1c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p1c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p1m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p1m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p1m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p1m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p2fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p2c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p2c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p2c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p2c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p2m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p2m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p2m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p2m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p2m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p2c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p2c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p2c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p2m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p2m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p2m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p2m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p3fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p3c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p3c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p3c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p3c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p3m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p3m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p3m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p3m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p3m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p3c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p3c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p3c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p3m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p3m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p3m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p3m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p4fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p4c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p4c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p4c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p4c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p4m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p4m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p4m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p4m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p4m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p4c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p4c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p4c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p4m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p4m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p4m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p4m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p5fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p5c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p5c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p5c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p5c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p5m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p5m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p5m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p5m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p5m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p5c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p5c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p5c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p5m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p5m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p5m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p5m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p6fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p6c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p6c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p6c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p6c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p6m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p6m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p6m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p6m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p6m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p6c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p6c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p6c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p6m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p6m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p6m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p6m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p7fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p7c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p7c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p7c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p7c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p7m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p7m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p7m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p7m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p7m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p7c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p7c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p7c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p7m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p7m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p7m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p7m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p8fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p8c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p8c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p8c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p8c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p8m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p8m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p8m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p8m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p8m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p8c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p8c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p8c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p8m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p8m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p8m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p8m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p9fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p9c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p9c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p9c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p9c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p9m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p9m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p9m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p9m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p9m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p9c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p9c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p9c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p9m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p9m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p9m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p9m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p10fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p10c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p10c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p10c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p10c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p10m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p10m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p10m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p10m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p10m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p10c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p10c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p10c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p10m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p10m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p10m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p10m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p11fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p11c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p11c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p11c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p11c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p11m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p11m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p11m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p11m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p11m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p11c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p11c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p11c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p11m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p11m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p11m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p11m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p12fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p12c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p12c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p12c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p12c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p12m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p12m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p12m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p12m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p12m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p12c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p12c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p12c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p12m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p12m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p12m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p12m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p13fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p13c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p13c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p13c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p13c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p13m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p13m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p13m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p13m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p13m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p13c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p13c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p13c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p13m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p13m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p13m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p13m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p14fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p14c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p14c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p14c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p14c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p14m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p14m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p14m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p14m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p14m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p14c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p14c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p14c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p14m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p14m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p14m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p14m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p15fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p15c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p15c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p15c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p15c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p15m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p15m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p15m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p15m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p15m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p15c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p15c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p15c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p15m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p15m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p15m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p15m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16is4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16ps4op" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16blank" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16con12" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16con34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16tune12" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16tune34" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16fb12" ;
-        pset:value 0.571429 ;
+        pset:value 4 ;
     ] ,
     [
         lv2:symbol "p16fb34" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16veloffset" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16voice2ft" ;
-        pset:value 0.500000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16drumnote" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p16c1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c1release" ;
-        pset:value 0.533333 ;
+        pset:value 8 ;
     ] ,
     [
         lv2:symbol "p16c1level" ;
-        pset:value 0.904762 ;
+        pset:value 57 ;
     ] ,
     [
         lv2:symbol "p16c1ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p16c1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m1attack" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m1decay" ;
-        pset:value 0.866667 ;
+        pset:value 13 ;
     ] ,
     [
         lv2:symbol "p16m1sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m1release" ;
-        pset:value 0.733333 ;
+        pset:value 11 ;
     ] ,
     [
         lv2:symbol "p16m1level" ;
-        pset:value 0.761905 ;
+        pset:value 48 ;
     ] ,
     [
         lv2:symbol "p16m1ksl" ;
-        pset:value 0.666667 ;
+        pset:value 2 ;
     ] ,
     [
         lv2:symbol "p16m1fmul" ;
-        pset:value 0.066667 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "p16m1trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m1vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m1sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m1env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m1wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p16c2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p16c2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p16c2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16c2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m2attack" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p16m2decay" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p16m2sustain" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m2release" ;
-        pset:value 1.000000 ;
+        pset:value 15 ;
     ] ,
     [
         lv2:symbol "p16m2level" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m2ksl" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m2fmul" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m2trem" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m2vib" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m2sus" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m2env" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "p16m2wave" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "volmodel" ;
-        pset:value 0.000000 ;
+        pset:value 0 ;
     ] ,
     [
         lv2:symbol "deeptrem" ;
-        pset:value 1.000000 ;
+        pset:value 1 ;
     ] ,
     [
         lv2:symbol "deepvib" ;
-        pset:value 1.000000 ;
+        pset:value 1 ;
     ] .
 
 
