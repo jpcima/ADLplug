@@ -274,7 +274,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -394,7 +402,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -514,7 +530,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -634,7 +658,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -834,7 +866,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -954,7 +994,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1074,7 +1122,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1194,7 +1250,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1394,7 +1458,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1514,7 +1586,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1634,7 +1714,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1754,7 +1842,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1954,7 +2050,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2074,7 +2178,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2194,7 +2306,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2314,7 +2434,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2514,7 +2642,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2634,7 +2770,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2754,7 +2898,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2874,7 +3026,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3074,7 +3234,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3194,7 +3362,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3314,7 +3490,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3434,7 +3618,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3634,7 +3826,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3754,7 +3954,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3874,7 +4082,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3994,7 +4210,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4194,7 +4418,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4314,7 +4546,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4434,7 +4674,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4554,7 +4802,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4754,7 +5010,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4874,7 +5138,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4994,7 +5266,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5114,7 +5394,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5314,7 +5602,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5434,7 +5730,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5554,7 +5858,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5674,7 +5986,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5874,7 +6194,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5994,7 +6322,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6114,7 +6450,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6234,7 +6578,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6434,7 +6786,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6554,7 +6914,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6674,7 +7042,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6794,7 +7170,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6994,7 +7378,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7114,7 +7506,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7234,7 +7634,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7354,7 +7762,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7554,7 +7970,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7674,7 +8098,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7794,7 +8226,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7914,7 +8354,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8114,7 +8562,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8234,7 +8690,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8354,7 +8818,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8474,7 +8946,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8674,7 +9154,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8794,7 +9282,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8914,7 +9410,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -9034,7 +9538,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Down" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Hold" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Down - Alternate - Hold" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Up" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Hold" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Up - Alternate - Hold" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;

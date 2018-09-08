@@ -108,7 +108,17 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
             p.addParameter((op.p_vib = new AudioParameterBool(id("vib"), name("Vibrato"), ins.vib(opnum), String())));
             p.addParameter((op.p_sus = new AudioParameterBool(id("sus"), name("Sustaining"), ins.sus(opnum), String())));
             p.addParameter((op.p_env = new AudioParameterBool(id("env"), name("Key scaling"), ins.env(opnum), String())));
-            p.addParameter((op.p_wave = new AudioParameterInt(id("wave"), name("Waveform"), 0, 7, ins.wave(opnum), String())));
+            StringArray waves {
+                "Sine",
+                "Half sine",
+                "Absolute sine",
+                "Pulse sine",
+                "Alternating sine",
+                "Camel sine",
+                "Square",
+                "Logarithmic sawtooth",
+            };
+            p.addParameter((op.p_wave = new AudioParameterChoice(id("wave"), name("Waveform"), waves, ins.wave(opnum), String())));
         }
     }
     last_instrument_parameter = p.getParameters().size() - 1;

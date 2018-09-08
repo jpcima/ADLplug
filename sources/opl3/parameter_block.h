@@ -23,7 +23,7 @@ struct Parameter_Block {
         AudioParameterBool *p_vib = nullptr;
         AudioParameterBool *p_sus = nullptr;
         AudioParameterBool *p_env = nullptr;
-        AudioParameterInt *p_wave = nullptr;
+        AudioParameterChoice *p_wave = nullptr;
     };
 
     struct Part {

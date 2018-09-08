@@ -328,7 +328,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -448,7 +456,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -568,7 +584,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -688,7 +712,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -932,7 +964,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1052,7 +1092,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1172,7 +1220,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1292,7 +1348,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1536,7 +1600,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1656,7 +1728,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1776,7 +1856,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -1896,7 +1984,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2140,7 +2236,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2260,7 +2364,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2380,7 +2492,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2500,7 +2620,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2744,7 +2872,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2864,7 +3000,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -2984,7 +3128,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3104,7 +3256,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3348,7 +3508,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3468,7 +3636,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3588,7 +3764,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3708,7 +3892,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -3952,7 +4144,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4072,7 +4272,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4192,7 +4400,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4312,7 +4528,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4556,7 +4780,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4676,7 +4908,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4796,7 +5036,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -4916,7 +5164,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5160,7 +5416,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5280,7 +5544,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5400,7 +5672,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5520,7 +5800,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5764,7 +6052,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -5884,7 +6180,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6004,7 +6308,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6124,7 +6436,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6368,7 +6688,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6488,7 +6816,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6608,7 +6944,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6728,7 +7072,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -6972,7 +7324,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7092,7 +7452,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7212,7 +7580,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7332,7 +7708,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7576,7 +7960,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7696,7 +8088,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7816,7 +8216,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -7936,7 +8344,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8180,7 +8596,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8300,7 +8724,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8420,7 +8852,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8540,7 +8980,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8784,7 +9232,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -8904,7 +9360,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -9024,7 +9488,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -9144,7 +9616,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -9388,7 +9868,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -9508,7 +9996,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -9628,7 +10124,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;
@@ -9748,7 +10252,15 @@
         lv2:default 0 ;
         lv2:minimum 0 ;
         lv2:maximum 7 ;
-        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:integer, lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Sine" ; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Half sine" ; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Absolute sine" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Pulse sine" ; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Alternating sine" ; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Camel sine" ; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Square" ; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Logarithmic sawtooth" ; rdf:value 7 ] ;
     ] ,
     [
         a lv2:InputPort, lv2:ControlPort ;

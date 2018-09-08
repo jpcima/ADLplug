@@ -382,9 +382,9 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
     if (buttonThatWasClicked == btn_prev_wave.get())
     {
         //[UserButtonCode_btn_prev_wave] -- add your button handler code here..
-        AudioParameterInt &p = *op.p_wave;
+        AudioParameterChoice &p = *op.p_wave;
         p.beginChangeGesture();
-        int wave = p.getRange().clipValue(p.get() - 1);
+        int wave = std::max(p.getIndex() - 1, 0);
         p = wave;
         p.endChangeGesture();
         lbl_wave->set_wave(wave, dontSendNotification);
@@ -393,9 +393,9 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_next_wave.get())
     {
         //[UserButtonCode_btn_next_wave] -- add your button handler code here..
-        AudioParameterInt &p = *op.p_wave;
+        AudioParameterChoice &p = *op.p_wave;
         p.beginChangeGesture();
-        int wave = p.getRange().clipValue(p.get() + 1);
+        int wave = std::min(p.getIndex() + 1, p.choices.size() - 1);
         p = wave;
         p.endChangeGesture();
         lbl_wave->set_wave(wave, dontSendNotification);

@@ -618,7 +618,7 @@ void AdlplugAudioProcessor::parameters_to_instrument(unsigned part_number, Instr
         ins.vib(opnum, op.p_vib->get());
         ins.sus(opnum, op.p_sus->get());
         ins.env(opnum, op.p_env->get());
-        ins.wave(opnum, op.p_wave->get());
+        ins.wave(opnum, op.p_wave->getIndex());
 #elif defined(ADLPLUG_OPN2)
         ins.detune(opnum, op.p_detune->get());
         ins.fmul(opnum, op.p_fmul->get());
@@ -631,7 +631,7 @@ void AdlplugAudioProcessor::parameters_to_instrument(unsigned part_number, Instr
         ins.sustain(opnum, op.p_sustain->get());
         ins.release(opnum, op.p_release->get());
         ins.ssgenable(opnum, op.p_ssgenable->get());
-        ins.ssgwave(opnum, op.p_ssgwave->get());
+        ins.ssgwave(opnum, op.p_ssgwave->getIndex());
 #endif
     }
 }

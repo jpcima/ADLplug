@@ -22,7 +22,7 @@ struct Parameter_Block {
         AudioParameterInt *p_sustain = nullptr;
         AudioParameterInt *p_release = nullptr;
         AudioParameterBool *p_ssgenable = nullptr;
-        AudioParameterInt *p_ssgwave = nullptr;
+        AudioParameterChoice *p_ssgwave = nullptr;
     };
 
     struct Part {

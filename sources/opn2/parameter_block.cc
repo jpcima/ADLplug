@@ -105,7 +105,15 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
             p.addParameter((op.p_sustain = new AudioParameterInt(id("sustain"), name("Sustain"), 0, 15, ins.sustain(opnum), String())));
             p.addParameter((op.p_release = new AudioParameterInt(id("release"), name("Release"), 0, 15, ins.release(opnum), String())));
             p.addParameter((op.p_ssgenable = new AudioParameterBool(id("ssgenable"), name("SSG-EG enable"), ins.ssgenable(opnum), String())));
-            p.addParameter((op.p_ssgwave = new AudioParameterInt(id("ssgwave"), name("SSG-EG wave"), 0, 7, ins.ssgwave(opnum), String())));
+            StringArray ssgwaves;
+            ssgwaves.ensureStorageAllocated(8);
+            for (unsigned i = 0; i < 8; ++i) {
+                String x = (i & 4) ? "Up" : "Down";
+                if (i & 2) x += " - Alternate";
+                if (i & 1) x += " - Hold";
+                ssgwaves.add(x);
+            }
+            p.addParameter((op.p_ssgwave = new AudioParameterChoice(id("ssgwave"), name("SSG-EG wave"), ssgwaves, ins.ssgwave(opnum), String())));
         }
     }
     last_instrument_parameter = p.getParameters().size() - 1;

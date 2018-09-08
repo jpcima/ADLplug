@@ -406,9 +406,8 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_prev_ssgwave.get())
     {
         //[UserButtonCode_btn_prev_ssgwave] -- add your button handler code here..
-        AudioParameterInt &p = *op.p_ssgwave;
-        p.beginChangeGesture();
-        int wave = p.getRange().clipValue(p.get() - 1);
+        AudioParameterChoice &p = *op.p_ssgwave;
+        int wave = std::max(p.getIndex() - 1, 0);
         p = wave;
         p.endChangeGesture();
         lbl_ssgwave->set_wave(wave, dontSendNotification);
@@ -417,9 +416,9 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_next_ssgwave.get())
     {
         //[UserButtonCode_btn_next_ssgwave] -- add your button handler code here..
-        AudioParameterInt &p = *op.p_ssgwave;
+        AudioParameterChoice &p = *op.p_ssgwave;
         p.beginChangeGesture();
-        int wave = p.getRange().clipValue(p.get() + 1);
+        int wave = std::min(p.getIndex() + 1, p.choices.size() - 1);
         p = wave;
         p.endChangeGesture();
         lbl_ssgwave->set_wave(wave, dontSendNotification);
