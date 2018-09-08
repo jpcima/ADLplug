@@ -5,8 +5,8 @@
               buildVST="1" buildVST3="1" buildAU="1" buildAUv3="1" buildRTAS="1"
               buildAAX="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               bundleIdentifier="jpcima.OPNplug" pluginName="OPNplug" pluginDesc="OPNplug"
-              pluginManufacturer="jpcima" pluginManufacturerCode="JPCm" pluginCode="OPNM"
-              aaxIdentifier="jpcima.OPNplug" headerPath="../../../../../sources&#10;../../../../../thirdparty/libOPNMIDI/include&#10;../../../../../thirdparty/wopn"
+              pluginManufacturer="Jean Pierre Cimalando" pluginManufacturerCode="JPCm"
+              pluginCode="OPNM" aaxIdentifier="jpcima.OPNplug" headerPath="../../../../../sources&#10;../../../../../thirdparty/libOPNMIDI/include&#10;../../../../../thirdparty/wopn"
               defines="ADLPLUG_OPN2&#10;OPNMIDI_UNSTABLE_API&#10;OPNMIDI_DISABLE_GX_EMULATOR&#10;OPNMIDI_DISABLE_CPP_EXTRAS&#10;OPNMIDI_DISABLE_MIDI_SEQUENCER&#10;OPNMIDI_DISABLE_MUS_SUPPORT&#10;OPNMIDI_DISABLE_XMI_SUPPORT"
               id="ojbkOL" version="1.0.0" includeBinaryInJuceHeader="0" cppLanguageStandard="11">
   <MAINGROUP id="faq0v0" name="OPNplug">

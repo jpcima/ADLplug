@@ -16,7 +16,9 @@
 //==============================================================================
 // [BEGIN_USER_CODE_SECTION]
 
-// (You can add your own code in this section, and the Projucer will not overwrite it)
+#define JucePlugin_Build_LV2 1
+#define JucePlugin_WantsLV2Latency 0
+#define JucePlugin_LV2URI "https://github.com/jpcima/ADLplug"
 
 // [END_USER_CODE_SECTION]
 
@@ -274,6 +276,10 @@
  //#define JUCE_USE_XCURSOR 1
 #endif
 
+#ifndef    JUCE_WIN_PER_MONITOR_DPI_AWARE
+ //#define JUCE_WIN_PER_MONITOR_DPI_AWARE 1
+#endif
+
 //==============================================================================
 // juce_gui_extra flags:
 
@@ -330,7 +336,7 @@
  #define JucePlugin_Desc                   "ADLplug"
 #endif
 #ifndef  JucePlugin_Manufacturer
- #define JucePlugin_Manufacturer           "jpcima"
+ #define JucePlugin_Manufacturer           "Jean Pierre Cimalando"
 #endif
 #ifndef  JucePlugin_ManufacturerWebsite
  #define JucePlugin_ManufacturerWebsite    ""
@@ -435,5 +441,5 @@
  #define JucePlugin_IAASubType             JucePlugin_PluginCode
 #endif
 #ifndef  JucePlugin_IAAName
- #define JucePlugin_IAAName                "jpcima: ADLplug"
+ #define JucePlugin_IAAName                "Jean Pierre Cimalando: ADLplug"
 #endif

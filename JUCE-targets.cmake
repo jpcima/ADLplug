@@ -132,10 +132,6 @@ if(ADLplug_LV2)
     "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_LV2.cpp")
   add_juce_module(juce_audio_plugin_client_LV2 ${LV2_SOURCES})
   target_link_libraries(juce_audio_plugin_client_LV2 PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)
-
-  target_compile_definitions(juce_audio_plugin_client_LV2
-    PUBLIC "JucePlugin_Build_LV2=1"
-    PUBLIC "JucePlugin_LV2URI=\"${ADLplug_URI}\"")
 endif()
 
 if(ADLplug_Standalone)

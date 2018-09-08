@@ -584,6 +584,9 @@
     <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\AU\CoreAudioUtilityClasses\MusicDeviceBase.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\juce_LV2_ParameterWrapper.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_plugin_client\LV2\juce_LV2_Wrapper.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -843,6 +846,9 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_core\memory\juce_MemoryBlock.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_core\misc\juce_ConsoleApplication.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_core\misc\juce_Result.cpp">
@@ -1493,10 +1499,13 @@
     <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\components\juce_ComponentListener.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\components\juce_Desktop.cpp">
+    <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\components\juce_ModalComponentManager.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\components\juce_ModalComponentManager.cpp">
+    <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\desktop\juce_Desktop.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\desktop\juce_Displays.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\drawables\juce_Drawable.cpp">
@@ -2278,6 +2287,7 @@
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstprocesscontext.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstrepresentation.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\ivstunits.h"/>
+    <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\vstpshpack4.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\vstspeaker.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst\vsttypes.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_processors\format_types\VST3_SDK\pluginterfaces\vst2.x\aeffect.h"/>
@@ -2381,6 +2391,7 @@
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_core\memory\juce_SharedResourcePointer.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_core\memory\juce_Singleton.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_core\memory\juce_WeakReference.h"/>
+    <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_core\misc\juce_ConsoleApplication.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_core\misc\juce_Result.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_core\misc\juce_RuntimePermissions.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_core\misc\juce_StdFunctionCompat.h"/>
@@ -2574,8 +2585,9 @@
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\components\juce_CachedComponentImage.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\components\juce_Component.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\components\juce_ComponentListener.h"/>
-    <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\components\juce_Desktop.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\components\juce_ModalComponentManager.h"/>
+    <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\desktop\juce_Desktop.h"/>
+    <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\desktop\juce_Displays.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\drawables\juce_Drawable.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\drawables\juce_DrawableComposite.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_basics\drawables\juce_DrawableImage.h"/>
@@ -2706,6 +2718,7 @@
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_extra\embedding\juce_ActiveXControlComponent.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_extra\embedding\juce_AndroidViewComponent.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_extra\embedding\juce_NSViewComponent.h"/>
+    <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_extra\embedding\juce_ScopedDPIAwarenessDisabler.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_extra\embedding\juce_UIViewComponent.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_extra\embedding\juce_XEmbedComponent.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_extra\misc\juce_AnimatedAppComponent.h"/>
