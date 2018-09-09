@@ -960,9 +960,10 @@ void AdlplugAudioProcessor::parameterValueChanged(int index, float value)
         global_parameters_changed_.store(1);
     else if (index >= pb.first_instrument_parameter && index <= pb.last_instrument_parameter)
     {
-        unsigned part_num = (index - pb.first_instrument_parameter) /
-            (1 + pb.last_instrument_parameter - pb.first_instrument_parameter);
-        instrument_parameters_changed_[part_num].store(1);
+        unsigned p_ins_count = (1 + pb.last_instrument_parameter - pb.first_instrument_parameter);
+        unsigned p_part_count = p_ins_count / 16;
+        unsigned part = (index - pb.first_instrument_parameter) / p_part_count;
+        instrument_parameters_changed_[part].store(1);
     }
 }
 
