@@ -969,7 +969,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
 
         int selection = menu.showAt(buttonThatWasClicked);
         if (selection == 1) {
-            FileChooser chooser(TRANS("Load bank..."), bank_directory_, "*.wopl", prefer_native_file_dialog);
+            FileChooser chooser(TRANS("Load bank..."), bank_directory_, "*.wopn", prefer_native_file_dialog);
             if (chooser.browseForFileToOpen()) {
                 File file = chooser.getResult();
                 bank_directory_ = file.getParentDirectory();
@@ -987,10 +987,10 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_bank_save.get())
     {
         //[UserButtonCode_btn_bank_save] -- add your button handler code here..
-        FileChooser chooser(TRANS("Save bank..."), bank_directory_, "*.wopl", prefer_native_file_dialog);
+        FileChooser chooser(TRANS("Save bank..."), bank_directory_, "*.wopn", prefer_native_file_dialog);
         if (chooser.browseForFileToSave(false)) {
             File file = chooser.getResult();
-            file = file.withFileExtension(".wopl");
+            file = file.withFileExtension(".wopn");
 
             bool confirm = true;
             if (file.exists()) {
