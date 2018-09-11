@@ -39,6 +39,9 @@ void Instrument::to_properties(PropertySet &set, const char *key_prefix) const
         set.setValue(opfx + "env", env(opnum));
         set.setValue(opfx + "wave", (int)wave(opnum));
     }
+
+    set.setValue(pfx + "delay_off_ms", (int)delay_off_ms);
+    set.setValue(pfx + "delay_on_ms", (int)delay_on_ms);
 }
 
 Instrument Instrument::from_properties(const juce::PropertySet &set, const char *key_prefix)
@@ -75,6 +78,9 @@ Instrument Instrument::from_properties(const juce::PropertySet &set, const char 
         ins.env(opnum, set.getBoolValue(opfx + "env"));
         ins.wave(opnum, set.getIntValue(opfx + "wave"));
     }
+
+    ins.delay_off_ms = set.getIntValue(pfx + "delay_off_ms");
+    ins.delay_on_ms = set.getIntValue(pfx + "delay_on_ms");
 
     return ins;
 }

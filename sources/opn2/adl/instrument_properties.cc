@@ -36,6 +36,9 @@ void Instrument::to_properties(PropertySet &set, const char *key_prefix) const
         set.setValue(opfx + "ssgenable", ssgenable(opnum));
         set.setValue(opfx + "ssgwave", (int)ssgwave(opnum));
     }
+
+    set.setValue(pfx + "delay_off_ms", (int)delay_off_ms);
+    set.setValue(pfx + "delay_on_ms", (int)delay_on_ms);
 }
 
 Instrument Instrument::from_properties(const juce::PropertySet &set, const char *key_prefix)
@@ -69,6 +72,9 @@ Instrument Instrument::from_properties(const juce::PropertySet &set, const char 
         ins.ssgenable(opnum, set.getIntValue(opfx + "ssgenable"));
         ins.ssgwave(opnum, set.getIntValue(opfx + "ssgwave"));
     }
+
+    ins.delay_off_ms = set.getIntValue(pfx + "delay_off_ms");
+    ins.delay_on_ms = set.getIntValue(pfx + "delay_on_ms");
 
     return ins;
 }
