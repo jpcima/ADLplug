@@ -64,8 +64,10 @@ sudo cmake --build . --target install
 
 ### Change Log
 
-**1.0.0.alpha.4 (dev)**
+**1.0.0.beta.1**
 - support of OPN2 synthesis in a distinct plugin
+- fixed the plugin state which would be saved incomplete
+- fixed the extension of OPN2 bank files in the file chooser
 
 **1.0.0.alpha.3**
 
