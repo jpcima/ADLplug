@@ -2580,7 +2580,7 @@
     <ClInclude Include="..\..\..\..\..\sources\plugin_processor.h">
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\version.h">
+    <ClInclude Include="..\..\..\..\..\sources\plugin_version.h">
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\worker.h">

@@ -18,7 +18,7 @@
 */
 
 //[Headers] You can add your own extra header files here...
-#include "version.h"
+#include "plugin_version.h"
 //[/Headers]
 
 #include "about_component.h"

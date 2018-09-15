@@ -2583,7 +2583,7 @@
     <ClInclude Include="..\..\..\..\..\sources\plugin_processor.h">
       <Filter>OPNplug\sources</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\sources\version.h">
+    <ClInclude Include="..\..\..\..\..\sources\plugin_version.h">
       <Filter>OPNplug\sources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\worker.h">

@@ -1962,7 +1962,7 @@
     <ClInclude Include="..\..\..\..\..\sources\parameter_block.h"/>
     <ClInclude Include="..\..\..\..\..\sources\plugin_editor.h"/>
     <ClInclude Include="..\..\..\..\..\sources\plugin_processor.h"/>
-    <ClInclude Include="..\..\..\..\..\sources\version.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\plugin_version.h"/>
     <ClInclude Include="..\..\..\..\..\sources\worker.h"/>
     <ClInclude Include="..\..\..\..\..\sources\adl\chip_settings.h"/>
     <ClInclude Include="..\..\..\..\..\sources\adl\instrument.h"/>
