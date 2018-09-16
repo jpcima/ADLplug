@@ -1,7 +1,10 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.3)
+cmake_policy(SET CMP0063 NEW)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 project(ADLplug VERSION "1.0.0" LANGUAGES CXX C)
+
+include(ADLMIDI)
 
 include(SystemOption)
 system_option(ADLplug_VST2 "Build VST2" ON)
@@ -53,22 +56,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
 endif()
-
-### ADLMIDI
-set(WITH_MIDI_SEQUENCER OFF CACHE STRING "" FORCE)
-set(WITH_MUS_SUPPORT OFF CACHE STRING "" FORCE)
-set(WITH_XMI_SUPPORT OFF CACHE STRING "" FORCE)
-set(WITH_EMBEDDED_BANKS OFF CACHE STRING "" FORCE)
-set(libADLMIDI_STATIC ON CACHE STRING "" FORCE)
-set(libADLMIDI_SHARED OFF CACHE STRING "" FORCE)
-add_subdirectory("thirdparty/libADLMIDI" EXCLUDE_FROM_ALL)
-target_compile_definitions(ADLMIDI_static PRIVATE "ADLMIDI_EXPORT=")
-target_compile_definitions(ADLMIDI_static PUBLIC "ADLMIDI_UNSTABLE_API=")
-set(libOPNMIDI_STATIC ON CACHE STRING "" FORCE)
-set(libOPNMIDI_SHARED OFF CACHE STRING "" FORCE)
-add_subdirectory("thirdparty/libOPNMIDI" EXCLUDE_FROM_ALL)
-target_compile_definitions(OPNMIDI_static PRIVATE "OPNMIDI_EXPORT=")
-target_compile_definitions(OPNMIDI_static PUBLIC "OPNMIDI_UNSTABLE_API=")
 
 if(ADLplug_Jack)
   include(FindPkgConfig)
