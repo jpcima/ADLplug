@@ -1,8 +1,12 @@
-cmake_minimum_required(VERSION 3.3)
+cmake_minimum_required(VERSION "3.3")
 cmake_policy(SET CMP0063 NEW)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 project(ADLplug VERSION "1.0.0" LANGUAGES CXX C)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+endif()
 
 include(ADLMIDI)
 
@@ -53,8 +57,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # on MinGW JUCE defines a _WINNT_VER which disables some needed definitions
     add_definitions("-DREPLACEFILE_IGNORE_ACL_ERRORS=0x4")
   endif()
-elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
 endif()
 
 if(ADLplug_Jack)
