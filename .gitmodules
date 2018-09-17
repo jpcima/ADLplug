@@ -4,7 +4,6 @@
 [submodule "thirdparty/JUCE"]
 	path = thirdparty/JUCE
 	url = https://github.com/jpcima/JUCE.git
-	shallow = true
 [submodule "thirdparty/fmt"]
 	path = thirdparty/fmt
 	url = https://github.com/fmtlib/fmt.git
