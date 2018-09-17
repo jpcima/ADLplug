@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=ADLMIDI
+Name[fr]=ADLMIDI
+Comment=FM Yamaha OPL3 synthesizer for ADLMIDI
+Comment[fr]=Synthétiseur FM Yamaha OPL3 pour ADLMIDI
+TryExec=ADLplug
+Exec=ADLplug
+Icon=adlplug-logo
+Type=Application
+Categories=AudioVideo;Audio;Music;Midi
