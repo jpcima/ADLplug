@@ -24,6 +24,13 @@ The emulations and the drivers are provided by [libADLMIDI](https://github.com/W
 
 Find automatic builds of the development branch [here](http://jpcima.sdf1.org/software/development/ADLplug/).
 
+## Useful links
+
+- User Manual : [French :fr:](http://jpcima.sdf1.org/software/documentation/ADLplug/manual/fr/manual.html)
+- LibraZiK-2 : [ADLplug :fr:](http://librazik.tuxfamily.org/doc2/logiciels/adlplug)
+- Arch Linux AUR : [adlplug-git](https://aur.archlinux.org/packages/adlplug-git/) and [opnplug-git](https://aur.archlinux.org/packages/opnplug-git/)
+- Bank editor software : [OPL3](https://github.com/Wohlstand/OPL3BankEditor) and [OPN2](https://github.com/Wohlstand/OPN2BankEditor)
+
 ## Build instructions
 
 Install required dependencies:
