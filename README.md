@@ -18,6 +18,9 @@ The emulations and the drivers are provided by [libADLMIDI](https://github.com/W
 - [x] multi-channel operation with General MIDI compatibility
 - [x] ability to synthesize entire MIDI files out of the box
 
+Author: [Jean Pierre Cimalando](https://github.com/jpcima)  
+Contributors: [Olivier Humbert](https://github.com/trebmuh), [Christopher Arndt](https://github.com/SpotlightKid)
+
 ## Development builds
 
 [![Build Status](https://semaphoreci.com/api/v1/jpcima/adlplug-2/branches/master/badge.svg)](https://semaphoreci.com/jpcima/adlplug-2)
