@@ -23,6 +23,7 @@
 #include "components/algorithm_help.h"
 #include "ui/components/vu_meter.h"
 #include "ui/components/indicator_NxM.h"
+#include "ui/utility/key_maps.h"
 #include "adl/instrument.h"
 #include "midi/insnames.h"
 #include "plugin_processor.h"
@@ -107,7 +108,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (midi_kb.get());
     midi_kb->setName ("new component");
 
-    midi_kb->setBounds (16, 520, 758, 64);
+    midi_kb->setBounds (16, 520, 730, 64);
 
     btn_about.reset (new ImageButton ("new button"));
     addAndMakeVisible (btn_about.get());
@@ -472,6 +473,12 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     label7->setBounds (686, 257, 36, 24);
 
+    btn_keymap.reset (new TextButton (String()));
+    addAndMakeVisible (btn_keymap.get());
+    btn_keymap->addListener (this);
+
+    btn_keymap->setBounds (750, 520, 24, 24);
+
 
     //[UserPreSize]
     Desktop::getInstance().addFocusChangeListener(this);
@@ -509,8 +516,10 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     create_image_overlay(*btn_bank_load, ImageCache::getFromMemory(BinaryData::emoji_u1f4c2_png, BinaryData::emoji_u1f4c2_pngSize), 0.7f);
     create_image_overlay(*btn_bank_save, ImageCache::getFromMemory(BinaryData::emoji_u1f4be_png, BinaryData::emoji_u1f4be_pngSize), 0.7f);
+    create_image_overlay(*btn_keymap, ImageCache::getFromMemory(BinaryData::emoji_u2328_png, BinaryData::emoji_u2328_pngSize), 0.7f);
 
     build_emulator_menu(emulator_menu_);
+    build_key_layout_menu(keymap_menu_);
 
     for (unsigned note = 0; note < 127; ++note) {
         const char *octave_names[12] =
@@ -613,6 +622,7 @@ Main_Component::~Main_Component()
     label6 = nullptr;
     kn_fms = nullptr;
     label7 = nullptr;
+    btn_keymap = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -1040,6 +1050,15 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         p = btn->getToggleState();
         p.endChangeGesture();
         //[/UserButtonCode_btn_lfo_enable]
+    }
+    else if (buttonThatWasClicked == btn_keymap.get())
+    {
+        //[UserButtonCode_btn_keymap] -- add your button handler code here..
+        PopupMenu &menu = keymap_menu_;
+        int selection = menu.showMenu(PopupMenu::Options()
+                                      .withParentComponent(this));
+        install_key_layout(*midi_kb, (Key_Layout)(selection - 1));
+        //[/UserButtonCode_btn_keymap]
     }
 
     //[UserbuttonClicked_Post]
@@ -1953,7 +1972,7 @@ BEGIN_JUCER_METADATA
           textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="midi_kb"
-                    virtualName="" explicitFocusOrder="0" pos="16 520 758 64" class="MidiKeyboardComponent"
+                    virtualName="" explicitFocusOrder="0" pos="16 520 730 64" class="MidiKeyboardComponent"
                     params="midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard"/>
   <IMAGEBUTTON name="new button" id="1c21a98bd6493eb8" memberName="btn_about"
                virtualName="" explicitFocusOrder="0" pos="16 8 232 40" buttonText=""
@@ -2110,6 +2129,9 @@ BEGIN_JUCER_METADATA
          edBkgCol="0" labelText="FM" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="36"/>
+  <TEXTBUTTON name="" id="39bffafade9476c7" memberName="btn_keymap" virtualName=""
+              explicitFocusOrder="0" pos="750 520 24 24" buttonText="" connectedEdges="0"
+              needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

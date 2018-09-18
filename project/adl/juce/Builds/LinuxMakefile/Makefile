@@ -122,6 +122,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/wave_label_964e0c9c.o \
   $(JUCE_OBJDIR)/graphics_140b15ab.o \
   $(JUCE_OBJDIR)/image_d1e553cb.o \
+  $(JUCE_OBJDIR)/key_maps_fbe9243f.o \
   $(JUCE_OBJDIR)/knobman_skin_9f0d575e.o \
   $(JUCE_OBJDIR)/midi_cbc86444.o \
   $(JUCE_OBJDIR)/pak_2c4b415d.o \
@@ -334,6 +335,11 @@ $(JUCE_OBJDIR)/graphics_140b15ab.o: ../../../../../sources/ui/utility/graphics.c
 $(JUCE_OBJDIR)/image_d1e553cb.o: ../../../../../sources/ui/utility/image.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling image.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/key_maps_fbe9243f.o: ../../../../../sources/ui/utility/key_maps.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling key_maps.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/knobman_skin_9f0d575e.o: ../../../../../sources/ui/utility/knobman_skin.cc

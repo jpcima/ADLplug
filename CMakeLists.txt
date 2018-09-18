@@ -103,6 +103,7 @@ add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
   "sources/ui/utility/knobman_skin.cc"
   "sources/ui/utility/graphics.cc"
   "sources/ui/utility/image.cc"
+  "sources/ui/utility/key_maps.cc"
   "sources/pch/ADLplug_core.h")
 target_include_directories(ADLplug_core PUBLIC "sources" "${JUCE_PROJECT_DIR}/JuceLibraryCode")
 target_link_libraries(ADLplug_core PUBLIC

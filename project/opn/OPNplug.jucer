@@ -130,6 +130,8 @@
           <FILE id="MbV82P" name="graphics.h" compile="0" resource="0" file="../../sources/ui/utility/graphics.h"/>
           <FILE id="WN4iCm" name="image.cc" compile="1" resource="0" file="../../sources/ui/utility/image.cc"/>
           <FILE id="FAO15t" name="image.h" compile="0" resource="0" file="../../sources/ui/utility/image.h"/>
+          <FILE id="ReG6zE" name="key_maps.cc" compile="1" resource="0" file="../../sources/ui/utility/key_maps.cc"/>
+          <FILE id="EMq0yW" name="key_maps.h" compile="0" resource="0" file="../../sources/ui/utility/key_maps.h"/>
           <FILE id="xuv18K" name="knobman_skin.cc" compile="1" resource="0" file="../../sources/ui/utility/knobman_skin.cc"/>
           <FILE id="wNpCJQ" name="knobman_skin.h" compile="0" resource="0" file="../../sources/ui/utility/knobman_skin.h"/>
         </GROUP>
@@ -197,6 +199,7 @@
                 file="../../resources/ui/noto-emoji/emoji_u1f4be.png"/>
           <FILE id="zQcn4S" name="emoji_u1f4c2.png" compile="0" resource="1"
                 file="../../resources/ui/noto-emoji/emoji_u1f4c2.png"/>
+          <FILE id="awsjxm" name="emoji_u2328.png" compile="0" resource="1" file="../../resources/ui/noto-emoji/emoji_u2328.png"/>
         </GROUP>
       </GROUP>
     </GROUP>

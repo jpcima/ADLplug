@@ -598,6 +598,9 @@
     <ClCompile Include="..\..\..\..\..\sources\ui\utility\image.cc">
       <Filter>OPNplug\sources\ui\utility</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\ui\utility\key_maps.cc">
+      <Filter>OPNplug\sources\ui\utility</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\utility\knobman_skin.cc">
       <Filter>OPNplug\sources\ui\utility</Filter>
     </ClCompile>
@@ -2683,6 +2686,9 @@
       <Filter>OPNplug\sources\ui\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\utility\image.h">
+      <Filter>OPNplug\sources\ui\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\ui\utility\key_maps.h">
       <Filter>OPNplug\sources\ui\utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\utility\knobman_skin.h">
@@ -4986,6 +4992,9 @@
       <Filter>OPNplug\resources\ui\noto-emoji</Filter>
     </None>
     <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png">
+      <Filter>OPNplug\resources\ui\noto-emoji</Filter>
+    </None>
+    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u2328.png">
       <Filter>OPNplug\resources\ui\noto-emoji</Filter>
     </None>
     <None Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\opnmidi_bankmap.tcc">

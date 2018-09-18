@@ -23,6 +23,7 @@
 #include "components/algorithm_help.h"
 #include "ui/components/vu_meter.h"
 #include "ui/components/indicator_NxM.h"
+#include "ui/utility/key_maps.h"
 #include "adl/instrument.h"
 #include "midi/insnames.h"
 #include "plugin_processor.h"
@@ -188,7 +189,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (midi_kb.get());
     midi_kb->setName ("new component");
 
-    midi_kb->setBounds (16, 520, 758, 64);
+    midi_kb->setBounds (16, 520, 730, 64);
 
     btn_about.reset (new ImageButton ("new button"));
     addAndMakeVisible (btn_about.get());
@@ -632,6 +633,12 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     btn_auto4ops->setBounds (739, 102, 24, 24);
 
+    btn_keymap.reset (new TextButton (String()));
+    addAndMakeVisible (btn_keymap.get());
+    btn_keymap->addListener (this);
+
+    btn_keymap->setBounds (750, 520, 24, 24);
+
 
     //[UserPreSize]
     Desktop::getInstance().addFocusChangeListener(this);
@@ -684,8 +691,10 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     create_image_overlay(*btn_bank_load, ImageCache::getFromMemory(BinaryData::emoji_u1f4c2_png, BinaryData::emoji_u1f4c2_pngSize), 0.7f);
     create_image_overlay(*btn_bank_save, ImageCache::getFromMemory(BinaryData::emoji_u1f4be_png, BinaryData::emoji_u1f4be_pngSize), 0.7f);
     create_image_overlay(*btn_auto4ops, ImageCache::getFromMemory(BinaryData::emoji_u1f4a1_png, BinaryData::emoji_u1f4a1_pngSize), 0.7f);
+    create_image_overlay(*btn_keymap, ImageCache::getFromMemory(BinaryData::emoji_u2328_png, BinaryData::emoji_u2328_pngSize), 0.7f);
 
     build_emulator_menu(emulator_menu_);
+    build_key_layout_menu(keymap_menu_);
 
     for (unsigned note = 0; note < 127; ++note) {
         const char *octave_names[12] =
@@ -780,6 +789,7 @@ Main_Component::~Main_Component()
     cb_volmodel = nullptr;
     btn_algo_help = nullptr;
     btn_auto4ops = nullptr;
+    btn_keymap = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -1247,6 +1257,15 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         Messages::User::SelectOptimal4Ops msg;
         write_to_processor(msg.tag, &msg, sizeof(msg));
         //[/UserButtonCode_btn_auto4ops]
+    }
+    else if (buttonThatWasClicked == btn_keymap.get())
+    {
+        //[UserButtonCode_btn_keymap] -- add your button handler code here..
+        PopupMenu &menu = keymap_menu_;
+        int selection = menu.showMenu(PopupMenu::Options()
+                                      .withParentComponent(this));
+        install_key_layout(*midi_kb, (Key_Layout)(selection - 1));
+        //[/UserButtonCode_btn_keymap]
     }
 
     //[UserbuttonClicked_Post]
@@ -2254,7 +2273,7 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="736 245 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="midi_kb"
-                    virtualName="" explicitFocusOrder="0" pos="16 520 758 64" class="MidiKeyboardComponent"
+                    virtualName="" explicitFocusOrder="0" pos="16 520 730 64" class="MidiKeyboardComponent"
                     params="midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard"/>
   <IMAGEBUTTON name="new button" id="1c21a98bd6493eb8" memberName="btn_about"
                virtualName="" explicitFocusOrder="0" pos="16 8 232 40" buttonText=""
@@ -2447,6 +2466,9 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="new button" id="988d753c82121162" memberName="btn_auto4ops"
               virtualName="" explicitFocusOrder="0" pos="739 102 24 24" tooltip="Choose a recommended value"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="" id="39bffafade9476c7" memberName="btn_keymap" virtualName=""
+              explicitFocusOrder="0" pos="750 520 24 24" buttonText="" connectedEdges="0"
+              needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

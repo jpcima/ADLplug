@@ -147,6 +147,7 @@ private:
     std::vector<std::unique_ptr<ImageComponent>> image_overlays_;
 
     PopupMenu emulator_menu_;
+    PopupMenu keymap_menu_;
 
     std::unique_ptr<Timer> vu_timer_;
     std::unique_ptr<Timer> cpu_load_timer_;
@@ -215,6 +216,7 @@ private:
     std::unique_ptr<ComboBox> cb_volmodel;
     std::unique_ptr<TextButton> btn_algo_help;
     std::unique_ptr<TextButton> btn_auto4ops;
+    std::unique_ptr<TextButton> btn_keymap;
 
 
     //==============================================================================
