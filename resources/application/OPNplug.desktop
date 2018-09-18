@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=OPNplug
 Name[fr]=OPNplug
-Comment=FM Yamaha OPN2 synthesizer for ADLMIDI
-Comment[fr]=Synthétiseur FM Yamaha OPN2 pour ADLMIDI
+Comment=FM Yamaha OPN2 synthesizer for OPNMIDI
+Comment[fr]=Synthétiseur FM Yamaha OPN2 pour OPNMIDI
 TryExec=OPNplug
 Exec=OPNplug
 Icon=OPNplug
