@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "configuration.h"
+#include <SimpleIni.h>
 
 #if 0
 #   define trace(fmt, ...)
@@ -11,7 +12,12 @@
 #   define trace(fmt, ...) fprintf(stderr, "[Configuration] " fmt "\n", ##__VA_ARGS__)
 #endif
 
+struct Configuration::Opaque_Ini {
+    CSimpleIniA instance;
+};
+
 Configuration::Configuration()
+    : ini_(new Opaque_Ini)
 {
 }
 
@@ -60,28 +66,28 @@ bool Configuration::save_default()
 
 bool Configuration::load_file(const File &file)
 {
-    return ini_.LoadFile(file.getFullPathName().toRawUTF8()) == SI_OK;
+    return ini_->instance.LoadFile(file.getFullPathName().toRawUTF8()) == SI_OK;
 }
 
 bool Configuration::save_file(const File &file)
 {
     file.getParentDirectory().createDirectory();
-    return ini_.SaveFile(file.getFullPathName().toRawUTF8()) == SI_OK;
+    return ini_->instance.SaveFile(file.getFullPathName().toRawUTF8()) == SI_OK;
 }
 
 void Configuration::set_string(const char *section, const char *key, const char *value)
 {
-    ini_.SetValue(section, key, value, nullptr, true);
+    ini_->instance.SetValue(section, key, value, nullptr, true);
 }
 
 const char *Configuration::get_string(const char *section, const char *key, const char *default_value) const
 {
-    return ini_.GetValue(section, key, default_value);
+    return ini_->instance.GetValue(section, key, default_value);
 }
 
 void Configuration::init_default_contents()
 {
-    CSimpleIniA &ini = ini_;
+    CSimpleIniA &ini = ini_->instance;
     if(!ini.GetValue("piano", "layout"))
         ini.SetValue("piano", "layout", "qwerty", "# the default key layout");
     if(!ini.GetValue("piano", "keymap:qwerty"))

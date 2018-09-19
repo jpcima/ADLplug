@@ -5,7 +5,6 @@
 
 #pragma once
 #include <JuceHeader.h>
-#include <SimpleIni.h>
 
 class Configuration {
 public:
@@ -23,7 +22,8 @@ public:
     const char *get_string(const char *section, const char *key, const char *default_value) const;
 
 private:
-    CSimpleIniA ini_;
+    struct Opaque_Ini;
+    std::unique_ptr<Opaque_Ini> ini_;
 
     void init_default_contents();
 };
