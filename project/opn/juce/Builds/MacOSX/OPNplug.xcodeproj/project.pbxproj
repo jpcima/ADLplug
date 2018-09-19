@@ -29,6 +29,7 @@
 		10253869BF980C92B3C9361A = {isa = PBXBuildFile; fileRef = 2677A9080E91B63D8B53493B; };
 		8BF8F3EE1A85C91126B76CD6 = {isa = PBXBuildFile; fileRef = 4F1C399BB2A3DA9FB801AB7A; };
 		6CE4BED65439328D31C0CC6B = {isa = PBXBuildFile; fileRef = 14C3A7B5833052D8DC9E0759; };
+		2019844AB11447CC1395459C = {isa = PBXBuildFile; fileRef = 98F45A3BBD2A8A783E2C6787; };
 		013206476BCEF2D8BEE4B1F9 = {isa = PBXBuildFile; fileRef = F6165549387190EDBB6606BD; };
 		59AEBCFAB589966CAEFA6BD3 = {isa = PBXBuildFile; fileRef = C473B8926977CD8D218F957B; };
 		5B04C6E7526CE5A59099F63B = {isa = PBXBuildFile; fileRef = ACC517C2B8C4F347E6EF835E; };
@@ -158,6 +159,7 @@
 		44FA785A62202608E7A7E1B6 = {isa = PBXFileReference; lastKnownFileType = image.png; name = Gens.png; path = ../../../../../resources/ui/cores/Gens.png; sourceTree = "SOURCE_ROOT"; };
 		46A7162C8D39FFA6B000F063 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-Standalone_Plugin.plist"; path = "Info-Standalone_Plugin.plist"; sourceTree = "SOURCE_ROOT"; };
 		4780F7C4BF663A28BFE822B8 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "algorithm_component.h"; path = "../../../../../sources/ui/components/algorithm_component.h"; sourceTree = "SOURCE_ROOT"; };
+		4995D130B7082A7B8A8E2A49 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = messages.h; path = ../../../../../sources/messages.h; sourceTree = "SOURCE_ROOT"; };
 		499D4152A633668F9B43E42B = {isa = PBXFileReference; lastKnownFileType = file.gz; name = "Sans-Regular.ttf.gz"; path = "../../../../../resources/ui/fonts/Sans-Regular.ttf.gz"; sourceTree = "SOURCE_ROOT"; };
 		4CBF4A4229D83CAF77F73BB9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "rt_checker.cc"; path = "../../../../../sources/utility/rt_checker.cc"; sourceTree = "SOURCE_ROOT"; };
 		4DE5AD038D18B74D184944BB = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "plugin_version.h"; path = "../../../../../sources/plugin_version.h"; sourceTree = "SOURCE_ROOT"; };
@@ -179,32 +181,31 @@
 		60B1C1590C86BAFFDC923E8F = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6354FD5D5EDF7CE25566DD5C = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "algorithm_help.h"; path = "../../../../../sources/opn2/ui/components/algorithm_help.h"; sourceTree = "SOURCE_ROOT"; };
 		63A12DA9B20496CE53B56AC1 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = pak.cc; path = ../../../../../sources/utility/pak.cc; sourceTree = "SOURCE_ROOT"; };
+		69359F629354765711B62B71 = {isa = PBXFileReference; lastKnownFileType = file.r; name = "include_juce_audio_plugin_client_RTAS.r"; path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_RTAS.r"; sourceTree = "SOURCE_ROOT"; };
 		6CCF6B638ECD7B17CFD4E609 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ranges.h; path = ../../../../../thirdparty/fmt/include/fmt/ranges.h; sourceTree = "SOURCE_ROOT"; };
 		6D14D209C6DEEB625E0E709A = {isa = PBXFileReference; lastKnownFileType = image.png; name = "emoji_u1f4c2.png"; path = "../../../../../resources/ui/noto-emoji/emoji_u1f4c2.png"; sourceTree = "SOURCE_ROOT"; };
 		6DC7CDA1E96316A837C6F508 = {isa = PBXFileReference; lastKnownFileType = image.png; name = "emoji_u2328.png"; path = "../../../../../resources/ui/noto-emoji/emoji_u2328.png"; sourceTree = "SOURCE_ROOT"; };
 		6DE5B0661DDE99A2B4317BFC = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "main_component.h"; path = "../../../../../sources/ui/main_component.h"; sourceTree = "SOURCE_ROOT"; };
+		6E283C1D8C5C3449C29776A9 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_formats"; path = "../../../../../thirdparty/JUCE/modules/juce_audio_formats"; sourceTree = "SOURCE_ROOT"; };
+		6EF286ADA05A483051DC9219 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_processors"; path = "../../../../../thirdparty/JUCE/modules/juce_audio_processors"; sourceTree = "SOURCE_ROOT"; };
 		7457B25656946FEA29F6886D = {isa = PBXFileReference; lastKnownFileType = image.png; name = "emoji_u1f4be.png"; path = "../../../../../resources/ui/noto-emoji/emoji_u1f4be.png"; sourceTree = "SOURCE_ROOT"; };
+		75186A344B8335E61B451BBF = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "plugin_processor.h"; path = "../../../../../sources/plugin_processor.h"; sourceTree = "SOURCE_ROOT"; };
 		7C91BAB6C5FCBBB33AA567D8 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_utils.mm"; path = "../../../JuceLibraryCode/include_juce_audio_utils.mm"; sourceTree = "SOURCE_ROOT"; };
 		B6C1A70C161F8AE51AF25B08 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPNplug.dpm; sourceTree = "BUILT_PRODUCTS_DIR"; };
 		31B682F29335A0E0B2D5E7EA = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPNplug.component; sourceTree = "BUILT_PRODUCTS_DIR"; };
-		4995D130B7082A7B8A8E2A49 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = messages.h; path = ../../../../../sources/messages.h; sourceTree = "SOURCE_ROOT"; };
 		5189F33ED9D651D2CBCA51DB = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "parameter_block.h"; path = "../../../../../sources/parameter_block.h"; sourceTree = "SOURCE_ROOT"; };
 		89662A4B682CED20B2AAD51F = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OPNplug.appex; sourceTree = "BUILT_PRODUCTS_DIR"; };
 		598DE8B9608A18ED9D0879EB = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OPNplug.app; sourceTree = "BUILT_PRODUCTS_DIR"; };
 		5E328B93B15866216B0BFD92 = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libOPNplug.a; sourceTree = "BUILT_PRODUCTS_DIR"; };
 		645306E0190BF2B246376B16 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscRecording.framework; path = System/Library/Frameworks/DiscRecording.framework; sourceTree = SDKROOT; };
 		6710E33249F63B53B042214C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = player.cc; path = ../../../../../sources/opn2/adl/player.cc; sourceTree = "SOURCE_ROOT"; };
-		69359F629354765711B62B71 = {isa = PBXFileReference; lastKnownFileType = file.r; name = "include_juce_audio_plugin_client_RTAS.r"; path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_RTAS.r"; sourceTree = "SOURCE_ROOT"; };
 		69801E295DD25EEEA9538A0C = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "plugin_editor.h"; path = "../../../../../sources/plugin_editor.h"; sourceTree = "SOURCE_ROOT"; };
 		69DCF7A80C66B4C2F43C38DD = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "styled_knobs.cc"; path = "../../../../../sources/ui/components/styled_knobs.cc"; sourceTree = "SOURCE_ROOT"; };
-		6E283C1D8C5C3449C29776A9 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_formats"; path = "../../../../../thirdparty/JUCE/modules/juce_audio_formats"; sourceTree = "SOURCE_ROOT"; };
 		6EC60681F69BD3B84727CE0E = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "knob_component.h"; path = "../../../../../sources/ui/components/knob_component.h"; sourceTree = "SOURCE_ROOT"; };
-		6EF286ADA05A483051DC9219 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_processors"; path = "../../../../../thirdparty/JUCE/modules/juce_audio_processors"; sourceTree = "SOURCE_ROOT"; };
 		706268D88D6327B337A4BD09 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = instrument.cc; path = ../../../../../sources/opn2/adl/instrument.cc; sourceTree = "SOURCE_ROOT"; };
 		723260AF5FA924F63CD59E0F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = "mame_ym2612fm.c"; path = "../../../../../thirdparty/libOPNMIDI/src/chips/mame/mame_ym2612fm.c"; sourceTree = "SOURCE_ROOT"; };
 		72FCD5D8CBA0C63458D254D9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ym3438.c; path = ../../../../../thirdparty/libOPNMIDI/src/chips/nuked/ym3438.c; sourceTree = "SOURCE_ROOT"; };
 		733566258CE629A286613045 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = instrument.h; path = ../../../../../sources/opn2/adl/instrument.h; sourceTree = "SOURCE_ROOT"; };
-		75186A344B8335E61B451BBF = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "plugin_processor.h"; path = "../../../../../sources/plugin_processor.h"; sourceTree = "SOURCE_ROOT"; };
 		764182FD5E739A636D11084E = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../../../JuceLibraryCode/BinaryData.cpp; sourceTree = "SOURCE_ROOT"; };
 		76B14A63C191BA5C956F8B18 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "dc_filter.h"; path = "../../../../../sources/dsp/dc_filter.h"; sourceTree = "SOURCE_ROOT"; };
 		76B87F3CD9DED753ECBBE279 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mamedef.h; path = ../../../../../sources/opn2/adl/measurer/chips/mame/mamedef.h; sourceTree = "SOURCE_ROOT"; };
@@ -218,6 +219,7 @@
 		7B38221DB7E81B4FCD018648 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "nuked_opn2.h"; path = "../../../../../thirdparty/libOPNMIDI/src/chips/nuked_opn2.h"; sourceTree = "SOURCE_ROOT"; };
 		7DF6FB906BFD6A709AEA3CAD = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-AU.plist"; path = "Info-AU.plist"; sourceTree = "SOURCE_ROOT"; };
 		7FC3DD81037C14873476CEEF = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "mame_opn2.cpp"; path = "../../../../../sources/opn2/adl/measurer/chips/mame_opn2.cpp"; sourceTree = "SOURCE_ROOT"; };
+		80DC25E3972847C24B72A214 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SimpleIni.h; path = ../../../../../thirdparty/simpleini/SimpleIni.h; sourceTree = "SOURCE_ROOT"; };
 		80E226846A91539090948A50 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_plugin_client_AUv3.mm"; path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_AUv3.mm"; sourceTree = "SOURCE_ROOT"; };
 		8281F591131DCE58CE9D13E5 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		846F1AED7C065D0269B4326A = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "counting_bitset.h"; path = "../../../../../sources/utility/counting_bitset.h"; sourceTree = "SOURCE_ROOT"; };
@@ -235,6 +237,7 @@
 		95D73DA6F9D7951452C472FE = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9707917AFF1E519FB48BCC9A = {isa = PBXFileReference; lastKnownFileType = file.gz; name = "Sans-Italic.ttf.gz"; path = "../../../../../resources/ui/fonts/Sans-Italic.ttf.gz"; sourceTree = "SOURCE_ROOT"; };
 		982B66D9E9D3B65A925E7997 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = worker.h; path = ../../../../../sources/worker.h; sourceTree = "SOURCE_ROOT"; };
+		98F45A3BBD2A8A783E2C6787 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = configuration.cc; path = ../../../../../sources/configuration.cc; sourceTree = "SOURCE_ROOT"; };
 		99044492804B345F94AC244B = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		9928FDC9A84CEAF0CC4FA831 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = posix.h; path = ../../../../../thirdparty/fmt/include/fmt/posix.h; sourceTree = "SOURCE_ROOT"; };
 		9971EA831375823B662F8BD6 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "operator_editor.cc"; path = "../../../../../sources/opn2/ui/operator_editor.cc"; sourceTree = "SOURCE_ROOT"; };
@@ -320,6 +323,7 @@
 		F0144916D1DAD4C53BA33CF4 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "mame_ym2612fm.h"; path = "../../../../../thirdparty/libOPNMIDI/src/chips/mame/mame_ym2612fm.h"; sourceTree = "SOURCE_ROOT"; };
 		F48E58A7D3E1D440E8BEA84B = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConfig.h; path = ../../../JuceLibraryCode/AppConfig.h; sourceTree = "SOURCE_ROOT"; };
 		F4C28F9088BBEDF100F6EC7A = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "opnmidi_midiplay.cpp"; path = "../../../../../thirdparty/libOPNMIDI/src/opnmidi_midiplay.cpp"; sourceTree = "SOURCE_ROOT"; };
+		F58A7713DE6C4D8F6363D3F2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = configuration.h; path = ../../../../../sources/configuration.h; sourceTree = "SOURCE_ROOT"; };
 		F6165549387190EDBB6606BD = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = messages.cc; path = ../../../../../sources/messages.cc; sourceTree = "SOURCE_ROOT"; };
 		F73BBF8C26CA1B0B3836EDC3 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		F78F7C4379B8356A6A47C6CF = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "file_reader.hpp"; path = "../../../../../thirdparty/libOPNMIDI/src/file_reader.hpp"; sourceTree = "SOURCE_ROOT"; };
@@ -426,6 +430,8 @@
 		E047098FBDADA30DBD78AE70 = {isa = PBXGroup; children = (
 					14C3A7B5833052D8DC9E0759,
 					22AA60CD90D67162CF7FFCD5,
+					98F45A3BBD2A8A783E2C6787,
+					F58A7713DE6C4D8F6363D3F2,
 					16E45BC7102DFF01344C6B86,
 					F6165549387190EDBB6606BD,
 					4995D130B7082A7B8A8E2A49,
@@ -475,6 +481,8 @@
 		F4E86294056FB5B881023277 = {isa = PBXGroup; children = (
 					0E7795D74CF56E74A044DC8E,
 					BFA2983BEC38889A2CDD8E60, ); name = resources; sourceTree = "<group>"; };
+		655C824881DBBB9C9A440728 = {isa = PBXGroup; children = (
+					80DC25E3972847C24B72A214, ); name = simpleini; sourceTree = "<group>"; };
 		9A347DEC56ED67B63E85D855 = {isa = PBXGroup; children = (
 					349BC4016C9EABDFF6791F61,
 					E6C241F5176E109FF6E0F365,
@@ -538,6 +546,7 @@
 		5B9C423073BD3B8FD2686BE3 = {isa = PBXGroup; children = (
 					BF877548E0716ED97ED1AD8F, ); name = libOPNMIDI; sourceTree = "<group>"; };
 		8E7B93C70C533166F1FAC6A7 = {isa = PBXGroup; children = (
+					655C824881DBBB9C9A440728,
 					02C3893C27AB3659DAF73A85,
 					37ED7F536985CEFAED9A40F4,
 					5B9C423073BD3B8FD2686BE3, ); name = thirdparty; sourceTree = "<group>"; };
@@ -670,7 +679,7 @@
 					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-VST.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST/";
@@ -719,7 +728,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-VST.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST/";
@@ -768,7 +777,7 @@
 					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-VST3.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST3/";
@@ -817,7 +826,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-VST3.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/VST3/";
@@ -866,7 +875,7 @@
 					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-AAX.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "/Library/Application Support/Avid/Audio/Plug-Ins/";
@@ -916,7 +925,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-AAX.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "/Library/Application Support/Avid/Audio/Plug-Ins/";
@@ -966,7 +975,7 @@
 					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "$(DEVELOPER_DIR)/Headers/FlatCarbon", "$(SDKROOT)/Developer/Headers/FlatCarbon", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Controls", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/CoreClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/DSPClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/EffectClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/MacBuild", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Meters", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ProcessClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ProcessClasses/Interfaces", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/RTASP_Adapt", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Utilities", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ViewClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/DSPManager/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SupplementalPlugInLib/Encryption", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SupplementalPlugInLib/GraphicsExtensions", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/common/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/common/PI_LibInterface", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PACEProtection/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SignalProcessing/**", "~/SDKs/PT_90_SDK/AlturaPorts/OMS/Headers", "~/SDKs/PT_90_SDK/AlturaPorts/Fic/Interfaces/**", "~/SDKs/PT_90_SDK/AlturaPorts/Fic/Source/SignalNets", "~/SDKs/PT_90_SDK/AlturaPorts/DSIPublicInterface/PublicHeaders", "~/SDKs/PT_90_SDK/DAEWin/Include", "~/SDKs/PT_90_SDK/AlturaPorts/DigiPublic/Interfaces", "~/SDKs/PT_90_SDK/AlturaPorts/DigiPublic", "~/SDKs/PT_90_SDK/AlturaPorts/NewFileLibs/DOA", "~/SDKs/PT_90_SDK/AlturaPorts/NewFileLibs/Cmn", "~/SDKs/PT_90_SDK/xplat/AVX/avx2/avx2sdk/inc", "~/SDKs/PT_90_SDK/xplat/AVX/avx2/avx2sdk/utils", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "$(DEVELOPER_DIR)/Headers/FlatCarbon", "$(SDKROOT)/Developer/Headers/FlatCarbon", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Controls", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/CoreClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/DSPClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/EffectClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/MacBuild", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Meters", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ProcessClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ProcessClasses/Interfaces", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/RTASP_Adapt", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Utilities", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ViewClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/DSPManager/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SupplementalPlugInLib/Encryption", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SupplementalPlugInLib/GraphicsExtensions", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/common/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/common/PI_LibInterface", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PACEProtection/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SignalProcessing/**", "~/SDKs/PT_90_SDK/AlturaPorts/OMS/Headers", "~/SDKs/PT_90_SDK/AlturaPorts/Fic/Interfaces/**", "~/SDKs/PT_90_SDK/AlturaPorts/Fic/Source/SignalNets", "~/SDKs/PT_90_SDK/AlturaPorts/DSIPublicInterface/PublicHeaders", "~/SDKs/PT_90_SDK/DAEWin/Include", "~/SDKs/PT_90_SDK/AlturaPorts/DigiPublic/Interfaces", "~/SDKs/PT_90_SDK/AlturaPorts/DigiPublic", "~/SDKs/PT_90_SDK/AlturaPorts/NewFileLibs/DOA", "~/SDKs/PT_90_SDK/AlturaPorts/NewFileLibs/Cmn", "~/SDKs/PT_90_SDK/xplat/AVX/avx2/avx2sdk/inc", "~/SDKs/PT_90_SDK/xplat/AVX/avx2/avx2sdk/utils", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-RTAS.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "/Library/Application Support/Digidesign/Plug-Ins/";
@@ -1016,7 +1025,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "$(DEVELOPER_DIR)/Headers/FlatCarbon", "$(SDKROOT)/Developer/Headers/FlatCarbon", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Controls", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/CoreClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/DSPClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/EffectClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/MacBuild", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Meters", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ProcessClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ProcessClasses/Interfaces", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/RTASP_Adapt", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Utilities", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ViewClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/DSPManager/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SupplementalPlugInLib/Encryption", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SupplementalPlugInLib/GraphicsExtensions", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/common/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/common/PI_LibInterface", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PACEProtection/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SignalProcessing/**", "~/SDKs/PT_90_SDK/AlturaPorts/OMS/Headers", "~/SDKs/PT_90_SDK/AlturaPorts/Fic/Interfaces/**", "~/SDKs/PT_90_SDK/AlturaPorts/Fic/Source/SignalNets", "~/SDKs/PT_90_SDK/AlturaPorts/DSIPublicInterface/PublicHeaders", "~/SDKs/PT_90_SDK/DAEWin/Include", "~/SDKs/PT_90_SDK/AlturaPorts/DigiPublic/Interfaces", "~/SDKs/PT_90_SDK/AlturaPorts/DigiPublic", "~/SDKs/PT_90_SDK/AlturaPorts/NewFileLibs/DOA", "~/SDKs/PT_90_SDK/AlturaPorts/NewFileLibs/Cmn", "~/SDKs/PT_90_SDK/xplat/AVX/avx2/avx2sdk/inc", "~/SDKs/PT_90_SDK/xplat/AVX/avx2/avx2sdk/utils", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "$(DEVELOPER_DIR)/Headers/FlatCarbon", "$(SDKROOT)/Developer/Headers/FlatCarbon", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Controls", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/CoreClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/DSPClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/EffectClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/MacBuild", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Meters", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ProcessClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ProcessClasses/Interfaces", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/RTASP_Adapt", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Utilities", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/ViewClasses", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/DSPManager/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SupplementalPlugInLib/Encryption", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SupplementalPlugInLib/GraphicsExtensions", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/common/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/common/PI_LibInterface", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PACEProtection/**", "~/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/SignalProcessing/**", "~/SDKs/PT_90_SDK/AlturaPorts/OMS/Headers", "~/SDKs/PT_90_SDK/AlturaPorts/Fic/Interfaces/**", "~/SDKs/PT_90_SDK/AlturaPorts/Fic/Source/SignalNets", "~/SDKs/PT_90_SDK/AlturaPorts/DSIPublicInterface/PublicHeaders", "~/SDKs/PT_90_SDK/DAEWin/Include", "~/SDKs/PT_90_SDK/AlturaPorts/DigiPublic/Interfaces", "~/SDKs/PT_90_SDK/AlturaPorts/DigiPublic", "~/SDKs/PT_90_SDK/AlturaPorts/NewFileLibs/DOA", "~/SDKs/PT_90_SDK/AlturaPorts/NewFileLibs/Cmn", "~/SDKs/PT_90_SDK/xplat/AVX/avx2/avx2sdk/inc", "~/SDKs/PT_90_SDK/xplat/AVX/avx2/avx2sdk/utils", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-RTAS.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "/Library/Application Support/Digidesign/Plug-Ins/";
@@ -1066,7 +1075,7 @@
 					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-AU.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
@@ -1116,7 +1125,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-AU.plist;
 				INFOPLIST_PREPROCESS = NO;
 				INSTALL_PATH = "$(HOME)/Library/Audio/Plug-Ins/Components/";
@@ -1165,7 +1174,7 @@
 					"JucePlugin_Build_Standalone=0",
 					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-AUv3_AppExtension.plist;
 				INFOPLIST_PREPROCESS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -1210,7 +1219,7 @@
 					"JucePlugin_Build_Unity=0", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-AUv3_AppExtension.plist;
 				INFOPLIST_PREPROCESS = NO;
 				LLVM_LTO = YES;
@@ -1253,7 +1262,7 @@
 					"JucePlugin_Build_Standalone=1",
 					"JucePlugin_Build_Unity=0", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-Standalone_Plugin.plist;
 				INFOPLIST_PREPROCESS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -1296,7 +1305,7 @@
 					"JucePlugin_Build_Unity=0", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INFOPLIST_FILE = Info-Standalone_Plugin.plist;
 				INFOPLIST_PREPROCESS = NO;
 				LLVM_LTO = YES;
@@ -1340,7 +1349,7 @@
 					"JucePlugin_Build_Unity=0",
 					"JUCE_SHARED_CODE=1", );
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
@@ -1382,7 +1391,7 @@
 					"JUCE_SHARED_CODE=1", );
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
+				HEADER_SEARCH_PATHS = ("~/SDKs/VST_SDK/VST3_SDK", "../../../JuceLibraryCode", "~/SDKs/AAX", "~/SDKs/AAX/Interfaces", "~/SDKs/AAX/Interfaces/ACF", "../../../../../thirdparty/JUCE/modules", "../../../../../sources", "../../../../../thirdparty/libOPNMIDI/include", "../../../../../thirdparty/wopn", "../../../../../thirdparty/simpleini", "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client", "$(inherited)");
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -1680,6 +1689,7 @@
 					C42A860F034AB7FD78ABD569, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Debug; };
 		5D3C649B6BC068CBF68E600A = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
 					6CE4BED65439328D31C0CC6B,
+					2019844AB11447CC1395459C,
 					013206476BCEF2D8BEE4B1F9,
 					59AEBCFAB589966CAEFA6BD3,
 					5B04C6E7526CE5A59099F63B,

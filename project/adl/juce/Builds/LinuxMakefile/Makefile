@@ -35,7 +35,7 @@ ifeq ($(CONFIG),Debug)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DADLPLUG_OPL3 -DADLMIDI_UNSTABLE_API -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DVF_USE_FREETYPE=1 -DVF_USE_NATIVE_FREETYPE=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I$(HOME)/Documents/SDKs/VST_SDK/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libADLMIDI/include -I../../../../../thirdparty/wopl $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DADLPLUG_OPL3 -DADLMIDI_UNSTABLE_API -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DVF_USE_FREETYPE=1 -DVF_USE_NATIVE_FREETYPE=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I$(HOME)/Documents/SDKs/VST_SDK/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libADLMIDI/include -I../../../../../thirdparty/wopl -I../../../../../thirdparty/simpleini $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST := -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_Unity=0
   JUCE_CFLAGS_VST := -fPIC -fvisibility=hidden
@@ -65,7 +65,7 @@ ifeq ($(CONFIG),Release)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DADLPLUG_OPL3 -DADLMIDI_UNSTABLE_API -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DVF_USE_FREETYPE=1 -DVF_USE_NATIVE_FREETYPE=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I$(HOME)/Documents/SDKs/VST_SDK/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libADLMIDI/include -I../../../../../thirdparty/wopl $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DADLPLUG_OPL3 -DADLMIDI_UNSTABLE_API -DADLMIDI_DISABLE_CPP_EXTRAS -DADLMIDI_DISABLE_MIDI_SEQUENCER -DADLMIDI_DISABLE_MUS_SUPPORT -DADLMIDI_DISABLE_XMI_SUPPORT -DVF_USE_FREETYPE=1 -DVF_USE_NATIVE_FREETYPE=1 -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I$(HOME)/Documents/SDKs/VST_SDK/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libADLMIDI/include -I../../../../../thirdparty/wopl -I../../../../../thirdparty/simpleini $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST := -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_Unity=0
   JUCE_CFLAGS_VST := -fPIC -fvisibility=hidden
@@ -95,6 +95,7 @@ OBJECTS_STANDALONE_PLUGIN := \
 
 OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/bank_manager_aad34bbe.o \
+  $(JUCE_OBJDIR)/configuration_bf71fffe.o \
   $(JUCE_OBJDIR)/messages_bd648cdc.o \
   $(JUCE_OBJDIR)/plugin_editor_d2d9321b.o \
   $(JUCE_OBJDIR)/plugin_processor_a0287f62.o \
@@ -200,6 +201,11 @@ $(JUCE_OBJDIR)/include_juce_audio_plugin_client_Standalone_c6ff8483.o: ../../../
 $(JUCE_OBJDIR)/bank_manager_aad34bbe.o: ../../../../../sources/bank_manager.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling bank_manager.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/configuration_bf71fffe.o: ../../../../../sources/configuration.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling configuration.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/messages_bd648cdc.o: ../../../../../sources/messages.cc

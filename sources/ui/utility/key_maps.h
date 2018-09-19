@@ -5,11 +5,13 @@
 
 #pragma once
 #include "JuceHeader.h"
+class Configuration;
 
 enum class Key_Layout {
     Qwerty, Azerty,
     Default = Qwerty,
 };
 
-void install_key_layout(MidiKeyboardComponent &kb, Key_Layout layout);
+void set_key_layout(MidiKeyboardComponent &kb, Key_Layout layout, Configuration &conf);
+void load_key_configuration(MidiKeyboardComponent &kb, Configuration &conf);
 void build_key_layout_menu(PopupMenu &menu);

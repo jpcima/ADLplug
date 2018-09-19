@@ -91,6 +91,7 @@ add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
   "sources/bank_manager.cc"
+  "sources/configuration.cc"
   "sources/messages.cc"
   "sources/worker.cc"
   "sources/ui/look_and_feel.cc"
@@ -173,6 +174,11 @@ target_include_directories(fmt PUBLIC "thirdparty/fmt/include")
 set_property(TARGET fmt PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 target_link_libraries(ADLplug_core PUBLIC fmt)
+
+add_library(simple-ini INTERFACE)
+target_include_directories(simple-ini INTERFACE "thirdparty/simpleini")
+
+target_link_libraries(ADLplug_core PUBLIC simple-ini)
 
 if(ADLplug_PCH)
   include(PrecompiledHeader)

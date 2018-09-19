@@ -64,10 +64,11 @@ enum class Radio_Button_Group {
 //[/MiscUserDefs]
 
 //==============================================================================
-Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb)
+Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb, Configuration &conf)
 {
     //[Constructor_pre] You can add your own custom stuff here..
     parameter_block_ = &pb;
+    conf_ = &conf;
     //[/Constructor_pre]
 
     ed_op2.reset (new Operator_Editor (2, pb));
@@ -488,6 +489,8 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     kn_feedback->add_listener(this);
     kn_ams->add_listener(this);
     kn_fms->add_listener(this);
+
+    load_key_configuration(*midi_kb, conf);
     //[/UserPreSize]
 
     setSize (800, 600);
@@ -1057,7 +1060,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         PopupMenu &menu = keymap_menu_;
         int selection = menu.showMenu(PopupMenu::Options()
                                       .withParentComponent(this));
-        install_key_layout(*midi_kb, (Key_Layout)(selection - 1));
+        set_key_layout(*midi_kb, (Key_Layout)(selection - 1), *conf_);
         //[/UserButtonCode_btn_keymap]
     }
 
@@ -1905,7 +1908,7 @@ BEGIN_JUCER_METADATA
 
 <JUCER_COMPONENT documentType="Component" className="Main_Component" componentName=""
                  parentClasses="public Component, FocusChangeListener, public MidiKeyboardStateListener, public Knob::Listener"
-                 constructorParams="AdlplugAudioProcessor &amp;proc, Parameter_Block &amp;pb"
+                 constructorParams="AdlplugAudioProcessor &amp;proc, Parameter_Block &amp;pb, Configuration &amp;conf"
                  variableInitialisers="" snapPixels="8" snapActive="1" snapShown="1"
                  overlayOpacity="0.66" fixedSize="0" initialWidth="800" initialHeight="600">
   <BACKGROUND backgroundColour="ff323e44">

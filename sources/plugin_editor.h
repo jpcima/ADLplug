@@ -10,6 +10,7 @@ class AdlplugAudioProcessor;
 class Custom_Look_And_Feel;
 class Main_Component;
 struct Parameter_Block;
+class Configuration;
 
 //==============================================================================
 /**
@@ -30,6 +31,7 @@ private:
     std::unique_ptr<TooltipWindow> tooltip_window_;
 
     std::unique_ptr<Timer> notification_timer_;
+    std::unique_ptr<Configuration> conf_;
 
     void process_notifications();
     void discard_notifications();

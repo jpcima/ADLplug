@@ -65,6 +65,9 @@
     <Filter Include="ADLplug\resources">
       <UniqueIdentifier>{95FAA976-2189-7683-BA44-3180A641CA15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\thirdparty\simpleini">
+      <UniqueIdentifier>{9CA0C758-F94D-E79B-1D22-25B0D336DCC1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\thirdparty\fmt\include\fmt">
       <UniqueIdentifier>{39F51082-C900-FABA-CE85-D9E1B9C1E5C3}</UniqueIdentifier>
     </Filter>
@@ -512,6 +515,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\sources\bank_manager.cc">
+      <Filter>ADLplug\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\configuration.cc">
       <Filter>ADLplug\sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\messages.cc">
@@ -2568,6 +2574,9 @@
     <ClInclude Include="..\..\..\..\..\sources\bank_manager.h">
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\configuration.h">
+      <Filter>ADLplug\sources</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\definitions.h">
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
@@ -2711,6 +2720,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\utility\simple_fifo.h">
       <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\simpleini\SimpleIni.h">
+      <Filter>ADLplug\thirdparty\simpleini</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\fmt\include\fmt\core.h">
       <Filter>ADLplug\thirdparty\fmt\include\fmt</Filter>

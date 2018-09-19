@@ -6,6 +6,7 @@
 #include "plugin_editor.h"
 #include "plugin_processor.h"
 #include "messages.h"
+#include "configuration.h"
 #include "ui/main_component.h"
 #include "ui/look_and_feel.h"
 #include "utility/functional_timer.h"
@@ -14,6 +15,11 @@
 AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &p, Parameter_Block &pb)
     : AudioProcessorEditor(&p), proc_(p)
 {
+    Configuration *conf = new Configuration;
+    conf_.reset(conf);
+    conf->load_default();
+    conf->save_default();
+
     Custom_Look_And_Feel *lnf = new Custom_Look_And_Feel;
     lnf_.reset(lnf);
     LookAndFeel::setDefaultLookAndFeel(lnf);
@@ -21,7 +27,7 @@ AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &
     TooltipWindow *tooltip_window = new TooltipWindow(this);
     tooltip_window_.reset(tooltip_window);
 
-    Main_Component *main = new Main_Component(p, pb);
+    Main_Component *main = new Main_Component(p, pb, *conf);
     main_.reset(main);
     addAndMakeVisible(main);
 

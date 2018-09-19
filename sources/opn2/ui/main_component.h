@@ -34,6 +34,7 @@ class Vu_Meter;
 class Indicator_NxM;
 class AdlplugAudioProcessor;
 struct Parameter_Block;
+class Configuration;
 //[/Headers]
 
 
@@ -56,7 +57,7 @@ class Main_Component  : public Component,
 {
 public:
     //==============================================================================
-    Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb);
+    Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb, Configuration &conf);
     ~Main_Component();
 
     //==============================================================================
@@ -154,6 +155,8 @@ private:
     std::unique_ptr<Timer> midi_activity_timer_;
 
     std::map<String, std::unique_ptr<Timer>> parameters_delayed_;
+
+    Configuration *conf_ = nullptr;
     //[/UserVariables]
 
     //==============================================================================

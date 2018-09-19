@@ -10,3 +10,6 @@
 [submodule "thirdparty/libOPNMIDI"]
 	path = thirdparty/libOPNMIDI
 	url = https://github.com/Wohlstand/libOPNMIDI.git
+[submodule "thirdparty/simpleini"]
+	path = thirdparty/simpleini
+	url = https://github.com/brofield/simpleini.git

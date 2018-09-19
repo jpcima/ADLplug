@@ -65,6 +65,9 @@
     <Filter Include="OPNplug\resources">
       <UniqueIdentifier>{DC1B6FF0-FBB6-3F6B-72E3-72534B39F9DF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OPNplug\thirdparty\simpleini">
+      <UniqueIdentifier>{993949B0-9ECA-533E-793B-C693E5BAFF27}</UniqueIdentifier>
+    </Filter>
     <Filter Include="OPNplug\thirdparty\fmt\include\fmt">
       <UniqueIdentifier>{5BA1267F-B436-B7C6-7FBD-78CD4886FED8}</UniqueIdentifier>
     </Filter>
@@ -515,6 +518,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\sources\bank_manager.cc">
+      <Filter>OPNplug\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\configuration.cc">
       <Filter>OPNplug\sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\messages.cc">
@@ -2571,6 +2577,9 @@
     <ClInclude Include="..\..\..\..\..\sources\bank_manager.h">
       <Filter>OPNplug\sources</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\configuration.h">
+      <Filter>OPNplug\sources</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\definitions.h">
       <Filter>OPNplug\sources</Filter>
     </ClInclude>
@@ -2717,6 +2726,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\utility\simple_fifo.h">
       <Filter>OPNplug\sources\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\simpleini\SimpleIni.h">
+      <Filter>OPNplug\thirdparty\simpleini</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\fmt\include\fmt\core.h">
       <Filter>OPNplug\thirdparty\fmt\include\fmt</Filter>
