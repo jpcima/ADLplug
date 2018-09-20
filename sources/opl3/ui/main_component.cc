@@ -640,6 +640,24 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     btn_keymap->setBounds (750, 520, 24, 24);
 
+    btn_octave_up.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_octave_up.get());
+    btn_octave_up->setTooltip (TRANS("Octave"));
+    btn_octave_up->setButtonText (TRANS("+"));
+    btn_octave_up->setConnectedEdges (Button::ConnectedOnBottom);
+    btn_octave_up->addListener (this);
+
+    btn_octave_up->setBounds (750, 549, 24, 18);
+
+    btn_octave_down.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_octave_down.get());
+    btn_octave_down->setTooltip (TRANS("Octave"));
+    btn_octave_down->setButtonText (TRANS("-"));
+    btn_octave_down->setConnectedEdges (Button::ConnectedOnTop);
+    btn_octave_down->addListener (this);
+
+    btn_octave_down->setBounds (750, 566, 24, 18);
+
 
     //[UserPreSize]
     Desktop::getInstance().addFocusChangeListener(this);
@@ -650,6 +668,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     kn_fb34->add_listener(this);
 
     load_key_configuration(*midi_kb, conf);
+    midi_kb->setKeyPressBaseOctave(midi_kb_octave_);
     //[/UserPreSize]
 
     setSize (800, 600);
@@ -793,6 +812,8 @@ Main_Component::~Main_Component()
     btn_algo_help = nullptr;
     btn_auto4ops = nullptr;
     btn_keymap = nullptr;
+    btn_octave_up = nullptr;
+    btn_octave_down = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -1268,7 +1289,32 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         int selection = menu.showMenu(PopupMenu::Options()
                                       .withParentComponent(this));
         set_key_layout(*midi_kb, (Key_Layout)(selection - 1), *conf_);
+        midi_kb->grabKeyboardFocus();
         //[/UserButtonCode_btn_keymap]
+    }
+    else if (buttonThatWasClicked == btn_octave_up.get())
+    {
+        //[UserButtonCode_btn_octave_up] -- add your button handler code here..
+        MidiKeyboardComponent &kb = *midi_kb;
+        int octave = midi_kb_octave_;
+        if (octave < 10) {
+            midi_kb_octave_ = ++octave;
+            kb.setKeyPressBaseOctave(octave);
+        }
+        kb.grabKeyboardFocus();
+        //[/UserButtonCode_btn_octave_up]
+    }
+    else if (buttonThatWasClicked == btn_octave_down.get())
+    {
+        //[UserButtonCode_btn_octave_down] -- add your button handler code here..
+        MidiKeyboardComponent &kb = *midi_kb;
+        int octave = midi_kb_octave_;
+        if (octave > 0) {
+            midi_kb_octave_ = --octave;
+            kb.setKeyPressBaseOctave(octave);
+        }
+        kb.grabKeyboardFocus();
+        //[/UserButtonCode_btn_octave_down]
     }
 
     //[UserbuttonClicked_Post]
@@ -2472,6 +2518,12 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="" id="39bffafade9476c7" memberName="btn_keymap" virtualName=""
               explicitFocusOrder="0" pos="750 520 24 24" buttonText="" connectedEdges="0"
               needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="ecb42a974d834d93" memberName="btn_octave_up"
+              virtualName="" explicitFocusOrder="0" pos="750 549 24 18" tooltip="Octave"
+              buttonText="+" connectedEdges="8" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="4187eb5f8c289604" memberName="btn_octave_down"
+              virtualName="" explicitFocusOrder="0" pos="750 566 24 18" tooltip="Octave"
+              buttonText="-" connectedEdges="4" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

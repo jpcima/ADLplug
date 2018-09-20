@@ -144,6 +144,7 @@ private:
 
     File bank_directory_;
     MidiKeyboardState midi_kb_state_;
+    int midi_kb_octave_ = 6;
 
     std::vector<std::unique_ptr<ImageComponent>> image_overlays_;
 
@@ -204,6 +205,8 @@ private:
     std::unique_ptr<Styled_Knob_DefaultSmall> kn_fms;
     std::unique_ptr<Label> label7;
     std::unique_ptr<TextButton> btn_keymap;
+    std::unique_ptr<TextButton> btn_octave_up;
+    std::unique_ptr<TextButton> btn_octave_down;
 
 
     //==============================================================================
