@@ -74,7 +74,15 @@ sudo cmake --build . --target install
 
 ### Change Log
 
+**1.0.0.beta.2 (dev)**
+
+- added the freedesktop shortcuts and icons
+- support for keyboard mappings other than QWERTY
+- support setting the keyboard's octave
+- we have been selected for the [Open Source Music FM Synthesizer Challenge](https://fmchallenge.osamc.de/fmsynths/)! :tada:
+
 **1.0.0.beta.1**
+
 - support of OPN2 synthesis in a distinct plugin
 - fixed the plugin state which would be saved incomplete
 - fixed the extension of OPN2 bank files in the file chooser
