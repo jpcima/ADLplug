@@ -589,6 +589,9 @@
     <ClCompile Include="..\..\..\..\..\sources\ui\components\knob_component.cc">
       <Filter>OPNplug\sources\ui\components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.cc">
+      <Filter>OPNplug\sources\ui\components</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\styled_knobs.cc">
       <Filter>OPNplug\sources\ui\components</Filter>
     </ClCompile>
@@ -2677,6 +2680,9 @@
       <Filter>OPNplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\knob_component.h">
+      <Filter>OPNplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.h">
       <Filter>OPNplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\styled_knobs.h">

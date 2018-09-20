@@ -10,7 +10,6 @@ void set_key_layout(MidiKeyboardComponent &kb, Key_Layout layout, Configuration 
 {
     kb.clearKeyMappings();
 
-    int note = 0;
     switch (layout) {
     case Key_Layout::Qwerty: default:
         conf.set_string("piano", "layout", "qwerty");

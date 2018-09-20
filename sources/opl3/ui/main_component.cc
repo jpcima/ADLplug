@@ -23,6 +23,7 @@
 #include "components/algorithm_help.h"
 #include "ui/components/vu_meter.h"
 #include "ui/components/indicator_NxM.h"
+#include "ui/components/midi_keyboard_ex.h"
 #include "ui/utility/key_maps.h"
 #include "adl/instrument.h"
 #include "midi/insnames.h"
@@ -186,7 +187,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     kn_fb34->setBounds (736, 245, 32, 32);
 
-    midi_kb.reset (new MidiKeyboardComponent (midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard));
+    midi_kb.reset (new Midi_Keyboard_Ex (midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard));
     addAndMakeVisible (midi_kb.get());
     midi_kb->setName ("new component");
 
@@ -743,6 +744,9 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     midi_activity_timer_.reset(Functional_Timer::create([this]() { midi_activity_update(); }));
     midi_activity_timer_->startTimer(100);
+
+    midi_keys_timer_.reset(Functional_Timer::create([this]() { midi_keys_update(); }));
+    midi_keys_timer_->startTimer(40);
     //[/Constructor]
 }
 
@@ -2128,6 +2132,15 @@ void Main_Component::midi_activity_update()
     }
 }
 
+void Main_Component::midi_keys_update()
+{
+    AdlplugAudioProcessor &proc = *proc_;
+    Midi_Keyboard_Ex &kb = *midi_kb;
+    unsigned midichannel = midichannel_;
+    for (unsigned note = 0; note < 128; ++note)
+        kb.highlight_note(note, proc.midi_channel_note_active(midichannel, note) ? 127 : 0);
+}
+
 void Main_Component::popup_about_dialog()
 {
     DialogWindow::LaunchOptions dlgopts;
@@ -2322,7 +2335,7 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="736 245 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="midi_kb"
-                    virtualName="" explicitFocusOrder="0" pos="16 520 730 64" class="MidiKeyboardComponent"
+                    virtualName="" explicitFocusOrder="0" pos="16 520 730 64" class="Midi_Keyboard_Ex"
                     params="midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard"/>
   <IMAGEBUTTON name="new button" id="1c21a98bd6493eb8" memberName="btn_about"
                virtualName="" explicitFocusOrder="0" pos="16 8 232 40" buttonText=""

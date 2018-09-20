@@ -32,6 +32,7 @@
 class Operator_Editor;
 class Vu_Meter;
 class Indicator_NxM;
+class Midi_Keyboard_Ex;
 class AdlplugAudioProcessor;
 struct Parameter_Block;
 class Configuration;
@@ -102,6 +103,7 @@ public:
     void vu_update();
     void cpu_load_update();
     void midi_activity_update();
+    void midi_keys_update();
     void popup_about_dialog();
     void update_emulator_icon();
     void build_emulator_menu(PopupMenu &menu);
@@ -154,6 +156,7 @@ private:
     std::unique_ptr<Timer> vu_timer_;
     std::unique_ptr<Timer> cpu_load_timer_;
     std::unique_ptr<Timer> midi_activity_timer_;
+    std::unique_ptr<Timer> midi_keys_timer_;
 
     std::map<String, std::unique_ptr<Timer>> parameters_delayed_;
 
@@ -176,7 +179,7 @@ private:
     std::unique_ptr<Slider> sl_tune34;
     std::unique_ptr<Styled_Knob_DefaultSmall> kn_fb12;
     std::unique_ptr<Styled_Knob_DefaultSmall> kn_fb34;
-    std::unique_ptr<MidiKeyboardComponent> midi_kb;
+    std::unique_ptr<Midi_Keyboard_Ex> midi_kb;
     std::unique_ptr<ImageButton> btn_about;
     std::unique_ptr<Label> label2;
     std::unique_ptr<Vu_Meter> vu_left;

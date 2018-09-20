@@ -170,6 +170,7 @@
     <ClCompile Include="..\..\..\..\..\sources\ui\components\algorithm_component.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\indicator_NxM.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\knob_component.cc"/>
+    <ClCompile Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\styled_knobs.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\vu_meter.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\wave_label.cc"/>
@@ -1992,6 +1993,7 @@
     <ClInclude Include="..\..\..\..\..\sources\ui\components\algorithm_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\indicator_NxM.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\knob_component.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\styled_knobs.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\vu_meter.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\wave_label.h"/>

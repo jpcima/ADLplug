@@ -120,6 +120,10 @@
                 file="../../sources/ui/components/knob_component.cc"/>
           <FILE id="g6wIOG" name="knob_component.h" compile="0" resource="0"
                 file="../../sources/ui/components/knob_component.h"/>
+          <FILE id="qwrS2i" name="midi_keyboard_ex.cc" compile="1" resource="0"
+                file="../../sources/ui/components/midi_keyboard_ex.cc"/>
+          <FILE id="WHqthR" name="midi_keyboard_ex.h" compile="0" resource="0"
+                file="../../sources/ui/components/midi_keyboard_ex.h"/>
           <FILE id="QI9DIC" name="styled_knobs.cc" compile="1" resource="0" file="../../sources/ui/components/styled_knobs.cc"/>
           <FILE id="GEALi2" name="styled_knobs.h" compile="0" resource="0" file="../../sources/ui/components/styled_knobs.h"/>
           <FILE id="ijzr9K" name="vu_meter.cc" compile="1" resource="0" file="../../sources/ui/components/vu_meter.cc"/>

@@ -101,6 +101,8 @@ public:
 
     unsigned midi_channel_note_count(unsigned channel) const
         { return (channel < 16) ? midi_channel_note_count_[channel] : 0; }
+    bool midi_channel_note_active(unsigned channel, unsigned note) const
+        { return (channel < 16) ? midi_channel_note_active_[channel].test(note) : false; }
 
     //==========================================================================
     const String getName() const override;

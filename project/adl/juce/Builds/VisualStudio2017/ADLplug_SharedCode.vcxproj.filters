@@ -586,6 +586,9 @@
     <ClCompile Include="..\..\..\..\..\sources\ui\components\knob_component.cc">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.cc">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\styled_knobs.cc">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClCompile>
@@ -2671,6 +2674,9 @@
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\knob_component.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.h">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\styled_knobs.h">
