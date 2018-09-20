@@ -79,6 +79,7 @@ sudo cmake --build . --target install
 - added the freedesktop shortcuts and icons
 - support for keyboard mappings other than QWERTY
 - support setting the keyboard's octave
+- highlighted the keys played via MIDI input
 - we have been selected for the [Open Source Music FM Synthesizer Challenge](https://fmchallenge.osamc.de/fmsynths/)! :tada:
 
 **1.0.0.beta.1**
