@@ -1810,10 +1810,27 @@ void Main_Component::receive_chip_settings(const Chip_Settings &cs)
 
 void Main_Component::receive_selection(unsigned part, Bank_Id bank, uint8_t pgm)
 {
-    unsigned psid = bank.pseudo_id();
-    unsigned selection = (psid << 8) | pgm;
+    const auto &instrument_map = instrument_map_;
+    uint32_t program = pgm + (bank.percussive ? 128 : 0);
 
-    if (midiprogram_[part] == selection)
+    std::array<Bank_Id, 3> fallback_ids {
+        Bank_Id(bank.msb, bank.lsb, bank.percussive),
+        Bank_Id(bank.msb, 0, bank.percussive),  // GS fallback
+        Bank_Id(0, 0, bank.percussive),  // zero fallback
+    };
+
+    unsigned selection = 0;
+    bool found = false;
+    for (size_t i = 0; !found && i < fallback_ids.size(); ++i) {
+        uint32_t psid = fallback_ids[i].pseudo_id();
+        auto it = instrument_map.find(psid);
+        if (it != instrument_map.end()) {
+            found = !it->second.ins[program].blank();
+            selection = (psid << 8) | program;
+        }
+    }
+
+    if (!found || midiprogram_[part] == selection)
         return;
     midiprogram_[part] = selection;
 
