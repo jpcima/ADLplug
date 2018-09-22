@@ -88,6 +88,7 @@ public:
     void receive_global_parameters(const Instrument_Global_Parameters &gp);
     void receive_instrument(Bank_Id bank, unsigned pgm, const Instrument &ins);
     void receive_chip_settings(const Chip_Settings &cs);
+    void receive_selection(unsigned part, Bank_Id bank, uint8_t pgm);
     void update_instrument_choices();
     void set_program_selection(int selection, NotificationType ntf);
     static String program_selection_to_string(int selection);

@@ -36,6 +36,9 @@ AdlplugAudioProcessor::AdlplugAudioProcessor()
     for (unsigned i = 0; i < 16; ++i)
         instrument_parameters_changed_[i].store(0);
     chip_settings_need_notification_.store(0);
+
+    for (unsigned part = 0; part < 16; ++part)
+        selection_needs_notification_[part].store(0);
 }
 
 AdlplugAudioProcessor::~AdlplugAudioProcessor()
@@ -337,6 +340,24 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         }
     }
 
+    for (unsigned part = 0; part < 16; ++part) {
+        int selection_needs_notification = 1;
+        if (selection_needs_notification_[part].compare_exchange_weak(selection_needs_notification, false)) {
+            Simple_Fifo &queue = *mq_to_ui_;
+            Message_Header hdr(Fx_Message::NotifySelection, sizeof(Messages::Fx::NotifySelection));
+            Buffered_Message msg = Messages::write(queue, hdr);
+            if (!msg)
+                selection_needs_notification_[part].store(1);  // do later
+            else {
+                auto &body = *(Messages::Fx::NotifySelection *)msg.data;
+                body.part = part;
+                body.bank = selection_[part].bank;
+                body.program = selection_[part].program;
+                Messages::finish_write(queue, msg);
+            }
+        }
+    }
+
     ScopedNoDenormals no_denormals;
     double sample_period = 1.0 / getSampleRate();
 
@@ -443,11 +464,37 @@ bool AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len)
         break;
     case 0xb0:
         if (len < 3) break;
-        if (data[1] == 120 || data[1] == 123) {
+        switch (data[1]) {
+        case 0:
+            midi_bank_msb_[channel] = data[2];
+            break;
+        case 32:
+            midi_bank_lsb_[channel] = data[2];
+            break;
+        case 120: case 123:
             midi_channel_note_count_[channel] = 0;
             midi_channel_note_active_[channel].reset();
+            break;
         }
         break;
+    case 0xc0: {
+        if (len < 2) break;
+        bool is_drum = channel == 9;
+        if (!is_drum) {
+            selection_[channel].program = data[1];
+            selection_[channel].bank.percussive = false;
+            selection_[channel].bank.msb = midi_bank_msb_[channel];
+            selection_[channel].bank.lsb = midi_bank_lsb_[channel];
+        }
+        else {
+            //--- TODO percussion banks/XG banks?
+            // selection_[channel].bank.percussive = true;
+            // selection_[channel].bank.msb = 0;
+            // selection_[channel].bank.lsb = data[1];
+        }
+        selection_needs_notification_[channel].store(1);
+        break;
+    }
     }
 
     return true;

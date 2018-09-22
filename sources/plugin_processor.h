@@ -160,9 +160,13 @@ private:
     };
     Selection selection_[16];
 
+    std::atomic<int> selection_needs_notification_[16];
+
     std::bitset<16> midi_channel_mask_;
     unsigned midi_channel_note_count_[16] = {};
     std::bitset<128> midi_channel_note_active_[16];
+    unsigned midi_bank_msb_[16] = {};
+    unsigned midi_bank_lsb_[16] = {};
 
     std::mutex player_lock_;
 

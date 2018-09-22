@@ -103,6 +103,11 @@ void AdlplugAudioProcessorEditor::process_notifications()
             main->receive_chip_settings(body.cs);
             break;
         }
+        case Fx_Message::NotifySelection: {
+            auto &body = *(const Messages::Fx::NotifySelection *)msg.data;
+            main->receive_selection(body.part, body.bank, body.program);
+            break;
+        }
         default:
             assert(false);
         }

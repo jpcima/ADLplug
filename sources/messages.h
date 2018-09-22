@@ -135,6 +135,7 @@ enum class Fx_Message {
     NotifyGlobalParameters,  // notifies the global parameters
     NotifyInstrument,  // notifies an instrument when changed
     NotifyChipSettings,  // notifies chip settings when changed
+    NotifySelection,  // notifies selection when changed
     RequestMeasurement,  // request measurement of a program
     RequestChipSettings,  // request a change of chip settings
 };
@@ -172,6 +173,13 @@ struct NotifyInstrument {
 struct NotifyChipSettings {
     static constexpr Fx_Message tag = Fx_Message::NotifyChipSettings;
     Chip_Settings cs;
+};
+
+struct NotifySelection {
+    static constexpr Fx_Message tag = Fx_Message::NotifySelection;
+    unsigned part = 0;
+    Bank_Id bank;
+    uint8_t program = 0;
 };
 
 struct RequestMeasurement {

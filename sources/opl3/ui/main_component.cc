@@ -1424,14 +1424,14 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         if (selection != 0) {
             unsigned insno = ((unsigned)selection - 1) & 255;
             unsigned psid = ((unsigned)selection - 1) >> 8;
-
             unsigned channel = midichannel_;
             bool isdrum = is_percussion_channel(channel);
+            midiprogram_[channel] = (psid << 8) | insno;
+
             if (isdrum && insno >= 128) {
                 trace("Assign %s to percussion channel %u",
                       program_selection_to_string(selection).toRawUTF8(),
                       channel + 1);
-                midiprogram_[channel] = (psid << 8) | insno;
                 // percussion bank change LSB only
                 send_program_change(channel, psid);
             }
@@ -1439,7 +1439,6 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
                 trace("Assign %s to melodic channel %u",
                       program_selection_to_string(selection).toRawUTF8(),
                       channel + 1);
-                midiprogram_[channel] = (psid << 8) | insno;
                 send_controller(channel, 0, psid >> 7);
                 send_controller(channel, 32, psid & 127);
                 send_program_change(channel, insno);
@@ -1807,6 +1806,22 @@ void Main_Component::receive_chip_settings(const Chip_Settings &cs)
     chip_settings_.fourop_count = n4op;
 
     set_chip_settings(dontSendNotification);
+}
+
+void Main_Component::receive_selection(unsigned part, Bank_Id bank, uint8_t pgm)
+{
+    unsigned psid = bank.pseudo_id();
+    unsigned selection = (psid << 8) | pgm;
+
+    if (midiprogram_[part] == selection)
+        return;
+    midiprogram_[part] = selection;
+
+    if (part == midichannel_) {
+        set_program_selection(midiprogram_[part] + 1, dontSendNotification);
+        reload_selected_instrument(dontSendNotification);
+        send_selection_update();
+    }
 }
 
 void Main_Component::update_instrument_choices()
