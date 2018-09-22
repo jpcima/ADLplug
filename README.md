@@ -80,6 +80,8 @@ sudo cmake --build . --target install
 - support for keyboard mappings other than QWERTY
 - support setting the keyboard's octave
 - highlighted the keys played via MIDI input
+- made the program selection follow MIDI program change events
+- allowed to install into the GNU standard installation directories
 - we have been selected for the [Open Source Music FM Synthesizer Challenge](https://fmchallenge.osamc.de/fmsynths/)! :tada:
 
 **1.0.0.beta.1**
