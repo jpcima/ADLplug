@@ -1837,7 +1837,6 @@ void Main_Component::receive_selection(unsigned part, Bank_Id bank, uint8_t pgm)
     if (part == midichannel_) {
         set_program_selection(midiprogram_[part] + 1, dontSendNotification);
         reload_selected_instrument(dontSendNotification);
-        send_selection_update();
     }
 }
 
