@@ -368,7 +368,7 @@
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="0"/>
   </MODULES>
-  <JUCEOPTIONS JUCE_WEB_BROWSER="0" JUCE_USE_CURL="1" JUCE_LOAD_CURL_SYMBOLS_LAZILY="1"
+  <JUCEOPTIONS JUCE_WEB_BROWSER="0" JUCE_USE_CURL="0" JUCE_LOAD_CURL_SYMBOLS_LAZILY="1"
                JUCE_USE_FLAC="0" JUCE_USE_OGGVORBIS="0" JUCE_USE_WINDOWS_MEDIA_FORMAT="0"
                JUCE_ASIO="1" JUCE_STRICT_REFCOUNTEDPOINTER="1"/>
 </JUCERPROJECT>
