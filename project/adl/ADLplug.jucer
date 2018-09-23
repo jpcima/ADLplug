@@ -101,6 +101,10 @@
               file="../../sources/opl3/parameter_block.h"/>
       </GROUP>
       <GROUP id="{8C722797-1E48-882C-0021-94A6DEAA63F5}" name="ui">
+        <FILE id="czi8yw" name="generic_main_component.h" compile="0" resource="0"
+              file="../../sources/ui/generic_main_component.h"/>
+        <FILE id="jefHVq" name="generic_main_component.tcc" compile="0" resource="0"
+              file="../../sources/ui/generic_main_component.tcc"/>
         <FILE id="awUfqG" name="look_and_feel.cc" compile="1" resource="0"
               file="../../sources/ui/look_and_feel.cc"/>
         <FILE id="Wx6Ntz" name="look_and_feel.h" compile="0" resource="0" file="../../sources/ui/look_and_feel.h"/>

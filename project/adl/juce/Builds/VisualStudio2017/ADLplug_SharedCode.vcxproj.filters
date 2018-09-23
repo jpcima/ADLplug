@@ -2661,6 +2661,9 @@
     <ClInclude Include="..\..\..\..\..\sources\opl3\parameter_block.h">
       <Filter>ADLplug\sources\opl3</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\ui\generic_main_component.h">
+      <Filter>ADLplug\sources\ui</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\look_and_feel.h">
       <Filter>ADLplug\sources\ui</Filter>
     </ClInclude>
@@ -4936,6 +4939,9 @@
   <ItemGroup>
     <None Include="..\..\..\..\..\sources\opl3\adl\measurer\chips\opl_chip_base.tcc">
       <Filter>ADLplug\sources\opl3\adl\measurer\chips</Filter>
+    </None>
+    <None Include="..\..\..\..\..\sources\ui\generic_main_component.tcc">
+      <Filter>ADLplug\sources\ui</Filter>
     </None>
     <None Include="..\..\..\..\..\sources\utility\counting_bitset.tcc">
       <Filter>ADLplug\sources\utility</Filter>

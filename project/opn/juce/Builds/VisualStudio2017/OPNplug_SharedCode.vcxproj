@@ -1989,6 +1989,7 @@
     <ClInclude Include="..\..\..\..\..\sources\opn2\ui\components\algorithm_help.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opn2\ui\components\algorithms.h"/>
     <ClInclude Include="..\..\..\..\..\sources\opn2\ui\components\ssgeg_waves.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\ui\generic_main_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\look_and_feel.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\main_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\algorithm_component.h"/>
@@ -2751,6 +2752,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\opn_chip_base.tcc"/>
+    <None Include="..\..\..\..\..\sources\ui\generic_main_component.tcc"/>
     <None Include="..\..\..\..\..\sources\utility\counting_bitset.tcc"/>
     <None Include="..\..\..\..\..\resources\opn2\banks.pak"/>
     <None Include="..\..\..\..\..\resources\ui\knob-skin.png"/>

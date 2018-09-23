@@ -2667,6 +2667,9 @@
     <ClInclude Include="..\..\..\..\..\sources\opn2\ui\components\ssgeg_waves.h">
       <Filter>OPNplug\sources\opn2\ui\components</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\ui\generic_main_component.h">
+      <Filter>OPNplug\sources\ui</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\look_and_feel.h">
       <Filter>OPNplug\sources\ui</Filter>
     </ClInclude>
@@ -4948,6 +4951,9 @@
   <ItemGroup>
     <None Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\opn_chip_base.tcc">
       <Filter>OPNplug\sources\opn2\adl\measurer\chips</Filter>
+    </None>
+    <None Include="..\..\..\..\..\sources\ui\generic_main_component.tcc">
+      <Filter>OPNplug\sources\ui</Filter>
     </None>
     <None Include="..\..\..\..\..\sources\utility\counting_bitset.tcc">
       <Filter>OPNplug\sources\utility</Filter>
