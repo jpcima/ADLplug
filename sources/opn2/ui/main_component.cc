@@ -24,7 +24,6 @@
 #include "ui/components/vu_meter.h"
 #include "ui/components/indicator_NxM.h"
 #include "ui/components/midi_keyboard_ex.h"
-#include "ui/utility/key_maps.h"
 #include "adl/instrument.h"
 #include "midi/insnames.h"
 #include "plugin_processor.h"
@@ -509,7 +508,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     kn_ams->add_listener(this);
     kn_fms->add_listener(this);
 
-    load_key_configuration(*midi_kb, conf);
+    last_key_layout_ = load_key_configuration(*midi_kb, conf);
     midi_kb->setKeyPressBaseOctave(midi_kb_octave_);
     //[/UserPreSize]
 
@@ -542,7 +541,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     create_image_overlay(*btn_keymap, ImageCache::getFromMemory(BinaryData::emoji_u2328_png, BinaryData::emoji_u2328_pngSize), 0.7f);
 
     build_emulator_menu(emulator_menu_);
-    build_key_layout_menu(keymap_menu_);
 
     for (unsigned note = 0; note < 127; ++note) {
         const char *octave_names[12] =
@@ -1082,10 +1080,12 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_keymap.get())
     {
         //[UserButtonCode_btn_keymap] -- add your button handler code here..
-        PopupMenu &menu = keymap_menu_;
+        PopupMenu menu;
+        build_key_layout_menu(menu, last_key_layout_);
         int selection = menu.showMenu(PopupMenu::Options()
                                       .withParentComponent(this));
-        set_key_layout(*midi_kb, (Key_Layout)(selection - 1), *conf_);
+        if (selection != 0)
+            last_key_layout_ = set_key_layout(*midi_kb, (Key_Layout)(selection - 1), *conf_);
         midi_kb->grabKeyboardFocus();
         //[/UserButtonCode_btn_keymap]
     }

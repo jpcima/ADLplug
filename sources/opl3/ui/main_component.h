@@ -22,6 +22,7 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "JuceHeader.h"
 #include "ui/components/styled_knobs.h"
+#include "ui/utility/key_maps.h"
 #include "adl/instrument.h"
 #include "adl/chip_settings.h"
 #include "utility/simple_fifo.h"
@@ -152,7 +153,6 @@ private:
     std::vector<std::unique_ptr<ImageComponent>> image_overlays_;
 
     PopupMenu emulator_menu_;
-    PopupMenu keymap_menu_;
 
     std::unique_ptr<Timer> vu_timer_;
     std::unique_ptr<Timer> cpu_load_timer_;
@@ -162,6 +162,7 @@ private:
     std::map<String, std::unique_ptr<Timer>> parameters_delayed_;
 
     Configuration *conf_ = nullptr;
+    Key_Layout last_key_layout_ = Key_Layout::Default;
     //[/UserVariables]
 
     //==============================================================================

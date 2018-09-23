@@ -53,6 +53,44 @@ private:
 
 void Application_Jack::initialise(const String &args)
 {
+    const StringArray argv = getCommandLineParameterArray();
+    std::vector<const String *> optargs;
+    bool arg_autoconnect = false;
+    for (unsigned argi = 0, argc = argv.size(); argi < argc; ++argi) {
+        const String &arg = argv[argi];
+        if (arg == "-h") {
+            fprintf(
+                stderr,
+                "Usage:\n" "   %s [-a]\n\n" "Options:\n"
+                "   -h    show the help message\n"
+                "   -a    connect to system ports\n",
+                JucePlugin_Name);
+            return quit();
+        }
+        if (arg == "-a") {
+            arg_autoconnect = true;
+        } else if (arg == "--") {
+            while (argi + 1 < argc)
+                optargs.push_back(&argv[++argi]);
+        }
+        else if (!arg.isEmpty() && arg[0] == '-') {
+            fprintf(stderr, "Invalid argument: '%s'\n", arg.toRawUTF8());
+            setApplicationReturnValue(1);
+            return quit();
+        }
+        else {
+            optargs.push_back(&arg);
+        }
+    }
+    if (!optargs.empty()) {
+        fprintf(stderr, "Invalid arguments:");
+        for (const String *arg : optargs)
+            fprintf(stderr, " '%s'", arg->toRawUTF8());
+        fputc('\n', stderr);
+        setApplicationReturnValue(1);
+        return quit();
+    }
+
     if (mlockall(MCL_CURRENT|MCL_FUTURE) != 0)
         fprintf(stderr, "could not lock memory\n");
 
@@ -98,6 +136,30 @@ void Application_Jack::initialise(const String &args)
             TRANS("Could not start the synthesizer client."));
         setApplicationReturnValue(1);
         return quit();
+    }
+
+    if (arg_autoconnect) {
+        std::unique_ptr<const char *[], void(*)(void *)> ports(
+            jack_get_ports(client, nullptr, JACK_DEFAULT_AUDIO_TYPE, JackPortIsInput),
+            &free);
+        if (ports) {
+            // identify the default device (the first one)
+            std::string device;
+            if (ports[0]) {
+                if (const char *separator = strchr(ports[0], ':'))
+                    device.assign(ports[0], separator);
+            }
+            if (!device.empty()) {
+                unsigned nports = 0;
+                for (const char **p = ports.get(), *port; nports < 2 && (port = *p); ++p) {
+                    bool is_of_device = strlen(port) > device.size() &&
+                        port[device.size()] == ':' &&
+                        !memcmp(port, device.data(), device.size());
+                    if (is_of_device)
+                        jack_connect(client, jack_port_name(outport_[nports++]), port);
+                }
+            }
+        }
     }
 
     Application_Window *window = new Application_Window(

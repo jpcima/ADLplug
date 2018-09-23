@@ -5,40 +5,68 @@
 
 #include "key_maps.h"
 #include "configuration.h"
+#include <algorithm>
+#include <string.h>
 
-void set_key_layout(MidiKeyboardComponent &kb, Key_Layout layout, Configuration &conf)
+const std::array<const char *, 2> key_layout_names {
+    "qwerty",
+    "azerty",
+};
+const std::array<const char *, 2> key_layout_maps {
+    "awsedftgyhujkolp;",
+    "qzsedftgyhujkolpm",
+};
+
+Key_Layout set_key_layout(MidiKeyboardComponent &kb, Key_Layout layout, Configuration &conf)
 {
     kb.clearKeyMappings();
 
-    switch (layout) {
-    case Key_Layout::Qwerty: default:
-        conf.set_string("piano", "layout", "qwerty");
-        break;
-    case Key_Layout::Azerty:
-        conf.set_string("piano", "layout", "azerty");
-        break;
-    }
-
-    load_key_configuration(kb, conf);
+    const char *layout_name = name_of_key_layout(layout);
+    conf.set_string("piano", "layout", layout_name);
+    layout = load_key_configuration(kb, conf);
     conf.save_default();
+    return layout;
 }
 
-void load_key_configuration(MidiKeyboardComponent &kb, Configuration &conf)
+Key_Layout load_key_configuration(MidiKeyboardComponent &kb, Configuration &conf)
 {
-    std::string layout = conf.get_string("piano", "layout", "qwerty");
-    std::string keymap = conf.get_string("piano", ("keymap:" + layout).c_str(), "");
-    if (keymap.empty())
-        keymap = (layout == "azerty") ? "qzsedftgyhujkolpm" :
-            /* qwerty */ "awsedftgyhujkolp;";
+    const char *layout_name = conf.get_string("piano", "layout", key_layout_names[0]);
+    Key_Layout layout = key_layout_of_name(layout_name);
+    layout_name = key_layout_names[(unsigned)layout];
+
+    const char *keymap = conf.get_string(
+        "piano", (std::string("keymap:") + layout_name).c_str(),
+        key_layout_maps[(unsigned)layout]);
 
     int note = 0;
     kb.clearKeyMappings();
-    for (unsigned char c : keymap)
-        kb.setKeyPressForNote(KeyPress(c, 0, 0), note++);
+    for (const char *p = keymap; *p; ++p)
+        kb.setKeyPressForNote(KeyPress(*p, 0, 0), note++);
+
+    return layout;
 }
 
-void build_key_layout_menu(PopupMenu &menu)
+void build_key_layout_menu(PopupMenu &menu, Key_Layout current)
 {
-    menu.addItem((int)Key_Layout::Qwerty + 1, "Use QWERTY keys");
-    menu.addItem((int)Key_Layout::Azerty + 1, "Use AZERTY keys");
+    for (unsigned i = 0; i < key_layout_names.size(); ++i)
+        menu.addItem(
+            i + 1,
+            "Use " + String(key_layout_names[i]).toUpperCase() + " keys",
+            true, (Key_Layout)i == current);
+}
+
+const char *name_of_key_layout(Key_Layout layout)
+{
+    if ((unsigned)layout >= key_layout_names.size())
+        layout = Key_Layout::Default;
+    return key_layout_names[(unsigned)layout];
+}
+
+Key_Layout key_layout_of_name(const char *name)
+{
+    for (unsigned i = 0; i < key_layout_names.size(); ++i) {
+        if (!strcmp(name, key_layout_names[i]))
+            return (Key_Layout)i;
+    }
+    return Key_Layout::Default;
 }
