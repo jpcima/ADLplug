@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "configuration.h"
+#include "ui/utility/key_maps.h"
 #include <SimpleIni.h>
 
 #if 0
@@ -88,10 +89,22 @@ const char *Configuration::get_string(const char *section, const char *key, cons
 void Configuration::init_default_contents()
 {
     CSimpleIniA &ini = ini_->instance;
-    if(!ini.GetValue("piano", "layout"))
-        ini.SetValue("piano", "layout", "qwerty", "# the default key layout");
-    if(!ini.GetValue("piano", "keymap:qwerty"))
-        ini.SetValue("piano", "keymap:qwerty", "awsedftgyhujkolp;", "# the QWERTY key map");
-    if(!ini.GetValue("piano", "keymap:azerty"))
-        ini.SetValue("piano", "keymap:azerty", "qzsedftgyhujkolpm", "# the AZERTY key map");
+
+    if(!ini.GetValue("piano", "layout")) {
+        const char *value = key_layout_names[(unsigned)Key_Layout::Default];
+        ini.SetValue("piano", "layout", value, "# the default key layout");
+    }
+
+    for (unsigned i = 0; i < key_layout_names.size(); ++i) {
+        std::string layout_name = key_layout_names[i];
+        std::string key = "keymap:" + layout_name;
+        if(!ini.GetValue("piano", key.c_str())) {
+            for (char &c : layout_name) {
+                if (c >= 'a' && c <= 'z')
+                    c = c - 'a' + 'A';
+            }
+            std::string comment = "# the " + layout_name + " key map";
+            ini.SetValue("piano", key.c_str(), key_layout_maps[i], comment.c_str());
+        }
+    }
 }
