@@ -77,6 +77,7 @@ sudo cmake --build . --target install
 
 **1.0.0.beta.2 (dev)**
 
+- added the CLI flag `-a` for auto-connection to system outputs in the JACK-only standalone
 - added the freedesktop shortcuts and icons
 - support for keyboard mappings other than QWERTY
 - support setting the keyboard's octave
