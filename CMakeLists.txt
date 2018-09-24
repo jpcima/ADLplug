@@ -103,6 +103,7 @@ add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
   "sources/ui/components/indicator_NxM.cc"
   "sources/ui/components/knob_component.cc"
   "sources/ui/components/midi_keyboard_ex.cc"
+  "sources/ui/components/program_name_editor.cc"
   "sources/ui/components/styled_knobs.cc"
   "sources/ui/components/vu_meter.cc"
   "sources/ui/components/wave_label.cc"

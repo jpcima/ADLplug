@@ -185,7 +185,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     edt_bank_name->setColour (TextEditor::outlineColourId, Colour (0xff8e989b));
     edt_bank_name->setText (TRANS("Bank name"));
 
-    edt_bank_name->setBounds (16, 74, 208, 24);
+    edt_bank_name->setBounds (16, 74, 215, 24);
 
     cb_program.reset (new ComboBox ("new combo box"));
     addAndMakeVisible (cb_program.get());
@@ -195,7 +195,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     cb_program->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
     cb_program->addListener (this);
 
-    cb_program->setBounds (16, 104, 262, 24);
+    cb_program->setBounds (16, 104, 215, 24);
 
     label4.reset (new Label ("new label",
                              TRANS("MIDI channel")));
@@ -215,7 +215,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_bank_load->setConnectedEdges (Button::ConnectedOnRight);
     btn_bank_load->addListener (this);
 
-    btn_bank_load->setBounds (232, 74, 23, 24);
+    btn_bank_load->setBounds (235, 74, 23, 24);
 
     btn_bank_save.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_bank_save.get());
@@ -223,7 +223,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_bank_save->setConnectedEdges (Button::ConnectedOnLeft);
     btn_bank_save->addListener (this);
 
-    btn_bank_save->setBounds (254, 74, 23, 24);
+    btn_bank_save->setBounds (257, 74, 23, 24);
 
     label11.reset (new Label ("new label",
                               TRANS("Note offset")));
@@ -487,6 +487,22 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     btn_octave_down->setBounds (750, 566, 24, 18);
 
+    btn_pgm_edit.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_pgm_edit.get());
+    btn_pgm_edit->setButtonText (String());
+    btn_pgm_edit->setConnectedEdges (Button::ConnectedOnRight);
+    btn_pgm_edit->addListener (this);
+
+    btn_pgm_edit->setBounds (235, 104, 23, 24);
+
+    btn_pgm_add.reset (new TextButton ("new button"));
+    addAndMakeVisible (btn_pgm_add.get());
+    btn_pgm_add->setButtonText (String());
+    btn_pgm_add->setConnectedEdges (Button::ConnectedOnLeft);
+    btn_pgm_add->addListener (this);
+
+    btn_pgm_add->setBounds (257, 104, 23, 24);
+
 
     //[UserPreSize]
     setup_generic_components();
@@ -594,6 +610,8 @@ Main_Component::~Main_Component()
     btn_keymap = nullptr;
     btn_octave_up = nullptr;
     btn_octave_down = nullptr;
+    btn_pgm_edit = nullptr;
+    btn_pgm_add = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -987,6 +1005,18 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
         handle_change_octave(-1);
         //[/UserButtonCode_btn_octave_down]
     }
+    else if (buttonThatWasClicked == btn_pgm_edit.get())
+    {
+        //[UserButtonCode_btn_pgm_edit] -- add your button handler code here..
+        handle_edit_program();
+        //[/UserButtonCode_btn_pgm_edit]
+    }
+    else if (buttonThatWasClicked == btn_pgm_add.get())
+    {
+        //[UserButtonCode_btn_pgm_add] -- add your button handler code here..
+        handle_add_program();
+        //[/UserButtonCode_btn_pgm_add]
+    }
 
     //[UserbuttonClicked_Post]
     //[/UserbuttonClicked_Post]
@@ -1227,8 +1257,8 @@ void Main_Component::save_bank(const File &file)
         std::memset(&melo, 0, sizeof(WOPNBank));
         std::memset(&drum, 0, sizeof(WOPNBank));
 
-        std::memcpy(melo.bank_name, entry.second.name, 32);
-        std::memcpy(drum.bank_name, entry.second.name, 32);
+        std::memcpy(melo.bank_name, entry.second.melodic_name, 32);
+        std::memcpy(drum.bank_name, entry.second.percussion_name, 32);
 
         melo.bank_midi_msb = drum.bank_midi_msb = psid >> 7;
         melo.bank_midi_lsb = drum.bank_midi_lsb = psid & 127;
@@ -1321,12 +1351,15 @@ void Main_Component::on_change_midi_channel(unsigned channel)
 
 void Main_Component::popup_about_dialog()
 {
+    if (dlg_about_)
+        return;
+
     DialogWindow::LaunchOptions dlgopts;
     dlgopts.dialogTitle = "About " JucePlugin_Name;
     dlgopts.content.set(new About_Component, true);
     dlgopts.componentToCentreAround = this;
     dlgopts.resizable = false;
-    dlgopts.runModal();
+    dlg_about_ = dlgopts.launchAsync();
 }
 //[/MiscUserCode]
 
@@ -1447,11 +1480,11 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="414 100 48 24" bgColOn="ff42a2c8"
               buttonText="Panic" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="62544efea1101020" memberName="edt_bank_name"
-              virtualName="" explicitFocusOrder="0" pos="16 74 208 24" outlinecol="ff8e989b"
+              virtualName="" explicitFocusOrder="0" pos="16 74 215 24" outlinecol="ff8e989b"
               initialText="Bank name" multiline="0" retKeyStartsLine="0" readonly="0"
               scrollbars="1" caret="1" popupmenu="1"/>
   <COMBOBOX name="new combo box" id="396a835342f6b630" memberName="cb_program"
-            virtualName="" explicitFocusOrder="0" pos="16 104 262 24" editable="0"
+            virtualName="" explicitFocusOrder="0" pos="16 104 215 24" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <LABEL name="new label" id="ac425a00ee881383" memberName="label4" virtualName=""
          explicitFocusOrder="0" pos="300 76 88 20" textCol="fff0f8ff"
@@ -1459,10 +1492,10 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <TEXTBUTTON name="new button" id="c78c3c0db0e0be9a" memberName="btn_bank_load"
-              virtualName="" explicitFocusOrder="0" pos="232 74 23 24" buttonText=""
+              virtualName="" explicitFocusOrder="0" pos="235 74 23 24" buttonText=""
               connectedEdges="2" needsCallback="1" radioGroupId="0"/>
   <TEXTBUTTON name="new button" id="fd2ff0a2438003e5" memberName="btn_bank_save"
-              virtualName="" explicitFocusOrder="0" pos="254 74 23 24" buttonText=""
+              virtualName="" explicitFocusOrder="0" pos="257 74 23 24" buttonText=""
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <LABEL name="new label" id="94205e2c6bef35b1" memberName="label11" virtualName=""
          explicitFocusOrder="0" pos="590 324 104 20" edTextCol="ff000000"
@@ -1576,6 +1609,12 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="new button" id="4187eb5f8c289604" memberName="btn_octave_down"
               virtualName="" explicitFocusOrder="0" pos="750 566 24 18" tooltip="Octave"
               buttonText="-" connectedEdges="4" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="ea10a8acbf1cc61a" memberName="btn_pgm_edit"
+              virtualName="" explicitFocusOrder="0" pos="235 104 23 24" buttonText=""
+              connectedEdges="2" needsCallback="1" radioGroupId="0"/>
+  <TEXTBUTTON name="new button" id="1330c86e50189ade" memberName="btn_pgm_add"
+              virtualName="" explicitFocusOrder="0" pos="257 104 23 24" buttonText=""
+              connectedEdges="1" needsCallback="1" radioGroupId="0"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

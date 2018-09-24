@@ -589,6 +589,9 @@
     <ClCompile Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.cc">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\ui\components\program_name_editor.cc">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\styled_knobs.cc">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClCompile>
@@ -2680,6 +2683,9 @@
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\ui\components\program_name_editor.h">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\styled_knobs.h">
@@ -5006,7 +5012,13 @@
     <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png">
       <Filter>ADLplug\resources\ui\noto-emoji</Filter>
     </None>
+    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4dd.png">
+      <Filter>ADLplug\resources\ui\noto-emoji</Filter>
+    </None>
     <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u2328.png">
+      <Filter>ADLplug\resources\ui\noto-emoji</Filter>
+    </None>
+    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u2795.png">
       <Filter>ADLplug\resources\ui\noto-emoji</Filter>
     </None>
     <None Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.tcc">

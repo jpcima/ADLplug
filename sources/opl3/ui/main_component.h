@@ -154,6 +154,8 @@ private:
     std::unique_ptr<TextButton> btn_keymap;
     std::unique_ptr<TextButton> btn_octave_up;
     std::unique_ptr<TextButton> btn_octave_down;
+    std::unique_ptr<TextButton> btn_pgm_edit;
+    std::unique_ptr<TextButton> btn_pgm_add;
 
 
     //==============================================================================

@@ -8,6 +8,7 @@
 #include "worker.h"
 #include "messages.h"
 #include "adl/player.h"
+#include <algorithm>
 #include <cstring>
 #include <cassert>
 
@@ -266,7 +267,7 @@ void Bank_Manager::rename_bank(const Bank_Id &id, const char *name, bool notify)
 
     Bank_Info &info = bank_infos_[index];
     unsigned length = strnlen(name, 32);
-    if (std::memcmp(info.bank_name, name, length) == 0)
+    if (std::memcmp(info.bank_name, name, std::min(length + 1, 32u)) == 0)
         return;
 
     std::memset(info.bank_name, 0, 32);

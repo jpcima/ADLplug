@@ -126,6 +126,10 @@
                 file="../../sources/ui/components/midi_keyboard_ex.cc"/>
           <FILE id="VFBfyr" name="midi_keyboard_ex.h" compile="0" resource="0"
                 file="../../sources/ui/components/midi_keyboard_ex.h"/>
+          <FILE id="xhZQe1" name="program_name_editor.cc" compile="1" resource="0"
+                file="../../sources/ui/components/program_name_editor.cc"/>
+          <FILE id="Ue6lvf" name="program_name_editor.h" compile="0" resource="0"
+                file="../../sources/ui/components/program_name_editor.h"/>
           <FILE id="QI9DIC" name="styled_knobs.cc" compile="1" resource="0" file="../../sources/ui/components/styled_knobs.cc"/>
           <FILE id="GEALi2" name="styled_knobs.h" compile="0" resource="0" file="../../sources/ui/components/styled_knobs.h"/>
           <FILE id="ijzr9K" name="vu_meter.cc" compile="1" resource="0" file="../../sources/ui/components/vu_meter.cc"/>
@@ -208,7 +212,10 @@
                 file="../../resources/ui/noto-emoji/emoji_u1f4be.png"/>
           <FILE id="zQcn4S" name="emoji_u1f4c2.png" compile="0" resource="1"
                 file="../../resources/ui/noto-emoji/emoji_u1f4c2.png"/>
+          <FILE id="v7DB2x" name="emoji_u1f4dd.png" compile="0" resource="1"
+                file="../../resources/ui/noto-emoji/emoji_u1f4dd.png"/>
           <FILE id="bXyiEf" name="emoji_u2328.png" compile="0" resource="1" file="../../resources/ui/noto-emoji/emoji_u2328.png"/>
+          <FILE id="gs5vEk" name="emoji_u2795.png" compile="0" resource="1" file="../../resources/ui/noto-emoji/emoji_u2795.png"/>
         </GROUP>
       </GROUP>
     </GROUP>

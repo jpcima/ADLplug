@@ -35,6 +35,8 @@ public:
     bool is_percussion_channel(unsigned channel) const;
     void send_controller(unsigned channel, unsigned ctl, unsigned value);
     void send_program_change(unsigned channel, unsigned value);
+    void send_rename_bank(Bank_Id bank, const String &name);
+    void send_rename_program(Bank_Id bank, unsigned pgm, const String &name);
 
     Instrument *find_instrument(uint32_t program, Instrument *if_not_found);
     void reload_selected_instrument(NotificationType ntf);
@@ -49,6 +51,8 @@ public:
     static String program_selection_to_string(int selection);
 
     void handle_selected_program(int selection);
+    void handle_edit_program();
+    void handle_add_program();
 
     void create_image_overlay(Component &component, Image image, float ratio);
 
@@ -88,7 +92,8 @@ protected:
     uint32_t midiprogram_[16] = {};
 
     struct Editor_Bank {
-        char name[32] = {};
+        char melodic_name[32] = {};
+        char percussion_name[32] = {};
         PopupMenu ins_menu;
         std::array<Instrument, 256> ins;
     };
@@ -110,4 +115,7 @@ protected:
     std::unique_ptr<Timer> midi_keys_timer_;
 
     std::vector<std::unique_ptr<ImageComponent>> image_overlays_;
+
+    Component::SafePointer<DialogWindow> dlg_edit_program_;
+    Component::SafePointer<DialogWindow> dlg_about_;
 };

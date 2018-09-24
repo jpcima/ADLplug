@@ -171,6 +171,7 @@
     <ClCompile Include="..\..\..\..\..\sources\ui\components\indicator_NxM.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\knob_component.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.cc"/>
+    <ClCompile Include="..\..\..\..\..\sources\ui\components\program_name_editor.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\styled_knobs.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\vu_meter.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\wave_label.cc"/>
@@ -1995,6 +1996,7 @@
     <ClInclude Include="..\..\..\..\..\sources\ui\components\indicator_NxM.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\knob_component.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\ui\components\program_name_editor.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\styled_knobs.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\vu_meter.h"/>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\wave_label.h"/>
@@ -2771,7 +2773,9 @@
     <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4a1.png"/>
     <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png"/>
     <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png"/>
+    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4dd.png"/>
     <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u2328.png"/>
+    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u2795.png"/>
     <None Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_bankmap.tcc"/>
     <None Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.tcc"/>
     <None Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>

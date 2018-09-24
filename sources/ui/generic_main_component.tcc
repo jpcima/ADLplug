@@ -5,6 +5,7 @@
 
 #include "generic_main_component.h"
 #include "plugin_processor.h"
+#include "ui/components/program_name_editor.h"
 #include "ui/components/midi_keyboard_ex.h"
 #include "midi/insnames.h"
 #include "utility/functional_timer.h"
@@ -69,6 +70,9 @@ void Generic_Main_Component<T>::setup_generic_components()
     create_image_overlay(*self()->btn_bank_load, ImageCache::getFromMemory(BinaryData::emoji_u1f4c2_png, BinaryData::emoji_u1f4c2_pngSize), 0.7f);
     create_image_overlay(*self()->btn_bank_save, ImageCache::getFromMemory(BinaryData::emoji_u1f4be_png, BinaryData::emoji_u1f4be_pngSize), 0.7f);
 
+    create_image_overlay(*self()->btn_pgm_edit, ImageCache::getFromMemory(BinaryData::emoji_u1f4dd_png, BinaryData::emoji_u1f4dd_pngSize), 0.7f);
+    create_image_overlay(*self()->btn_pgm_add, ImageCache::getFromMemory(BinaryData::emoji_u2795_png, BinaryData::emoji_u2795_pngSize), 0.7f);
+
     for (unsigned note = 0; note < 128; ++note) {
         const char *octave_names[12] =
             {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
@@ -127,6 +131,26 @@ void Generic_Main_Component<T>::send_program_change(unsigned channel, unsigned v
     midi[0] = (channel & 15) | (0b1100u << 4);
     midi[1] = value & 127;
     write_to_processor(User_Message::Midi, midi, 2);
+}
+
+template <class T>
+void Generic_Main_Component<T>::send_rename_bank(Bank_Id bank, const String &name)
+{
+    Messages::User::RenameBank msg;
+    msg.bank = bank;
+    msg.notify_back = true;
+    const char *utf8 = name.toRawUTF8();
+    memset(msg.name, 0, 32);
+    memcpy(msg.name, utf8, strnlen(utf8, 32));
+    write_to_processor(msg.tag, &msg, sizeof(msg));
+}
+
+template <class T>
+void Generic_Main_Component<T>::send_rename_program(Bank_Id bank, unsigned pgm, const String &name)
+{
+    // TODO
+    
+    
 }
 
 template <class T>
@@ -194,10 +218,8 @@ void Generic_Main_Component<T>::receive_bank_slots(const Messages::Fx::NotifyBan
         for (unsigned slotno = 0; slotno < count && !found; ++slotno)
             found = msg.entry[slotno].bank.msb == (psid >> 7) &&
                 msg.entry[slotno].bank.lsb == (psid & 127);
-        if (found) {
-            it->second.name[0] = '\0';
+        if (found)
             ++it;
-        }
         else {
             imap.erase(it++);
             update = true;
@@ -226,11 +248,20 @@ void Generic_Main_Component<T>::receive_bank_slots(const Messages::Fx::NotifyBan
                 update = true;
             }
         }
-        auto it = bank_name_map.find(Bank_Id(entry.bank.msb, entry.bank.lsb, false));
-        if (it == bank_name_map.end())
-            it = bank_name_map.find(Bank_Id(entry.bank.msb, entry.bank.lsb, true));
+        const char *name_src;
+        char *name_dst = entry.bank.percussive ? e_bank.percussion_name : e_bank.melodic_name;
+        auto it = bank_name_map.find(Bank_Id(entry.bank.msb, entry.bank.lsb, entry.bank.percussive));
         if (it != bank_name_map.end())
-            std::memcpy(e_bank.name, it->second.data(), 32);
+            name_src = it->second.data();
+        else {
+            static const char name_empty[32] = {};
+            name_src = name_empty;
+        }
+        unsigned name_len = strnlen(name_src, 32);
+        if (std::memcmp(name_dst, name_src, std::min(name_len + 1, 32u)) != 0) {
+            std::memcpy(name_dst, name_src, 32);
+            update = true;
+        }
     }
 
     if (update) {
@@ -349,8 +380,10 @@ void Generic_Main_Component<T>::update_instrument_choices()
         Editor_Bank &e_bank = it->second;
 
         String bank_sid;
-        if (e_bank.name[0] != '\0')
-            bank_sid = fmt::format("{:03d}:{:03d} {:.32s}", psid >> 7, psid & 127, e_bank.name);
+        if (e_bank.melodic_name[0] != '\0')
+            bank_sid = fmt::format("{:03d}:{:03d} {:.32s}", psid >> 7, psid & 127, e_bank.melodic_name);
+        else if (e_bank.percussion_name[0] != '\0')
+            bank_sid = fmt::format("{:03d}:{:03d} {:.32s}", psid >> 7, psid & 127, e_bank.percussion_name);
         else
             bank_sid = fmt::format("{:03d}:{:03d} {:s}", psid >> 7, psid & 127, "<Untitled bank>");
 
@@ -447,6 +480,65 @@ void Generic_Main_Component<T>::handle_selected_program(int selection)
         send_selection_update();
     }
     reload_selected_instrument(dontSendNotification);
+}
+
+template <class T>
+void Generic_Main_Component<T>::handle_edit_program()
+{
+    if (dlg_edit_program_)
+        return;
+
+    DialogWindow::LaunchOptions dlgopts;
+    dlgopts.dialogTitle = "Edit program";
+    dlgopts.componentToCentreAround = this;
+    dlgopts.resizable = false;
+
+    unsigned part = midichannel_;
+    uint32_t program = midiprogram_[part];
+    uint32_t psid = program >> 8;
+    bool percussive = program & 128;
+    Bank_Id bank(psid >> 7, psid & 127, percussive);
+
+    auto &instrument_map = instrument_map_;
+    auto it = instrument_map.find(psid);
+    if (it == instrument_map.end())
+        return;
+
+    Editor_Bank &e_bank = it->second;
+    Instrument &ins = e_bank.ins[program & 255];
+    if (ins.blank())
+        return;
+
+    Program_Name_Editor *editor = new Program_Name_Editor;
+    dlgopts.content.set(editor, true);
+
+    char bank_name[33], ins_name[33];
+    sprintf(bank_name, "%.32s", percussive ? e_bank.percussion_name : e_bank.melodic_name);
+    sprintf(ins_name, "%.32s", ins.name);
+    editor->set_program(bank, program & 127, bank_name, ins_name);
+
+    Component::SafePointer<Generic_Main_Component<T>> self(this);
+    editor->on_ok = [self](const Program_Name_Editor::Result &result) {
+                        if (!self || !self->dlg_edit_program_)
+                            return;
+                        self.getComponent()->send_rename_bank(result.bank, result.bank_name);
+                        self.getComponent()->send_rename_program(result.bank, result.pgm, result.pgm_name);
+                        delete self->dlg_edit_program_.getComponent();
+                    };
+    editor->on_cancel = [self]() {
+                            if (!self || !self->dlg_edit_program_)
+                                return;
+                            delete self->dlg_edit_program_.getComponent();
+                        };
+
+    dlg_edit_program_ = dlgopts.launchAsync();
+}
+
+template <class T>
+void Generic_Main_Component<T>::handle_add_program()
+{
+    // TODO
+    
 }
 
 template <class T>
