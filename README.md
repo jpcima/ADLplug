@@ -75,7 +75,11 @@ sudo cmake --build . --target install
 
 ### Change Log
 
-**1.0.0.beta.2 (dev)**
+**1.0.0.beta.3 (dev)**
+
+- added the ability to add, delete and rename banks and programs
+
+**1.0.0.beta.2**
 
 - added the CLI flag `-a` for auto-connection to system outputs in the JACK-only standalone
 - added the freedesktop shortcuts and icons
