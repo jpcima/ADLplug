@@ -20,6 +20,7 @@ struct Configuration::Opaque_Ini {
 Configuration::Configuration()
     : ini_(new Opaque_Ini)
 {
+    ini_->instance.SetUnicode();
 }
 
 Configuration::~Configuration()
@@ -104,7 +105,10 @@ void Configuration::init_default_contents()
                     c = c - 'a' + 'A';
             }
             std::string comment = "# the " + layout_name + " key map";
-            ini.SetValue("piano", key.c_str(), key_layout_maps[i], comment.c_str());
+            ini.SetValue(
+                "piano", key.c_str(),
+                String(CharPointer_UTF32((const juce_wchar *)key_layout_maps[i])).toRawUTF8(),
+                comment.c_str());
         }
     }
 }

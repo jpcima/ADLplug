@@ -5,6 +5,7 @@
 
 #pragma once
 #include "JuceHeader.h"
+#include <string>
 #include <array>
 class Configuration;
 
@@ -14,7 +15,7 @@ enum class Key_Layout {
 };
 
 extern const std::array<const char *, 2> key_layout_names;
-extern const std::array<const char *, 2> key_layout_maps;
+extern const std::array<const char32_t *, 2> key_layout_maps;
 
 Key_Layout set_key_layout(MidiKeyboardComponent &kb, Key_Layout layout, Configuration &conf);
 Key_Layout load_key_configuration(MidiKeyboardComponent &kb, Configuration &conf);

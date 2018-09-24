@@ -12,9 +12,9 @@ const std::array<const char *, 2> key_layout_names {
     "qwerty",
     "azerty",
 };
-const std::array<const char *, 2> key_layout_maps {
-    "awsedftgyhujkolp;",
-    "qzsedftgyhujkolpm",
+const std::array<const char32_t *, 2> key_layout_maps {
+    U"zsxdcvgbhnjmq2w3er5t6y7ui9o0p",
+    U"wsxdcvgbhnj,aéz\"er(t-yèuiçoàp",
 };
 
 Key_Layout set_key_layout(MidiKeyboardComponent &kb, Key_Layout layout, Configuration &conf)
@@ -34,13 +34,20 @@ Key_Layout load_key_configuration(MidiKeyboardComponent &kb, Configuration &conf
     Key_Layout layout = key_layout_of_name(layout_name);
     layout_name = key_layout_names[(unsigned)layout];
 
-    const char *keymap = conf.get_string(
-        "piano", (std::string("keymap:") + layout_name).c_str(),
-        key_layout_maps[(unsigned)layout]);
+    CharPointer_UTF32 keymap_unicode(
+        (const juce_wchar *)key_layout_maps[(unsigned)layout]);
+
+    String conf_keymap;
+    if (const char *value = conf.get_string(
+            "piano", (std::string("keymap:") + layout_name).c_str(), nullptr)) {
+        conf_keymap = CharPointer_UTF8(value);
+        keymap_unicode = conf_keymap.toUTF32();
+    }
 
     int note = 0;
     kb.clearKeyMappings();
-    for (const char *p = keymap; *p; ++p)
+
+    for (CharPointer_UTF32 p = keymap_unicode; *p; ++p)
         kb.setKeyPressForNote(KeyPress(*p, 0, 0), note++);
 
     return layout;
