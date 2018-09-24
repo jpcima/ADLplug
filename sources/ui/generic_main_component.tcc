@@ -149,9 +149,14 @@ void Generic_Main_Component<T>::send_rename_bank(Bank_Id bank, const String &nam
 template <class T>
 void Generic_Main_Component<T>::send_rename_program(Bank_Id bank, unsigned pgm, const String &name)
 {
-    // TODO
-    
-    
+    Messages::User::RenameProgram msg;
+    msg.bank = bank;
+    msg.program = pgm;
+    msg.notify_back = true;
+    const char *utf8 = name.toRawUTF8();
+    memset(msg.name, 0, 32);
+    memcpy(msg.name, utf8, strnlen(utf8, 32));
+    write_to_processor(msg.tag, &msg, sizeof(msg));
 }
 
 template <class T>
@@ -314,7 +319,8 @@ void Generic_Main_Component<T>::receive_instrument(Bank_Id bank, unsigned pgm, c
     }
     else {
         e_bank = &it->second;
-        update = !e_bank->ins[insno].equal_instrument(ins);
+        update = !e_bank->ins[insno].equal_instrument(ins) ||
+            strncmp(ins.name, e_bank->ins[insno].name, 32) != 0;
         if (update)
             e_bank->ins[insno] = ins;
     }
@@ -572,8 +578,6 @@ void Generic_Main_Component<T>::handle_add_program()
 
         New_Program_Editor *editor = new New_Program_Editor;
         dlgopts.content.set(editor, true);
-
-        
 
         Component::SafePointer<Generic_Main_Component<T>> self(this);
         editor->on_ok = [self](const New_Program_Editor::Result &result) {

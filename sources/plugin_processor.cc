@@ -568,6 +568,11 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         bm.rename_bank(body.bank, body.name, body.notify_back);
         break;
     }
+    case (unsigned)User_Message::RenameProgram: {
+        auto &body = *(const Messages::User::RenameProgram *)data;
+        bm.rename_program(body.bank, body.program, body.name, body.notify_back);
+        break;
+    }
     case (unsigned)User_Message::SelectProgram: {
         auto &body = *(const Messages::User::SelectProgram *)data;
         Selection &sel = selection_[body.part];

@@ -307,6 +307,25 @@ void Bank_Manager::rename_bank(const Bank_Id &id, const char *name, bool notify)
         slots_notify_flag_ = true;
 }
 
+void Bank_Manager::rename_program(const Bank_Id &id, unsigned program, const char *name, bool notify)
+{
+    unsigned index = find_slot(id);
+    if (index == (unsigned)-1)
+        return;
+
+    Bank_Info &info = bank_infos_[index];
+    char *name_dst = &info.ins_names[program * 32];
+
+    unsigned length = strnlen(name, 32);
+    if (std::memcmp(name_dst, name, std::min(length + 1, 32u)) == 0)
+        return;
+
+    std::memset(name_dst, 0, 32);
+    std::memcpy(name_dst, name, length);
+    if (notify)
+        info.to_notify.set(program);
+}
+
 bool Bank_Manager::find_program(const Bank_Id &id, unsigned program, Instrument &ins)
 {
     Player &pl = pl_;

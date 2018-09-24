@@ -65,6 +65,7 @@ enum class User_Message {
     CreateInstrument,  // creates an instrument
     DeleteInstrument,  // deletes an instrument
     RenameBank,  // set bank name
+    RenameProgram,  // set program name
     SelectProgram,  // changes selected program number
 #if defined(ADLPLUG_OPL3)
     SelectOptimal4Ops,  // sets the optimal 4op channel count
@@ -124,6 +125,14 @@ struct DeleteInstrument {
 struct RenameBank {
     static constexpr User_Message tag = User_Message::RenameBank;
     Bank_Id bank;
+    bool notify_back = false;
+    char name[32] {};
+};
+
+struct RenameProgram {
+    static constexpr User_Message tag = User_Message::RenameProgram;
+    Bank_Id bank;
+    uint8_t program = 0;
     bool notify_back = false;
     char name[32] {};
 };

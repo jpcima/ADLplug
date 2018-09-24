@@ -31,6 +31,7 @@ public:
     bool load_measurement(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned kon, unsigned koff, bool notify);
 
     void rename_bank(const Bank_Id &id, const char *name, bool notify);
+    void rename_program(const Bank_Id &id, unsigned program, const char *name, bool notify);
 
     enum {
         LP_Notify            = 1,
