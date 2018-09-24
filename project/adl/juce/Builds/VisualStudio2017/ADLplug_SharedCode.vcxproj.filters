@@ -589,6 +589,9 @@
     <ClCompile Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.cc">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\ui\components\new_program_editor.cc">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\ui\components\program_name_editor.cc">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClCompile>
@@ -2683,6 +2686,9 @@
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\midi_keyboard_ex.h">
+      <Filter>ADLplug\sources\ui\components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\ui\components\new_program_editor.h">
       <Filter>ADLplug\sources\ui\components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\ui\components\program_name_editor.h">

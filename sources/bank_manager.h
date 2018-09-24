@@ -33,9 +33,10 @@ public:
     void rename_bank(const Bank_Id &id, const char *name, bool notify);
 
     enum {
-        LP_Notify          = 1,
-        LP_NeedMeasurement = 2,
-        LP_KeepName        = 4,
+        LP_Notify            = 1,
+        LP_NeedMeasurement   = 2,
+        LP_KeepName          = 4,
+        LP_NoReplaceExisting = 8,
     };
 
     struct Bank_Info;

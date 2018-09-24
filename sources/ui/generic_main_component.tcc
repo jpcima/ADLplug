@@ -5,6 +5,7 @@
 
 #include "generic_main_component.h"
 #include "plugin_processor.h"
+#include "ui/components/new_program_editor.h"
 #include "ui/components/program_name_editor.h"
 #include "ui/components/midi_keyboard_ex.h"
 #include "midi/insnames.h"
@@ -151,6 +152,16 @@ void Generic_Main_Component<T>::send_rename_program(Bank_Id bank, unsigned pgm, 
     // TODO
     
     
+}
+
+template <class T>
+void Generic_Main_Component<T>::send_create_program(Bank_Id bank, unsigned pgm)
+{
+    Messages::User::CreateInstrument msg;
+    msg.bank = bank;
+    msg.program = pgm;
+    msg.notify_back = true;
+    write_to_processor(msg.tag, &msg, sizeof(msg));
 }
 
 template <class T>
@@ -551,8 +562,33 @@ void Generic_Main_Component<T>::handle_add_program()
 
     switch (selection) {
     case 1: {
-        // TODO
+        if (dlg_new_program_)
+            return;
+
+        DialogWindow::LaunchOptions dlgopts;
+        dlgopts.dialogTitle = "Add program";
+        dlgopts.componentToCentreAround = this;
+        dlgopts.resizable = false;
+
+        New_Program_Editor *editor = new New_Program_Editor;
+        dlgopts.content.set(editor, true);
+
         
+
+        Component::SafePointer<Generic_Main_Component<T>> self(this);
+        editor->on_ok = [self](const New_Program_Editor::Result &result) {
+                            if (!self || !self->dlg_new_program_)
+                                return;
+                            self.getComponent()->send_create_program(result.bank, result.pgm);
+                            delete self->dlg_new_program_.getComponent();
+                        };
+        editor->on_cancel = [self]() {
+                                if (!self || !self->dlg_new_program_)
+                                    return;
+                                delete self->dlg_new_program_.getComponent();
+                            };
+
+        dlg_new_program_ = dlgopts.launchAsync();
         break;
     }
     case 2: {

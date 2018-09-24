@@ -128,6 +128,10 @@
                 file="../../sources/ui/components/midi_keyboard_ex.cc"/>
           <FILE id="WHqthR" name="midi_keyboard_ex.h" compile="0" resource="0"
                 file="../../sources/ui/components/midi_keyboard_ex.h"/>
+          <FILE id="lKxSxG" name="new_program_editor.cc" compile="1" resource="0"
+                file="../../sources/ui/components/new_program_editor.cc"/>
+          <FILE id="njxa79" name="new_program_editor.h" compile="0" resource="0"
+                file="../../sources/ui/components/new_program_editor.h"/>
           <FILE id="kb4lZD" name="program_name_editor.cc" compile="1" resource="0"
                 file="../../sources/ui/components/program_name_editor.cc"/>
           <FILE id="fWn1CO" name="program_name_editor.h" compile="0" resource="0"

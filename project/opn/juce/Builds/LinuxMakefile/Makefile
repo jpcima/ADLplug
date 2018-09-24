@@ -119,6 +119,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/indicator_NxM_67a37cbf.o \
   $(JUCE_OBJDIR)/knob_component_359f0c96.o \
   $(JUCE_OBJDIR)/midi_keyboard_ex_450d917d.o \
+  $(JUCE_OBJDIR)/new_program_editor_24fa3823.o \
   $(JUCE_OBJDIR)/program_name_editor_82e089ec.o \
   $(JUCE_OBJDIR)/styled_knobs_d5f68a99.o \
   $(JUCE_OBJDIR)/vu_meter_6e0f6de1.o \
@@ -323,6 +324,11 @@ $(JUCE_OBJDIR)/knob_component_359f0c96.o: ../../../../../sources/ui/components/k
 $(JUCE_OBJDIR)/midi_keyboard_ex_450d917d.o: ../../../../../sources/ui/components/midi_keyboard_ex.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling midi_keyboard_ex.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/new_program_editor_24fa3823.o: ../../../../../sources/ui/components/new_program_editor.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling new_program_editor.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/program_name_editor_82e089ec.o: ../../../../../sources/ui/components/program_name_editor.cc

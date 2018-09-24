@@ -37,6 +37,7 @@ public:
     void send_program_change(unsigned channel, unsigned value);
     void send_rename_bank(Bank_Id bank, const String &name);
     void send_rename_program(Bank_Id bank, unsigned pgm, const String &name);
+    void send_create_program(Bank_Id bank, unsigned pgm);
 
     Instrument *find_instrument(uint32_t program, Instrument *if_not_found);
     void reload_selected_instrument(NotificationType ntf);
@@ -116,6 +117,7 @@ protected:
 
     std::vector<std::unique_ptr<ImageComponent>> image_overlays_;
 
+    Component::SafePointer<DialogWindow> dlg_new_program_;
     Component::SafePointer<DialogWindow> dlg_edit_program_;
     Component::SafePointer<DialogWindow> dlg_about_;
 };

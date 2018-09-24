@@ -203,6 +203,11 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
 
     Instrument old_ins;
     pl.ensure_get_instrument(info.bank, program, old_ins);
+
+    bool replace = !(flags & LP_NoReplaceExisting) || old_ins.blank();
+    if (!replace)
+        return false;
+
     pl.ensure_set_instrument(info.bank, program, ins);
 
     // copy name
@@ -219,7 +224,7 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
     info.to_measure.set(program, (flags & LP_NeedMeasurement) && !ins.blank());
 
     // mark for notification
-    if ((flags & LP_Notify))
+    if (flags & LP_Notify)
         info.to_notify.set(program);
     return true;
 }

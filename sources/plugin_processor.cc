@@ -547,6 +547,15 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         }
         break;
     }
+    case (unsigned)User_Message::CreateInstrument: {
+        auto &body = *(const Messages::User::CreateInstrument *)data;
+        unsigned flags = Bank_Manager::LP_NoReplaceExisting |
+            (body.notify_back ? Bank_Manager::LP_Notify : 0);
+        Instrument ins;
+        ins.blank(false);
+        bm.load_program(body.bank, body.program, ins, flags);
+        break;
+    }
     case (unsigned)User_Message::DeleteInstrument: {
         auto &body = *(const Messages::User::DeleteInstrument *)data;
         unsigned flags =
