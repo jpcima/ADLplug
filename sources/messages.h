@@ -62,6 +62,7 @@ enum class User_Message {
     ClearBanks,  // deletes all the managed banks
     LoadGlobalParameters,  // edits global parameters
     LoadInstrument,  // edits an instrument
+    DeleteInstrument,  // deletes an instrument
     RenameBank,  // set bank name
     SelectProgram,  // changes selected program number
 #if defined(ADLPLUG_OPL3)
@@ -102,6 +103,13 @@ struct LoadInstrument {
     uint8_t program = 0;
     Instrument instrument;
     bool need_measurement = false;
+    bool notify_back = false;
+};
+
+struct DeleteInstrument {
+    static constexpr User_Message tag = User_Message::DeleteInstrument;
+    Bank_Id bank;
+    uint8_t program = 0;
     bool notify_back = false;
 };
 

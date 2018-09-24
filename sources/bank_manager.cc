@@ -224,6 +224,32 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
     return true;
 }
 
+bool Bank_Manager::delete_program(const Bank_Id &id, unsigned program, unsigned flags)
+{
+    Player &pl = pl_;
+
+    trace("Deleting program %c%u:%u:%u",
+          id.percussive ? 'P' : 'M', id.msb, id.lsb, program);
+
+    unsigned index = find_slot(id);
+    if (index == (unsigned)-1)
+        return false;
+
+    Bank_Info &info = bank_infos_[index];
+    if (!info.used.test(program))
+        return false;
+
+    Instrument ins;
+    pl.ensure_get_instrument(info.bank, program, ins);
+    ins.blank(true);
+    pl.ensure_set_instrument(info.bank, program, ins);
+    info.used.reset(program);
+
+    if (flags & LP_Notify)
+        slots_notify_flag_ = true;
+    return true;
+}
+
 bool Bank_Manager::load_measurement(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned kon, unsigned koff, bool notify)
 {
     Player &pl = pl_;

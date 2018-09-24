@@ -537,8 +537,39 @@ void Generic_Main_Component<T>::handle_edit_program()
 template <class T>
 void Generic_Main_Component<T>::handle_add_program()
 {
-    // TODO
-    
+    PopupMenu menu;
+    menu.addItem(1, "Add program");
+    menu.addItem(2, "Delete program");
+    int selection = menu.showMenu(PopupMenu::Options()
+                                  .withParentComponent(this));
+
+    unsigned part = midichannel_;
+    uint32_t program = midiprogram_[part];
+    uint32_t psid = program >> 8;
+    bool percussive = program & 128;
+    Bank_Id bank(psid >> 7, psid & 127, percussive);
+
+    switch (selection) {
+    case 1: {
+        // TODO
+        
+        break;
+    }
+    case 2: {
+        bool confirm = AlertWindow::showOkCancelBox(
+            AlertWindow::QuestionIcon, "Delete program",
+            fmt::format("Confirm deletion of program {:c}{:03d}?",
+                        percussive ? 'P' : 'M', program & 127));
+        if (confirm) {
+            Messages::User::DeleteInstrument msg;
+            msg.bank = bank;
+            msg.program = program & 127;
+            msg.notify_back = true;
+            write_to_processor(msg.tag, &msg, sizeof(msg));
+        }
+        break;
+    }
+    }
 }
 
 template <class T>
