@@ -8,12 +8,14 @@
 #include <algorithm>
 #include <string.h>
 
-const std::array<const char *, 2> key_layout_names {
+const std::array<const char *, 3> key_layout_names {
     "qwerty",
+    "qwertz",
     "azerty",
 };
-const std::array<const char32_t *, 2> key_layout_maps {
+const std::array<const char32_t *, 3> key_layout_maps {
     U"zsxdcvgbhnjmq2w3er5t6y7ui9o0p",
+    U"ysxdcvgbhnjmq2w3er5t6z7ui9o0p",
     U"wsxdcvgbhnj,aéz\"er(t-yèuiçoàp",
 };
 
