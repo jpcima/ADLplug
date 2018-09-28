@@ -941,6 +941,9 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
 
     last_state_information_.replaceWith(data, size);
 
+    if (!is_playback_ready())
+        return;  // not ready yet, will load state information later
+
     std::unique_ptr<XmlElement> root(
         getXmlFromBinary(data, size));
     if (!root)
