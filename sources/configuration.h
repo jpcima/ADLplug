@@ -23,7 +23,6 @@ public:
 
 private:
     struct Opaque_Ini;
-    std::unique_ptr<Opaque_Ini> ini_;
-
-    void init_default_contents();
+    typedef std::unique_ptr<Opaque_Ini> Opaque_Ini_Ptr;
+    Opaque_Ini_Ptr ini_;
 };

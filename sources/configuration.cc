@@ -13,6 +13,9 @@
 #   define trace(fmt, ...) fprintf(stderr, "[Configuration] " fmt "\n", ##__VA_ARGS__)
 #endif
 
+static constexpr long config_version = 1;
+static void create_default_configuration(CSimpleIniA &ini);
+
 struct Configuration::Opaque_Ini {
     CSimpleIniA instance;
 };
@@ -44,17 +47,39 @@ File Configuration::user_file_path()
 
 bool Configuration::load_default()
 {
+    Opaque_Ini_Ptr ini_default(new Opaque_Ini);
+
     File user = user_file_path();
-    trace("Attempt to load '%s'", user.getFullPathName().toRawUTF8());
-    if (user.existsAsFile() && load_file(user))
-        return true;
-
     File sys = system_file_path();
-    trace("Attempt to load '%s'", sys.getFullPathName().toRawUTF8());
-    if (sys.existsAsFile() && load_file(sys))
-        return true;
 
-    init_default_contents();
+    if (ini_default->instance.LoadFile(sys.getFullPathName().toRawUTF8()) != SI_OK) {
+        create_default_configuration(ini_default->instance);
+    }
+    else {
+        long version = ini_default->instance.GetLongValue("", "configuration-version");
+        if (version < config_version) {
+            fprintf(stderr, "!! " JucePlugin_Name " configuration: the system version (%lu) does not match the software version (%lu)!\n",
+                    version, config_version);
+            create_default_configuration(ini_default->instance);
+        }
+    }
+
+    Opaque_Ini_Ptr ini_user(new Opaque_Ini);
+    if (ini_user->instance.LoadFile(user.getFullPathName().toRawUTF8()) != SI_OK) {
+        ini_ = std::move(ini_default);
+    }
+    else {
+        long version = ini_user->instance.GetLongValue("", "configuration-version");
+        if (version < config_version) {
+            // use the latest configuration, keep a backup of the previous one
+            ini_ = std::move(ini_default);
+            File backup = user.withFileExtension("ini.bak" + String(version));
+            user.moveFileTo(backup);
+            save_default();
+        }
+        else
+            ini_ = std::move(ini_user);
+    }
 
     return false;
 }
@@ -87,28 +112,29 @@ const char *Configuration::get_string(const char *section, const char *key, cons
     return ini_->instance.GetValue(section, key, default_value);
 }
 
-void Configuration::init_default_contents()
+static void create_default_configuration(CSimpleIniA &ini)
 {
-    CSimpleIniA &ini = ini_->instance;
+    ini.Reset();
 
-    if(!ini.GetValue("piano", "layout")) {
-        const char *value = key_layout_names[(unsigned)Key_Layout::Default];
-        ini.SetValue("piano", "layout", value, "# the default key layout");
-    }
+    ini.SetValue("", "configuration-version", std::to_string(config_version).c_str(),
+                 "# the version of the file specification");
+
+    ini.SetValue("piano", "layout",
+                 key_layout_names[(unsigned)Key_Layout::Default],
+                 "# the default key layout");
 
     for (unsigned i = 0; i < key_layout_names.size(); ++i) {
         std::string layout_name = key_layout_names[i];
         std::string key = "keymap:" + layout_name;
-        if(!ini.GetValue("piano", key.c_str())) {
-            for (char &c : layout_name) {
-                if (c >= 'a' && c <= 'z')
-                    c = c - 'a' + 'A';
-            }
-            std::string comment = "# the " + layout_name + " key map";
-            ini.SetValue(
-                "piano", key.c_str(),
-                String(CharPointer_UTF32((const juce_wchar *)key_layout_maps[i])).toRawUTF8(),
-                comment.c_str());
+
+        for (char &c : layout_name) {
+            if (c >= 'a' && c <= 'z')
+                c = c - 'a' + 'A';
         }
+        std::string comment = "# the " + layout_name + " key map";
+        ini.SetValue(
+            "piano", key.c_str(),
+            String(CharPointer_UTF32((const juce_wchar *)key_layout_maps[i])).toRawUTF8(),
+            comment.c_str());
     }
 }
