@@ -80,6 +80,7 @@ sudo cmake --build . --target install
 - added the ability to add, delete and rename banks and programs
 - support extended key maps with unicode characters
 - fixed a crash at startup when the state is restored before setting up the synthesizer
+- added soft panning support for OPN2
 
 **1.0.0.beta.2**
 
