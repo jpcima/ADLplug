@@ -58,13 +58,12 @@ public:
     void set_emulator(unsigned emu)
         { if (adl_switchEmulator(player_.get(), emu) >= 0) emu_ = emu; }
     unsigned num_chips() const
-        { return adl_getNumChips(player_.get()); }
+        { return adl_getNumChipsObtained(player_.get()); }
     bool set_num_chips(unsigned chips)
         { return adl_setNumChips(player_.get(), chips) == 0; }
     unsigned num_4ops() const
-        { return adl_getNumFourOpsChn(player_.get()); }
-    bool set_num_4ops(unsigned count)
-        { return adl_setNumFourOpsChn(player_.get(), count) >= 0; }
+        { return adl_getNumFourOpsChnObtained(player_.get()); }
+    bool set_num_4ops(unsigned count);
     unsigned volume_model() const
         { return adl_getVolumeRangeModel(player_.get()); }
     void set_volume_model(int model)

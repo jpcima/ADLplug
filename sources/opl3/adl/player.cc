@@ -13,6 +13,19 @@ void Player::init(unsigned sample_rate)
     player_.reset(pl);
 }
 
+bool Player::set_num_4ops(unsigned count)
+{
+    ADL_MIDIPlayer *pl = player_.get();
+    if (count == ~0u) {
+        // set automatic count
+        if (adl_setNumFourOpsChn(player_.get(), count) < 0)
+            return false;
+        // get the fixed count and set it, so it doesn't remain automatic
+        count = adl_getNumFourOpsChnObtained(player_.get());
+    }
+    return adl_setNumFourOpsChn(player_.get(), count) >= 0;
+}
+
 void Player::play_midi(const uint8_t *msg, unsigned len)
 {
     ADL_MIDIPlayer *pl = player_.get();

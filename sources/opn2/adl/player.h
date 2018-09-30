@@ -58,7 +58,7 @@ public:
     void set_emulator(unsigned emu)
         { if (opn2_switchEmulator(player_.get(), emu) >= 0) emu_ = emu; }
     unsigned num_chips() const
-        { return opn2_getNumChips(player_.get()); }
+        { return opn2_getNumChipsObtained(player_.get()); }
     bool set_num_chips(unsigned chips)
         { return opn2_setNumChips(player_.get(), chips) == 0; }
     unsigned volume_model() const
@@ -74,7 +74,7 @@ public:
     void set_lfo_frequency(int frequency)
         { opn2_setLfoFrequency(player_.get(), frequency); }
     void set_soft_pan_enabled(bool sp)
-        { /* opn2_setSoftPanEnabled(player_.get(), sp); */ }
+        { opn2_setSoftPanEnabled(player_.get(), sp); }
     void play_midi(const uint8_t *msg, unsigned len);
     void generate(float *left, float *right, unsigned nframes, unsigned stride);
 
