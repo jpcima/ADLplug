@@ -81,6 +81,7 @@ sudo cmake --build . --target install
 - support extended key maps with unicode characters
 - fixed a crash at startup when the state is restored before setting up the synthesizer
 - added soft panning support for OPN2
+- fixed a case where parameters would not be synchronized after receiving MIDI program change
 
 **1.0.0.beta.2**
 
