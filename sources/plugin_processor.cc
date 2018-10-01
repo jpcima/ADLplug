@@ -493,6 +493,7 @@ bool AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len)
             // selection_[channel].bank.lsb = data[1];
         }
         selection_needs_notification_[channel].store(1);
+        set_instrument_parameters_notifying_host(channel);
         break;
     }
     }
