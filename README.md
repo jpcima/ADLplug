@@ -75,7 +75,7 @@ sudo cmake --build . --target install
 
 ### Change Log
 
-**1.0.0.beta.3 (dev)**
+**1.0.0.beta.3**
 
 - added the ability to add, delete and rename banks and programs
 - support extended key maps with unicode characters
