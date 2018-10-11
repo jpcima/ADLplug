@@ -182,7 +182,7 @@ set_property(TARGET fmt PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 target_link_libraries(ADLplug_core PUBLIC fmt)
 
-add_library(simple-ini INTERFACE)
+add_library(simple-ini STATIC "thirdparty/simpleini/ConvertUTF.cpp")
 target_include_directories(simple-ini INTERFACE "thirdparty/simpleini")
 
 target_link_libraries(ADLplug_core PUBLIC simple-ini)
