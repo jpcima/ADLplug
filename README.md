@@ -75,6 +75,10 @@ sudo cmake --build . --target install
 
 ### Change Log
 
+**1.0.0.beta.4 (dev)**
+
+- fixed a case when the state loading fallback would fail because of a bad initialization sequence
+
 **1.0.0.beta.3**
 
 - added the ability to add, delete and rename banks and programs
