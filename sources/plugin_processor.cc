@@ -155,10 +155,10 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
         sel.program = 0;
     }
 
+    ready_.store(1);
+
     setStateInformation(
         last_state_information_.getData(), last_state_information_.getSize());
-
-    ready_.store(1);
 
     set_chip_settings_notifying_host();
     set_global_parameters_notifying_host();
