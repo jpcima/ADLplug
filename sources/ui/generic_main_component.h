@@ -76,6 +76,9 @@ public:
 
     void set_int_parameter_with_delay(unsigned delay, AudioParameterInt &p, int v);
 
+    double get_volume_knob_value() const;
+    void set_volume_knob_value(double value, NotificationType ntf);
+
     void handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity) override;
     void handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity) override;
 

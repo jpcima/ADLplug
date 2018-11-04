@@ -670,8 +670,7 @@ template <class T>
 void Generic_Main_Component<T>::parameters_update()
 {
     Parameter_Block &pb = *parameter_block_;
-    static_cast<T *>(this)->kn_mastervol->set_value(
-        pb.p_mastervol->get(), dontSendNotification);
+    set_volume_knob_value(pb.p_mastervol->get(), dontSendNotification);
 }
 
 template <class T>
@@ -865,6 +864,43 @@ void Generic_Main_Component<T>::set_int_parameter_with_delay(unsigned delay, Aud
                     });
     slot.reset(timer);
     timer->startTimer(delay);
+}
+
+template <class T>
+double Generic_Main_Component<T>::get_volume_knob_value() const
+{
+    const Parameter_Block &pb = *parameter_block_;
+
+    double knobval = static_cast<const T *>(this)->kn_mastervol->value();
+    if (knobval <= 0.0)
+        return 0.0;
+
+    double linmin = 0.1;
+    double dbmin = -20.0;
+    double linmax = pb.p_mastervol->range.end;
+    double dbmax = 20.0 * std::log10(linmax);
+
+    double dbval = dbmin + (dbmax - dbmin) * knobval;
+    double linval = std::pow(10.0, 0.05 * dbval);
+    return jlimit(linmin, linmax, linval);
+}
+
+template <class T>
+void Generic_Main_Component<T>::set_volume_knob_value(double linval, NotificationType ntf)
+{
+    const Parameter_Block &pb = *parameter_block_;
+
+    double linmin = 0.1;
+    double dbmin = -20.0;
+    double linmax = pb.p_mastervol->range.end;
+    double dbmax = 20.0 * std::log10(linmax);
+
+    if (linval < linmin)
+        return static_cast<T *>(this)->kn_mastervol->set_value(0.0, ntf);
+
+    double dbval = 20.0 * std::log10(linval);
+    static_cast<T *>(this)->kn_mastervol->set_value(
+        (dbval - dbmin) / (dbmax - dbmin), ntf);
 }
 
 template <class T>

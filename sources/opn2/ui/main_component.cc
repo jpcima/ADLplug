@@ -535,7 +535,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
 
     //[Constructor] You can add your own custom stuff here..
-    kn_mastervol->set_range(pb.p_mastervol->range.start, pb.p_mastervol->range.end);
+    kn_mastervol->set_range(0, 1);
 
     sl_num_chips->setNumDecimalPlacesToDisplay(0);
 
@@ -1120,7 +1120,7 @@ void Main_Component::knob_value_changed(Knob *k)
 
     if (k == kn_mastervol.get()) {
         AudioParameterFloat &p = *pb.p_mastervol;
-        p = k->value();
+        p = get_volume_knob_value();
     }
     else if (k == kn_feedback.get()) {
         AudioParameterInt &p = *part.p_feedback;
