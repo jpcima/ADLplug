@@ -199,7 +199,7 @@ extern WOPNFile *WOPN_LoadBankFromMem(void *mem, size_t length, int *error);
 /**
  * @brief Load WOPI instrument file from the memory.
  * You must allocate OPNIFile structure by yourself and give the pointer to it.
- * @param file Pointer to destinition OPNIFile structure to fill it with parsed data.
+ * @param file Pointer to destination OPNIFile structure to fill it with parsed data.
  * @param mem Pointer to memory block contains raw WOPI instrument file data
  * @param length Length of given memory block
  * @return 0 if no errors occouped, or an error code of WOPN_ErrorCodes enumeration
@@ -209,7 +209,7 @@ extern int WOPN_LoadInstFromMem(OPNIFile *file, void *mem, size_t length);
 /**
  * @brief Calculate the size of the output memory block
  * @param file Heap-allocated WOPN file data structure
- * @param version Destinition version of the file
+ * @param version Destination version of the file
  * @return Size of the raw WOPN file data
  */
 extern size_t WOPN_CalculateBankFileSize(WOPNFile *file, uint16_t version);
@@ -217,7 +217,7 @@ extern size_t WOPN_CalculateBankFileSize(WOPNFile *file, uint16_t version);
 /**
  * @brief Calculate the size of the output memory block
  * @param file Pointer to WOPI file data structure
- * @param version Destinition version of the file
+ * @param version Destination version of the file
  * @return Size of the raw WOPI file data
  */
 extern size_t WOPN_CalculateInstFileSize(OPNIFile *file, uint16_t version);
@@ -225,8 +225,8 @@ extern size_t WOPN_CalculateInstFileSize(OPNIFile *file, uint16_t version);
 /**
  * @brief Write raw WOPN into given memory block
  * @param file Heap-allocated WOPN file data structure
- * @param dest_mem Destinition memory block pointer
- * @param length Length of destinition memory block
+ * @param dest_mem Destination memory block pointer
+ * @param length Length of destination memory block
  * @param version Wanted WOPN version
  * @param force_gm Force GM set in saved bank file
  * @return Error code or 0 on success
@@ -236,8 +236,8 @@ extern int WOPN_SaveBankToMem(WOPNFile *file, void *dest_mem, size_t length, uin
 /**
  * @brief Write raw WOPI into given memory block
  * @param file Pointer to WOPI file data structure
- * @param dest_mem Destinition memory block pointer
- * @param length Length of destinition memory block
+ * @param dest_mem Destination memory block pointer
+ * @param length Length of destination memory block
  * @param version Wanted WOPI version
  * @return Error code or 0 on success
  */

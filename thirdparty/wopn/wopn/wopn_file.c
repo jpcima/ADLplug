@@ -82,18 +82,30 @@ static void fromSint16BE(int16_t in, uint8_t *arr)
 
 WOPNFile *WOPN_Init(uint16_t melodic_banks, uint16_t percussive_banks)
 {
-    WOPNFile *file = NULL;
-    if(melodic_banks == 0)
-        return NULL;
-    if(percussive_banks == 0)
-        return NULL;
-    file = (WOPNFile*)calloc(1, sizeof(WOPNFile));
+    WOPNFile *file = (WOPNFile*)calloc(1, sizeof(WOPNFile));
     if(!file)
         return NULL;
-    file->banks_count_melodic = melodic_banks;
-    file->banks_count_percussion = percussive_banks;
-    file->banks_melodic = (WOPNBank*)calloc(1, sizeof(WOPNBank) * melodic_banks );
-    file->banks_percussive = (WOPNBank*)calloc(1, sizeof(WOPNBank) * percussive_banks );
+
+    file->banks_count_melodic = (melodic_banks != 0) ? melodic_banks : 1;
+    file->banks_melodic = (WOPNBank*)calloc(file->banks_count_melodic, sizeof(WOPNBank));
+
+    if(melodic_banks == 0)
+    {
+        unsigned i;
+        for(i = 0; i < 128; ++i)
+            file->banks_melodic[0].ins[i].inst_flags = WOPN_Ins_IsBlank;
+    }
+
+    file->banks_count_percussion = (percussive_banks != 0) ? percussive_banks : 1;
+    file->banks_percussive = (WOPNBank*)calloc(file->banks_count_percussion, sizeof(WOPNBank));
+
+    if(percussive_banks == 0)
+    {
+        unsigned i;
+        for(i = 0; i < 128; ++i)
+            file->banks_percussive[0].ins[i].inst_flags = WOPN_Ins_IsBlank;
+    }
+
     return file;
 }
 
