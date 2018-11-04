@@ -140,6 +140,8 @@ private:
     std::unique_ptr<TextButton> btn_octave_down;
     std::unique_ptr<TextButton> btn_pgm_edit;
     std::unique_ptr<TextButton> btn_pgm_add;
+    std::unique_ptr<Label> label23;
+    std::unique_ptr<Styled_Knob_Default> kn_mastervol;
 
 
     //==============================================================================

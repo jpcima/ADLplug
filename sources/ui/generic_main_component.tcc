@@ -5,6 +5,7 @@
 
 #include "generic_main_component.h"
 #include "plugin_processor.h"
+#include "parameter_block.h"
 #include "ui/components/new_program_editor.h"
 #include "ui/components/program_name_editor.h"
 #include "ui/components/midi_keyboard_ex.h"
@@ -97,6 +98,9 @@ void Generic_Main_Component<T>::setup_generic_components()
 
     midi_keys_timer_.reset(Functional_Timer::create([this]() { midi_keys_update(); }));
     midi_keys_timer_->startTimer(40);
+
+    cpu_load_timer_.reset(Functional_Timer::create([this]() { parameters_update(); }));
+    cpu_load_timer_->startTimer(500);
 }
 
 template <class T>
@@ -660,6 +664,14 @@ void Generic_Main_Component<T>::midi_keys_update()
     unsigned midichannel = midichannel_;
     for (unsigned note = 0; note < 128; ++note)
         kb.highlight_note(note, proc.midi_channel_note_active(midichannel, note) ? 127 : 0);
+}
+
+template <class T>
+void Generic_Main_Component<T>::parameters_update()
+{
+    Parameter_Block &pb = *parameter_block_;
+    static_cast<T *>(this)->kn_mastervol->set_value(
+        pb.p_mastervol->get(), dontSendNotification);
 }
 
 template <class T>

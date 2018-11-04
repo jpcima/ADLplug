@@ -61,6 +61,7 @@ public:
     void cpu_load_update();
     void midi_activity_update();
     void midi_keys_update();
+    void parameters_update();
 
     void update_emulator_icon();
     void build_emulator_menu(PopupMenu &menu);
