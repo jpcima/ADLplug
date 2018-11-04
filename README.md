@@ -78,6 +78,8 @@ sudo cmake --build . --target install
 **1.0.0.beta.4 (dev)**
 
 - fixed a case when the state loading fallback would fail because of a bad initialization sequence
+- allow to reload a saved bank which has no melodic banks or no percussive banks
+- update the bank collection for OPN2
 
 **1.0.0.beta.3**
 
