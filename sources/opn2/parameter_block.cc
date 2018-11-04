@@ -50,6 +50,8 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
 {
     Chip_Settings cs = default_chip_settings();
 
+    p.addParameter((p_mastervol = new AudioParameterFloat("mastervol", "Master volume", {0.0f, 10.0f}, 1.0f, String())));
+
     first_chip_setting = p.getParameters().size();
     p.addParameter((p_emulator = new AudioParameterChoice("emulator", "Emulator", get_emulator_defaults().choices, cs.emulator, String())));
     p.addParameter((p_nchip = new AudioParameterInt("nchip", "Chip count", 1, 100, cs.chip_count, String())));

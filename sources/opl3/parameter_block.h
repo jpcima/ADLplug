@@ -7,6 +7,8 @@
 #include "JuceHeader.h"
 
 struct Parameter_Block {
+    AudioParameterFloat *p_mastervol = nullptr;
+
     AudioParameterChoice *p_emulator = nullptr;
     AudioParameterInt *p_nchip = nullptr;
     AudioParameterInt *p_n4op = nullptr;

@@ -280,6 +280,8 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         return;
     }
 
+    const Parameter_Block &pb = *parameter_block_;
+
     int chip_settings_changed = 1;
     if (chip_settings_changed_.compare_exchange_weak(chip_settings_changed, false)) {
         Chip_Settings cs, cs_current;
@@ -386,7 +388,8 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
     Vu_Monitor &lvu = vu_monitor_[0];
     Vu_Monitor &rvu = vu_monitor_[1];
     double lv_current[2];
-    double output_gain = pl->output_gain();
+    double master_volume = *pb.p_mastervol;
+    double output_gain = pl->output_gain() * master_volume;
 
     for (unsigned i = 0; i < nframes; ++i) {
         double left_sample = left[i] * output_gain;
@@ -859,6 +862,7 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
     if (!pl)
         return;
 
+    const Parameter_Block &pb = *parameter_block_;
     const Bank_Manager &bm = *bank_manager_;
     const Bank_Manager::Bank_Info *infos = bm.bank_infos();
 
@@ -931,6 +935,15 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
         elt.release();
     }
 
+    // common parameters
+    {
+        PropertySet common_set;
+        common_set.setValue("master_volume", (double)*pb.p_mastervol);
+        std::unique_ptr<XmlElement> elt(common_set.createXml("common"));
+        root.addChildElement(elt.get());
+        elt.release();
+    }
+
     copyXmlToBinary(root, data);
 }
 
@@ -938,6 +951,7 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
 {
     std::lock_guard<std::mutex> lock(player_lock_);
     Player &pl = *player_;
+    Parameter_Block &pb = *parameter_block_;
     Bank_Manager &bm = *bank_manager_;
 
     last_state_information_.replaceWith(data, size);
@@ -1008,6 +1022,11 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
     gp.lfo_frequency = global_set.getIntValue("lfo_frequency");
 #endif
 
+    // common parameters
+    PropertySet common_set;
+    if (XmlElement *elt = root->getChildByName("common"))
+        common_set.restoreFromXml(*elt);
+
     bm.load_global_parameters(gp, false);
 
     // notify everything
@@ -1019,6 +1038,7 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
     set_global_parameters_notifying_host();
     for (unsigned p = 0; p < 16; ++p)
         set_instrument_parameters_notifying_host(p);
+    *pb.p_mastervol = common_set.getDoubleValue("master_volume", 1.0f);
 }
 
 //==============================================================================
