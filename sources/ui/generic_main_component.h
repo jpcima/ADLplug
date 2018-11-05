@@ -71,6 +71,9 @@ public:
     void handle_save_bank(Component *clicked);
     void load_bank(const File &file);
     void load_single_instrument(const File &file);
+    void load_bank_mem(const uint8_t *mem, size_t length, const String &bank_name);
+    void load_single_instrument_mem(const uint8_t *mem, size_t length, const String &bank_name);
+    void save_bank(const File &file);
 
     void handle_change_keymap();
     void handle_change_octave(int diff);

@@ -9,6 +9,7 @@
 #include "ui/components/new_program_editor.h"
 #include "ui/components/program_name_editor.h"
 #include "ui/components/midi_keyboard_ex.h"
+#include "adl/wopx_file.h"
 #include "midi/insnames.h"
 #include "utility/functional_timer.h"
 #include "utility/simple_fifo.h"
@@ -759,7 +760,7 @@ void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
         uint32_t index = selection - menu_index;
         const std::string &name = pak.name(index);
         std::string wopl = pak.extract(index);
-        self()->load_bank_mem((const uint8_t *)wopl.data(), wopl.size(), name);
+        load_bank_mem((const uint8_t *)wopl.data(), wopl.size(), name);
     }
 }
 
@@ -794,7 +795,7 @@ void Generic_Main_Component<T>::handle_save_bank(Component *clicked)
 
     if (confirm) {
         bank_directory_ = file.getParentDirectory();
-        self()->save_bank(file);
+        save_bank(file);
     }
 }
 
@@ -828,7 +829,7 @@ void Generic_Main_Component<T>::load_bank(const File &file)
         return;
     }
 
-    self()->load_bank_mem(filedata.get(), length, file.getFileNameWithoutExtension());
+    load_bank_mem(filedata.get(), length, file.getFileNameWithoutExtension());
 }
 
 template <class T>
@@ -861,7 +862,198 @@ void Generic_Main_Component<T>::load_single_instrument(const File &file)
         return;
     }
 
-    self()->load_single_instrument_mem(filedata.get(), length, file.getFileNameWithoutExtension());
+    load_single_instrument_mem(filedata.get(), length, file.getFileNameWithoutExtension());
+}
+
+template <class T>
+void Generic_Main_Component<T>::load_bank_mem(const uint8_t *mem, size_t length, const String &bank_name)
+{
+    const char *error_title = "Error loading bank";
+
+    WOPx::BankFile_Ptr wopl(WOPx::LoadBankFromMem((void *)mem, length, nullptr));
+    if (!wopl) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The input file is not in " WOPx_BANK_FORMAT " format.");
+        return;
+    }
+
+    auto send_bank = [this](const WOPx::Bank &bank, bool percussive) {
+                         for (unsigned i = 0; i < 128; ++i) {
+                             Messages::User::LoadInstrument msg;
+                             msg.part = midichannel_;
+                             msg.bank = Bank_Id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
+                             msg.program = i;
+                             msg.instrument = Instrument::from_wopl(bank.ins[i]);
+                             msg.need_measurement = false;
+                             msg.notify_back = false;
+                             write_to_processor(msg.tag, &msg, sizeof(msg));
+                         }
+
+                         Messages::User::RenameBank msg;
+                         msg.bank = Bank_Id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
+                         msg.notify_back = false;
+                         std::memcpy(msg.name, bank.bank_name, 32);
+                         write_to_processor(msg.tag, &msg, sizeof(msg));
+                     };
+    self()->edt_bank_name->setText(bank_name);
+    self()->edt_bank_name->setCaretPosition(0);
+
+    {
+        Messages::User::LoadGlobalParameters msg;
+        msg.param.volume_model = wopl->volume_model;
+#if defined(ADLPLUG_OPL3)
+        msg.param.deep_tremolo = wopl->opl_flags & WOPL_FLAG_DEEP_TREMOLO;
+        msg.param.deep_vibrato = wopl->opl_flags & WOPL_FLAG_DEEP_VIBRATO;
+#elif defined(ADLPLUG_OPN2)
+        msg.param.lfo_enable = wopl->lfo_freq & 8;
+        msg.param.lfo_frequency = wopl->lfo_freq & 7;
+#endif
+        msg.notify_back = true;
+        write_to_processor(msg.tag, &msg, sizeof(msg));
+    }
+
+    {
+        Messages::User::ClearBanks msg;
+        msg.notify_back = false;
+        write_to_processor(msg.tag, &msg, sizeof(msg));
+    }
+
+    for (unsigned i = 0, n = wopl->banks_count_melodic; i < n; ++i)
+        send_bank(wopl->banks_melodic[i], false);
+    for (unsigned i = 0, n = wopl->banks_count_percussion; i < n; ++i)
+        send_bank(wopl->banks_percussive[i], true);
+
+    {
+        Messages::User::RequestFullBankState msg;
+        write_to_processor(msg.tag, &msg, sizeof(msg));
+    }
+}
+
+template <class T>
+void Generic_Main_Component<T>::load_single_instrument_mem(const uint8_t *mem, size_t length, const String &bank_name)
+{
+    WOPx::InstrumentFile wopi = {};
+    const char *error_title = "Error loading instrument";
+
+    if (WOPx::LoadInstFromMem(&wopi, (void *)mem, length) != 0) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The input file is not in " WOPx_INST_FORMAT " format.");
+        return;
+    }
+
+    unsigned part = midichannel_;
+    uint32_t program = midiprogram_[part];
+    uint32_t psid = program >> 8;
+    bool percussive = program & 128;
+    Bank_Id bank(psid >> 7, psid & 127, percussive);
+
+    Messages::User::LoadInstrument msg;
+    msg.part = part;
+    msg.bank = bank;
+    msg.program = program & 127;
+    msg.instrument = Instrument::from_wopl(wopi.inst);
+    msg.need_measurement = true;
+    msg.notify_back = true;
+    write_to_processor(msg.tag, &msg, sizeof(msg));
+}
+
+template <class T>
+void Generic_Main_Component<T>::save_bank(const File &file)
+{
+    trace("Save to " WOPx_BANK_FORMAT " file: %s", file.getFullPathName().toRawUTF8());
+
+    const auto &instrument_map = instrument_map_;
+    size_t max_bank_count = instrument_map.size();
+
+    std::vector<WOPx::Bank> melo_array;
+    std::vector<WOPx::Bank> drum_array;
+    melo_array.reserve(max_bank_count);
+    drum_array.reserve(max_bank_count);
+
+    for (auto &entry : instrument_map) {
+        uint32_t psid = entry.first;
+
+        WOPx::Bank melo;
+        WOPx::Bank drum;
+        std::memset(&melo, 0, sizeof(WOPx::Bank));
+        std::memset(&drum, 0, sizeof(WOPx::Bank));
+
+        std::memcpy(melo.bank_name, entry.second.melodic_name, 32);
+        std::memcpy(drum.bank_name, entry.second.percussion_name, 32);
+
+        melo.bank_midi_msb = drum.bank_midi_msb = psid >> 7;
+        melo.bank_midi_lsb = drum.bank_midi_lsb = psid & 127;
+
+        size_t melo_count = 0;
+        size_t drum_count = 0;
+        for (size_t i = 0; i < 256; ++i) {
+            WOPx::Instrument ins = entry.second.ins[i].to_wopl();
+            if (i < 128) {
+                melo.ins[i] = ins;
+                if (!(ins.inst_flags & WOPx::Ins_IsBlank))
+                    ++melo_count;
+            }
+            else {
+                drum.ins[i - 128] = ins;
+                if (!(ins.inst_flags & WOPx::Ins_IsBlank))
+                    ++drum_count;
+            }
+        }
+
+        if (melo_count > 0)
+            melo_array.push_back(melo);
+        if (drum_count > 0)
+            drum_array.push_back(drum);
+    }
+
+    WOPx::BankFile wopl;
+    wopl.version = 2;
+
+#if defined(ADLPLUG_OPL3)
+    wopl.opl_flags =
+        (instrument_gparam_.deep_tremolo ? WOPL_FLAG_DEEP_TREMOLO : 0) |
+        (instrument_gparam_.deep_vibrato ? WOPL_FLAG_DEEP_VIBRATO : 0);
+#elif defined(ADLPLUG_OPN2)
+    wopl.lfo_freq =
+        (instrument_gparam_.lfo_enable ? 8 : 0) |
+        (instrument_gparam_.lfo_frequency & 7);
+#endif
+    wopl.volume_model = instrument_gparam_.volume_model;
+
+    wopl.banks_count_melodic = melo_array.size();
+    wopl.banks_count_percussion = drum_array.size();
+    wopl.banks_melodic = melo_array.data();
+    wopl.banks_percussive = drum_array.data();
+
+    size_t filesize = WOPx::CalculateBankFileSize(&wopl, wopl.version);
+    std::unique_ptr<uint8_t> filedata(new uint8_t[filesize]);
+
+    const char *error_title = "Error saving bank";
+
+    if (WOPx::SaveBankToMem(&wopl, filedata.get(), filesize, wopl.version, 0) != 0) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The bank could not be converted to " WOPx_BANK_FORMAT ".");
+        return;
+    }
+
+    std::unique_ptr<FileOutputStream> stream(file.createOutputStream());
+
+    if (stream->failedToOpen()) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The file could not be opened.");
+        return;
+    }
+
+    stream->setPosition(0);
+    stream->truncate();
+    stream->write(filedata.get(), filesize);
+    stream->flush();
+
+    if (!stream->getStatus()) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The output operation has failed.");
+        return;
+    }
 }
 
 template <class T>
