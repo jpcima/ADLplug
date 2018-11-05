@@ -1240,8 +1240,11 @@ void Generic_Main_Component<T>::update_master_volume_label()
         self()->lbl_mastervol->setText(CharPointer_UTF8(u8"-∞ dB"), dontSendNotification);
     else {
         double dbval = dbmin + (dbmax - dbmin) * kval;
-        self()->lbl_mastervol->setText(
-            String(lround(jlimit(dbmin, dbmax, dbval))) + " dB", dontSendNotification);
+        long displayval = lround(jlimit(dbmin, dbmax, dbval));
+        String displaytext = String(displayval) + " dB";
+        if (displayval >= 0)
+            displaytext = "+" + displaytext;
+        self()->lbl_mastervol->setText(displaytext, dontSendNotification);
     }
 }
 
