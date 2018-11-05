@@ -132,6 +132,14 @@ Font Custom_Look_And_Feel::getComboBoxFont(ComboBox &box)
     return { jmin (15.0f, box.getHeight() * 0.85f) };
 }
 
+Label *Custom_Look_And_Feel::createSliderTextBox(Slider &slider)
+{
+    std::unique_ptr<Label> label(Base::createSliderTextBox(slider));
+    NamedValueSet &props = slider.getProperties();
+    props.set("X-Slider-Text-Box", (int64)(intptr_t)label.get());
+    return label.release();
+}
+
 Rectangle<int> Custom_Look_And_Feel::getTooltipBounds(const String &text, Point<int> pos, Rectangle<int> parent_area)
 {
     if (text.startsWith("<<") && text.endsWith(">>")) {

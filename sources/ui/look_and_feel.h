@@ -23,6 +23,8 @@ public:
 
     Font getComboBoxFont(ComboBox &box) override;
 
+    Label *createSliderTextBox(Slider &slider) override;
+
     Rectangle<int> getTooltipBounds(const String &text, Point<int> pos, Rectangle<int> parent_area) override;
     void drawTooltip(Graphics &g, const String &text, int width, int height) override;
 

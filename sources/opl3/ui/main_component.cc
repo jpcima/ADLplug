@@ -252,7 +252,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_panic->addListener (this);
     btn_panic->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_panic->setBounds (414, 102, 48, 24);
+    btn_panic->setBounds (308, 102, 48, 24);
 
     edt_bank_name.reset (new TextEditor ("new text editor"));
     addAndMakeVisible (edt_bank_name.get());
@@ -278,7 +278,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     cb_program->setBounds (16, 104, 215, 24);
 
     label4.reset (new Label ("new label",
-                             TRANS("MIDI channel")));
+                             TRANS("Part")));
     addAndMakeVisible (label4.get());
     label4->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label4->setJustificationType (Justification::centredLeft);
@@ -287,7 +287,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label4->setColour (TextEditor::textColourId, Colours::black);
     label4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label4->setBounds (300, 78, 88, 20);
+    label4->setBounds (304, 78, 56, 20);
 
     btn_bank_load.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_bank_load.get());
@@ -542,11 +542,12 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (sl_midi_channel.get());
     sl_midi_channel->setRange (1, 16, 1);
     sl_midi_channel->setSliderStyle (Slider::IncDecButtons);
-    sl_midi_channel->setTextBoxStyle (Slider::TextBoxLeft, false, 36, 20);
+    sl_midi_channel->setTextBoxStyle (Slider::TextBoxLeft, false, 46, 46);
+    sl_midi_channel->setColour (Slider::textBoxTextColourId, Colours::aliceblue);
     sl_midi_channel->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_midi_channel->addListener (this);
 
-    sl_midi_channel->setBounds (388, 78, 76, 20);
+    sl_midi_channel->setBounds (364, 79, 76, 46);
 
     btn_deep_tremolo.reset (new TextButton ("new button"));
     addAndMakeVisible (btn_deep_tremolo.get());
@@ -666,7 +667,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     addAndMakeVisible (kn_mastervol.get());
     kn_mastervol->setName ("new component");
 
-    kn_mastervol->setBounds (536, 78, 48, 48);
+    kn_mastervol->setBounds (510, 78, 48, 48);
 
     label23.reset (new Label ("new label",
                               TRANS("Volume")));
@@ -678,7 +679,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label23->setColour (TextEditor::textColourId, Colours::black);
     label23->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label23->setBounds (490, 78, 56, 22);
+    label23->setBounds (464, 78, 56, 22);
 
 
     //[UserPreSize]
@@ -705,6 +706,10 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
         btn->setClickingTogglesState(true);
         btn->setRadioGroupId((int)Radio_Button_Group::Algo_34);
     }
+
+    Label *lbl_midi_channel = (Label *)(intptr_t)(int64)sl_midi_channel->getProperties()["X-Slider-Text-Box"];
+    Font fnt_midi_channel(Font::getDefaultSansSerifFontName(), 30.0, Font::plain);
+    lbl_midi_channel->setFont(fnt_midi_channel);
 
     kn_mastervol->set_range(0, 1);
 
@@ -996,7 +1001,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 296, y = 72, width = 174, height = 60;
+        int x = 300, y = 72, width = 146, height = 60;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1038,7 +1043,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 486, y = 72, width = 102, height = 60;
+        int x = 460, y = 72, width = 102, height = 60;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1579,7 +1584,7 @@ BEGIN_JUCER_METADATA
     <RECT pos="300 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="300 316 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="16 316 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="296 72 174 60" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="300 72 146 60" fill="solid: 662e4c4d" hasStroke="0"/>
     <TEXT pos="16 444 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Misc"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
@@ -1587,7 +1592,7 @@ BEGIN_JUCER_METADATA
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
     <RECT pos="546 450 228 60" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="486 72 102 60" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="460 72 102 60" fill="solid: 662e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="300 160 264 128" class="Operator_Editor"
@@ -1673,7 +1678,7 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="466 8 102 28" class="Indicator_NxM"
                     params="2, 8"/>
   <TEXTBUTTON name="new button" id="ec00354399da2ced" memberName="btn_panic"
-              virtualName="" explicitFocusOrder="0" pos="414 102 48 24" bgColOn="ff42a2c8"
+              virtualName="" explicitFocusOrder="0" pos="308 102 48 24" bgColOn="ff42a2c8"
               buttonText="Panic" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="62544efea1101020" memberName="edt_bank_name"
               virtualName="" explicitFocusOrder="0" pos="16 74 215 24" outlinecol="ff8e989b"
@@ -1683,8 +1688,8 @@ BEGIN_JUCER_METADATA
             virtualName="" explicitFocusOrder="0" pos="16 104 215 24" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <LABEL name="new label" id="ac425a00ee881383" memberName="label4" virtualName=""
-         explicitFocusOrder="0" pos="300 78 88 20" textCol="fff0f8ff"
-         edTextCol="ff000000" edBkgCol="0" labelText="MIDI channel" editableSingleClick="0"
+         explicitFocusOrder="0" pos="304 78 56 20" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Part" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <TEXTBUTTON name="new button" id="c78c3c0db0e0be9a" memberName="btn_bank_load"
@@ -1798,10 +1803,10 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <SLIDER name="new slider" id="59a5ffdc8abc84a6" memberName="sl_midi_channel"
-          virtualName="" explicitFocusOrder="0" pos="388 78 76 20" textboxoutline="ff8e989b"
-          min="1.0" max="16.0" int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft"
-          textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
-          needsCallback="1"/>
+          virtualName="" explicitFocusOrder="0" pos="364 79 76 46" textboxtext="fff0f8ff"
+          textboxoutline="ff8e989b" min="1.0" max="16.0" int="1.0" style="IncDecButtons"
+          textBoxPos="TextBoxLeft" textBoxEditable="1" textBoxWidth="46"
+          textBoxHeight="46" skewFactor="1.0" needsCallback="1"/>
   <TEXTBUTTON name="new button" id="fd73fd08b6289ecb" memberName="btn_deep_tremolo"
               virtualName="" explicitFocusOrder="0" pos="552 486 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
@@ -1848,10 +1853,10 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="257 104 23 24" buttonText=""
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <GENERICCOMPONENT name="new component" id="9d73506941d5ef91" memberName="kn_mastervol"
-                    virtualName="" explicitFocusOrder="0" pos="536 78 48 48" class="Styled_Knob_Default"
+                    virtualName="" explicitFocusOrder="0" pos="510 78 48 48" class="Styled_Knob_Default"
                     params=""/>
   <LABEL name="new label" id="72b9b823ebcf0c96" memberName="label23" virtualName=""
-         explicitFocusOrder="0" pos="490 78 56 22" textCol="fff0f8ff"
+         explicitFocusOrder="0" pos="464 78 56 22" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Volume" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
