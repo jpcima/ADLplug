@@ -714,13 +714,8 @@ int Generic_Main_Component<T>::select_emulator_by_menu()
 template <class T>
 void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
 {
-#if defined(ADLPLUG_OPL3)
-    const char *bank_file_filter = "*.wopl";
-    const char *ins_file_filter = "*.opli";
-#elif defined(ADLPLUG_OPN2)
-    const char *bank_file_filter = "*.wopn";
-    const char *ins_file_filter = "*.opni";
-#endif
+    const char *bank_file_filter = "*."  WOPx_BANK_SUFFIX;
+    const char *ins_file_filter = "*." WOPx_INST_SUFFIX;
 
     PopupMenu menu;
     int menu_index = 1;
@@ -749,11 +744,18 @@ void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
         }
     }
     else if (selection == 2) {
+        int program_selection = self()->cb_program->getSelectedId();
+        if (program_selection == 0) {
+            AlertWindow::showMessageBox(
+                AlertWindow::WarningIcon, TRANS("Load instrument..."), TRANS("Please select a program first."));
+            return;
+        }
+
         FileChooser chooser(TRANS("Load instrument..."), bank_directory_, ins_file_filter, prefer_native_file_dialog);
         if (chooser.browseForFileToOpen()) {
             File file = chooser.getResult();
             bank_directory_ = file.getParentDirectory();
-            load_single_instrument(file);
+            load_single_instrument(program_selection - 1, file);
         }
     }
     else if (selection >= menu_index) {
@@ -767,35 +769,64 @@ void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
 template <class T>
 void Generic_Main_Component<T>::handle_save_bank(Component *clicked)
 {
-#if defined(ADLPLUG_OPL3)
-    const char *file_filter = "*.wopl";
-    const char *file_extension = ".wopl";
-#elif defined(ADLPLUG_OPN2)
-    const char *file_filter = "*.wopn";
-    const char *file_extension = ".wopn";
-#endif
+    const char *bank_file_filter = "*." WOPx_BANK_SUFFIX;
+    const char *bank_file_extension = "." WOPx_BANK_SUFFIX;
+    const char *ins_file_filter = "*." WOPx_INST_SUFFIX;
+    const char *ins_file_extension = "." WOPx_INST_SUFFIX;
 
-    FileChooser chooser(TRANS("Save bank..."), bank_directory_, file_filter, prefer_native_file_dialog);
-    if (!chooser.browseForFileToSave(false))
-        return;
+    PopupMenu menu;
+    int menu_index = 1;
+    menu.addItem(menu_index++, "Save bank file...");
+    menu.addItem(menu_index++, "Save instrument file...");
 
-    File file = chooser.getResult();
-    file = file.withFileExtension(file_extension);
+    auto overwrite_confirm =
+        [this](const File &file) {
+            bool confirm = true;
+            if (file.exists()) {
+                String title = TRANS("File already exists");
+                String message = TRANS("There's already a file called: ")
+                    + file.getFullPathName() + "\n\n" +
+                    TRANS("Are you sure you want to overwrite it?");
+                confirm = AlertWindow::showOkCancelBox(
+                    AlertWindow::WarningIcon, title, message,
+                    TRANS("Overwrite"), TRANS("Cancel"), this);
+            }
+            return confirm;
+        };
 
-    bool confirm = true;
-    if (file.exists()) {
-        String title = TRANS("File already exists");
-        String message = TRANS("There's already a file called: ")
-            + file.getFullPathName() + "\n\n" +
-            TRANS("Are you sure you want to overwrite it?");
-        confirm = AlertWindow::showOkCancelBox(
-            AlertWindow::WarningIcon, title, message,
-            TRANS("Overwrite"), TRANS("Cancel"), this);
+    int selection = menu.showAt(clicked);
+    if (selection == 1) {
+        FileChooser chooser(TRANS("Save bank..."), bank_directory_, bank_file_filter, prefer_native_file_dialog);
+        if (!chooser.browseForFileToSave(false))
+            return;
+
+        File file = chooser.getResult();
+        file = file.withFileExtension(bank_file_extension);
+
+        if (overwrite_confirm(file)) {
+            bank_directory_ = file.getParentDirectory();
+            save_bank(file);
+        }
     }
+    else if (selection == 2) {
+        int program_selection = self()->cb_program->getSelectedId();
+        if (program_selection == 0) {
+            AlertWindow::showMessageBox(
+                AlertWindow::WarningIcon, TRANS("Save instrument..."), TRANS("Please select a program first."));
+            return;
+        }
 
-    if (confirm) {
-        bank_directory_ = file.getParentDirectory();
-        save_bank(file);
+        FileChooser chooser(TRANS("Save instrument..."), bank_directory_, ins_file_filter, prefer_native_file_dialog);
+        if (!chooser.browseForFileToSave(false))
+            return;
+
+        File file = chooser.getResult();
+        file = file.withFileExtension(ins_file_extension);
+
+        if (overwrite_confirm(file)) {
+            bank_directory_ = file.getParentDirectory();
+            save_single_instrument(program_selection - 1, file);
+        }
     }
 }
 
@@ -833,9 +864,9 @@ void Generic_Main_Component<T>::load_bank(const File &file)
 }
 
 template <class T>
-void Generic_Main_Component<T>::load_single_instrument(const File &file)
+void Generic_Main_Component<T>::load_single_instrument(uint32_t program, const File &file)
 {
-    trace("Load from OPLI file: %s", file.getFullPathName().toRawUTF8());
+    trace("Load from " WOPx_INST_FORMAT " file: %s", file.getFullPathName().toRawUTF8());
 
     std::unique_ptr<uint8_t[]> filedata;
     std::unique_ptr<FileInputStream> stream(file.createInputStream());
@@ -862,7 +893,7 @@ void Generic_Main_Component<T>::load_single_instrument(const File &file)
         return;
     }
 
-    load_single_instrument_mem(filedata.get(), length, file.getFileNameWithoutExtension());
+    load_single_instrument_mem(program, filedata.get(), length, file.getFileNameWithoutExtension());
 }
 
 template <class T>
@@ -930,7 +961,7 @@ void Generic_Main_Component<T>::load_bank_mem(const uint8_t *mem, size_t length,
 }
 
 template <class T>
-void Generic_Main_Component<T>::load_single_instrument_mem(const uint8_t *mem, size_t length, const String &bank_name)
+void Generic_Main_Component<T>::load_single_instrument_mem(uint32_t program, const uint8_t *mem, size_t length, const String &bank_name)
 {
     WOPx::InstrumentFile wopi = {};
     const char *error_title = "Error loading instrument";
@@ -942,7 +973,6 @@ void Generic_Main_Component<T>::load_single_instrument_mem(const uint8_t *mem, s
     }
 
     unsigned part = midichannel_;
-    uint32_t program = midiprogram_[part];
     uint32_t psid = program >> 8;
     bool percussive = program & 128;
     Bank_Id bank(psid >> 7, psid & 127, percussive);
@@ -1007,7 +1037,7 @@ void Generic_Main_Component<T>::save_bank(const File &file)
     }
 
     WOPx::BankFile wopl;
-    wopl.version = 2;
+    wopl.version = WOPx::FileVersion;
 
 #if defined(ADLPLUG_OPL3)
     wopl.opl_flags =
@@ -1033,6 +1063,56 @@ void Generic_Main_Component<T>::save_bank(const File &file)
     if (WOPx::SaveBankToMem(&wopl, filedata.get(), filesize, wopl.version, 0) != 0) {
         AlertWindow::showMessageBox(
             AlertWindow::WarningIcon, error_title, "The bank could not be converted to " WOPx_BANK_FORMAT ".");
+        return;
+    }
+
+    std::unique_ptr<FileOutputStream> stream(file.createOutputStream());
+
+    if (stream->failedToOpen()) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The file could not be opened.");
+        return;
+    }
+
+    stream->setPosition(0);
+    stream->truncate();
+    stream->write(filedata.get(), filesize);
+    stream->flush();
+
+    if (!stream->getStatus()) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The output operation has failed.");
+        return;
+    }
+}
+
+template <class T>
+void Generic_Main_Component<T>::save_single_instrument(uint32_t program, const File &file)
+{
+    trace("Save to " WOPx_INST_FORMAT " file: %s", file.getFullPathName().toRawUTF8());
+
+    uint32_t psid = program >> 8;
+
+    auto it = instrument_map_.find(psid);
+    if (it == instrument_map_.end())
+        return;
+
+    const Editor_Bank &e_bank = it->second;
+    const Instrument &ins = e_bank.ins[program & 255];
+
+    WOPx::InstrumentFile opli;
+    opli.version = WOPx::FileVersion;
+    opli.is_drum = program & 128;
+    opli.inst = ins.to_wopl();
+
+    size_t filesize = WOPx::CalculateInstFileSize(&opli, opli.version);
+    std::unique_ptr<uint8_t> filedata(new uint8_t[filesize]);
+
+    const char *error_title = "Error saving instrument";
+
+    if (WOPx::SaveInstToMem(&opli, filedata.get(), filesize, opli.version) != 0) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The bank could not be converted to " WOPx_INST_FORMAT ".");
         return;
     }
 

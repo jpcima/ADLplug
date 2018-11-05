@@ -21,6 +21,10 @@ struct WOPx {
 #define WOPx_INST_SUFFIX "opli"
 
 enum {
+    FileVersion = 3,
+};
+
+enum {
     Ins_IsBlank = WOPL_Ins_IsBlank,
 };
 
@@ -45,6 +49,10 @@ typedef WOPLFile_Ptr BankFile_Ptr;
 #define WOPx_BANK_SUFFIX "wopn"
 #define WOPx_INST_FORMAT "OPNI"
 #define WOPx_INST_SUFFIX "opni"
+
+enum {
+    FileVersion = 2,
+};
 
 enum {
     Ins_IsBlank = WOPN_Ins_IsBlank,
