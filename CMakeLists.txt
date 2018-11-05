@@ -339,8 +339,6 @@ if(ADLplug_Standalone)
     OUTPUT_NAME "${ADLplug_NAME}" RUNTIME_OUTPUT_DIRECTORY "standalone")
   if(NOT ADLplug_Jack)
     install(TARGETS ADLplug_Standalone DESTINATION "${CMAKE_INSTALL_BINDIR}")
-    install(FILES "resources/application/${ADLplug_NAME}.desktop" DESTINATION "${CMAKE_INSTALL_DATADIR}/applications")
-    install(FILES "resources/application/${ADLplug_NAME}.png" DESTINATION "${CMAKE_INSTALL_DATADIR}/pixmaps")
   endif()
 endif()
 
@@ -357,6 +355,17 @@ if(ADLplug_Jack)
   set_target_properties(ADLplug_Jack PROPERTIES
     OUTPUT_NAME "${ADLplug_NAME}" RUNTIME_OUTPUT_DIRECTORY "jack")
   install(TARGETS ADLplug_Jack DESTINATION "${CMAKE_INSTALL_BINDIR}")
-  install(FILES "resources/application/${ADLplug_NAME}.desktop" DESTINATION "${CMAKE_INSTALL_DATADIR}/applications")
-  install(FILES "resources/application/${ADLplug_NAME}.png" DESTINATION "${CMAKE_INSTALL_DATADIR}/pixmaps")
+endif()
+
+if(ADLplug_Standalone OR ADLplug_Jack)
+  install(FILES "resources/application/${ADLplug_NAME}.desktop"
+    DESTINATION "${CMAKE_INSTALL_DATADIR}/applications")
+  install(FILES "resources/application/${ADLplug_NAME}-32.png"
+    DESTINATION "${CMAKE_INSTALL_DATADIR}/pixmaps"
+    RENAME "${ADLplug_NAME}.png")
+  foreach(size 32;96)
+    install(FILES "resources/application/${ADLplug_NAME}-${size}.png"
+      DESTINATION "${CMAKE_INSTALL_DATADIR}/icons/hicolor/${size}x${size}/apps"
+      RENAME "${ADLplug_NAME}.png")
+  endforeach()
 endif()
