@@ -1281,6 +1281,33 @@ void Main_Component::load_bank_mem(const uint8_t *mem, size_t length, const Stri
     }
 }
 
+void Main_Component::load_single_instrument_mem(const uint8_t *mem, size_t length, const String &bank_name)
+{
+    OPNIFile wopi = {};
+    const char *error_title = "Error loading instrument";
+
+    if (WOPN_LoadInstFromMem(&wopi, (void *)mem, length) != 0) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The input file is not in OPNI format.");
+        return;
+    }
+
+    unsigned part = midichannel_;
+    uint32_t program = midiprogram_[part];
+    uint32_t psid = program >> 8;
+    bool percussive = program & 128;
+    Bank_Id bank(psid >> 7, psid & 127, percussive);
+
+    Messages::User::LoadInstrument msg;
+    msg.part = part;
+    msg.bank = bank;
+    msg.program = program & 127;
+    msg.instrument = Instrument::from_wopl(wopi.inst);
+    msg.need_measurement = true;
+    msg.notify_back = true;
+    write_to_processor(msg.tag, &msg, sizeof(msg));
+}
+
 void Main_Component::save_bank(const File &file)
 {
     trace("Save to WOPN file: %s", file.getFullPathName().toRawUTF8());

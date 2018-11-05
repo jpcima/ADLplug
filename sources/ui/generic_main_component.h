@@ -70,6 +70,7 @@ public:
     void handle_load_bank(Component *clicked);
     void handle_save_bank(Component *clicked);
     void load_bank(const File &file);
+    void load_single_instrument(const File &file);
 
     void handle_change_keymap();
     void handle_change_octave(int diff);

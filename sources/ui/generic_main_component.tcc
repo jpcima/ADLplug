@@ -714,13 +714,17 @@ template <class T>
 void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
 {
 #if defined(ADLPLUG_OPL3)
-    const char *file_filter = "*.wopl";
+    const char *bank_file_filter = "*.wopl";
+    const char *ins_file_filter = "*.opli";
 #elif defined(ADLPLUG_OPN2)
-    const char *file_filter = "*.wopn";
+    const char *bank_file_filter = "*.wopn";
+    const char *ins_file_filter = "*.opni";
 #endif
 
     PopupMenu menu;
-    menu.addItem(1, "Load bank file...");
+    int menu_index = 1;
+    menu.addItem(menu_index++, "Load bank file...");
+    menu.addItem(menu_index++, "Load instrument file...");
 
     Pak_File_Reader pak;
     if (!pak.init_with_data((const uint8_t *)BinaryData::banks_pak, BinaryData::banks_pakSize))
@@ -730,21 +734,29 @@ void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
     uint32_t pak_entries = pak.entry_count();
     if (pak_entries > 0) {
         for (uint32_t i = 0; i < pak_entries; ++i)
-            pak_submenu.addItem(2 + i, pak.name(i));
+            pak_submenu.addItem(menu_index + i, pak.name(i));
         menu.addSubMenu("Load from collection", pak_submenu);
     }
 
     int selection = menu.showAt(clicked);
     if (selection == 1) {
-        FileChooser chooser(TRANS("Load bank..."), bank_directory_, file_filter, prefer_native_file_dialog);
+        FileChooser chooser(TRANS("Load bank..."), bank_directory_, bank_file_filter, prefer_native_file_dialog);
         if (chooser.browseForFileToOpen()) {
             File file = chooser.getResult();
             bank_directory_ = file.getParentDirectory();
             load_bank(file);
         }
     }
-    else if (selection >= 2) {
-        uint32_t index = selection - 2;
+    else if (selection == 2) {
+        FileChooser chooser(TRANS("Load instrument..."), bank_directory_, ins_file_filter, prefer_native_file_dialog);
+        if (chooser.browseForFileToOpen()) {
+            File file = chooser.getResult();
+            bank_directory_ = file.getParentDirectory();
+            load_single_instrument(file);
+        }
+    }
+    else if (selection >= menu_index) {
+        uint32_t index = selection - menu_index;
         const std::string &name = pak.name(index);
         std::string wopl = pak.extract(index);
         self()->load_bank_mem((const uint8_t *)wopl.data(), wopl.size(), name);
@@ -820,6 +832,39 @@ void Generic_Main_Component<T>::load_bank(const File &file)
 }
 
 template <class T>
+void Generic_Main_Component<T>::load_single_instrument(const File &file)
+{
+    trace("Load from OPLI file: %s", file.getFullPathName().toRawUTF8());
+
+    std::unique_ptr<uint8_t[]> filedata;
+    std::unique_ptr<FileInputStream> stream(file.createInputStream());
+    uint64_t length;
+    constexpr uint64_t max_length = 8 * 1024 * 1024;
+    const char *error_title = "Error loading instrument";
+
+    if (stream->failedToOpen()) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The file could not be opened.");
+        return;
+    }
+
+    if ((length = stream->getTotalLength()) >= max_length) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The selected file is too large to be valid.");
+        return;
+    }
+
+    filedata.reset(new uint8_t[length]);
+    if (stream->read(filedata.get(), length) != length) {
+        AlertWindow::showMessageBox(
+            AlertWindow::WarningIcon, error_title, "The input operation has failed.");
+        return;
+    }
+
+    self()->load_single_instrument_mem(filedata.get(), length, file.getFileNameWithoutExtension());
+}
+
+template <class T>
 void Generic_Main_Component<T>::handle_change_keymap()
 {
     MidiKeyboardComponent &kb = *self()->midi_kb;
@@ -871,7 +916,7 @@ double Generic_Main_Component<T>::get_volume_knob_value() const
 {
     const Parameter_Block &pb = *parameter_block_;
 
-    double knobval = static_cast<const T *>(this)->kn_mastervol->value();
+    double knobval = self()->kn_mastervol->value();
     if (knobval <= 0.0)
         return 0.0;
 
@@ -896,10 +941,10 @@ void Generic_Main_Component<T>::set_volume_knob_value(double linval, Notificatio
     double dbmax = 20.0 * std::log10(linmax);
 
     if (linval < linmin)
-        return static_cast<T *>(this)->kn_mastervol->set_value(0.0, ntf);
+        return self()->kn_mastervol->set_value(0.0, ntf);
 
     double dbval = 20.0 * std::log10(linval);
-    static_cast<T *>(this)->kn_mastervol->set_value(
+    self()->kn_mastervol->set_value(
         (dbval - dbmin) / (dbmax - dbmin), ntf);
 }
 

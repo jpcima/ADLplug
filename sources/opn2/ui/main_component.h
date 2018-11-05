@@ -68,6 +68,7 @@ public:
     void set_chip_settings(NotificationType ntf);
 
     void load_bank_mem(const uint8_t *mem, size_t length, const String &bank_name);
+    void load_single_instrument_mem(const uint8_t *mem, size_t length, const String &bank_name);
     void save_bank(const File &file);
 
     void on_change_midi_channel(unsigned channel);
