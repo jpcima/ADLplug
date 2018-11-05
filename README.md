@@ -131,10 +131,11 @@ The other parts and respective licenses are indicated here below.
 | `thirdparty/libOPNMIDI`                    | GNU LGPL v3, GNU LGPL v2.1, GNU GPL v3 |
 | `thirdparty/simpleini`                     | MIT                                    |
 | `thirdparty/vst3sdk`                       | GNU GPL v3                             |
+| `thirdparty/nonlib`                        | ISC                                    |
 | `thirdparty/wopl`                          | GNU LGPL v3                            |
 | `thirdparty/wopn`                          | GNU LGPL v3                            |
-| `sources/opl3/adl/measurer`               | GNU GPL v3                             |
+| `sources/opl3/adl/measurer`                | GNU GPL v3                             |
 | `sources/opl3/adl/measurer/chips/dosbox`   | GNU GPL v2+                            |
-| `sources/opn2/adl/measurer`               | GNU GPL v3                             |
+| `sources/opn2/adl/measurer`                | GNU GPL v3                             |
 | `sources/opn2/adl/measurer/chips/mame`     | GNU GPL v2+                            |
 | `sources/opl3/ui/components/opl3_waves.cc` | GNU LGPL v2.1                          |

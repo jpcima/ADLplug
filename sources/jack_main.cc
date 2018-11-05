@@ -3,56 +3,27 @@
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
+#include "jack_main.h"
 #include "plugin_processor.h"
 #include "plugin_editor.h"
 #include "utility/midi.h"
-#include <jack/jack.h>
-#include <jack/midiport.h>
-#include <memory>
+#include "utility/functional_timer.h"
 #include <string.h>
 #include <sys/mman.h>
 extern AudioProcessor *JUCE_CALLTYPE createPluginFilter();
 
-class Application_Window : public DocumentWindow
-{
-public:
-    explicit Application_Window(const String &name)
-        : DocumentWindow(
-            name,
-            LookAndFeel::getDefaultLookAndFeel().findColour(ResizableWindow::backgroundColourId),
-            DocumentWindow::minimiseButton|DocumentWindow::closeButton) {}
-
-    void closeButtonPressed() override
-        { JUCEApplicationBase::quit(); }
-};
-
-class Application_Jack : public JUCEApplication
-{
-public:
-    void initialise(const String &args) override;
-    void shutdown() override;
-
-    const String getApplicationName() override
-        { return JucePlugin_Name; }
-    const String getApplicationVersion() override
-        { return JucePlugin_VersionString; }
-
-private:
-    static int process(jack_nframes_t nframes, void *user_data);
-
-    std::unique_ptr<AdlplugAudioProcessor> processor_;
-    std::unique_ptr<Application_Window> window_;
-
-    struct jack_client_deleter {
-        void operator()(jack_client_t *c) const { jack_client_close(c); }
-    };
-    std::unique_ptr<jack_client_t, jack_client_deleter> client_;
-    jack_port_t *midiport_ = nullptr;
-    jack_port_t *outport_[2] = {nullptr, nullptr};
-};
-
 void Application_Jack::initialise(const String &args)
 {
+#if defined(ADLPLUG_USE_NSM)
+    if (const char *nsm_url = getenv("NSM_URL")) {
+        if (!initialise_session(nsm_url)) {
+            setApplicationReturnValue(1);
+            return quit();
+        }
+        return;
+    }
+#endif
+
     const StringArray argv = getCommandLineParameterArray();
     std::vector<const String *> optargs;
     bool arg_autoconnect = false;
@@ -91,18 +62,41 @@ void Application_Jack::initialise(const String &args)
         return quit();
     }
 
+    if (!setup_audio(JucePlugin_Name)) {
+        setApplicationReturnValue(1);
+        return quit();
+    }
+
+    if (!start(arg_autoconnect)) {
+        setApplicationReturnValue(1);
+        return quit();
+    }
+}
+
+void Application_Jack::shutdown()
+{
+    client_.reset();
+    window_.reset();
+    processor_.reset();
+}
+
+bool Application_Jack::setup_audio(const char *client_name)
+{
+    jack_client_t *client = client_.get();
+    if (client)
+        return true;
+
     if (mlockall(MCL_CURRENT|MCL_FUTURE) != 0)
         fprintf(stderr, "could not lock memory\n");
 
-    jack_client_t *client = jack_client_open(JucePlugin_Name, JackNoStartServer, nullptr);
+    client = jack_client_open(client_name, JackNoStartServer, nullptr);
     if (!client) {
         AlertWindow::showMessageBox(
             AlertWindow::WarningIcon,
             TRANS("JACK Audio"),
             TRANS("Could not create a new audio client.\n\n"
                   "Please start the JACK server and try again."));
-        setApplicationReturnValue(1);
-        return quit();
+        return false;
     }
     client_.reset(client);
 
@@ -115,10 +109,17 @@ void Application_Jack::initialise(const String &args)
             AlertWindow::WarningIcon,
             TRANS("JACK Audio"),
             TRANS("Could not create the synthesizer ports."));
-        setApplicationReturnValue(1);
-        return quit();
+        return false;
     }
 
+    jack_set_process_callback(client, &process, this);
+
+    return true;
+}
+
+bool Application_Jack::start(bool autoconnect)
+{
+    jack_client_t *client = client_.get();
     jack_nframes_t buffer_size = jack_get_buffer_size(client);
     unsigned sample_rate = jack_get_sample_rate(client);
 
@@ -127,18 +128,15 @@ void Application_Jack::initialise(const String &args)
     processor->prepareToPlay(sample_rate, buffer_size);
     processor->setPlayConfigDetails(0, 2, sample_rate, buffer_size);
 
-    jack_set_process_callback(client, &process, this);
-
     if (jack_activate(client) != 0) {
         AlertWindow::showMessageBox(
             AlertWindow::WarningIcon,
             TRANS("JACK Audio"),
             TRANS("Could not start the synthesizer client."));
-        setApplicationReturnValue(1);
-        return quit();
+        return false;
     }
 
-    if (arg_autoconnect) {
+    if (autoconnect) {
         std::unique_ptr<const char *[], void(*)(void *)> ports(
             jack_get_ports(client, nullptr, JACK_DEFAULT_AUDIO_TYPE, JackPortIsInput),
             &free);
@@ -162,21 +160,18 @@ void Application_Jack::initialise(const String &args)
         }
     }
 
-    Application_Window *window = new Application_Window(
-        getApplicationName() + " [jack:" + (const char *)jack_get_client_name(client) + "]");
-    window_.reset(window);
+    Application_Window *window = window_.get();
+    if (!window) {
+        window = new Application_Window(
+            getApplicationName() + " [jack:" + (const char *)jack_get_client_name(client) + "]");
+        window_.reset(window);
 
-    AdlplugAudioProcessorEditor *editor = static_cast<AdlplugAudioProcessorEditor *>(processor->createEditor());
-    window->setContentOwned(editor, true);
+        AdlplugAudioProcessorEditor *editor = static_cast<AdlplugAudioProcessorEditor *>(processor->createEditor());
+        window->setContentOwned(editor, true);
+    }
 
     window->setVisible(true);
-}
-
-void Application_Jack::shutdown()
-{
-    client_.reset();
-    window_.reset();
-    processor_.reset();
+    return true;
 }
 
 int Application_Jack::process(jack_nframes_t nframes, void *user_data)
@@ -216,6 +211,79 @@ int Application_Jack::process(jack_nframes_t nframes, void *user_data)
 
     return 0;
 }
+
+#if defined(ADLPLUG_USE_NSM)
+bool Application_Jack::initialise_session(const char *nsm_url)
+{
+    nsm_client_t *nsm = nsm_new();
+    nsm_.reset(nsm);
+    nsm_set_log_callback(nsm, &session_log, this);
+    nsm_set_open_callback(nsm, &session_open, this);
+    nsm_set_save_callback(nsm, &session_save, this);
+    if (nsm_init(nsm, nsm_url) != 0) {
+        fprintf(stderr, "error initializing session management.\n");
+        return false;
+    }
+
+    String progname = File::getSpecialLocation(File::currentApplicationFile).getFileName();
+    nsm_send_announce(nsm, JucePlugin_Name, "", progname.toRawUTF8());
+
+    Timer *nsm_timer = Functional_Timer::create(
+        [nsm]() { nsm_check_nowait(nsm); });
+    nsm_timer_.reset(nsm_timer);
+    nsm_timer->startTimer(50);
+
+    return true;
+}
+
+void Application_Jack::session_log(void *user_data, const char *fmt, ...)
+{
+    va_list ap;
+    va_start(ap, fmt);
+    vfprintf(stderr, fmt, ap);
+    va_end(ap);
+}
+
+int Application_Jack::session_open(const char *path, const char *display_name, const char *client_id, char **out_msg, void *user_data)
+{
+    Application_Jack *self = (Application_Jack *)user_data;
+
+    self->nsm_path_ = path;
+    File(path).createDirectory();
+
+    if (!self->setup_audio(client_id))
+        return 1;
+
+    if (!self->start(false))
+        return 1;
+
+    AdlplugAudioProcessor &processor = *self->processor_;
+
+    File statefile(String(path) + "/state.dat");
+    MemoryBlock state;
+    if (statefile.loadFileAsData(state))
+        processor.setStateInformation(state.getData(), state.getSize());
+
+    return 0;
+}
+
+int Application_Jack::session_save(char **out_msg, void *user_data)
+{
+    Application_Jack *self = (Application_Jack *)user_data;
+    AdlplugAudioProcessor *processor = self->processor_.get();
+
+    if (!processor)
+        return 1;
+
+    MemoryBlock state;
+    processor->getStateInformation(state);
+
+    File statefile(self->nsm_path_ + "/state.dat");
+    statefile.replaceWithData(state.getData(), state.getSize());
+
+    return 0;
+}
+#endif
 
 JUCE_CREATE_APPLICATION_DEFINE(Application_Jack);
 JUCE_MAIN_FUNCTION_DEFINITION;
