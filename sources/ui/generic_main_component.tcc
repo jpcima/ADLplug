@@ -1037,7 +1037,7 @@ void Generic_Main_Component<T>::save_bank(const File &file)
     }
 
     WOPx::BankFile wopl;
-    wopl.version = WOPx::FileVersion;
+    wopl.version = 0;
 
 #if defined(ADLPLUG_OPL3)
     wopl.opl_flags =
@@ -1101,7 +1101,7 @@ void Generic_Main_Component<T>::save_single_instrument(uint32_t program, const F
     const Instrument &ins = e_bank.ins[program & 255];
 
     WOPx::InstrumentFile opli;
-    opli.version = WOPx::FileVersion;
+    opli.version = 0;
     opli.is_drum = program & 128;
     opli.inst = ins.to_wopl();
 
