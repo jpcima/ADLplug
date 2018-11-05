@@ -63,6 +63,8 @@ public:
     void midi_keys_update();
     void parameters_update();
 
+    void update_master_volume_label();
+
     void update_emulator_icon();
     void build_emulator_menu(PopupMenu &menu);
     int select_emulator_by_menu();

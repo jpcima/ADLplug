@@ -522,6 +522,19 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     kn_mastervol->setBounds (510, 78, 48, 48);
 
+    lbl_mastervol.reset (new Label ("new label",
+                                    TRANS("-20 dB")));
+    addAndMakeVisible (lbl_mastervol.get());
+    lbl_mastervol->setFont (Font (12.0f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_mastervol->setJustificationType (Justification::centredLeft);
+    lbl_mastervol->setEditable (false, false, false);
+    lbl_mastervol->setColour (Label::textColourId, Colours::aliceblue);
+    lbl_mastervol->setColour (Label::outlineColourId, Colour (0xff8e989b));
+    lbl_mastervol->setColour (TextEditor::textColourId, Colours::black);
+    lbl_mastervol->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_mastervol->setBounds (468, 102, 44, 22);
+
 
     //[UserPreSize]
     setup_generic_components();
@@ -640,6 +653,7 @@ Main_Component::~Main_Component()
     btn_pgm_add = nullptr;
     label23 = nullptr;
     kn_mastervol = nullptr;
+    lbl_mastervol = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -1126,6 +1140,7 @@ void Main_Component::knob_value_changed(Knob *k)
     if (k == kn_mastervol.get()) {
         AudioParameterFloat &p = *pb.p_mastervol;
         p = get_volume_knob_value();
+        update_master_volume_label();
     }
     else if (k == kn_feedback.get()) {
         AudioParameterInt &p = *part.p_feedback;
@@ -1276,7 +1291,7 @@ BEGIN_JUCER_METADATA
                  parentClasses="public Generic_Main_Component&lt;Main_Component&gt;, public Knob::Listener"
                  constructorParams="AdlplugAudioProcessor &amp;proc, Parameter_Block &amp;pb, Configuration &amp;conf"
                  variableInitialisers="Generic_Main_Component(proc, pb, conf)"
-                 snapPixels="2" snapActive="1" snapShown="1" overlayOpacity="0.66"
+                 snapPixels="4" snapActive="1" snapShown="1" overlayOpacity="0.66"
                  fixedSize="0" initialWidth="800" initialHeight="600">
   <BACKGROUND backgroundColour="ff323e44">
     <RECT pos="0 0 800 600" fill=" radial: 150 50, 800 600, 0=ff8b3f4b, 1=ff602731"
@@ -1523,6 +1538,12 @@ BEGIN_JUCER_METADATA
   <GENERICCOMPONENT name="new component" id="9d73506941d5ef91" memberName="kn_mastervol"
                     virtualName="" explicitFocusOrder="0" pos="510 78 48 48" class="Styled_Knob_Default"
                     params=""/>
+  <LABEL name="new label" id="7108230db9c0dcf2" memberName="lbl_mastervol"
+         virtualName="" explicitFocusOrder="0" pos="468 102 44 22" textCol="fff0f8ff"
+         outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="-20 dB"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="12.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

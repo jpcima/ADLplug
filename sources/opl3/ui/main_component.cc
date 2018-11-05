@@ -681,6 +681,19 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     label23->setBounds (464, 78, 56, 22);
 
+    lbl_mastervol.reset (new Label ("new label",
+                                    TRANS("-20 dB")));
+    addAndMakeVisible (lbl_mastervol.get());
+    lbl_mastervol->setFont (Font (12.0f, Font::plain).withTypefaceStyle ("Regular"));
+    lbl_mastervol->setJustificationType (Justification::centredRight);
+    lbl_mastervol->setEditable (false, false, false);
+    lbl_mastervol->setColour (Label::textColourId, Colours::aliceblue);
+    lbl_mastervol->setColour (Label::outlineColourId, Colour (0xff8e989b));
+    lbl_mastervol->setColour (TextEditor::textColourId, Colours::black);
+    lbl_mastervol->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_mastervol->setBounds (468, 102, 44, 22);
+
 
     //[UserPreSize]
     setup_generic_components();
@@ -807,6 +820,7 @@ Main_Component::~Main_Component()
     btn_pgm_add = nullptr;
     kn_mastervol = nullptr;
     label23 = nullptr;
+    lbl_mastervol = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -1395,6 +1409,7 @@ void Main_Component::knob_value_changed(Knob *k)
     if (k == kn_mastervol.get()) {
         AudioParameterFloat &p = *pb.p_mastervol;
         p = get_volume_knob_value();
+        update_master_volume_label();
     }
     else if (k == kn_fb12.get()) {
         AudioParameterInt &p = *part.p_fb12;
@@ -1860,6 +1875,12 @@ BEGIN_JUCER_METADATA
          edTextCol="ff000000" edBkgCol="0" labelText="Volume" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <LABEL name="new label" id="7108230db9c0dcf2" memberName="lbl_mastervol"
+         virtualName="" explicitFocusOrder="0" pos="468 102 44 22" textCol="fff0f8ff"
+         outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="-20 dB"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="12.0" kerning="0.0" bold="0"
+         italic="0" justification="34"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

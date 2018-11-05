@@ -1212,12 +1212,37 @@ void Generic_Main_Component<T>::set_volume_knob_value(double linval, Notificatio
     double linmax = pb.p_mastervol->range.end;
     double dbmax = 20.0 * std::log10(linmax);
 
+    double kval;
+    double old_kval = self()->kn_mastervol->value();
     if (linval < linmin)
-        return self()->kn_mastervol->set_value(0.0, ntf);
+        kval = 0.0;
+    else {
+        double dbval = 20.0 * std::log10(linval);
+        kval = (dbval - dbmin) / (dbmax - dbmin);
+    }
 
-    double dbval = 20.0 * std::log10(linval);
-    self()->kn_mastervol->set_value(
-        (dbval - dbmin) / (dbmax - dbmin), ntf);
+    self()->kn_mastervol->set_value(kval, ntf);
+    if (old_kval != self()->kn_mastervol->value())
+        update_master_volume_label();
+}
+
+template <class T>
+void Generic_Main_Component<T>::update_master_volume_label()
+{
+    const Parameter_Block &pb = *parameter_block_;
+
+    double dbmin = -20.0;
+    double linmax = pb.p_mastervol->range.end;
+    double dbmax = 20.0 * std::log10(linmax);
+
+    double kval = self()->kn_mastervol->value();
+    if (kval == 0.0)
+        self()->lbl_mastervol->setText(CharPointer_UTF8(u8"-∞ dB"), dontSendNotification);
+    else {
+        double dbval = dbmin + (dbmax - dbmin) * kval;
+        self()->lbl_mastervol->setText(
+            String(lround(jlimit(dbmin, dbmax, dbval))) + " dB", dontSendNotification);
+    }
 }
 
 template <class T>
