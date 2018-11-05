@@ -526,7 +526,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
                                     TRANS("-20 dB")));
     addAndMakeVisible (lbl_mastervol.get());
     lbl_mastervol->setFont (Font (12.0f, Font::plain).withTypefaceStyle ("Regular"));
-    lbl_mastervol->setJustificationType (Justification::centredLeft);
+    lbl_mastervol->setJustificationType (Justification::centredRight);
     lbl_mastervol->setEditable (false, false, false);
     lbl_mastervol->setColour (Label::textColourId, Colours::aliceblue);
     lbl_mastervol->setColour (Label::outlineColourId, Colour (0xff8e989b));
@@ -1543,7 +1543,7 @@ BEGIN_JUCER_METADATA
          outlineCol="ff8e989b" edTextCol="ff000000" edBkgCol="0" labelText="-20 dB"
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="12.0" kerning="0.0" bold="0"
-         italic="0" justification="33"/>
+         italic="0" justification="34"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA
