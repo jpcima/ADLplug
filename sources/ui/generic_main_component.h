@@ -125,6 +125,7 @@ protected:
     std::unique_ptr<Timer> cpu_load_timer_;
     std::unique_ptr<Timer> midi_activity_timer_;
     std::unique_ptr<Timer> midi_keys_timer_;
+    std::unique_ptr<Timer> parameter_watch_timer_;
 
     std::vector<std::unique_ptr<ImageComponent>> image_overlays_;
 

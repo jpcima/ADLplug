@@ -100,8 +100,8 @@ void Generic_Main_Component<T>::setup_generic_components()
     midi_keys_timer_.reset(Functional_Timer::create([this]() { midi_keys_update(); }));
     midi_keys_timer_->startTimer(40);
 
-    cpu_load_timer_.reset(Functional_Timer::create([this]() { parameters_update(); }));
-    cpu_load_timer_->startTimer(500);
+    parameter_watch_timer_.reset(Functional_Timer::create([this]() { parameters_update(); }));
+    parameter_watch_timer_->startTimer(500);
 }
 
 template <class T>
