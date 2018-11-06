@@ -30,4 +30,5 @@ private:
     bool logarithmic_ = false;
     double hue_start_ = 0.0;
     double hue_range_ = 0.0;
+    std::vector<Colour> colormap_;
 };

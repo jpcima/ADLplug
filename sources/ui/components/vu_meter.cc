@@ -55,27 +55,32 @@ void Vu_Meter::paint(Graphics &g)
         logvalue = (db - dbmin) / (0 - dbmin);
     }
 
-    bounds.reduce(2, 1);
+    bounds.reduce(1, 1);
     int x = bounds.getX();
     int y = bounds.getY();
     int w = bounds.getWidth();
     int h = bounds.getHeight();
 
+    if (w <= 0)
+        return;
+
     const double hue_start = hue_start_;
     const double hue_range = hue_range_;
+    std::vector<Colour> &colormap = colormap_;
+
+    if (colormap.size() != (unsigned)w) {
+        colormap.resize((unsigned)w);
+        for (int i = 0; i < w; ++i) {
+            double r = i / (double)w;
+            double hue = hue_start + r * hue_range;
+            colormap[i] = Colour::fromHSV(hue, 0.75, 0.75, 0xff);
+        }
+    }
 
     int w2 = lround(w * logvalue);
     w2 = (w2 > w) ? w : w2;
-    if (hue_range == 0) {
-        g.setColour(Colour::fromHSV(hue_start, 1.0, 1.0, 0xff));
-        g.fillRect(bounds.withWidth(w2));
-    }
-    else {
-        for (int i = 0; i < w2; ++i) {
-            double r = i / (double)(w - 1);
-            double hue = hue_start + r * hue_range;
-            g.setColour(Colour::fromHSV(hue, 1.0, 1.0, 0xff));
-            g.drawLine(x + i, y, x + i, y + h - 1);
-        }
+    for (int i = 0; i <= w2; ++i) {
+        g.setColour(colormap[i]);
+        g.drawVerticalLine(x + i, y, y + h);
     }
 }
