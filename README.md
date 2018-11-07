@@ -81,6 +81,8 @@ sudo cmake --build . --target install
 - add a control for master volume
 - fixed a case when the state loading fallback would fail because of a bad initialization sequence
 - allow to reload a saved bank which has no melodic banks or no percussive banks
+- add an ability to delete entire banks
+- memorize the instrument directory between uses
 - update the bank collection for OPN2
 
 **1.0.0.beta.3**
