@@ -27,6 +27,7 @@ public:
     bool load_program(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned flags);
     bool delete_program(const Bank_Id &id, unsigned program, unsigned flags);
     bool find_program(const Bank_Id &id, unsigned program, Instrument &ins);
+    bool delete_bank(const Bank_Id &id, unsigned flags);
 
     bool load_measurement(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned kon, unsigned koff, bool notify);
 

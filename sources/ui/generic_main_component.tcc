@@ -562,6 +562,9 @@ void Generic_Main_Component<T>::handle_add_program()
     PopupMenu menu;
     menu.addItem(1, "Add program");
     menu.addItem(2, "Delete program");
+    menu.addSeparator();
+    menu.addItem(3, "Delete bank");
+    menu.addItem(4, "Delete all banks");
     int selection = menu.showMenu(PopupMenu::Options()
                                   .withParentComponent(this));
 
@@ -609,6 +612,32 @@ void Generic_Main_Component<T>::handle_add_program()
             Messages::User::DeleteInstrument msg;
             msg.bank = bank;
             msg.program = program & 127;
+            msg.notify_back = true;
+            write_to_processor(msg.tag, &msg, sizeof(msg));
+        }
+        break;
+    }
+    case 3: {
+        bool confirm = AlertWindow::showOkCancelBox(
+            AlertWindow::QuestionIcon, "Delete bank",
+            fmt::format("Confirm deletion of bank {:03d}:{:03d}?",
+                        bank.msb, bank.lsb));
+        if (confirm) {
+            Messages::User::DeleteBank msg;
+            msg.bank = bank;
+            msg.notify_back = true;
+            write_to_processor(msg.tag, &msg, sizeof(msg));
+            msg.bank.percussive = !bank.percussive;
+            write_to_processor(msg.tag, &msg, sizeof(msg));
+        }
+        break;
+    }
+    case 4: {
+        bool confirm = AlertWindow::showOkCancelBox(
+            AlertWindow::QuestionIcon, "Delete all banks",
+            fmt::format("Confirm deletion of all banks?"));
+        if (confirm) {
+            Messages::User::ClearBanks msg;
             msg.notify_back = true;
             write_to_processor(msg.tag, &msg, sizeof(msg));
         }

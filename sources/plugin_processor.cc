@@ -567,6 +567,13 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         bm.delete_program(body.bank, body.program, flags);
         break;
     }
+    case (unsigned)User_Message::DeleteBank: {
+        auto &body = *(const Messages::User::DeleteBank *)data;
+        unsigned flags =
+            (body.notify_back ? Bank_Manager::LP_Notify : 0);
+        bm.delete_bank(body.bank, flags);
+        break;
+    }
     case (unsigned)User_Message::RenameBank: {
         auto &body = *(const Messages::User::RenameBank *)data;
         bm.rename_bank(body.bank, body.name, body.notify_back);

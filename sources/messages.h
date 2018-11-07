@@ -64,6 +64,7 @@ enum class User_Message {
     LoadInstrument,  // edits an instrument
     CreateInstrument,  // creates an instrument
     DeleteInstrument,  // deletes an instrument
+    DeleteBank,  // deletes a bank
     RenameBank,  // set bank name
     RenameProgram,  // set program name
     SelectProgram,  // changes selected program number
@@ -119,6 +120,12 @@ struct DeleteInstrument {
     static constexpr User_Message tag = User_Message::DeleteInstrument;
     Bank_Id bank;
     uint8_t program = 0;
+    bool notify_back = false;
+};
+
+struct DeleteBank {
+    static constexpr User_Message tag = User_Message::DeleteBank;
+    Bank_Id bank;
     bool notify_back = false;
 };
 

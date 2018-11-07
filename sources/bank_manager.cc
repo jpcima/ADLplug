@@ -255,6 +255,24 @@ bool Bank_Manager::delete_program(const Bank_Id &id, unsigned program, unsigned 
     return true;
 }
 
+bool Bank_Manager::delete_bank(const Bank_Id &id, unsigned flags)
+{
+    Player &pl = pl_;
+
+    unsigned index = find_slot(id);
+    if (index == (unsigned)-1)
+        return false;
+
+    Bank_Info &info = bank_infos_[index];
+    pl.ensure_remove_bank(info.bank);
+    info.id = Bank_Id();
+
+    if (flags & LP_Notify)
+        slots_notify_flag_ = true;
+
+    return true;
+}
+
 bool Bank_Manager::load_measurement(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned kon, unsigned koff, bool notify)
 {
     Player &pl = pl_;
