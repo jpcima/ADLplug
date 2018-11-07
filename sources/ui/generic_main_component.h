@@ -86,6 +86,9 @@ public:
     double get_volume_knob_value() const;
     void set_volume_knob_value(double value, NotificationType ntf);
 
+    void initialize_bank_directory();
+    void change_bank_directory(const File &directory);
+
     void handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity) override;
     void handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity) override;
 

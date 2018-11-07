@@ -119,6 +119,9 @@ static void create_default_configuration(CSimpleIniA &ini)
     ini.SetValue("", "configuration-version", std::to_string(config_version).c_str(),
                  "# the version of the file specification");
 
+    ini.SetValue("paths", "last-instrument-directory", "",
+                 "# the last directory in which instruments have been accessed");
+
     ini.SetValue("piano", "layout",
                  key_layout_names[(unsigned)Key_Layout::Default],
                  "# the default key layout");

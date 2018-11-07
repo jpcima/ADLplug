@@ -6,6 +6,7 @@
 #include "generic_main_component.h"
 #include "plugin_processor.h"
 #include "parameter_block.h"
+#include "configuration.h"
 #include "ui/components/new_program_editor.h"
 #include "ui/components/program_name_editor.h"
 #include "ui/components/midi_keyboard_ex.h"
@@ -50,7 +51,7 @@ Generic_Main_Component<T>::Generic_Main_Component(
     Desktop::getInstance().addFocusChangeListener(this);
     setWantsKeyboardFocus(true);
     midi_kb_state_.addListener(this);
-    bank_directory_ = File::getSpecialLocation(File::currentExecutableFile).getParentDirectory();
+    initialize_bank_directory();
 }
 
 template <class T>
@@ -768,7 +769,7 @@ void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
         FileChooser chooser(TRANS("Load bank..."), bank_directory_, bank_file_filter, prefer_native_file_dialog);
         if (chooser.browseForFileToOpen()) {
             File file = chooser.getResult();
-            bank_directory_ = file.getParentDirectory();
+            change_bank_directory(file.getParentDirectory());
             load_bank(file);
         }
     }
@@ -783,7 +784,7 @@ void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
         FileChooser chooser(TRANS("Load instrument..."), bank_directory_, ins_file_filter, prefer_native_file_dialog);
         if (chooser.browseForFileToOpen()) {
             File file = chooser.getResult();
-            bank_directory_ = file.getParentDirectory();
+            change_bank_directory(file.getParentDirectory());
             load_single_instrument(program_selection - 1, file);
         }
     }
@@ -833,7 +834,7 @@ void Generic_Main_Component<T>::handle_save_bank(Component *clicked)
         file = file.withFileExtension(bank_file_extension);
 
         if (overwrite_confirm(file)) {
-            bank_directory_ = file.getParentDirectory();
+            change_bank_directory(file.getParentDirectory());
             save_bank(file);
         }
     }
@@ -853,7 +854,7 @@ void Generic_Main_Component<T>::handle_save_bank(Component *clicked)
         file = file.withFileExtension(ins_file_extension);
 
         if (overwrite_confirm(file)) {
-            bank_directory_ = file.getParentDirectory();
+            change_bank_directory(file.getParentDirectory());
             save_single_instrument(program_selection - 1, file);
         }
     }
@@ -1253,6 +1254,30 @@ void Generic_Main_Component<T>::set_volume_knob_value(double linval, Notificatio
     self()->kn_mastervol->set_value(kval, ntf);
     if (old_kval != self()->kn_mastervol->value())
         update_master_volume_label();
+}
+
+template <class T>
+void Generic_Main_Component<T>::initialize_bank_directory()
+{
+    Configuration &conf = *conf_;
+
+    File dir(conf.get_string("paths", "last-instrument-directory", ""));
+    if (!dir.isDirectory())
+        dir = File::getSpecialLocation(File::userDocumentsDirectory);
+    if (!dir.isDirectory())
+        dir = File::getSpecialLocation(File::userHomeDirectory);
+
+    bank_directory_ = dir;
+}
+
+template <class T>
+void Generic_Main_Component<T>::change_bank_directory(const File &directory)
+{
+    Configuration &conf = *conf_;
+
+    bank_directory_ = directory;
+    conf.set_string("paths", "last-instrument-directory", directory.getFullPathName().toRawUTF8());
+    conf.save_default();
 }
 
 template <class T>
