@@ -7,6 +7,7 @@
 #include "utility/field_bitops.h"
 #include <wopl/wopl_file.h>
 #include <adlmidi.h>
+#include <vector>
 #include <stdint.h>
 #include <stdio.h>
 struct WOPLInstrument;

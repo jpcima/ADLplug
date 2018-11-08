@@ -7,6 +7,7 @@
 #include "utility/field_bitops.h"
 #include <wopn/wopn_file.h>
 #include <opnmidi.h>
+#include <vector>
 #include <stdint.h>
 #include <stdio.h>
 struct WOPNInstrument;
