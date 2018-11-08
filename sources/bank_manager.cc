@@ -8,6 +8,7 @@
 #include "worker.h"
 #include "messages.h"
 #include "adl/player.h"
+#include "adl/wopx_file.h"
 #include <algorithm>
 #include <cstring>
 #include <cassert>
@@ -19,10 +20,25 @@
 #   define trace(fmt, ...) fprintf(stderr, "[Bank Manager] " fmt "\n", ##__VA_ARGS__)
 #endif
 
-Bank_Manager::Bank_Manager(AdlplugAudioProcessor &proc, Player &pl)
+Bank_Manager::Bank_Manager(AdlplugAudioProcessor &proc, Player &pl, const void *wopl_data, size_t wopl_size)
     : proc_(proc), pl_(pl)
 {
+    WOPx::BankFile_Ptr wopl;
+    if (pl.load_bank_data(wopl_data, wopl_size))
+        wopl.reset(WOPx::LoadBankFromMem((void *)wopl_data, wopl_size, nullptr));
+
     initialize_all_banks();
+
+    unsigned nm = wopl ? wopl->banks_count_melodic : 0;
+    unsigned np = wopl ? wopl->banks_count_percussion : 0;
+
+    for (unsigned i = 0; i < nm + np; ++i) {
+        bool percussive = i >= nm;
+        const WOPx::Bank &bank = percussive ?
+            wopl->banks_percussive[i - nm] : wopl->banks_melodic[i];
+        Bank_Id id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
+        rename_bank(id, bank.bank_name, false);
+    }
 }
 
 void Bank_Manager::clear_banks(bool notify)

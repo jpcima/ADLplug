@@ -129,7 +129,6 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     pl->set_soft_pan_enabled(true);
     pl->set_num_chips(Chip_Settings{}.chip_count);
     pl->set_emulator(get_emulator_defaults().default_index);
-    pl->load_bank_data(default_wopl.data(), default_wopl.size());
     chip_settings_need_notification_.store(1);
 
     for (unsigned i = 0; i < 2; ++i) {
@@ -146,7 +145,8 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
         midi_channel_note_active_[i].reset();
     }
 
-    Bank_Manager *bm = new Bank_Manager(*this, *pl);
+    Bank_Manager *bm = new Bank_Manager(
+        *this, *pl, default_wopl.data(), default_wopl.size());
     bank_manager_.reset(bm);
 
     for (unsigned p = 0; p < 16; ++p) {

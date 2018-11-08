@@ -14,7 +14,7 @@ class Player;
 
 class Bank_Manager {
 public:
-    explicit Bank_Manager(AdlplugAudioProcessor &proc, Player &pl);
+    Bank_Manager(AdlplugAudioProcessor &proc, Player &pl, const void *wopl_data, size_t wopl_size);
     void clear_banks(bool notify);
 
     void mark_everything_for_notification();
