@@ -178,6 +178,7 @@ endif()
 add_library(fmt STATIC
   "thirdparty/fmt/src/format.cc"
   "thirdparty/fmt/src/posix.cc")
+target_compile_definitions(fmt PUBLIC "FMT_USE_USER_DEFINED_LITERALS=0")
 target_include_directories(fmt PUBLIC "thirdparty/fmt/include")
 set_property(TARGET fmt PROPERTY POSITION_INDEPENDENT_CODE ON)
 
