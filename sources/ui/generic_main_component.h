@@ -72,9 +72,9 @@ public:
     void handle_load_bank(Component *clicked);
     void handle_save_bank(Component *clicked);
     void load_bank(const File &file);
-    void load_single_instrument(uint32_t program, const File &file);
+    void load_single_instrument(uint32_t program, const File &file, int format);
     void load_bank_mem(const uint8_t *mem, size_t length, const String &bank_name);
-    void load_single_instrument_mem(uint32_t program, const uint8_t *mem, size_t length, const String &bank_name);
+    void load_single_instrument_mem(uint32_t program, const uint8_t *mem, size_t length, const String &bank_name, int format);
     void save_bank(const File &file);
     void save_single_instrument(uint32_t program, const File &file);
 

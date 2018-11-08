@@ -745,7 +745,15 @@ template <class T>
 void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
 {
     const char *bank_file_filter = "*."  WOPx_BANK_SUFFIX;
-    const char *ins_file_filter = "*." WOPx_INST_SUFFIX;
+
+#if defined(ADLPLUG_OPL3)
+    const char *ins_file_filter =
+        "*." WOPx_INST_SUFFIX ";"
+        "*.sbi";
+#elif defined(ADLPLUG_OPN2)
+    const char *ins_file_filter =
+        "*." WOPx_INST_SUFFIX;
+#endif
 
     PopupMenu menu;
     int menu_index = 1;
@@ -785,7 +793,12 @@ void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
         if (chooser.browseForFileToOpen()) {
             File file = chooser.getResult();
             change_bank_directory(file.getParentDirectory());
-            load_single_instrument(program_selection - 1, file);
+            int format = 0;
+#if defined(ADLPLUG_OPL3)
+            if (file.hasFileExtension(".sbi"))
+                format = 1;
+#endif
+            load_single_instrument(program_selection - 1, file, format);
         }
     }
     else if (selection >= menu_index) {
@@ -894,7 +907,7 @@ void Generic_Main_Component<T>::load_bank(const File &file)
 }
 
 template <class T>
-void Generic_Main_Component<T>::load_single_instrument(uint32_t program, const File &file)
+void Generic_Main_Component<T>::load_single_instrument(uint32_t program, const File &file, int format)
 {
     trace("Load from " WOPx_INST_FORMAT " file: %s", file.getFullPathName().toRawUTF8());
 
@@ -923,7 +936,7 @@ void Generic_Main_Component<T>::load_single_instrument(uint32_t program, const F
         return;
     }
 
-    load_single_instrument_mem(program, filedata.get(), length, file.getFileNameWithoutExtension());
+    load_single_instrument_mem(program, filedata.get(), length, file.getFileNameWithoutExtension(), format);
 }
 
 template <class T>
@@ -991,15 +1004,32 @@ void Generic_Main_Component<T>::load_bank_mem(const uint8_t *mem, size_t length,
 }
 
 template <class T>
-void Generic_Main_Component<T>::load_single_instrument_mem(uint32_t program, const uint8_t *mem, size_t length, const String &bank_name)
+void Generic_Main_Component<T>::load_single_instrument_mem(uint32_t program, const uint8_t *mem, size_t length, const String &bank_name, int format)
 {
-    WOPx::InstrumentFile wopi = {};
+    Instrument ins;
     const char *error_title = "Error loading instrument";
 
-    if (WOPx::LoadInstFromMem(&wopi, (void *)mem, length) != 0) {
-        AlertWindow::showMessageBox(
-            AlertWindow::WarningIcon, error_title, "The input file is not in " WOPx_INST_FORMAT " format.");
-        return;
+    switch (format) {
+    default: {
+        WOPx::InstrumentFile wopi = {};
+        if (WOPx::LoadInstFromMem(&wopi, (void *)mem, length) != 0) {
+            AlertWindow::showMessageBox(
+                AlertWindow::WarningIcon, error_title, "The input file is not in " WOPx_INST_FORMAT " format.");
+            return;
+        }
+        ins = Instrument::from_wopl(wopi.inst);
+        break;
+    }
+#if defined(ADLPLUG_OPL3)
+    case 1:
+        ins = Instrument::from_sbi(mem, length);
+        if (ins.blank()) {
+            AlertWindow::showMessageBox(
+                AlertWindow::WarningIcon, error_title, "The input file is not in SBI format.");
+            return;
+        }
+        break;
+#endif
     }
 
     unsigned part = midichannel_;
@@ -1011,7 +1041,7 @@ void Generic_Main_Component<T>::load_single_instrument_mem(uint32_t program, con
     msg.part = part;
     msg.bank = bank;
     msg.program = program & 127;
-    msg.instrument = Instrument::from_wopl(wopi.inst);
+    msg.instrument = ins;
     msg.need_measurement = true;
     msg.notify_back = true;
     write_to_processor(msg.tag, &msg, sizeof(msg));

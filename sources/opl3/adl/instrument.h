@@ -26,6 +26,8 @@ struct Instrument : ADL_Instrument
     static Instrument from_wopl(const WOPLInstrument &o) noexcept;
     WOPLInstrument to_wopl() const noexcept;
 
+    static Instrument from_sbi(const uint8_t *data, size_t length) noexcept;
+
     void to_properties(juce::PropertySet &set, const char *key_prefix) const;
     static Instrument from_properties(const juce::PropertySet &set, const char *key_prefix);
 

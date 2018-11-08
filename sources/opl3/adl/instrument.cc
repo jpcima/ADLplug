@@ -65,6 +65,98 @@ WOPLInstrument Instrument::to_wopl() const noexcept
     return ins;
 }
 
+Instrument Instrument::from_sbi(const uint8_t *data, size_t length) noexcept
+{
+    Instrument ins;
+    ins.version = ADLMIDI_InstrumentVersion;
+    ins.blank(true);
+
+    if (length < 4 + 32)
+        return ins;
+
+    const uint8_t *magic = data;
+    data += 4;
+    length -= 4;
+
+    enum {
+        SBI_Dos, SBI_Unix2OP, SBI_Unix4OP, SBI_Other
+    } kind;
+
+    size_t minsize;
+    if (!memcmp(magic, "SBI\x1a", 4)) {
+        kind = SBI_Dos;
+        minsize = 11;
+    }
+    else if (!memcmp(magic, "2OP\x1a", 4)) {
+        kind = SBI_Unix2OP;
+        minsize = 11;
+    }
+    else if (!memcmp(magic, "4OP\x1a", 4)) {
+        kind = SBI_Unix4OP;
+        minsize = 22;
+    }
+    else if (!memcmp(magic, "SBI", 3)) {
+        kind = SBI_Other;
+        minsize = 11;
+    }
+    else
+        return ins;
+
+    const uint8_t *name_field = data;
+    if (kind != SBI_Unix2OP && kind != SBI_Unix4OP)
+        memcpy(ins.name, name_field, 32);
+    else
+        memcpy(ins.name, name_field, 30);
+    data += 32;
+    length -= 32;
+
+    if (length < minsize) {
+        ins.blank(true);
+        return ins;
+    }
+
+    for (unsigned i = 0; i < 2; ++i) {
+        ins.operators[i].avekf_20 = data[0 + !i];
+        ins.operators[i].ksl_l_40 = data[2 + !i];
+        ins.operators[i].atdec_60 = data[4 + !i];
+        ins.operators[i].susrel_80 = data[6 + !i];
+        ins.operators[i].waveform_E0 = data[8 + !i];
+    }
+    ins.fb_conn1_C0 = data[10];
+    data += 11;
+    length -= 11;
+
+    switch (kind) {
+    case SBI_Dos:
+        if (length > 1)
+            ins.note_offset1 = (int8_t)data[1];
+        if (length > 2)
+            ins.percussion_key_number = data[2];
+        break;
+
+    case SBI_Unix4OP:
+        ins.four_op(true);
+        for (unsigned i = 0; i < 2; ++i) {
+            ins.operators[2 + i].avekf_20 = data[0 + !i];
+            ins.operators[2 + i].ksl_l_40 = data[2 + !i];
+            ins.operators[2 + i].atdec_60 = data[4 + !i];
+            ins.operators[2 + i].susrel_80 = data[6 + !i];
+            ins.operators[2 + i].waveform_E0 = data[8 + !i];
+        }
+        ins.fb_conn2_C0 = data[10];
+        /* fall through */
+    case SBI_Unix2OP:
+        ins.percussion_key_number = name_field[31];
+        break;
+
+    default:
+        break;
+    }
+
+    ins.blank(false);
+    return ins;
+}
+
 void Instrument::describe(FILE *out) const noexcept
 {
     fprintf(stderr,
