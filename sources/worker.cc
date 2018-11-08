@@ -11,7 +11,7 @@
 #include <cassert>
 namespace stc = std::chrono;
 
-#if 0
+#if 1
 #   define trace(fmt, ...)
 #else
 #   define trace(fmt, ...) fprintf(stderr, "[Worker] " fmt "\n", ##__VA_ARGS__)

@@ -19,7 +19,7 @@
 #include <fmt/format.h>
 #include <cassert>
 
-#if 0
+#if 1
 #   define trace(fmt, ...)
 #else
 #   define trace(fmt, ...) fprintf(stderr, "[UI Main] " fmt "\n", ##__VA_ARGS__)

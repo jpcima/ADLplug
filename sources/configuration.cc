@@ -7,7 +7,7 @@
 #include "ui/utility/key_maps.h"
 #include <SimpleIni.h>
 
-#if 0
+#if 1
 #   define trace(fmt, ...)
 #else
 #   define trace(fmt, ...) fprintf(stderr, "[Configuration] " fmt "\n", ##__VA_ARGS__)

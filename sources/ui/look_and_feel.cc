@@ -6,7 +6,7 @@
 #include "ui/look_and_feel.h"
 #include "BinaryData.h"
 
-#if 0
+#if 1
 #   define trace(fmt, ...)
 #else
 #   define trace(fmt, ...) fprintf(stderr, "[LF] " fmt "\n", ##__VA_ARGS__)
