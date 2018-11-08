@@ -107,3 +107,27 @@ bool Instrument::equal_instrument_except_delays(const OPN2_Instrument &o) const 
     samedelay.delay_off_ms = this->delay_off_ms;
     return equal_instrument(samedelay);
 }
+
+void Midi_Bank::from_wopl(const WOPNFile &wopl, std::vector<Midi_Bank> &banks, Instrument_Global_Parameters &igp)
+{
+    banks.clear();
+
+    unsigned nm = wopl.banks_count_melodic;
+    unsigned np = wopl.banks_count_percussion;
+    banks.resize(nm + np);
+
+    for (unsigned i = 0; i < nm + np; ++i) {
+        Midi_Bank &bank = banks[i];
+        bool percussive = i >= nm;
+        const WOPNBank &src = percussive ?
+            wopl.banks_percussive[i - nm] : wopl.banks_melodic[i];
+        bank.id = Bank_Id(src.bank_midi_msb, src.bank_midi_lsb, percussive);
+        for (unsigned i = 0; i < 128; ++i)
+            bank.ins[i] = Instrument::from_wopl(src.ins[i]);
+        memcpy(bank.name, src.bank_name, 32);
+    }
+
+    igp.volume_model = wopl.volume_model;
+    igp.lfo_enable = wopl.lfo_freq & 8;
+    igp.lfo_frequency = wopl.lfo_freq & 7;
+}

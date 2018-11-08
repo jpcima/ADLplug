@@ -10,6 +10,7 @@
 #include <stdint.h>
 #include <stdio.h>
 struct WOPNInstrument;
+struct WOPNFile;
 class Player;
 namespace juce { class PropertySet; }
 
@@ -110,3 +111,12 @@ inline bool operator<(Bank_Id a, Bank_Id b)
 {
     return a.to_integer() < b.to_integer();
 }
+
+struct Midi_Bank
+{
+    Bank_Id id;
+    Instrument ins[128];
+    char name[32] = {};
+
+    static void from_wopl(const WOPNFile &wopl, std::vector<Midi_Bank> &banks, Instrument_Global_Parameters &igp);
+};

@@ -744,13 +744,15 @@ int Generic_Main_Component<T>::select_emulator_by_menu()
 template <class T>
 void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
 {
-    const char *bank_file_filter = "*."  WOPx_BANK_SUFFIX;
-
 #if defined(ADLPLUG_OPL3)
+    const char *bank_file_filter =
+        "*."  WOPx_BANK_SUFFIX;
     const char *ins_file_filter =
         "*." WOPx_INST_SUFFIX ";"
         "*.sbi";
 #elif defined(ADLPLUG_OPN2)
+    const char *bank_file_filter =
+        "*."  WOPx_BANK_SUFFIX;
     const char *ins_file_filter =
         "*." WOPx_INST_SUFFIX;
 #endif
@@ -778,7 +780,8 @@ void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
         if (chooser.browseForFileToOpen()) {
             File file = chooser.getResult();
             change_bank_directory(file.getParentDirectory());
-            load_bank(file);
+            int format = 0;
+            load_bank(file, format);
         }
     }
     else if (selection == 2) {
@@ -805,7 +808,7 @@ void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
         uint32_t index = selection - menu_index;
         const std::string &name = pak.name(index);
         std::string wopl = pak.extract(index);
-        load_bank_mem((const uint8_t *)wopl.data(), wopl.size(), name);
+        load_bank_mem((const uint8_t *)wopl.data(), wopl.size(), name, 0);
     }
 }
 
@@ -874,7 +877,7 @@ void Generic_Main_Component<T>::handle_save_bank(Component *clicked)
 }
 
 template <class T>
-void Generic_Main_Component<T>::load_bank(const File &file)
+void Generic_Main_Component<T>::load_bank(const File &file, int format)
 {
     trace("Load from WOPL file: %s", file.getFullPathName().toRawUTF8());
 
@@ -903,7 +906,7 @@ void Generic_Main_Component<T>::load_bank(const File &file)
         return;
     }
 
-    load_bank_mem(filedata.get(), length, file.getFileNameWithoutExtension());
+    load_bank_mem(filedata.get(), length, file.getFileNameWithoutExtension(), format);
 }
 
 template <class T>
@@ -940,48 +943,33 @@ void Generic_Main_Component<T>::load_single_instrument(uint32_t program, const F
 }
 
 template <class T>
-void Generic_Main_Component<T>::load_bank_mem(const uint8_t *mem, size_t length, const String &bank_name)
+void Generic_Main_Component<T>::load_bank_mem(const uint8_t *mem, size_t length, const String &bank_name, int format)
 {
+    std::vector<Midi_Bank> banks;
+    Instrument_Global_Parameters igp;
+    bool need_measurement = true;
     const char *error_title = "Error loading bank";
 
-    WOPx::BankFile_Ptr wopl(WOPx::LoadBankFromMem((void *)mem, length, nullptr));
-    if (!wopl) {
-        AlertWindow::showMessageBox(
-            AlertWindow::WarningIcon, error_title, "The input file is not in " WOPx_BANK_FORMAT " format.");
-        return;
+    switch (format) {
+    default: {
+        WOPx::BankFile_Ptr wopl(WOPx::LoadBankFromMem((void *)mem, length, nullptr));
+        if (!wopl) {
+            AlertWindow::showMessageBox(
+                AlertWindow::WarningIcon, error_title, "The input file is not in " WOPx_BANK_FORMAT " format.");
+            return;
+        }
+        Midi_Bank::from_wopl(*wopl, banks, igp);
+        need_measurement = false;
+        break;
+    }
     }
 
-    auto send_bank = [this](const WOPx::Bank &bank, bool percussive) {
-                         for (unsigned i = 0; i < 128; ++i) {
-                             Messages::User::LoadInstrument msg;
-                             msg.part = midichannel_;
-                             msg.bank = Bank_Id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
-                             msg.program = i;
-                             msg.instrument = Instrument::from_wopl(bank.ins[i]);
-                             msg.need_measurement = false;
-                             msg.notify_back = false;
-                             write_to_processor(msg.tag, &msg, sizeof(msg));
-                         }
-
-                         Messages::User::RenameBank msg;
-                         msg.bank = Bank_Id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
-                         msg.notify_back = false;
-                         std::memcpy(msg.name, bank.bank_name, 32);
-                         write_to_processor(msg.tag, &msg, sizeof(msg));
-                     };
     self()->edt_bank_name->setText(bank_name);
     self()->edt_bank_name->setCaretPosition(0);
 
     {
         Messages::User::LoadGlobalParameters msg;
-        msg.param.volume_model = wopl->volume_model;
-#if defined(ADLPLUG_OPL3)
-        msg.param.deep_tremolo = wopl->opl_flags & WOPL_FLAG_DEEP_TREMOLO;
-        msg.param.deep_vibrato = wopl->opl_flags & WOPL_FLAG_DEEP_VIBRATO;
-#elif defined(ADLPLUG_OPN2)
-        msg.param.lfo_enable = wopl->lfo_freq & 8;
-        msg.param.lfo_frequency = wopl->lfo_freq & 7;
-#endif
+        msg.param = igp;
         msg.notify_back = true;
         write_to_processor(msg.tag, &msg, sizeof(msg));
     }
@@ -992,10 +980,24 @@ void Generic_Main_Component<T>::load_bank_mem(const uint8_t *mem, size_t length,
         write_to_processor(msg.tag, &msg, sizeof(msg));
     }
 
-    for (unsigned i = 0, n = wopl->banks_count_melodic; i < n; ++i)
-        send_bank(wopl->banks_melodic[i], false);
-    for (unsigned i = 0, n = wopl->banks_count_percussion; i < n; ++i)
-        send_bank(wopl->banks_percussive[i], true);
+    for (const Midi_Bank &bank : banks) {
+        for (unsigned i = 0; i < 128; ++i) {
+            Messages::User::LoadInstrument msg;
+            msg.part = midichannel_;
+            msg.bank = bank.id;
+            msg.program = i;
+            msg.instrument = bank.ins[i];
+            msg.need_measurement = need_measurement;
+            msg.notify_back = false;
+            write_to_processor(msg.tag, &msg, sizeof(msg));
+        }
+
+        Messages::User::RenameBank msg;
+        msg.bank = bank.id;
+        msg.notify_back = false;
+        std::memcpy(msg.name, bank.name, 32);
+        write_to_processor(msg.tag, &msg, sizeof(msg));
+    }
 
     {
         Messages::User::RequestFullBankState msg;
