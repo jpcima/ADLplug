@@ -81,6 +81,7 @@ sudo cmake --build . --target install
 - add a control for master volume
 - support loading SBI instruments
 - fixed a case when the state loading fallback would fail because of a bad initialization sequence
+- fixed the editor state after closing and reopening under certain hosts
 - allow to reload a saved bank which has no melodic banks or no percussive banks
 - add an ability to delete entire banks
 - memorize the instrument directory between uses
