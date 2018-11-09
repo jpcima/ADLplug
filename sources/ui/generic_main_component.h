@@ -30,7 +30,7 @@ public:
 
     void setup_generic_components();
 
-    void on_ready_processor();
+    void request_state_from_processor();
 
     bool is_percussion_channel(unsigned channel) const;
     void send_controller(unsigned channel, unsigned ctl, unsigned value);

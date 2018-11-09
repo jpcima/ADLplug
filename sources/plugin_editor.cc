@@ -39,6 +39,8 @@ AdlplugAudioProcessorEditor::AdlplugAudioProcessorEditor(AdlplugAudioProcessor &
     Timer *timer = Functional_Timer::create([this]() { process_notifications(); });
     notification_timer_.reset(timer);
     timer->startTimer(10);
+
+    main->request_state_from_processor();
 }
 
 AdlplugAudioProcessorEditor::~AdlplugAudioProcessorEditor()
@@ -81,7 +83,7 @@ void AdlplugAudioProcessorEditor::process_notifications()
 
         switch (tag) {
         case Fx_Message::NotifyReady:
-            main->on_ready_processor();
+            main->request_state_from_processor();
             break;
         case Fx_Message::NotifyBankSlots: {
             auto &body = *(const Messages::Fx::NotifyBankSlots *)msg.data;

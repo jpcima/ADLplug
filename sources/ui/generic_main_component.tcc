@@ -106,7 +106,7 @@ void Generic_Main_Component<T>::setup_generic_components()
 }
 
 template <class T>
-void Generic_Main_Component<T>::on_ready_processor()
+void Generic_Main_Component<T>::request_state_from_processor()
 {
     Messages::User::RequestChipSettings msg_chip;
     write_to_processor(msg_chip.tag, &msg_chip, sizeof(msg_chip));
