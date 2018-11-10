@@ -23,14 +23,8 @@ typedef std::unique_ptr<nsm_client_t, Nsm_Deleter> nsm_client_u;
 class Application_Window : public DocumentWindow
 {
 public:
-    explicit Application_Window(const String &name)
-        : DocumentWindow(
-            name,
-            LookAndFeel::getDefaultLookAndFeel().findColour(ResizableWindow::backgroundColourId),
-            DocumentWindow::minimiseButton|DocumentWindow::closeButton) {}
-
-    void closeButtonPressed() override
-        { JUCEApplicationBase::quit(); }
+    explicit Application_Window(const String &name);
+    void closeButtonPressed() override;
 };
 
 class Application_Jack : public JUCEApplication

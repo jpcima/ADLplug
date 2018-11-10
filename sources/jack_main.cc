@@ -12,6 +12,22 @@
 #include <sys/mman.h>
 extern AudioProcessor *JUCE_CALLTYPE createPluginFilter();
 
+Application_Window::Application_Window(const String &name)
+    : DocumentWindow(
+        name,
+        LookAndFeel::getDefaultLookAndFeel().findColour(ResizableWindow::backgroundColourId),
+        DocumentWindow::minimiseButton|DocumentWindow::closeButton)
+{
+#if JUCE_LINUX
+    setUsingNativeTitleBar(true);
+#endif
+}
+
+void Application_Window::closeButtonPressed()
+{
+    JUCEApplicationBase::quit();
+}
+
 void Application_Jack::initialise(const String &args)
 {
 #if defined(ADLPLUG_USE_NSM)
