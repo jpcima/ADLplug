@@ -76,7 +76,7 @@ sudo cmake --build . --target install
 
 ### Change Log
 
-**1.0.0.beta.4 (dev)**
+**1.0.0.beta.4**
 
 - add a control for master volume
 - support loading SBI instruments
