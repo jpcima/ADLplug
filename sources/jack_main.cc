@@ -16,7 +16,8 @@ Application_Window::Application_Window(const String &name)
     : DocumentWindow(
         name,
         LookAndFeel::getDefaultLookAndFeel().findColour(ResizableWindow::backgroundColourId),
-        DocumentWindow::minimiseButton|DocumentWindow::closeButton)
+        DocumentWindow::minimiseButton|DocumentWindow::closeButton,
+        false)
 {
 #if JUCE_LINUX
     setUsingNativeTitleBar(true);
@@ -25,7 +26,15 @@ Application_Window::Application_Window(const String &name)
 
 void Application_Window::closeButtonPressed()
 {
-    JUCEApplicationBase::quit();
+#if defined(ADLPLUG_USE_NSM)
+    Application_Jack *app = Application_Jack::getInstance();
+    if (app->under_session())
+        app->set_gui_visible(false);
+    else
+#endif
+    {
+        JUCEApplicationBase::quit();
+    }
 }
 
 void Application_Jack::initialise(const String &args)
@@ -98,14 +107,12 @@ void Application_Jack::shutdown()
 
 bool Application_Jack::setup_audio(const char *client_name)
 {
-    jack_client_t *client = client_.get();
-    if (client)
-        return true;
+    client_.reset();
 
     if (mlockall(MCL_CURRENT|MCL_FUTURE) != 0)
         fprintf(stderr, "could not lock memory\n");
 
-    client = jack_client_open(client_name, JackNoStartServer, nullptr);
+    jack_client_t *client = jack_client_open(client_name, JackNoStartServer, nullptr);
     if (!client) {
         AlertWindow::showMessageBox(
             AlertWindow::WarningIcon,
@@ -125,6 +132,7 @@ bool Application_Jack::setup_audio(const char *client_name)
             AlertWindow::WarningIcon,
             TRANS("JACK Audio"),
             TRANS("Could not create the synthesizer ports."));
+        client_.reset();
         return false;
     }
 
@@ -177,16 +185,35 @@ bool Application_Jack::start(bool autoconnect)
     }
 
     Application_Window *window = window_.get();
-    if (!window) {
-        window = new Application_Window(
-            getApplicationName() + " [jack:" + (const char *)jack_get_client_name(client) + "]");
+    String window_title = getApplicationName() + " [jack:" + (const char *)jack_get_client_name(client) + "]";
+
+    if (window)
+        window->setName(window_title);
+    else {
+        window = new Application_Window(window_title);
         window_.reset(window);
 
-        AdlplugAudioProcessorEditor *editor = static_cast<AdlplugAudioProcessorEditor *>(processor->createEditor());
-        window->setContentOwned(editor, true);
+        bool visible = true;
+#if defined(ADLPLUG_USE_NSM)
+        if (under_session()) {
+            const CSimpleIniA &conf = nsm_session_conf_;
+            visible = conf.GetBoolValue("gui", "window-visible", false);
+        }
+#endif
+        window->setVisible(visible);
+        window->addToDesktop();
+
+#if defined(ADLPLUG_USE_NSM)
+        if (under_session()) {
+            nsm_client_t *nsm = nsm_.get();
+            (visible ? nsm_send_gui_is_shown : nsm_send_gui_is_hidden)(nsm);
+        }
+#endif
     }
 
-    window->setVisible(true);
+    AdlplugAudioProcessorEditor *editor = static_cast<AdlplugAudioProcessorEditor *>(processor->createEditor());
+    window->setContentOwned(editor, true);
+
     return true;
 }
 
@@ -236,13 +263,16 @@ bool Application_Jack::initialise_session(const char *nsm_url)
     nsm_set_log_callback(nsm, &session_log, this);
     nsm_set_open_callback(nsm, &session_open, this);
     nsm_set_save_callback(nsm, &session_save, this);
+    nsm_set_show_optional_gui_callback(nsm, &show_optional_gui, this);
+    nsm_set_hide_optional_gui_callback(nsm, &hide_optional_gui, this);
     if (nsm_init(nsm, nsm_url) != 0) {
         fprintf(stderr, "error initializing session management.\n");
         return false;
     }
 
     String progname = File::getSpecialLocation(File::currentApplicationFile).getFileName();
-    nsm_send_announce(nsm, JucePlugin_Name, "", progname.toRawUTF8());
+    nsm_send_announce(nsm, JucePlugin_Name, ":switch:optional-gui:", progname.toRawUTF8());
+    nsm_send_gui_is_hidden(nsm);
 
     Timer *nsm_timer = Functional_Timer::create(
         [nsm]() { nsm_check_nowait(nsm); });
@@ -250,6 +280,25 @@ bool Application_Jack::initialise_session(const char *nsm_url)
     nsm_timer->startTimer(50);
 
     return true;
+}
+
+bool Application_Jack::under_session() const
+{
+    return nsm_ != nullptr;
+}
+
+void Application_Jack::load_session_conf()
+{
+    std::string path = nsm_path_  + "/session.conf";
+    CSimpleIniA &conf = nsm_session_conf_;
+    conf.LoadFile(path.c_str());
+}
+
+void Application_Jack::save_session_conf() const
+{
+    std::string path = nsm_path_  + "/session.conf";
+    const CSimpleIniA &conf = nsm_session_conf_;
+    conf.SaveFile(path.c_str());
 }
 
 void Application_Jack::session_log(void *user_data, const char *fmt, ...)
@@ -266,6 +315,8 @@ int Application_Jack::session_open(const char *path, const char *display_name, c
 
     self->nsm_path_ = path;
     File(path).createDirectory();
+
+    self->load_session_conf();
 
     if (!self->setup_audio(client_id))
         return 1;
@@ -297,7 +348,36 @@ int Application_Jack::session_save(char **out_msg, void *user_data)
     File statefile(self->nsm_path_ + "/state.dat");
     statefile.replaceWithData(state.getData(), state.getSize());
 
+    self->save_session_conf();
+
     return 0;
+}
+
+void Application_Jack::show_optional_gui(void *user_data)
+{
+    Application_Jack *self = (Application_Jack *)user_data;
+    self->set_gui_visible(true);
+}
+
+void Application_Jack::hide_optional_gui(void *user_data)
+{
+    Application_Jack *self = (Application_Jack *)user_data;
+    self->set_gui_visible(false);
+}
+
+void Application_Jack::set_gui_visible(bool visible)
+{
+    Application_Window *window = window_.get();
+    if (!window)
+        return;
+
+    window->setVisible(visible);
+
+    CSimpleIniA &conf = nsm_session_conf_;
+    conf.SetBoolValue("gui", "window-visible", visible);
+
+    nsm_client_t *nsm = nsm_.get();
+    (visible ? nsm_send_gui_is_shown : nsm_send_gui_is_hidden)(nsm);
 }
 #endif
 

@@ -7,6 +7,7 @@
 #include "JuceHeader.h"
 #if defined(ADLPLUG_USE_NSM)
 #include <nsm.h>
+#include <SimpleIni.h>
 #endif
 #include <jack/jack.h>
 #include <jack/midiport.h>
@@ -30,8 +31,16 @@ public:
 class Application_Jack : public JUCEApplication
 {
 public:
+    static Application_Jack *getInstance()
+        { return static_cast<Application_Jack *>(JUCEApplication::getInstance()); }
+
     void initialise(const String &args) override;
     void shutdown() override;
+
+#if defined(ADLPLUG_USE_NSM)
+    bool under_session() const;
+    void set_gui_visible(bool visible);
+#endif
 
     const String getApplicationName() override
         { return JucePlugin_Name; }
@@ -44,9 +53,13 @@ private:
 
 #if defined(ADLPLUG_USE_NSM)
     bool initialise_session(const char *nsm_url);
+    void load_session_conf();
+    void save_session_conf() const;
     static void session_log(void *user_data, const char *fmt, ...);
     static int session_open(const char *path, const char *display_name, const char *client_id, char **out_msg, void *user_data);
     static int session_save(char **out_msg, void *user_data);
+    static void show_optional_gui(void *user_data);
+    static void hide_optional_gui(void *user_data);
 #endif
 
     static int process(jack_nframes_t nframes, void *user_data);
@@ -65,5 +78,6 @@ private:
     nsm_client_u nsm_;
     std::string nsm_path_;
     std::unique_ptr<Timer> nsm_timer_;
+    CSimpleIniA nsm_session_conf_;
 #endif
 };
