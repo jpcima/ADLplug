@@ -59,6 +59,7 @@ blocks:
             	cache store asiosdk2.3.zip asiosdk2.3.zip;
             fi
           - unzip -d thirdparty asiosdk2.3.zip
+          - rm -f asiosdk2.3.zip
           # Install gothub
           - cache restore gothub-0.7.0-bin.xz
           - if test "$(sha1sum -b gothub-0.7.0-bin.xz | cut -d ' ' -f 1)" != 19d226667404ac313c011fe7934a86b1efe0f04a; then
@@ -69,6 +70,7 @@ blocks:
             fi
           - mkdir -p "$HOME"/gothub/bin
           - xzcat gothub-0.7.0-bin.xz > "$HOME"/gothub/bin/gothub
+          - rm -f gothub-0.7.0-bin.xz
           - chmod 0755 "$HOME"/gothub/bin/gothub
           - export PATH="$HOME"/gothub/bin:"$PATH"
           # Install dependencies
@@ -134,3 +136,16 @@ blocks:
               		gothub upload -t latest -n "$program"-dev-mac.7z -l "$program for macOS - rev ${SEMAPHORE_GIT_SHA:0:7} $(date -u -I)" -f "$program"-dev-mac.7z -R;
               	fi;
               done
+        - name: Source code build
+          commands:
+            - rm -rf thirdparty/ASIOSDK2.3
+            - rm -rf thirdparty/JUCE/{doxygen,examples,extras}
+            - rm -rf thirdparty/fmt/doc
+            - rm -rf thirdparty/{libADLMIDI,libOPNMIDI}/fm_banks
+            - rm -rf thirdparty/libADLMIDI/projects
+            - rm -rf .semaphore
+            - find . -name '.git*' -exec rm -rf {} +
+            - cd ..
+            - mv "$SEMAPHORE_GIT_DIR" ADLplug-dev
+            - tar cJvf ADLplug-dev.tar.xz ADLplug-dev
+            - gothub upload -t latest -n ADLplug-dev.tar.xz -l "ADLplug & OPNplug source code - rev ${SEMAPHORE_GIT_SHA:0:7} $(date -u -I)" -f ADLplug-dev.tar.xz -R;
