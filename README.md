@@ -25,8 +25,7 @@ Contributors: [Olivier Humbert](https://github.com/trebmuh), [Christopher Arndt]
 
 [![Build Status](https://semaphoreci.com/api/v1/jpcima/adlplug-2/branches/master/badge.svg)](https://semaphoreci.com/jpcima/adlplug-2)
 
-You can find automatic builds of the development branch [here](http://jpcima.sdf1.org/software/development/ADLplug/).  
-In case this doesn't work, you also have the option to download the [nightly release](https://github.com/jpcima/ADLplug/releases/tag/nightly).
+You can find automatic builds of the development branch [here](https://github.com/jpcima/ADLplug/releases/tag/latest).
 
 ## Useful links
 
