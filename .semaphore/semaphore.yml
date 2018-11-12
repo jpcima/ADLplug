@@ -136,6 +136,19 @@ blocks:
               		gothub upload -t latest -n "$program"-dev-mac.7z -l "$program for macOS - rev ${SEMAPHORE_GIT_SHA:0:7} $(date -u -I)" -f "$program"-dev-mac.7z -R;
               	fi;
               done
+        - name: LibraZiK build
+          commands:
+            - docker pull jpcima/librazik
+            - container=$(docker run -d -i -t -v /home:/home jpcima/librazik /bin/bash)
+            - alias cross='docker exec -w "$(pwd)" -i -t "$container"'
+            - for chip in OPL3 OPN2; do
+              	case "$chip" in OPL3) program=ADLplug;; OPN2) program=OPNplug;; *) false;; esac;
+              	mkdir "$program"-dev-lzk;
+              	cd "$program"-dev-lzk;
+              	cross cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP="$chip" -DADLplug_PCH=ON ..;
+              	cross make -j2;
+              	cd ..;
+              done
         - name: Source code build
           commands:
             - rm -rf thirdparty/ASIOSDK2.3
