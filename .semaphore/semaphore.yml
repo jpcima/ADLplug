@@ -60,6 +60,16 @@ blocks:
             fi
           - unzip -d thirdparty asiosdk2.3.zip
           - rm -f asiosdk2.3.zip
+          # Unpack VST2 SDK
+          - cache restore vst_sdk2_4_rev2.zip
+          - if test "$(sha1sum -b vst_sdk2_4_rev2.zip | cut -d ' ' -f 1)" != d7f3668c90a69dbe640f2eeed6fc0a7e0717adff; then
+            	curl -o vst_sdk2_4_rev2.zip http://jpcima.sdf1.org/files/vst_sdk2_4_rev2.zip;
+            	test "$(sha1sum -b vst_sdk2_4_rev2.zip | cut -d ' ' -f 1)" = d7f3668c90a69dbe640f2eeed6fc0a7e0717adff;
+            	cache delete vst_sdk2_4_rev2.zip;
+            	cache store vst_sdk2_4_rev2.zip vst_sdk2_4_rev2.zip;
+            fi
+          - unzip -d thirdparty vst_sdk2_4_rev2.zip
+          - rm -f vst_sdk2_4_rev2.zip
           # Install gothub
           - cache restore gothub-0.7.0-bin.xz
           - if test "$(sha1sum -b gothub-0.7.0-bin.xz | cut -d ' ' -f 1)" != 19d226667404ac313c011fe7934a86b1efe0f04a; then
@@ -138,6 +148,8 @@ blocks:
               done
         - name: LibraZiK build
           commands:
+            # Build using VeSTige
+            - rm -rf thirdparty/vstsdk2.4
             - docker pull jpcima/librazik
             - container=$(docker run -d -i -t -v /home:/home jpcima/librazik /bin/bash)
             - alias cross='docker exec -w "$(pwd)" -i -t "$container"'
@@ -152,6 +164,7 @@ blocks:
         - name: Source code build
           commands:
             - rm -rf thirdparty/ASIOSDK2.3
+            - rm -rf thirdparty/vstsdk2.4
             - rm -rf thirdparty/JUCE/{doxygen,examples,extras}
             - rm -rf thirdparty/fmt/doc
             - rm -rf thirdparty/{libADLMIDI,libOPNMIDI}/fm_banks
