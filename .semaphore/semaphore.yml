@@ -146,7 +146,7 @@ blocks:
               		gothub upload -t latest -n "$program"-dev-mac.7z -l "$program for macOS - rev ${SEMAPHORE_GIT_SHA:0:7} $(date -u -I)" -f "$program"-dev-mac.7z -R;
               	fi;
               done
-        - name: LibraZiK build
+        - name: LibraZiK-2 build
           commands:
             # Build using VeSTige
             - rm -rf thirdparty/vstsdk2.4
@@ -157,8 +157,17 @@ blocks:
               	case "$chip" in OPL3) program=ADLplug;; OPN2) program=OPNplug;; *) false;; esac;
               	mkdir "$program"-dev-lzk;
               	cd "$program"-dev-lzk;
-              	cross cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP="$chip" -DADLplug_PCH=ON ..;
+              	cross cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DADLplug_CHIP="$chip" -DADLplug_PCH=ON ..;
               	cross make -j2;
+              	cd ..;
+              done
+            - for program in ADLplug OPNplug; do
+              	cd "$program"-dev-lzk;
+              	cross cpack -G DEB;
+              	lower_program=$(echo -n "$program" | tr '[:upper:]' '[:lower:]');
+              	if test "$SEMAPHORE_GIT_BRANCH" = master; then
+              		gothub upload -t latest -n "$lower_program"_amd64.deb -l "$program for 64-bit LibraZiK-2 / Debian Stretch - rev ${SEMAPHORE_GIT_SHA:0:7} $(date -u -I)" -f "$lower_program"_amd64.deb -R;
+              	fi;
               	cd ..;
               done
         - name: Source code build
