@@ -115,6 +115,13 @@ void AdlplugAudioProcessorEditor::process_notifications()
             main->on_change_midi_channel(body.part);
             break;
         }
+        case Fx_Message::NotifyBankTitle: {
+            auto &body = *(const Messages::Fx::NotifyBankTitle *)msg.data;
+            char title[64 + 1] {};
+            memcpy(title, body.title, 64);
+            main->on_change_bank_title(title, dontSendNotification);
+            break;
+        }
         default:
             assert(false);
         }

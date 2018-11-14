@@ -173,6 +173,10 @@ private:
     unsigned active_part_ = 0;
     std::atomic<int> active_part_needs_notification_;
 
+    std::unique_ptr<char[]> bank_title_;
+    std::atomic<int> bank_title_needs_notification_;
+    static constexpr unsigned bank_title_size_max = 64;
+
     std::mutex player_lock_;
 
     std::unique_ptr<Worker> worker_;

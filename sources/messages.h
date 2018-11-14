@@ -61,6 +61,7 @@ enum class User_Message {
     RequestChipSettings,  // requests chip settings
     RequestSelections,  // requests selections
     RequestActivePart,  // requests the active part
+    RequestBankTitle,  // requests the bank title
     ClearBanks,  // deletes all the managed banks
     LoadGlobalParameters,  // edits global parameters
     LoadInstrument,  // edits an instrument
@@ -71,6 +72,7 @@ enum class User_Message {
     RenameProgram,  // set program name
     SelectProgram,  // changes selected program number
     SetActivePart,  // sets the active part
+    SetBankTitle,  // sets the bank title
 #if defined(ADLPLUG_OPL3)
     SelectOptimal4Ops,  // sets the optimal 4op channel count
 #endif
@@ -98,6 +100,10 @@ struct RequestSelections {
 
 struct RequestActivePart {
     static constexpr User_Message tag = User_Message::RequestActivePart;
+};
+
+struct RequestBankTitle {
+    static constexpr User_Message tag = User_Message::RequestBankTitle;
 };
 
 struct ClearBanks {
@@ -168,6 +174,11 @@ struct SetActivePart {
     unsigned part = 0;
 };
 
+struct SetBankTitle {
+    static constexpr User_Message tag = User_Message::SetBankTitle;
+    char title[64] {};
+};
+
 #if defined(ADLPLUG_OPL3)
 struct SelectOptimal4Ops {
     static constexpr User_Message tag = User_Message::SelectOptimal4Ops;
@@ -186,6 +197,7 @@ enum class Fx_Message {
     NotifyChipSettings,  // notifies chip settings when changed
     NotifySelection,  // notifies selection when changed
     NotifyActivePart,  // notifies active part when changed
+    NotifyBankTitle,  // notifies bank title when changed
     RequestMeasurement,  // request measurement of a program
     RequestChipSettings,  // request a change of chip settings
 };
@@ -235,6 +247,11 @@ struct NotifySelection {
 struct NotifyActivePart {
     static constexpr Fx_Message tag = Fx_Message::NotifyActivePart;
     unsigned part = 0;
+};
+
+struct NotifyBankTitle {
+    static constexpr Fx_Message tag = Fx_Message::NotifyBankTitle;
+    char title[64] {};
 };
 
 struct RequestMeasurement {

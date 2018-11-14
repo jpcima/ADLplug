@@ -65,6 +65,8 @@ void Generic_Main_Component<T>::setup_generic_components()
 {
     Configuration &conf = *conf_;
 
+    self()->edt_bank_name->addListener(this);
+
     self()->last_key_layout_ = load_key_configuration(*self()->midi_kb, conf);
     self()->midi_kb->setKeyPressBaseOctave(midi_kb_octave_);
     self()->midi_kb->setLowestVisibleKey(24);
@@ -121,6 +123,9 @@ void Generic_Main_Component<T>::request_state_from_processor()
 
     Messages::User::RequestActivePart msg_part;
     write_to_processor(msg_part.tag, &msg_part, sizeof(msg_part));
+
+    Messages::User::RequestBankTitle msg_title;
+    write_to_processor(msg_title.tag, &msg_title, sizeof(msg_title));
 }
 
 template <class T>
@@ -915,8 +920,11 @@ void Generic_Main_Component<T>::load_bank_mem(const uint8_t *mem, size_t length,
     }
     }
 
-    self()->edt_bank_name->setText(bank_name);
-    self()->edt_bank_name->setCaretPosition(0);
+    {
+        Messages::User::SetBankTitle msg;
+        std::strncpy(msg.title, bank_name.toRawUTF8(), 64);
+        write_to_processor(msg.tag, &msg, sizeof(msg));
+    }
 
     {
         Messages::User::LoadGlobalParameters msg;
@@ -952,6 +960,11 @@ void Generic_Main_Component<T>::load_bank_mem(const uint8_t *mem, size_t length,
 
     {
         Messages::User::RequestFullBankState msg;
+        write_to_processor(msg.tag, &msg, sizeof(msg));
+    }
+
+    {
+        Messages::User::RequestBankTitle msg;
         write_to_processor(msg.tag, &msg, sizeof(msg));
     }
 }
@@ -1264,6 +1277,13 @@ void Generic_Main_Component<T>::change_bank_directory(const File &directory)
 }
 
 template <class T>
+void Generic_Main_Component<T>::on_change_bank_title(const String &title, NotificationType ntf)
+{
+    self()->edt_bank_name->setText(title, ntf);
+    self()->edt_bank_name->setCaretPosition(0);
+}
+
+template <class T>
 void Generic_Main_Component<T>::update_master_volume_label()
 {
     const Parameter_Block &pb = *parameter_block_;
@@ -1282,6 +1302,18 @@ void Generic_Main_Component<T>::update_master_volume_label()
         if (displayval >= 0)
             displaytext = "+" + displaytext;
         self()->lbl_mastervol->setText(displaytext, dontSendNotification);
+    }
+}
+
+template <class T>
+void Generic_Main_Component<T>::textEditorTextChanged(TextEditor &editor)
+{
+    if (&editor == self()->edt_bank_name.get()) {
+        char title[64 + 1];
+        editor.getText().copyToUTF8(title, 64 + 1);
+        Messages::User::SetBankTitle msg;
+        memcpy(msg.title, title, 64);
+        write_to_processor(msg.tag, &msg, sizeof(msg));
     }
 }
 

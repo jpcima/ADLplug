@@ -41,6 +41,9 @@ AdlplugAudioProcessor::AdlplugAudioProcessor()
         selection_needs_notification_[part].store(0);
 
     active_part_needs_notification_.store(0);
+
+    bank_title_.reset(new char[bank_title_size_max + 1]());
+    bank_title_needs_notification_.store(0);
 }
 
 AdlplugAudioProcessor::~AdlplugAudioProcessor()
@@ -161,6 +164,9 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 
     active_part_ = 0;
     active_part_needs_notification_.store(1);
+
+    std::strncpy(bank_title_.get(), pak.name(0).c_str(), bank_title_size_max);
+    bank_title_needs_notification_.store(1);
 
     ready_.store(1);
 
@@ -363,6 +369,20 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         }
     }
 
+    int bank_title_needs_notification = 1;
+    if (bank_title_needs_notification_.compare_exchange_weak(bank_title_needs_notification, false)) {
+        Simple_Fifo &queue = *mq_to_ui_;
+        Message_Header hdr(Fx_Message::NotifyBankTitle, sizeof(Messages::Fx::NotifyBankTitle));
+        Buffered_Message msg = Messages::write(queue, hdr);
+        if (!msg)
+            bank_title_needs_notification_.store(1);  // do later
+        else {
+            auto &body = *(Messages::Fx::NotifyBankTitle *)msg.data;
+            std::memcpy(body.title, bank_title_.get(), bank_title_size_max);
+            Messages::finish_write(queue, msg);
+        }
+    }
+
     for (unsigned part = 0; part < 16; ++part) {
         int selection_needs_notification = 1;
         if (selection_needs_notification_[part].compare_exchange_weak(selection_needs_notification, false)) {
@@ -560,6 +580,9 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     case (unsigned)User_Message::RequestActivePart:
         active_part_needs_notification_.store(1);
         break;
+    case (unsigned)User_Message::RequestBankTitle:
+        bank_title_needs_notification_.store(1);
+        break;
     case (unsigned)User_Message::ClearBanks: {
         auto &body = *(const Messages::User::ClearBanks *)data;
         bm.clear_banks(body.notify_back);
@@ -633,6 +656,11 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
             break;
         active_part_ = body.part;
         active_part_needs_notification_.store(1);
+        break;
+    }
+    case (unsigned)User_Message::SetBankTitle: {
+        auto &body = *(const Messages::User::SetBankTitle *)data;
+        memcpy(bank_title_.get(), body.title, bank_title_size_max);
         break;
     }
 #if defined(ADLPLUG_OPL3)
@@ -1024,6 +1052,7 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
     // common parameters
     {
         PropertySet common_set;
+        common_set.setValue("bank_title", bank_title_.get());
         common_set.setValue("part", (int)active_part_);
         common_set.setValue("master_volume", (double)*pb.p_mastervol);
         std::unique_ptr<XmlElement> elt(common_set.createXml("common"));
@@ -1129,6 +1158,7 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
     PropertySet common_set;
     if (XmlElement *elt = root->getChildByName("common"))
         common_set.restoreFromXml(*elt);
+    common_set.getValue("bank_title").copyToUTF8(bank_title_.get(), bank_title_size_max + 1);
     active_part_ = jlimit(0, 15, common_set.getIntValue("part"));
 
     // notify everything
@@ -1137,6 +1167,7 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
     for (unsigned p = 0; p < 16; ++p)
         selection_needs_notification_[p].store(1);
     active_part_needs_notification_.store(1);
+    bank_title_needs_notification_.store(1);
 
     // send program changes
     for (unsigned p = 0; p < 16; ++p)

@@ -183,7 +183,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     edt_bank_name->setCaretVisible (true);
     edt_bank_name->setPopupMenuEnabled (true);
     edt_bank_name->setColour (TextEditor::outlineColourId, Colour (0xff8e989b));
-    edt_bank_name->setText (TRANS("Bank name"));
+    edt_bank_name->setText (String());
 
     edt_bank_name->setBounds (16, 74, 215, 24);
 
@@ -1398,7 +1398,7 @@ BEGIN_JUCER_METADATA
               buttonText="Panic" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <TEXTEDITOR name="new text editor" id="62544efea1101020" memberName="edt_bank_name"
               virtualName="" explicitFocusOrder="0" pos="16 74 215 24" outlinecol="ff8e989b"
-              initialText="Bank name" multiline="0" retKeyStartsLine="0" readonly="0"
+              initialText="" multiline="0" retKeyStartsLine="0" readonly="0"
               scrollbars="1" caret="1" popupmenu="1"/>
   <COMBOBOX name="new combo box" id="396a835342f6b630" memberName="cb_program"
             virtualName="" explicitFocusOrder="0" pos="16 104 215 24" editable="0"

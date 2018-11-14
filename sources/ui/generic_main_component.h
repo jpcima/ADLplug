@@ -20,6 +20,7 @@ class Configuration;
 template <class T>
 class Generic_Main_Component :
     public Component, public FocusChangeListener,
+    public TextEditor::Listener,
     public MidiKeyboardStateListener {
 public:
     T *self();
@@ -86,6 +87,10 @@ public:
 
     void initialize_bank_directory();
     void change_bank_directory(const File &directory);
+
+    void on_change_bank_title(const String &title, NotificationType ntf);
+
+    void textEditorTextChanged(TextEditor &editor) override;
 
     void handleNoteOn(MidiKeyboardState *, int channel, int note, float velocity) override;
     void handleNoteOff(MidiKeyboardState *, int channel, int note, float velocity) override;
