@@ -28,7 +28,7 @@ blocks:
           commands:
             # Update git tag
             - if test "$SEMAPHORE_GIT_BRANCH" = master; then
-              	git tag -f -a latest -m Latest;
+              	git tag -f -a latest -m "Latest [ci skip]";
               	git push -f origin latest;
               fi
   - name: Build
