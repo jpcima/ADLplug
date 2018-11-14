@@ -75,6 +75,15 @@ sudo cmake --build . --target install
 
 ### Change Log
 
+**1.0.0.beta.5 (dev)**
+
+- allowed saving and restoring the program selection, part selection and bank name
+- added Non session management capabilities `optional-gui`, `switch`
+- permitted a VST2 build using VeSTige as a replacement of Steinberg SDK
+- added a CLI flag `--version` in the JACK standalone
+- added a window icon in the JACK standalone
+- built the macOS standalone as an app bundle
+
 **1.0.0.beta.4**
 
 - add a control for master volume
