@@ -274,6 +274,7 @@
 		AD1DA4C0706C497D0F89761C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "include_juce_audio_plugin_client_LV2.cpp"; path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_LV2.cpp"; sourceTree = "SOURCE_ROOT"; };
 		AD250D12290EE583761436AC = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_graphics.mm"; path = "../../../JuceLibraryCode/include_juce_graphics.mm"; sourceTree = "SOURCE_ROOT"; };
 		AD7D94A4D64B66BC03007A25 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_events.mm"; path = "../../../JuceLibraryCode/include_juce_events.mm"; sourceTree = "SOURCE_ROOT"; };
+		AE0B808AF633377A5429A946 = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ADLplug-96.png"; path = "../../../../../resources/application/ADLplug-96.png"; sourceTree = "SOURCE_ROOT"; };
 		AE6BE38377DDD532F3B81941 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = posix.cc; path = ../../../../../thirdparty/fmt/src/posix.cc; sourceTree = "SOURCE_ROOT"; };
 		AF22D7C4EDDD1258BAD3CEC0 = {isa = PBXFileReference; lastKnownFileType = image.png; name = "knob-skin.png"; path = "../../../../../resources/ui/knob-skin.png"; sourceTree = "SOURCE_ROOT"; };
 		AF3A7A9305B98348418E19AC = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "nukedopl3_174.h"; path = "../../../../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3_174.h"; sourceTree = "SOURCE_ROOT"; };
@@ -466,6 +467,8 @@
 					82D5E5DF974EF2384BDF4104,
 					A8F8F5939723D94B72A8B678,
 					F69E46495AE1FC809F1D5993, ); name = sources; sourceTree = "<group>"; };
+		95D8CA346CD9D80229BA8195 = {isa = PBXGroup; children = (
+					AE0B808AF633377A5429A946, ); name = application; sourceTree = "<group>"; };
 		0E7795D74CF56E74A044DC8E = {isa = PBXGroup; children = (
 					2E95F7FE1538510D440AA246, ); name = opl3; sourceTree = "<group>"; };
 		D0BE13660FD1701C5FB1FEB9 = {isa = PBXGroup; children = (
@@ -498,6 +501,7 @@
 					C62D693BB6CBF14DFD5B2984,
 					994419127599AEC6FFD1BD64, ); name = ui; sourceTree = "<group>"; };
 		F4E86294056FB5B881023277 = {isa = PBXGroup; children = (
+					95D8CA346CD9D80229BA8195,
 					0E7795D74CF56E74A044DC8E,
 					BFA2983BEC38889A2CDD8E60, ); name = resources; sourceTree = "<group>"; };
 		5B9C423073BD3B8FD2686BE3 = {isa = PBXGroup; children = (

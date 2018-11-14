@@ -157,6 +157,7 @@
 		36FF3D54698FC9AFF8B106B7 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "opn_chip_base.h"; path = "../../../../../sources/opn2/adl/measurer/chips/opn_chip_base.h"; sourceTree = "SOURCE_ROOT"; };
 		3727F0F1BEBD69E007D153B3 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_plugin_client_AU_2.mm"; path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_AU_2.mm"; sourceTree = "SOURCE_ROOT"; };
 		3782DC8F9556BA2C664E492F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ostream.h; path = ../../../../../thirdparty/fmt/include/fmt/ostream.h; sourceTree = "SOURCE_ROOT"; };
+		398854F2E07141654330CF37 = {isa = PBXFileReference; lastKnownFileType = image.png; name = "OPNplug-96.png"; path = "../../../../../resources/application/OPNplug-96.png"; sourceTree = "SOURCE_ROOT"; };
 		3D0980D58BD39513F4B465B3 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "gens_opn2.h"; path = "../../../../../thirdparty/libOPNMIDI/src/chips/gens_opn2.h"; sourceTree = "SOURCE_ROOT"; };
 		3DAB23A1B674A042F0E5ED6C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "new_program_editor.cc"; path = "../../../../../sources/ui/components/new_program_editor.cc"; sourceTree = "SOURCE_ROOT"; };
 		4142FE935FC76BB94AF2ECF2 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "opnmidi_ptr.hpp"; path = "../../../../../thirdparty/libOPNMIDI/src/opnmidi_ptr.hpp"; sourceTree = "SOURCE_ROOT"; };
@@ -195,8 +196,8 @@
 		6DE5B0661DDE99A2B4317BFC = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "main_component.h"; path = "../../../../../sources/ui/main_component.h"; sourceTree = "SOURCE_ROOT"; };
 		6E283C1D8C5C3449C29776A9 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_formats"; path = "../../../../../thirdparty/JUCE/modules/juce_audio_formats"; sourceTree = "SOURCE_ROOT"; };
 		6EF286ADA05A483051DC9219 = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_audio_processors"; path = "../../../../../thirdparty/JUCE/modules/juce_audio_processors"; sourceTree = "SOURCE_ROOT"; };
-		7457B25656946FEA29F6886D = {isa = PBXFileReference; lastKnownFileType = image.png; name = "emoji_u1f4be.png"; path = "../../../../../resources/ui/noto-emoji/emoji_u1f4be.png"; sourceTree = "SOURCE_ROOT"; };
 		75186A344B8335E61B451BBF = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "plugin_processor.h"; path = "../../../../../sources/plugin_processor.h"; sourceTree = "SOURCE_ROOT"; };
+		7C91BAB6C5FCBBB33AA567D8 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_utils.mm"; path = "../../../JuceLibraryCode/include_juce_audio_utils.mm"; sourceTree = "SOURCE_ROOT"; };
 		B6C1A70C161F8AE51AF25B08 = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPNplug.dpm; sourceTree = "BUILT_PRODUCTS_DIR"; };
 		31B682F29335A0E0B2D5E7EA = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OPNplug.component; sourceTree = "BUILT_PRODUCTS_DIR"; };
 		5189F33ED9D651D2CBCA51DB = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "parameter_block.h"; path = "../../../../../sources/parameter_block.h"; sourceTree = "SOURCE_ROOT"; };
@@ -212,6 +213,7 @@
 		723260AF5FA924F63CD59E0F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = "mame_ym2612fm.c"; path = "../../../../../thirdparty/libOPNMIDI/src/chips/mame/mame_ym2612fm.c"; sourceTree = "SOURCE_ROOT"; };
 		72FCD5D8CBA0C63458D254D9 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = ym3438.c; path = ../../../../../thirdparty/libOPNMIDI/src/chips/nuked/ym3438.c; sourceTree = "SOURCE_ROOT"; };
 		733566258CE629A286613045 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = instrument.h; path = ../../../../../sources/opn2/adl/instrument.h; sourceTree = "SOURCE_ROOT"; };
+		7457B25656946FEA29F6886D = {isa = PBXFileReference; lastKnownFileType = image.png; name = "emoji_u1f4be.png"; path = "../../../../../resources/ui/noto-emoji/emoji_u1f4be.png"; sourceTree = "SOURCE_ROOT"; };
 		764182FD5E739A636D11084E = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = BinaryData.cpp; path = ../../../JuceLibraryCode/BinaryData.cpp; sourceTree = "SOURCE_ROOT"; };
 		76B14A63C191BA5C956F8B18 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "dc_filter.h"; path = "../../../../../sources/dsp/dc_filter.h"; sourceTree = "SOURCE_ROOT"; };
 		76B87F3CD9DED753ECBBE279 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mamedef.h; path = ../../../../../sources/opn2/adl/measurer/chips/mame/mamedef.h; sourceTree = "SOURCE_ROOT"; };
@@ -223,7 +225,6 @@
 		79B5A9FBEB92AF1307600486 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ym3438.h; path = ../../../../../thirdparty/libOPNMIDI/src/chips/nuked/ym3438.h; sourceTree = "SOURCE_ROOT"; };
 		7A33D1BA04722C550513810A = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "vu_meter.h"; path = "../../../../../sources/ui/components/vu_meter.h"; sourceTree = "SOURCE_ROOT"; };
 		7B38221DB7E81B4FCD018648 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "nuked_opn2.h"; path = "../../../../../thirdparty/libOPNMIDI/src/chips/nuked_opn2.h"; sourceTree = "SOURCE_ROOT"; };
-		7C91BAB6C5FCBBB33AA567D8 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_audio_utils.mm"; path = "../../../JuceLibraryCode/include_juce_audio_utils.mm"; sourceTree = "SOURCE_ROOT"; };
 		7DF6FB906BFD6A709AEA3CAD = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-AU.plist"; path = "Info-AU.plist"; sourceTree = "SOURCE_ROOT"; };
 		7FC3DD81037C14873476CEEF = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = "mame_opn2.cpp"; path = "../../../../../sources/opn2/adl/measurer/chips/mame_opn2.cpp"; sourceTree = "SOURCE_ROOT"; };
 		80DC25E3972847C24B72A214 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SimpleIni.h; path = ../../../../../thirdparty/simpleini/SimpleIni.h; sourceTree = "SOURCE_ROOT"; };
@@ -470,6 +471,8 @@
 					82D5E5DF974EF2384BDF4104,
 					A8F8F5939723D94B72A8B678,
 					F69E46495AE1FC809F1D5993, ); name = sources; sourceTree = "<group>"; };
+		95D8CA346CD9D80229BA8195 = {isa = PBXGroup; children = (
+					398854F2E07141654330CF37, ); name = application; sourceTree = "<group>"; };
 		0E7795D74CF56E74A044DC8E = {isa = PBXGroup; children = (
 					9515430CFDC110019F87748F, ); name = opn2; sourceTree = "<group>"; };
 		D0BE13660FD1701C5FB1FEB9 = {isa = PBXGroup; children = (
@@ -502,6 +505,7 @@
 					C62D693BB6CBF14DFD5B2984,
 					994419127599AEC6FFD1BD64, ); name = ui; sourceTree = "<group>"; };
 		F4E86294056FB5B881023277 = {isa = PBXGroup; children = (
+					95D8CA346CD9D80229BA8195,
 					0E7795D74CF56E74A044DC8E,
 					BFA2983BEC38889A2CDD8E60, ); name = resources; sourceTree = "<group>"; };
 		655C824881DBBB9C9A440728 = {isa = PBXGroup; children = (

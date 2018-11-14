@@ -69,6 +69,10 @@
 //==============================================================================
 // juce_audio_devices flags:
 
+#ifndef    JUCE_USE_WINRT_MIDI
+ //#define JUCE_USE_WINRT_MIDI 0
+#endif
+
 #ifndef    JUCE_ASIO
  #define   JUCE_ASIO 1
 #endif
@@ -105,10 +109,6 @@
  //#define JUCE_USE_ANDROID_OPENSLES 0
 #endif
 
-#ifndef    JUCE_USE_WINRT_MIDI
- //#define JUCE_USE_WINRT_MIDI 0
-#endif
-
 #ifndef    JUCE_DISABLE_AUDIO_MIXING_WITH_OTHER_APPS
  //#define JUCE_DISABLE_AUDIO_MIXING_WITH_OTHER_APPS 0
 #endif
@@ -138,6 +138,10 @@
 
 //==============================================================================
 // juce_audio_plugin_client flags:
+
+#ifndef    JUCE_VST3_CAN_REPLACE_VST2
+ //#define JUCE_VST3_CAN_REPLACE_VST2 1
+#endif
 
 #ifndef    JUCE_FORCE_USE_LEGACY_PARAM_IDS
  //#define JUCE_FORCE_USE_LEGACY_PARAM_IDS 0

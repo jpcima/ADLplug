@@ -8,6 +8,9 @@
 
 namespace BinaryData
 {
+    extern const char*   ADLplug96_png;
+    const int            ADLplug96_pngSize = 4362;
+
     extern const char*   banks_pak;
     const int            banks_pakSize = 162502;
 
@@ -78,7 +81,7 @@ namespace BinaryData
     const int            emoji_u2795_pngSize = 1034;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 23;
+    const int namedResourceListSize = 24;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];
