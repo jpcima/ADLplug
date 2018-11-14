@@ -66,6 +66,8 @@ void Generic_Main_Component<T>::setup_generic_components()
     Configuration &conf = *conf_;
 
     self()->edt_bank_name->addListener(this);
+    self()->edt_bank_name->setTextToShowWhenEmpty(
+        TRANS("Bank name"), findColour(TextEditor::backgroundColourId).contrasting(0.5f));
 
     self()->last_key_layout_ = load_key_configuration(*self()->midi_kb, conf);
     self()->midi_kb->setKeyPressBaseOctave(midi_kb_octave_);
@@ -798,7 +800,9 @@ void Generic_Main_Component<T>::handle_save_bank(Component *clicked)
 
     int selection = menu.showAt(clicked);
     if (selection == 1) {
-        FileChooser chooser(TRANS("Save bank..."), bank_directory_, bank_file_filter, prefer_native_file_dialog);
+        File initial_file = bank_directory_.getChildFile(
+            File::createLegalFileName(self()->edt_bank_name->getText()));
+        FileChooser chooser(TRANS("Save bank..."), initial_file, bank_file_filter, prefer_native_file_dialog);
         if (!chooser.browseForFileToSave(false))
             return;
 
