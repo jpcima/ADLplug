@@ -73,6 +73,8 @@ public:
 
     void chip_settings_from_emulator(Chip_Settings &cs) const;
 
+    void send_program_change_from_selection(unsigned part);
+
     //==========================================================================
     AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override;

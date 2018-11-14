@@ -33,8 +33,6 @@ public:
     void request_state_from_processor();
 
     bool is_percussion_channel(unsigned channel) const;
-    void send_controller(unsigned channel, unsigned ctl, unsigned value);
-    void send_program_change(unsigned channel, unsigned value);
     void send_rename_bank(Bank_Id bank, const String &name);
     void send_rename_program(Bank_Id bank, unsigned pgm, const String &name);
     void send_create_program(Bank_Id bank, unsigned pgm);

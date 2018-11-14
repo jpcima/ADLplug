@@ -113,31 +113,17 @@ void Generic_Main_Component<T>::request_state_from_processor()
 
     Messages::User::RequestFullBankState msg_bank;
     write_to_processor(msg_bank.tag, &msg_bank, sizeof(msg_bank));
+
+    Messages::User::RequestSelections msg_sel;
+    for (unsigned p = 0; p < 16; ++p)
+        msg_sel.channel_mask.set(p);
+    write_to_processor(msg_sel.tag, &msg_sel, sizeof(msg_sel));
 }
 
 template <class T>
 bool Generic_Main_Component<T>::is_percussion_channel(unsigned channel) const
 {
     return channel == 9;
-}
-
-template <class T>
-void Generic_Main_Component<T>::send_controller(unsigned channel, unsigned ctl, unsigned value)
-{
-    uint8_t midi[3];
-    midi[0] = (channel & 15) | (0b1011u << 4);
-    midi[1] = ctl & 127;
-    midi[2] = value & 127;
-    write_to_processor(User_Message::Midi, midi, 3);
-}
-
-template <class T>
-void Generic_Main_Component<T>::send_program_change(unsigned channel, unsigned value)
-{
-    uint8_t midi[2];
-    midi[0] = (channel & 15) | (0b1100u << 4);
-    midi[1] = value & 127;
-    write_to_processor(User_Message::Midi, midi, 2);
 }
 
 template <class T>
@@ -358,32 +344,13 @@ void Generic_Main_Component<T>::receive_chip_settings(const Chip_Settings &cs)
 template <class T>
 void Generic_Main_Component<T>::receive_selection(unsigned part, Bank_Id bank, uint8_t pgm)
 {
-    const auto &instrument_map = instrument_map_;
+    uint32_t psid = bank.pseudo_id();
     uint32_t program = pgm + (bank.percussive ? 128 : 0);
-
-    std::array<Bank_Id, 3> fallback_ids {
-        Bank_Id(bank.msb, bank.lsb, bank.percussive),
-        Bank_Id(bank.msb, 0, bank.percussive),  // GS fallback
-        Bank_Id(0, 0, bank.percussive),  // zero fallback
-    };
-
-    unsigned selection = 0;
-    bool found = false;
-    for (size_t i = 0; !found && i < fallback_ids.size(); ++i) {
-        uint32_t psid = fallback_ids[i].pseudo_id();
-        auto it = instrument_map.find(psid);
-        if (it != instrument_map.end()) {
-            found = !it->second.ins[program].blank();
-            selection = (psid << 8) | program;
-        }
-    }
-
-    if (!found || midiprogram_[part] == selection)
-        return;
+    uint32_t selection = (psid << 8) | program;
     midiprogram_[part] = selection;
 
     if (part == midichannel_) {
-        set_program_selection(midiprogram_[part] + 1, dontSendNotification);
+        set_program_selection(selection + 1, dontSendNotification);
         reload_selected_instrument(dontSendNotification);
     }
 }
@@ -392,6 +359,7 @@ template <class T>
 void Generic_Main_Component<T>::update_instrument_choices()
 {
     ComboBox &cb = *self()->cb_program;
+    int selection = cb.getSelectedId();
     cb.clear(dontSendNotification);
     PopupMenu *menu = cb.getRootMenu();
 
@@ -438,10 +406,8 @@ void Generic_Main_Component<T>::update_instrument_choices()
         menu->addSubMenu(bank_sid, e_bank.ins_menu);
     }
 
-    unsigned channel = midichannel_;
-    set_program_selection(midiprogram_[channel] + 1, dontSendNotification);
+    set_program_selection(selection, dontSendNotification);
     reload_selected_instrument(dontSendNotification);
-    send_selection_update();
 }
 
 template <class T>
@@ -481,25 +447,7 @@ void Generic_Main_Component<T>::handle_selected_program(int selection)
         unsigned insno = ((unsigned)selection - 1) & 255;
         unsigned psid = ((unsigned)selection - 1) >> 8;
         unsigned channel = midichannel_;
-        bool isdrum = is_percussion_channel(channel);
         midiprogram_[channel] = (psid << 8) | insno;
-
-        if (isdrum && insno >= 128) {
-            trace("Assign %s to percussion channel %u",
-                  program_selection_to_string(selection).toRawUTF8(),
-                  channel + 1);
-            // percussion bank change LSB only
-            send_program_change(channel, psid);
-        }
-        else if (!isdrum && insno < 128) {
-            trace("Assign %s to melodic channel %u",
-                  program_selection_to_string(selection).toRawUTF8(),
-                  channel + 1);
-            send_controller(channel, 0, psid >> 7);
-            send_controller(channel, 32, psid & 127);
-            send_program_change(channel, insno);
-        }
-
         send_selection_update();
     }
     reload_selected_instrument(dontSendNotification);

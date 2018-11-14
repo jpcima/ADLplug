@@ -528,6 +528,14 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     case (unsigned)User_Message::RequestChipSettings:
         chip_settings_need_notification_.store(1);
         break;
+    case (unsigned)User_Message::RequestSelections: {
+        auto &body = *(const Messages::User::RequestSelections *)data;
+        for (unsigned p = 0; p < 16; ++p) {
+            if (body.channel_mask.test(p))
+                selection_needs_notification_[p].store(1);
+        }
+        break;
+    }
     case (unsigned)User_Message::ClearBanks: {
         auto &body = *(const Messages::User::ClearBanks *)data;
         bm.clear_banks(body.notify_back);
@@ -590,6 +598,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         if (sel.bank != body.bank || sel.program != body.program) {
             sel.bank = body.bank;
             sel.program = body.program;
+            send_program_change_from_selection(body.part);
             set_instrument_parameters_notifying_host(body.part);
         }
         break;
@@ -824,6 +833,33 @@ void AdlplugAudioProcessor::chip_settings_from_emulator(Chip_Settings &cs) const
 #endif
 }
 
+void AdlplugAudioProcessor::send_program_change_from_selection(unsigned part)
+{
+    bool is_drum = part == 9;
+    Selection sel = selection_[part];
+
+    if (is_drum != sel.bank.percussive)
+        return;
+
+    Player &pl = *player_;
+    uint8_t msg[3];
+    if (!is_drum) {
+        // melodic bank change
+        msg[0] = 0xb0 | part; msg[1] = 0; msg[2] = sel.bank.msb;
+        pl.play_midi(msg, 3);
+        msg[0] = 0xb0 | part; msg[1] = 32; msg[2] = sel.bank.lsb;
+        pl.play_midi(msg, 3);
+        // melodic program change
+        msg[0] = 0xc0 | part; msg[1] = sel.program;
+        pl.play_midi(msg, 2);
+    }
+    else {
+        // percussion bank change LSB only
+        msg[0] = 0xc0 | part; msg[1] = sel.bank.lsb;
+        pl.play_midi(msg, 2);
+    }
+}
+
 void AdlplugAudioProcessor::processBlock(AudioBuffer<float> &buffer,
                                          MidiBuffer &midi_messages)
 {
@@ -911,6 +947,17 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
             root.addChildElement(elt.get());
             elt.release();
         }
+    }
+
+    for (unsigned p = 0; p < 16; ++p) {
+        const Selection &sel = selection_[p];
+        PropertySet sel_set;
+        sel_set.setValue("part", (int)p);
+        sel_set.setValue("bank", (int)sel.bank.to_integer());
+        sel_set.setValue("program", (int)sel.program);
+        std::unique_ptr<XmlElement> elt(sel_set.createXml("selection"));
+        root.addChildElement(elt.get());
+        elt.release();
     }
 
     // chip settings
@@ -1005,6 +1052,21 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
         bm.rename_bank(bank, name.toRawUTF8(), false);
     }
 
+    for (XmlElement *elt = root->getFirstChildElement(); elt; elt = elt->getNextElement()) {
+        if (elt->getTagName() != "selection")
+            continue;
+        PropertySet sel_set;
+        sel_set.restoreFromXml(*elt);
+        unsigned part = sel_set.getIntValue("part");
+        Bank_Id bank = Bank_Id::from_integer(sel_set.getIntValue("bank"));
+        unsigned program = sel_set.getIntValue("program");
+        if (part > 15 || bank.lsb > 127 || bank.msb > 127 || program > 127)
+            continue;
+        Selection &sel = selection_[part];
+        sel.bank = bank;
+        sel.program = program;
+    }
+
     // chip settings
     PropertySet chip_set;
     if (XmlElement *elt = root->getChildByName("chip"))
@@ -1039,6 +1101,12 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
     // notify everything
     mark_chip_settings_for_notification();
     bm.mark_everything_for_notification();
+    for (unsigned p = 0; p < 16; ++p)
+        selection_needs_notification_[p].store(1);
+
+    // send program changes
+    for (unsigned p = 0; p < 16; ++p)
+        send_program_change_from_selection(p);
 
     // make the host aware of changed parameters
     set_chip_settings_notifying_host();

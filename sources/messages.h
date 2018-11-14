@@ -59,6 +59,7 @@ enum class User_Message {
     RequestBankSlots,  // requests the layout of banks and instruments
     RequestFullBankState,  // requests all the managed bank state
     RequestChipSettings,  // requests chip settings
+    RequestSelections,  // requests selections
     ClearBanks,  // deletes all the managed banks
     LoadGlobalParameters,  // edits global parameters
     LoadInstrument,  // edits an instrument
@@ -86,6 +87,11 @@ struct RequestFullBankState {
 
 struct RequestChipSettings {
     static constexpr User_Message tag = User_Message::RequestChipSettings;
+};
+
+struct RequestSelections {
+    static constexpr User_Message tag = User_Message::RequestSelections;
+    std::bitset<16> channel_mask;
 };
 
 struct ClearBanks {
