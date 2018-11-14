@@ -6,6 +6,7 @@
 #include "jack_main.h"
 #include "plugin_processor.h"
 #include "plugin_editor.h"
+#include "plugin_version.h"
 #include "utility/midi.h"
 #include "utility/functional_timer.h"
 #include <string.h>
@@ -59,12 +60,16 @@ void Application_Jack::initialise(const String &args)
                 stderr,
                 "Usage:\n" "   %s [-a]\n\n" "Options:\n"
                 "   -h    show the help message\n"
-                "   -a    connect to system ports\n",
+                "   -a    connect to system ports\n"
+                "   -v    display the version number\n",
                 JucePlugin_Name);
             return quit();
         }
-        if (arg == "-a") {
+        if (arg == "-a")
             arg_autoconnect = true;
+        else if (arg == "-v" || arg == "--version") {
+            printf("%s\n", ADLplug_SemVer);
+            return quit();
         } else if (arg == "--") {
             while (argi + 1 < argc)
                 optargs.push_back(&argv[++argi]);
