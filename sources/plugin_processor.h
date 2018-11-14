@@ -170,6 +170,9 @@ private:
     unsigned midi_bank_msb_[16] = {};
     unsigned midi_bank_lsb_[16] = {};
 
+    unsigned active_part_ = 0;
+    std::atomic<int> active_part_needs_notification_;
+
     std::mutex player_lock_;
 
     std::unique_ptr<Worker> worker_;

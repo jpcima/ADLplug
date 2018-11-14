@@ -1352,7 +1352,9 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
     else if (sliderThatWasMoved == sl_midi_channel.get())
     {
         //[UserSliderCode_sl_midi_channel] -- add your slider handling code here..
-        on_change_midi_channel((unsigned)sl->getValue() - 1);
+        Messages::User::SetActivePart msg;
+        msg.part = (unsigned)sl->getValue() - 1;
+        write_to_processor(msg.tag, &msg, sizeof(msg));
         //[/UserSliderCode_sl_midi_channel]
     }
 
@@ -1531,9 +1533,9 @@ void Main_Component::on_change_midi_channel(unsigned channel)
         oped->set_midi_channel(channel);
 
     midi_kb->setMidiChannel(channel + 1);
+    sl_midi_channel->setValue(channel + 1, dontSendNotification);
     set_program_selection(midiprogram_[channel] + 1, dontSendNotification);
     reload_selected_instrument(dontSendNotification);
-    send_selection_update();
 }
 
 void Main_Component::popup_about_dialog()

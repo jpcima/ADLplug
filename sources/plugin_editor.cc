@@ -110,6 +110,11 @@ void AdlplugAudioProcessorEditor::process_notifications()
             main->receive_selection(body.part, body.bank, body.program);
             break;
         }
+        case Fx_Message::NotifyActivePart: {
+            auto &body = *(const Messages::Fx::NotifyActivePart *)msg.data;
+            main->on_change_midi_channel(body.part);
+            break;
+        }
         default:
             assert(false);
         }

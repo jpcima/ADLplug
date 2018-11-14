@@ -118,6 +118,9 @@ void Generic_Main_Component<T>::request_state_from_processor()
     for (unsigned p = 0; p < 16; ++p)
         msg_sel.channel_mask.set(p);
     write_to_processor(msg_sel.tag, &msg_sel, sizeof(msg_sel));
+
+    Messages::User::RequestActivePart msg_part;
+    write_to_processor(msg_part.tag, &msg_part, sizeof(msg_part));
 }
 
 template <class T>

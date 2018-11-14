@@ -39,6 +39,8 @@ AdlplugAudioProcessor::AdlplugAudioProcessor()
 
     for (unsigned part = 0; part < 16; ++part)
         selection_needs_notification_[part].store(0);
+
+    active_part_needs_notification_.store(0);
 }
 
 AdlplugAudioProcessor::~AdlplugAudioProcessor()
@@ -148,12 +150,17 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     Bank_Manager *bm = new Bank_Manager(
         *this, *pl, default_wopl.data(), default_wopl.size());
     bank_manager_.reset(bm);
+    bm->mark_everything_for_notification();
 
     for (unsigned p = 0; p < 16; ++p) {
         Selection &sel = selection_[p];
         sel.bank = Bank_Id(0, 0, false);
         sel.program = 0;
+        selection_needs_notification_[p].store(1);
     }
+
+    active_part_ = 0;
+    active_part_needs_notification_.store(1);
 
     ready_.store(1);
 
@@ -338,6 +345,20 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
 #if defined(ADLPLUG_OPL3)
             body.cs.fourop_count = pl->num_4ops();
 #endif
+            Messages::finish_write(queue, msg);
+        }
+    }
+
+    int active_part_needs_notification = 1;
+    if (active_part_needs_notification_.compare_exchange_weak(active_part_needs_notification, false)) {
+        Simple_Fifo &queue = *mq_to_ui_;
+        Message_Header hdr(Fx_Message::NotifyActivePart, sizeof(Messages::Fx::NotifyActivePart));
+        Buffered_Message msg = Messages::write(queue, hdr);
+        if (!msg)
+            active_part_needs_notification_.store(1);  // do later
+        else {
+            auto &body = *(Messages::Fx::NotifyActivePart *)msg.data;
+            body.part = active_part_;
             Messages::finish_write(queue, msg);
         }
     }
@@ -536,6 +557,9 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         }
         break;
     }
+    case (unsigned)User_Message::RequestActivePart:
+        active_part_needs_notification_.store(1);
+        break;
     case (unsigned)User_Message::ClearBanks: {
         auto &body = *(const Messages::User::ClearBanks *)data;
         bm.clear_banks(body.notify_back);
@@ -601,6 +625,14 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
             send_program_change_from_selection(body.part);
             set_instrument_parameters_notifying_host(body.part);
         }
+        break;
+    }
+    case (unsigned)User_Message::SetActivePart: {
+        auto &body = *(const Messages::User::SetActivePart *)data;
+        if (active_part_ == body.part)
+            break;
+        active_part_ = body.part;
+        active_part_needs_notification_.store(1);
         break;
     }
 #if defined(ADLPLUG_OPL3)
@@ -992,6 +1024,7 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
     // common parameters
     {
         PropertySet common_set;
+        common_set.setValue("part", (int)active_part_);
         common_set.setValue("master_volume", (double)*pb.p_mastervol);
         std::unique_ptr<XmlElement> elt(common_set.createXml("common"));
         root.addChildElement(elt.get());
@@ -1090,19 +1123,20 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
     gp.lfo_enable = global_set.getBoolValue("lfo_enable");
     gp.lfo_frequency = global_set.getIntValue("lfo_frequency");
 #endif
+    bm.load_global_parameters(gp, false);
 
     // common parameters
     PropertySet common_set;
     if (XmlElement *elt = root->getChildByName("common"))
         common_set.restoreFromXml(*elt);
-
-    bm.load_global_parameters(gp, false);
+    active_part_ = jlimit(0, 15, common_set.getIntValue("part"));
 
     // notify everything
     mark_chip_settings_for_notification();
     bm.mark_everything_for_notification();
     for (unsigned p = 0; p < 16; ++p)
         selection_needs_notification_[p].store(1);
+    active_part_needs_notification_.store(1);
 
     // send program changes
     for (unsigned p = 0; p < 16; ++p)
