@@ -213,7 +213,7 @@ macro(add_plugin NAME)
 endmacro()
 
 macro(add_standalone NAME)
-  add_executable("${NAME}" "sources/nothing.cc" ${ARGN})
+  add_executable("${NAME}" WIN32 "sources/nothing.cc" ${ARGN})
   set_property(TARGET "${NAME}" PROPERTY PREFIX "")
   if(ADLplug_RT_CHECKER)
     set_property(TARGET "${NAME}" APPEND_STRING
@@ -344,6 +344,10 @@ if(ADLplug_Standalone)
   if(NOT ADLplug_Jack)
     install(TARGETS ADLplug_Standalone DESTINATION "${CMAKE_INSTALL_BINDIR}")
   endif()
+  if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_sources(ADLplug_Standalone PRIVATE
+      "resources/application/${ADLplug_NAME}.rc")
+  endif()
 endif()
 
 if(ADLplug_Jack)
@@ -359,6 +363,10 @@ if(ADLplug_Jack)
   set_target_properties(ADLplug_Jack PROPERTIES
     OUTPUT_NAME "${ADLplug_NAME}" RUNTIME_OUTPUT_DIRECTORY "jack")
   install(TARGETS ADLplug_Jack DESTINATION "${CMAKE_INSTALL_BINDIR}")
+  if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_sources(ADLplug_Jack PRIVATE
+      "resources/application/${ADLplug_NAME}.rc")
+  endif()
 endif()
 
 if(ADLplug_Standalone OR ADLplug_Jack)
