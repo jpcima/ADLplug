@@ -28,7 +28,7 @@ static constexpr int gray_max = 0xa0;
 
 void Midi_Keyboard_Ex::drawWhiteNote(int note, Graphics &g, Rectangle<float> area, bool is_down, bool is_over, Colour line_colour, Colour text_colour)
 {
-    jassert(midiNoteNumber >= 0 && midiNoteNumber < 128);
+    jassert(note >= 0 && note < 128);
 
     uint8_t hl = highlight_value_[note];
 
@@ -48,7 +48,7 @@ void Midi_Keyboard_Ex::drawWhiteNote(int note, Graphics &g, Rectangle<float> are
 
 void Midi_Keyboard_Ex::drawBlackNote(int note, Graphics &g, Rectangle<float> area, bool is_down, bool is_over, Colour note_fill_colour)
 {
-    jassert(midiNoteNumber >= 0 && midiNoteNumber < 128);
+    jassert(note >= 0 && note < 128);
 
     uint8_t hl = highlight_value_[note];
 

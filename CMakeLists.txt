@@ -89,6 +89,8 @@ else()
 endif()
 include("${CMAKE_SOURCE_DIR}/JUCE-targets.cmake")
 
+set(MACOSX_BUNDLE_ICON_FILE "${ADLplug_NAME}.icns")
+
 add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
   "${JUCE_PROJECT_DIR}/JuceLibraryCode/BinaryData.cpp"
   "sources/utility/midi.cc"
@@ -213,7 +215,7 @@ macro(add_plugin NAME)
 endmacro()
 
 macro(add_standalone NAME)
-  add_executable("${NAME}" WIN32 "sources/nothing.cc" ${ARGN})
+  add_executable("${NAME}" WIN32 MACOSX_BUNDLE "sources/nothing.cc" ${ARGN})
   set_property(TARGET "${NAME}" PROPERTY PREFIX "")
   if(ADLplug_RT_CHECKER)
     set_property(TARGET "${NAME}" APPEND_STRING
@@ -380,6 +382,13 @@ if(ADLplug_Standalone OR ADLplug_Jack)
       DESTINATION "${CMAKE_INSTALL_DATADIR}/icons/hicolor/${size}x${size}/apps"
       RENAME "${ADLplug_NAME}.png")
   endforeach()
+  if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    add_custom_target(ADLplug_Standalone_icon_copy ALL
+      "${CMAKE_COMMAND}" -E copy
+      "${PROJECT_SOURCE_DIR}/resources/application/${ADLplug_NAME}.icns"
+      "${CMAKE_CURRENT_BINARY_DIR}/standalone/${ADLplug_NAME}.app/Contents/Resources/${ADLplug_NAME}.icns"
+      DEPENDS "${PROJECT_SOURCE_DIR}/resources/application/${ADLplug_NAME}.icns")
+  endif()
 endif()
 
 include("CPackLists.txt")
