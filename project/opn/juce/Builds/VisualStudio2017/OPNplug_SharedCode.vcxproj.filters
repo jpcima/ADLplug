@@ -5012,6 +5012,9 @@
     <None Include="..\..\..\..\..\resources\ui\cores\MAME.png">
       <Filter>OPNplug\resources\ui\cores</Filter>
     </None>
+    <None Include="..\..\..\..\..\resources\ui\cores\Neko.png">
+      <Filter>OPNplug\resources\ui\cores</Filter>
+    </None>
     <None Include="..\..\..\..\..\resources\ui\cores\Nuked.png">
       <Filter>OPNplug\resources\ui\cores</Filter>
     </None>

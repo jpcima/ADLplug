@@ -52,9 +52,10 @@ Emulator_Defaults &get_emulator_defaults()
     unsigned nth_icon_nuked = 0;
     for (unsigned i = 0; i < count; ++i) {
         const String &name = defaults->choices[i];
-        if (name.toLowerCase().startsWith("dosbox"))
+        String lowerName = name.toLowerCase();
+        if (lowerName.startsWith("dosbox"))
             defaults->images[i] = icon_dosbox;
-        else if (name.toLowerCase().startsWith("nuked"))
+        else if (lowerName.startsWith("nuked"))
             defaults->images[i] = (nth_icon_nuked++ == 0) ? icon_nuked : icon_nuked2;
     }
 

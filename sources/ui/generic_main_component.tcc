@@ -683,8 +683,11 @@ void Generic_Main_Component<T>::build_emulator_menu(PopupMenu &menu)
     unsigned count = defaults.choices.size();
 
     menu.clear();
-    for (size_t i = 0; i < count; ++i)
-        menu.addItem(i + 1, defaults.choices[i], true, false, defaults.images[i]);
+    for (size_t i = 0; i < count; ++i) {
+        const String &name = defaults.choices[i];
+        if (!name.isEmpty())
+            menu.addItem(i + 1, name, true, false, defaults.images[i]);
+    }
 }
 
 template <class T>

@@ -186,6 +186,7 @@
         <GROUP id="{3DD686E2-DFBA-641B-F10D-41AB90380470}" name="cores">
           <FILE id="t0arYT" name="Gens.png" compile="0" resource="1" file="../../resources/ui/cores/Gens.png"/>
           <FILE id="O2Vmx7" name="MAME.png" compile="0" resource="1" file="../../resources/ui/cores/MAME.png"/>
+          <FILE id="plGaNf" name="Neko.png" compile="0" resource="1" file="../../resources/ui/cores/Neko.png"/>
           <FILE id="vnP6a4" name="Nuked.png" compile="0" resource="1" file="../../resources/ui/cores/Nuked.png"/>
         </GROUP>
         <GROUP id="{04E07FD4-726D-2E19-A08B-B84A64CCABB9}" name="fonts">

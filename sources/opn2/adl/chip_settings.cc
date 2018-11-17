@@ -49,14 +49,18 @@ Emulator_Defaults &get_emulator_defaults()
     Image icon_mame = ImageFileFormat::loadFrom(BinaryData::MAME_png, BinaryData::MAME_pngSize);
     Image icon_nuked = ImageFileFormat::loadFrom(BinaryData::Nuked_png, BinaryData::Nuked_pngSize);
     Image icon_gens = ImageFileFormat::loadFrom(BinaryData::Gens_png, BinaryData::Gens_pngSize);
+    Image icon_neko = ImageFileFormat::loadFrom(BinaryData::Neko_png, BinaryData::Neko_pngSize);
     for (unsigned i = 0; i < count; ++i) {
         const String &name = defaults->choices[i];
-        if (name.toLowerCase().startsWith("mame"))
+        String lowerName = name.toLowerCase();
+        if (lowerName.startsWith("mame"))
             defaults->images[i] = icon_mame;
-        else if (name.toLowerCase().startsWith("nuked"))
+        else if (lowerName.startsWith("nuked"))
             defaults->images[i] = icon_nuked;
-        else if (name.toLowerCase().startsWith("gens"))
+        else if (lowerName.startsWith("gens"))
             defaults->images[i] = icon_gens;
+        else if (lowerName.startsWith("neko"))
+            defaults->images[i] = icon_neko;
     }
 
     emulator_defaults_ = std::move(defaults_u);

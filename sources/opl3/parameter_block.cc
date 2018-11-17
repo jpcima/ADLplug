@@ -54,7 +54,12 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
     p.addParameter((p_mastervol = new AudioParameterFloat("mastervol", "Master volume", {0.0f, 10.0f}, 1.0f, String())));
 
     first_chip_setting = p.getParameters().size();
-    p.addParameter((p_emulator = new AudioParameterChoice("emulator", "Emulator", get_emulator_defaults().choices, cs.emulator, String())));
+    StringArray emu_choices = get_emulator_defaults().choices;
+    for (unsigned i = 0, n = emu_choices.size(); i < n; ++i) {
+        if (emu_choices[i].isEmpty())
+            emu_choices.set(i, "<Reserved " + String(i) + ">");
+    }
+    p.addParameter((p_emulator = new AudioParameterChoice("emulator", "Emulator", emu_choices, cs.emulator, String())));
     p.addParameter((p_nchip = new AudioParameterInt("nchip", "Chip count", 1, 100, cs.chip_count, String())));
     p.addParameter((p_n4op = new AudioParameterInt("n4op", "4op channel count", 0, 600, cs.fourop_count, String())));
     last_chip_setting = p.getParameters().size() - 1;

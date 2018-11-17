@@ -2782,6 +2782,7 @@
     <None Include="..\..\..\..\..\resources\ui\knob-skin.png"/>
     <None Include="..\..\..\..\..\resources\ui\cores\Gens.png"/>
     <None Include="..\..\..\..\..\resources\ui\cores\MAME.png"/>
+    <None Include="..\..\..\..\..\resources\ui\cores\Neko.png"/>
     <None Include="..\..\..\..\..\resources\ui\cores\Nuked.png"/>
     <None Include="..\..\..\..\..\resources\ui\fonts\Mono-Bold.ttf.gz"/>
     <None Include="..\..\..\..\..\resources\ui\fonts\Mono-BoldItalic.ttf.gz"/>

@@ -23,6 +23,9 @@ namespace BinaryData
     extern const char*   MAME_png;
     const int            MAME_pngSize = 11057;
 
+    extern const char*   Neko_png;
+    const int            Neko_pngSize = 597;
+
     extern const char*   Nuked_png;
     const int            Nuked_pngSize = 20492;
 
@@ -81,7 +84,7 @@ namespace BinaryData
     const int            emoji_u2795_pngSize = 1034;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 24;
+    const int namedResourceListSize = 25;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];
