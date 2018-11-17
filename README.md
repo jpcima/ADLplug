@@ -77,6 +77,7 @@ sudo cmake --build . --target install
 
 **1.0.0.beta.5 (dev)**
 
+- added a new chip: YM2608 (OPNA) using Neko Project II Kai emulation
 - allowed saving and restoring the program selection, part selection and bank name
 - added Non session management capabilities `optional-gui`, `switch`
 - permitted a VST2 build using VeSTige as a replacement of Steinberg SDK
