@@ -32,12 +32,17 @@ Bank_Manager::Bank_Manager(AdlplugAudioProcessor &proc, Player &pl, const void *
     unsigned nm = wopl ? wopl->banks_count_melodic : 0;
     unsigned np = wopl ? wopl->banks_count_percussion : 0;
 
-    for (unsigned i = 0; i < nm + np; ++i) {
-        bool percussive = i >= nm;
+    for (unsigned b_i = 0; b_i < nm + np; ++b_i) {
+        bool percussive = b_i >= nm;
         const WOPx::Bank &bank = percussive ?
-            wopl->banks_percussive[i - nm] : wopl->banks_melodic[i];
+            wopl->banks_percussive[b_i - nm] : wopl->banks_melodic[b_i];
         Bank_Id id(bank.bank_midi_msb, bank.bank_midi_lsb, percussive);
         rename_bank(id, bank.bank_name, false);
+        for (unsigned p_i = 0; p_i < 128; ++p_i) {
+            const WOPx::Instrument &ins = bank.ins[p_i];
+            if ((ins.inst_flags & WOPx::Ins_IsBlank) == 0)
+                rename_program(id, p_i, ins.inst_name, false);
+        }
     }
 }
 
