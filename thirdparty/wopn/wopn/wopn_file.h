@@ -40,6 +40,15 @@ typedef signed short int int16_t;
 typedef unsigned short int uint16_t;
 #endif
 
+/* Type of chip for which a bank has been designed */
+typedef enum WOPN_ChipType
+{
+    /* The Yamaha OPN2 chip, alias YM2612 YM3438 */
+    WOPN_Chip_OPN2 = 0,
+    /* The Yamaha OPNA chip, alias YM2608 */
+    WOPN_Chip_OPNA = 1
+} WOPN_ChipType;
+
 /* Volume scaling model implemented in the libOPNMIDI */
 typedef enum WOPN_VolumeModel
 {
@@ -154,6 +163,8 @@ typedef struct WOPNFile
     uint16_t banks_count_percussion;
     /* Chip global LFO enable flag and frequency register data */
     uint8_t lfo_freq;
+    /* Chip type this bank is designed for */
+    uint8_t chip_type;
     /* Reserved (Enum WOPN_VolumeModel) */
     uint8_t volume_model;
     /* dynamically allocated data Melodic banks array */

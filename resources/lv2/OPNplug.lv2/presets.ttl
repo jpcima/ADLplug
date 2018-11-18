@@ -27,6 +27,10 @@
         pset:value 2 ;
     ] ,
     [
+        lv2:symbol "chiptype" ;
+        pset:value 0 ;
+    ] ,
+    [
         lv2:symbol "p1blank" ;
         pset:value 0 ;
     ] ,

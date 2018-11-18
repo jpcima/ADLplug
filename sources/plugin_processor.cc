@@ -251,6 +251,20 @@ void AdlplugAudioProcessor::set_num_4ops_nonrt(unsigned count)
 }
 #endif  // defined(ADLPLUG_OPL3)
 
+#if defined(ADLPLUG_OPN2)
+unsigned AdlplugAudioProcessor::chip_type_nonrt() const
+{
+    Player *pl = player_.get();
+    return pl->chip_type();
+}
+
+void AdlplugAudioProcessor::set_chip_type_nonrt(unsigned type)
+{
+    Player *pl = player_.get();
+    pl->set_chip_type(type);
+}
+#endif  // defined(ADLPLUG_OPN2)
+
 void AdlplugAudioProcessor::panic_nonrt()
 {
     Player *pl = player_.get();
@@ -350,6 +364,8 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
             body.cs.chip_count = pl->num_chips();
 #if defined(ADLPLUG_OPL3)
             body.cs.fourop_count = pl->num_4ops();
+#elif defined(ADLPLUG_OPN2)
+            body.cs.chip_type = pl->chip_type();
 #endif
             Messages::finish_write(queue, msg);
         }
@@ -700,6 +716,8 @@ void AdlplugAudioProcessor::parameters_to_chip_settings(Chip_Settings &cs) const
     cs.chip_count = pb.p_nchip->get();
 #if defined(ADLPLUG_OPL3)
     cs.fourop_count = pb.p_n4op->get();
+#elif defined(ADLPLUG_OPN2)
+    cs.chip_type = pb.p_chiptype->getIndex();
 #endif
 }
 
@@ -793,6 +811,8 @@ void AdlplugAudioProcessor::set_chip_settings_notifying_host()
     *pb.p_nchip = pl->num_chips();
 #if defined(ADLPLUG_OPL3)
     *pb.p_n4op = pl->num_4ops();
+#elif defined(ADLPLUG_OPN2)
+    *pb.p_chiptype = pl->chip_type();
 #endif
 }
 
@@ -890,6 +910,8 @@ void AdlplugAudioProcessor::chip_settings_from_emulator(Chip_Settings &cs) const
     cs.chip_count = pl.num_chips();
 #if defined(ADLPLUG_OPL3)
     cs.fourop_count = pl.num_4ops();
+#elif defined(ADLPLUG_OPN2)
+    cs.chip_type = pl.chip_type();
 #endif
 }
 
@@ -1027,6 +1049,8 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
         chip_set.setValue("chip_count", (int)pl->num_chips());
 #if defined(ADLPLUG_OPL3)
         chip_set.setValue("4op_count", (int)pl->num_4ops());
+#elif defined(ADLPLUG_OPN2)
+        chip_set.setValue("chip_type", (int)pl->chip_type());
 #endif
         std::unique_ptr<XmlElement> elt(chip_set.createXml("chip"));
         root.addChildElement(elt.get());
@@ -1137,6 +1161,8 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
     pl.set_num_chips(chip_set.getIntValue("chip_count"));
 #if defined(ADLPLUG_OPL3)
     pl.set_num_4ops(chip_set.getIntValue("4op_count"));
+#elif defined(ADLPLUG_OPN2)
+    pl.set_chip_type(chip_set.getIntValue("chip_type"));
 #endif
 
     // global parameters

@@ -47,6 +47,10 @@ public:
     unsigned num_4ops_nonrt() const;
     void set_num_4ops_nonrt(unsigned count);
 #endif
+#if defined(ADLPLUG_OPN2)
+    unsigned chip_type_nonrt() const;
+    void set_chip_type_nonrt(unsigned type);
+#endif
     void panic_nonrt();
     void reconfigure_chip_nonrt();
 

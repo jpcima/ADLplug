@@ -60,6 +60,7 @@ void Parameter_Block::setup_parameters(AudioProcessor &p)
     }
     p.addParameter((p_emulator = new AudioParameterChoice("emulator", "Emulator", emu_choices, cs.emulator, String())));
     p.addParameter((p_nchip = new AudioParameterInt("nchip", "Chip count", 1, 100, cs.chip_count, String())));
+    p.addParameter((p_chiptype = new AudioParameterChoice("chiptype", "Chip type", {"OPN2 53 kHz", "OPNA 55 kHz"}, cs.chip_type, String())));
     last_chip_setting = p.getParameters().size() - 1;
 
     WOPNFile_Ptr wopn = default_wopn();

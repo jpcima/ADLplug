@@ -11,6 +11,7 @@ struct Parameter_Block {
 
     AudioParameterChoice *p_emulator = nullptr;
     AudioParameterInt *p_nchip = nullptr;
+    AudioParameterChoice *p_chiptype = nullptr;
 
     struct Operator {
         AudioParameterInt *p_detune = nullptr;

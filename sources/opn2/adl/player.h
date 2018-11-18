@@ -61,10 +61,14 @@ public:
         { return opn2_getNumChipsObtained(player_.get()); }
     bool set_num_chips(unsigned chips)
         { return opn2_setNumChips(player_.get(), chips) == 0; }
+    unsigned chip_type() const
+        { return opn2_getChipType(player_.get()); }
+    void set_chip_type(unsigned type)
+        { return opn2_setChipType(player_.get(), type); }
     unsigned volume_model() const
-        { return volume_model_; }
+        { return opn2_getVolumeRangeModel(player_.get()); }
     void set_volume_model(unsigned model)
-        { opn2_setVolumeRangeModel(player_.get(), model); volume_model_ = model; }
+        { opn2_setVolumeRangeModel(player_.get(), model); }
     bool lfo_enabled() const
         { return opn2_getLfoEnabled(player_.get()); }
     void set_lfo_enabled(int enable)
@@ -91,7 +95,6 @@ public:
 
 private:
     unsigned emu_ = 0;
-    unsigned volume_model_ = 0;
     struct Player_Deleter {
         void operator()(OPN2_MIDIPlayer *p) const { opn2_close(p); }
     };

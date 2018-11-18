@@ -127,6 +127,7 @@ int WOPN_BanksCmp(const WOPNFile *bank1, const WOPNFile *bank2)
 
     res &= (bank1->version == bank2->version);
     res &= (bank1->lfo_freq == bank2->lfo_freq);
+    res &= (bank1->chip_type == bank2->chip_type);
     res &= (bank1->volume_model == bank2->volume_model);
     res &= (bank1->banks_count_melodic == bank2->banks_count_melodic);
     res &= (bank1->banks_count_percussion == bank2->banks_count_percussion);
@@ -297,7 +298,9 @@ WOPNFile *WOPN_LoadBankFromMem(void *mem, size_t length, int *error)
         }
 
         outFile->version      = version;
-        outFile->lfo_freq      = head[4];
+        outFile->lfo_freq     = head[4] & 0xf;
+        if(version >= 2)
+            outFile->chip_type = (head[4] >> 4) & 1;
         outFile->volume_model = 0;
     }
 
@@ -528,7 +531,9 @@ int WOPN_SaveBankToMem(WOPNFile *file, void *dest_mem, size_t length, uint16_t v
 
     if(length < 1)
         return WOPN_ERR_UNEXPECTED_ENDING;
-    cursor[0] = file->lfo_freq;
+    cursor[0] = file->lfo_freq & 0xf;
+    if (version >= 2)
+        cursor[0] |= (file->chip_type & 1) << 4;
     GO_FORWARD(1);
 
     bankslots[0]        = file->banks_melodic;

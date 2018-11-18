@@ -140,6 +140,8 @@ private:
     std::unique_ptr<Label> label23;
     std::unique_ptr<Styled_Knob_Default> kn_mastervol;
     std::unique_ptr<Label> lbl_mastervol;
+    std::unique_ptr<Label> label16;
+    std::unique_ptr<ComboBox> cb_chip_type;
 
 
     //==============================================================================

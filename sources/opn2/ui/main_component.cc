@@ -244,7 +244,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
                              Image(), 1.0f, Colour (0x00000000),
                              Image(), 1.0f, Colour (0x00000000),
                              Image(), 1.0f, Colour (0x00000000));
-    btn_emulator->setBounds (686, 80, 76, 20);
+    btn_emulator->setBounds (659, 56, 76, 20);
 
     label14.reset (new Label ("new label",
                               TRANS("Core")));
@@ -256,7 +256,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label14->setColour (TextEditor::textColourId, Colours::black);
     label14->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label14->setBounds (638, 80, 48, 20);
+    label14->setBounds (611, 56, 48, 20);
 
     sl_num_chips.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_num_chips.get());
@@ -268,7 +268,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_num_chips->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_num_chips->addListener (this);
 
-    sl_num_chips->setBounds (686, 104, 76, 20);
+    sl_num_chips->setBounds (659, 80, 76, 20);
 
     label15.reset (new Label ("new label",
                               TRANS("Chips")));
@@ -280,7 +280,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label15->setColour (TextEditor::textColourId, Colours::black);
     label15->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label15->setBounds (638, 104, 48, 20);
+    label15->setBounds (611, 80, 48, 20);
 
     label5.reset (new Label ("new label",
                              TRANS("Percussion key")));
@@ -535,6 +535,28 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     lbl_mastervol->setBounds (468, 102, 44, 22);
 
+    label16.reset (new Label ("new label",
+                              TRANS("Rate")));
+    addAndMakeVisible (label16.get());
+    label16->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
+    label16->setJustificationType (Justification::centredLeft);
+    label16->setEditable (false, false, false);
+    label16->setColour (Label::textColourId, Colours::aliceblue);
+    label16->setColour (TextEditor::textColourId, Colours::black);
+    label16->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    label16->setBounds (611, 104, 48, 20);
+
+    cb_chip_type.reset (new ComboBox ("new combo box"));
+    addAndMakeVisible (cb_chip_type.get());
+    cb_chip_type->setEditableText (false);
+    cb_chip_type->setJustificationType (Justification::centredLeft);
+    cb_chip_type->setTextWhenNothingSelected (String());
+    cb_chip_type->setTextWhenNoChoicesAvailable (TRANS("(no choices)"));
+    cb_chip_type->addListener (this);
+
+    cb_chip_type->setBounds (659, 104, 110, 20);
+
 
     //[UserPreSize]
     setup_generic_components();
@@ -589,12 +611,17 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
         u8"(1→2)+3+4",
         u8"1+2+3+4",
     };
-
-    for (unsigned i = 0; i < 8; ++i) {
+    unsigned num_algorithms = sizeof(algorithms) / sizeof(algorithms[0]);
+    for (unsigned i = 0; i < num_algorithms; ++i) {
         std::string text = fmt::format("{:d} : {:s}", i + 1, algorithms[i]);
         cb_algorithm->addItem(text, i + 1);
     }
     cb_algorithm->setScrollWheelEnabled(true);
+
+    unsigned num_chip_types = pb.p_chiptype->choices.size();
+    for (unsigned i = 0; i < num_chip_types; ++i)
+        cb_chip_type->addItem(pb.p_chiptype->choices[i], i + 1);
+    cb_chip_type->setScrollWheelEnabled(true);
     //[/Constructor]
 }
 
@@ -654,6 +681,8 @@ Main_Component::~Main_Component()
     label23 = nullptr;
     kn_mastervol = nullptr;
     lbl_mastervol = nullptr;
+    label16 = nullptr;
+    cb_chip_type = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -794,7 +823,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 633, y = 76, width = 141, height = 56;
+        int x = 606, y = 52, width = 168, height = 80;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -1126,6 +1155,18 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
         p.endChangeGesture();
         //[/UserComboBoxCode_cb_algorithm]
     }
+    else if (comboBoxThatHasChanged == cb_chip_type.get())
+    {
+        //[UserComboBoxCode_cb_chip_type] -- add your combo box handling code here..
+        int selection = cb_chip_type->getSelectedId();
+        if (selection != 0 && (unsigned)(selection - 1) != chip_settings_.chip_type) {
+            AudioParameterChoice &p = *pb.p_chiptype;
+            p.beginChangeGesture();
+            p = selection - 1;
+            p.endChangeGesture();
+        }
+        //[/UserComboBoxCode_cb_chip_type]
+    }
 
     //[UsercomboBoxChanged_Post]
     //[/UsercomboBoxChanged_Post]
@@ -1236,6 +1277,7 @@ void Main_Component::set_chip_settings(NotificationType ntf)
     const Chip_Settings &cs = chip_settings_;
     update_emulator_icon();
     sl_num_chips->setValue(cs.chip_count, ntf);
+    cb_chip_type->setSelectedId(cs.chip_type + 1, ntf);
 }
 
 void Main_Component::set_global_parameters(NotificationType ntf)
@@ -1322,7 +1364,7 @@ BEGIN_JUCER_METADATA
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
     <RECT pos="586 316 188 60" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="633 76 141 56" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="606 52 168 80" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="16 474 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="16 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="300 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
@@ -1420,23 +1462,23 @@ BEGIN_JUCER_METADATA
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="new button" id="1df5353a837ca5f4" memberName="btn_emulator"
-               virtualName="" explicitFocusOrder="0" pos="686 80 76 20" buttonText="new button"
+               virtualName="" explicitFocusOrder="0" pos="659 56 76 20" buttonText="new button"
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"
                resourceNormal="" opacityNormal="1.0" colourNormal="0" resourceOver=""
                opacityOver="1.0" colourOver="0" resourceDown="" opacityDown="1.0"
                colourDown="0"/>
   <LABEL name="new label" id="61dc1fae1b35b41b" memberName="label14" virtualName=""
-         explicitFocusOrder="0" pos="638 80 48 20" textCol="fff0f8ff"
+         explicitFocusOrder="0" pos="611 56 48 20" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Core" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <SLIDER name="new slider" id="4c8fba05f57b7320" memberName="sl_num_chips"
-          virtualName="" explicitFocusOrder="0" pos="686 104 76 20" rotaryslideroutline="ff8e98ff"
+          virtualName="" explicitFocusOrder="0" pos="659 80 76 20" rotaryslideroutline="ff8e98ff"
           textboxtext="fff0f8ff" textboxoutline="ff8e989b" min="1.0" max="100.0"
           int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft" textBoxEditable="1"
           textBoxWidth="36" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="new label" id="7b8136bebc755c42" memberName="label15" virtualName=""
-         explicitFocusOrder="0" pos="638 104 48 20" textCol="fff0f8ff"
+         explicitFocusOrder="0" pos="611 80 48 20" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Chips" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
@@ -1546,6 +1588,14 @@ BEGIN_JUCER_METADATA
          editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
          fontname="Default font" fontsize="12.0" kerning="0.0" bold="0"
          italic="0" justification="34"/>
+  <LABEL name="new label" id="e0a305f99bf634b2" memberName="label16" virtualName=""
+         explicitFocusOrder="0" pos="611 104 48 20" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Rate" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+  <COMBOBOX name="new combo box" id="5e6f2bbe82f06203" memberName="cb_chip_type"
+            virtualName="" explicitFocusOrder="0" pos="659 104 110 20" editable="0"
+            layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

@@ -18,11 +18,12 @@ struct Emulator_Defaults {
 struct Chip_Settings {
     unsigned emulator = 0;
     unsigned chip_count = 2;
+    unsigned chip_type = 0;
 };
 
 inline bool operator==(const Chip_Settings &a, const Chip_Settings &b)
 {
-    return a.emulator == b.emulator && a.chip_count == b.chip_count;
+    return a.emulator == b.emulator && a.chip_count == b.chip_count && a.chip_type == b.chip_type;
 }
 
 inline bool operator!=(const Chip_Settings &a, const Chip_Settings &b)

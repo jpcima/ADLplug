@@ -133,6 +133,8 @@ void Worker::handle_message(Buffered_Message &msg)
 #if defined(ADLPLUG_OPL3)
         unsigned n4op = std::min(body.cs.fourop_count, 6 * nchip);
         proc.set_num_4ops_nonrt(n4op);
+#elif defined(ADLPLUG_OPN2)
+        proc.set_chip_type_nonrt(body.cs.chip_type);
 #endif
         proc.mark_chip_settings_for_notification();
         break;
