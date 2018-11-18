@@ -923,6 +923,10 @@ void Generic_Main_Component<T>::load_bank_mem(const uint8_t *mem, size_t length,
         }
         Midi_Bank::from_wopl(*wopl, banks, igp);
         need_measurement = false;
+#if defined(ADLPLUG_OPN2)
+        Parameter_Block &pb = *parameter_block_;
+        *pb.p_chiptype = wopl->chip_type;
+#endif
         break;
     }
     }
@@ -1080,6 +1084,7 @@ void Generic_Main_Component<T>::save_bank(const File &file)
     wopl.lfo_freq =
         (instrument_gparam_.lfo_enable ? 8 : 0) |
         (instrument_gparam_.lfo_frequency & 7);
+    wopl.chip_type = chip_settings_.chip_type;
 #endif
     wopl.volume_model = instrument_gparam_.volume_model;
 
