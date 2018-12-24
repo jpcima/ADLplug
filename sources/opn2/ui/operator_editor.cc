@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.2
+  Created with Projucer version: 5.4.1
 
   ------------------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
 
     sl_level.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_level.get());
-    sl_level->setRange (0, 63, 0);
+    sl_level->setRange (0, 127, 0);
     sl_level->setSliderStyle (Slider::LinearHorizontal);
     sl_level->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     sl_level->addListener (this);
@@ -682,7 +682,7 @@ BEGIN_JUCER_METADATA
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <SLIDER name="new slider" id="b7065e7cd8f3e951" memberName="sl_level"
           virtualName="" explicitFocusOrder="0" pos="195 0 64 20" min="0.0"
-          max="63.0" int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox"
+          max="127.0" int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="new slider" id="47c9497e72aa0068" memberName="sl_fmul"

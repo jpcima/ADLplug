@@ -52,7 +52,7 @@ public:
     PARAMETER(unsigned, fms, lfosens, 0, 3,)
     OP_PARAMETER(unsigned, detune, dtfm_30, 4, 3,)
     OP_PARAMETER(unsigned, fmul, dtfm_30, 0, 4,)
-    OP_PARAMETER(unsigned, level, level_40, 0, 7,)
+    OP_PARAMETER(unsigned, level, level_40, 0, 7, _inverted)
     OP_PARAMETER(unsigned, ratescale, rsatk_50, 6, 2,)
     OP_PARAMETER(unsigned, attack, rsatk_50, 0, 5,)
     OP_PARAMETER(bool, am, amdecay1_60, 7, 1,)

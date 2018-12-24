@@ -107,7 +107,7 @@
         lv2:index 8 ;
         lv2:symbol "p1op1level" ;
         lv2:name "[Part 1] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -117,7 +117,7 @@
         lv2:index 9 ;
         lv2:symbol "p1op3level" ;
         lv2:name "[Part 1] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -127,7 +127,7 @@
         lv2:index 10 ;
         lv2:symbol "p1op2level" ;
         lv2:name "[Part 1] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -137,7 +137,7 @@
         lv2:index 11 ;
         lv2:symbol "p1op4level" ;
         lv2:name "[Part 1] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -147,7 +147,7 @@
         lv2:index 12 ;
         lv2:symbol "p2op1level" ;
         lv2:name "[Part 2] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -157,7 +157,7 @@
         lv2:index 13 ;
         lv2:symbol "p2op3level" ;
         lv2:name "[Part 2] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -167,7 +167,7 @@
         lv2:index 14 ;
         lv2:symbol "p2op2level" ;
         lv2:name "[Part 2] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -177,7 +177,7 @@
         lv2:index 15 ;
         lv2:symbol "p2op4level" ;
         lv2:name "[Part 2] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -187,7 +187,7 @@
         lv2:index 16 ;
         lv2:symbol "p3op1level" ;
         lv2:name "[Part 3] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -197,7 +197,7 @@
         lv2:index 17 ;
         lv2:symbol "p3op3level" ;
         lv2:name "[Part 3] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -207,7 +207,7 @@
         lv2:index 18 ;
         lv2:symbol "p3op2level" ;
         lv2:name "[Part 3] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -217,7 +217,7 @@
         lv2:index 19 ;
         lv2:symbol "p3op4level" ;
         lv2:name "[Part 3] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -227,7 +227,7 @@
         lv2:index 20 ;
         lv2:symbol "p4op1level" ;
         lv2:name "[Part 4] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -237,7 +237,7 @@
         lv2:index 21 ;
         lv2:symbol "p4op3level" ;
         lv2:name "[Part 4] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -247,7 +247,7 @@
         lv2:index 22 ;
         lv2:symbol "p4op2level" ;
         lv2:name "[Part 4] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -257,7 +257,7 @@
         lv2:index 23 ;
         lv2:symbol "p4op4level" ;
         lv2:name "[Part 4] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -267,7 +267,7 @@
         lv2:index 24 ;
         lv2:symbol "p5op1level" ;
         lv2:name "[Part 5] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -277,7 +277,7 @@
         lv2:index 25 ;
         lv2:symbol "p5op3level" ;
         lv2:name "[Part 5] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -287,7 +287,7 @@
         lv2:index 26 ;
         lv2:symbol "p5op2level" ;
         lv2:name "[Part 5] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -297,7 +297,7 @@
         lv2:index 27 ;
         lv2:symbol "p5op4level" ;
         lv2:name "[Part 5] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -307,7 +307,7 @@
         lv2:index 28 ;
         lv2:symbol "p6op1level" ;
         lv2:name "[Part 6] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -317,7 +317,7 @@
         lv2:index 29 ;
         lv2:symbol "p6op3level" ;
         lv2:name "[Part 6] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -327,7 +327,7 @@
         lv2:index 30 ;
         lv2:symbol "p6op2level" ;
         lv2:name "[Part 6] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -337,7 +337,7 @@
         lv2:index 31 ;
         lv2:symbol "p6op4level" ;
         lv2:name "[Part 6] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -347,7 +347,7 @@
         lv2:index 32 ;
         lv2:symbol "p7op1level" ;
         lv2:name "[Part 7] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -357,7 +357,7 @@
         lv2:index 33 ;
         lv2:symbol "p7op3level" ;
         lv2:name "[Part 7] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -367,7 +367,7 @@
         lv2:index 34 ;
         lv2:symbol "p7op2level" ;
         lv2:name "[Part 7] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -377,7 +377,7 @@
         lv2:index 35 ;
         lv2:symbol "p7op4level" ;
         lv2:name "[Part 7] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -387,7 +387,7 @@
         lv2:index 36 ;
         lv2:symbol "p8op1level" ;
         lv2:name "[Part 8] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -397,7 +397,7 @@
         lv2:index 37 ;
         lv2:symbol "p8op3level" ;
         lv2:name "[Part 8] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -407,7 +407,7 @@
         lv2:index 38 ;
         lv2:symbol "p8op2level" ;
         lv2:name "[Part 8] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -417,7 +417,7 @@
         lv2:index 39 ;
         lv2:symbol "p8op4level" ;
         lv2:name "[Part 8] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -427,7 +427,7 @@
         lv2:index 40 ;
         lv2:symbol "p9op1level" ;
         lv2:name "[Part 9] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -437,7 +437,7 @@
         lv2:index 41 ;
         lv2:symbol "p9op3level" ;
         lv2:name "[Part 9] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -447,7 +447,7 @@
         lv2:index 42 ;
         lv2:symbol "p9op2level" ;
         lv2:name "[Part 9] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -457,7 +457,7 @@
         lv2:index 43 ;
         lv2:symbol "p9op4level" ;
         lv2:name "[Part 9] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -467,7 +467,7 @@
         lv2:index 44 ;
         lv2:symbol "p10op1level" ;
         lv2:name "[Part 10] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -477,7 +477,7 @@
         lv2:index 45 ;
         lv2:symbol "p10op3level" ;
         lv2:name "[Part 10] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -487,7 +487,7 @@
         lv2:index 46 ;
         lv2:symbol "p10op2level" ;
         lv2:name "[Part 10] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -497,7 +497,7 @@
         lv2:index 47 ;
         lv2:symbol "p10op4level" ;
         lv2:name "[Part 10] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -507,7 +507,7 @@
         lv2:index 48 ;
         lv2:symbol "p11op1level" ;
         lv2:name "[Part 11] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -517,7 +517,7 @@
         lv2:index 49 ;
         lv2:symbol "p11op3level" ;
         lv2:name "[Part 11] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -527,7 +527,7 @@
         lv2:index 50 ;
         lv2:symbol "p11op2level" ;
         lv2:name "[Part 11] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -537,7 +537,7 @@
         lv2:index 51 ;
         lv2:symbol "p11op4level" ;
         lv2:name "[Part 11] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -547,7 +547,7 @@
         lv2:index 52 ;
         lv2:symbol "p12op1level" ;
         lv2:name "[Part 12] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -557,7 +557,7 @@
         lv2:index 53 ;
         lv2:symbol "p12op3level" ;
         lv2:name "[Part 12] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -567,7 +567,7 @@
         lv2:index 54 ;
         lv2:symbol "p12op2level" ;
         lv2:name "[Part 12] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -577,7 +577,7 @@
         lv2:index 55 ;
         lv2:symbol "p12op4level" ;
         lv2:name "[Part 12] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -587,7 +587,7 @@
         lv2:index 56 ;
         lv2:symbol "p13op1level" ;
         lv2:name "[Part 13] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -597,7 +597,7 @@
         lv2:index 57 ;
         lv2:symbol "p13op3level" ;
         lv2:name "[Part 13] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -607,7 +607,7 @@
         lv2:index 58 ;
         lv2:symbol "p13op2level" ;
         lv2:name "[Part 13] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -617,7 +617,7 @@
         lv2:index 59 ;
         lv2:symbol "p13op4level" ;
         lv2:name "[Part 13] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -627,7 +627,7 @@
         lv2:index 60 ;
         lv2:symbol "p14op1level" ;
         lv2:name "[Part 14] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -637,7 +637,7 @@
         lv2:index 61 ;
         lv2:symbol "p14op3level" ;
         lv2:name "[Part 14] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -647,7 +647,7 @@
         lv2:index 62 ;
         lv2:symbol "p14op2level" ;
         lv2:name "[Part 14] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -657,7 +657,7 @@
         lv2:index 63 ;
         lv2:symbol "p14op4level" ;
         lv2:name "[Part 14] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -667,7 +667,7 @@
         lv2:index 64 ;
         lv2:symbol "p15op1level" ;
         lv2:name "[Part 15] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -677,7 +677,7 @@
         lv2:index 65 ;
         lv2:symbol "p15op3level" ;
         lv2:name "[Part 15] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -687,7 +687,7 @@
         lv2:index 66 ;
         lv2:symbol "p15op2level" ;
         lv2:name "[Part 15] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -697,7 +697,7 @@
         lv2:index 67 ;
         lv2:symbol "p15op4level" ;
         lv2:name "[Part 15] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -707,7 +707,7 @@
         lv2:index 68 ;
         lv2:symbol "p16op1level" ;
         lv2:name "[Part 16] Operator 1 Level" ;
-        lv2:default 39 ;
+        lv2:default 88 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -717,7 +717,7 @@
         lv2:index 69 ;
         lv2:symbol "p16op3level" ;
         lv2:name "[Part 16] Operator 3 Level" ;
-        lv2:default 36 ;
+        lv2:default 91 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -727,7 +727,7 @@
         lv2:index 70 ;
         lv2:symbol "p16op2level" ;
         lv2:name "[Part 16] Operator 2 Level" ;
-        lv2:default 4 ;
+        lv2:default 123 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
@@ -737,7 +737,7 @@
         lv2:index 71 ;
         lv2:symbol "p16op4level" ;
         lv2:name "[Part 16] Operator 4 Level" ;
-        lv2:default 2 ;
+        lv2:default 125 ;
         lv2:minimum 0 ;
         lv2:maximum 127 ;
         lv2:portProperty lv2:integer ;
