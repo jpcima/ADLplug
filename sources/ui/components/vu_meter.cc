@@ -6,14 +6,18 @@
 #include "ui/components/vu_meter.h"
 #include <math.h>
 
+static const double default_hue_start = 210.0;
+static const double default_hue_range = -240.0;
+
 Vu_Meter::Vu_Meter()
 {
-    set_hue(210.0, -240.0);
+    set_hue(default_hue_start, default_hue_range);
 }
 
 Vu_Meter::Vu_Meter(const String &name)
     : Component(name)
 {
+    set_hue(default_hue_start, default_hue_range);
 }
 
 void Vu_Meter::set_value(double value)
@@ -79,7 +83,7 @@ void Vu_Meter::paint(Graphics &g)
 
     int w2 = lround(w * logvalue);
     w2 = (w2 > w) ? w : w2;
-    for (int i = 0; i <= w2; ++i) {
+    for (int i = 0; i < w2; ++i) {
         g.setColour(colormap[i]);
         g.drawVerticalLine(x + i, y, y + h);
     }
