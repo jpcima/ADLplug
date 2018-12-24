@@ -5,8 +5,9 @@
 
 #pragma once
 #include "JuceHeader.h"
+#include "../parameter_block.h"
 
-struct Parameter_Block {
+struct Parameter_Block : Basic_Parameter_Block {
     AudioParameterFloat *p_mastervol = nullptr;
 
     AudioParameterChoice *p_emulator = nullptr;
