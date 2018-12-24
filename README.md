@@ -81,6 +81,8 @@ sudo cmake --build . --target install
 - allowed to choose a chip rate which matches either OPN2 or OPNA instruments
 - allowed saving and restoring the program selection, part selection and bank name
 - added Non session management capabilities `optional-gui`, `switch`
+- hidden a large number of parameters to improve performance under hosts
+- fixed incorrect handling of OPN levels on the graphical interface
 - permitted a VST2 build using VeSTige as a replacement of Steinberg SDK
 - added a CLI flag `--version` in the JACK standalone
 - added a window icon in the JACK standalone
