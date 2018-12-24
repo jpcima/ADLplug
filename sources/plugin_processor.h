@@ -8,6 +8,7 @@
 #include "dsp/vu_monitor.h"
 #include "adl/instrument.h"
 #include "adl/chip_settings.h"
+#include "utility/processor_ex.h"
 #include "JuceHeader.h"
 #include <bitset>
 #include <memory>
@@ -24,7 +25,7 @@ struct Instrument;
 //==============================================================================
 /**
  */
-class AdlplugAudioProcessor : public AudioProcessor,
+class AdlplugAudioProcessor : public AudioProcessorEx,
                               public AudioProcessorParameter::Listener {
 public:
     //==========================================================================
@@ -131,8 +132,9 @@ public:
 
 protected:
     //==========================================================================
-    void parameterValueChanged(int index, float value) override;
+    void parameterValueChanged(int index, float value) override {}
     void parameterGestureChanged(int index, bool is_starting) override {}
+    void parameterValueChangedEx(int tag) override;
 
 private:
     std::unique_ptr<Player> player_;

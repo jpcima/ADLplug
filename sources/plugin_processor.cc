@@ -21,7 +21,7 @@
 
 //==============================================================================
 AdlplugAudioProcessor::AdlplugAudioProcessor()
-    : AudioProcessor(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true))
+    : AudioProcessorEx(BusesProperties().withOutput("Output", AudioChannelSet::stereo(), true))
 {
     Parameter_Block *pb = new Parameter_Block;
     parameter_block_.reset(pb);
@@ -1208,20 +1208,18 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
 }
 
 //==============================================================================
-void AdlplugAudioProcessor::parameterValueChanged(int index, float value)
+void AdlplugAudioProcessor::parameterValueChangedEx(int tag)
 {
-    const Parameter_Block &pb = *parameter_block_;
-
-    if (index >= pb.first_chip_setting && index <= pb.last_chip_setting)
+    if (tag == 'chip')
         chip_settings_changed_.store(1);
-    else if (index >= pb.first_global_parameter && index <= pb.last_global_parameter)
+    else if (tag == 'glob')
         global_parameters_changed_.store(1);
-    else if (index >= pb.first_instrument_parameter && index <= pb.last_instrument_parameter)
-    {
-        unsigned p_ins_count = (1 + pb.last_instrument_parameter - pb.first_instrument_parameter);
-        unsigned p_part_count = p_ins_count / 16;
-        unsigned part = (index - pb.first_instrument_parameter) / p_part_count;
-        instrument_parameters_changed_[part].store(1);
+    else {
+        const uint32_t part_tag = ((uint8_t)'i' << 24) | ((uint8_t)'n' << 16) | ((uint8_t)'s' << 8);
+        if (((uint32_t)tag & 0xffffff00) == part_tag) {
+            unsigned part = tag & 15;
+            instrument_parameters_changed_[part].store(1);
+        }
     }
 }
 

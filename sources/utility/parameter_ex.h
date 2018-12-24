@@ -6,6 +6,69 @@
 #pragma once
 #include "JuceHeader.h"
 
+namespace AudioParametersEx {
+    class ValueChangedListener {
+    public:
+        virtual ~ValueChangedListener() {}
+        virtual void parameterValueChangedEx(int) {}
+    };
+};
+
+template <class Parameter>
+class AudioParameterEx : public Parameter {
+public:
+    using Parameter::Parameter;
+    typedef AudioParametersEx::ValueChangedListener ValueChangedListener;
+
+    void addValueChangedListenerEx(ValueChangedListener *l);
+    void removeValueChangedListenerEx(ValueChangedListener *l);
+
+    int getTagEx() const noexcept;
+    void setTagEx(int tag) noexcept;
+
+    void setAutomatable(bool automatable);
+    bool isAutomatable() const override;
+
+protected:
+    void invoke_value_changed_listeners();
+
+private:
+    CriticalSection listener_lock_;
+    Array<ValueChangedListener *> listeners_;
+    int tag_ = 0;
+    int automatable_ = -1;
+};
+
+//------------------------------------------------------------------------------
+class AudioParameterExBool : public AudioParameterEx<AudioParameterBool> {
+public:
+    using AudioParameterEx::AudioParameterEx;
+    void valueChanged(bool) override
+        { invoke_value_changed_listeners(); }
+};
+
+class AudioParameterExChoice : public AudioParameterEx<AudioParameterChoice> {
+public:
+    using AudioParameterEx::AudioParameterEx;
+    void valueChanged(int) override
+        { invoke_value_changed_listeners(); }
+};
+
+class AudioParameterExFloat : public AudioParameterEx<AudioParameterFloat> {
+public:
+    using AudioParameterEx::AudioParameterEx;
+    void valueChanged(float) override
+        { invoke_value_changed_listeners(); }
+};
+
+class AudioParameterExInt : public AudioParameterEx<AudioParameterInt> {
+public:
+    using AudioParameterEx::AudioParameterEx;
+    void valueChanged(int) override
+        { invoke_value_changed_listeners(); }
+};
+
+//------------------------------------------------------------------------------
 enum class AudioParameterType {
     Bool, Choice, Float, Int,
 };
@@ -16,37 +79,25 @@ struct TypedAudioParameterTraits;
 
 template <>
 struct TypedAudioParameterTraits<AudioParameterType::Bool> {
-    typedef AudioParameterBool type;
+    typedef AudioParameterExBool type;
 };
 
 template <>
 struct TypedAudioParameterTraits<AudioParameterType::Choice> {
-    typedef AudioParameterChoice type;
+    typedef AudioParameterExChoice type;
 };
 
 template <>
 struct TypedAudioParameterTraits<AudioParameterType::Float> {
-    typedef AudioParameterFloat type;
+    typedef AudioParameterExFloat type;
 };
 
 template <>
 struct TypedAudioParameterTraits<AudioParameterType::Int> {
-    typedef AudioParameterInt type;
+    typedef AudioParameterExInt type;
 };
 
 template <AudioParameterType Ty>
 using TypedAudioParameter = typename TypedAudioParameterTraits<Ty>::type;
 
-//------------------------------------------------------------------------------
-template <AudioParameterType Ty>
-class NonAutomatableAudioParameter : public TypedAudioParameterTraits<Ty>::type {
-public:
-    using TypedAudioParameterTraits<Ty>::type::type;
-    virtual bool isAutomatable() const override
-        { return false; }
-};
-
-typedef NonAutomatableAudioParameter<AudioParameterType::Bool> NonAutomatableAudioParameterBool;
-typedef NonAutomatableAudioParameter<AudioParameterType::Choice> NonAutomatableAudioParameterChoice;
-typedef NonAutomatableAudioParameter<AudioParameterType::Float> NonAutomatableAudioParameterFloat;
-typedef NonAutomatableAudioParameter<AudioParameterType::Int> NonAutomatableAudioParameterInt;
+#include "parameter_ex.tcc"

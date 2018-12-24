@@ -6,6 +6,7 @@
 #pragma once
 #include "JuceHeader.h"
 #include "../parameter_block.h"
+class AudioProcessorEx;
 
 struct Parameter_Block : Basic_Parameter_Block {
     AudioParameterFloat *p_mastervol = nullptr;
@@ -57,14 +58,5 @@ struct Parameter_Block : Basic_Parameter_Block {
     AudioParameterBool *p_deeptrem = nullptr;
     AudioParameterBool *p_deepvib = nullptr;
 
-    void setup_parameters(AudioProcessor &p);
-
-    unsigned first_chip_setting {};
-    unsigned last_chip_setting {};
-
-    unsigned first_instrument_parameter {};
-    unsigned last_instrument_parameter {};
-
-    unsigned first_global_parameter {};
-    unsigned last_global_parameter {};
+    void setup_parameters(AudioProcessorEx &p);
 };
