@@ -18,6 +18,7 @@
 
 #define JucePlugin_Build_LV2 1
 #define JucePlugin_Build_LV2_FileCreator 1
+#define JucePlugin_WantsLV2Presets 0
 #define JucePlugin_WantsLV2Latency 0
 #define JucePlugin_LV2URI "https://github.com/jpcima/ADLplug"
 

@@ -314,8 +314,7 @@ if(ADLplug_LV2)
 
   set(ADLplug_LV2_MANIFESTS
     "resources/lv2/${ADLplug_NAME}.lv2/${ADLplug_NAME}.ttl"
-    "${PROJECT_BINARY_DIR}/lv2build/manifest.ttl"
-    "resources/lv2/${ADLplug_NAME}.lv2/presets.ttl")
+    "${PROJECT_BINARY_DIR}/lv2build/manifest.ttl")
   add_custom_target(ADLplug_LV2_manifests_copy ALL
     COMMAND "${CMAKE_COMMAND}" "-E" "make_directory" "${CMAKE_CURRENT_BINARY_DIR}/lv2/${ADLplug_NAME}.lv2/"
     COMMAND "${CMAKE_COMMAND}" "-E" "copy" ${ADLplug_LV2_MANIFESTS} "${CMAKE_CURRENT_BINARY_DIR}/lv2/${ADLplug_NAME}.lv2/"

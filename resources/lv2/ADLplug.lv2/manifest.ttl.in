@@ -21,11 +21,3 @@
     lv2:requiredFeature <http://lv2plug.in/ns/ext/instance-access> ;
     lv2:optionalFeature ui:noUserResize ;
     lv2:extensionData <http://kxstudio.sf.net/ns/lv2ext/programs#UIInterface> .
-
-<https://github.com/jpcima/ADLplug#preset001>
-    a pset:Preset ;
-    lv2:appliesTo <https://github.com/jpcima/ADLplug> ;
-    rdfs:label "" ;
-    rdfs:seeAlso <presets.ttl> .
-
-
