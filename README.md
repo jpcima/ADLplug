@@ -75,9 +75,10 @@ sudo cmake --build . --target install
 
 ### Change Log
 
-**1.0.0.beta.5 (dev)**
+**1.0.0.beta.5**
 
 - added a new chip: YM2608 (OPNA) using Neko Project II Kai emulation
+- added a new emulator: MAME YM2608
 - allowed to choose a chip rate which matches either OPN2 or OPNA instruments
 - allowed saving and restoring the program selection, part selection and bank name
 - added Non session management capabilities `optional-gui`, `switch`
