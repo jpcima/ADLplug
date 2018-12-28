@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.2
+  Created with Projucer version: 5.4.1
 
   ------------------------------------------------------------------------------
 
@@ -19,6 +19,7 @@
 
 //[Headers] You can add your own extra header files here...
 #include "ui/components/wave_label.h"
+#include "ui/components/info_display.h"
 #include "adl/instrument.h"
 #include "parameter_block.h"
 #include <cmath>
@@ -117,7 +118,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     sl_level->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     sl_level->addListener (this);
 
-    sl_level->setBounds (195, 72, 64, 20);
+    sl_level->setBounds (195, 70, 64, 20);
 
     sl_fmul.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_fmul.get());
@@ -126,7 +127,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     sl_fmul->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     sl_fmul->addListener (this);
 
-    sl_fmul->setBounds (195, 88, 64, 20);
+    sl_fmul->setBounds (195, 86, 64, 20);
 
     sl_ksl.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_ksl.get());
@@ -135,7 +136,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     sl_ksl->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
     sl_ksl->addListener (this);
 
-    sl_ksl->setBounds (195, 104, 64, 20);
+    sl_ksl->setBounds (195, 102, 64, 20);
 
     lbl_level.reset (new Label ("new label",
                                 TRANS("Lv")));
@@ -143,6 +144,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     lbl_level->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_level->setJustificationType (Justification::centredLeft);
     lbl_level->setEditable (false, false, false);
+    lbl_level->setColour (Label::textColourId, Colours::aliceblue);
     lbl_level->setColour (TextEditor::textColourId, Colours::black);
     lbl_level->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -160,6 +162,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     label->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     label->setJustificationType (Justification::centredTop);
     label->setEditable (false, false, false);
+    label->setColour (Label::textColourId, Colours::aliceblue);
     label->setColour (TextEditor::textColourId, Colours::black);
     label->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -171,6 +174,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     label2->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     label2->setJustificationType (Justification::centredTop);
     label2->setEditable (false, false, false);
+    label2->setColour (Label::textColourId, Colours::aliceblue);
     label2->setColour (TextEditor::textColourId, Colours::black);
     label2->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -182,6 +186,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     label3->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     label3->setJustificationType (Justification::centredTop);
     label3->setEditable (false, false, false);
+    label3->setColour (Label::textColourId, Colours::aliceblue);
     label3->setColour (TextEditor::textColourId, Colours::black);
     label3->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -193,6 +198,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     label4->setFont (Font (15.0f, Font::plain).withTypefaceStyle ("Regular"));
     label4->setJustificationType (Justification::centredTop);
     label4->setEditable (false, false, false);
+    label4->setColour (Label::textColourId, Colours::aliceblue);
     label4->setColour (TextEditor::textColourId, Colours::black);
     label4->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -204,6 +210,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     label5->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label5->setJustificationType (Justification::centredLeft);
     label5->setEditable (false, false, false);
+    label5->setColour (Label::textColourId, Colours::aliceblue);
     label5->setColour (TextEditor::textColourId, Colours::black);
     label5->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -215,6 +222,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     label6->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label6->setJustificationType (Justification::centredLeft);
     label6->setEditable (false, false, false);
+    label6->setColour (Label::textColourId, Colours::aliceblue);
     label6->setColour (TextEditor::textColourId, Colours::black);
     label6->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -226,6 +234,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     label7->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label7->setJustificationType (Justification::centredLeft);
     label7->setEditable (false, false, false);
+    label7->setColour (Label::textColourId, Colours::aliceblue);
     label7->setColour (TextEditor::textColourId, Colours::black);
     label7->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -237,6 +246,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     label8->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label8->setJustificationType (Justification::centredLeft);
     label8->setEditable (false, false, false);
+    label8->setColour (Label::textColourId, Colours::aliceblue);
     label8->setColour (TextEditor::textColourId, Colours::black);
     label8->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -248,6 +258,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     lbl_fmul->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_fmul->setJustificationType (Justification::centredLeft);
     lbl_fmul->setEditable (false, false, false);
+    lbl_fmul->setColour (Label::textColourId, Colours::aliceblue);
     lbl_fmul->setColour (TextEditor::textColourId, Colours::black);
     lbl_fmul->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -259,6 +270,7 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     lbl_ksl->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     lbl_ksl->setJustificationType (Justification::centredLeft);
     lbl_ksl->setEditable (false, false, false);
+    lbl_ksl->setColour (Label::textColourId, Colours::aliceblue);
     lbl_ksl->setColour (TextEditor::textColourId, Colours::black);
     lbl_ksl->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -288,8 +300,8 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
 
     sl_level->setTooltip(TRANS("Level"));
     lbl_level->setTooltip(TRANS("Level"));
-    sl_fmul->setTooltip(TRANS("Frequency multiplication"));
-    lbl_fmul->setTooltip(TRANS("Frequency multiplication"));
+    sl_fmul->setTooltip(TRANS("Frequency multiplier"));
+    lbl_fmul->setTooltip(TRANS("Frequency multiplier"));
     sl_ksl->setTooltip(TRANS("Key scale level"));
     lbl_ksl->setTooltip(TRANS("Key scale level"));
     //[/UserPreSize]
@@ -355,6 +367,15 @@ void Operator_Editor::paint (Graphics& g)
         g.setColour (strokeColour);
         g.drawRect (x, y, width, height, 1);
 
+    }
+
+    {
+        int x = 0, y = 0, width = 264, height = 128;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRect (x, y, width, height);
     }
 
     //[UserPaint] Add your own custom painting code here..
@@ -439,6 +460,8 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
     }
 
     //[UserbuttonClicked_Post]
+    if (display_info_for_component(btn))
+        info_->expire_info_in();
     //[/UserbuttonClicked_Post]
 }
 
@@ -474,6 +497,7 @@ void Operator_Editor::sliderValueChanged (Slider* sliderThatWasMoved)
     }
 
     //[UsersliderValueChanged_Post]
+    display_info_for_component(sl);
     //[/UsersliderValueChanged_Post]
 }
 
@@ -501,6 +525,8 @@ void Operator_Editor::sliderDragStarted(Slider *slider)
         AudioParameterInt &p = *op.p_ksl;
         p.beginChangeGesture();
     }
+
+    display_info_for_component(slider);
 }
 
 void Operator_Editor::sliderDragEnded(Slider *slider)
@@ -524,6 +550,8 @@ void Operator_Editor::sliderDragEnded(Slider *slider)
         AudioParameterInt &p = *op.p_ksl;
         p.endChangeGesture();
     }
+
+    info_->expire_info_in();
 }
 
 void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op, NotificationType ntf)
@@ -576,6 +604,8 @@ void Operator_Editor::knob_value_changed(Knob *k)
         AudioParameterInt &p = *op.p_release;
         p = std::lround(k->value());
     }
+
+    display_info_for_component(k);
 }
 
 void Operator_Editor::knob_drag_started(Knob *k)
@@ -600,6 +630,8 @@ void Operator_Editor::knob_drag_started(Knob *k)
         AudioParameterInt &p = *op.p_release;
         p.beginChangeGesture();
     }
+
+    display_info_for_component(k);
 }
 
 void Operator_Editor::knob_drag_ended(Knob *k)
@@ -624,12 +656,64 @@ void Operator_Editor::knob_drag_ended(Knob *k)
         AudioParameterInt &p = *op.p_release;
         p.endChangeGesture();
     }
+
+    info_->expire_info_in();
 }
 
 void Operator_Editor::paintOverChildren(Graphics &g)
 {
     if (!operator_enabled_)
         g.fillAll(Colour(0x66777777));
+}
+
+bool Operator_Editor::display_info_for_component(Component *c)
+{
+    String param;
+    int val = 0;
+    const char *prefixes[4] = {"Op2 ", "Op1 ", "Op4 ", "Op3 "};
+    String prefix = prefixes[operator_id_];
+
+    Slider *sl = static_cast<Slider *>(c);
+    Knob *kn = static_cast<Knob *>(c);
+
+    if (c == sl_level.get()) {
+        param = prefix + "Level";
+        val = (int)lround(sl->getValue());
+    }
+    else if (c == sl_fmul.get()) {
+        param = prefix + "Frequency multiplier";
+        val = (int)lround(sl->getValue());
+    }
+    else if (c == sl_ksl.get()) {
+        param = prefix + "Key scale level";
+        val = (int)lround(sl->getValue());
+    }
+    else if (c == kn_attack.get()) {
+        param = prefix + "Attack";
+        val = (int)lround(kn->value());
+    }
+    else if (c == kn_decay.get()) {
+        param = prefix + "Decay";
+        val = (int)lround(kn->value());
+    }
+    else if (c == kn_sustain.get()) {
+        param = prefix + "Sustain";
+        val = (int)lround(kn->value());
+    }
+    else if (c == kn_release.get()) {
+        param = prefix + "Release";
+        val = (int)lround(kn->value());
+    }
+    else if (c == btn_next_wave.get() || c == btn_prev_wave.get()) {
+        param = prefix + "Wave";
+        val = lbl_wave->wave();
+    }
+
+    if (param.isEmpty())
+        return false;
+
+    info_->display_info(param + " = " + String(val));
+    return true;
 }
 //[/MiscUserCode]
 
@@ -650,6 +734,7 @@ BEGIN_JUCER_METADATA
   <BACKGROUND backgroundColour="323e44">
     <RECT pos="25 96 108 24" fill="solid: 0" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: ff8e989b"/>
+    <RECT pos="0 0 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="7c54ff103d9f5d" memberName="kn_attack"
                     virtualName="" explicitFocusOrder="0" pos="24 3 48 48" class="Styled_Knob_Default"
@@ -682,77 +767,77 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="168 54 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <SLIDER name="new slider" id="b7065e7cd8f3e951" memberName="sl_level"
-          virtualName="" explicitFocusOrder="0" pos="195 72 64 20" min="0.0"
+          virtualName="" explicitFocusOrder="0" pos="195 70 64 20" min="0.0"
           max="63.0" int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="new slider" id="47c9497e72aa0068" memberName="sl_fmul"
-          virtualName="" explicitFocusOrder="0" pos="195 88 64 20" min="0.0"
+          virtualName="" explicitFocusOrder="0" pos="195 86 64 20" min="0.0"
           max="15.0" int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox"
           textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
           needsCallback="1"/>
   <SLIDER name="new slider" id="7da3d626504f1592" memberName="sl_ksl" virtualName=""
-          explicitFocusOrder="0" pos="195 104 64 20" min="0.0" max="3.0"
+          explicitFocusOrder="0" pos="195 102 64 20" min="0.0" max="3.0"
           int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox" textBoxEditable="1"
           textBoxWidth="80" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="new label" id="ce54b68fc1a1f1e1" memberName="lbl_level"
-         virtualName="" explicitFocusOrder="0" pos="163 72 28 16" edTextCol="ff000000"
-         edBkgCol="0" labelText="Lv" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="33"/>
+         virtualName="" explicitFocusOrder="0" pos="163 72 28 16" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Lv" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <GENERICCOMPONENT name="new component" id="dd16fb8d4c488877" memberName="lbl_wave"
                     virtualName="" explicitFocusOrder="0" pos="26 96 106 24" class="Wave_Label"
                     params="chip_waves_"/>
   <LABEL name="new label" id="664ae98bd7a6b3a5" memberName="label" virtualName=""
-         explicitFocusOrder="0" pos="4 0 20 16" edTextCol="ff000000" edBkgCol="0"
-         labelText="A" editableSingleClick="0" editableDoubleClick="0"
+         explicitFocusOrder="0" pos="4 0 20 16" textCol="fff0f8ff" edTextCol="ff000000"
+         edBkgCol="0" labelText="A" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
          kerning="0.0" bold="0" italic="0" justification="12"/>
   <LABEL name="new label" id="360efe252ecea296" memberName="label2" virtualName=""
-         explicitFocusOrder="0" pos="76 0 20 16" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="76 0 20 16" textCol="fff0f8ff" edTextCol="ff000000"
          edBkgCol="0" labelText="D" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
          kerning="0.0" bold="0" italic="0" justification="12"/>
   <LABEL name="new label" id="d276bb335fab1f40" memberName="label3" virtualName=""
-         explicitFocusOrder="0" pos="4 48 20 16" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="4 48 20 16" textCol="fff0f8ff" edTextCol="ff000000"
          edBkgCol="0" labelText="S" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
          kerning="0.0" bold="0" italic="0" justification="12"/>
   <LABEL name="new label" id="2ad02ec8c7135a27" memberName="label4" virtualName=""
-         explicitFocusOrder="0" pos="76 48 20 16" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="76 48 20 16" textCol="fff0f8ff" edTextCol="ff000000"
          edBkgCol="0" labelText="R" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="15.0"
          kerning="0.0" bold="0" italic="0" justification="12"/>
   <LABEL name="new label" id="ffcd49be138de78b" memberName="label5" virtualName=""
-         explicitFocusOrder="0" pos="184 3 80 15" edTextCol="ff000000"
+         explicitFocusOrder="0" pos="184 3 80 15" textCol="fff0f8ff" edTextCol="ff000000"
          edBkgCol="0" labelText="Tremolo" editableSingleClick="0" editableDoubleClick="0"
          focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
          kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="37e7947c4443e047" memberName="label6" virtualName=""
-         explicitFocusOrder="0" pos="184 20 80 15" edTextCol="ff000000"
-         edBkgCol="0" labelText="Vibrato" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="33"/>
+         explicitFocusOrder="0" pos="184 20 80 15" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Vibrato" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="f04d949c957007e" memberName="label7" virtualName=""
-         explicitFocusOrder="0" pos="184 37 80 15" edTextCol="ff000000"
-         edBkgCol="0" labelText="Sustain" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="33"/>
+         explicitFocusOrder="0" pos="184 37 80 15" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Sustain" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="e8cd7412f499955d" memberName="label8" virtualName=""
-         explicitFocusOrder="0" pos="184 54 80 15" edTextCol="ff000000"
-         edBkgCol="0" labelText="Key scaling" editableSingleClick="0"
+         explicitFocusOrder="0" pos="184 54 80 15" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Key scaling" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="e77fa8c6c00316b7" memberName="lbl_fmul"
-         virtualName="" explicitFocusOrder="0" pos="163 88 28 16" edTextCol="ff000000"
-         edBkgCol="0" labelText="F*" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="33"/>
+         virtualName="" explicitFocusOrder="0" pos="163 88 28 16" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="F*" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <LABEL name="new label" id="dbcb4d45f32ea3e9" memberName="lbl_ksl" virtualName=""
-         explicitFocusOrder="0" pos="163 104 28 16" edTextCol="ff000000"
-         edBkgCol="0" labelText="Ksl" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="33"/>
+         explicitFocusOrder="0" pos="163 104 28 16" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Ksl" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

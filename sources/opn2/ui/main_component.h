@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.2
+  Created with Projucer version: 5.4.1
 
   ------------------------------------------------------------------------------
 
@@ -59,6 +59,9 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    void sliderDragStarted(Slider *slider) override;
+    void sliderDragEnded(Slider *slider) override;
+
     void knob_value_changed(Knob *k) override;
     void knob_drag_started(Knob *k) override;
     void knob_drag_ended(Knob *k) override;
@@ -70,6 +73,8 @@ public:
     void on_change_midi_channel(unsigned channel);
 
     void popup_about_dialog();
+
+    bool display_info_for_component(Component *c);
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -142,6 +147,7 @@ private:
     std::unique_ptr<Label> lbl_mastervol;
     std::unique_ptr<Label> label16;
     std::unique_ptr<ComboBox> cb_chip_type;
+    std::unique_ptr<Label> lbl_info;
 
 
     //==============================================================================

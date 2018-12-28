@@ -24,6 +24,7 @@
 #include "components/ssgeg_waves.h"
 #include "ui/components/styled_knobs.h"
 class Wave_Label;
+class Info_Display;
 struct Instrument;
 struct Parameter_Block;
 //[/Headers]
@@ -66,6 +67,10 @@ public:
 
     void sliderDragStarted(Slider *slider) override;
     void sliderDragEnded(Slider *slider) override;
+
+    void set_info_display(Info_Display *info)
+        { info_ = info; }
+    bool display_info_for_component(Component *c);
     //[/UserMethods]
 
     void paint (Graphics& g) override;
@@ -81,6 +86,7 @@ private:
     unsigned operator_id_ = 0;
     bool operator_enabled_ = true;
     Parameter_Block *parameter_block_ = nullptr;
+    Info_Display *info_ = nullptr;
     unsigned midichannel_ = 0;
     SSGEG_Waves ssgeg_waves_;
     //[/UserVariables]

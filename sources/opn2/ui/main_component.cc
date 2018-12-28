@@ -7,7 +7,7 @@
   the "//[xyz]" and "//[/xyz]" sections will be retained when the file is loaded
   and re-saved.
 
-  Created with Projucer version: 5.3.2
+  Created with Projucer version: 5.4.1
 
   ------------------------------------------------------------------------------
 
@@ -89,6 +89,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_tune->setRange (-127, 127, 1);
     sl_tune->setSliderStyle (Slider::IncDecButtons);
     sl_tune->setTextBoxStyle (Slider::TextBoxLeft, false, 36, 20);
+    sl_tune->setColour (Slider::textBoxTextColourId, Colours::aliceblue);
     sl_tune->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_tune->addListener (this);
 
@@ -231,6 +232,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label11->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label11->setJustificationType (Justification::centredLeft);
     label11->setEditable (false, false, false);
+    label11->setColour (Label::textColourId, Colours::aliceblue);
     label11->setColour (TextEditor::textColourId, Colours::black);
     label11->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -309,6 +311,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label17->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label17->setJustificationType (Justification::centredLeft);
     label17->setEditable (false, false, false);
+    label17->setColour (Label::textColourId, Colours::aliceblue);
     label17->setColour (TextEditor::textColourId, Colours::black);
     label17->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -319,10 +322,11 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     sl_veloffset->setRange (-127, 127, 1);
     sl_veloffset->setSliderStyle (Slider::IncDecButtons);
     sl_veloffset->setTextBoxStyle (Slider::TextBoxLeft, false, 36, 20);
+    sl_veloffset->setColour (Slider::textBoxTextColourId, Colours::aliceblue);
     sl_veloffset->setColour (Slider::textBoxOutlineColourId, Colour (0xff8e989b));
     sl_veloffset->addListener (this);
 
-    sl_veloffset->setBounds (126, 482, 76, 20);
+    sl_veloffset->setBounds (410, 482, 76, 20);
 
     label19.reset (new Label ("new label",
                               TRANS("Velocity offset")));
@@ -330,10 +334,11 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label19->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label19->setJustificationType (Justification::centredLeft);
     label19->setEditable (false, false, false);
+    label19->setColour (Label::textColourId, Colours::aliceblue);
     label19->setColour (TextEditor::textColourId, Colours::black);
     label19->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    label19->setBounds (20, 482, 104, 20);
+    label19->setBounds (304, 482, 104, 20);
 
     sl_midi_channel.reset (new Slider ("new slider"));
     addAndMakeVisible (sl_midi_channel.get());
@@ -352,6 +357,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label22->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label22->setJustificationType (Justification::centredLeft);
     label22->setEditable (false, false, false);
+    label22->setColour (Label::textColourId, Colours::aliceblue);
     label22->setColour (TextEditor::textColourId, Colours::black);
     label22->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -380,7 +386,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_lfo_enable->addListener (this);
     btn_lfo_enable->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_lfo_enable->setBounds (552, 486, 15, 15);
+    btn_lfo_enable->setBounds (552, 486, 15, 15);
 
     label20.reset (new Label ("new label",
                               TRANS("LFO enabled")));
@@ -388,6 +394,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label20->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label20->setJustificationType (Justification::centredLeft);
     label20->setEditable (false, false, false);
+    label20->setColour (Label::textColourId, Colours::aliceblue);
     label20->setColour (TextEditor::textColourId, Colours::black);
     label20->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -425,6 +432,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label10->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label10->setJustificationType (Justification::centred);
     label10->setEditable (false, false, false);
+    label10->setColour (Label::textColourId, Colours::aliceblue);
     label10->setColour (TextEditor::textColourId, Colours::black);
     label10->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -442,6 +450,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label6->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label6->setJustificationType (Justification::centred);
     label6->setEditable (false, false, false);
+    label6->setColour (Label::textColourId, Colours::aliceblue);
     label6->setColour (TextEditor::textColourId, Colours::black);
     label6->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -459,6 +468,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     label7->setFont (Font (14.0f, Font::plain).withTypefaceStyle ("Regular"));
     label7->setJustificationType (Justification::centred);
     label7->setEditable (false, false, false);
+    label7->setColour (Label::textColourId, Colours::aliceblue);
     label7->setColour (TextEditor::textColourId, Colours::black);
     label7->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
@@ -557,8 +567,23 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     cb_chip_type->setBounds (659, 104, 110, 20);
 
+    lbl_info.reset (new Label ("new label",
+                               TRANS("OPN Ready!")));
+    addAndMakeVisible (lbl_info.get());
+    lbl_info->setFont (Font (Font::getDefaultMonospacedFontName(), 15.0f, Font::plain));
+    lbl_info->setJustificationType (Justification::centred);
+    lbl_info->setEditable (false, false, false);
+    lbl_info->setColour (Label::textColourId, Colours::aliceblue);
+    lbl_info->setColour (TextEditor::textColourId, Colours::black);
+    lbl_info->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
+
+    lbl_info->setBounds (16, 474, 264, 36);
+
 
     //[UserPreSize]
+    for (Operator_Editor *ed : {ed_op1.get(), ed_op2.get(), ed_op3.get(), ed_op4.get()})
+        ed->set_info_display(this);
+
     setup_generic_components();
 
     kn_mastervol->add_listener(this);
@@ -683,6 +708,7 @@ Main_Component::~Main_Component()
     lbl_mastervol = nullptr;
     label16 = nullptr;
     cb_chip_type = nullptr;
+    lbl_info = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -832,43 +858,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 16, y = 474, width = 188, height = 36;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
-        int x = 16, y = 160, width = 264, height = 128;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
-        int x = 300, y = 160, width = 264, height = 128;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
-        int x = 300, y = 316, width = 264, height = 128;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
-        int x = 16, y = 316, width = 264, height = 128;
+        int x = 300, y = 474, width = 188, height = 36;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
@@ -886,7 +876,7 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 16, y = 444, width = 188, height = 30;
+        int x = 300, y = 444, width = 188, height = 30;
         String text (TRANS("Misc"));
         Colour fillColour = Colours::aliceblue;
         //[UserPaintCustomArguments] Customize the painting arguments here..
@@ -948,6 +938,15 @@ void Main_Component::paint (Graphics& g)
         g.fillRect (x, y, width, height);
     }
 
+    {
+        float x = 16.0f, y = 474.0f, width = 264.0f, height = 36.0f;
+        Colour fillColour = Colour (0xff3c485f);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRoundedRectangle (x, y, width, height, 5.0f);
+    }
+
     //[UserPaint] Add your own custom painting code here..
     //[/UserPaint]
 }
@@ -973,9 +972,7 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
     {
         //[UserSliderCode_sl_tune] -- add your slider handling code here..
         AudioParameterInt &p = *part.p_tune;
-        p.beginChangeGesture();
         p = sl->getValue();
-        p.endChangeGesture();
         //[/UserSliderCode_sl_tune]
     }
     else if (sliderThatWasMoved == sl_num_chips.get())
@@ -989,9 +986,7 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
     {
         //[UserSliderCode_sl_veloffset] -- add your slider handling code here..
         AudioParameterInt &p = *part.p_veloffset;
-        p.beginChangeGesture();
         p = sl->getValue();
-        p.endChangeGesture();
         //[/UserSliderCode_sl_veloffset]
     }
     else if (sliderThatWasMoved == sl_midi_channel.get())
@@ -1004,6 +999,7 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
     }
 
     //[UsersliderValueChanged_Post]
+    display_info_for_component(sl);
     //[/UsersliderValueChanged_Post]
 }
 
@@ -1101,6 +1097,8 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     }
 
     //[UserbuttonClicked_Post]
+    if (display_info_for_component(btn))
+        expire_info_in();
     //[/UserbuttonClicked_Post]
 }
 
@@ -1175,6 +1173,40 @@ void Main_Component::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+void Main_Component::sliderDragStarted(Slider *slider)
+{
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
+
+    if (slider == sl_tune.get()) {
+        AudioParameterInt &p = *part.p_tune;
+        p.beginChangeGesture();
+    }
+    else if (slider == sl_veloffset.get()) {
+        AudioParameterInt &p = *part.p_veloffset;
+        p.beginChangeGesture();
+    }
+
+    display_info_for_component(slider);
+}
+
+void Main_Component::sliderDragEnded(Slider *slider)
+{
+    Parameter_Block &pb = *parameter_block_;
+    Parameter_Block::Part &part = pb.part[midichannel_];
+
+    if (slider == sl_tune.get()) {
+        AudioParameterInt &p = *part.p_tune;
+        p.endChangeGesture();
+    }
+    else if (slider == sl_veloffset.get()) {
+        AudioParameterInt &p = *part.p_veloffset;
+        p.endChangeGesture();
+    }
+
+    expire_info_in();
+}
+
 void Main_Component::knob_value_changed(Knob *k)
 {
     Parameter_Block &pb = *parameter_block_;
@@ -1197,6 +1229,8 @@ void Main_Component::knob_value_changed(Knob *k)
         AudioParameterInt &p = *part.p_fms;
         p = std::lround(k->value());
     }
+
+    display_info_for_component(k);
 }
 
 void Main_Component::knob_drag_started(Knob *k)
@@ -1220,6 +1254,8 @@ void Main_Component::knob_drag_started(Knob *k)
         AudioParameterInt &p = *part.p_fms;
         p.beginChangeGesture();
     }
+
+    display_info_for_component(k);
 }
 
 void Main_Component::knob_drag_ended(Knob *k)
@@ -1243,6 +1279,8 @@ void Main_Component::knob_drag_ended(Knob *k)
         AudioParameterInt &p = *part.p_fms;
         p.endChangeGesture();
     }
+
+    expire_info_in();
 }
 
 void Main_Component::set_instrument_parameters(const Instrument &ins, NotificationType ntf)
@@ -1319,6 +1357,33 @@ void Main_Component::popup_about_dialog()
     dlgopts.resizable = false;
     dlg_about_ = dlgopts.launchAsync();
 }
+
+bool Main_Component::display_info_for_component(Component *c)
+{
+    String param;
+    int val = 0;
+
+    Knob *kn = static_cast<Knob *>(c);
+
+    if (c == kn_feedback.get()) {
+        param = "Feedback";
+        val = (int)lround(kn->value());
+    }
+    else if (c == kn_ams.get()) {
+        param = "AM sensitivity";
+        val = (int)lround(kn->value());
+    }
+    else if (c == kn_fms.get()) {
+        param = "FM sensitivity";
+        val = (int)lround(kn->value());
+    }
+
+    if (param.isEmpty())
+        return false;
+
+    display_info(param + " = " + String(val));
+    return true;
+}
 //[/MiscUserCode]
 
 
@@ -1365,13 +1430,9 @@ BEGIN_JUCER_METADATA
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
     <RECT pos="586 316 188 60" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="606 52 168 80" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="16 474 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="16 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="300 160 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="300 316 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="16 316 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
+    <RECT pos="300 474 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="300 72 146 60" fill="solid: 662e4c4d" hasStroke="0"/>
-    <TEXT pos="16 444 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Misc"
+    <TEXT pos="300 444 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Misc"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
     <TEXT pos="586 422 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Global"
@@ -1383,6 +1444,7 @@ BEGIN_JUCER_METADATA
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
     <RECT pos="586 252 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
     <RECT pos="460 72 102 60" fill="solid: 662e4c4d" hasStroke="0"/>
+    <ROUNDRECT pos="16 474 264 36" cornerSize="5.0" fill="solid: ff3c485f" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="300 160 264 128" class="Operator_Editor"
@@ -1397,10 +1459,10 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="16 316 264 128" class="Operator_Editor"
                     params="1, pb"/>
   <SLIDER name="new slider" id="9cd7cc232d55ac8a" memberName="sl_tune"
-          virtualName="" explicitFocusOrder="0" pos="696 324 76 20" textboxoutline="ff8e989b"
-          min="-127.0" max="127.0" int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft"
-          textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
-          needsCallback="1"/>
+          virtualName="" explicitFocusOrder="0" pos="696 324 76 20" textboxtext="fff0f8ff"
+          textboxoutline="ff8e989b" min="-127.0" max="127.0" int="1.0"
+          style="IncDecButtons" textBoxPos="TextBoxLeft" textBoxEditable="1"
+          textBoxWidth="36" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="midi_kb"
                     virtualName="" explicitFocusOrder="0" pos="16 520 730 64" class="Midi_Keyboard_Ex"
                     params="midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard"/>
@@ -1457,8 +1519,8 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="257 74 23 24" buttonText=""
               connectedEdges="1" needsCallback="1" radioGroupId="0"/>
   <LABEL name="new label" id="94205e2c6bef35b1" memberName="label11" virtualName=""
-         explicitFocusOrder="0" pos="590 324 104 20" edTextCol="ff000000"
-         edBkgCol="0" labelText="Note offset" editableSingleClick="0"
+         explicitFocusOrder="0" pos="590 324 104 20" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Note offset" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <IMAGEBUTTON name="new button" id="1df5353a837ca5f4" memberName="btn_emulator"
@@ -1491,28 +1553,30 @@ BEGIN_JUCER_METADATA
             virtualName="" explicitFocusOrder="0" pos="696 348 74 20" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
   <LABEL name="new label" id="5917d9d90d014675" memberName="label17" virtualName=""
-         explicitFocusOrder="0" pos="590 348 104 20" edTextCol="ff000000"
-         edBkgCol="0" labelText="Percussion key" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+         explicitFocusOrder="0" pos="590 348 104 20" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Percussion key"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="14.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <SLIDER name="new slider" id="902cdb29676bc0b6" memberName="sl_veloffset"
-          virtualName="" explicitFocusOrder="0" pos="126 482 76 20" textboxoutline="ff8e989b"
-          min="-127.0" max="127.0" int="1.0" style="IncDecButtons" textBoxPos="TextBoxLeft"
-          textBoxEditable="1" textBoxWidth="36" textBoxHeight="20" skewFactor="1.0"
-          needsCallback="1"/>
+          virtualName="" explicitFocusOrder="0" pos="410 482 76 20" textboxtext="fff0f8ff"
+          textboxoutline="ff8e989b" min="-127.0" max="127.0" int="1.0"
+          style="IncDecButtons" textBoxPos="TextBoxLeft" textBoxEditable="1"
+          textBoxWidth="36" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="new label" id="b2db0b3cb9c241dc" memberName="label19" virtualName=""
-         explicitFocusOrder="0" pos="20 482 104 20" edTextCol="ff000000"
-         edBkgCol="0" labelText="Velocity offset" editableSingleClick="0"
-         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
-         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
+         explicitFocusOrder="0" pos="304 482 104 20" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Velocity offset"
+         editableSingleClick="0" editableDoubleClick="0" focusDiscardsChanges="0"
+         fontname="Default font" fontsize="14.0" kerning="0.0" bold="0"
+         italic="0" justification="33"/>
   <SLIDER name="new slider" id="59a5ffdc8abc84a6" memberName="sl_midi_channel"
           virtualName="" explicitFocusOrder="0" pos="364 79 76 46" textboxtext="fff0f8ff"
           textboxoutline="ff8e989b" min="1.0" max="16.0" int="1.0" style="IncDecButtons"
           textBoxPos="TextBoxLeft" textBoxEditable="1" textBoxWidth="46"
           textBoxHeight="46" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="new label" id="96b421fbb370c8db" memberName="label22" virtualName=""
-         explicitFocusOrder="0" pos="552 458 106 20" edTextCol="ff000000"
-         edBkgCol="0" labelText="Volume model" editableSingleClick="0"
+         explicitFocusOrder="0" pos="552 458 106 20" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Volume model" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <COMBOBOX name="new combo box" id="7289bfbfa6c092b0" memberName="cb_volmodel"
@@ -1525,8 +1589,8 @@ BEGIN_JUCER_METADATA
               virtualName="" explicitFocusOrder="0" pos="552 486 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
   <LABEL name="new label" id="bf1838a34852c77b" memberName="label20" virtualName=""
-         explicitFocusOrder="0" pos="568 486 94 15" edTextCol="ff000000"
-         edBkgCol="0" labelText="LFO enabled" editableSingleClick="0"
+         explicitFocusOrder="0" pos="568 486 94 15" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="LFO enabled" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="33"/>
   <COMBOBOX name="new combo box" id="e1df7689d7d9db6e" memberName="cb_lfofreq"
@@ -1539,26 +1603,26 @@ BEGIN_JUCER_METADATA
                     virtualName="" explicitFocusOrder="0" pos="692 192 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <LABEL name="new label" id="6ff60ad947a8f168" memberName="label10" virtualName=""
-         explicitFocusOrder="0" pos="628 195 72 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="Feedback" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="36"/>
+         explicitFocusOrder="0" pos="628 195 72 24" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="Feedback" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="36"/>
   <GENERICCOMPONENT name="new component" id="68cccf59111ab75a" memberName="kn_ams"
                     virtualName="" explicitFocusOrder="0" pos="636 254 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <LABEL name="new label" id="bc635c855613f35a" memberName="label6" virtualName=""
-         explicitFocusOrder="0" pos="608 257 36 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="AM" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="36"/>
+         explicitFocusOrder="0" pos="608 257 36 24" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="AM" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="36"/>
   <GENERICCOMPONENT name="new component" id="3d549e9f57e5f19c" memberName="kn_fms"
                     virtualName="" explicitFocusOrder="0" pos="714 254 32 32" class="Styled_Knob_DefaultSmall"
                     params=""/>
   <LABEL name="new label" id="5775323ab5508477" memberName="label7" virtualName=""
-         explicitFocusOrder="0" pos="686 257 36 24" edTextCol="ff000000"
-         edBkgCol="0" labelText="FM" editableSingleClick="0" editableDoubleClick="0"
-         focusDiscardsChanges="0" fontname="Default font" fontsize="14.0"
-         kerning="0.0" bold="0" italic="0" justification="36"/>
+         explicitFocusOrder="0" pos="686 257 36 24" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="FM" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
+         fontsize="14.0" kerning="0.0" bold="0" italic="0" justification="36"/>
   <TEXTBUTTON name="" id="39bffafade9476c7" memberName="btn_keymap" virtualName=""
               explicitFocusOrder="0" pos="750 520 24 24" buttonText="" connectedEdges="0"
               needsCallback="1" radioGroupId="0"/>
@@ -1596,6 +1660,11 @@ BEGIN_JUCER_METADATA
   <COMBOBOX name="new combo box" id="5e6f2bbe82f06203" memberName="cb_chip_type"
             virtualName="" explicitFocusOrder="0" pos="659 104 110 20" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <LABEL name="new label" id="d7c1d56634e337b7" memberName="lbl_info"
+         virtualName="" explicitFocusOrder="0" pos="16 474 264 36" textCol="fff0f8ff"
+         edTextCol="ff000000" edBkgCol="0" labelText="OPN Ready!" editableSingleClick="0"
+         editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default monospaced font"
+         fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

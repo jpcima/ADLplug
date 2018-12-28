@@ -65,6 +65,8 @@ void Generic_Main_Component<T>::setup_generic_components()
 {
     Configuration &conf = *conf_;
 
+    set_default_info(self()->lbl_info->getText());
+
     self()->edt_bank_name->addListener(this);
     self()->edt_bank_name->setTextToShowWhenEmpty(
         TRANS("Bank name"), findColour(TextEditor::backgroundColourId).contrasting(0.5f));
@@ -1376,6 +1378,12 @@ void Generic_Main_Component<T>::globalFocusChanged(Component *component)
 
     if (component == window)
         grabKeyboardFocus();
+}
+
+template <class T>
+void Generic_Main_Component<T>::display_info_now(const String &text)
+{
+    self()->lbl_info->setText(text, dontSendNotification);
 }
 
 template <class T>

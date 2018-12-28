@@ -8,6 +8,7 @@
 #include "messages.h"
 #include "adl/instrument.h"
 #include "adl/chip_settings.h"
+#include "ui/components/info_display.h"
 #include "ui/utility/key_maps.h"
 #include <vector>
 #include <array>
@@ -21,7 +22,8 @@ template <class T>
 class Generic_Main_Component :
     public Component, public FocusChangeListener,
     public TextEditor::Listener,
-    public MidiKeyboardStateListener {
+    public MidiKeyboardStateListener,
+    public Info_Display {
 public:
     T *self();
     const T *self() const;
@@ -97,6 +99,9 @@ public:
 
     void focusGained(FocusChangeType cause) override;
     void globalFocusChanged(Component *component) override;
+
+private:
+    void display_info_now(const String &text) override;
 
 protected:
     bool write_to_processor(
