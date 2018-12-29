@@ -374,12 +374,12 @@ void Operator_Editor::paint (Graphics& g)
     }
 
     {
-        int x = 0, y = 0, width = 264, height = 128;
+        float x = 0.0f, y = 0.0f, width = 264.0f, height = 128.0f;
         Colour fillColour = Colour (0x662e4c4d);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
+        g.fillRoundedRectangle (x, y, width, height, 5.0f);
     }
 
     //[UserPaint] Add your own custom painting code here..
@@ -674,8 +674,11 @@ void Operator_Editor::knob_drag_ended(Knob *k)
 
 void Operator_Editor::paintOverChildren(Graphics &g)
 {
-    if (!operator_enabled_)
-        g.fillAll(Colour(0x66777777));
+    if (!operator_enabled_) {
+        Rectangle<int> bounds = getLocalBounds();
+        g.setColour(Colour(0x66777777));
+        g.fillRoundedRectangle(bounds.toFloat(), 7.0f);
+    }
 }
 
 bool Operator_Editor::display_info_for_component(Component *c)
@@ -750,7 +753,7 @@ BEGIN_JUCER_METADATA
   <BACKGROUND backgroundColour="323e44">
     <RECT pos="104 96 108 24" fill="solid: 0" hasStroke="1" stroke="1, mitered, butt"
           strokeColour="solid: ff8e989b"/>
-    <RECT pos="0 0 264 128" fill="solid: 662e4c4d" hasStroke="0"/>
+    <ROUNDRECT pos="0 0 264 128" cornerSize="5.0" fill="solid: 662e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="7c54ff103d9f5d" memberName="kn_attack"
                     virtualName="" explicitFocusOrder="0" pos="16 3 40 40" class="Styled_Knob_Default"

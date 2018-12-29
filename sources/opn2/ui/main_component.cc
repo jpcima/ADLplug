@@ -386,7 +386,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_lfo_enable->addListener (this);
     btn_lfo_enable->setColour (TextButton::buttonOnColourId, Colour (0xff42a2c8));
 
-    btn_lfo_enable->setBounds (552, 486, 15, 15);
+    btn_lfo_enable->setBounds (552, 486, 15, 15);
 
     label20.reset (new Label ("new label",
                               TRANS("LFO enabled")));
@@ -819,15 +819,6 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 586, y = 160, width = 188, height = 64;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
         int x = 586, y = 288, width = 188, height = 30;
         String text (TRANS("Tuning"));
         Colour fillColour = Colours::aliceblue;
@@ -837,42 +828,6 @@ void Main_Component::paint (Graphics& g)
         g.setFont (Font (20.0f, Font::plain).withTypefaceStyle ("Bold Italic"));
         g.drawText (text, x, y, width, height,
                     Justification::centred, true);
-    }
-
-    {
-        int x = 586, y = 316, width = 188, height = 60;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
-        int x = 606, y = 52, width = 168, height = 80;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
-        int x = 300, y = 474, width = 188, height = 36;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
-        int x = 300, y = 72, width = 146, height = 60;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
     }
 
     {
@@ -900,15 +855,6 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 546, y = 450, width = 228, height = 60;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
         int x = 586, y = 224, width = 188, height = 30;
         String text (TRANS("LFO Sensitivity"));
         Colour fillColour = Colours::aliceblue;
@@ -921,30 +867,84 @@ void Main_Component::paint (Graphics& g)
     }
 
     {
-        int x = 586, y = 252, width = 188, height = 36;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
-        int x = 460, y = 72, width = 102, height = 60;
-        Colour fillColour = Colour (0x662e4c4d);
-        //[UserPaintCustomArguments] Customize the painting arguments here..
-        //[/UserPaintCustomArguments]
-        g.setColour (fillColour);
-        g.fillRect (x, y, width, height);
-    }
-
-    {
         float x = 16.0f, y = 474.0f, width = 264.0f, height = 36.0f;
         Colour fillColour = Colour (0xff3c485f);
         //[UserPaintCustomArguments] Customize the painting arguments here..
         //[/UserPaintCustomArguments]
         g.setColour (fillColour);
-        g.fillRoundedRectangle (x, y, width, height, 5.0f);
+        g.fillRoundedRectangle (x, y, width, height, 7.0f);
+    }
+
+    {
+        float x = 300.0f, y = 474.0f, width = 188.0f, height = 36.0f;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRoundedRectangle (x, y, width, height, 7.0f);
+    }
+
+    {
+        float x = 546.0f, y = 450.0f, width = 228.0f, height = 60.0f;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRoundedRectangle (x, y, width, height, 7.0f);
+    }
+
+    {
+        float x = 586.0f, y = 316.0f, width = 188.0f, height = 60.0f;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRoundedRectangle (x, y, width, height, 7.0f);
+    }
+
+    {
+        float x = 586.0f, y = 252.0f, width = 188.0f, height = 36.0f;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRoundedRectangle (x, y, width, height, 7.0f);
+    }
+
+    {
+        float x = 586.0f, y = 160.0f, width = 188.0f, height = 64.0f;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRoundedRectangle (x, y, width, height, 7.0f);
+    }
+
+    {
+        float x = 606.0f, y = 52.0f, width = 168.0f, height = 80.0f;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRoundedRectangle (x, y, width, height, 7.0f);
+    }
+
+    {
+        float x = 460.0f, y = 72.0f, width = 102.0f, height = 60.0f;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRoundedRectangle (x, y, width, height, 7.0f);
+    }
+
+    {
+        float x = 300.0f, y = 72.0f, width = 146.0f, height = 60.0f;
+        Colour fillColour = Colour (0x662e4c4d);
+        //[UserPaintCustomArguments] Customize the painting arguments here..
+        //[/UserPaintCustomArguments]
+        g.setColour (fillColour);
+        g.fillRoundedRectangle (x, y, width, height, 7.0f);
     }
 
     //[UserPaint] Add your own custom painting code here..
@@ -1429,27 +1429,32 @@ BEGIN_JUCER_METADATA
     <TEXT pos="586 132 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Algorithm"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="586 160 188 64" fill="solid: 662e4c4d" hasStroke="0"/>
     <TEXT pos="586 288 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Tuning"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="586 316 188 60" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="606 52 168 80" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="300 474 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="300 72 146 60" fill="solid: 662e4c4d" hasStroke="0"/>
     <TEXT pos="300 444 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Misc"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
     <TEXT pos="586 422 188 30" fill="solid: fff0f8ff" hasStroke="0" text="Global"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="546 450 228 60" fill="solid: 662e4c4d" hasStroke="0"/>
     <TEXT pos="586 224 188 30" fill="solid: fff0f8ff" hasStroke="0" text="LFO Sensitivity"
           fontname="Default font" fontsize="20.0" kerning="0.0" bold="1"
           italic="1" justification="36" typefaceStyle="Bold Italic"/>
-    <RECT pos="586 252 188 36" fill="solid: 662e4c4d" hasStroke="0"/>
-    <RECT pos="460 72 102 60" fill="solid: 662e4c4d" hasStroke="0"/>
-    <ROUNDRECT pos="16 474 264 36" cornerSize="5.0" fill="solid: ff3c485f" hasStroke="0"/>
+    <ROUNDRECT pos="16 474 264 36" cornerSize="7.0" fill="solid: ff3c485f" hasStroke="0"/>
+    <ROUNDRECT pos="300 474 188 36" cornerSize="7.0" fill="solid: 662e4c4d"
+               hasStroke="0"/>
+    <ROUNDRECT pos="546 450 228 60" cornerSize="7.0" fill="solid: 662e4c4d"
+               hasStroke="0"/>
+    <ROUNDRECT pos="586 316 188 60" cornerSize="7.0" fill="solid: 662e4c4d"
+               hasStroke="0"/>
+    <ROUNDRECT pos="586 252 188 36" cornerSize="7.0" fill="solid: 662e4c4d"
+               hasStroke="0"/>
+    <ROUNDRECT pos="586 160 188 64" cornerSize="7.0" fill="solid: 662e4c4d"
+               hasStroke="0"/>
+    <ROUNDRECT pos="606 52 168 80" cornerSize="7.0" fill="solid: 662e4c4d" hasStroke="0"/>
+    <ROUNDRECT pos="460 72 102 60" cornerSize="7.0" fill="solid: 662e4c4d" hasStroke="0"/>
+    <ROUNDRECT pos="300 72 146 60" cornerSize="7.0" fill="solid: 662e4c4d" hasStroke="0"/>
   </BACKGROUND>
   <GENERICCOMPONENT name="new component" id="423f2b5d9aff978c" memberName="ed_op2"
                     virtualName="" explicitFocusOrder="0" pos="300 160 264 128" class="Operator_Editor"
