@@ -143,4 +143,13 @@ protected:
     Component::SafePointer<DialogWindow> dlg_new_program_;
     Component::SafePointer<DialogWindow> dlg_edit_program_;
     Component::SafePointer<DialogWindow> dlg_about_;
+
+    class Mouse_Hover_Listener : public MouseListener {
+    public:
+        explicit Mouse_Hover_Listener(T *component);
+        void mouseEnter(const MouseEvent &event) override;
+    private:
+        T *component_ = nullptr;
+    };
+    std::unique_ptr<Mouse_Hover_Listener> mouse_hover_listener_;
 };

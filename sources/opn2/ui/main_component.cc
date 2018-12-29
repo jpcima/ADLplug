@@ -1378,8 +1378,13 @@ bool Main_Component::display_info_for_component(Component *c)
         val = (int)lround(kn->value());
     }
 
-    if (param.isEmpty())
+    if (param.isEmpty()) {
+        for (Operator_Editor *ed : { ed_op1.get(), ed_op2.get(), ed_op3.get(), ed_op4.get() }) {
+            if (ed->display_info_for_component(c))
+                return true;
+        }
         return false;
+    }
 
     display_info(param + " = " + String(val));
     return true;

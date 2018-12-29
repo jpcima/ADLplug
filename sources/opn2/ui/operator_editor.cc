@@ -274,7 +274,6 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
     kn_release->add_listener(this);
 
     btn_am->setClickingTogglesState(true);
-
     btn_ssgenable->setClickingTogglesState(true);
 
     kn_attack->setTooltip(TRANS("Attack"));

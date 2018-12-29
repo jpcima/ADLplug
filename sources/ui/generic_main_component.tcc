@@ -50,6 +50,9 @@ Generic_Main_Component<T>::Generic_Main_Component(
 {
     Desktop::getInstance().addFocusChangeListener(this);
     setWantsKeyboardFocus(true);
+    Mouse_Hover_Listener *mouse_hover_listener = new Mouse_Hover_Listener(self());
+    mouse_hover_listener_.reset(mouse_hover_listener);
+    addMouseListener(mouse_hover_listener, true);
     midi_kb_state_.addListener(this);
     initialize_bank_directory();
 }
@@ -1409,4 +1412,18 @@ bool Generic_Main_Component<T>::write_to_processor(
     }
 
     return true;
+}
+
+template <class T>
+Generic_Main_Component<T>::Mouse_Hover_Listener::Mouse_Hover_Listener(T *component)
+    : component_(component)
+{
+}
+
+template <class T>
+void Generic_Main_Component<T>::Mouse_Hover_Listener::mouseEnter(const MouseEvent &event)
+{
+    T *c = component_;
+    c->display_info_for_component(event.eventComponent);
+    c->expire_info_in();
 }
