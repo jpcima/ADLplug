@@ -27,7 +27,7 @@
 #include "plugin_processor.h"
 #include "parameter_block.h"
 #include "messages.h"
-#include "BinaryData.h"
+#include "resources.h"
 #include <fmt/format.h>
 #include <memory>
 #include <cstdio>

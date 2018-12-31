@@ -16,8 +16,16 @@
 #include "plugin_processor.h"
 #include "plugin_editor.h"
 #include "worker.h"
-#include "BinaryData.h"
+#include "resources.h"
 #include <cassert>
+
+#if defined(ADLPLUG_OPL3)
+RESOURCE(Res, opl3_banks_pak);
+static const Res::Data &banks_pak = Res::opl3_banks_pak;
+#elif defined(ADLPLUG_OPN2)
+RESOURCE(Res, opn2_banks_pak);
+static const Res::Data &banks_pak = Res::opn2_banks_pak;
+#endif
 
 //==============================================================================
 AdlplugAudioProcessor::AdlplugAudioProcessor()
@@ -122,7 +130,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     worker->start_worker();
 
     Pak_File_Reader pak;
-    if (!pak.init_with_data((const uint8_t *)BinaryData::banks_pak, BinaryData::banks_pakSize))
+    if (!pak.init_with_data((const uint8_t *)banks_pak.data, banks_pak.size))
         assert(false);
     std::string default_wopl = pak.extract(0);
     assert(default_wopl.size() != 0);

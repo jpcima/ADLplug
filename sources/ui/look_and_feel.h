@@ -7,6 +7,7 @@
 #include "JuceHeader.h"
 #include <unordered_map>
 class Custom_Tooltips;
+namespace Res { struct Data; }
 
 class Custom_Look_And_Feel : public LookAndFeel_V4
 {
@@ -43,7 +44,7 @@ private:
 
 private:
     static Typeface::Ptr getOrCreateFont(
-        Typeface::Ptr &font, const char *data, unsigned size);
+        Typeface::Ptr &font, const Res::Data &data);
 
 private:
     Typeface::Ptr fontSansRegular;

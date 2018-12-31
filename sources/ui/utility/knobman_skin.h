@@ -6,6 +6,7 @@
 #pragma once
 #include "JuceHeader.h"
 #include <vector>
+namespace Res { struct Data; };
 
 class Km_Skin;
 typedef ReferenceCountedObjectPtr<Km_Skin> Km_Skin_Ptr;
@@ -18,7 +19,7 @@ public:
 
     void load(const Image &img, unsigned frame_count);
     void load_data(const char *data, unsigned size, unsigned frame_count);
-    void load_resource(const char *name, unsigned frame_count);
+    void load_resource(const Res::Data &data, unsigned frame_count);
 
     Km_Skin_Ptr scaled(double ratio) const;
 

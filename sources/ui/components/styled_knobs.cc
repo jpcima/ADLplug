@@ -4,7 +4,9 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "ui/components/styled_knobs.h"
-#include "BinaryData.h"
+#include "resources.h"
+
+RESOURCE(Res, knob_skin);
 
 Km_Skin_Ptr Styled_Knob_Default::skin_;
 
@@ -12,7 +14,7 @@ Km_Skin *Styled_Knob_Default::style_skin()
 {
     if (!skin_) {
         Km_Skin_Ptr skin(new Km_Skin);
-        skin->load_data(BinaryData::knobskin_png, BinaryData::knobskin_pngSize, 64);
+        skin->load_data(Res::knob_skin.data, Res::knob_skin.size, 64);
         skin_ = skin;
     }
     return skin_.get();

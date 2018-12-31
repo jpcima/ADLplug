@@ -8,14 +8,16 @@
 #include "adl/instrument.h"
 #include "adl/player.h"
 #include "utility/pak.h"
-#include "BinaryData.h"
+#include "resources.h"
 #include <fmt/format.h>
 #include <cassert>
+
+RESOURCE(Res, opn2_banks_pak);
 
 static WOPNFile_Ptr default_wopn()
 {
     Pak_File_Reader pak;
-    if (!pak.init_with_data((const uint8_t *)BinaryData::banks_pak, BinaryData::banks_pakSize))
+    if (!pak.init_with_data((const uint8_t *)Res::opn2_banks_pak.data, Res::opn2_banks_pak.size))
         assert(false);
     std::string default_wopl = pak.extract(0);
     assert(default_wopl.size() != 0);

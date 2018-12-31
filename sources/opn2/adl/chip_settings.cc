@@ -5,9 +5,14 @@
 
 #include "chip_settings.h"
 #include "player.h"
-#include "BinaryData.h"
+#include "resources.h"
 #include <mutex>
 #include <memory>
+
+RESOURCE(Res, emu_mame);
+RESOURCE(Res, emu_nuked);
+RESOURCE(Res, emu_gens);
+RESOURCE(Res, emu_neko);
 
 std::unique_ptr<Emulator_Defaults> emulator_defaults_;
 std::mutex emulator_defaults_mutex_;
@@ -46,10 +51,10 @@ Emulator_Defaults &get_emulator_defaults()
 
     //
     defaults->images.reset(new Image[count]);
-    Image icon_mame = ImageFileFormat::loadFrom(BinaryData::MAME_png, BinaryData::MAME_pngSize);
-    Image icon_nuked = ImageFileFormat::loadFrom(BinaryData::Nuked_png, BinaryData::Nuked_pngSize);
-    Image icon_gens = ImageFileFormat::loadFrom(BinaryData::Gens_png, BinaryData::Gens_pngSize);
-    Image icon_neko = ImageFileFormat::loadFrom(BinaryData::Neko_png, BinaryData::Neko_pngSize);
+    Image icon_mame = ImageFileFormat::loadFrom(Res::emu_mame.data, Res::emu_mame.size);
+    Image icon_nuked = ImageFileFormat::loadFrom(Res::emu_nuked.data, Res::emu_nuked.size);
+    Image icon_gens = ImageFileFormat::loadFrom(Res::emu_gens.data, Res::emu_gens.size);
+    Image icon_neko = ImageFileFormat::loadFrom(Res::emu_neko.data, Res::emu_neko.size);
     for (unsigned i = 0; i < count; ++i) {
         const String &name = defaults->choices[i];
         String lowerName = name.toLowerCase();

@@ -15,9 +15,23 @@
 #include "utility/functional_timer.h"
 #include "utility/simple_fifo.h"
 #include "utility/pak.h"
-#include "BinaryData.h"
+#include "resources.h"
 #include <fmt/format.h>
 #include <cassert>
+
+#if defined(ADLPLUG_OPL3)
+RESOURCE(Res, opl3_banks_pak);
+static const Res::Data &banks_pak = Res::opl3_banks_pak;
+#elif defined(ADLPLUG_OPN2)
+RESOURCE(Res, opn2_banks_pak);
+static const Res::Data &banks_pak = Res::opn2_banks_pak;
+#endif
+
+RESOURCE(Res, emoji_u1f4be);
+RESOURCE(Res, emoji_u1f4c2);
+RESOURCE(Res, emoji_u1f4dd);
+RESOURCE(Res, emoji_u2328);
+RESOURCE(Res, emoji_u2795);
 
 #if 1
 #   define trace(fmt, ...)
@@ -80,11 +94,11 @@ void Generic_Main_Component<T>::setup_generic_components()
 
     self()->btn_bank_load->setTooltip(TRANS("Load bank"));
     self()->btn_bank_save->setTooltip(TRANS("Save bank"));
-    create_image_overlay(*self()->btn_bank_load, ImageCache::getFromMemory(BinaryData::emoji_u1f4c2_png, BinaryData::emoji_u1f4c2_pngSize), 0.7f);
-    create_image_overlay(*self()->btn_bank_save, ImageCache::getFromMemory(BinaryData::emoji_u1f4be_png, BinaryData::emoji_u1f4be_pngSize), 0.7f);
+    create_image_overlay(*self()->btn_bank_load, ImageCache::getFromMemory(Res::emoji_u1f4c2.data, Res::emoji_u1f4c2.size), 0.7f);
+    create_image_overlay(*self()->btn_bank_save, ImageCache::getFromMemory(Res::emoji_u1f4be.data, Res::emoji_u1f4be.size), 0.7f);
 
-    create_image_overlay(*self()->btn_pgm_edit, ImageCache::getFromMemory(BinaryData::emoji_u1f4dd_png, BinaryData::emoji_u1f4dd_pngSize), 0.7f);
-    create_image_overlay(*self()->btn_pgm_add, ImageCache::getFromMemory(BinaryData::emoji_u2795_png, BinaryData::emoji_u2795_pngSize), 0.7f);
+    create_image_overlay(*self()->btn_pgm_edit, ImageCache::getFromMemory(Res::emoji_u1f4dd.data, Res::emoji_u1f4dd.size), 0.7f);
+    create_image_overlay(*self()->btn_pgm_add, ImageCache::getFromMemory(Res::emoji_u2795.data, Res::emoji_u2795.size), 0.7f);
 
     for (unsigned note = 0; note < 128; ++note) {
         const char *octave_names[12] =
@@ -95,7 +109,7 @@ void Generic_Main_Component<T>::setup_generic_components()
     self()->cb_percussion_key->setSelectedId(69 + 1, dontSendNotification);
     self()->cb_percussion_key->setScrollWheelEnabled(true);
 
-    create_image_overlay(*self()->btn_keymap, ImageCache::getFromMemory(BinaryData::emoji_u2328_png, BinaryData::emoji_u2328_pngSize), 0.7f);
+    create_image_overlay(*self()->btn_keymap, ImageCache::getFromMemory(Res::emoji_u2328.data, Res::emoji_u2328.size), 0.7f);
 
     vu_timer_.reset(Functional_Timer::create([this]() { vu_update(); }));
     vu_timer_->startTimer(10);
@@ -729,7 +743,7 @@ void Generic_Main_Component<T>::handle_load_bank(Component *clicked)
     menu.addItem(menu_index++, "Load instrument file...");
 
     Pak_File_Reader pak;
-    if (!pak.init_with_data((const uint8_t *)BinaryData::banks_pak, BinaryData::banks_pakSize))
+    if (!pak.init_with_data((const uint8_t *)banks_pak.data, banks_pak.size))
         assert(false);
 
     PopupMenu pak_submenu;

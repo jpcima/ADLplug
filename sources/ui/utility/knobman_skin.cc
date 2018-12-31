@@ -5,7 +5,7 @@
 
 #include "ui/utility/knobman_skin.h"
 #include "ui/utility/image.h"
-#include "BinaryData.h"
+#include "resources.h"
 
 void Km_Skin::load(const Image &img, unsigned frame_count)
 {
@@ -37,13 +37,9 @@ void Km_Skin::load_data(const char *data, unsigned size, unsigned frame_count)
     load(img, frame_count);
 }
 
-void Km_Skin::load_resource(const char *name, unsigned frame_count)
+void Km_Skin::load_resource(const Res::Data &data, unsigned frame_count)
 {
-    int size;
-    const char *data = BinaryData::getNamedResource(name, size);
-    if (!data)
-        return;
-    load_data(data, size, frame_count);
+    load_data(data.data, data.size, frame_count);
 }
 
 Km_Skin_Ptr Km_Skin::scaled(double ratio) const

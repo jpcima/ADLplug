@@ -15,8 +15,6 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{55EB88E2-DED7-A832-F732-BA02F1857909}</ProjectGuid>
-    <PlatformToolset>v141</PlatformToolset>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"
@@ -25,8 +23,7 @@
     <UseOfMfc>false</UseOfMfc>
     <WholeProgramOptimization>false</WholeProgramOptimization>
     <PlatformToolset>v141</PlatformToolset>
-    <PlatformToolset>v141</PlatformToolset>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(WindowsTargetPlatformVersion)' == ''">$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'"
                  Label="Configuration">
@@ -34,8 +31,7 @@
     <UseOfMfc>false</UseOfMfc>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v141</PlatformToolset>
-    <PlatformToolset>v141</PlatformToolset>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(WindowsTargetPlatformVersion)' == ''">$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
   <ImportGroup Label="ExtensionSettings"/>
@@ -44,10 +40,6 @@
             Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
             Label="LocalAppDataPlatform"/>
   </ImportGroup>
-  <PropertyGroup Label="UserMacros">
-    <PlatformToolset>v141</PlatformToolset>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
-  </PropertyGroup>
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <TargetExt>.lib</TargetExt>
@@ -59,8 +51,6 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\Shared Code\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">OPNplug</TargetName>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
-    <PlatformToolset>v141</PlatformToolset>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -74,7 +64,7 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalIncludeDirectories>C:\SDKs\VST_SDK\VST3_SDK;..\..\..\JuceLibraryCode;C:\SDKs\AAX;C:\SDKs\AAX\Interfaces;C:\SDKs\AAX\Interfaces\ACF;..\..\..\..\..\thirdparty\JUCE\modules;../../../../../sources;../../../../../thirdparty/libOPNMIDI/include;../../../../../thirdparty/wopn;../../../../../thirdparty/simpleini;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;ADLPLUG_OPN2;OPNMIDI_UNSTABLE_API;OPNMIDI_DISABLE_GX_EMULATOR;OPNMIDI_DISABLE_CPP_EXTRAS;OPNMIDI_DISABLE_MIDI_SEQUENCER;OPNMIDI_DISABLE_MUS_SUPPORT;OPNMIDI_DISABLE_XMI_SUPPORT;VF_USE_FREETYPE=0;JUCER_VS2017_1286C702=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=1;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=1;JucePlugin_Build_AAX=1;JucePlugin_Build_Standalone=1;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;DEBUG;_DEBUG;ADLPLUG_OPN2;OPNMIDI_UNSTABLE_API;OPNMIDI_DISABLE_GX_EMULATOR;OPNMIDI_DISABLE_CPP_EXTRAS;OPNMIDI_DISABLE_MIDI_SEQUENCER;OPNMIDI_DISABLE_MUS_SUPPORT;OPNMIDI_DISABLE_XMI_SUPPORT;JUCER_VS2017_1286C702=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=1;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=1;JucePlugin_Build_AAX=1;JucePlugin_Build_Standalone=1;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
@@ -114,7 +104,7 @@
     <ClCompile>
       <Optimization>Full</Optimization>
       <AdditionalIncludeDirectories>C:\SDKs\VST_SDK\VST3_SDK;..\..\..\JuceLibraryCode;C:\SDKs\AAX;C:\SDKs\AAX\Interfaces;C:\SDKs\AAX\Interfaces\ACF;..\..\..\..\..\thirdparty\JUCE\modules;../../../../../sources;../../../../../thirdparty/libOPNMIDI/include;../../../../../thirdparty/wopn;../../../../../thirdparty/simpleini;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;ADLPLUG_OPN2;OPNMIDI_UNSTABLE_API;OPNMIDI_DISABLE_GX_EMULATOR;OPNMIDI_DISABLE_CPP_EXTRAS;OPNMIDI_DISABLE_MIDI_SEQUENCER;OPNMIDI_DISABLE_MUS_SUPPORT;OPNMIDI_DISABLE_XMI_SUPPORT;VF_USE_FREETYPE=0;JUCER_VS2017_1286C702=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=1;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=1;JucePlugin_Build_AAX=1;JucePlugin_Build_Standalone=1;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_WINDOWS;NDEBUG;ADLPLUG_OPN2;OPNMIDI_UNSTABLE_API;OPNMIDI_DISABLE_GX_EMULATOR;OPNMIDI_DISABLE_CPP_EXTRAS;OPNMIDI_DISABLE_MIDI_SEQUENCER;OPNMIDI_DISABLE_MUS_SUPPORT;OPNMIDI_DISABLE_XMI_SUPPORT;JUCER_VS2017_1286C702=1;JUCE_APP_VERSION=1.0.0;JUCE_APP_VERSION_HEX=0x10000;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=1;JucePlugin_Build_AU=0;JucePlugin_Build_AUv3=0;JucePlugin_Build_RTAS=1;JucePlugin_Build_AAX=1;JucePlugin_Build_Standalone=1;JucePlugin_Build_Unity=0;JUCE_SHARED_CODE=1;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <PrecompiledHeader/>
@@ -151,6 +141,7 @@
     <ClCompile Include="..\..\..\..\..\sources\messages.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\plugin_editor.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\plugin_processor.cc"/>
+    <ClCompile Include="..\..\..\..\..\sources\resources.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\worker.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\midi\insnames.cc"/>
     <ClCompile Include="..\..\..\..\..\sources\opn2\parameter_block.cc"/>
@@ -1960,7 +1951,6 @@
     <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\..\JuceLibraryCode\BinaryData.cpp"/>
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_basics.cpp"/>
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_devices.cpp"/>
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_formats.cpp"/>
@@ -1984,6 +1974,7 @@
     <ClInclude Include="..\..\..\..\..\sources\plugin_editor.h"/>
     <ClInclude Include="..\..\..\..\..\sources\plugin_processor.h"/>
     <ClInclude Include="..\..\..\..\..\sources\plugin_version.h"/>
+    <ClInclude Include="..\..\..\..\..\sources\resources.h"/>
     <ClInclude Include="..\..\..\..\..\sources\worker.h"/>
     <ClInclude Include="..\..\..\..\..\sources\adl\chip_settings.h"/>
     <ClInclude Include="..\..\..\..\..\sources\adl\instrument.h"/>
@@ -2770,38 +2761,12 @@
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_extra\native\juce_mac_CarbonViewWrapperComponent.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.h"/>
     <ClInclude Include="..\..\..\JuceLibraryCode\AppConfig.h"/>
-    <ClInclude Include="..\..\..\JuceLibraryCode\BinaryData.h"/>
     <ClInclude Include="..\..\..\JuceLibraryCode\JuceHeader.h"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\..\sources\opn2\adl\measurer\chips\opn_chip_base.tcc"/>
     <None Include="..\..\..\..\..\sources\ui\generic_main_component.tcc"/>
     <None Include="..\..\..\..\..\sources\utility\counting_bitset.tcc"/>
-    <None Include="..\..\..\..\..\resources\application\OPNplug-96.png"/>
-    <None Include="..\..\..\..\..\resources\opn2\banks.pak"/>
-    <None Include="..\..\..\..\..\resources\ui\knob-skin.png"/>
-    <None Include="..\..\..\..\..\resources\ui\cores\Gens.png"/>
-    <None Include="..\..\..\..\..\resources\ui\cores\MAME.png"/>
-    <None Include="..\..\..\..\..\resources\ui\cores\Neko.png"/>
-    <None Include="..\..\..\..\..\resources\ui\cores\Nuked.png"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Mono-Bold.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Mono-BoldItalic.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Mono-Italic.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Mono-Regular.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Sans-Bold.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Sans-BoldItalic.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Sans-Italic.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Sans-Regular.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Serif-Bold.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Serif-BoldItalic.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Serif-Italic.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Serif-Regular.ttf.gz"/>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4a1.png"/>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png"/>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png"/>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4dd.png"/>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u2328.png"/>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u2795.png"/>
     <None Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\opnmidi_bankmap.tcc"/>
     <None Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\opn_chip_base.tcc"/>
     <None Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>

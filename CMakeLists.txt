@@ -92,7 +92,6 @@ include("${CMAKE_SOURCE_DIR}/JUCE-targets.cmake")
 set(MACOSX_BUNDLE_ICON_FILE "${ADLplug_NAME}.icns")
 
 add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
-  "${JUCE_PROJECT_DIR}/JuceLibraryCode/BinaryData.cpp"
   "sources/utility/midi.cc"
   "sources/utility/simple_fifo.cc"
   "sources/utility/pak.cc"
@@ -104,6 +103,7 @@ add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
   "sources/configuration.cc"
   "sources/messages.cc"
   "sources/worker.cc"
+  "sources/resources.cc"
   "sources/ui/look_and_feel.cc"
   "sources/ui/components/algorithm_component.cc"
   "sources/ui/components/indicator_NxM.cc"

@@ -1,0 +1,72 @@
+namespace: "Res"
+
+header-text: |
+  //          Copyright Jean Pierre Cimalando 2018.
+  // Distributed under the Boost Software License, Version 1.0.
+  //    (See accompanying file LICENSE or copy at
+  //          http://www.boost.org/LICENSE_1_0.txt)
+
+files:
+  - id: "opl3_banks_pak"
+    source: "opl3/banks.pak"
+  - id: "opn2_banks_pak"
+    source: "opn2/banks.pak"
+
+  - id: "opl3_logo"
+    source: "ui/logo.png"
+  - id: "opn2_logo"
+    source: "ui/opnmidi.png"
+
+  - id: "emu_dosbox"
+    source: "ui/cores/DOSBox.png"
+  - id: "emu_gens"
+    source: "ui/cores/Gens.png"
+  - id: "emu_mame"
+    source: "ui/cores/MAME.png"
+  - id: "emu_neko"
+    source: "ui/cores/Neko.png"
+  - id: "emu_nuked"
+    source: "ui/cores/Nuked.png"
+  - id: "emu_nuked2"
+    source: "ui/cores/Nuked2.png"
+
+  - id: "emoji_u1f4a1"
+    source: "ui/noto-emoji/emoji_u1f4a1.png"
+  - id: "emoji_u1f4be"
+    source: "ui/noto-emoji/emoji_u1f4be.png"
+  - id: "emoji_u1f4c2"
+    source: "ui/noto-emoji/emoji_u1f4c2.png"
+  - id: "emoji_u1f4dd"
+    source: "ui/noto-emoji/emoji_u1f4dd.png"
+  - id: "emoji_u2328"
+    source: "ui/noto-emoji/emoji_u2328.png"
+  - id: "emoji_u2795"
+    source: "ui/noto-emoji/emoji_u2795.png"
+
+  - id: "knob_skin"
+    source: "ui/knob-skin.png"
+
+  - id: "Mono_BoldItalic"
+    source: "ui/fonts/Mono-BoldItalic.ttf.gz"
+  - id: "Mono_Bold"
+    source: "ui/fonts/Mono-Bold.ttf.gz"
+  - id: "Mono_Italic"
+    source: "ui/fonts/Mono-Italic.ttf.gz"
+  - id: "Mono_Regular"
+    source: "ui/fonts/Mono-Regular.ttf.gz"
+  - id: "Sans_BoldItalic"
+    source: "ui/fonts/Sans-BoldItalic.ttf.gz"
+  - id: "Sans_Bold"
+    source: "ui/fonts/Sans-Bold.ttf.gz"
+  - id: "Sans_Italic"
+    source: "ui/fonts/Sans-Italic.ttf.gz"
+  - id: "Sans_Regular"
+    source: "ui/fonts/Sans-Regular.ttf.gz"
+  - id: "Serif_BoldItalic"
+    source: "ui/fonts/Serif-BoldItalic.ttf.gz"
+  - id: "Serif_Bold"
+    source: "ui/fonts/Serif-Bold.ttf.gz"
+  - id: "Serif_Italic"
+    source: "ui/fonts/Serif-Italic.ttf.gz"
+  - id: "Serif_Regular"
+    source: "ui/fonts/Serif-Regular.ttf.gz"

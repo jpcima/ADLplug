@@ -5,9 +5,13 @@
 
 #include "chip_settings.h"
 #include "player.h"
-#include "BinaryData.h"
+#include "resources.h"
 #include <mutex>
 #include <memory>
+
+RESOURCE(Res, emu_dosbox);
+RESOURCE(Res, emu_nuked);
+RESOURCE(Res, emu_nuked2);
 
 std::unique_ptr<Emulator_Defaults> emulator_defaults_;
 std::mutex emulator_defaults_mutex_;
@@ -46,9 +50,9 @@ Emulator_Defaults &get_emulator_defaults()
 
     //
     defaults->images.reset(new Image[count]);
-    Image icon_dosbox = ImageFileFormat::loadFrom(BinaryData::DOSBox_png, BinaryData::DOSBox_pngSize);
-    Image icon_nuked = ImageFileFormat::loadFrom(BinaryData::Nuked_png, BinaryData::Nuked_pngSize);
-    Image icon_nuked2 = ImageFileFormat::loadFrom(BinaryData::Nuked2_png, BinaryData::Nuked2_pngSize);
+    Image icon_dosbox = ImageFileFormat::loadFrom(Res::emu_dosbox.data, Res::emu_dosbox.size);
+    Image icon_nuked = ImageFileFormat::loadFrom(Res::emu_nuked.data, Res::emu_nuked.size);
+    Image icon_nuked2 = ImageFileFormat::loadFrom(Res::emu_nuked2.data, Res::emu_nuked2.size);
     unsigned nth_icon_nuked = 0;
     for (unsigned i = 0; i < count; ++i) {
         const String &name = defaults->choices[i];

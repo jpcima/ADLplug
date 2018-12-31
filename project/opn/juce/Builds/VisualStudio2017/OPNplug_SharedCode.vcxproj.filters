@@ -47,27 +47,6 @@
     <Filter Include="OPNplug\sources">
       <UniqueIdentifier>{2BFDBDFC-2CBF-1EF2-EE69-2C91C7AE00F8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OPNplug\resources\application">
-      <UniqueIdentifier>{F427287F-190C-7DA0-E414-C11AEF727D8D}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OPNplug\resources\opn2">
-      <UniqueIdentifier>{DBF7058E-F7AE-2074-5ACA-140442AD7C65}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OPNplug\resources\ui\cores">
-      <UniqueIdentifier>{23B8C129-46CB-14E1-6C6D-1FFF15D43E22}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OPNplug\resources\ui\fonts">
-      <UniqueIdentifier>{9AD6A722-A5DF-ACD4-AE4B-42ADFD7844A8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OPNplug\resources\ui\noto-emoji">
-      <UniqueIdentifier>{77D605EA-5255-10D4-856B-8E74A555A6A8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OPNplug\resources\ui">
-      <UniqueIdentifier>{E853DEC3-A0A1-29F6-5F37-B127B15C3EE3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OPNplug\resources">
-      <UniqueIdentifier>{DC1B6FF0-FBB6-3F6B-72E3-72534B39F9DF}</UniqueIdentifier>
-    </Filter>
     <Filter Include="OPNplug\thirdparty\simpleini">
       <UniqueIdentifier>{993949B0-9ECA-533E-793B-C693E5BAFF27}</UniqueIdentifier>
     </Filter>
@@ -530,6 +509,9 @@
       <Filter>OPNplug\sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\plugin_processor.cc">
+      <Filter>OPNplug\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\resources.cc">
       <Filter>OPNplug\sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\worker.cc">
@@ -2554,9 +2536,6 @@
     <ClCompile Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_gui_extra\juce_gui_extra.mm">
       <Filter>JUCE Modules\juce_gui_extra</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\JuceLibraryCode\BinaryData.cpp">
-      <Filter>JUCE Library Code</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_basics.cpp">
       <Filter>JUCE Library Code</Filter>
     </ClCompile>
@@ -2620,6 +2599,9 @@
       <Filter>OPNplug\sources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\plugin_version.h">
+      <Filter>OPNplug\sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\resources.h">
       <Filter>OPNplug\sources</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\worker.h">
@@ -4980,9 +4962,6 @@
     <ClInclude Include="..\..\..\JuceLibraryCode\AppConfig.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\JuceLibraryCode\BinaryData.h">
-      <Filter>JUCE Library Code</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\JuceLibraryCode\JuceHeader.h">
       <Filter>JUCE Library Code</Filter>
     </ClInclude>
@@ -4996,81 +4975,6 @@
     </None>
     <None Include="..\..\..\..\..\sources\utility\counting_bitset.tcc">
       <Filter>OPNplug\sources\utility</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\application\OPNplug-96.png">
-      <Filter>OPNplug\resources\application</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\opn2\banks.pak">
-      <Filter>OPNplug\resources\opn2</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\knob-skin.png">
-      <Filter>OPNplug\resources\ui</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\cores\Gens.png">
-      <Filter>OPNplug\resources\ui\cores</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\cores\MAME.png">
-      <Filter>OPNplug\resources\ui\cores</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\cores\Neko.png">
-      <Filter>OPNplug\resources\ui\cores</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\cores\Nuked.png">
-      <Filter>OPNplug\resources\ui\cores</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Mono-Bold.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Mono-BoldItalic.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Mono-Italic.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Mono-Regular.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Sans-Bold.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Sans-BoldItalic.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Sans-Italic.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Sans-Regular.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Serif-Bold.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Serif-BoldItalic.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Serif-Italic.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\fonts\Serif-Regular.ttf.gz">
-      <Filter>OPNplug\resources\ui\fonts</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4a1.png">
-      <Filter>OPNplug\resources\ui\noto-emoji</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4be.png">
-      <Filter>OPNplug\resources\ui\noto-emoji</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4c2.png">
-      <Filter>OPNplug\resources\ui\noto-emoji</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u1f4dd.png">
-      <Filter>OPNplug\resources\ui\noto-emoji</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u2328.png">
-      <Filter>OPNplug\resources\ui\noto-emoji</Filter>
-    </None>
-    <None Include="..\..\..\..\..\resources\ui\noto-emoji\emoji_u2795.png">
-      <Filter>OPNplug\resources\ui\noto-emoji</Filter>
     </None>
     <None Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\opnmidi_bankmap.tcc">
       <Filter>OPNplug\thirdparty\libOPNMIDI\src</Filter>

@@ -9,10 +9,16 @@
 #include "plugin_version.h"
 #include "utility/midi.h"
 #include "utility/functional_timer.h"
-#include "BinaryData.h"
+#include "resources.h"
 #include <string.h>
 #include <sys/mman.h>
 extern AudioProcessor *JUCE_CALLTYPE createPluginFilter();
+
+#if defined(ADLPLUG_OPL3)
+RESOURCE(Res, opl3_logo);
+#elif defined(ADLPLUG_OPN2)
+RESOURCE(Res, opn2_logo);
+#endif
 
 Application_Window::Application_Window(const String &name)
     : DocumentWindow(
@@ -210,14 +216,12 @@ bool Application_Jack::start(bool autoconnect)
         window->addToDesktop();
 
 #if defined(ADLPLUG_OPL3)
-        const void *icon_data = BinaryData::ADLplug96_png;
-        unsigned icon_size = BinaryData::ADLplug96_pngSize;
+        const Res::Data &icon_data = Res::opl3_logo;
 #elif defined(ADLPLUG_OPN2)
-        const void *icon_data = BinaryData::OPNplug96_png;
-        unsigned icon_size = BinaryData::OPNplug96_pngSize;
+        const Res::Data &icon_data = Res::opn2_logo;
 #endif
 
-        Image icon = ImageFileFormat::loadFrom(icon_data, icon_size);
+        Image icon = ImageFileFormat::loadFrom(icon_data.data, icon_data.size);
         window->setIcon(icon);
         if (ComponentPeer *peer = window->getPeer())
             peer->setIcon(icon);

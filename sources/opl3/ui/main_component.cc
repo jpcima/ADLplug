@@ -27,7 +27,7 @@
 #include "plugin_processor.h"
 #include "parameter_block.h"
 #include "messages.h"
-#include "BinaryData.h"
+#include "resources.h"
 #include <memory>
 #include <cstdio>
 #include <cstring>
@@ -39,6 +39,8 @@
 
 
 //[MiscUserDefs] You can add your own user definitions and misc code here...
+RESOURCE(Res, emoji_u1f4a1);
+
 #if 1
 #   define trace(fmt, ...)
 #else
@@ -771,7 +773,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     btn_deep_tremolo->setClickingTogglesState(true);
     btn_deep_vibrato->setClickingTogglesState(true);
 
-    create_image_overlay(*btn_auto4ops, ImageCache::getFromMemory(BinaryData::emoji_u1f4a1_png, BinaryData::emoji_u1f4a1_pngSize), 0.7f);
+    create_image_overlay(*btn_auto4ops, ImageCache::getFromMemory(Res::emoji_u1f4a1.data, Res::emoji_u1f4a1.size), 0.7f);
 
     {
         StringArray strings = pb.p_volmodel->getAllValueStrings();

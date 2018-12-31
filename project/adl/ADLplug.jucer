@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT name="ADLplug" projectType="audioplug" buildStandalone="1" jucerVersion="5.3.2"
+<JUCERPROJECT name="ADLplug" projectType="audioplug" buildStandalone="1" jucerVersion="5.4.1"
               pluginFormats="buildVST,buildVST3,buildAU,buildAUv3,buildRTAS,buildAAX,buildStandalone"
               buildVST="1" buildVST3="1" buildAU="1" buildAUv3="1" buildRTAS="1"
               buildAAX="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
@@ -30,6 +30,8 @@
             file="../../sources/plugin_processor.h"/>
       <FILE id="CDfB1P" name="plugin_version.h" compile="0" resource="0"
             file="../../sources/plugin_version.h"/>
+      <FILE id="Dnxxqd" name="resources.cc" compile="1" resource="0" file="../../sources/resources.cc"/>
+      <FILE id="lUGoL9" name="resources.h" compile="0" resource="0" file="../../sources/resources.h"/>
       <FILE id="M4xlwY" name="worker.cc" compile="1" resource="0" file="../../sources/worker.cc"/>
       <FILE id="ymYAK6" name="worker.h" compile="0" resource="0" file="../../sources/worker.h"/>
       <GROUP id="{90BE611D-B377-7C79-171F-98F2CD7899AE}" name="adl">
@@ -172,60 +174,6 @@
         <FILE id="fr1vaj" name="simple_fifo.h" compile="0" resource="0" file="../../sources/utility/simple_fifo.h"/>
       </GROUP>
     </GROUP>
-    <GROUP id="{CE838733-6F60-E1A4-CC53-002A0DA0B49F}" name="resources">
-      <GROUP id="{5139B2A1-DF00-E91B-F89F-755BE7FB920B}" name="application">
-        <FILE id="jZqcHj" name="ADLplug-96.png" compile="0" resource="1" file="../../resources/application/ADLplug-96.png"/>
-      </GROUP>
-      <GROUP id="{426F9D63-7ED2-C70C-62C0-7A782D9BBA77}" name="opl3">
-        <FILE id="gPZH4Q" name="banks.pak" compile="0" resource="1" file="../../resources/opl3/banks.pak"/>
-      </GROUP>
-      <GROUP id="{02680B2E-61B1-FA1B-3D9A-89A688227935}" name="ui">
-        <FILE id="WgFk24" name="knob-skin.png" compile="0" resource="1" file="../../resources/ui/knob-skin.png"/>
-        <GROUP id="{3DD686E2-DFBA-641B-F10D-41AB90380470}" name="cores">
-          <FILE id="UC8LOS" name="DOSBox.png" compile="0" resource="1" file="../../resources/ui/cores/DOSBox.png"/>
-          <FILE id="vnP6a4" name="Nuked.png" compile="0" resource="1" file="../../resources/ui/cores/Nuked.png"/>
-          <FILE id="I6ZknX" name="Nuked2.png" compile="0" resource="1" file="../../resources/ui/cores/Nuked2.png"/>
-        </GROUP>
-        <GROUP id="{04E07FD4-726D-2E19-A08B-B84A64CCABB9}" name="fonts">
-          <FILE id="U6RVIY" name="Mono-Bold.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Mono-Bold.ttf.gz"/>
-          <FILE id="YsZ8ro" name="Mono-BoldItalic.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Mono-BoldItalic.ttf.gz"/>
-          <FILE id="zwTr71" name="Mono-Italic.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Mono-Italic.ttf.gz"/>
-          <FILE id="G4ATDw" name="Mono-Regular.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Mono-Regular.ttf.gz"/>
-          <FILE id="RTfQbX" name="Sans-Bold.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Sans-Bold.ttf.gz"/>
-          <FILE id="LxKhIg" name="Sans-BoldItalic.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Sans-BoldItalic.ttf.gz"/>
-          <FILE id="aPsrE9" name="Sans-Italic.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Sans-Italic.ttf.gz"/>
-          <FILE id="Pqymxs" name="Sans-Regular.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Sans-Regular.ttf.gz"/>
-          <FILE id="dEtnT6" name="Serif-Bold.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Serif-Bold.ttf.gz"/>
-          <FILE id="bg9APV" name="Serif-BoldItalic.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Serif-BoldItalic.ttf.gz"/>
-          <FILE id="JER5qs" name="Serif-Italic.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Serif-Italic.ttf.gz"/>
-          <FILE id="tmPi9Y" name="Serif-Regular.ttf.gz" compile="0" resource="1"
-                file="../../resources/ui/fonts/Serif-Regular.ttf.gz"/>
-        </GROUP>
-        <GROUP id="{877CC963-FD61-84EC-01EC-E41153BC0627}" name="noto-emoji">
-          <FILE id="ez1xcm" name="emoji_u1f4a1.png" compile="0" resource="1"
-                file="../../resources/ui/noto-emoji/emoji_u1f4a1.png"/>
-          <FILE id="Q6lsDQ" name="emoji_u1f4be.png" compile="0" resource="1"
-                file="../../resources/ui/noto-emoji/emoji_u1f4be.png"/>
-          <FILE id="zQcn4S" name="emoji_u1f4c2.png" compile="0" resource="1"
-                file="../../resources/ui/noto-emoji/emoji_u1f4c2.png"/>
-          <FILE id="v7DB2x" name="emoji_u1f4dd.png" compile="0" resource="1"
-                file="../../resources/ui/noto-emoji/emoji_u1f4dd.png"/>
-          <FILE id="bXyiEf" name="emoji_u2328.png" compile="0" resource="1" file="../../resources/ui/noto-emoji/emoji_u2328.png"/>
-          <FILE id="gs5vEk" name="emoji_u2795.png" compile="0" resource="1" file="../../resources/ui/noto-emoji/emoji_u2795.png"/>
-        </GROUP>
-      </GROUP>
-    </GROUP>
     <GROUP id="{C55CC9DB-ED0F-DE1B-46CB-A28A61433406}" name="thirdparty">
       <GROUP id="{E22638DE-6D93-C650-E312-3F4979D2BBD4}" name="simpleini">
         <FILE id="FuyL2E" name="SimpleIni.h" compile="0" resource="0" file="../../thirdparty/simpleini/SimpleIni.h"/>
@@ -307,8 +255,7 @@
     <LINUX/>
   </LIVE_SETTINGS>
   <EXPORTFORMATS>
-    <XCODE_MAC targetFolder="juce/Builds/MacOSX" vst3Folder="" aaxFolder=""
-               rtasFolder="" extraDefs="VF_USE_FREETYPE=0">
+    <XCODE_MAC targetFolder="juce/Builds/MacOSX">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
@@ -328,8 +275,7 @@
         <MODULEPATH id="juce_audio_formats" path="../../thirdparty/JUCE/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <VS2017 targetFolder="juce/Builds/VisualStudio2017" vst3Folder="" aaxFolder=""
-            rtasFolder="" extraDefs="VF_USE_FREETYPE=0">
+    <VS2017 targetFolder="juce/Builds/VisualStudio2017">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>
@@ -349,8 +295,7 @@
         <MODULEPATH id="juce_audio_formats" path="../../thirdparty/JUCE/modules"/>
       </MODULEPATHS>
     </VS2017>
-    <LINUX_MAKE targetFolder="juce/Builds/LinuxMakefile" linuxExtraPkgConfig="freetype2"
-                extraDefs="VF_USE_FREETYPE=1&#10;VF_USE_NATIVE_FREETYPE=1&#10;">
+    <LINUX_MAKE targetFolder="juce/Builds/LinuxMakefile" linuxExtraPkgConfig="freetype2">
       <CONFIGURATIONS>
         <CONFIGURATION isDebug="1" name="Debug"/>
         <CONFIGURATION isDebug="0" name="Release"/>

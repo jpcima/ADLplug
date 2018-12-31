@@ -4,7 +4,20 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "ui/look_and_feel.h"
-#include "BinaryData.h"
+#include "resources.h"
+
+RESOURCE(Res, Mono_BoldItalic)
+RESOURCE(Res, Mono_Bold)
+RESOURCE(Res, Mono_Italic)
+RESOURCE(Res, Mono_Regular)
+RESOURCE(Res, Sans_BoldItalic)
+RESOURCE(Res, Sans_Bold)
+RESOURCE(Res, Sans_Italic)
+RESOURCE(Res, Sans_Regular)
+RESOURCE(Res, Serif_BoldItalic)
+RESOURCE(Res, Serif_Bold)
+RESOURCE(Res, Serif_Italic)
+RESOURCE(Res, Serif_Regular)
 
 #if 1
 #   define trace(fmt, ...)
@@ -28,38 +41,36 @@ Typeface::Ptr Custom_Look_And_Feel::getTypefaceForFont(const Font &font)
     trace("Query Typeface name='%s' style='%s'",
           name.toRawUTF8(), style.toRawUTF8());
 
-#define BINARY_FONT(x) BinaryData::x##_ttf_gz, BinaryData::x##_ttf_gzSize
-
     Typeface::Ptr tf;
     if (name == Font::getDefaultSansSerifFontName()) {
         if (style == "Italic")
-            tf = getOrCreateFont(fontSansItalic, BINARY_FONT(SansItalic));
+            tf = getOrCreateFont(fontSansItalic, Res::Sans_Italic);
         else if (style == "Bold")
-            tf = getOrCreateFont(fontSansBold, BINARY_FONT(SansBold));
+            tf = getOrCreateFont(fontSansBold, Res::Sans_Bold);
         else if (style == "Bold Italic")
-            tf = getOrCreateFont(fontSansBoldItalic, BINARY_FONT(SansBoldItalic));
+            tf = getOrCreateFont(fontSansBoldItalic, Res::Sans_BoldItalic);
         else
-            tf = getOrCreateFont(fontSansRegular, BINARY_FONT(SansRegular));
+            tf = getOrCreateFont(fontSansRegular, Res::Sans_Regular);
     }
     else if (name == Font::getDefaultSerifFontName()) {
         if (style == "Italic")
-            tf = getOrCreateFont(fontSerifItalic, BINARY_FONT(SerifItalic));
+            tf = getOrCreateFont(fontSerifItalic, Res::Serif_Italic);
         else if (style == "Bold")
-            tf = getOrCreateFont(fontSerifBold, BINARY_FONT(SerifBold));
+            tf = getOrCreateFont(fontSerifBold, Res::Serif_Bold);
         else if (style == "Bold Italic")
-            tf = getOrCreateFont(fontSerifBoldItalic, BINARY_FONT(SerifBoldItalic));
+            tf = getOrCreateFont(fontSerifBoldItalic, Res::Serif_BoldItalic);
         else
-            tf = getOrCreateFont(fontSerifRegular, BINARY_FONT(SerifRegular));
+            tf = getOrCreateFont(fontSerifRegular, Res::Serif_Regular);
     }
     else if (name == Font::getDefaultMonospacedFontName()) {
         if (style == "Italic")
-            tf = getOrCreateFont(fontMonoItalic, BINARY_FONT(MonoItalic));
+            tf = getOrCreateFont(fontMonoItalic, Res::Mono_Italic);
         else if (style == "Bold")
-            tf = getOrCreateFont(fontMonoBold, BINARY_FONT(MonoBold));
+            tf = getOrCreateFont(fontMonoBold, Res::Mono_Bold);
         else if (style == "Bold Italic")
-            tf = getOrCreateFont(fontMonoBoldItalic, BINARY_FONT(MonoBoldItalic));
+            tf = getOrCreateFont(fontMonoBoldItalic, Res::Mono_BoldItalic);
         else
-            tf = getOrCreateFont(fontMonoRegular, BINARY_FONT(MonoRegular));
+            tf = getOrCreateFont(fontMonoRegular, Res::Mono_Regular);
     }
 
     if (!tf) {
@@ -73,10 +84,10 @@ Typeface::Ptr Custom_Look_And_Feel::getTypefaceForFont(const Font &font)
 }
 
 Typeface::Ptr Custom_Look_And_Feel::getOrCreateFont(
-    Typeface::Ptr &font, const char *data, unsigned size)
+    Typeface::Ptr &font, const Res::Data &data)
 {
     if (!font) {
-        MemoryInputStream memStream(data, size, false);
+        MemoryInputStream memStream(data.data, data.size, false);
         GZIPDecompressorInputStream gzStream(&memStream, false, GZIPDecompressorInputStream::gzipFormat);
 
         MemoryBlock memBlock;
