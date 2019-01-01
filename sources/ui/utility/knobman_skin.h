@@ -11,9 +11,16 @@ namespace Res { struct Data; };
 class Km_Skin;
 typedef ReferenceCountedObjectPtr<Km_Skin> Km_Skin_Ptr;
 
+enum Km_Style
+{
+    Km_Rotary,
+    Km_LinearHorizontal,
+};
+
 class Km_Skin : public ReferenceCountedObject
 {
 public:
+    Km_Style style = Km_Rotary;
     std::vector<Image> frames;
     explicit operator bool() const { return !frames.empty(); }
 

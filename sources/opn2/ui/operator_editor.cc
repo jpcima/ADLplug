@@ -72,33 +72,6 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
 
     btn_ssgenable->setBounds (4, 100, 15, 15);
 
-    sl_level.reset (new Slider ("new slider"));
-    addAndMakeVisible (sl_level.get());
-    sl_level->setRange (0, 127, 0);
-    sl_level->setSliderStyle (Slider::LinearHorizontal);
-    sl_level->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
-    sl_level->addListener (this);
-
-    sl_level->setBounds (195, -2, 64, 20);
-
-    sl_fmul.reset (new Slider ("new slider"));
-    addAndMakeVisible (sl_fmul.get());
-    sl_fmul->setRange (0, 15, 0);
-    sl_fmul->setSliderStyle (Slider::LinearHorizontal);
-    sl_fmul->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
-    sl_fmul->addListener (this);
-
-    sl_fmul->setBounds (195, 14, 64, 20);
-
-    sl_rsl.reset (new Slider ("new slider"));
-    addAndMakeVisible (sl_rsl.get());
-    sl_rsl->setRange (0, 3, 0);
-    sl_rsl->setSliderStyle (Slider::LinearHorizontal);
-    sl_rsl->setTextBoxStyle (Slider::NoTextBox, false, 80, 20);
-    sl_rsl->addListener (this);
-
-    sl_rsl->setBounds (195, 30, 64, 20);
-
     lbl_level.reset (new Label ("new label",
                                 TRANS("Lv")));
     addAndMakeVisible (lbl_level.get());
@@ -265,32 +238,49 @@ Operator_Editor::Operator_Editor (unsigned op_id, Parameter_Block &pb)
 
     cb_detune->setBounds (163, 65, 96, 24);
 
+    sl_level.reset (new Styled_Slider_DefaultSmall());
+    addAndMakeVisible (sl_level.get());
+    sl_level->setName ("new component");
+
+    sl_level->setBounds (195, -2, 64, 20);
+
+    sl_fmul.reset (new Styled_Slider_DefaultSmall());
+    addAndMakeVisible (sl_fmul.get());
+    sl_fmul->setName ("new component");
+
+    sl_fmul->setBounds (195, 14, 64, 20);
+
+    sl_rsl.reset (new Styled_Slider_DefaultSmall());
+    addAndMakeVisible (sl_rsl.get());
+    sl_rsl->setName ("new component");
+
+    sl_rsl->setBounds (195, 30, 64, 20);
+
 
     //[UserPreSize]
+    sl_level->add_listener(this);
+    sl_level->set_range(0, 127);
+    sl_level->set_max_increment(1);
+    sl_fmul->add_listener(this);
+    sl_fmul->set_range(0, 15);
+    sl_fmul->set_max_increment(1);
+    sl_rsl->add_listener(this);
+    sl_rsl->set_range(0, 3);
+    sl_rsl->set_max_increment(1);
+
     kn_attack->add_listener(this);
+    kn_attack->set_max_increment(1);
     kn_decay->add_listener(this);
+    kn_decay->set_max_increment(1);
     kn_decay2->add_listener(this);
+    kn_decay2->set_max_increment(1);
     kn_sustain->add_listener(this);
+    kn_sustain->set_max_increment(1);
     kn_release->add_listener(this);
+    kn_release->set_max_increment(1);
 
     btn_am->setClickingTogglesState(true);
     btn_ssgenable->setClickingTogglesState(true);
-
-    kn_attack->setTooltip(TRANS("Attack"));
-    kn_decay->setTooltip(TRANS("Primary Decay"));
-    kn_decay2->setTooltip(TRANS("Secondary Decay"));
-    kn_sustain->setTooltip(TRANS("Sustain"));
-    kn_release->setTooltip(TRANS("Release"));
-
-    btn_am->setTooltip(TRANS("Amplitude modulation"));
-
-    sl_level->setTooltip(TRANS("Level"));
-    lbl_level->setTooltip(TRANS("Level"));
-    sl_fmul->setTooltip(TRANS("Frequency multiplier"));
-    lbl_fmul->setTooltip(TRANS("Frequency multiplier"));
-    sl_rsl->setTooltip(TRANS("Rate scale level"));
-    lbl_rsl->setTooltip(TRANS("Rate scale level"));
-    lbl_tune->setTooltip(TRANS("Detune"));
     //[/UserPreSize]
 
     setSize (264, 128);
@@ -332,9 +322,6 @@ Operator_Editor::~Operator_Editor()
     kn_sustain = nullptr;
     kn_release = nullptr;
     btn_ssgenable = nullptr;
-    sl_level = nullptr;
-    sl_fmul = nullptr;
-    sl_rsl = nullptr;
     lbl_level = nullptr;
     label = nullptr;
     label2 = nullptr;
@@ -351,6 +338,9 @@ Operator_Editor::~Operator_Editor()
     btn_next_ssgwave = nullptr;
     lbl_ssgwave = nullptr;
     cb_detune = nullptr;
+    sl_level = nullptr;
+    sl_fmul = nullptr;
+    sl_rsl = nullptr;
 
 
     //[Destructor]. You can add your own custom destruction code here..
@@ -450,42 +440,6 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
     //[/UserbuttonClicked_Post]
 }
 
-void Operator_Editor::sliderValueChanged (Slider* sliderThatWasMoved)
-{
-    //[UsersliderValueChanged_Pre]
-    Parameter_Block &pb = *parameter_block_;
-    Parameter_Block::Part &part = pb.part[midichannel_];
-    Parameter_Block::Operator &op = part.nth_operator(operator_id_);
-    Slider *sl = sliderThatWasMoved;
-    //[/UsersliderValueChanged_Pre]
-
-    if (sliderThatWasMoved == sl_level.get())
-    {
-        //[UserSliderCode_sl_level] -- add your slider handling code here..
-        AudioParameterInt &p = *op.p_level;
-        p = std::lround(sl->getValue());
-        //[/UserSliderCode_sl_level]
-    }
-    else if (sliderThatWasMoved == sl_fmul.get())
-    {
-        //[UserSliderCode_sl_fmul] -- add your slider handling code here..
-        AudioParameterInt &p = *op.p_fmul;
-        p = std::lround(sl->getValue());
-        //[/UserSliderCode_sl_fmul]
-    }
-    else if (sliderThatWasMoved == sl_rsl.get())
-    {
-        //[UserSliderCode_sl_rsl] -- add your slider handling code here..
-        AudioParameterInt &p = *op.p_ratescale;
-        p = std::lround(sl->getValue());
-        //[/UserSliderCode_sl_rsl]
-    }
-
-    //[UsersliderValueChanged_Post]
-    display_info_for_component(sl);
-    //[/UsersliderValueChanged_Post]
-}
-
 void Operator_Editor::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 {
     //[UsercomboBoxChanged_Pre]
@@ -511,50 +465,6 @@ void Operator_Editor::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
-void Operator_Editor::sliderDragStarted(Slider *slider)
-{
-    Parameter_Block &pb = *parameter_block_;
-    Parameter_Block::Part &part = pb.part[midichannel_];
-    Parameter_Block::Operator &op = part.nth_operator(operator_id_);
-
-    if (slider == sl_level.get()) {
-        AudioParameterInt &p = *op.p_level;
-        p.beginChangeGesture();
-    }
-    else if (slider == sl_fmul.get()) {
-        AudioParameterInt &p = *op.p_fmul;
-        p.beginChangeGesture();
-    }
-    else if (slider == sl_rsl.get()) {
-        AudioParameterInt &p = *op.p_ratescale;
-        p.beginChangeGesture();
-    }
-
-    display_info_for_component(slider);
-}
-
-void Operator_Editor::sliderDragEnded(Slider *slider)
-{
-    Parameter_Block &pb = *parameter_block_;
-    Parameter_Block::Part &part = pb.part[midichannel_];
-    Parameter_Block::Operator &op = part.nth_operator(operator_id_);
-
-    if (slider == sl_level.get()) {
-        AudioParameterInt &p = *op.p_level;
-        p.endChangeGesture();
-    }
-    else if (slider == sl_fmul.get()) {
-        AudioParameterInt &p = *op.p_fmul;
-        p.endChangeGesture();
-    }
-    else if (slider == sl_rsl.get()) {
-        AudioParameterInt &p = *op.p_ratescale;
-        p.endChangeGesture();
-    }
-
-    info_->expire_info_in();
-}
-
 void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op, NotificationType ntf)
 {
     kn_attack->set_value(ins.attack(op), ntf);
@@ -563,9 +473,9 @@ void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op
     kn_sustain->set_value(ins.sustain(op), ntf);
     kn_release->set_value(ins.release(op), ntf);
 
-    sl_level->setValue(ins.level(op), ntf);
-    sl_fmul->setValue(ins.fmul(op), ntf);
-    sl_rsl->setValue(ins.ratescale(op), ntf);
+    sl_level->set_value(ins.level(op), ntf);
+    sl_fmul->set_value(ins.fmul(op), ntf);
+    sl_rsl->set_value(ins.ratescale(op), ntf);
     cb_detune->setSelectedId(ins.detune(op) + 1, ntf);
 
     btn_am->setToggleState(ins.am(op), ntf);
@@ -588,7 +498,19 @@ void Operator_Editor::knob_value_changed(Knob *k)
     Parameter_Block::Part &part = pb.part[midichannel_];
     Parameter_Block::Operator &op = part.nth_operator(operator_id_);
 
-    if (k == kn_attack.get()) {
+    if (k == sl_level.get()) {
+        AudioParameterInt &p = *op.p_level;
+        p = std::lround(k->value());
+    }
+    else if (k == sl_fmul.get()) {
+        AudioParameterInt &p = *op.p_fmul;
+        p = std::lround(k->value());
+    }
+    else if (k == sl_rsl.get()) {
+        AudioParameterInt &p = *op.p_ratescale;
+        p = std::lround(k->value());
+    }
+    else if (k == kn_attack.get()) {
         AudioParameterInt &p = *op.p_attack;
         p = std::lround(k->value());
     }
@@ -618,7 +540,19 @@ void Operator_Editor::knob_drag_started(Knob *k)
     Parameter_Block::Part &part = pb.part[midichannel_];
     Parameter_Block::Operator &op = part.nth_operator(operator_id_);
 
-    if (k == kn_attack.get()) {
+    if (k == sl_level.get()) {
+        AudioParameterInt &p = *op.p_level;
+        p.beginChangeGesture();
+    }
+    else if (k == sl_fmul.get()) {
+        AudioParameterInt &p = *op.p_fmul;
+        p.beginChangeGesture();
+    }
+    else if (k == sl_rsl.get()) {
+        AudioParameterInt &p = *op.p_ratescale;
+        p.beginChangeGesture();
+    }
+    else if (k == kn_attack.get()) {
         AudioParameterInt &p = *op.p_attack;
         p.beginChangeGesture();
     }
@@ -648,7 +582,19 @@ void Operator_Editor::knob_drag_ended(Knob *k)
     Parameter_Block::Part &part = pb.part[midichannel_];
     Parameter_Block::Operator &op = part.nth_operator(operator_id_);
 
-    if (k == kn_attack.get()) {
+    if (k == sl_level.get()) {
+        AudioParameterInt &p = *op.p_level;
+        p.endChangeGesture();
+    }
+    else if (k == sl_fmul.get()) {
+        AudioParameterInt &p = *op.p_fmul;
+        p.endChangeGesture();
+    }
+    else if (k == sl_rsl.get()) {
+        AudioParameterInt &p = *op.p_ratescale;
+        p.endChangeGesture();
+    }
+    else if (k == kn_attack.get()) {
         AudioParameterInt &p = *op.p_attack;
         p.endChangeGesture();
     }
@@ -688,20 +634,19 @@ bool Operator_Editor::display_info_for_component(Component *c)
     const char *prefixes[4] = {"Op1 ", "Op3 ", "Op2 ", "Op4 "};
     String prefix = prefixes[operator_id_];
 
-    Slider *sl = static_cast<Slider *>(c);
     Knob *kn = static_cast<Knob *>(c);
 
     if (c == sl_level.get()) {
         param = prefix + "Level";
-        val = (int)lround(sl->getValue());
+        val = (int)lround(kn->value());
     }
     else if (c == sl_fmul.get()) {
         param = prefix + "Frequency multiplier";
-        val = (int)lround(sl->getValue());
+        val = (int)lround(kn->value());
     }
     else if (c == sl_rsl.get()) {
         param = prefix + "Rate scale level";
-        val = (int)lround(sl->getValue());
+        val = (int)lround(kn->value());
     }
     else if (kn == kn_attack.get()) {
         param = prefix + "Attack";
@@ -770,20 +715,6 @@ BEGIN_JUCER_METADATA
   <TEXTBUTTON name="new button" id="f60e70ed4f10ef32" memberName="btn_ssgenable"
               virtualName="" explicitFocusOrder="0" pos="4 100 15 15" bgColOn="ff42a2c8"
               buttonText="" connectedEdges="0" needsCallback="1" radioGroupId="0"/>
-  <SLIDER name="new slider" id="b7065e7cd8f3e951" memberName="sl_level"
-          virtualName="" explicitFocusOrder="0" pos="195 -2 64 20" min="0.0"
-          max="127.0" int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox"
-          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
-          needsCallback="1"/>
-  <SLIDER name="new slider" id="47c9497e72aa0068" memberName="sl_fmul"
-          virtualName="" explicitFocusOrder="0" pos="195 14 64 20" min="0.0"
-          max="15.0" int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox"
-          textBoxEditable="1" textBoxWidth="80" textBoxHeight="20" skewFactor="1.0"
-          needsCallback="1"/>
-  <SLIDER name="new slider" id="7da3d626504f1592" memberName="sl_rsl" virtualName=""
-          explicitFocusOrder="0" pos="195 30 64 20" min="0.0" max="3.0"
-          int="0.0" style="LinearHorizontal" textBoxPos="NoTextBox" textBoxEditable="1"
-          textBoxWidth="80" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <LABEL name="new label" id="ce54b68fc1a1f1e1" memberName="lbl_level"
          virtualName="" explicitFocusOrder="0" pos="163 0 28 16" textCol="fff0f8ff"
          edTextCol="ff000000" edBkgCol="0" labelText="Lv" editableSingleClick="0"
@@ -852,6 +783,15 @@ BEGIN_JUCER_METADATA
   <COMBOBOX name="new combo box" id="53eb24e86e9015c0" memberName="cb_detune"
             virtualName="" explicitFocusOrder="0" pos="163 65 96 24" editable="0"
             layout="33" items="" textWhenNonSelected="" textWhenNoItems="(no choices)"/>
+  <GENERICCOMPONENT name="new component" id="d7383c8ec7f64dfc" memberName="sl_level"
+                    virtualName="" explicitFocusOrder="0" pos="195 -2 64 20" class="Styled_Slider_DefaultSmall"
+                    params=""/>
+  <GENERICCOMPONENT name="new component" id="a54ced31a407c9a2" memberName="sl_fmul"
+                    virtualName="" explicitFocusOrder="0" pos="195 14 64 20" class="Styled_Slider_DefaultSmall"
+                    params=""/>
+  <GENERICCOMPONENT name="new component" id="b3eb1a9c8b111b7c" memberName="sl_rsl"
+                    virtualName="" explicitFocusOrder="0" pos="195 30 64 20" class="Styled_Slider_DefaultSmall"
+                    params=""/>
 </JUCER_COMPONENT>
 
 END_JUCER_METADATA

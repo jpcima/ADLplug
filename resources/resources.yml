@@ -45,6 +45,8 @@ files:
 
   - id: "knob_skin"
     source: "ui/knob-skin.png"
+  - id: "slider_skin"
+    source: "ui/slider-skin.png"
 
   - id: "Mono_BoldItalic"
     source: "ui/fonts/Mono-BoldItalic.ttf.gz"

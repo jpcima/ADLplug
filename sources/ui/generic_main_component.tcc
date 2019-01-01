@@ -81,8 +81,16 @@ template <class T>
 void Generic_Main_Component<T>::setup_generic_components()
 {
     Configuration &conf = *conf_;
+    const Parameter_Block &pb = *parameter_block_;
 
     set_default_info(self()->lbl_info->getText());
+
+    self()->kn_mastervol->add_listener(self());
+    self()->kn_mastervol->set_range(0, 1);
+
+    double linmin, linmax, dbmin, dbmax;
+    self()->get_master_volume_limits(*pb.p_mastervol, linmin, linmax, dbmin, dbmax);
+    self()->kn_mastervol->set_max_increment(1.0 / (dbmax - dbmin));
 
     self()->edt_bank_name->addListener(this);
     self()->edt_bank_name->setTextToShowWhenEmpty(
@@ -1249,10 +1257,8 @@ double Generic_Main_Component<T>::get_volume_knob_value() const
     if (knobval <= 0.0)
         return 0.0;
 
-    double linmin = 0.1;
-    double dbmin = -20.0;
-    double linmax = pb.p_mastervol->range.end;
-    double dbmax = 20.0 * std::log10(linmax);
+    double linmin, linmax, dbmin, dbmax;
+    get_master_volume_limits(*pb.p_mastervol, linmin, linmax, dbmin, dbmax);
 
     double dbval = dbmin + (dbmax - dbmin) * knobval;
     double linval = std::pow(10.0, 0.05 * dbval);
@@ -1264,10 +1270,8 @@ void Generic_Main_Component<T>::set_volume_knob_value(double linval, Notificatio
 {
     const Parameter_Block &pb = *parameter_block_;
 
-    double linmin = 0.1;
-    double dbmin = -20.0;
-    double linmax = pb.p_mastervol->range.end;
-    double dbmax = 20.0 * std::log10(linmax);
+    double linmin, linmax, dbmin, dbmax;
+    get_master_volume_limits(*pb.p_mastervol, linmin, linmax, dbmin, dbmax);
 
     double kval;
     double old_kval = self()->kn_mastervol->value();
@@ -1319,9 +1323,8 @@ void Generic_Main_Component<T>::update_master_volume_label()
 {
     const Parameter_Block &pb = *parameter_block_;
 
-    double dbmin = -20.0;
-    double linmax = pb.p_mastervol->range.end;
-    double dbmax = 20.0 * std::log10(linmax);
+    double linmin, linmax, dbmin, dbmax;
+    get_master_volume_limits(*pb.p_mastervol, linmin, linmax, dbmin, dbmax);
 
     double kval = self()->kn_mastervol->value();
     if (kval == 0.0)
@@ -1401,6 +1404,17 @@ template <class T>
 void Generic_Main_Component<T>::display_info_now(const String &text)
 {
     self()->lbl_info->setText(text, dontSendNotification);
+}
+
+template <class T>
+inline void Generic_Main_Component<T>::get_master_volume_limits(
+    const AudioParameterFloat &parameter,
+    double &linmin, double &linmax, double &dbmin, double &dbmax) const
+{
+    linmin = 0.1;
+    dbmin = -20.0;
+    linmax = parameter.range.end;
+    dbmax = 20.0 * std::log10(linmax);
 }
 
 template <class T>

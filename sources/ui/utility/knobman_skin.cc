@@ -45,6 +45,8 @@ void Km_Skin::load_resource(const Res::Data &data, unsigned frame_count)
 Km_Skin_Ptr Km_Skin::scaled(double ratio) const
 {
     Km_Skin_Ptr skin = new Km_Skin;
+    skin->style = this->style;
+
     size_t frame_count = this->frames.size();
     skin->frames.resize(frame_count);
     if (frame_count == 0)

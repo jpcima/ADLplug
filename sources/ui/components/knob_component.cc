@@ -4,6 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "ui/components/knob_component.h"
+#include <cmath>
 
 Knob::Knob()
 {
@@ -51,6 +52,11 @@ void Knob::set_range(float min, float max)
     min_ = min;
     max_ = max;
     set_value(value_, dontSendNotification);
+}
+
+void Knob::set_max_increment(float maxinc)
+{
+    max_increment_ = maxinc;
 }
 
 void Knob::add_listener(Listener *l)
@@ -110,7 +116,13 @@ void Knob::mouseWheelMove(const MouseEvent &event, const MouseWheelDetails &whee
     if (checker.shouldBailOut())
         return;
     const float k = 0.5f * (max_ - min_);
-    set_value(value_ + k * wheel.deltaY, sendNotificationSync);
+    float inc = k * wheel.deltaY;
+
+    float maxinc = max_increment_;
+    if (maxinc > 0)
+        inc = std::copysign(std::min(std::fabs(inc), maxinc), inc);
+
+    set_value(value_ + inc, sendNotificationSync);
     listeners_.callChecked(checker, [this](Knob::Listener &l) { l.knob_drag_ended(this); });
 }
 
@@ -151,15 +163,26 @@ void Knob::mouseDrag(const MouseEvent &event)
 
 void Knob:: handle_drag(const MouseEvent &event)
 {
+    Km_Style style = skin_->style;
     Rectangle<float> bounds = get_frame_bounds();
-    float dx = event.position.x - bounds.getCentreX();
-    float dy = event.position.y - bounds.getCentreY();
 
-    if (dx * dx + dy * dy > 25.0f) {
-        float angle = std::atan2(dx, -dy);
-        angle = std::max(angle, min_angle_);
-        angle = std::min(angle, max_angle_);
-        float r = (angle - min_angle_) / (max_angle_ - min_angle_);
+    if (style == Km_Rotary) {
+        float dx = event.position.x - bounds.getCentreX();
+        float dy = event.position.y - bounds.getCentreY();
+
+        if (dx * dx + dy * dy > 25.0f) {
+            float angle = std::atan2(dx, -dy);
+            angle = std::max(angle, min_angle_);
+            angle = std::min(angle, max_angle_);
+            float r = (angle - min_angle_) / (max_angle_ - min_angle_);
+            float new_value = min_ + r * (max_ - min_);
+            set_value(new_value, sendNotificationSync);
+        }
+    }
+    else if (style == Km_LinearHorizontal) {
+        float dx = event.position.x - bounds.getX();
+        float w = bounds.getWidth();
+        double r = jlimit(0.0f, 1.0f, dx / w);
         float new_value = min_ + r * (max_ - min_);
         set_value(new_value, sendNotificationSync);
     }

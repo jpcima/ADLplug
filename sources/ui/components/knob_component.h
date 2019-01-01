@@ -30,6 +30,8 @@ public:
         { return max_; }
     void set_range(float min, float max);
 
+    void set_max_increment(float maxinc);
+
     bool is_dragging() const
         { return in_drag_; }
 
@@ -63,6 +65,7 @@ private:
     float value_ = 0;
     float min_ = 0;
     float max_ = 1;
+    float max_increment_ = 0;
     ListenerList<Listener> listeners_;
     bool in_drag_ = false;
     float min_angle_ = M_PI * -3.0 / 4.0;

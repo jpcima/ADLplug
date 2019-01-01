@@ -42,7 +42,6 @@ struct Parameter_Block;
 class Operator_Editor  : public Component,
                          public Knob::Listener,
                          public Button::Listener,
-                         public Slider::Listener,
                          public ComboBox::Listener
 {
 public:
@@ -65,9 +64,6 @@ public:
 
     void paintOverChildren(Graphics &g) override;
 
-    void sliderDragStarted(Slider *slider) override;
-    void sliderDragEnded(Slider *slider) override;
-
     void set_info_display(Info_Display *info)
         { info_ = info; }
     bool display_info_for_component(Component *c);
@@ -76,7 +72,6 @@ public:
     void paint (Graphics& g) override;
     void resized() override;
     void buttonClicked (Button* buttonThatWasClicked) override;
-    void sliderValueChanged (Slider* sliderThatWasMoved) override;
     void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
 
 
@@ -97,9 +92,6 @@ private:
     std::unique_ptr<Styled_Knob_Default> kn_sustain;
     std::unique_ptr<Styled_Knob_Default> kn_release;
     std::unique_ptr<TextButton> btn_ssgenable;
-    std::unique_ptr<Slider> sl_level;
-    std::unique_ptr<Slider> sl_fmul;
-    std::unique_ptr<Slider> sl_rsl;
     std::unique_ptr<Label> lbl_level;
     std::unique_ptr<Label> label;
     std::unique_ptr<Label> label2;
@@ -116,6 +108,9 @@ private:
     std::unique_ptr<TextButton> btn_next_ssgwave;
     std::unique_ptr<Wave_Label> lbl_ssgwave;
     std::unique_ptr<ComboBox> cb_detune;
+    std::unique_ptr<Styled_Slider_DefaultSmall> sl_level;
+    std::unique_ptr<Styled_Slider_DefaultSmall> sl_fmul;
+    std::unique_ptr<Styled_Slider_DefaultSmall> sl_rsl;
 
 
     //==============================================================================

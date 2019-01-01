@@ -103,6 +103,11 @@ public:
 private:
     void display_info_now(const String &text) override;
 
+private:
+    void get_master_volume_limits(
+        const AudioParameterFloat &parameter,
+        double &linmin, double &linmax, double &dbmin, double &dbmax) const;
+
 protected:
     bool write_to_processor(
         User_Message tag, const void *msgbody, unsigned msgsize);

@@ -41,8 +41,7 @@ struct Parameter_Block;
 */
 class Operator_Editor  : public Component,
                          public Knob::Listener,
-                         public Button::Listener,
-                         public Slider::Listener
+                         public Button::Listener
 {
 public:
     //==============================================================================
@@ -64,9 +63,6 @@ public:
 
     void paintOverChildren(Graphics &g) override;
 
-    void sliderDragStarted(Slider *slider) override;
-    void sliderDragEnded(Slider *slider) override;
-
     void set_info_display(Info_Display *info)
         { info_ = info; }
     bool display_info_for_component(Component *c);
@@ -75,7 +71,6 @@ public:
     void paint (Graphics& g) override;
     void resized() override;
     void buttonClicked (Button* buttonThatWasClicked) override;
-    void sliderValueChanged (Slider* sliderThatWasMoved) override;
 
 
 
@@ -100,9 +95,6 @@ private:
     std::unique_ptr<TextButton> btn_vib;
     std::unique_ptr<TextButton> btn_sus;
     std::unique_ptr<TextButton> btn_env;
-    std::unique_ptr<Slider> sl_level;
-    std::unique_ptr<Slider> sl_fmul;
-    std::unique_ptr<Slider> sl_ksl;
     std::unique_ptr<Label> lbl_level;
     std::unique_ptr<Wave_Label> lbl_wave;
     std::unique_ptr<Label> label;
@@ -115,6 +107,9 @@ private:
     std::unique_ptr<Label> label8;
     std::unique_ptr<Label> lbl_fmul;
     std::unique_ptr<Label> lbl_ksl;
+    std::unique_ptr<Styled_Slider_DefaultSmall> sl_level;
+    std::unique_ptr<Styled_Slider_DefaultSmall> sl_fmul;
+    std::unique_ptr<Styled_Slider_DefaultSmall> sl_ksl;
 
 
     //==============================================================================

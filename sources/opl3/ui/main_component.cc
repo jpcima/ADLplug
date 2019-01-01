@@ -733,9 +733,10 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     setup_generic_components();
 
-    kn_mastervol->add_listener(this);
     kn_fb12->add_listener(this);
+    kn_fb12->set_max_increment(1);
     kn_fb34->add_listener(this);
+    kn_fb34->set_max_increment(1);
     //[/UserPreSize]
 
     setSize (800, 600);
@@ -758,8 +759,6 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     Label *lbl_midi_channel = (Label *)(intptr_t)(int64)sl_midi_channel->getProperties()["X-Slider-Text-Box"];
     Font fnt_midi_channel(Font::getDefaultSansSerifFontName(), 30.0, Font::plain);
     lbl_midi_channel->setFont(fnt_midi_channel);
-
-    kn_mastervol->set_range(0, 1);
 
     sl_num_4ops->setNumDecimalPlacesToDisplay(0);
     sl_num_chips->setNumDecimalPlacesToDisplay(0);
