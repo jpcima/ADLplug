@@ -10,18 +10,30 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="63.612568mm"
-   height="10.384296mm"
-   viewBox="0 0 127.22514 20.768593"
+   width="31.27482mm"
+   height="10.692183mm"
+   viewBox="0 0 62.549644 21.384365"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.2 2405546, 2018-03-11"
-   sodipodi:docname="logo.svg"
-   inkscape:export-filename="/home/jpc/Documents/Projects/ADLplug/resources/ui/logo.png"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
+   sodipodi:docname="opn.svg"
+   inkscape:export-filename="/home/jpc/documents/projects/ADLplug/resources/ui/opn.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96">
   <defs
      id="defs2">
+    <linearGradient
+       id="linearGradient987"
+       inkscape:collect="always">
+      <stop
+         id="stop983"
+         offset="0"
+         style="stop-color:#bc0004;stop-opacity:1" />
+      <stop
+         id="stop985"
+         offset="1"
+         style="stop-color:#785e5e;stop-opacity:1" />
+    </linearGradient>
     <linearGradient
        inkscape:collect="always"
        id="linearGradient4542">
@@ -36,7 +48,7 @@
     </linearGradient>
     <linearGradient
        inkscape:collect="always"
-       xlink:href="#linearGradient4542"
+       xlink:href="#linearGradient987"
        id="linearGradient4544"
        x1="56.885418"
        y1="90.625"
@@ -63,26 +75,27 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
-     inkscape:cx="125.71411"
-     inkscape:cy="28.973301"
+     inkscape:cx="26.805209"
+     inkscape:cy="43.381871"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
      showguides="false"
-     inkscape:window-width="1224"
-     inkscape:window-height="783"
-     inkscape:window-x="31"
-     inkscape:window-y="100"
+     inkscape:window-width="1138"
+     inkscape:window-height="674"
+     inkscape:window-x="19"
+     inkscape:window-y="49"
      inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
-     fit-margin-bottom="0">
+     fit-margin-bottom="0"
+     units="mm">
     <inkscape:grid
        type="xygrid"
        id="grid4534"
-       originx="-106.72164"
-       originy="-392.45029" />
+       originx="-107.84234"
+       originy="-392.14241" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -92,7 +105,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -100,7 +113,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-53.360816,-90.390547)">
+     transform="translate(-54.481517,-90.082662)">
     <text
        id="text4573"
        y="111.15914"
@@ -113,7 +126,7 @@
          y="111.15914"
          x="53.336185"
          id="tspan4571"
-         sodipodi:role="line">ADLMIDI</tspan></text>
+         sodipodi:role="line">OPN</tspan></text>
     <text
        id="text4567"
        y="109.0407"
@@ -126,6 +139,6 @@
          y="109.0407"
          x="55.501274"
          id="tspan4565"
-         sodipodi:role="line">ADLMIDI</tspan></text>
+         sodipodi:role="line">OPN</tspan></text>
   </g>
 </svg>

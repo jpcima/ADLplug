@@ -15,9 +15,9 @@
 extern AudioProcessor *JUCE_CALLTYPE createPluginFilter();
 
 #if defined(ADLPLUG_OPL3)
-RESOURCE(Res, opl3_logo);
+RESOURCE(Res, opl3_tiny_logo);
 #elif defined(ADLPLUG_OPN2)
-RESOURCE(Res, opn2_logo);
+RESOURCE(Res, opn2_tiny_logo);
 #endif
 
 Application_Window::Application_Window(const String &name)
@@ -197,7 +197,7 @@ bool Application_Jack::start(bool autoconnect)
     }
 
     Application_Window *window = window_.get();
-    String window_title = getApplicationName() + " [jack:" + (const char *)jack_get_client_name(client) + "]";
+    String window_title = jack_get_client_name(client);
 
     if (window)
         window->setName(window_title);
@@ -216,9 +216,9 @@ bool Application_Jack::start(bool autoconnect)
         window->addToDesktop();
 
 #if defined(ADLPLUG_OPL3)
-        const Res::Data &icon_data = Res::opl3_logo;
+        const Res::Data &icon_data = Res::opl3_tiny_logo;
 #elif defined(ADLPLUG_OPN2)
-        const Res::Data &icon_data = Res::opn2_logo;
+        const Res::Data &icon_data = Res::opn2_tiny_logo;
 #endif
 
         Image icon = ImageFileFormat::loadFrom(icon_data.data, icon_data.size);

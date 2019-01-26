@@ -13,9 +13,13 @@ files:
     source: "opn2/banks.pak"
 
   - id: "opl3_logo"
-    source: "ui/logo.png"
+    source: "ui/adlmidi.png"
   - id: "opn2_logo"
     source: "ui/opnmidi.png"
+  - id: "opl3_tiny_logo"
+    source: "ui/adl.png"
+  - id: "opn2_tiny_logo"
+    source: "ui/opn.png"
 
   - id: "emu_dosbox"
     source: "ui/cores/DOSBox.png"
