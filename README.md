@@ -75,6 +75,16 @@ sudo cmake --build . --target install
 
 ### Change Log
 
+**current (dev)**
+
+- allowed to play the full drum set on virtual keyboard
+- prevented selection of percussive instruments on melodic channels and vice-versa
+- permitted changing programs using the scroll wheel over the combo box
+- limited the scroll wheel step to 1 for discrete controls
+- displayed the exact value for knob and slider controls
+- implemented a custom resource system for faster rebuilds
+- changed the user interface in minor ways
+
 **1.0.0.beta.5**
 
 - added a new chip: YM2608 (OPNA) using Neko Project II Kai emulation
