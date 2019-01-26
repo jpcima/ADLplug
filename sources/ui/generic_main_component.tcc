@@ -85,6 +85,8 @@ void Generic_Main_Component<T>::setup_generic_components()
 
     set_default_info(self()->lbl_info->getText());
 
+    self()->cb_program->setScrollWheelEnabled(true);
+
     self()->kn_mastervol->add_listener(self());
     self()->kn_mastervol->set_range(0, 1);
 
