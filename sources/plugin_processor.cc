@@ -165,8 +165,9 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
 
     for (unsigned p = 0; p < 16; ++p) {
         Selection &sel = selection_[p];
-        sel.bank = Bank_Id(0, 0, false);
-        sel.program = 0;
+        bool percussive = p == 9;
+        sel.bank = Bank_Id(0, 0, percussive);
+        sel.program = percussive ? 35 : 0;
         selection_needs_notification_[p].store(1);
     }
 

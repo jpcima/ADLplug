@@ -218,11 +218,16 @@ void Generic_Main_Component<T>::reload_selected_instrument(NotificationType ntf)
     trace("Reload selected instrument %s", program_selection_to_string(selection).toRawUTF8());
 
     Instrument ins_empty, *ins = &ins_empty;
+    int designated_note = -1;
+
     if (selection != 0) {
         uint32_t program = (unsigned)selection - 1;
         ins = find_instrument(program, &ins_empty);
+        bool percussive = program & 128;
+        designated_note = percussive ? (program & 127) : -1;
     }
     self()->set_instrument_parameters(*ins, ntf);
+    self()->midi_kb->designate_note(designated_note);
 }
 
 template <class T>
@@ -401,6 +406,7 @@ void Generic_Main_Component<T>::update_instrument_choices()
     int selection = cb.getSelectedId();
     cb.clear(dontSendNotification);
     PopupMenu *menu = cb.getRootMenu();
+    bool percussion_channel = is_percussion_channel(midichannel_);
 
     auto &instrument_map = instrument_map_;
     auto it = instrument_map.begin();
@@ -421,6 +427,9 @@ void Generic_Main_Component<T>::update_instrument_choices()
         for (unsigned i = 0; i < 256; ++i) {
             const Instrument &ins = e_bank.ins[i];
             if (ins.blank())
+                continue;
+
+            if (percussion_channel != (i >= 128))
                 continue;
 
             String ins_sid;
@@ -1357,10 +1366,6 @@ template <class T>
 void Generic_Main_Component<T>::handleNoteOn(MidiKeyboardState *, int channel_, int note, float velocity)
 {
     unsigned channel = (unsigned)(channel_ - 1);
-
-    if (is_percussion_channel(channel))
-        note = (midiprogram_[channel] - 128) & 127;
-
     uint8_t midi[3];
     midi[0] = channel | (0b1001u << 4);
     midi[1] = note;
@@ -1372,10 +1377,6 @@ template <class T>
 void Generic_Main_Component<T>::handleNoteOff(MidiKeyboardState *, int channel_, int note, float velocity)
 {
     unsigned channel = (unsigned)(channel_ - 1);
-
-    if (is_percussion_channel(channel))
-        note = (midiprogram_[channel] - 128) & 127;
-
     uint8_t midi[3];
     midi[0] = channel | (0b1000u << 4);
     midi[1] = note;

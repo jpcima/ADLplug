@@ -1582,6 +1582,10 @@ void Main_Component::on_change_midi_channel(unsigned channel)
     if (channel > 15)
         return;
 
+    unsigned old_channel = midichannel_;
+    if (channel == old_channel)
+        return;
+
     trace("Change MIDI channel to %u", channel + 1);
 
     midichannel_ = channel;
@@ -1593,6 +1597,10 @@ void Main_Component::on_change_midi_channel(unsigned channel)
 
     midi_kb->setMidiChannel(channel + 1);
     sl_midi_channel->setValue(channel + 1, dontSendNotification);
+
+    if (is_percussion_channel(channel) != is_percussion_channel(old_channel))
+        update_instrument_choices();
+
     set_program_selection(midiprogram_[channel] + 1, dontSendNotification);
     reload_selected_instrument(dontSendNotification);
 }

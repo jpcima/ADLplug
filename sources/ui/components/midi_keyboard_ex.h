@@ -10,13 +10,16 @@ class Midi_Keyboard_Ex : public MidiKeyboardComponent {
 public:
     Midi_Keyboard_Ex(MidiKeyboardState &state, Orientation orientation);
     void highlight_note(unsigned note, unsigned velocity);
+    void designate_note(int note);
 
 protected:
     void drawWhiteNote(int note, Graphics &g, Rectangle<float> area, bool is_down, bool is_over, Colour line_colour, Colour text_colour) override;
     void drawBlackNote(int note, Graphics &g, Rectangle<float> area, bool is_down, bool is_over, Colour note_fill_colour) override;
 
 private:
-    uint8_t highlight_value_[128];
+    uint8_t highlight_value_[128] = {};
+    int designated_note_ = -1;
+    Colour designated_note_color_;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Midi_Keyboard_Ex);
 };
