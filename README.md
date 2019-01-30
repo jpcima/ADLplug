@@ -77,6 +77,7 @@ sudo cmake --build . --target install
 
 **current (dev)**
 
+- fixed missing percussion in case the key is released very quickly
 - allowed to play the full drum set on virtual keyboard
 - prevented selection of percussive instruments on melodic channels and vice-versa
 - permitted changing programs using the scroll wheel over the combo box
