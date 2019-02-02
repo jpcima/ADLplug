@@ -584,6 +584,8 @@ void Generic_Main_Component<T>::handle_add_program()
         New_Program_Editor *editor = new New_Program_Editor;
         dlgopts.content.set(editor, true);
 
+        editor->set_current(bank, program & 127);
+
         Component::SafePointer<Generic_Main_Component<T>> self(this);
         editor->on_ok = [self](const New_Program_Editor::Result &result) {
                             if (!self || !self->dlg_new_program_)

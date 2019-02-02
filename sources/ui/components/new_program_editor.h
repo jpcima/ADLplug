@@ -45,6 +45,8 @@ public:
 
     //==============================================================================
     //[UserMethods]     -- You can add your own custom methods in this section.
+    void set_current(const Bank_Id &id, unsigned pgm);
+
     struct Result {
         Bank_Id bank;
         unsigned pgm = 0;
