@@ -75,7 +75,7 @@ sudo cmake --build . --target install
 
 ### Change Log
 
-**current (dev)**
+**1.0.0 (dev)**
 
 - fixed missing percussion in case the key is released very quickly
 - allowed to play the full drum set on virtual keyboard
@@ -83,6 +83,9 @@ sudo cmake --build . --target install
 - permitted changing programs using the scroll wheel over the combo box
 - limited the scroll wheel step to 1 for discrete controls
 - displayed the exact value for knob and slider controls
+- supported the rhythm-mode channels for bank files which use it
+- performed more efficient channel management in case of many sustained notes 
+- fixed a rare fatal error in case hold pedal is used and channel pressure is high
 - implemented a custom resource system for faster rebuilds
 - changed the user interface in minor ways
 
