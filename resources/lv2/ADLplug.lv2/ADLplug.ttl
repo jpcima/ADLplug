@@ -69,11 +69,12 @@
         lv2:name "Emulator" ;
         lv2:default 2 ;
         lv2:minimum 0 ;
-        lv2:maximum 2 ;
+        lv2:maximum 3 ;
         lv2:portProperty lv2:integer, lv2:enumeration ;
         lv2:scalePoint [ rdfs:label "Nuked OPL3 (v 1.8)" ; rdf:value 0 ] ;
         lv2:scalePoint [ rdfs:label "Nuked OPL3 (v 1.7.4)" ; rdf:value 1 ] ;
         lv2:scalePoint [ rdfs:label "DOSBox 0.74-r4111 OPL3" ; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Opal OPL3" ; rdf:value 3 ] ;
         lv2:portProperty <http://lv2plug.in/ns/ext/port-props#expensive> ;
     ] ,
     [

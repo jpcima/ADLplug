@@ -33,6 +33,8 @@ files:
     source: "ui/cores/Nuked.png"
   - id: "emu_nuked2"
     source: "ui/cores/Nuked2.png"
+  - id: "emu_opal"
+    source: "ui/cores/Rad.png"
 
   - id: "emoji_u1f4a1"
     source: "ui/noto-emoji/emoji_u1f4a1.png"
