@@ -77,6 +77,7 @@ sudo cmake --build . --target install
 
 **1.0.0 (dev)**
 
+- added the Opal OPL3 emulator from Reality Adlib Tracker
 - fixed missing percussion in case the key is released very quickly
 - allowed to play the full drum set on virtual keyboard
 - prevented selection of percussive instruments on melodic channels and vice-versa
@@ -156,19 +157,19 @@ ADLplug consists of various parts distributed under different free software lice
 The parts developed exclusively for this project are Boost licensed.
 The other parts and respective licenses are indicated here below.
 
-| Files                                      | License                                |
-| ------------------------------------------ | -------------------------------------- |
-| `thirdparty/fmt`                           | 3-Clause BSD                           |
-| `thirdparty/JUCE`                          | GNU GPL v3                             |
-| `thirdparty/libADLMIDI`                    | GNU LGPL v3, GNU LGPL v2.1, GNU GPL v3 |
-| `thirdparty/libOPNMIDI`                    | GNU LGPL v3, GNU LGPL v2.1, GNU GPL v3 |
-| `thirdparty/simpleini`                     | MIT                                    |
-| `thirdparty/vst3sdk`                       | GNU GPL v3                             |
-| `thirdparty/nonlib`                        | ISC                                    |
-| `thirdparty/wopl`                          | GNU LGPL v3                            |
-| `thirdparty/wopn`                          | GNU LGPL v3                            |
-| `sources/opl3/adl/measurer`                | GNU GPL v3                             |
-| `sources/opl3/adl/measurer/chips/dosbox`   | GNU GPL v2+                            |
-| `sources/opn2/adl/measurer`                | GNU GPL v3                             |
-| `sources/opn2/adl/measurer/chips/mame`     | GNU GPL v2+                            |
-| `sources/opl3/ui/components/opl3_waves.cc` | GNU LGPL v2.1                          |
+| Files                                      | License                                               |
+| ------------------------------------------ | ----------------------------------------------------- |
+| `thirdparty/fmt`                           | 3-Clause BSD                                          |
+| `thirdparty/JUCE`                          | GNU GPL v3                                            |
+| `thirdparty/libADLMIDI`                    | GNU LGPL v3, GNU LGPL v2.1, GNU GPL v3, Public Domain |
+| `thirdparty/libOPNMIDI`                    | GNU LGPL v3, GNU LGPL v2.1, GNU GPL v3                |
+| `thirdparty/simpleini`                     | MIT                                                   |
+| `thirdparty/vst3sdk`                       | GNU GPL v3                                            |
+| `thirdparty/nonlib`                        | ISC                                                   |
+| `thirdparty/wopl`                          | GNU LGPL v3                                           |
+| `thirdparty/wopn`                          | GNU LGPL v3                                           |
+| `sources/opl3/adl/measurer`                | GNU GPL v3                                            |
+| `sources/opl3/adl/measurer/chips/dosbox`   | GNU GPL v2+                                           |
+| `sources/opn2/adl/measurer`                | GNU GPL v3                                            |
+| `sources/opn2/adl/measurer/chips/mame`     | GNU GPL v2+                                           |
+| `sources/opl3/ui/components/opl3_waves.cc` | GNU LGPL v2.1                                         |
