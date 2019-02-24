@@ -35,6 +35,8 @@ files:
     source: "ui/cores/Nuked2.png"
   - id: "emu_opal"
     source: "ui/cores/Rad.png"
+  - id: "emu_java"
+    source: "ui/cores/Cafe.png"
 
   - id: "emoji_u1f4a1"
     source: "ui/noto-emoji/emoji_u1f4a1.png"

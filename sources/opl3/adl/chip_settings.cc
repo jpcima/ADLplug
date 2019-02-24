@@ -13,6 +13,7 @@ RESOURCE(Res, emu_dosbox);
 RESOURCE(Res, emu_nuked);
 RESOURCE(Res, emu_nuked2);
 RESOURCE(Res, emu_opal);
+RESOURCE(Res, emu_java);
 
 std::unique_ptr<Emulator_Defaults> emulator_defaults_;
 std::mutex emulator_defaults_mutex_;
@@ -55,6 +56,7 @@ Emulator_Defaults &get_emulator_defaults()
     Image icon_nuked = ImageFileFormat::loadFrom(Res::emu_nuked.data, Res::emu_nuked.size);
     Image icon_nuked2 = ImageFileFormat::loadFrom(Res::emu_nuked2.data, Res::emu_nuked2.size);
     Image icon_opal = ImageFileFormat::loadFrom(Res::emu_opal.data, Res::emu_opal.size);
+    Image icon_java = ImageFileFormat::loadFrom(Res::emu_java.data, Res::emu_java.size);
     unsigned nth_icon_nuked = 0;
     for (unsigned i = 0; i < count; ++i) {
         const String &name = defaults->choices[i];
@@ -65,6 +67,8 @@ Emulator_Defaults &get_emulator_defaults()
             defaults->images[i] = (nth_icon_nuked++ == 0) ? icon_nuked : icon_nuked2;
         else if (lowerName.startsWith("opal"))
             defaults->images[i] = icon_opal;
+        else if (lowerName.startsWith("java"))
+            defaults->images[i] = icon_java;
     }
 
     emulator_defaults_ = std::move(defaults_u);
