@@ -21,13 +21,13 @@ inline void Vu_Monitor::release(double t)
 
 inline double Vu_Monitor::process(double x)
 {
-    x = fabs(x);
-    if (x > mem_) {
-        mem_ = x;
-        return x;
-    }
-    else {
-        mem_ *= p_;
-        return mem_ + (1.0 - p_) * x;
-    }
+    double y;
+    double ax = fabs(x);
+    double p = p_;
+    if (ax > mem_)
+        y = ax;
+    else
+        y = p * mem_ + (1.0 - p) * ax;
+    mem_ = y;
+    return y;
 }
