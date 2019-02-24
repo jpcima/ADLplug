@@ -77,6 +77,7 @@ sudo cmake --build . --target install
 
 **1.0.0 (dev)**
 
+- added the Java OPL3 emulator by Robson Cozendey
 - added the Opal OPL3 emulator from Reality Adlib Tracker
 - fixed missing percussion in case the key is released very quickly
 - allowed to play the full drum set on virtual keyboard
