@@ -7,5 +7,12 @@
 #include "AppConfig.h"
 
 #define ADLplug_Version JucePlugin_VersionString
-#define ADLplug_VersionExtra "Beta 5"
-#define ADLplug_SemVer JucePlugin_VersionString "-beta.5"
+#define ADLplug_VersionFinal 1
+
+#if !ADLplug_VersionFinal
+#   define ADLplug_VersionExtra "Beta 5"
+#   define ADLplug_SemVer JucePlugin_VersionString "-beta.5"
+#else
+#   define ADLplug_VersionExtra ""
+#   define ADLplug_SemVer JucePlugin_VersionString
+#endif

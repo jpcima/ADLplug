@@ -92,18 +92,26 @@ About_Component::About_Component ()
     lbl_prog_version_extra->setColour (TextEditor::textColourId, Colours::black);
     lbl_prog_version_extra->setColour (TextEditor::backgroundColourId, Colour (0x00000000));
 
-    lbl_prog_version_extra->setBounds (8, 28, 150, 20);
+    lbl_prog_version_extra->setBounds (8, 32, 150, 20);
 
 
     //[UserPreSize]
     //[/UserPreSize]
 
-    setSize (500, 234);
+    setSize (500, 228);
 
 
     //[Constructor] You can add your own custom stuff here..
     lbl_prog_version->setText(JucePlugin_Name " " ADLplug_Version, dontSendNotification);
+#if ADLplug_VersionFinal
+    lbl_prog_version_extra->setText("Final", dontSendNotification);
+    lbl_prog_version_extra->setColour(Label::textColourId, Colour(0xf0, 0xf8, 0xff));
+    lbl_prog_version_extra->setBounds(
+        lbl_prog_version_extra->getBounds() +
+        Point<int>(lbl_prog_version_extra->getBorderSize().getLeft(), 0));
+#else
     lbl_prog_version_extra->setText(ADLplug_VersionExtra, dontSendNotification);
+#endif
     //[/Constructor]
 }
 
@@ -132,6 +140,17 @@ void About_Component::paint (Graphics& g)
     g.fillAll (Colour (0xff323e44));
 
     //[UserPaint] Add your own custom painting code here..
+#if ADLplug_VersionFinal
+    Label *lbl = lbl_prog_version_extra.get();
+    Rectangle<float> bounds = lbl->getBounds().toFloat();
+    float textw = lbl->getFont().getStringWidthFloat(lbl->getText());
+    Rectangle<float> rect =
+        bounds.withWidth(textw + lbl->getBorderSize().getLeftAndRight());
+    g.setColour(Colour(0x52, 0x94, 0x58));
+    g.fillRoundedRectangle(rect, 2.0);
+    g.setColour(Colour(0xf0, 0xf8, 0xff));
+    g.drawRoundedRectangle(rect, 2.0, 1.0);
+#endif
     //[/UserPaint]
 }
 
@@ -162,7 +181,7 @@ BEGIN_JUCER_METADATA
 <JUCER_COMPONENT documentType="Component" className="About_Component" componentName=""
                  parentClasses="public Component" constructorParams="" variableInitialisers=""
                  snapPixels="8" snapActive="1" snapShown="1" overlayOpacity="0.33"
-                 fixedSize="0" initialWidth="500" initialHeight="234">
+                 fixedSize="1" initialWidth="500" initialHeight="228">
   <BACKGROUND backgroundColour="ff323e44"/>
   <HYPERLINKBUTTON name="new hyperlink" id="ab6eab2236ebdf3d" memberName="hyperlinkButton"
                    virtualName="" explicitFocusOrder="0" pos="8 56 88 24" tooltip="https://github.com/jpcima/ADLplug"
@@ -187,7 +206,7 @@ BEGIN_JUCER_METADATA
          fontsize="15.0" kerning="0.0" bold="1" italic="0" justification="33"
          typefaceStyle="Bold"/>
   <LABEL name="new label" id="2220fa22c7ad951b" memberName="lbl_prog_version_extra"
-         virtualName="" explicitFocusOrder="0" pos="8 28 150 20" textCol="ffffff00"
+         virtualName="" explicitFocusOrder="0" pos="8 32 150 20" textCol="ffffff00"
          edTextCol="ff000000" edBkgCol="0" labelText="Final" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default font"
          fontsize="15.0" kerning="0.0" bold="1" italic="0" justification="33"
