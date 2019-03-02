@@ -35,6 +35,24 @@ You can find automatic builds of the development branch [here](https://github.co
 - Arch Linux AUR : [adlplug-git](https://aur.archlinux.org/packages/adlplug-git/) and [opnplug-git](https://aur.archlinux.org/packages/opnplug-git/)
 - Bank editor software : [OPL3](https://github.com/Wohlstand/OPL3BankEditor) and [OPN2](https://github.com/Wohlstand/OPN2BankEditor)
 
+## FM core characteristics
+
+| Core      | Chip | Accuracy | Speed  | Rhythm-mode channels | Extended panning |
+|-----------|------|----------|--------|----------------------|------------------|
+| DOSBox    | OPL3 | ★★★★★    | ★★★★★  | ★★                   | ★                |
+| Nuked 1.8 | OPL3 | ★★★★★ +  | ★☆☆☆☆  | ★★                   | ★                |
+| Nuked 1.7 | OPL3 | ★★★★★ +  | ★★★☆☆  | ★★                   | ★                |
+| Opal      | OPL3 | ★★★★☆    | ★★★☆☆  | ☆☆                   | ★                |
+| Java      | OPL3 | ★★★★☆    | ☆☆☆☆☆  | ★☆                   | ★                |
+
+| Core                | Chip | Accuracy | Speed  | SSG-EG   | Extended panning |
+|---------------------|------|----------|--------|----------|------------------|
+| MAME                | OPN2 | ★★★★★    | ★★★★☆  | ★★★★☆    | ★                |
+| Nuked               | OPN2 | ★★★★★ +  | ☆☆☆☆☆  | ★★★★★    | ★                |
+| Gens                | OPN2 | ★★★☆☆    | ★★★★☆  | ★☆☆☆☆    | ★                |
+| Neko Project II Kai | OPNA | ★★★★☆    | ★★★☆☆  | ★????    | ★                |
+| MAME FM             | OPNA | ★★★★★    | ★★★☆☆  | ★????    | ★                |
+
 ## Build instructions
 
 Install required dependencies:
