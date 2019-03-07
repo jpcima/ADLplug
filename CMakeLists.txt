@@ -251,7 +251,7 @@ if(ADLplug_VST2)
       "${CMAKE_COMMAND}"
       "-DCONFIGURE_FILE_INPUT=${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST.plist"
       "-DCONFIGURE_FILE_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/vst2/${ADLplug_NAME}.vst/Contents/Info.plist"
-      "-DEXECUTABLE_NAME=ADLplug"
+      "-DEXECUTABLE_NAME=${ADLplug_NAME}"
       "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
       DEPENDS "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST.plist")
   elseif(NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
@@ -281,7 +281,7 @@ if(ADLplug_VST3)
       "${CMAKE_COMMAND}"
       "-DCONFIGURE_FILE_INPUT=${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST3.plist"
       "-DCONFIGURE_FILE_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/vst3/${ADLplug_NAME}.vst3/Contents/Info.plist"
-      "-DEXECUTABLE_NAME=ADLplug"
+      "-DEXECUTABLE_NAME=${ADLplug_NAME}"
       "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
       DEPENDS "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST3.plist")
   endif()
