@@ -347,6 +347,11 @@ if(ADLplug_AU)
     "-DEXECUTABLE_NAME=${ADLplug_NAME}"
     "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
     DEPENDS "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-AU.plist")
+
+  file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/au/${ADLplug_NAME}.component/Resources/")
+  execute_process(COMMAND "${CMAKE_COMMAND}" -E copy
+    "${PROJECT_SOURCE_DIR}/resources/au/${ADLplug_NAME}-${PROJECT_VERSION}.rsrc"
+    "${CMAKE_CURRENT_BINARY_DIR}/au/${ADLplug_NAME}.component/Resources/${ADLplug_NAME}.rsrc")
 endif()
 
 if(ADLplug_Standalone)
