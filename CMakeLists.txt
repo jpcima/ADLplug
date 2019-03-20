@@ -21,6 +21,7 @@ include(SystemOption)
 system_option(ADLplug_VST2 "Build VST2" ON)
 system_option(ADLplug_VST3 "Build VST3" OFF "Windows" ON "Darwin" ON)
 system_option(ADLplug_LV2 "Build LV2" ON "Windows" OFF "Darwin" OFF)
+system_option(ADLplug_AU "Build AU" OFF "Darwin" ON)
 system_option(ADLplug_Standalone "Build Standalone" ON)
 system_option(ADLplug_Jack "Build Jack" ON "Windows" OFF "Darwin" OFF)
 
@@ -75,6 +76,7 @@ endif()
 message("Build VST2: ${ADLplug_VST2}")
 message("Build VST3: ${ADLplug_VST3}")
 message("Build LV2: ${ADLplug_LV2}")
+message("Build AU: ${ADLplug_AU}")
 message("Build Standalone: ${ADLplug_Standalone}")
 message("Build Jack: ${ADLplug_Jack}")
 
@@ -325,6 +327,26 @@ if(ADLplug_LV2)
     install(TARGETS ADLplug_LV2 DESTINATION "${CMAKE_INSTALL_LIBDIR}/lv2/${ADLplug_NAME}.lv2")
     install(FILES ${ADLplug_LV2_MANIFESTS} DESTINATION "${CMAKE_INSTALL_LIBDIR}/lv2/${ADLplug_NAME}.lv2")
   endif()
+endif()
+
+if(ADLplug_AU)
+  if(NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    message(FATAL_ERROR "AU is not supported on ${CMAKE_SYSTEM_NAME}")
+  endif()
+  add_plugin(ADLplug_AU)
+  target_link_libraries(ADLplug_AU PRIVATE juce_audio_plugin_client_AU ADLplug_core)
+  require_symbols(ADLplug_AU "${ADLplug_NAME}AUEntry" "${ADLplug_NAME}AUFactory")
+  set_target_properties(ADLplug_AU PROPERTIES
+    OUTPUT_NAME "${ADLplug_NAME}" PREFIX "" SUFFIX "" LIBRARY_OUTPUT_DIRECTORY "au/${ADLplug_NAME}.component/Contents/MacOS")
+  file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/au/${ADLplug_NAME}.component/Contents/")
+  file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/au/${ADLplug_NAME}.component/Contents/PkgInfo" "BNDL????")
+  add_custom_target(ADLplug_AU_InfoPlist ALL
+    "${CMAKE_COMMAND}"
+    "-DCONFIGURE_FILE_INPUT=${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-AU.plist"
+    "-DCONFIGURE_FILE_OUTPUT=${CMAKE_CURRENT_BINARY_DIR}/au/${ADLplug_NAME}.component/Contents/Info.plist"
+    "-DEXECUTABLE_NAME=${ADLplug_NAME}"
+    "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
+    DEPENDS "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-AU.plist")
 endif()
 
 if(ADLplug_Standalone)

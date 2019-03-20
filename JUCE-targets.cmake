@@ -80,6 +80,8 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   find_library(ACCELERATE_LIBRARY "Accelerate")
   find_library(CORE_IMAGE_LIBRARY "CoreImage")
   find_library(IOKIT_LIBRARY "IOKit")
+  find_library(AUDIO_UNIT_LIBRARY "AudioUnit")
+  find_library(QUARTZ_CORE_LIBRARY "QuartzCore")
   target_link_libraries(juce_core PRIVATE "${FOUNDATION_LIBRARY}")
   target_link_libraries(juce_core PRIVATE "${COCOA_LIBRARY}")
   target_link_libraries(juce_core PRIVATE "${CARBON_LIBRARY}")
@@ -154,6 +156,15 @@ if(ADLplug_LV2)
     "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_LV2.cpp")
   add_juce_module(juce_audio_plugin_client_LV2 ${LV2_SOURCES})
   target_link_libraries(juce_audio_plugin_client_LV2 PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors)
+endif()
+
+if(ADLplug_AU)
+  set(AU_SOURCES
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp"
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_AU_1.mm"
+    "${JUCE_PROJECT_DIR}/JuceLibraryCode/include_juce_audio_plugin_client_AU_2.mm")
+  add_juce_module(juce_audio_plugin_client_AU ${AU_SOURCES})
+  target_link_libraries(juce_audio_plugin_client_AU PUBLIC juce_gui_basics juce_audio_basics juce_audio_processors "${QUARTZ_CORE_LIBRARY}" "${AUDIO_UNIT_LIBRARY}")
 endif()
 
 if(ADLplug_Standalone)
