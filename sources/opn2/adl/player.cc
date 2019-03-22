@@ -77,7 +77,7 @@ std::vector<std::string> Player::enumerate_emulators()
 
     std::vector<std::string> names(32);
     size_t count = 0;
-    for (size_t i = 0, n = names.size(); i < n; ++i) {
+    for (unsigned i = 0, n = (unsigned)names.size(); i < n; ++i) {
         if (opn2_switchEmulator(pl.get(), i) == 0) {
             names[i] = opn2_chipEmulatorName(pl.get());
             count = i + 1;

@@ -33,7 +33,7 @@ Emulator_Defaults &get_emulator_defaults()
 
     //
     std::vector<std::string> choices = Player::enumerate_emulators();
-    unsigned count = choices.size();
+    unsigned count = (unsigned)choices.size();
     defaults->choices.ensureStorageAllocated(count);
     for (const std::string &choice : choices)
         defaults->choices.add(choice);

@@ -236,7 +236,7 @@ bool Bank_Manager::load_program(const Bank_Id &id, unsigned program, const Instr
         std::memcpy(&info.ins_names[program * 32], ins.name, 32);
 
     // update program counts
-    unsigned old_count = info.used.count();
+    unsigned old_count = (unsigned)info.used.count();
     info.used.set(program, !ins.blank());
     if ((flags & LP_Notify) && info.used.count() != old_count)
         slots_notify_flag_ = true;
@@ -336,7 +336,7 @@ void Bank_Manager::rename_bank(const Bank_Id &id, const char *name, bool notify)
         return;
 
     Bank_Info &info = bank_infos_[index];
-    unsigned length = strnlen(name, 32);
+    unsigned length = (unsigned)strnlen(name, 32);
     if (std::memcmp(info.bank_name, name, std::min(length + 1, 32u)) == 0)
         return;
 
@@ -355,7 +355,7 @@ void Bank_Manager::rename_program(const Bank_Id &id, unsigned program, const cha
     Bank_Info &info = bank_infos_[index];
     char *name_dst = &info.ins_names[program * 32];
 
-    unsigned length = strnlen(name, 32);
+    unsigned length = (unsigned)strnlen(name, 32);
     if (std::memcmp(name_dst, name, std::min(length + 1, 32u)) == 0)
         return;
 

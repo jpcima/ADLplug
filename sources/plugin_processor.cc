@@ -130,7 +130,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     worker->start_worker();
 
     Pak_File_Reader pak;
-    if (!pak.init_with_data((const uint8_t *)banks_pak.data, banks_pak.size))
+    if (!pak.init_with_data((const uint8_t *)banks_pak.data, (unsigned)banks_pak.size))
         assert(false);
     std::string default_wopl = pak.extract(0);
     assert(default_wopl.size() != 0);
@@ -180,7 +180,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     ready_.store(1);
 
     setStateInformation(
-        last_state_information_.getData(), last_state_information_.getSize());
+        last_state_information_.getData(), (unsigned)last_state_information_.getSize());
 
     set_chip_settings_notifying_host();
     set_global_parameters_notifying_host();
