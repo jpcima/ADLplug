@@ -74,6 +74,12 @@
     <Filter Include="OPNplug\thirdparty\libOPNMIDI\src\chips\mame">
       <UniqueIdentifier>{23C32F69-0561-D516-81C1-0AC7945E3F52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm">
+      <UniqueIdentifier>{65BAED4C-8B55-6555-2F18-F3553EF1F4C7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OPNplug\thirdparty\libOPNMIDI\src\chips\np2">
+      <UniqueIdentifier>{A9683D7B-D69C-D490-B6E9-FDD0815D54A9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="OPNplug\thirdparty\libOPNMIDI\src\chips\nuked">
       <UniqueIdentifier>{77F74D11-529A-303F-2CC7-9EAFA4D37C0F}</UniqueIdentifier>
     </Filter>
@@ -643,6 +649,33 @@
     <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mame\mame_ym2612fm.c">
       <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mame</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\emu2149.c">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\fm.cpp">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\resampler.cpp">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\ymdeltat.cpp">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_file.cpp">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_fmgen.cpp">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_fmtimer.cpp">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_opna.cpp">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_psg.cpp">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\nuked\ym3438.c">
       <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\nuked</Filter>
     </ClCompile>
@@ -653,6 +686,12 @@
       <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mame_opn2.cpp">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mame_opna.cpp">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2_opna.cpp">
       <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\nuked_opn2.cpp">
@@ -2802,6 +2841,63 @@
     <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mame\mamedef.h">
       <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mame</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\2608intf.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\emu.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\emu2149.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\emutypes.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\fm.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\fmopn_2608rom.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\resampler.hpp">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mamefm\ymdeltat.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\mamefm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\compiler.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_diag.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_file.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_fmgen.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_fmgeninl.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_fmtimer.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_headers.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_misc.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_opna.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_psg.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2\fmgen_types.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\np2</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\nuked\ym3438.h">
       <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips\nuked</Filter>
     </ClInclude>
@@ -2814,10 +2910,19 @@
     <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mame_opn2.h">
       <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\mame_opna.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\np2_opna.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\nuked_opn2.h">
       <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\opn_chip_base.h">
+      <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libOPNMIDI\src\chips\opn_chip_family.h">
       <Filter>OPNplug\thirdparty\libOPNMIDI\src\chips</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">

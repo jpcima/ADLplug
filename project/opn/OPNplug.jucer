@@ -235,6 +235,40 @@
               <FILE id="OIp9aA" name="mame_ym2612fm.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mame/mame_ym2612fm.h"/>
               <FILE id="SSHf4F" name="mamedef.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mame/mamedef.h"/>
             </GROUP>
+            <GROUP id="{5F8546F8-8C35-EC3D-7F15-AA65A0D07FA6}" name="mamefm">
+              <FILE id="ZSkzzM" name="2608intf.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/2608intf.h"/>
+              <FILE id="qJGBF9" name="emu.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/emu.h"/>
+              <FILE id="Vm7OHY" name="emu2149.c" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/emu2149.c"/>
+              <FILE id="WC4NRa" name="emu2149.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/emu2149.h"/>
+              <FILE id="zKbVBX" name="emutypes.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/emutypes.h"/>
+              <FILE id="KFCwG0" name="fm.cpp" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/fm.cpp"/>
+              <FILE id="qRP9ul" name="fm.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/fm.h"/>
+              <FILE id="rDrP7A" name="fmopn_2608rom.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/fmopn_2608rom.h"/>
+              <FILE id="t7wrP7" name="resampler.cpp" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/resampler.cpp"/>
+              <FILE id="CQtwS4" name="resampler.hpp" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/resampler.hpp"/>
+              <FILE id="OgcuFe" name="ymdeltat.cpp" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/ymdeltat.cpp"/>
+              <FILE id="UHG8HB" name="ymdeltat.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mamefm/ymdeltat.h"/>
+            </GROUP>
+            <GROUP id="{B4B0A065-4EF4-E1EB-F225-CCF97592B833}" name="np2">
+              <FILE id="NgQrVr" name="compiler.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/compiler.h"/>
+              <FILE id="ldnrZq" name="fmgen_diag.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_diag.h"/>
+              <FILE id="vlTRVc" name="fmgen_file.cpp" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_file.cpp"/>
+              <FILE id="hAxS6e" name="fmgen_file.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_file.h"/>
+              <FILE id="r6XbfZ" name="fmgen_fmgen.cpp" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmgen.cpp"/>
+              <FILE id="LdKExL" name="fmgen_fmgen.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmgen.h"/>
+              <FILE id="ynfPKW" name="fmgen_fmgeninl.h" compile="0" resource="0"
+                    file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmgeninl.h"/>
+              <FILE id="OtFniV" name="fmgen_fmtimer.cpp" compile="1" resource="0"
+                    file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmtimer.cpp"/>
+              <FILE id="qAyH0R" name="fmgen_fmtimer.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmtimer.h"/>
+              <FILE id="mMh982" name="fmgen_headers.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_headers.h"/>
+              <FILE id="Tea4ZP" name="fmgen_misc.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_misc.h"/>
+              <FILE id="Hl51i3" name="fmgen_opna.cpp" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_opna.cpp"/>
+              <FILE id="XleBFh" name="fmgen_opna.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_opna.h"/>
+              <FILE id="gyyXKR" name="fmgen_psg.cpp" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_psg.cpp"/>
+              <FILE id="KBM5x9" name="fmgen_psg.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_psg.h"/>
+              <FILE id="lyKH7z" name="fmgen_types.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_types.h"/>
+            </GROUP>
             <GROUP id="{F501C548-4C0F-EED7-ECF4-7BC2221A12E4}" name="nuked">
               <FILE id="O9AlaN" name="ym3438.c" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/nuked/ym3438.c"/>
               <FILE id="iOAA2L" name="ym3438.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/nuked/ym3438.h"/>
@@ -245,11 +279,17 @@
             <FILE id="RF8P9a" name="gx_opn2.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/gx_opn2.h"/>
             <FILE id="QyTIol" name="mame_opn2.cpp" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mame_opn2.cpp"/>
             <FILE id="m1thib" name="mame_opn2.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mame_opn2.h"/>
+            <FILE id="LVKWgM" name="mame_opna.cpp" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mame_opna.cpp"/>
+            <FILE id="l9sips" name="mame_opna.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/mame_opna.h"/>
+            <FILE id="z3PZHN" name="np2_opna.cpp" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2_opna.cpp"/>
+            <FILE id="KL0uUh" name="np2_opna.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/np2_opna.h"/>
             <FILE id="NmxvNk" name="nuked_opn2.cpp" compile="1" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/nuked_opn2.cpp"/>
             <FILE id="aejHeZ" name="nuked_opn2.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/nuked_opn2.h"/>
             <FILE id="nU1xeZ" name="opn_chip_base.h" compile="0" resource="0" file="../../thirdparty/libOPNMIDI/src/chips/opn_chip_base.h"/>
             <FILE id="GN0aXR" name="opn_chip_base.tcc" compile="0" resource="0"
                   file="../../thirdparty/libOPNMIDI/src/chips/opn_chip_base.tcc"/>
+            <FILE id="kdWSHf" name="opn_chip_family.h" compile="0" resource="0"
+                  file="../../thirdparty/libOPNMIDI/src/chips/opn_chip_family.h"/>
           </GROUP>
         </GROUP>
       </GROUP>

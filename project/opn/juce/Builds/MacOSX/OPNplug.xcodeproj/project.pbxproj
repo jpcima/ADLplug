@@ -281,6 +281,42 @@
 			isa = PBXBuildFile;
 			fileRef = 723260AF5FA924F63CD59E0F;
 		};
+		7E0B88D04E977F1CC5A2A59F = {
+			isa = PBXBuildFile;
+			fileRef = 889796750C26880C7C096AF7;
+		};
+		235474A1D7759E1881C09FCC = {
+			isa = PBXBuildFile;
+			fileRef = 72E40FD71BC553A9E77C5A27;
+		};
+		0107FFE2943EE48671D2BDB1 = {
+			isa = PBXBuildFile;
+			fileRef = 9D11BFB26D0F8BF8D55F38E8;
+		};
+		D38B3AECA928AEA6BC94706D = {
+			isa = PBXBuildFile;
+			fileRef = 177017950593F56962B7FEE8;
+		};
+		F67823E9E9B2194E5B4E21C7 = {
+			isa = PBXBuildFile;
+			fileRef = 058DD0F2B3BECD96D3744E2E;
+		};
+		56F30D8BD8E641D52B0CE456 = {
+			isa = PBXBuildFile;
+			fileRef = 8054898CA180B25ACCBD3AEC;
+		};
+		37CF56D09A3F9B196DC2975B = {
+			isa = PBXBuildFile;
+			fileRef = 956EFC8F8F846AB53B9ABD66;
+		};
+		527A338310697893756D0B37 = {
+			isa = PBXBuildFile;
+			fileRef = 9C3DED2C813588D47270C373;
+		};
+		068CBA0AEED4742CEDCFC8D2 = {
+			isa = PBXBuildFile;
+			fileRef = E6E8673B5ED29023CD0FC0B8;
+		};
 		8B3F1BCA8F7C1BC09482BAD7 = {
 			isa = PBXBuildFile;
 			fileRef = 72FCD5D8CBA0C63458D254D9;
@@ -296,6 +332,14 @@
 		9B46F6B2093B8758F0122216 = {
 			isa = PBXBuildFile;
 			fileRef = BFBAB8A4F66FB7D470B6F9BF;
+		};
+		C94C2F15ABD3916A03AF21D8 = {
+			isa = PBXBuildFile;
+			fileRef = B09FE626036642615A52AC4C;
+		};
+		DAA64C869818E264F3E1F8EC = {
+			isa = PBXBuildFile;
+			fileRef = 873E0F04700A8CE214C76678;
 		};
 		9D4813C96E9EC4AB4C06C41E = {
 			isa = PBXBuildFile;
@@ -399,6 +443,20 @@
 			path = ../../../../../thirdparty/libOPNMIDI/src/opnbank.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		058DD0F2B3BECD96D3744E2E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "fmgen_file.cpp";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_file.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
+		05DE2739AEC54D19BDFC3E43 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "fmgen_file.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_file.h";
+			sourceTree = "SOURCE_ROOT";
+		};
 		06144E68C7BF63EDF65275F5 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -474,6 +532,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = definitions.h;
 			path = ../../../../../sources/definitions.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		177017950593F56962B7FEE8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = ymdeltat.cpp;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/ymdeltat.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		1876BF452F1C9F4A52B30D52 = {
@@ -595,11 +660,25 @@
 			path = "../../../../../sources/ui/utility/key_maps.cc";
 			sourceTree = "SOURCE_ROOT";
 		};
+		2F706F37E6833E606C8B6616 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "fmgen_opna.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_opna.h";
+			sourceTree = "SOURCE_ROOT";
+		};
 		30324A5CCB81BF81D837B821 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file.tcc;
 			name = "opnmidi_bankmap.tcc";
 			path = "../../../../../thirdparty/libOPNMIDI/src/opnmidi_bankmap.tcc";
+			sourceTree = "SOURCE_ROOT";
+		};
+		3051C9239843972E805687C8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = emu2149.h;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/emu2149.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		31B682F29335A0E0B2D5E7EA = {
@@ -608,6 +687,13 @@
 			includeInIndex = 0;
 			path = OPNplug.component;
 			sourceTree = "BUILT_PRODUCTS_DIR";
+		};
+		3255084A11004EE20CBEEC53 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "fmgen_headers.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_headers.h";
+			sourceTree = "SOURCE_ROOT";
 		};
 		335A26326F7041456DF240EE = {
 			isa = PBXFileReference;
@@ -672,6 +758,20 @@
 			path = ../../../../../thirdparty/fmt/include/fmt/ostream.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		38AB9F57D9E286DEE68ECF89 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = ymdeltat.h;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/ymdeltat.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		39C3BF6D0097F2699F2B0DB7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "fmgen_fmgeninl.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmgeninl.h";
+			sourceTree = "SOURCE_ROOT";
+		};
 		3D0980D58BD39513F4B465B3 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -686,6 +786,13 @@
 			path = "../../../../../sources/ui/components/new_program_editor.cc";
 			sourceTree = "SOURCE_ROOT";
 		};
+		40F8D28DC86F9290411A8756 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "fmgen_types.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_types.h";
+			sourceTree = "SOURCE_ROOT";
+		};
 		4142FE935FC76BB94AF2ECF2 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -698,6 +805,20 @@
 			lastKnownFileType = file;
 			name = "juce_audio_plugin_client";
 			path = "../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client";
+			sourceTree = "SOURCE_ROOT";
+		};
+		42EFE2984E224686CAFB7323 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "fmopn_2608rom.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/fmopn_2608rom.h";
+			sourceTree = "SOURCE_ROOT";
+		};
+		465172C76DC6AFEEB7408F5E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = 2608intf.h;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/2608intf.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		46A7162C8D39FFA6B000F063 = {
@@ -749,6 +870,13 @@
 			path = ../../../../../sources/ui/utility/image.cc;
 			sourceTree = "SOURCE_ROOT";
 		};
+		4FB3D7EB7293D7918E2B1CEA = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = fm.h;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/fm.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		5189F33ED9D651D2CBCA51DB = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -770,11 +898,25 @@
 			path = "../../../../../sources/ui/components/knob_component.cc";
 			sourceTree = "SOURCE_ROOT";
 		};
+		543F6D2FB5C16F27CBA79792 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "fmgen_misc.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_misc.h";
+			sourceTree = "SOURCE_ROOT";
+		};
 		55DAC68698963440C17D7639 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = "parameter_block.h";
 			path = "../../../../../sources/opn2/parameter_block.h";
+			sourceTree = "SOURCE_ROOT";
+		};
+		566E4A37AAE5604D82B4A38D = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = emu.h;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/emu.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		56B6F0D526579EBE100C46FD = {
@@ -810,6 +952,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = "chip_settings.cc";
 			path = "../../../../../sources/opn2/adl/chip_settings.cc";
+			sourceTree = "SOURCE_ROOT";
+		};
+		5B0445BA1A284B1002AB0480 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "fmgen_diag.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_diag.h";
 			sourceTree = "SOURCE_ROOT";
 		};
 		5CABECC930802C9F125DF1D0 = {
@@ -868,6 +1017,13 @@
 			path = ../../../../../thirdparty/fmt/include/fmt/ranges.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		6E283C1D8C5C3449C29776A9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			name = "juce_audio_formats";
+			path = "../../../../../thirdparty/JUCE/modules/juce_audio_formats";
+			sourceTree = "SOURCE_ROOT";
+		};
 		6EC60681F69BD3B84727CE0E = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -875,39 +1031,11 @@
 			path = "../../../../../sources/ui/components/knob_component.h";
 			sourceTree = "SOURCE_ROOT";
 		};
-		6EF286ADA05A483051DC9219 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			name = "juce_audio_processors";
-			path = "../../../../../thirdparty/JUCE/modules/juce_audio_processors";
-			sourceTree = "SOURCE_ROOT";
-		};
 		75186A344B8335E61B451BBF = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = "plugin_processor.h";
 			path = "../../../../../sources/plugin_processor.h";
-			sourceTree = "SOURCE_ROOT";
-		};
-		79699BFC75921B2BD8EFE5C9 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = "include_juce_audio_plugin_client_utils.cpp";
-			path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp";
-			sourceTree = "SOURCE_ROOT";
-		};
-		7C91BAB6C5FCBBB33AA567D8 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_audio_utils.mm";
-			path = "../../../JuceLibraryCode/include_juce_audio_utils.mm";
-			sourceTree = "SOURCE_ROOT";
-		};
-		80E226846A91539090948A50 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_audio_plugin_client_AUv3.mm";
-			path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_AUv3.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		8281F591131DCE58CE9D13E5 = {
@@ -966,11 +1094,11 @@
 			path = "../../../../../sources/ui/main_component.h";
 			sourceTree = "SOURCE_ROOT";
 		};
-		6E283C1D8C5C3449C29776A9 = {
+		6EF286ADA05A483051DC9219 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
-			name = "juce_audio_formats";
-			path = "../../../../../thirdparty/JUCE/modules/juce_audio_formats";
+			name = "juce_audio_processors";
+			path = "../../../../../thirdparty/JUCE/modules/juce_audio_processors";
 			sourceTree = "SOURCE_ROOT";
 		};
 		706268D88D6327B337A4BD09 = {
@@ -985,6 +1113,13 @@
 			lastKnownFileType = sourcecode.c.c;
 			name = "mame_ym2612fm.c";
 			path = "../../../../../thirdparty/libOPNMIDI/src/chips/mame/mame_ym2612fm.c";
+			sourceTree = "SOURCE_ROOT";
+		};
+		72E40FD71BC553A9E77C5A27 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = fm.cpp;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/fm.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		72FCD5D8CBA0C63458D254D9 = {
@@ -1029,6 +1164,13 @@
 			path = ../../../../../sources/ui/components/waves.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		79699BFC75921B2BD8EFE5C9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "include_juce_audio_plugin_client_utils.cpp";
+			path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_utils.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
 		79B5A9FBEB92AF1307600486 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1050,6 +1192,13 @@
 			path = "../../../../../thirdparty/libOPNMIDI/src/chips/nuked_opn2.h";
 			sourceTree = "SOURCE_ROOT";
 		};
+		7C91BAB6C5FCBBB33AA567D8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_audio_utils.mm";
+			path = "../../../JuceLibraryCode/include_juce_audio_utils.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
 		7DF6FB906BFD6A709AEA3CAD = {
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist.xml;
@@ -1064,11 +1213,25 @@
 			path = "../../../../../sources/opn2/adl/measurer/chips/mame_opn2.cpp";
 			sourceTree = "SOURCE_ROOT";
 		};
+		8054898CA180B25ACCBD3AEC = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "fmgen_fmgen.cpp";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmgen.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
 		80DC25E3972847C24B72A214 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = SimpleIni.h;
 			path = ../../../../../thirdparty/simpleini/SimpleIni.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		80E226846A91539090948A50 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_audio_plugin_client_AUv3.mm";
+			path = "../../../JuceLibraryCode/include_juce_audio_plugin_client_AUv3.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		824AB86D0D3EC2541A0AE02C = {
@@ -1097,6 +1260,20 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = printf.h;
 			path = ../../../../../thirdparty/fmt/include/fmt/printf.h;
+			sourceTree = "SOURCE_ROOT";
+		};
+		873E0F04700A8CE214C76678 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "np2_opna.cpp";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2_opna.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
+		889796750C26880C7C096AF7 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.c;
+			name = emu2149.c;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/emu2149.c;
 			sourceTree = "SOURCE_ROOT";
 		};
 		8A46F8FF8245C59B01A91377 = {
@@ -1162,6 +1339,13 @@
 			path = "../../../../../sources/utility/functional_timer.h";
 			sourceTree = "SOURCE_ROOT";
 		};
+		956EFC8F8F846AB53B9ABD66 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "fmgen_fmtimer.cpp";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmtimer.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
 		95D73DA6F9D7951452C472FE = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -1197,6 +1381,13 @@
 			path = ../../../../../thirdparty/fmt/include/fmt/posix.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		992C6422774DBFBF2DCFB495 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = emutypes.h;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/emutypes.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		9971EA831375823B662F8BD6 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1209,6 +1400,20 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_core.mm";
 			path = "../../../JuceLibraryCode/include_juce_core.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		9C3DED2C813588D47270C373 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "fmgen_opna.cpp";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_opna.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
+		9D11BFB26D0F8BF8D55F38E8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = resampler.cpp;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/resampler.cpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		A1475049702E0ABAE390FBC9 = {
@@ -1244,6 +1449,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_formats.mm";
 			path = "../../../JuceLibraryCode/include_juce_audio_formats.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		A653FAE99EEFF4326B400304 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "fmgen_fmtimer.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmtimer.h";
 			sourceTree = "SOURCE_ROOT";
 		};
 		A7A7CD22FB66D75DDD0A155F = {
@@ -1344,6 +1556,13 @@
 			path = "../../../../../sources/ui/look_and_feel.h";
 			sourceTree = "SOURCE_ROOT";
 		};
+		B09FE626036642615A52AC4C = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "mame_opna.cpp";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/mame_opna.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
 		B4066B90AE0D11AFAF5F7507 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -1414,11 +1633,25 @@
 			path = ../../../../../sources/ui/utility/image.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		BBA90805C8C2B51CED70F143 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = resampler.hpp;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/resampler.hpp;
+			sourceTree = "SOURCE_ROOT";
+		};
 		BDD746BA0471AD9C33981817 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = "chip_settings.h";
 			path = "../../../../../sources/adl/chip_settings.h";
+			sourceTree = "SOURCE_ROOT";
+		};
+		BF77BBA19CB75F5798ECC2F3 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = compiler.h;
+			path = ../../../../../thirdparty/libOPNMIDI/src/chips/np2/compiler.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		BFBAB8A4F66FB7D470B6F9BF = {
@@ -1461,6 +1694,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = "simple_fifo.h";
 			path = "../../../../../sources/utility/simple_fifo.h";
+			sourceTree = "SOURCE_ROOT";
+		};
+		C5440547704259AE828FE471 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "fmgen_psg.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_psg.h";
 			sourceTree = "SOURCE_ROOT";
 		};
 		C6CB982B2316A9CAF2BA1475 = {
@@ -1512,6 +1752,13 @@
 			path = "../../../../../sources/ui/components/wave_label.h";
 			sourceTree = "SOURCE_ROOT";
 		};
+		CD1AC451BB77FEBB9CC4FB4A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "mame_opna.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/mame_opna.h";
+			sourceTree = "SOURCE_ROOT";
+		};
 		CD3BBE200A36E02C13D09A94 = {
 			isa = PBXFileReference;
 			lastKnownFileType = file;
@@ -1531,6 +1778,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = "operator_editor.h";
 			path = "../../../../../sources/opn2/ui/operator_editor.h";
+			sourceTree = "SOURCE_ROOT";
+		};
+		CE8D5449156A134CEF1A990A = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "opn_chip_family.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/opn_chip_family.h";
 			sourceTree = "SOURCE_ROOT";
 		};
 		CFD86056AFB15563892B9030 = {
@@ -1580,6 +1834,13 @@
 			lastKnownFileType = file.tcc;
 			name = "opn_chip_base.tcc";
 			path = "../../../../../sources/opn2/adl/measurer/chips/opn_chip_base.tcc";
+			sourceTree = "SOURCE_ROOT";
+		};
+		D634BEA2626E68738E318A6E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "fmgen_fmgen.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmgen.h";
 			sourceTree = "SOURCE_ROOT";
 		};
 		E0CC33BA7FCBD116F7DA280C = {
@@ -1638,11 +1899,25 @@
 			path = System/Library/Frameworks/CoreMIDI.framework;
 			sourceTree = SDKROOT;
 		};
+		E6E8673B5ED29023CD0FC0B8 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "fmgen_psg.cpp";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_psg.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
 		E8D9DADEC3B362FA904232CA = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = "gens_opn2.cpp";
 			path = "../../../../../thirdparty/libOPNMIDI/src/chips/gens_opn2.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
+		E99AE1BB7E3445F96BF16F39 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "np2_opna.h";
+			path = "../../../../../thirdparty/libOPNMIDI/src/chips/np2_opna.h";
 			sourceTree = "SOURCE_ROOT";
 		};
 		EA183837D2835AC89B640A68 = {
@@ -2094,6 +2369,48 @@
 			name = mame;
 			sourceTree = "<group>";
 		};
+		FD7B9DB8686AAE2E5A6A97CA = {
+			isa = PBXGroup;
+			children = (
+				465172C76DC6AFEEB7408F5E,
+				566E4A37AAE5604D82B4A38D,
+				889796750C26880C7C096AF7,
+				3051C9239843972E805687C8,
+				992C6422774DBFBF2DCFB495,
+				72E40FD71BC553A9E77C5A27,
+				4FB3D7EB7293D7918E2B1CEA,
+				42EFE2984E224686CAFB7323,
+				9D11BFB26D0F8BF8D55F38E8,
+				BBA90805C8C2B51CED70F143,
+				177017950593F56962B7FEE8,
+				38AB9F57D9E286DEE68ECF89,
+			);
+			name = mamefm;
+			sourceTree = "<group>";
+		};
+		BE7B53CAAC6E5FAE0DC723FF = {
+			isa = PBXGroup;
+			children = (
+				BF77BBA19CB75F5798ECC2F3,
+				5B0445BA1A284B1002AB0480,
+				058DD0F2B3BECD96D3744E2E,
+				05DE2739AEC54D19BDFC3E43,
+				8054898CA180B25ACCBD3AEC,
+				D634BEA2626E68738E318A6E,
+				39C3BF6D0097F2699F2B0DB7,
+				956EFC8F8F846AB53B9ABD66,
+				A653FAE99EEFF4326B400304,
+				3255084A11004EE20CBEEC53,
+				543F6D2FB5C16F27CBA79792,
+				9C3DED2C813588D47270C373,
+				2F706F37E6833E606C8B6616,
+				E6E8673B5ED29023CD0FC0B8,
+				C5440547704259AE828FE471,
+				40F8D28DC86F9290411A8756,
+			);
+			name = np2;
+			sourceTree = "<group>";
+		};
 		4D76C903DEE007D30D7A901C = {
 			isa = PBXGroup;
 			children = (
@@ -2108,6 +2425,8 @@
 			children = (
 				9DD55171132EEDC0B5A69A82,
 				C7C173D2212DF3EDACD9ADD2,
+				FD7B9DB8686AAE2E5A6A97CA,
+				BE7B53CAAC6E5FAE0DC723FF,
 				4D76C903DEE007D30D7A901C,
 				E8D9DADEC3B362FA904232CA,
 				3D0980D58BD39513F4B465B3,
@@ -2115,10 +2434,15 @@
 				35EF55A7953E24CC4C251CA3,
 				BFBAB8A4F66FB7D470B6F9BF,
 				D138F4192E703316F990316F,
+				B09FE626036642615A52AC4C,
+				CD1AC451BB77FEBB9CC4FB4A,
+				873E0F04700A8CE214C76678,
+				E99AE1BB7E3445F96BF16F39,
 				C7F5892A2FADA0465BF26A1C,
 				7B38221DB7E81B4FCD018648,
 				FCEBFFE10A55D836EA467780,
 				AB7782555580A8737758617D,
+				CE8D5449156A134CEF1A990A,
 			);
 			name = chips;
 			sourceTree = "<group>";
@@ -3553,10 +3877,21 @@
 				F9FCBA0435F6A611B2D2E10E,
 				FAF358AD7B7B73C2197DB9DF,
 				8B1BF3CF30BFDF71CEA5B915,
+				7E0B88D04E977F1CC5A2A59F,
+				235474A1D7759E1881C09FCC,
+				0107FFE2943EE48671D2BDB1,
+				D38B3AECA928AEA6BC94706D,
+				F67823E9E9B2194E5B4E21C7,
+				56F30D8BD8E641D52B0CE456,
+				37CF56D09A3F9B196DC2975B,
+				527A338310697893756D0B37,
+				068CBA0AEED4742CEDCFC8D2,
 				8B3F1BCA8F7C1BC09482BAD7,
 				98E4E67311D5D5DDD67511F2,
 				97BAD7703BF3E9EF89601E2E,
 				9B46F6B2093B8758F0122216,
+				C94C2F15ABD3916A03AF21D8,
+				DAA64C869818E264F3E1F8EC,
 				9D4813C96E9EC4AB4C06C41E,
 				25B211C5385FE9D94F301041,
 				097D8ABE5E84B927F7969FFA,

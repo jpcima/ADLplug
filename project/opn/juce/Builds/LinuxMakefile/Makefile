@@ -143,10 +143,21 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/opnmidi_private_a0ddfaf7.o \
   $(JUCE_OBJDIR)/Ym2612_Emu_dd631ef0.o \
   $(JUCE_OBJDIR)/mame_ym2612fm_bf0c8cbd.o \
+  $(JUCE_OBJDIR)/emu2149_c4616ba2.o \
+  $(JUCE_OBJDIR)/fm_7c41fee0.o \
+  $(JUCE_OBJDIR)/resampler_28ddff46.o \
+  $(JUCE_OBJDIR)/ymdeltat_6208b669.o \
+  $(JUCE_OBJDIR)/fmgen_file_b2ae057e.o \
+  $(JUCE_OBJDIR)/fmgen_fmgen_3d85cdb1.o \
+  $(JUCE_OBJDIR)/fmgen_fmtimer_43f10826.o \
+  $(JUCE_OBJDIR)/fmgen_opna_cf158b56.o \
+  $(JUCE_OBJDIR)/fmgen_psg_71c63a8c.o \
   $(JUCE_OBJDIR)/ym3438_c6367e33.o \
   $(JUCE_OBJDIR)/gens_opn2_2f9f063e.o \
   $(JUCE_OBJDIR)/gx_opn2_c6d72e30.o \
   $(JUCE_OBJDIR)/mame_opn2_b701b555.o \
+  $(JUCE_OBJDIR)/mame_opna_b9980604.o \
+  $(JUCE_OBJDIR)/np2_opna_d8992a70.o \
   $(JUCE_OBJDIR)/nuked_opn2_878260ae.o \
   $(JUCE_OBJDIR)/include_juce_audio_basics_68f957b.o \
   $(JUCE_OBJDIR)/include_juce_audio_devices_6eefc5f1.o \
@@ -452,6 +463,51 @@ $(JUCE_OBJDIR)/mame_ym2612fm_bf0c8cbd.o: ../../../../../thirdparty/libOPNMIDI/sr
 	@echo "Compiling mame_ym2612fm.c"
 	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
+$(JUCE_OBJDIR)/emu2149_c4616ba2.o: ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/emu2149.c
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling emu2149.c"
+	$(V_AT)$(CC) $(JUCE_CFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/fm_7c41fee0.o: ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/fm.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling fm.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/resampler_28ddff46.o: ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/resampler.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling resampler.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/ymdeltat_6208b669.o: ../../../../../thirdparty/libOPNMIDI/src/chips/mamefm/ymdeltat.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling ymdeltat.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/fmgen_file_b2ae057e.o: ../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_file.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling fmgen_file.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/fmgen_fmgen_3d85cdb1.o: ../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmgen.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling fmgen_fmgen.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/fmgen_fmtimer_43f10826.o: ../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_fmtimer.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling fmgen_fmtimer.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/fmgen_opna_cf158b56.o: ../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_opna.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling fmgen_opna.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/fmgen_psg_71c63a8c.o: ../../../../../thirdparty/libOPNMIDI/src/chips/np2/fmgen_psg.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling fmgen_psg.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
 $(JUCE_OBJDIR)/ym3438_c6367e33.o: ../../../../../thirdparty/libOPNMIDI/src/chips/nuked/ym3438.c
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling ym3438.c"
@@ -470,6 +526,16 @@ $(JUCE_OBJDIR)/gx_opn2_c6d72e30.o: ../../../../../thirdparty/libOPNMIDI/src/chip
 $(JUCE_OBJDIR)/mame_opn2_b701b555.o: ../../../../../thirdparty/libOPNMIDI/src/chips/mame_opn2.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling mame_opn2.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/mame_opna_b9980604.o: ../../../../../thirdparty/libOPNMIDI/src/chips/mame_opna.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling mame_opna.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/np2_opna_d8992a70.o: ../../../../../thirdparty/libOPNMIDI/src/chips/np2_opna.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling np2_opna.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/nuked_opn2_878260ae.o: ../../../../../thirdparty/libOPNMIDI/src/chips/nuked_opn2.cpp
