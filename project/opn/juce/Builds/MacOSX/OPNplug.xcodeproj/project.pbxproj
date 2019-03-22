@@ -2466,6 +2466,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2531,6 +2532,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2596,6 +2598,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2661,6 +2664,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2726,6 +2730,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2795,6 +2800,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2864,6 +2870,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"$(DEVELOPER_DIR)/Headers/FlatCarbon",
 					"$(SDKROOT)/Developer/Headers/FlatCarbon",
 					"$(HOME)/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Controls",
@@ -2965,6 +2972,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"$(DEVELOPER_DIR)/Headers/FlatCarbon",
 					"$(SDKROOT)/Developer/Headers/FlatCarbon",
 					"$(HOME)/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Controls",
@@ -3066,6 +3074,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3132,6 +3141,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3197,6 +3207,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3258,6 +3269,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3317,6 +3329,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3376,6 +3389,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3436,6 +3450,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3495,6 +3510,7 @@
 					"../../../../../thirdparty/libOPNMIDI/include",
 					"../../../../../thirdparty/wopn",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);

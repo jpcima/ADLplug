@@ -2433,6 +2433,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2497,6 +2498,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2561,6 +2563,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2625,6 +2628,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2689,6 +2693,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2757,6 +2762,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2825,6 +2831,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"$(DEVELOPER_DIR)/Headers/FlatCarbon",
 					"$(SDKROOT)/Developer/Headers/FlatCarbon",
 					"$(HOME)/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Controls",
@@ -2925,6 +2932,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"$(DEVELOPER_DIR)/Headers/FlatCarbon",
 					"$(SDKROOT)/Developer/Headers/FlatCarbon",
 					"$(HOME)/SDKs/PT_90_SDK/AlturaPorts/TDMPlugIns/PlugInLibrary/Controls",
@@ -3025,6 +3033,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3090,6 +3099,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3154,6 +3164,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3214,6 +3225,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3272,6 +3284,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3330,6 +3343,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3389,6 +3403,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3447,6 +3462,7 @@
 					"../../../../../thirdparty/libADLMIDI/include",
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
+					"../../../../../thirdparty/fmt/include",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
