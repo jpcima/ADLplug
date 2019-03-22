@@ -285,6 +285,14 @@
 			isa = PBXBuildFile;
 			fileRef = 16261E327FF51D0713B8D0DF;
 		};
+		2AE7FCEBC2D2A0F1009191C0 = {
+			isa = PBXBuildFile;
+			fileRef = 0AE83AD70B183F1D71FB474E;
+		};
+		C36099F779A397F2EE779292 = {
+			isa = PBXBuildFile;
+			fileRef = 072FB1B701BD382C7D64FFD6;
+		};
 		3B74D18EFE862BDFA913AB78 = {
 			isa = PBXBuildFile;
 			fileRef = ED052B09F75E6BA9B0413508;
@@ -491,6 +499,13 @@
 			path = "Info-AAX.plist";
 			sourceTree = "SOURCE_ROOT";
 		};
+		072FB1B701BD382C7D64FFD6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "opal_opl3.cpp";
+			path = "../../../../../thirdparty/libADLMIDI/src/chips/opal_opl3.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
 		073F55528EC9D0C84A0B2BAA = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -512,11 +527,25 @@
 			path = ../../../../../sources/opl3/adl/player.cc;
 			sourceTree = "SOURCE_ROOT";
 		};
+		0AE83AD70B183F1D71FB474E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "java_opl3.cpp";
+			path = "../../../../../thirdparty/libADLMIDI/src/chips/java_opl3.cpp";
+			sourceTree = "SOURCE_ROOT";
+		};
 		0B0B5383B5B71D14A36AF3B8 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
 			name = "indicator_NxM.h";
 			path = "../../../../../sources/ui/components/indicator_NxM.h";
+			sourceTree = "SOURCE_ROOT";
+		};
+		0C7A9F1C2F450D42E2CBCAC6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = opal.hpp;
+			path = ../../../../../thirdparty/libADLMIDI/src/chips/opal/opal.hpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		0F3B73D335CE6255BBF465EC = {
@@ -1254,6 +1283,13 @@
 			path = "../../../../../sources/ui/components/new_program_editor.h";
 			sourceTree = "SOURCE_ROOT";
 		};
+		92502F3C6DF69D3B99D4779E = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "java_opl3.h";
+			path = "../../../../../thirdparty/libADLMIDI/src/chips/java_opl3.h";
+			sourceTree = "SOURCE_ROOT";
+		};
 		93057DEF3B5A14CA4466B111 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -1504,6 +1540,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_processors.mm";
 			path = "../../../JuceLibraryCode/include_juce_audio_processors.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		B6D6EF5A1409E2A26F48CBB6 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "opal_opl3.h";
+			path = "../../../../../thirdparty/libADLMIDI/src/chips/opal_opl3.h";
 			sourceTree = "SOURCE_ROOT";
 		};
 		B7952085EB45913B47AFC01D = {
@@ -1770,6 +1813,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = "wopl_file.h";
 			path = "../../../../../thirdparty/wopl/wopl/wopl_file.h";
+			sourceTree = "SOURCE_ROOT";
+		};
+		E8A9A804031AAB9DA0526517 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = JavaOPL3.hpp;
+			path = ../../../../../thirdparty/libADLMIDI/src/chips/java/JavaOPL3.hpp;
 			sourceTree = "SOURCE_ROOT";
 		};
 		EA183837D2835AC89B640A68 = {
@@ -2175,6 +2225,14 @@
 			name = dosbox;
 			sourceTree = "<group>";
 		};
+		D1CC93CC425A498A71C0B70C = {
+			isa = PBXGroup;
+			children = (
+				E8A9A804031AAB9DA0526517,
+			);
+			name = java;
+			sourceTree = "<group>";
+		};
 		9AD254EA48536F33246D3583 = {
 			isa = PBXGroup;
 			children = (
@@ -2186,9 +2244,21 @@
 			name = nuked;
 			sourceTree = "<group>";
 		};
+		A7172DCFF04AD83DCB4A5F6D = {
+			isa = PBXGroup;
+			children = (
+				0C7A9F1C2F450D42E2CBCAC6,
+			);
+			name = opal;
+			sourceTree = "<group>";
+		};
 		83CF1602A921F80138E98606 = {
 			isa = PBXGroup;
 			children = (
+				0AE83AD70B183F1D71FB474E,
+				92502F3C6DF69D3B99D4779E,
+				072FB1B701BD382C7D64FFD6,
+				B6D6EF5A1409E2A26F48CBB6,
 				ED052B09F75E6BA9B0413508,
 				37967561004AAEDD00BC08FA,
 				47E3EFF21567E06F0662CEB8,
@@ -2198,7 +2268,9 @@
 				12DB8D2363EAB9B0248259B9,
 				B879233EED962C84D5799EFD,
 				F2B251A44F4D2DC2D5E6F98B,
+				D1CC93CC425A498A71C0B70C,
 				9AD254EA48536F33246D3583,
+				A7172DCFF04AD83DCB4A5F6D,
 			);
 			name = chips;
 			sourceTree = "<group>";
@@ -4149,6 +4221,8 @@
 				0765ED3C2F2790A1F4D2E076,
 				58A58FF449AEF8E22404145A,
 				C39D92D4A52B034145872B64,
+				2AE7FCEBC2D2A0F1009191C0,
+				C36099F779A397F2EE779292,
 				3B74D18EFE862BDFA913AB78,
 				BE296CFFCC7AB5D01A5E3A48,
 				6FA653FB4AB74726685E01FE,

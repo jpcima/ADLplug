@@ -71,8 +71,14 @@
     <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips\dosbox">
       <UniqueIdentifier>{CF80540C-7182-A6A8-10FB-E4FB9014A866}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips\java">
+      <UniqueIdentifier>{EB4FFA47-3352-0A9F-C631-C3B659D55A3D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips\nuked">
       <UniqueIdentifier>{8E19FE76-C813-660D-E004-596697EB57EE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips\opal">
+      <UniqueIdentifier>{4C9929E3-3740-C92B-D460-2CC14BC00E61}</UniqueIdentifier>
     </Filter>
     <Filter Include="ADLplug\thirdparty\libADLMIDI\src\chips">
       <UniqueIdentifier>{08340194-1B79-95DF-B14C-DD72966F1539}</UniqueIdentifier>
@@ -636,6 +642,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.cpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\java_opl3.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\opal_opl3.cpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.cpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
@@ -2787,6 +2799,12 @@
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\file_reader.hpp">
       <Filter>ADLplug\thirdparty\libADLMIDI\src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\java_opl3.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\opal_opl3.h">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.h">
       <Filter>ADLplug\thirdparty\libADLMIDI\src\chips</Filter>
     </ClInclude>
@@ -2802,11 +2820,17 @@
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.h">
       <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\dosbox</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\java\JavaOPL3.hpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\java</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.h">
       <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\nuked</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3_174.h">
       <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\nuked</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\opal\opal.hpp">
+      <Filter>ADLplug\thirdparty\libADLMIDI\src\chips\opal</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h">
       <Filter>JUCE Modules\juce_audio_basics\audio_play_head</Filter>

@@ -142,6 +142,8 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/adlmidi_midiplay_2e06b3.o \
   $(JUCE_OBJDIR)/adlmidi_opl3_7c6ef2c6.o \
   $(JUCE_OBJDIR)/adlmidi_private_9ef84ef.o \
+  $(JUCE_OBJDIR)/java_opl3_d38ec45e.o \
+  $(JUCE_OBJDIR)/opal_opl3_37ebc7f4.o \
   $(JUCE_OBJDIR)/dosbox_opl3_ebf2971d.o \
   $(JUCE_OBJDIR)/nuked_opl3_15408e75.o \
   $(JUCE_OBJDIR)/nuked_opl3_v174_fe6526ec.o \
@@ -445,6 +447,16 @@ $(JUCE_OBJDIR)/adlmidi_opl3_7c6ef2c6.o: ../../../../../thirdparty/libADLMIDI/src
 $(JUCE_OBJDIR)/adlmidi_private_9ef84ef.o: ../../../../../thirdparty/libADLMIDI/src/adlmidi_private.cpp
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling adlmidi_private.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/java_opl3_d38ec45e.o: ../../../../../thirdparty/libADLMIDI/src/chips/java_opl3.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling java_opl3.cpp"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/opal_opl3_37ebc7f4.o: ../../../../../thirdparty/libADLMIDI/src/chips/opal_opl3.cpp
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling opal_opl3.cpp"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/dosbox_opl3_ebf2971d.o: ../../../../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.cpp

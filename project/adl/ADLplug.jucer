@@ -225,6 +225,10 @@
           <FILE id="RKcUrt" name="adlmidi_ptr.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/adlmidi_ptr.hpp"/>
           <FILE id="t1ENkt" name="file_reader.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/file_reader.hpp"/>
           <GROUP id="{8038FC48-896F-DD32-B76F-C79A56D89109}" name="chips">
+            <FILE id="R5Vr3A" name="java_opl3.cpp" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/java_opl3.cpp"/>
+            <FILE id="iqCSel" name="java_opl3.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/java_opl3.h"/>
+            <FILE id="s9rEK3" name="opal_opl3.cpp" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/opal_opl3.cpp"/>
+            <FILE id="kwKwyQ" name="opal_opl3.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/opal_opl3.h"/>
             <FILE id="nDZkuv" name="dosbox_opl3.cpp" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.cpp"/>
             <FILE id="hFk0JH" name="dosbox_opl3.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/dosbox_opl3.h"/>
             <FILE id="Cydl53" name="nuked_opl3.cpp" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/nuked_opl3.cpp"/>
@@ -240,11 +244,17 @@
               <FILE id="JZgeDc" name="dbopl.cpp" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/dosbox/dbopl.cpp"/>
               <FILE id="UIoUFf" name="dbopl.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/dosbox/dbopl.h"/>
             </GROUP>
+            <GROUP id="{CF915C3B-79A3-1542-9E5E-B91CDF723008}" name="java">
+              <FILE id="Q8TcgJ" name="JavaOPL3.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/java/JavaOPL3.hpp"/>
+            </GROUP>
             <GROUP id="{D3C43548-B6B2-A539-012A-49047148E75C}" name="nuked">
               <FILE id="Y7vSRY" name="nukedopl3.c" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3.c"/>
               <FILE id="np3F4A" name="nukedopl3.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3.h"/>
               <FILE id="Gvz4rD" name="nukedopl3_174.c" compile="1" resource="0" file="../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3_174.c"/>
               <FILE id="dVM2T9" name="nukedopl3_174.h" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/nuked/nukedopl3_174.h"/>
+            </GROUP>
+            <GROUP id="{69349B09-0920-32DE-A963-EA9345252C4E}" name="opal">
+              <FILE id="pqBd1q" name="opal.hpp" compile="0" resource="0" file="../../thirdparty/libADLMIDI/src/chips/opal/opal.hpp"/>
             </GROUP>
           </GROUP>
         </GROUP>

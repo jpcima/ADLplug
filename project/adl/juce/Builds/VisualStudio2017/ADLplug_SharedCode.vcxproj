@@ -184,6 +184,8 @@
     <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_midiplay.cpp"/>
     <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_opl3.cpp"/>
     <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.cpp"/>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\java_opl3.cpp"/>
+    <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\opal_opl3.cpp"/>
     <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.cpp"/>
     <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3.cpp"/>
     <ClCompile Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3_v174.cpp"/>
@@ -2037,13 +2039,17 @@
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_private.hpp"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\adlmidi_ptr.hpp"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\file_reader.hpp"/>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\java_opl3.h"/>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\opal_opl3.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\dosbox_opl3.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\nuked_opl3_v174.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\opl_chip_base.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\dosbox\dbopl.h"/>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\java\JavaOPL3.hpp"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\nuked\nukedopl3_174.h"/>
+    <ClInclude Include="..\..\..\..\..\thirdparty\libADLMIDI\src\chips\opal\opal.hpp"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_basics\audio_play_head\juce_AudioPlayHead.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioChannelSet.h"/>
     <ClInclude Include="..\..\..\..\..\thirdparty\JUCE\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h"/>
