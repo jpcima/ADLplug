@@ -17,6 +17,7 @@
 #include "utility/pak.h"
 #include "resources.h"
 #include <fmt/format.h>
+#include <cmath>
 #include <cassert>
 
 #if defined(ADLPLUG_OPL3)
@@ -1344,7 +1345,7 @@ void Generic_Main_Component<T>::update_master_volume_label()
         self()->lbl_mastervol->setText(CharPointer_UTF8(u8"-∞ dB"), dontSendNotification);
     else {
         double dbval = dbmin + (dbmax - dbmin) * kval;
-        long displayval = lround(jlimit(dbmin, dbmax, dbval));
+        long displayval = std::lround(jlimit(dbmin, dbmax, dbval));
         String displaytext = String(displayval) + " dB";
         if (displayval >= 0)
             displaytext = "+" + displaytext;

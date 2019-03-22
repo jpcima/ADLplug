@@ -1337,7 +1337,7 @@ void Main_Component::sliderValueChanged (Slider* sliderThatWasMoved)
         else if(finetune34 < 0 && finetune34 >= -0.000025)
             value = -1;
         else {
-            value = std::lround(finetune34 * (1000.0 / 15.625));
+            value = (int)std::lround(finetune34 * (1000.0 / 15.625));
             value = (value < -127) ? -127 : value;
             value = (value > +127) ? +127 : value;
         }
@@ -1468,11 +1468,11 @@ void Main_Component::knob_value_changed(Knob *k)
     }
     else if (k == kn_fb12.get()) {
         AudioParameterInt &p = *part.p_fb12;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_fb34.get()) {
         AudioParameterInt &p = *part.p_fb34;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
 
     display_info_for_component(k);
@@ -1627,11 +1627,11 @@ bool Main_Component::display_info_for_component(Component *c)
 
     if (c == kn_fb12.get()) {
         param = "Feedback 1-2";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == kn_fb34.get()) {
         param = "Feedback 3-4";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
 
     if (param.isEmpty()) {

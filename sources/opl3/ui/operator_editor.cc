@@ -492,31 +492,31 @@ void Operator_Editor::knob_value_changed(Knob *k)
 
     if (k == sl_level.get()) {
         AudioParameterInt &p = *op.p_level;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == sl_fmul.get()) {
         AudioParameterInt &p = *op.p_fmul;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == sl_ksl.get()) {
         AudioParameterInt &p = *op.p_ksl;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_attack.get()) {
         AudioParameterInt &p = *op.p_attack;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_decay.get()) {
         AudioParameterInt &p = *op.p_decay;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_sustain.get()) {
         AudioParameterInt &p = *op.p_sustain;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_release.get()) {
         AudioParameterInt &p = *op.p_release;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
 
     display_info_for_component(k);
@@ -618,31 +618,31 @@ bool Operator_Editor::display_info_for_component(Component *c)
 
     if (c == sl_level.get()) {
         param = prefix + "Level";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == sl_fmul.get()) {
         param = prefix + "Frequency multiplier";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == sl_ksl.get()) {
         param = prefix + "Key scale level";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == kn_attack.get()) {
         param = prefix + "Attack";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == kn_decay.get()) {
         param = prefix + "Decay";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == kn_sustain.get()) {
         param = prefix + "Sustain";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == kn_release.get()) {
         param = prefix + "Release";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == btn_next_wave.get() || c == btn_prev_wave.get()) {
         param = prefix + "Wave";

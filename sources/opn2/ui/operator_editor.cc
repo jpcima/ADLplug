@@ -500,35 +500,35 @@ void Operator_Editor::knob_value_changed(Knob *k)
 
     if (k == sl_level.get()) {
         AudioParameterInt &p = *op.p_level;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == sl_fmul.get()) {
         AudioParameterInt &p = *op.p_fmul;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == sl_rsl.get()) {
         AudioParameterInt &p = *op.p_ratescale;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_attack.get()) {
         AudioParameterInt &p = *op.p_attack;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_decay.get()) {
         AudioParameterInt &p = *op.p_decay1;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_decay2.get()) {
         AudioParameterInt &p = *op.p_decay2;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_sustain.get()) {
         AudioParameterInt &p = *op.p_sustain;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_release.get()) {
         AudioParameterInt &p = *op.p_release;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
 
     display_info_for_component(k);
@@ -638,35 +638,35 @@ bool Operator_Editor::display_info_for_component(Component *c)
 
     if (c == sl_level.get()) {
         param = prefix + "Level";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == sl_fmul.get()) {
         param = prefix + "Frequency multiplier";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == sl_rsl.get()) {
         param = prefix + "Rate scale level";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (kn == kn_attack.get()) {
         param = prefix + "Attack";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (kn == kn_decay.get()) {
         param = prefix + "Primary Decay";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (kn == kn_decay2.get()) {
         param = prefix + "Secondary Decay";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (kn == kn_sustain.get()) {
         param = prefix + "Sustain";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (kn == kn_release.get()) {
         param = prefix + "Release";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == btn_next_ssgwave.get() || c == btn_prev_ssgwave.get()) {
         param = prefix + "SSG-EG Wave";

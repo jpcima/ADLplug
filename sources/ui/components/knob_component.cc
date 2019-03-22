@@ -96,7 +96,7 @@ void Knob::paint(Graphics &g)
 
     const float value = value_;
     const float ratio = (value - min_) / (max_ - min_);
-    unsigned long index = lround(ratio * (frame_count - 1));
+    unsigned long index = std::lround(ratio * (frame_count - 1));
     index = ((long)index < 0) ? 0 : (index >= frame_count) ? (frame_count - 1) : index;
 
     g.drawImage(frames[index], get_frame_bounds());

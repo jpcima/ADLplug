@@ -4,7 +4,7 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #include "ui/components/vu_meter.h"
-#include <math.h>
+#include <cmath>
 
 static const double default_hue_start = 210.0;
 static const double default_hue_range = -240.0;
@@ -54,7 +54,7 @@ void Vu_Meter::paint(Graphics &g)
     if (!logarithmic_)
         logvalue = value;
     else if (value > 0) {
-        double db = 20 * log10(value);
+        double db = 20 * std::log10(value);
         const double dbmin = -60.0;
         logvalue = (db - dbmin) / (0 - dbmin);
     }
@@ -81,7 +81,7 @@ void Vu_Meter::paint(Graphics &g)
         }
     }
 
-    int w2 = lround(w * logvalue);
+    int w2 = (int)std::lround(w * logvalue);
     w2 = (w2 > w) ? w : w2;
     for (int i = 0; i < w2; ++i) {
         g.setColour(colormap[i]);

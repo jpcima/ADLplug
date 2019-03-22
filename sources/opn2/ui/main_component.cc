@@ -1219,15 +1219,15 @@ void Main_Component::knob_value_changed(Knob *k)
     }
     else if (k == kn_feedback.get()) {
         AudioParameterInt &p = *part.p_feedback;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_ams.get()) {
         AudioParameterInt &p = *part.p_ams;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
     else if (k == kn_fms.get()) {
         AudioParameterInt &p = *part.p_fms;
-        p = std::lround(k->value());
+        p = (int)std::lround(k->value());
     }
 
     display_info_for_component(k);
@@ -1375,15 +1375,15 @@ bool Main_Component::display_info_for_component(Component *c)
 
     if (c == kn_feedback.get()) {
         param = "Feedback";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == kn_ams.get()) {
         param = "AM sensitivity";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
     else if (c == kn_fms.get()) {
         param = "FM sensitivity";
-        val = (int)lround(kn->value());
+        val = (int)std::lround(kn->value());
     }
 
     if (param.isEmpty()) {

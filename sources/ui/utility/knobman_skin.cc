@@ -6,6 +6,7 @@
 #include "ui/utility/knobman_skin.h"
 #include "ui/utility/image.h"
 #include "resources.h"
+#include <cmath>
 
 void Km_Skin::load(const Image &img, unsigned frame_count)
 {
@@ -54,8 +55,8 @@ Km_Skin_Ptr Km_Skin::scaled(double ratio) const
 
     int orig_w = this->frames[0].getWidth();
     int orig_h = this->frames[0].getHeight();
-    int new_w = lround(orig_w * ratio);
-    int new_h = lround(orig_h * ratio);
+    int new_w = (int)std::lround(orig_w * ratio);
+    int new_h = (int)std::lround(orig_h * ratio);
     for (size_t i = 0; i < frame_count; ++i)
         skin->frames[i] = this->frames[i].rescaled(new_w, new_h, Graphics::highResamplingQuality);
 
