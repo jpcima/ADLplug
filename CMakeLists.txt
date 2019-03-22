@@ -256,6 +256,10 @@ if(ADLplug_VST2)
       "-DEXECUTABLE_NAME=${ADLplug_NAME}"
       "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
       DEPENDS "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST.plist")
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/vst2/${ADLplug_NAME}.vst/Contents/Resources/")
+    execute_process(COMMAND "${CMAKE_COMMAND}" -E copy
+      "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/RecentFilesMenuTemplate.nib"
+      "${CMAKE_CURRENT_BINARY_DIR}/vst2/${ADLplug_NAME}.vst/Contents/Resources/RecentFilesMenuTemplate.nib")
   elseif(NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
     install(TARGETS ADLplug_VST2 DESTINATION "${CMAKE_INSTALL_LIBDIR}/vst")
   endif()
@@ -286,6 +290,10 @@ if(ADLplug_VST3)
       "-DEXECUTABLE_NAME=${ADLplug_NAME}"
       "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
       DEPENDS "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-VST3.plist")
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/vst3/${ADLplug_NAME}.vst3/Contents/Resources/")
+    execute_process(COMMAND "${CMAKE_COMMAND}" -E copy
+      "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/RecentFilesMenuTemplate.nib"
+      "${CMAKE_CURRENT_BINARY_DIR}/vst3/${ADLplug_NAME}.vst3/Contents/Resources/RecentFilesMenuTemplate.nib")
   endif()
 endif()
 
@@ -348,10 +356,13 @@ if(ADLplug_AU)
     "-P" "${PROJECT_SOURCE_DIR}/cmake/ConfigureFile.cmake"
     DEPENDS "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/Info-AU.plist")
 
-  file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/au/${ADLplug_NAME}.component/Resources/")
+  file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/au/${ADLplug_NAME}.component/Contents/Resources/")
+  execute_process(COMMAND "${CMAKE_COMMAND}" -E copy
+    "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/RecentFilesMenuTemplate.nib"
+    "${CMAKE_CURRENT_BINARY_DIR}/au/${ADLplug_NAME}.component/Contents/Resources/RecentFilesMenuTemplate.nib")
   execute_process(COMMAND "${CMAKE_COMMAND}" -E copy
     "${PROJECT_SOURCE_DIR}/resources/au/${ADLplug_NAME}-${PROJECT_VERSION}.rsrc"
-    "${CMAKE_CURRENT_BINARY_DIR}/au/${ADLplug_NAME}.component/Resources/${ADLplug_NAME}.rsrc")
+    "${CMAKE_CURRENT_BINARY_DIR}/au/${ADLplug_NAME}.component/Contents/Resources/${ADLplug_NAME}.rsrc")
 endif()
 
 if(ADLplug_Standalone)
@@ -414,6 +425,10 @@ if(ADLplug_Standalone OR ADLplug_Jack)
       "${PROJECT_SOURCE_DIR}/resources/application/${ADLplug_NAME}.icns"
       "${CMAKE_CURRENT_BINARY_DIR}/standalone/${ADLplug_NAME}.app/Contents/Resources/${ADLplug_NAME}.icns"
       DEPENDS "${PROJECT_SOURCE_DIR}/resources/application/${ADLplug_NAME}.icns")
+    file(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/standalone/${ADLplug_NAME}.app/Contents/Resources/")
+    execute_process(COMMAND "${CMAKE_COMMAND}" -E copy
+      "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/RecentFilesMenuTemplate.nib"
+      "${CMAKE_CURRENT_BINARY_DIR}/standalone/${ADLplug_NAME}.app/Contents/Resources/RecentFilesMenuTemplate.nib")
   endif()
 endif()
 
