@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT name="OPNplug" projectType="audioplug" buildStandalone="1" jucerVersion="5.4.1"
-              pluginFormats="buildVST,buildVST3,buildAU,buildAUv3,buildRTAS,buildAAX,buildStandalone"
-              buildVST="1" buildVST3="1" buildAU="1" buildAUv3="1" buildRTAS="1"
-              buildAAX="1" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
+              pluginFormats="buildAU,buildAUv3,buildStandalone,buildVST,buildVST3"
+              buildVST="1" buildVST3="1" buildAU="1" buildAUv3="1" buildRTAS="0"
+              buildAAX="0" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               bundleIdentifier="jpcima.OPNplug" pluginName="OPNplug" pluginDesc="OPNplug"
               pluginManufacturer="Jean Pierre Cimalando" pluginManufacturerCode="JPCm"
               pluginCode="OPNM" aaxIdentifier="jpcima.OPNplug" headerPath="../../../../../sources&#10;../../../../../thirdparty/libOPNMIDI/include&#10;../../../../../thirdparty/wopn&#10;../../../../../thirdparty/simpleini&#10;../../../../../thirdparty/fmt/include"
