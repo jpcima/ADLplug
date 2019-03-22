@@ -260,6 +260,7 @@ if(ADLplug_VST2)
     execute_process(COMMAND "${CMAKE_COMMAND}" -E copy
       "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/RecentFilesMenuTemplate.nib"
       "${CMAKE_CURRENT_BINARY_DIR}/vst2/${ADLplug_NAME}.vst/Contents/Resources/RecentFilesMenuTemplate.nib")
+    execute_process(COMMAND "${CMAKE_COMMAND}" -E create_symlink "/Library/Audio/Plug-Ins/VST" "${CMAKE_CURRENT_BINARY_DIR}/vst2/VST Plug-Ins")
   elseif(NOT CMAKE_SYSTEM_NAME STREQUAL "Windows")
     install(TARGETS ADLplug_VST2 DESTINATION "${CMAKE_INSTALL_LIBDIR}/vst")
   endif()
@@ -294,6 +295,7 @@ if(ADLplug_VST3)
     execute_process(COMMAND "${CMAKE_COMMAND}" -E copy
       "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/RecentFilesMenuTemplate.nib"
       "${CMAKE_CURRENT_BINARY_DIR}/vst3/${ADLplug_NAME}.vst3/Contents/Resources/RecentFilesMenuTemplate.nib")
+    execute_process(COMMAND "${CMAKE_COMMAND}" -E create_symlink "/Library/Audio/Plug-Ins/VST3" "${CMAKE_CURRENT_BINARY_DIR}/vst3/VST3 Plug-Ins")
   endif()
 endif()
 
@@ -363,6 +365,7 @@ if(ADLplug_AU)
   execute_process(COMMAND "${CMAKE_COMMAND}" -E copy
     "${PROJECT_SOURCE_DIR}/resources/au/${ADLplug_NAME}-${PROJECT_VERSION}.rsrc"
     "${CMAKE_CURRENT_BINARY_DIR}/au/${ADLplug_NAME}.component/Contents/Resources/${ADLplug_NAME}.rsrc")
+  execute_process(COMMAND "${CMAKE_COMMAND}" -E create_symlink "/Library/Audio/Plug-Ins/Components" "${CMAKE_CURRENT_BINARY_DIR}/au/Audio Units")
 endif()
 
 if(ADLplug_Standalone)
@@ -429,6 +432,7 @@ if(ADLplug_Standalone OR ADLplug_Jack)
     execute_process(COMMAND "${CMAKE_COMMAND}" -E copy
       "${JUCE_PROJECT_DIR}/juce/Builds/MacOSX/RecentFilesMenuTemplate.nib"
       "${CMAKE_CURRENT_BINARY_DIR}/standalone/${ADLplug_NAME}.app/Contents/Resources/RecentFilesMenuTemplate.nib")
+    execute_process(COMMAND "${CMAKE_COMMAND}" -E create_symlink "/Applications" "${CMAKE_CURRENT_BINARY_DIR}/standalone/Applications")
   endif()
 endif()
 
