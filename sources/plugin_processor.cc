@@ -821,14 +821,13 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
             if (!info.used.test(p_i))
                 continue;
             pl->ensure_get_instrument(info.bank, p_i, ins);
-            PropertySet ins_set;
+            PropertySet ins_set = ins.to_properties();
             ins_set.setValue("bank", (int)info.id.to_integer());
             ins_set.setValue("program", (int)p_i);
             char name[33];
             name[32] = '\0';
             memcpy(name, info.ins_names + 32 * p_i, 32);
             ins_set.setValue("name", name);
-            ins_set = ins.to_properties();
             std::unique_ptr<XmlElement> elt(ins_set.createXml("instrument"));
             root.addChildElement(elt.get());
             elt.release();
