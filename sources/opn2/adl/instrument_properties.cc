@@ -6,23 +6,22 @@
 #include "instrument.h"
 #include "JuceHeader.h"
 
-void Instrument::to_properties(PropertySet &set, const char *key_prefix) const
+PropertySet Instrument::to_properties() const
 {
-    String pfx = key_prefix;
+    PropertySet set;
 
-    // set.setValue(pfx + "pseudo_eight_op", pseudo_eight_op());
-    set.setValue(pfx + "blank", blank());
-    set.setValue(pfx + "note_offset", (int)note_offset);
-    set.setValue(pfx + "feedback", (int)feedback());
-    set.setValue(pfx + "algorithm", (int)algorithm());
-    set.setValue(pfx + "ams", (int)ams());
-    set.setValue(pfx + "fms", (int)fms());
-    set.setValue(pfx + "midi_velocity_offset", (int)midi_velocity_offset);
-    set.setValue(pfx + "percussion_key_number", (int)percussion_key_number);
+    // set.setValue("pseudo_eight_op", pseudo_eight_op());
+    set.setValue("blank", blank());
+    set.setValue("note_offset", (int)note_offset);
+    set.setValue("feedback", (int)feedback());
+    set.setValue("algorithm", (int)algorithm());
+    set.setValue("ams", (int)ams());
+    set.setValue("fms", (int)fms());
+    set.setValue("midi_velocity_offset", (int)midi_velocity_offset);
+    set.setValue("percussion_key_number", (int)percussion_key_number);
 
     for (unsigned opnum = 0; opnum < 4; ++opnum) {
-        const String opfx = pfx +
-            ((const char *[]){ "op1", "op3", "op2", "op4" })[opnum];
+        const String opfx = ((const char *[]){ "op1", "op3", "op2", "op4" })[opnum];
         set.setValue(opfx + "detune", (int)detune(opnum));
         set.setValue(opfx + "fmul", (int)fmul(opnum));
         set.setValue(opfx + "level", (int)level(opnum));
@@ -37,28 +36,28 @@ void Instrument::to_properties(PropertySet &set, const char *key_prefix) const
         set.setValue(opfx + "ssgwave", (int)ssgwave(opnum));
     }
 
-    set.setValue(pfx + "delay_off_ms", (int)delay_off_ms);
-    set.setValue(pfx + "delay_on_ms", (int)delay_on_ms);
+    set.setValue("delay_off_ms", (int)delay_off_ms);
+    set.setValue("delay_on_ms", (int)delay_on_ms);
+
+    return set;
 }
 
-Instrument Instrument::from_properties(const juce::PropertySet &set, const char *key_prefix)
+Instrument Instrument::from_properties(const juce::PropertySet &set)
 {
     Instrument ins;
-    String pfx = key_prefix;
 
-    // ins.pseudo_eight_op(set.getBoolValue(pfx + "pseudo_eight_op"));
-    ins.blank(set.getBoolValue(pfx + "blank"));
+    // ins.pseudo_eight_op(set.getBoolValue("pseudo_eight_op"));
+    ins.blank(set.getBoolValue("blank"));
     ins.note_offset = set.getIntValue("note_offset");
-    ins.feedback(set.getIntValue(pfx + "feedback"));
-    ins.algorithm(set.getIntValue(pfx + "algorithm"));
-    ins.ams(set.getIntValue(pfx + "ams"));
-    ins.fms(set.getIntValue(pfx + "fms"));
-    ins.midi_velocity_offset = set.getIntValue(pfx + "midi_velocity_offset");
-    ins.percussion_key_number = set.getIntValue(pfx + "percussion_key_number");
+    ins.feedback(set.getIntValue("feedback"));
+    ins.algorithm(set.getIntValue("algorithm"));
+    ins.ams(set.getIntValue("ams"));
+    ins.fms(set.getIntValue("fms"));
+    ins.midi_velocity_offset = set.getIntValue("midi_velocity_offset");
+    ins.percussion_key_number = set.getIntValue("percussion_key_number");
 
     for (unsigned opnum = 0; opnum < 4; ++opnum) {
-        const String opfx = pfx +
-            ((const char *[]){ "op1", "op3", "op2", "op4" })[opnum];
+        const String opfx = ((const char *[]){ "op1", "op3", "op2", "op4" })[opnum];
         ins.detune(opnum, set.getIntValue(opfx + "detune"));
         ins.fmul(opnum, set.getIntValue(opfx + "fmul"));
         ins.level(opnum, set.getIntValue(opfx + "level"));
@@ -73,8 +72,26 @@ Instrument Instrument::from_properties(const juce::PropertySet &set, const char 
         ins.ssgwave(opnum, set.getIntValue(opfx + "ssgwave"));
     }
 
-    ins.delay_off_ms = set.getIntValue(pfx + "delay_off_ms");
-    ins.delay_on_ms = set.getIntValue(pfx + "delay_on_ms");
+    ins.delay_off_ms = set.getIntValue("delay_off_ms");
+    ins.delay_on_ms = set.getIntValue("delay_on_ms");
 
     return ins;
+}
+
+PropertySet Instrument_Global_Parameters::to_properties() const
+{
+    PropertySet set;
+    set.setValue("volume_model", (int)volume_model);
+    set.setValue("lfo_enable", lfo_enable);
+    set.setValue("lfo_frequency", (int)lfo_frequency);
+    return set;
+}
+
+Instrument_Global_Parameters Instrument_Global_Parameters::from_properties(const PropertySet &set)
+{
+    Instrument_Global_Parameters gp;
+    gp.volume_model = set.getIntValue("volume_model");
+    gp.lfo_enable = set.getBoolValue("lfo_enable");
+    gp.lfo_frequency = set.getIntValue("lfo_frequency");
+    return gp;
 }

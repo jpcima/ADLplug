@@ -6,26 +6,25 @@
 #include "instrument.h"
 #include "JuceHeader.h"
 
-void Instrument::to_properties(PropertySet &set, const char *key_prefix) const
+PropertySet Instrument::to_properties() const
 {
-    String pfx = key_prefix;
+    PropertySet set;
 
-    set.setValue(pfx + "four_op", four_op());
-    set.setValue(pfx + "pseudo_four_op", pseudo_four_op());
-    set.setValue(pfx + "blank", blank());
-    set.setValue(pfx + "con12", con12());
-    set.setValue(pfx + "con34", con34());
-    set.setValue(pfx + "note_offset1", (int)note_offset1);
-    set.setValue(pfx + "note_offset2", (int)note_offset2);
-    set.setValue(pfx + "fb12", (int)fb12());
-    set.setValue(pfx + "fb34", (int)fb34());
-    set.setValue(pfx + "midi_velocity_offset", (int)midi_velocity_offset);
-    set.setValue(pfx + "second_voice_detune", (int)second_voice_detune);
-    set.setValue(pfx + "percussion_key_number", (int)percussion_key_number);
+    set.setValue("four_op", four_op());
+    set.setValue("pseudo_four_op", pseudo_four_op());
+    set.setValue("blank", blank());
+    set.setValue("con12", con12());
+    set.setValue("con34", con34());
+    set.setValue("note_offset1", (int)note_offset1);
+    set.setValue("note_offset2", (int)note_offset2);
+    set.setValue("fb12", (int)fb12());
+    set.setValue("fb34", (int)fb34());
+    set.setValue("midi_velocity_offset", (int)midi_velocity_offset);
+    set.setValue("second_voice_detune", (int)second_voice_detune);
+    set.setValue("percussion_key_number", (int)percussion_key_number);
 
     for (unsigned opnum = 0; opnum < 4; ++opnum) {
-        const String opfx = pfx +
-            ((const char *[]){ "c1", "m1", "c2", "m2" })[opnum];
+        const String opfx = ((const char *[]){ "c1", "m1", "c2", "m2" })[opnum];
         set.setValue(opfx + "attack", (int)attack(opnum));
         set.setValue(opfx + "decay", (int)decay(opnum));
         set.setValue(opfx + "sustain", (int)sustain(opnum));
@@ -40,31 +39,31 @@ void Instrument::to_properties(PropertySet &set, const char *key_prefix) const
         set.setValue(opfx + "wave", (int)wave(opnum));
     }
 
-    set.setValue(pfx + "delay_off_ms", (int)delay_off_ms);
-    set.setValue(pfx + "delay_on_ms", (int)delay_on_ms);
+    set.setValue("delay_off_ms", (int)delay_off_ms);
+    set.setValue("delay_on_ms", (int)delay_on_ms);
+
+    return set;
 }
 
-Instrument Instrument::from_properties(const juce::PropertySet &set, const char *key_prefix)
+Instrument Instrument::from_properties(const juce::PropertySet &set)
 {
     Instrument ins;
-    String pfx = key_prefix;
 
-    ins.four_op(set.getBoolValue(pfx + "four_op"));
-    ins.pseudo_four_op(set.getBoolValue(pfx + "pseudo_four_op"));
-    ins.blank(set.getBoolValue(pfx + "blank"));
-    ins.con12(set.getBoolValue(pfx + "con12"));
-    ins.con34(set.getBoolValue(pfx + "con34"));
+    ins.four_op(set.getBoolValue("four_op"));
+    ins.pseudo_four_op(set.getBoolValue("pseudo_four_op"));
+    ins.blank(set.getBoolValue("blank"));
+    ins.con12(set.getBoolValue("con12"));
+    ins.con34(set.getBoolValue("con34"));
     ins.note_offset1 = set.getIntValue("note_offset1");
     ins.note_offset2 = set.getIntValue("note_offset2");
-    ins.fb12(set.getIntValue(pfx + "fb12"));
-    ins.fb34(set.getIntValue(pfx + "fb34"));
-    ins.midi_velocity_offset = set.getIntValue(pfx + "midi_velocity_offset");
-    ins.second_voice_detune = set.getIntValue(pfx + "second_voice_detune");
-    ins.percussion_key_number = set.getIntValue(pfx + "percussion_key_number");
+    ins.fb12(set.getIntValue("fb12"));
+    ins.fb34(set.getIntValue("fb34"));
+    ins.midi_velocity_offset = set.getIntValue("midi_velocity_offset");
+    ins.second_voice_detune = set.getIntValue("second_voice_detune");
+    ins.percussion_key_number = set.getIntValue("percussion_key_number");
 
     for (unsigned opnum = 0; opnum < 4; ++opnum) {
-        const String opfx = pfx +
-            ((const char *[]){ "c1", "m1", "c2", "m2" })[opnum];
+        const String opfx = ((const char *[]){ "c1", "m1", "c2", "m2" })[opnum];
         ins.attack(opnum, set.getIntValue(opfx + "attack"));
         ins.decay(opnum, set.getIntValue(opfx + "decay"));
         ins.sustain(opnum, set.getIntValue(opfx + "sustain"));
@@ -79,8 +78,26 @@ Instrument Instrument::from_properties(const juce::PropertySet &set, const char 
         ins.wave(opnum, set.getIntValue(opfx + "wave"));
     }
 
-    ins.delay_off_ms = set.getIntValue(pfx + "delay_off_ms");
-    ins.delay_on_ms = set.getIntValue(pfx + "delay_on_ms");
+    ins.delay_off_ms = set.getIntValue("delay_off_ms");
+    ins.delay_on_ms = set.getIntValue("delay_on_ms");
 
     return ins;
+}
+
+PropertySet Instrument_Global_Parameters::to_properties() const
+{
+    PropertySet set;
+    set.setValue("volume_model", (int)volume_model);
+    set.setValue("deep_tremolo", deep_tremolo);
+    set.setValue("deep_vibrato", deep_vibrato);
+    return set;
+}
+
+Instrument_Global_Parameters Instrument_Global_Parameters::from_properties(const PropertySet &set)
+{
+    Instrument_Global_Parameters gp;
+    gp.volume_model = set.getIntValue("volume_model");
+    gp.deep_tremolo = set.getBoolValue("deep_tremolo");
+    gp.deep_vibrato = set.getBoolValue("deep_vibrato");
+    return gp;
 }

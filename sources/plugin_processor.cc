@@ -125,8 +125,10 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     pl->init(sample_rate);
     pl->reserve_banks(bank_reserve_size);
     pl->set_soft_pan_enabled(true);
-    pl->set_num_chips(Chip_Settings{}.chip_count);
-    pl->set_emulator(get_emulator_defaults().default_index);
+
+    Chip_Settings cs;
+    cs.emulator = get_emulator_defaults().default_index;
+    set_player_chip_settings(*pl, cs);
     mark_for_notification(Cb_ChipSettings);
 
     for (unsigned i = 0; i < 2; ++i) {
@@ -167,8 +169,9 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     setStateInformation(
         last_state_information_.getData(), (unsigned)last_state_information_.getSize());
 
-    set_chip_settings_notifying_host();
-    set_global_parameters_notifying_host();
+    Parameter_Block &pb = *parameter_block_;
+    pb.set_chip_settings(get_player_chip_settings(*pl));
+    pb.set_global_parameters(get_player_global_parameters(*pl));
     for (unsigned p = 0; p < 16; ++p)
         set_instrument_parameters_notifying_host(p);
 
@@ -384,11 +387,13 @@ void AdlplugAudioProcessor::process_messages(bool under_lock)
 
 void AdlplugAudioProcessor::process_parameter_changes()
 {
+    Player &pl = *player_;
+    Bank_Manager &bm = *bank_manager_;
+    Parameter_Block &pb = *parameter_block_;
+
     if (unmark_parameter_as_changed(Cb_ChipSettings)) {
-        Chip_Settings cs, cs_current;
-        parameters_to_chip_settings(cs);
-        chip_settings_from_emulator(cs_current);
-        if (cs != cs_current) {
+        Chip_Settings cs = pb.chip_settings();
+        if (cs != get_player_chip_settings(pl)) {
             Simple_Fifo &queue = *mq_to_worker_;
             Message_Header hdr(Fx_Message::RequestChipSettings, sizeof(Messages::Fx::RequestChipSettings));
             Buffered_Message msg = Messages::write(queue, hdr);
@@ -396,7 +401,7 @@ void AdlplugAudioProcessor::process_parameter_changes()
                 mark_parameter_as_changed(Cb_ChipSettings);  // do later
             else {
                 auto &body = *(Messages::Fx::RequestChipSettings *)msg.data;
-                parameters_to_chip_settings(body.cs);
+                body.cs = cs;
                 Messages::finish_write(queue, msg);
                 Worker &worker = *worker_;
                 worker.postSemaphore();
@@ -406,9 +411,7 @@ void AdlplugAudioProcessor::process_parameter_changes()
 
     for (unsigned p = 0; p < 16; ++p) {
         if (unmark_parameter_as_changed(Cb_Instrument1 + p)) {
-            Bank_Manager &bm = *bank_manager_;
-            Instrument ins;
-            parameters_to_instrument(p, ins);
+            Instrument ins = pb.part[p].instrument();
             const Selection &sel = selection_[p];
             bm.load_program(
                 sel.bank, sel.program, ins,
@@ -417,9 +420,7 @@ void AdlplugAudioProcessor::process_parameter_changes()
     }
 
     if (unmark_parameter_as_changed(Cb_GlobalParameters)) {
-        Bank_Manager &bm = *bank_manager_;
-        Instrument_Global_Parameters gp;
-        parameters_to_global(gp);
+        Instrument_Global_Parameters gp = pb.global_parameters();
         bm.load_global_parameters(gp, true);
     }
 }
@@ -557,6 +558,9 @@ bool AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len)
 
 bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_Handler_Context &ctx)
 {
+    Player &pl = *player_;
+    Parameter_Block &pb = *parameter_block_;
+
     const uint8_t *data = msg.data;
     unsigned tag = msg.header->tag;
     unsigned size = msg.header->size;
@@ -601,7 +605,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     case (unsigned)User_Message::LoadGlobalParameters: {
         auto &body = *(const Messages::User::LoadGlobalParameters *)data;
         if (bm.load_global_parameters(body.param, body.notify_back))
-            set_global_parameters_notifying_host();
+            pb.set_global_parameters(get_player_global_parameters(pl));
         break;
     }
     case (unsigned)User_Message::LoadInstrument: {
@@ -702,129 +706,6 @@ void AdlplugAudioProcessor::finish_handling_messages(Message_Handler_Context &ct
     bank_manager_->send_measurement_requests();
 }
 
-void AdlplugAudioProcessor::parameters_to_chip_settings(Chip_Settings &cs) const
-{
-    const Parameter_Block &pb = *parameter_block_;
-
-    cs.emulator = pb.p_emulator->getIndex();
-    cs.chip_count = pb.p_nchip->get();
-#if defined(ADLPLUG_OPL3)
-    cs.fourop_count = pb.p_n4op->get();
-#elif defined(ADLPLUG_OPN2)
-    cs.chip_type = pb.p_chiptype->getIndex();
-#endif
-}
-
-void AdlplugAudioProcessor::parameters_to_global(Instrument_Global_Parameters &gp) const
-{
-    const Parameter_Block &pb = *parameter_block_;
-
-    gp.volume_model = pb.p_volmodel->getIndex();
-#if defined(ADLPLUG_OPL3)
-    gp.deep_tremolo = pb.p_deeptrem->get();
-    gp.deep_vibrato = pb.p_deepvib->get();
-#elif defined(ADLPLUG_OPN2)
-    gp.lfo_enable = pb.p_lfoenable->get();
-    gp.lfo_frequency = pb.p_lfofreq->getIndex();
-#endif
-}
-
-void AdlplugAudioProcessor::parameters_to_instrument(unsigned part_number, Instrument &ins) const
-{
-    const Parameter_Block &pb = *parameter_block_;
-    const Parameter_Block::Part &part = pb.part[part_number];
-
-    ins.version = Instrument::latest_version;
-    ins.inst_flags = 0;
-
-#if defined(ADLPLUG_OPL3)
-    ins.four_op(part.p_is4op->get());
-    ins.pseudo_four_op(part.p_ps4op->get());
-    ins.blank(part.p_blank->get());
-    ins.con12(part.p_con12->getIndex());
-    ins.con34(part.p_con34->getIndex());
-    ins.note_offset1 = part.p_tune12->get();
-    ins.note_offset2 = part.p_tune34->get();
-    ins.fb12(part.p_fb12->get());
-    ins.fb34(part.p_fb34->get());
-    ins.midi_velocity_offset = part.p_veloffset->get();
-    ins.second_voice_detune = part.p_voice2ft->get();
-    ins.percussion_key_number = part.p_drumnote->get();
-#elif defined(ADLPLUG_OPN2)
-    // ins.pseudo_eight_op(part.p_ps8op->get());
-    ins.blank(part.p_blank->get());
-    ins.note_offset = part.p_tune->get();
-    // ins.note_offset2 = part.p_tune34->get();
-    ins.feedback(part.p_feedback->get());
-    ins.algorithm(part.p_algorithm->get());
-    ins.ams(part.p_ams->get());
-    ins.fms(part.p_fms->get());
-    ins.midi_velocity_offset = part.p_veloffset->get();
-    // ins.second_voice_detune = part.p_voice2ft->get();
-    ins.percussion_key_number = part.p_drumnote->get();
-#endif
-
-    for (unsigned opnum = 0; opnum < 4; ++opnum) {
-        const Parameter_Block::Operator &op = part.nth_operator(opnum);
-#if defined(ADLPLUG_OPL3)
-        ins.attack(opnum, op.p_attack->get());
-        ins.decay(opnum, op.p_decay->get());
-        ins.sustain(opnum, op.p_sustain->get());
-        ins.release(opnum, op.p_release->get());
-        ins.level(opnum, op.p_level->get());
-        ins.ksl(opnum, op.p_ksl->get());
-        ins.fmul(opnum, op.p_fmul->get());
-        ins.trem(opnum, op.p_trem->get());
-        ins.vib(opnum, op.p_vib->get());
-        ins.sus(opnum, op.p_sus->get());
-        ins.env(opnum, op.p_env->get());
-        ins.wave(opnum, op.p_wave->getIndex());
-#elif defined(ADLPLUG_OPN2)
-        ins.detune(opnum, op.p_detune->get());
-        ins.fmul(opnum, op.p_fmul->get());
-        ins.level(opnum, op.p_level->get());
-        ins.ratescale(opnum, op.p_ratescale->get());
-        ins.attack(opnum, op.p_attack->get());
-        ins.am(opnum, op.p_am->get());
-        ins.decay1(opnum, op.p_decay1->get());
-        ins.decay2(opnum, op.p_decay2->get());
-        ins.sustain(opnum, op.p_sustain->get());
-        ins.release(opnum, op.p_release->get());
-        ins.ssgenable(opnum, op.p_ssgenable->get());
-        ins.ssgwave(opnum, op.p_ssgwave->getIndex());
-#endif
-    }
-}
-
-void AdlplugAudioProcessor::set_chip_settings_notifying_host()
-{
-    Player *pl = player_.get();
-    Parameter_Block &pb = *parameter_block_;
-
-    *pb.p_emulator = pl->emulator();
-    *pb.p_nchip = pl->num_chips();
-#if defined(ADLPLUG_OPL3)
-    *pb.p_n4op = pl->num_4ops();
-#elif defined(ADLPLUG_OPN2)
-    *pb.p_chiptype = pl->chip_type();
-#endif
-}
-
-void AdlplugAudioProcessor::set_global_parameters_notifying_host()
-{
-    Player *pl = player_.get();
-    Parameter_Block &pb = *parameter_block_;
-
-    *pb.p_volmodel = pl->volume_model() - 1;
-#if defined(ADLPLUG_OPL3)
-    *pb.p_deeptrem = pl->deep_tremolo();
-    *pb.p_deepvib = pl->deep_vibrato();
-#elif defined(ADLPLUG_OPN2)
-    *pb.p_lfoenable = pl->lfo_enabled();
-    *pb.p_lfofreq = pl->lfo_frequency();
-#endif
-}
-
 void AdlplugAudioProcessor::set_instrument_parameters_notifying_host(unsigned part_number)
 {
     Instrument ins;
@@ -835,78 +716,7 @@ void AdlplugAudioProcessor::set_instrument_parameters_notifying_host(unsigned pa
         return;
 
     Parameter_Block &pb = *parameter_block_;
-    Parameter_Block::Part &part = pb.part[part_number];
-
-#if defined(ADLPLUG_OPL3)
-    *part.p_is4op = ins.four_op();
-    *part.p_ps4op = ins.pseudo_four_op();
-    *part.p_blank = ins.blank();
-    *part.p_con12 = ins.con12();
-    *part.p_con34 = ins.con34();
-    *part.p_tune12 = ins.note_offset1;
-    *part.p_tune34 = ins.note_offset2;
-    *part.p_fb12 = ins.fb12();
-    *part.p_fb34 = ins.fb34();
-    *part.p_veloffset = ins.midi_velocity_offset;
-    *part.p_voice2ft = ins.second_voice_detune;
-    *part.p_drumnote = ins.percussion_key_number;
-#elif defined(ADLPLUG_OPN2)
-    // *part.p_ps8op = ins.pseudo_eight_op();
-    *part.p_blank = ins.blank();
-    *part.p_tune = ins.note_offset;
-    // *part.p_tune34 = ins.note_offset2;
-    *part.p_feedback = ins.feedback();
-    *part.p_algorithm = ins.algorithm();
-    *part.p_ams = ins.ams();
-    *part.p_fms = ins.fms();
-    *part.p_veloffset = ins.midi_velocity_offset;
-    // *part.p_voice2ft = ins.second_voice_detune;
-    *part.p_drumnote = ins.percussion_key_number;
-#endif
-
-    for (unsigned opnum = 0; opnum < 4; ++opnum) {
-        Parameter_Block::Operator &op = part.nth_operator(opnum);
-#if defined(ADLPLUG_OPL3)
-        *op.p_attack = ins.attack(opnum);
-        *op.p_decay = ins.decay(opnum);
-        *op.p_sustain = ins.sustain(opnum);
-        *op.p_release = ins.release(opnum);
-        *op.p_level = ins.level(opnum);
-        *op.p_ksl = ins.ksl(opnum);
-        *op.p_fmul = ins.fmul(opnum);
-        *op.p_trem = ins.trem(opnum);
-        *op.p_vib = ins.vib(opnum);
-        *op.p_sus = ins.sus(opnum);
-        *op.p_env = ins.env(opnum);
-        *op.p_wave = ins.wave(opnum);
-#elif defined(ADLPLUG_OPN2)
-        *op.p_detune = ins.detune(opnum);
-        *op.p_fmul = ins.fmul(opnum);
-        *op.p_level = ins.level(opnum);
-        *op.p_ratescale = ins.ratescale(opnum);
-        *op.p_attack = ins.attack(opnum);
-        *op.p_am = ins.am(opnum);
-        *op.p_decay1 = ins.decay1(opnum);
-        *op.p_decay2 = ins.decay2(opnum);
-        *op.p_sustain = ins.sustain(opnum);
-        *op.p_release = ins.release(opnum);
-        *op.p_ssgenable = ins.ssgenable(opnum);
-        *op.p_ssgwave = ins.ssgwave(opnum);
-#endif
-    }
-}
-
-void AdlplugAudioProcessor::chip_settings_from_emulator(Chip_Settings &cs) const
-{
-    const Player &pl = *player_;
-
-    cs.emulator = pl.emulator();
-    cs.chip_count = pl.num_chips();
-#if defined(ADLPLUG_OPL3)
-    cs.fourop_count = pl.num_4ops();
-#elif defined(ADLPLUG_OPN2)
-    cs.chip_type = pl.chip_type();
-#endif
+    pb.part[part_number].set_instrument(ins);
 }
 
 void AdlplugAudioProcessor::send_program_change_from_selection(unsigned part)
@@ -1018,7 +828,7 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
             name[32] = '\0';
             memcpy(name, info.ins_names + 32 * p_i, 32);
             ins_set.setValue("name", name);
-            ins.to_properties(ins_set, "");
+            ins_set = ins.to_properties();
             std::unique_ptr<XmlElement> elt(ins_set.createXml("instrument"));
             root.addChildElement(elt.get());
             elt.release();
@@ -1038,31 +848,14 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
 
     // chip settings
     {
-        PropertySet chip_set;
-        chip_set.setValue("emulator", (int)pl->emulator());
-        chip_set.setValue("chip_count", (int)pl->num_chips());
-#if defined(ADLPLUG_OPL3)
-        chip_set.setValue("4op_count", (int)pl->num_4ops());
-#elif defined(ADLPLUG_OPN2)
-        chip_set.setValue("chip_type", (int)pl->chip_type());
-#endif
-        std::unique_ptr<XmlElement> elt(chip_set.createXml("chip"));
+        std::unique_ptr<XmlElement> elt(get_player_chip_settings(*pl).to_properties().createXml("chip"));
         root.addChildElement(elt.get());
         elt.release();
     }
 
     // global parameters
     {
-        PropertySet global_set;
-        global_set.setValue("volume_model", (int)pl->volume_model() - 1);
-#if defined(ADLPLUG_OPL3)
-        global_set.setValue("deep_tremolo", pl->deep_tremolo());
-        global_set.setValue("deep_vibrato", pl->deep_vibrato());
-#elif defined(ADLPLUG_OPN2)
-        global_set.setValue("lfo_enable", pl->lfo_enabled());
-        global_set.setValue("lfo_frequency", (int)pl->lfo_frequency());
-#endif
-        std::unique_ptr<XmlElement> elt(global_set.createXml("global"));
+        std::unique_ptr<XmlElement> elt(get_player_global_parameters(*pl).to_properties().createXml("global"));
         root.addChildElement(elt.get());
         elt.release();
     }
@@ -1112,7 +905,7 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
         unsigned program = ins_set.getIntValue("program");
         if (bank.lsb > 127 || bank.msb > 127 || program > 127)
             continue;
-        Instrument ins = Instrument::from_properties(ins_set, "");
+        Instrument ins = Instrument::from_properties(ins_set);
         String name = ins_set.getValue("name");
         const char *name_utf8  = name.toRawUTF8();
         memset(ins.name, 0, 32);
@@ -1148,31 +941,18 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
     }
 
     // chip settings
-    PropertySet chip_set;
-    if (XmlElement *elt = root->getChildByName("chip"))
-        chip_set.restoreFromXml(*elt);
-    pl.set_emulator(chip_set.getIntValue("emulator"));
-    pl.set_num_chips(chip_set.getIntValue("chip_count"));
-#if defined(ADLPLUG_OPL3)
-    pl.set_num_4ops(chip_set.getIntValue("4op_count"));
-#elif defined(ADLPLUG_OPN2)
-    pl.set_chip_type(chip_set.getIntValue("chip_type"));
-#endif
+    if (XmlElement *elt = root->getChildByName("chip")) {
+        PropertySet set;
+        set.restoreFromXml(*elt);
+        set_player_chip_settings(pl, Chip_Settings::from_properties(set));
+    }
 
     // global parameters
-    PropertySet global_set;
-    if (XmlElement *elt = root->getChildByName("global"))
-        global_set.restoreFromXml(*elt);
-    Instrument_Global_Parameters gp;
-    gp.volume_model = global_set.getIntValue("volume_model");
-#if defined(ADLPLUG_OPL3)
-    gp.deep_tremolo = global_set.getBoolValue("deep_tremolo");
-    gp.deep_vibrato = global_set.getBoolValue("deep_vibrato");
-#elif defined(ADLPLUG_OPN2)
-    gp.lfo_enable = global_set.getBoolValue("lfo_enable");
-    gp.lfo_frequency = global_set.getIntValue("lfo_frequency");
-#endif
-    bm.load_global_parameters(gp, false);
+    if (XmlElement *elt = root->getChildByName("global")) {
+        PropertySet set;
+        set.restoreFromXml(*elt);
+        bm.load_global_parameters(Instrument_Global_Parameters::from_properties(set), false);
+    }
 
     // common parameters
     PropertySet common_set;
@@ -1194,8 +974,8 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
         send_program_change_from_selection(p);
 
     // make the host aware of changed parameters
-    set_chip_settings_notifying_host();
-    set_global_parameters_notifying_host();
+    pb.set_chip_settings(get_player_chip_settings(pl));
+    pb.set_global_parameters(get_player_global_parameters(pl));
     for (unsigned p = 0; p < 16; ++p)
         set_instrument_parameters_notifying_host(p);
     *pb.p_mastervol = common_set.getDoubleValue("master_volume", 1.0f);

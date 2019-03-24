@@ -7,8 +7,16 @@
 #include "JuceHeader.h"
 #include "../parameter_block.h"
 class AudioProcessorEx;
+struct Instrument;
+struct Chip_Settings;
+struct Instrument_Global_Parameters;
 
 struct Parameter_Block : Basic_Parameter_Block {
+    Chip_Settings chip_settings() const;
+    Instrument_Global_Parameters global_parameters() const;
+    void set_chip_settings(const Chip_Settings &cs);
+    void set_global_parameters(const Instrument_Global_Parameters &gp);
+
     AudioParameterFloat *p_mastervol = nullptr;
 
     AudioParameterChoice *p_emulator = nullptr;
@@ -31,6 +39,9 @@ struct Parameter_Block : Basic_Parameter_Block {
     };
 
     struct Part {
+        Instrument instrument() const;
+        void set_instrument(const Instrument &ins);
+
         AudioParameterBool *p_is4op = nullptr;
         AudioParameterBool *p_ps4op = nullptr;
         AudioParameterBool *p_blank = nullptr;

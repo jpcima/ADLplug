@@ -71,3 +71,21 @@ Emulator_Defaults &get_emulator_defaults()
     emulator_defaults_ = std::move(defaults_u);
     return *defaults;
 }
+
+PropertySet Chip_Settings::to_properties() const
+{
+    PropertySet set;
+    set.setValue("emulator", (int)emulator);
+    set.setValue("chip_count", (int)chip_count);
+    set.setValue("chip_type", (int)chip_type);
+    return set;
+}
+
+Chip_Settings Chip_Settings::from_properties(const PropertySet &set)
+{
+    Chip_Settings cs;
+    cs.emulator = set.getIntValue("emulator");
+    cs.chip_count = set.getIntValue("chip_count");
+    cs.chip_type = set.getIntValue("chip_type");
+    return cs;
+}

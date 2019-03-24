@@ -138,3 +138,105 @@ void Parameter_Block::setup_parameters(AudioProcessorEx &p)
     p_deeptrem = add_parameter<Pt::Bool>(p, 'glob', "deeptrem", "Deep tremolo", wopl->opl_flags & WOPL_FLAG_DEEP_TREMOLO, String());
     p_deepvib = add_parameter<Pt::Bool>(p, 'glob', "deepvib", "Deep vibrato", wopl->opl_flags & WOPL_FLAG_DEEP_VIBRATO, String());
 }
+
+Chip_Settings Parameter_Block::chip_settings() const
+{
+    Chip_Settings cs;
+    cs.emulator = p_emulator->getIndex();
+    cs.chip_count = p_nchip->get();
+    cs.fourop_count = p_n4op->get();
+    return cs;
+}
+
+Instrument_Global_Parameters Parameter_Block::global_parameters() const
+{
+    Instrument_Global_Parameters gp;
+    gp.volume_model = p_volmodel->getIndex();
+    gp.deep_tremolo = p_deeptrem->get();
+    gp.deep_vibrato = p_deepvib->get();
+    return gp;
+}
+
+void Parameter_Block::set_chip_settings(const Chip_Settings &cs)
+{
+    *p_emulator = cs.emulator;
+    *p_nchip = cs.chip_count;
+    *p_n4op = cs.fourop_count;
+}
+
+void Parameter_Block::set_global_parameters(const Instrument_Global_Parameters &gp)
+{
+    *p_volmodel = gp.volume_model;
+    *p_deeptrem = gp.deep_tremolo;
+    *p_deepvib = gp.deep_vibrato;
+}
+
+Instrument Parameter_Block::Part::instrument() const
+{
+    Instrument ins;
+    ins.version = Instrument::latest_version;
+    ins.inst_flags = 0;
+
+    ins.four_op(p_is4op->get());
+    ins.pseudo_four_op(p_ps4op->get());
+    ins.blank(p_blank->get());
+    ins.con12(p_con12->getIndex());
+    ins.con34(p_con34->getIndex());
+    ins.note_offset1 = p_tune12->get();
+    ins.note_offset2 = p_tune34->get();
+    ins.fb12(p_fb12->get());
+    ins.fb34(p_fb34->get());
+    ins.midi_velocity_offset = p_veloffset->get();
+    ins.second_voice_detune = p_voice2ft->get();
+    ins.percussion_key_number = p_drumnote->get();
+
+    for (unsigned opnum = 0; opnum < 4; ++opnum) {
+        const Parameter_Block::Operator &op = nth_operator(opnum);
+        ins.attack(opnum, op.p_attack->get());
+        ins.decay(opnum, op.p_decay->get());
+        ins.sustain(opnum, op.p_sustain->get());
+        ins.release(opnum, op.p_release->get());
+        ins.level(opnum, op.p_level->get());
+        ins.ksl(opnum, op.p_ksl->get());
+        ins.fmul(opnum, op.p_fmul->get());
+        ins.trem(opnum, op.p_trem->get());
+        ins.vib(opnum, op.p_vib->get());
+        ins.sus(opnum, op.p_sus->get());
+        ins.env(opnum, op.p_env->get());
+        ins.wave(opnum, op.p_wave->getIndex());
+    }
+
+    return ins;
+}
+
+void Parameter_Block::Part::set_instrument(const Instrument &ins)
+{
+    *p_is4op = ins.four_op();
+    *p_ps4op = ins.pseudo_four_op();
+    *p_blank = ins.blank();
+    *p_con12 = ins.con12();
+    *p_con34 = ins.con34();
+    *p_tune12 = ins.note_offset1;
+    *p_tune34 = ins.note_offset2;
+    *p_fb12 = ins.fb12();
+    *p_fb34 = ins.fb34();
+    *p_veloffset = ins.midi_velocity_offset;
+    *p_voice2ft = ins.second_voice_detune;
+    *p_drumnote = ins.percussion_key_number;
+
+    for (unsigned opnum = 0; opnum < 4; ++opnum) {
+        Parameter_Block::Operator &op = nth_operator(opnum);
+        *op.p_attack = ins.attack(opnum);
+        *op.p_decay = ins.decay(opnum);
+        *op.p_sustain = ins.sustain(opnum);
+        *op.p_release = ins.release(opnum);
+        *op.p_level = ins.level(opnum);
+        *op.p_ksl = ins.ksl(opnum);
+        *op.p_fmul = ins.fmul(opnum);
+        *op.p_trem = ins.trem(opnum);
+        *op.p_vib = ins.vib(opnum);
+        *op.p_sus = ins.sus(opnum);
+        *op.p_env = ins.env(opnum);
+        *op.p_wave = ins.wave(opnum);
+    }
+}

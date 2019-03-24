@@ -135,3 +135,103 @@ void Parameter_Block::setup_parameters(AudioProcessorEx &p)
     StringArray lfofreq_choices = {"3.98 Hz", "5.56 Hz", "6.02 Hz", "6.37 Hz", "6.88 Hz", "9.63 Hz", "48.1 Hz", "72.2 Hz"};
     p_lfofreq = add_parameter<Pt::Choice>(p, 'glob', "lfofreq", "LFO frequency", lfofreq_choices, wopn->lfo_freq & 7, String());
 }
+
+Chip_Settings Parameter_Block::chip_settings() const
+{
+    Chip_Settings cs;
+    cs.emulator = p_emulator->getIndex();
+    cs.chip_count = p_nchip->get();
+    cs.chip_type = p_chiptype->getIndex();
+    return cs;
+}
+
+Instrument_Global_Parameters Parameter_Block::global_parameters() const
+{
+    Instrument_Global_Parameters gp;
+    gp.volume_model = p_volmodel->getIndex();
+    gp.lfo_enable = p_lfoenable->get();
+    gp.lfo_frequency = p_lfofreq->getIndex();
+    return gp;
+}
+
+void Parameter_Block::set_chip_settings(const Chip_Settings &cs)
+{
+    *p_emulator = cs.emulator;
+    *p_nchip = cs.chip_count;
+    *p_chiptype = cs.chip_type;
+}
+
+void Parameter_Block::set_global_parameters(const Instrument_Global_Parameters &gp)
+{
+    *p_volmodel = gp.volume_model;
+    *p_lfoenable = gp.lfo_enable;
+    *p_lfofreq = gp.lfo_frequency;
+}
+
+Instrument Parameter_Block::Part::instrument() const
+{
+    Instrument ins;
+    ins.version = Instrument::latest_version;
+    ins.inst_flags = 0;
+
+    // ins.pseudo_eight_op(p_ps8op->get());
+    ins.blank(p_blank->get());
+    ins.note_offset = p_tune->get();
+    // ins.note_offset2 = p_tune34->get();
+    ins.feedback(p_feedback->get());
+    ins.algorithm(p_algorithm->get());
+    ins.ams(p_ams->get());
+    ins.fms(p_fms->get());
+    ins.midi_velocity_offset = p_veloffset->get();
+    // ins.second_voice_detune = p_voice2ft->get();
+    ins.percussion_key_number = p_drumnote->get();
+
+    for (unsigned opnum = 0; opnum < 4; ++opnum) {
+        const Parameter_Block::Operator &op = nth_operator(opnum);
+        ins.detune(opnum, op.p_detune->get());
+        ins.fmul(opnum, op.p_fmul->get());
+        ins.level(opnum, op.p_level->get());
+        ins.ratescale(opnum, op.p_ratescale->get());
+        ins.attack(opnum, op.p_attack->get());
+        ins.am(opnum, op.p_am->get());
+        ins.decay1(opnum, op.p_decay1->get());
+        ins.decay2(opnum, op.p_decay2->get());
+        ins.sustain(opnum, op.p_sustain->get());
+        ins.release(opnum, op.p_release->get());
+        ins.ssgenable(opnum, op.p_ssgenable->get());
+        ins.ssgwave(opnum, op.p_ssgwave->getIndex());
+    }
+
+    return ins;
+}
+
+void Parameter_Block::Part::set_instrument(const Instrument &ins)
+{
+    // *p_ps8op = ins.pseudo_eight_op();
+    *p_blank = ins.blank();
+    *p_tune = ins.note_offset;
+    // *p_tune34 = ins.note_offset2;
+    *p_feedback = ins.feedback();
+    *p_algorithm = ins.algorithm();
+    *p_ams = ins.ams();
+    *p_fms = ins.fms();
+    *p_veloffset = ins.midi_velocity_offset;
+    // *p_voice2ft = ins.second_voice_detune;
+    *p_drumnote = ins.percussion_key_number;
+
+    for (unsigned opnum = 0; opnum < 4; ++opnum) {
+        Parameter_Block::Operator &op = nth_operator(opnum);
+        *op.p_detune = ins.detune(opnum);
+        *op.p_fmul = ins.fmul(opnum);
+        *op.p_level = ins.level(opnum);
+        *op.p_ratescale = ins.ratescale(opnum);
+        *op.p_attack = ins.attack(opnum);
+        *op.p_am = ins.am(opnum);
+        *op.p_decay1 = ins.decay1(opnum);
+        *op.p_decay2 = ins.decay2(opnum);
+        *op.p_sustain = ins.sustain(opnum);
+        *op.p_release = ins.release(opnum);
+        *op.p_ssgenable = ins.ssgenable(opnum);
+        *op.p_ssgwave = ins.ssgwave(opnum);
+    }
+}

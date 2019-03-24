@@ -76,14 +76,7 @@ public:
     void begin_handling_messages(Message_Handler_Context &ctx) {}
     void finish_handling_messages(Message_Handler_Context &ctx);
 
-    void parameters_to_chip_settings(Chip_Settings &cs) const;
-    void parameters_to_global(Instrument_Global_Parameters &gp) const;
-    void parameters_to_instrument(unsigned part_number, Instrument &ins) const;
-    void set_chip_settings_notifying_host();
-    void set_global_parameters_notifying_host();
     void set_instrument_parameters_notifying_host(unsigned part_number);
-
-    void chip_settings_from_emulator(Chip_Settings &cs) const;
 
     void send_program_change_from_selection(unsigned part);
 

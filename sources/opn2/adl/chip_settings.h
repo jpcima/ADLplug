@@ -19,6 +19,9 @@ struct Chip_Settings {
     unsigned emulator = 0;
     unsigned chip_count = 2;
     unsigned chip_type = 0;
+
+    PropertySet to_properties() const;
+    static Chip_Settings from_properties(const PropertySet &set);
 };
 
 inline bool operator==(const Chip_Settings &a, const Chip_Settings &b)

@@ -101,6 +101,7 @@ add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
   "sources/midi/insnames.cc"
   "sources/plugin_editor.cc"
   "sources/plugin_processor.cc"
+  "sources/plugin_state.cc"
   "sources/bank_manager.cc"
   "sources/configuration.cc"
   "sources/messages.cc"

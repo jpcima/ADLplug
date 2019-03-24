@@ -30,8 +30,8 @@ struct Instrument : ADL_Instrument
 
     static Instrument from_sbi(const uint8_t *data, size_t length) noexcept;
 
-    void to_properties(juce::PropertySet &set, const char *key_prefix) const;
-    static Instrument from_properties(const juce::PropertySet &set, const char *key_prefix);
+    juce::PropertySet to_properties() const;
+    static Instrument from_properties(const juce::PropertySet &set);
 
 public:
 #define PARAMETER(type, id, field, shift, size, opt)                    \
@@ -83,6 +83,9 @@ struct Instrument_Global_Parameters
     unsigned volume_model = 0;
     bool deep_tremolo = false;
     bool deep_vibrato = false;
+
+    juce::PropertySet to_properties() const;
+    static Instrument_Global_Parameters from_properties(const juce::PropertySet &set);
 };
 
 struct Bank_Ref : ADL_Bank
