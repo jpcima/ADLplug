@@ -4,12 +4,14 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 
 #pragma once
+#include "plugin_state.h"
 #include "dsp/dc_filter.h"
 #include "dsp/vu_monitor.h"
 #include "adl/instrument.h"
 #include "adl/chip_settings.h"
 #include "utility/processor_ex.h"
 #include "JuceHeader.h"
+#include <folly/AtomicBitSet.h>
 #include <bitset>
 #include <memory>
 #include <mutex>
@@ -61,8 +63,13 @@ public:
     void processBlockBypassed(AudioBuffer<float> &, MidiBuffer &) override;
 
     void process(float *outputs[], unsigned nframes, Midi_Input_Source &midi);
-    void process_messages(bool under_lock);
 
+private:
+    void process_messages(bool under_lock);
+    void process_parameter_changes();
+    void process_notifications();
+
+public:
     struct Message_Handler_Context;
     bool handle_midi(const uint8_t *data, unsigned len);
     bool handle_message(const Buffered_Message &msg, Message_Handler_Context &ctx);
@@ -94,9 +101,18 @@ public:
 
     Parameter_Block &parameter_block() const { return *parameter_block_; }
 
-    void mark_chip_settings_for_notification()
-        { chip_settings_need_notification_ = true; }
+    void mark_for_notification(unsigned changebit)
+        { to_notify_.set(changebit); }
+    bool unmark_for_notification(unsigned changebit)
+        { return to_notify_.reset(changebit); }
 
+private:
+    void mark_parameter_as_changed(unsigned changebit)
+        { pr_changed_.set(changebit); }
+    bool unmark_parameter_as_changed(unsigned changebit)
+        { return pr_changed_.reset(changebit); }
+
+public:
     Worker *worker() const
         { return worker_.get(); }
 
@@ -141,7 +157,7 @@ private:
 
     std::unique_ptr<Bank_Manager> bank_manager_;
 
-    std::atomic<int> ready_;
+    std::atomic<int> ready_ {0};
 
     std::shared_ptr<Simple_Fifo> mq_from_ui_;
     std::shared_ptr<Simple_Fifo> mq_to_ui_;
@@ -154,11 +170,8 @@ private:
     double lv_current_[2] {};
     double cpu_load_ = 0;
 
-    std::atomic<int> chip_settings_changed_;
-    std::atomic<int> global_parameters_changed_;
-    std::atomic<int> instrument_parameters_changed_[16];
-
-    std::atomic<int> chip_settings_need_notification_;
+    folly::AtomicBitSet<Cb_Count> pr_changed_;
+    folly::AtomicBitSet<Cb_Count> to_notify_;
 
     std::unique_ptr<Parameter_Block> parameter_block_;
 
@@ -168,8 +181,6 @@ private:
     };
     Selection selection_[16];
 
-    std::atomic<int> selection_needs_notification_[16];
-
     std::bitset<16> midi_channel_mask_;
     unsigned midi_channel_note_count_[16] = {};
     std::bitset<128> midi_channel_note_active_[16];
@@ -177,11 +188,9 @@ private:
     unsigned midi_bank_lsb_[16] = {};
 
     unsigned active_part_ = 0;
-    std::atomic<int> active_part_needs_notification_;
 
-    std::unique_ptr<char[]> bank_title_;
-    std::atomic<int> bank_title_needs_notification_;
     static constexpr unsigned bank_title_size_max = 64;
+    char bank_title_[bank_title_size_max + 1] {};
 
     std::mutex player_lock_;
 

@@ -136,7 +136,7 @@ void Worker::handle_message(Buffered_Message &msg)
 #elif defined(ADLPLUG_OPN2)
         proc.set_chip_type_nonrt(body.cs.chip_type);
 #endif
-        proc.mark_chip_settings_for_notification();
+        proc.mark_for_notification(Cb_ChipSettings);
         break;
     }
     default:

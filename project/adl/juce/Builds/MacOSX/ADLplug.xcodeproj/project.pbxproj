@@ -105,6 +105,10 @@
 			isa = PBXBuildFile;
 			fileRef = ACC517C2B8C4F347E6EF835E;
 		};
+		E94DB1B69FEBDDC3AF3FB112 = {
+			isa = PBXBuildFile;
+			fileRef = 4C8050DE05213597BAC42561;
+		};
 		34E388A6C37A4EB95C2D324F = {
 			isa = PBXBuildFile;
 			fileRef = 8AB59C4769C36C86B5ADE609;
@@ -582,13 +586,6 @@
 			path = "../../../../../thirdparty/JUCE/modules/juce_data_structures";
 			sourceTree = "SOURCE_ROOT";
 		};
-		2E86C988C2009EDCF1C08273 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.cpp;
-			name = "nuked_opl3_v174.cpp";
-			path = "../../../../../thirdparty/libADLMIDI/src/chips/nuked_opl3_v174.cpp";
-			sourceTree = "SOURCE_ROOT";
-		};
 		618957C5589DF62914319906 = {
 			isa = PBXFileReference;
 			explicitFileType = wrapper.cfbundle;
@@ -671,6 +668,13 @@
 			lastKnownFileType = sourcecode.cpp.cpp;
 			name = "key_maps.cc";
 			path = "../../../../../sources/ui/utility/key_maps.cc";
+			sourceTree = "SOURCE_ROOT";
+		};
+		2E86C988C2009EDCF1C08273 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "nuked_opl3_v174.cpp";
+			path = "../../../../../thirdparty/libADLMIDI/src/chips/nuked_opl3_v174.cpp";
 			sourceTree = "SOURCE_ROOT";
 		};
 		30BF4CB04B7F9F1052AFC58D = {
@@ -806,6 +810,13 @@
 			path = ../../../../../sources/messages.h;
 			sourceTree = "SOURCE_ROOT";
 		};
+		4C8050DE05213597BAC42561 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = "plugin_state.cc";
+			path = "../../../../../sources/plugin_state.cc";
+			sourceTree = "SOURCE_ROOT";
+		};
 		4CBF4A4229D83CAF77F73BB9 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
@@ -937,6 +948,13 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = "dc_filter.h";
 			path = "../../../../../sources/dsp/dc_filter.h";
+			sourceTree = "SOURCE_ROOT";
+		};
+		80DC25E3972847C24B72A214 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = SimpleIni.h;
+			path = ../../../../../thirdparty/simpleini/SimpleIni.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		8281F591131DCE58CE9D13E5 = {
@@ -1079,13 +1097,6 @@
 			path = "Info-AU.plist";
 			sourceTree = "SOURCE_ROOT";
 		};
-		80DC25E3972847C24B72A214 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.c.h;
-			name = SimpleIni.h;
-			path = ../../../../../thirdparty/simpleini/SimpleIni.h;
-			sourceTree = "SOURCE_ROOT";
-		};
 		80E226846A91539090948A50 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -1140,6 +1151,13 @@
 			lastKnownFileType = sourcecode.cpp.objcpp;
 			name = "include_juce_audio_devices.mm";
 			path = "../../../JuceLibraryCode/include_juce_audio_devices.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
+		8A599730C52994E838483164 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = AtomicBitSet.h;
+			path = ../../../../../thirdparty/folly/folly/AtomicBitSet.h;
 			sourceTree = "SOURCE_ROOT";
 		};
 		8AB59C4769C36C86B5ADE609 = {
@@ -1800,6 +1818,13 @@
 			path = System/Library/Frameworks/Cocoa.framework;
 			sourceTree = SDKROOT;
 		};
+		FAB168B0EC43C29F5F9D5870 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "plugin_state.h";
+			path = "../../../../../sources/plugin_state.h";
+			sourceTree = "SOURCE_ROOT";
+		};
 		FC36A6BCD8BAACB4ED2C6CEB = {
 			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
@@ -2022,6 +2047,8 @@
 				69801E295DD25EEEA9538A0C,
 				ACC517C2B8C4F347E6EF835E,
 				75186A344B8335E61B451BBF,
+				4C8050DE05213597BAC42561,
+				FAB168B0EC43C29F5F9D5870,
 				4DE5AD038D18B74D184944BB,
 				8AB59C4769C36C86B5ADE609,
 				C6CB982B2316A9CAF2BA1475,
@@ -2035,6 +2062,22 @@
 				F69E46495AE1FC809F1D5993,
 			);
 			name = sources;
+			sourceTree = "<group>";
+		};
+		325B2B2F734467C58839F32E = {
+			isa = PBXGroup;
+			children = (
+				8A599730C52994E838483164,
+			);
+			name = folly;
+			sourceTree = "<group>";
+		};
+		DD74AE702323B5E72890A56F = {
+			isa = PBXGroup;
+			children = (
+				325B2B2F734467C58839F32E,
+			);
+			name = folly;
 			sourceTree = "<group>";
 		};
 		5B9C423073BD3B8FD2686BE3 = {
@@ -2194,6 +2237,7 @@
 		8E7B93C70C533166F1FAC6A7 = {
 			isa = PBXGroup;
 			children = (
+				DD74AE702323B5E72890A56F,
 				5B9C423073BD3B8FD2686BE3,
 				02C3893C27AB3659DAF73A85,
 				37ED7F536985CEFAED9A40F4,
@@ -2379,6 +2423,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2441,6 +2486,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2503,6 +2549,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2565,6 +2612,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2627,6 +2675,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2690,6 +2739,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2752,6 +2802,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2810,6 +2861,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2866,6 +2918,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2922,6 +2975,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -2979,6 +3033,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3035,6 +3090,7 @@
 					"../../../../../thirdparty/wopl",
 					"../../../../../thirdparty/simpleini",
 					"../../../../../thirdparty/fmt/include",
+					"../../../../../thirdparty/folly",
 					"../../../../../thirdparty/JUCE/modules/juce_audio_plugin_client",
 					"$(inherited)",
 				);
@@ -3537,6 +3593,7 @@
 				013206476BCEF2D8BEE4B1F9,
 				59AEBCFAB589966CAEFA6BD3,
 				5B04C6E7526CE5A59099F63B,
+				E94DB1B69FEBDDC3AF3FB112,
 				34E388A6C37A4EB95C2D324F,
 				09A8CCFD4FE0354337D72C5D,
 				13D90770C30B994E3771AF5D,

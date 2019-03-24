@@ -47,6 +47,12 @@
     <Filter Include="ADLplug\sources">
       <UniqueIdentifier>{337050D3-2325-64ED-EBA1-66A581B1107F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ADLplug\thirdparty\folly\folly">
+      <UniqueIdentifier>{2283ACB7-4DCD-B049-3848-2A92FCB9702D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ADLplug\thirdparty\folly">
+      <UniqueIdentifier>{C4B99B8F-C4AB-F1E9-D15E-4E8FB7382A87}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ADLplug\thirdparty\simpleini">
       <UniqueIdentifier>{9CA0C758-F94D-E79B-1D22-25B0D336DCC1}</UniqueIdentifier>
     </Filter>
@@ -512,6 +518,9 @@
       <Filter>ADLplug\sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\plugin_processor.cc">
+      <Filter>ADLplug\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\plugin_state.cc">
       <Filter>ADLplug\sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\resources.cc">
@@ -2607,6 +2616,9 @@
     <ClInclude Include="..\..\..\..\..\sources\plugin_processor.h">
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\plugin_state.h">
+      <Filter>ADLplug\sources</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\plugin_version.h">
       <Filter>ADLplug\sources</Filter>
     </ClInclude>
@@ -2750,6 +2762,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\utility\simple_fifo.h">
       <Filter>ADLplug\sources\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\folly\folly\AtomicBitSet.h">
+      <Filter>ADLplug\thirdparty\folly\folly</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\simpleini\SimpleIni.h">
       <Filter>ADLplug\thirdparty\simpleini</Filter>

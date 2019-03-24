@@ -35,7 +35,7 @@ ifeq ($(CONFIG),Debug)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DADLPLUG_OPN2 -DOPNMIDI_UNSTABLE_API -DOPNMIDI_DISABLE_GX_EMULATOR -DOPNMIDI_DISABLE_CPP_EXTRAS -DOPNMIDI_DISABLE_MIDI_SEQUENCER -DOPNMIDI_DISABLE_MUS_SUPPORT -DOPNMIDI_DISABLE_XMI_SUPPORT -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libOPNMIDI/include -I../../../../../thirdparty/wopn -I../../../../../thirdparty/simpleini -I../../../../../thirdparty/fmt/include $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DDEBUG=1 -D_DEBUG=1 -DADLPLUG_OPN2 -DOPNMIDI_UNSTABLE_API -DOPNMIDI_DISABLE_GX_EMULATOR -DOPNMIDI_DISABLE_CPP_EXTRAS -DOPNMIDI_DISABLE_MIDI_SEQUENCER -DOPNMIDI_DISABLE_MUS_SUPPORT -DOPNMIDI_DISABLE_XMI_SUPPORT -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libOPNMIDI/include -I../../../../../thirdparty/wopn -I../../../../../thirdparty/simpleini -I../../../../../thirdparty/fmt/include -I../../../../../thirdparty/folly $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST := -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_Unity=0
   JUCE_CFLAGS_VST := -fPIC -fvisibility=hidden
@@ -65,7 +65,7 @@ ifeq ($(CONFIG),Release)
     TARGET_ARCH := -march=native
   endif
 
-  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DADLPLUG_OPN2 -DOPNMIDI_UNSTABLE_API -DOPNMIDI_DISABLE_GX_EMULATOR -DOPNMIDI_DISABLE_CPP_EXTRAS -DOPNMIDI_DISABLE_MIDI_SEQUENCER -DOPNMIDI_DISABLE_MUS_SUPPORT -DOPNMIDI_DISABLE_XMI_SUPPORT -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libOPNMIDI/include -I../../../../../thirdparty/wopn -I../../../../../thirdparty/simpleini -I../../../../../thirdparty/fmt/include $(CPPFLAGS)
+  JUCE_CPPFLAGS := $(DEPFLAGS) -DLINUX=1 -DNDEBUG=1 -DADLPLUG_OPN2 -DOPNMIDI_UNSTABLE_API -DOPNMIDI_DISABLE_GX_EMULATOR -DOPNMIDI_DISABLE_CPP_EXTRAS -DOPNMIDI_DISABLE_MIDI_SEQUENCER -DOPNMIDI_DISABLE_MUS_SUPPORT -DOPNMIDI_DISABLE_XMI_SUPPORT -DJUCER_LINUX_MAKE_6A0FEE96=1 -DJUCE_APP_VERSION=1.0.0 -DJUCE_APP_VERSION_HEX=0x10000 $(shell pkg-config --cflags freetype2 alsa x11 xext xinerama) -pthread -I../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK -I../../../JuceLibraryCode -I../../../../../thirdparty/JUCE/modules -I../../../../../sources -I../../../../../thirdparty/libOPNMIDI/include -I../../../../../thirdparty/wopn -I../../../../../thirdparty/simpleini -I../../../../../thirdparty/fmt/include -I../../../../../thirdparty/folly $(CPPFLAGS)
 
   JUCE_CPPFLAGS_VST := -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJucePlugin_Build_AU=0 -DJucePlugin_Build_AUv3=0 -DJucePlugin_Build_RTAS=0 -DJucePlugin_Build_AAX=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_Unity=0
   JUCE_CFLAGS_VST := -fPIC -fvisibility=hidden
@@ -99,6 +99,7 @@ OBJECTS_SHARED_CODE := \
   $(JUCE_OBJDIR)/messages_bd648cdc.o \
   $(JUCE_OBJDIR)/plugin_editor_d2d9321b.o \
   $(JUCE_OBJDIR)/plugin_processor_a0287f62.o \
+  $(JUCE_OBJDIR)/plugin_state_37e59603.o \
   $(JUCE_OBJDIR)/resources_23ff376f.o \
   $(JUCE_OBJDIR)/worker_5b6a13ea.o \
   $(JUCE_OBJDIR)/insnames_1e4d446c.o \
@@ -241,6 +242,11 @@ $(JUCE_OBJDIR)/plugin_editor_d2d9321b.o: ../../../../../sources/plugin_editor.cc
 $(JUCE_OBJDIR)/plugin_processor_a0287f62.o: ../../../../../sources/plugin_processor.cc
 	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
 	@echo "Compiling plugin_processor.cc"
+	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
+
+$(JUCE_OBJDIR)/plugin_state_37e59603.o: ../../../../../sources/plugin_state.cc
+	-$(V_AT)mkdir -p $(JUCE_OBJDIR)
+	@echo "Compiling plugin_state.cc"
 	$(V_AT)$(CXX) $(JUCE_CXXFLAGS) $(JUCE_CPPFLAGS_SHARED_CODE) $(JUCE_CFLAGS_SHARED_CODE) -o "$@" -c "$<"
 
 $(JUCE_OBJDIR)/resources_23ff376f.o: ../../../../../sources/resources.cc

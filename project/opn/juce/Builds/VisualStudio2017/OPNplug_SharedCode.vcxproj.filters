@@ -47,6 +47,12 @@
     <Filter Include="OPNplug\sources">
       <UniqueIdentifier>{2BFDBDFC-2CBF-1EF2-EE69-2C91C7AE00F8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="OPNplug\thirdparty\folly\folly">
+      <UniqueIdentifier>{69BC5FDC-8875-B6C6-1EE3-73F76AAEC268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OPNplug\thirdparty\folly">
+      <UniqueIdentifier>{5390617A-71F9-5F4E-1605-C48781469F7D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="OPNplug\thirdparty\simpleini">
       <UniqueIdentifier>{993949B0-9ECA-533E-793B-C693E5BAFF27}</UniqueIdentifier>
     </Filter>
@@ -515,6 +521,9 @@
       <Filter>OPNplug\sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\plugin_processor.cc">
+      <Filter>OPNplug\sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\sources\plugin_state.cc">
       <Filter>OPNplug\sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\..\sources\resources.cc">
@@ -2637,6 +2646,9 @@
     <ClInclude Include="..\..\..\..\..\sources\plugin_processor.h">
       <Filter>OPNplug\sources</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\..\sources\plugin_state.h">
+      <Filter>OPNplug\sources</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\plugin_version.h">
       <Filter>OPNplug\sources</Filter>
     </ClInclude>
@@ -2783,6 +2795,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\sources\utility\simple_fifo.h">
       <Filter>OPNplug\sources\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\thirdparty\folly\folly\AtomicBitSet.h">
+      <Filter>OPNplug\thirdparty\folly\folly</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\thirdparty\simpleini\SimpleIni.h">
       <Filter>OPNplug\thirdparty\simpleini</Filter>

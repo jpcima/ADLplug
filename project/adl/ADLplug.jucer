@@ -6,7 +6,7 @@
               buildAAX="0" enableIAA="0" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn"
               bundleIdentifier="jpcima.ADLplug" pluginName="ADLplug" pluginDesc="ADLplug"
               pluginManufacturer="Jean Pierre Cimalando" pluginManufacturerCode="JPCm"
-              pluginCode="ADLM" aaxIdentifier="jpcima.ADLplug" headerPath="../../../../../sources&#10;../../../../../thirdparty/libADLMIDI/include&#10;../../../../../thirdparty/wopl&#10;../../../../../thirdparty/simpleini&#10;../../../../../thirdparty/fmt/include"
+              pluginCode="ADLM" aaxIdentifier="jpcima.ADLplug" headerPath="../../../../../sources&#10;../../../../../thirdparty/libADLMIDI/include&#10;../../../../../thirdparty/wopl&#10;../../../../../thirdparty/simpleini&#10;../../../../../thirdparty/fmt/include&#10;../../../../../thirdparty/folly"
               defines="ADLPLUG_OPL3&#10;ADLMIDI_UNSTABLE_API&#10;ADLMIDI_DISABLE_CPP_EXTRAS&#10;ADLMIDI_DISABLE_MIDI_SEQUENCER&#10;ADLMIDI_DISABLE_MUS_SUPPORT&#10;ADLMIDI_DISABLE_XMI_SUPPORT"
               id="ojbkOL" version="1.0.0" includeBinaryInJuceHeader="0" cppLanguageStandard="11">
   <MAINGROUP id="faq0v0" name="ADLplug">
@@ -28,6 +28,8 @@
             file="../../sources/plugin_processor.cc"/>
       <FILE id="QkXWb6" name="plugin_processor.h" compile="0" resource="0"
             file="../../sources/plugin_processor.h"/>
+      <FILE id="g3Rv28" name="plugin_state.cc" compile="1" resource="0" file="../../sources/plugin_state.cc"/>
+      <FILE id="riNwCY" name="plugin_state.h" compile="0" resource="0" file="../../sources/plugin_state.h"/>
       <FILE id="CDfB1P" name="plugin_version.h" compile="0" resource="0"
             file="../../sources/plugin_version.h"/>
       <FILE id="Dnxxqd" name="resources.cc" compile="1" resource="0" file="../../sources/resources.cc"/>
@@ -175,6 +177,11 @@
       </GROUP>
     </GROUP>
     <GROUP id="{C55CC9DB-ED0F-DE1B-46CB-A28A61433406}" name="thirdparty">
+      <GROUP id="{97FF7FD9-38C9-B7D9-A983-EF011555552F}" name="folly">
+        <GROUP id="{A9D3BF85-8D6F-22F8-86B0-54C61144FAE2}" name="folly">
+          <FILE id="PI3Faf" name="AtomicBitSet.h" compile="0" resource="0" file="../../thirdparty/folly/folly/AtomicBitSet.h"/>
+        </GROUP>
+      </GROUP>
       <GROUP id="{E22638DE-6D93-C650-E312-3F4979D2BBD4}" name="simpleini">
         <FILE id="FuyL2E" name="SimpleIni.h" compile="0" resource="0" file="../../thirdparty/simpleini/SimpleIni.h"/>
       </GROUP>

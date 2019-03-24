@@ -37,21 +37,6 @@ AdlplugAudioProcessor::AdlplugAudioProcessor()
 
     for (AudioProcessorParameter *p : getParameters())
         p->addListener(this);
-
-    ready_.store(0);
-    chip_settings_changed_.store(0);
-    global_parameters_changed_.store(0);
-    for (unsigned i = 0; i < 16; ++i)
-        instrument_parameters_changed_[i].store(0);
-    chip_settings_need_notification_.store(0);
-
-    for (unsigned part = 0; part < 16; ++part)
-        selection_needs_notification_[part].store(0);
-
-    active_part_needs_notification_.store(0);
-
-    bank_title_.reset(new char[bank_title_size_max + 1]());
-    bank_title_needs_notification_.store(0);
 }
 
 AdlplugAudioProcessor::~AdlplugAudioProcessor()
@@ -142,7 +127,7 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     pl->set_soft_pan_enabled(true);
     pl->set_num_chips(Chip_Settings{}.chip_count);
     pl->set_emulator(get_emulator_defaults().default_index);
-    chip_settings_need_notification_.store(1);
+    mark_for_notification(Cb_ChipSettings);
 
     for (unsigned i = 0; i < 2; ++i) {
         Dc_Filter &dcf = dc_filter_[i];
@@ -168,14 +153,14 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
         bool percussive = p == 9;
         sel.bank = Bank_Id(0, 0, percussive);
         sel.program = percussive ? 35 : 0;
-        selection_needs_notification_[p].store(1);
+        mark_for_notification(Cb_Selection1 + p);
     }
 
     active_part_ = 0;
-    active_part_needs_notification_.store(1);
+    mark_for_notification(Cb_ActivePart);
 
-    std::strncpy(bank_title_.get(), pak.name(0).c_str(), bank_title_size_max);
-    bank_title_needs_notification_.store(1);
+    std::strncpy(bank_title_, pak.name(0).c_str(), bank_title_size_max);
+    mark_for_notification(Cb_BankTitle);
 
     ready_.store(1);
 
@@ -316,116 +301,10 @@ void AdlplugAudioProcessor::process(float *outputs[], unsigned nframes, Midi_Inp
         return;
     }
 
+    process_parameter_changes();
+    process_notifications();
+
     const Parameter_Block &pb = *parameter_block_;
-
-    int chip_settings_changed = 1;
-    if (chip_settings_changed_.compare_exchange_weak(chip_settings_changed, false)) {
-        Chip_Settings cs, cs_current;
-        parameters_to_chip_settings(cs);
-        chip_settings_from_emulator(cs_current);
-        if (cs != cs_current) {
-            Simple_Fifo &queue = *mq_to_worker_;
-            Message_Header hdr(Fx_Message::RequestChipSettings, sizeof(Messages::Fx::RequestChipSettings));
-            Buffered_Message msg = Messages::write(queue, hdr);
-            if (!msg)
-                chip_settings_changed_.store(1);  // do later
-            else {
-                auto &body = *(Messages::Fx::RequestChipSettings *)msg.data;
-                parameters_to_chip_settings(body.cs);
-                Messages::finish_write(queue, msg);
-                Worker &worker = *worker_;
-                worker.postSemaphore();
-            }
-        }
-    }
-
-    for (unsigned p = 0; p < 16; ++p) {
-        int instrument_parameters_changed = 1;
-        if (instrument_parameters_changed_[p].compare_exchange_weak(instrument_parameters_changed, false)) {
-            Bank_Manager &bm = *bank_manager_;
-            Instrument ins;
-            parameters_to_instrument(p, ins);
-            const Selection &sel = selection_[p];
-            bm.load_program(
-                sel.bank, sel.program, ins,
-                Bank_Manager::LP_Notify|Bank_Manager::LP_NeedMeasurement|Bank_Manager::LP_KeepName);
-        }
-    }
-
-    int global_parameters_changed = 1;
-    if (global_parameters_changed_.compare_exchange_weak(global_parameters_changed, false)) {
-        Bank_Manager &bm = *bank_manager_;
-        Instrument_Global_Parameters gp;
-        parameters_to_global(gp);
-        bm.load_global_parameters(gp, true);
-    }
-
-    int chip_settings_need_notification = 1;
-    if (chip_settings_need_notification_.compare_exchange_weak(chip_settings_need_notification, false)) {
-        Simple_Fifo &queue = *mq_to_ui_;
-        Message_Header hdr(Fx_Message::NotifyChipSettings, sizeof(Messages::Fx::NotifyChipSettings));
-        Buffered_Message msg = Messages::write(queue, hdr);
-        if (!msg)
-            chip_settings_need_notification_.store(1);  // do later
-        else {
-            auto &body = *(Messages::Fx::NotifyChipSettings *)msg.data;
-            body.cs.emulator = pl->emulator();
-            body.cs.chip_count = pl->num_chips();
-#if defined(ADLPLUG_OPL3)
-            body.cs.fourop_count = pl->num_4ops();
-#elif defined(ADLPLUG_OPN2)
-            body.cs.chip_type = pl->chip_type();
-#endif
-            Messages::finish_write(queue, msg);
-        }
-    }
-
-    int active_part_needs_notification = 1;
-    if (active_part_needs_notification_.compare_exchange_weak(active_part_needs_notification, false)) {
-        Simple_Fifo &queue = *mq_to_ui_;
-        Message_Header hdr(Fx_Message::NotifyActivePart, sizeof(Messages::Fx::NotifyActivePart));
-        Buffered_Message msg = Messages::write(queue, hdr);
-        if (!msg)
-            active_part_needs_notification_.store(1);  // do later
-        else {
-            auto &body = *(Messages::Fx::NotifyActivePart *)msg.data;
-            body.part = active_part_;
-            Messages::finish_write(queue, msg);
-        }
-    }
-
-    int bank_title_needs_notification = 1;
-    if (bank_title_needs_notification_.compare_exchange_weak(bank_title_needs_notification, false)) {
-        Simple_Fifo &queue = *mq_to_ui_;
-        Message_Header hdr(Fx_Message::NotifyBankTitle, sizeof(Messages::Fx::NotifyBankTitle));
-        Buffered_Message msg = Messages::write(queue, hdr);
-        if (!msg)
-            bank_title_needs_notification_.store(1);  // do later
-        else {
-            auto &body = *(Messages::Fx::NotifyBankTitle *)msg.data;
-            std::memcpy(body.title, bank_title_.get(), bank_title_size_max);
-            Messages::finish_write(queue, msg);
-        }
-    }
-
-    for (unsigned part = 0; part < 16; ++part) {
-        int selection_needs_notification = 1;
-        if (selection_needs_notification_[part].compare_exchange_weak(selection_needs_notification, false)) {
-            Simple_Fifo &queue = *mq_to_ui_;
-            Message_Header hdr(Fx_Message::NotifySelection, sizeof(Messages::Fx::NotifySelection));
-            Buffered_Message msg = Messages::write(queue, hdr);
-            if (!msg)
-                selection_needs_notification_[part].store(1);  // do later
-            else {
-                auto &body = *(Messages::Fx::NotifySelection *)msg.data;
-                body.part = part;
-                body.bank = selection_[part].bank;
-                body.program = selection_[part].program;
-                Messages::finish_write(queue, msg);
-            }
-        }
-    }
-
     ScopedNoDenormals no_denormals;
     double sample_period = 1.0 / getSampleRate();
 
@@ -503,6 +382,112 @@ void AdlplugAudioProcessor::process_messages(bool under_lock)
     finish_handling_messages(ctx);
 }
 
+void AdlplugAudioProcessor::process_parameter_changes()
+{
+    if (unmark_parameter_as_changed(Cb_ChipSettings)) {
+        Chip_Settings cs, cs_current;
+        parameters_to_chip_settings(cs);
+        chip_settings_from_emulator(cs_current);
+        if (cs != cs_current) {
+            Simple_Fifo &queue = *mq_to_worker_;
+            Message_Header hdr(Fx_Message::RequestChipSettings, sizeof(Messages::Fx::RequestChipSettings));
+            Buffered_Message msg = Messages::write(queue, hdr);
+            if (!msg)
+                mark_parameter_as_changed(Cb_ChipSettings);  // do later
+            else {
+                auto &body = *(Messages::Fx::RequestChipSettings *)msg.data;
+                parameters_to_chip_settings(body.cs);
+                Messages::finish_write(queue, msg);
+                Worker &worker = *worker_;
+                worker.postSemaphore();
+            }
+        }
+    }
+
+    for (unsigned p = 0; p < 16; ++p) {
+        if (unmark_parameter_as_changed(Cb_Instrument1 + p)) {
+            Bank_Manager &bm = *bank_manager_;
+            Instrument ins;
+            parameters_to_instrument(p, ins);
+            const Selection &sel = selection_[p];
+            bm.load_program(
+                sel.bank, sel.program, ins,
+                Bank_Manager::LP_Notify|Bank_Manager::LP_NeedMeasurement|Bank_Manager::LP_KeepName);
+        }
+    }
+
+    if (unmark_parameter_as_changed(Cb_GlobalParameters)) {
+        Bank_Manager &bm = *bank_manager_;
+        Instrument_Global_Parameters gp;
+        parameters_to_global(gp);
+        bm.load_global_parameters(gp, true);
+    }
+}
+
+void AdlplugAudioProcessor::process_notifications()
+{
+    Player *pl = player_.get();
+    Simple_Fifo &queue = *mq_to_ui_;
+
+    if (unmark_for_notification(Cb_ChipSettings)) {
+        Message_Header hdr(Fx_Message::NotifyChipSettings, sizeof(Messages::Fx::NotifyChipSettings));
+        Buffered_Message msg = Messages::write(queue, hdr);
+        if (!msg)
+            mark_for_notification(Cb_ChipSettings);  // do later
+        else {
+            auto &body = *(Messages::Fx::NotifyChipSettings *)msg.data;
+            body.cs.emulator = pl->emulator();
+            body.cs.chip_count = pl->num_chips();
+#if defined(ADLPLUG_OPL3)
+            body.cs.fourop_count = pl->num_4ops();
+#elif defined(ADLPLUG_OPN2)
+            body.cs.chip_type = pl->chip_type();
+#endif
+            Messages::finish_write(queue, msg);
+        }
+    }
+
+    if (unmark_for_notification(Cb_ActivePart)) {
+        Message_Header hdr(Fx_Message::NotifyActivePart, sizeof(Messages::Fx::NotifyActivePart));
+        Buffered_Message msg = Messages::write(queue, hdr);
+        if (!msg)
+            mark_for_notification(Cb_ActivePart);  // do later
+        else {
+            auto &body = *(Messages::Fx::NotifyActivePart *)msg.data;
+            body.part = active_part_;
+            Messages::finish_write(queue, msg);
+        }
+    }
+
+    if (unmark_for_notification(Cb_BankTitle)) {
+        Message_Header hdr(Fx_Message::NotifyBankTitle, sizeof(Messages::Fx::NotifyBankTitle));
+        Buffered_Message msg = Messages::write(queue, hdr);
+        if (!msg)
+            mark_for_notification(Cb_BankTitle);  // do later
+        else {
+            auto &body = *(Messages::Fx::NotifyBankTitle *)msg.data;
+            std::memcpy(body.title, bank_title_, bank_title_size_max);
+            Messages::finish_write(queue, msg);
+        }
+    }
+
+    for (unsigned part = 0; part < 16; ++part) {
+        if (unmark_for_notification(Cb_Selection1 + part)) {
+            Message_Header hdr(Fx_Message::NotifySelection, sizeof(Messages::Fx::NotifySelection));
+            Buffered_Message msg = Messages::write(queue, hdr);
+            if (!msg)
+                mark_for_notification(Cb_Selection1 + part);  // do later
+            else {
+                auto &body = *(Messages::Fx::NotifySelection *)msg.data;
+                body.part = part;
+                body.bank = selection_[part].bank;
+                body.program = selection_[part].program;
+                Messages::finish_write(queue, msg);
+            }
+        }
+    }
+}
+
 bool AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len)
 {
     Player *pl = player_.get();
@@ -561,7 +546,7 @@ bool AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len)
             // selection_[channel].bank.msb = 0;
             // selection_[channel].bank.lsb = data[1];
         }
-        selection_needs_notification_[channel].store(1);
+        mark_for_notification(Cb_Selection1 + channel);
         set_instrument_parameters_notifying_host(channel);
         break;
     }
@@ -592,21 +577,21 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         bm.mark_everything_for_notification();
         break;
     case (unsigned)User_Message::RequestChipSettings:
-        chip_settings_need_notification_.store(1);
+        mark_for_notification(Cb_ChipSettings);
         break;
     case (unsigned)User_Message::RequestSelections: {
         auto &body = *(const Messages::User::RequestSelections *)data;
         for (unsigned p = 0; p < 16; ++p) {
             if (body.channel_mask.test(p))
-                selection_needs_notification_[p].store(1);
+                mark_for_notification(Cb_Selection1 + p);
         }
         break;
     }
     case (unsigned)User_Message::RequestActivePart:
-        active_part_needs_notification_.store(1);
+        mark_for_notification(Cb_ActivePart);
         break;
     case (unsigned)User_Message::RequestBankTitle:
-        bank_title_needs_notification_.store(1);
+        mark_for_notification(Cb_BankTitle);
         break;
     case (unsigned)User_Message::ClearBanks: {
         auto &body = *(const Messages::User::ClearBanks *)data;
@@ -680,12 +665,12 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         if (active_part_ == body.part)
             break;
         active_part_ = body.part;
-        active_part_needs_notification_.store(1);
+        mark_for_notification(Cb_ActivePart);
         break;
     }
     case (unsigned)User_Message::SetBankTitle: {
         auto &body = *(const Messages::User::SetBankTitle *)data;
-        memcpy(bank_title_.get(), body.title, bank_title_size_max);
+        memcpy(bank_title_, body.title, bank_title_size_max);
         break;
     }
 #if defined(ADLPLUG_OPL3)
@@ -695,7 +680,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         pl.panic();
         pl.set_num_4ops(~0u);
         *pb.p_n4op = pl.num_4ops();
-        chip_settings_need_notification_.store(1);
+        mark_for_notification(Cb_ChipSettings);
         break;
     }
 #endif
@@ -1085,7 +1070,7 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
     // common parameters
     {
         PropertySet common_set;
-        common_set.setValue("bank_title", bank_title_.get());
+        common_set.setValue("bank_title", String(CharPointer_UTF8(bank_title_)));
         common_set.setValue("part", (int)active_part_);
         common_set.setValue("master_volume", (double)*pb.p_mastervol);
         std::unique_ptr<XmlElement> elt(common_set.createXml("common"));
@@ -1193,16 +1178,16 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
     PropertySet common_set;
     if (XmlElement *elt = root->getChildByName("common"))
         common_set.restoreFromXml(*elt);
-    common_set.getValue("bank_title").copyToUTF8(bank_title_.get(), bank_title_size_max + 1);
+    common_set.getValue("bank_title").copyToUTF8(bank_title_, bank_title_size_max + 1);
     active_part_ = jlimit(0, 15, common_set.getIntValue("part"));
 
     // notify everything
-    mark_chip_settings_for_notification();
+    mark_for_notification(Cb_ChipSettings);
     bm.mark_everything_for_notification();
     for (unsigned p = 0; p < 16; ++p)
-        selection_needs_notification_[p].store(1);
-    active_part_needs_notification_.store(1);
-    bank_title_needs_notification_.store(1);
+        mark_for_notification(Cb_Selection1 + p);
+    mark_for_notification(Cb_ActivePart);
+    mark_for_notification(Cb_BankTitle);
 
     // send program changes
     for (unsigned p = 0; p < 16; ++p)
@@ -1220,14 +1205,14 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
 void AdlplugAudioProcessor::parameterValueChangedEx(int tag)
 {
     if (tag == 'chip')
-        chip_settings_changed_.store(1);
+        mark_parameter_as_changed(Cb_ChipSettings);
     else if (tag == 'glob')
-        global_parameters_changed_.store(1);
+        mark_parameter_as_changed(Cb_GlobalParameters);
     else {
         const uint32_t part_tag = ((uint8_t)'i' << 24) | ((uint8_t)'n' << 16) | ((uint8_t)'s' << 8);
         if (((uint32_t)tag & 0xffffff00) == part_tag) {
             unsigned part = tag & 15;
-            instrument_parameters_changed_[part].store(1);
+            mark_parameter_as_changed(Cb_Instrument1 + part);
         }
     }
 }

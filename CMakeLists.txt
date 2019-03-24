@@ -196,6 +196,8 @@ target_include_directories(simple-ini INTERFACE "thirdparty/simpleini")
 
 target_link_libraries(ADLplug_core PUBLIC simple-ini)
 
+target_include_directories(ADLplug_core PUBLIC "thirdparty/folly")
+
 if(ADLplug_PCH)
   include(PrecompiledHeader)
   add_precompiled_header(ADLplug_core "sources/pch/ADLplug_core.h"
