@@ -148,6 +148,8 @@ void AdlplugAudioProcessor::prepareToPlay(double sample_rate, int block_size)
     Bank_Manager *bm = new Bank_Manager(
         *this, *pl, default_wopl.data(), default_wopl.size());
     bank_manager_.reset(bm);
+
+    mark_for_notification(Cb_GlobalParameters);
     bm->mark_everything_for_notification();
 
     for (unsigned p = 0; p < 16; ++p) {
@@ -421,13 +423,16 @@ void AdlplugAudioProcessor::process_parameter_changes()
 
     if (unmark_parameter_as_changed(Cb_GlobalParameters)) {
         Instrument_Global_Parameters gp = pb.global_parameters();
-        bm.load_global_parameters(gp, true);
+        if (gp != get_player_global_parameters(pl)) {
+            set_player_global_parameters(pl, gp);
+            mark_for_notification(Cb_GlobalParameters);
+        }
     }
 }
 
 void AdlplugAudioProcessor::process_notifications()
 {
-    Player *pl = player_.get();
+    Player &pl = *player_;
     Simple_Fifo &queue = *mq_to_ui_;
 
     if (unmark_for_notification(Cb_ChipSettings)) {
@@ -437,13 +442,19 @@ void AdlplugAudioProcessor::process_notifications()
             mark_for_notification(Cb_ChipSettings);  // do later
         else {
             auto &body = *(Messages::Fx::NotifyChipSettings *)msg.data;
-            body.cs.emulator = pl->emulator();
-            body.cs.chip_count = pl->num_chips();
-#if defined(ADLPLUG_OPL3)
-            body.cs.fourop_count = pl->num_4ops();
-#elif defined(ADLPLUG_OPN2)
-            body.cs.chip_type = pl->chip_type();
-#endif
+            body.cs = get_player_chip_settings(pl);
+            Messages::finish_write(queue, msg);
+        }
+    }
+
+    if (unmark_for_notification(Cb_GlobalParameters)) {
+        Message_Header hdr(Fx_Message::NotifyGlobalParameters, sizeof(Messages::Fx::NotifyGlobalParameters));
+        Buffered_Message msg = Messages::write(queue, hdr);
+        if (!msg)
+            mark_for_notification(Cb_GlobalParameters);  // do later
+        else {
+            auto &body = *(Messages::Fx::NotifyGlobalParameters *)msg.data;
+            body.param = get_player_global_parameters(pl);
             Messages::finish_write(queue, msg);
         }
     }
@@ -559,7 +570,6 @@ bool AdlplugAudioProcessor::handle_midi(const uint8_t *data, unsigned len)
 bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_Handler_Context &ctx)
 {
     Player &pl = *player_;
-    Parameter_Block &pb = *parameter_block_;
 
     const uint8_t *data = msg.data;
     unsigned tag = msg.header->tag;
@@ -578,6 +588,7 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
         bm.mark_slots_for_notification();
         break;
     case (unsigned)User_Message::RequestFullBankState:
+        mark_for_notification(Cb_GlobalParameters);
         bm.mark_everything_for_notification();
         break;
     case (unsigned)User_Message::RequestChipSettings:
@@ -604,8 +615,11 @@ bool AdlplugAudioProcessor::handle_message(const Buffered_Message &msg, Message_
     }
     case (unsigned)User_Message::LoadGlobalParameters: {
         auto &body = *(const Messages::User::LoadGlobalParameters *)data;
-        if (bm.load_global_parameters(body.param, body.notify_back))
-            pb.set_global_parameters(get_player_global_parameters(pl));
+        if (body.param != get_player_global_parameters(pl)) {
+            set_player_global_parameters(pl, body.param);
+            if (body.notify_back)
+                mark_for_notification(Cb_GlobalParameters);
+        }
         break;
     }
     case (unsigned)User_Message::LoadInstrument: {
@@ -950,7 +964,7 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
     if (XmlElement *elt = root->getChildByName("global")) {
         PropertySet set;
         set.restoreFromXml(*elt);
-        bm.load_global_parameters(Instrument_Global_Parameters::from_properties(set), false);
+        set_player_global_parameters(pl, Instrument_Global_Parameters::from_properties(set));
     }
 
     // common parameters
@@ -962,6 +976,7 @@ void AdlplugAudioProcessor::setStateInformation(const void *data, int size)
 
     // notify everything
     mark_for_notification(Cb_ChipSettings);
+    mark_for_notification(Cb_GlobalParameters);
     bm.mark_everything_for_notification();
     for (unsigned p = 0; p < 16; ++p)
         mark_for_notification(Cb_Selection1 + p);

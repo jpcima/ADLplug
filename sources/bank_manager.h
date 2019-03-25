@@ -22,8 +22,6 @@ public:
     void send_notifications();
     void send_measurement_requests();
 
-    bool load_global_parameters(const Instrument_Global_Parameters &gp, bool notify);
-
     bool load_program(const Bank_Id &id, unsigned program, const Instrument &ins, unsigned flags);
     bool delete_program(const Bank_Id &id, unsigned program, unsigned flags);
     bool find_program(const Bank_Id &id, unsigned program, Instrument &ins);
@@ -51,7 +49,6 @@ private:
     unsigned find_empty_slot();
 
     bool emit_slots();
-    bool emit_global_parameters();
     bool emit_notification(const Bank_Info &info, unsigned program);
     bool emit_measurement_request(const Bank_Info &info, unsigned program);
 
@@ -77,6 +74,5 @@ public:
 private:
     std::array<Bank_Info, bank_reserve_size> bank_infos_;
 
-    bool global_parameters_notify_flag_ = false;
     bool slots_notify_flag_ = false;
 };

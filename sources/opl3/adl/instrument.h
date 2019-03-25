@@ -88,6 +88,16 @@ struct Instrument_Global_Parameters
     static Instrument_Global_Parameters from_properties(const juce::PropertySet &set);
 };
 
+inline bool operator==(const Instrument_Global_Parameters &a, const Instrument_Global_Parameters &b)
+{
+    return a.volume_model == b.volume_model && a.deep_tremolo == b.deep_tremolo && a.deep_vibrato == b.deep_vibrato;
+}
+
+inline bool operator!=(const Instrument_Global_Parameters &a, const Instrument_Global_Parameters &b)
+{
+    return !operator==(a, b);
+}
+
 struct Bank_Ref : ADL_Bank
 {
     constexpr Bank_Ref() noexcept
