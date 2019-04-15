@@ -93,7 +93,13 @@ sudo cmake --build . --target install
 
 ### Change Log
 
-**1.0.0 (dev)**
+**1.0.1**
+
+- updated XG bank by Wohlstand for OPN with new percussion instruments
+- partial rework of the state handling mechanism
+- initial version of Audio Unit; does not pass the validation yet
+
+**1.0.0**
 
 - added the Java OPL3 emulator by Robson Cozendey
 - added the Opal OPL3 emulator from Reality Adlib Tracker
@@ -104,7 +110,7 @@ sudo cmake --build . --target install
 - limited the scroll wheel step to 1 for discrete controls
 - displayed the exact value for knob and slider controls
 - supported the rhythm-mode channels for bank files which use it
-- performed more efficient channel management in case of many sustained notes 
+- performed more efficient channel management in case of many sustained notes
 - fixed a rare fatal error in case hold pedal is used and channel pressure is high
 - implemented a custom resource system for faster rebuilds
 - changed the user interface in minor ways
