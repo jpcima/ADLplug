@@ -1,0 +1,269 @@
+// -*- mode: adoc; -*-
+
+:lang: en
+:toc-title: Table of Contents
+:last-update-label: Last update
+:warning-caption: Attention
+
+= User's Guide
+Jean Pierre Cimalando, Olivier Humbert, Bruce Sutherland
+v1.1
+:toc:
+
+[.Lead]
+This manual documents the use of ADLplug, a frequency modulation (FM) synthesizer based on the technology of the OPL3. +
+ADLplug is free and open source software. +
+If you encounter a problem with the software, please create an issue on the project page: +
+https://github.com/jpcima/ADLplug
+
+== Description
+
+ADLplug is an FM syntheiszer, built on Yamaha's OPL3 standard.
+The implementation of this synthesis is based on an accurate emulation of the YMF262 chip.
+
+The chip can perform 2 or 4 operator FM synthesis, providing polyphony of 6 to 18 voices, depending on how it is used. It supports 6 algorithms and 8 waveforms.
+
+Using this plug-in, you can control any number of virtual YMF262 chips via MIDI input. This enables high levels of polyphony, which would be difficult or impossible to obtain using real hardware.
+
+Additionally, the plugin can use a multitude of instrument banks. A collection of banks is integrated in the plugin.
+General MIDI compatibility allows ynthesis of multiple simultaneous tracks using the same instrument.
+
+== Installation
+
+Binary downloads are provided for both Windows and Mac. +
+https://github.com/jpcima/ADLplug/releases
+
+If there is no binary for your operating system, you will need to download and build the source code. Visit the project homepage, and follow the instructions there.
+
+Once you have a binary in VST or LV2 format, you must install it in a location recognized by your VST host. Commonly used paths include:
+
+- Windows: C:\Program Files\Steinberg\VSTPlugins
+- Mac: Library/Audio/Plug-ins/VST
+- GNU/Linux and others: /usr/lib/vst, /usr/lib/lv2 , /usr/local/lib/vst, /usr/local/lib/lv2 , ~/.vst , ~/.lv2
+
+== Usage
+
+When the editor is opened, a window containing a range of controls and indicators is displayed.
+
+.The editor window
+image::../resources/screen.png[500,500]
+
+The editor layout is as follows:
+
+- in the upper left corner, the current bank, program (instrument), and associated MIDI channel can be set;
+- in the upper right corner are the settings of the virtual YMF262 chips;
+- in the center are all the controls for manipulating the currently selected program: Operators, Algorithm, Tone, and Miscellaneous;
+- in the lower right corner is the Global section, applying to all programs in a bank;
+- at the bottom is a virtual keyboard for playing the currently selected program.
+
+=== Quick Start
+
+A default bank of 2-operator algorithms is initially loaded. To get started with ADLplug, simply connect a MIDI keyboard and start playing.
+
+The General MIDI standard applies: the MIDI channels are each associated with their melodic instrument, and channel 10 is associated with percussion.
+
+Another bank an be selected from the included collections. This is done by clicking on image:../resources/emoji_u1f4c2.png[24,24], then opening the submenu via "Load from collection".
+
+=== Algorithms
+
+To understand how to edit programs, some understanding of FM synthesis, and specifically the OPL3, are required.
+
+FM (frequency modulation) synthesis uses interconnected oscillators, also known as operators.
+The layout of these operators and connections are also known as algorithms. Each operator in an algorithm acts as either a modulator or a carrier.
+
+- a carrier produces a signal for audio output
+- a modulator applies rapid frequency changes to the operator which it modulates. Most often, that operator is a carrier, but may also be another modulator. Modulating an operator modifies its spectrum, introducing a number of harmonics.
+
+The OPL3 has three classes of algorithm:
+
+- 2-operator algorithms (2op)
+- 4-operator algorithms (4op)
+- pseudo-4-operator algorithms (2x2op)
+
+Pseudo-4-op is simply a pair of 2op voices played in unison. A peculiarity of this mode is that a tonal shift may be applied to the second voice with respect to the first.
+
+.Algorithms
+image::../resources/algorithm.png[200,200]
+
+First, select one of the three classes of algorithms.
+
+Then, the FM and AM buttons are interpreted as follows:
+
+- for 2op, only the pair 1-2 applies. 3-4 is ignored.
+- for 4op, both pairs apply.
+- for 2x2op, the pair 1-2 applies to the first voice, and 3-4 applies to the second.
+
+The algorithm reference, opened by clicking on "?", displays the connection diagram corresponding to any combination of FM and AM.
+
+- when 2op or 2x2op is selected:
+
+.2-operator algorithms
+image::../resources/algo2op.png[270,270]
+
+- when 4op is selected:
+
+.4-operator algorithms
+image::../resources/algo4op.png[600,600]
+
+The diagrams can be read as follows: blocks labelled from 1 to 4 are operators. Each operator in the bottom row is a carrier, and every other operator is a modulator. The diagrams also highlight the feedback loop on operator 1.
+
+The amplitude of the signal fed back from operator 1 to itself can be controlled by the parameters "Feedback 1-2" and "Feedback 3-4". +
+Note: "Feedback 3-4" only applies to the second voice of 2x2op programs. In other configurations, it has no effect.
+
+.Tuning
+image::../resources/tuning.png[200,200]
+
+For tuning, "Note offset" is an offset in semitones applied to the note played. "Fine tune" is an additional offset in cents (hundredths of a semitone). +
+Note: "Note offset 3-4" and "Fine tune 3-4" apply only to the second voice of 2x2op programs. In other configurations, they have no effect.
+
+"Percussion key" is the note that will be played if the instrument is used as percussion.
+
+=== Polyphony
+
+The program is played on the 18 general purpose channels of the OPL3. +
+In 2op algorithms, each of these channels can accommodate a single 2op voice.
+
+For more complex instruments, it becomes more complicated.
+
+- For 2x2op algorithms, each voice occupies two channels, assigned in the same way as for 2op algorithms. Compared with 2op, polyphony is simply halved. In other words, a chip can accommodate 9 voices in 2x2op mode.
+
+- Similarly, for 4op algorithms, each voice occupies two channels. However, the channels cannot be occupied arbitrarily. Up to 12 channels may be reserved for 4op, allowing 6 4op voices.
+
+.4op channel reservation
+image::../resources/voices4op.png[400,400]
+
+The example above shows two OPL3 chips with 18 channels each. We have reserved 16 channels for 8 4op voices. Each voice has 2 channels, one colored pink and one colored blue. The remaining 20 channels in gray are available for 2op and 2x2op, allowing for polyphony of 20 or 10 voices respectively.
+
+.Chips
+image::../resources/chip.png[180,180]
+
+Maximum polyphony is controlled by the parameters "Chips" and "4 ops". The "4 ops" parameter is the maximum number of 4op voices, and must be no greater than 6 times the number of chips.
+
+Clicking on image:../resources/emoji_u1f4a1.png[24,24] automatically sets the "4 ops" parameter, based on the number of chips and the currently loaded bank. This value is a suggestion, and may not be optimal.
+
+WARNING: When the selected bank contains 4op programs, and there are no 4op voices reserved, those programs will be inaudible.
+
+=== Arpeggiation
+
+The synthesizer includes intelligent polyphony management that optimizes channel distribution. However, when channels are heavily occupied, and there are insufficient vacant channels to accommodate a new voice, an arpeggiation mechanism is triggered.
+
+The arpeggiation allows a channel to be shared between 2 or more voices, rapidly switching the properties of the channel between the voices using it. This can create an illusion of polyphony, but also an audible distortion, which may sound uncomfortable in some situations.
+
+.Chord played on the "Harpsichord" instrument, without arpeggiation
+audio::../resources/arpeggio-no.opus[]
+
+.Chord played on the "Harpsichord" instrument, with arpeggiation
+audio::../resources/arpeggio-yes.opus[]
+
+Arpeggiation indicates insufficient polyphony. To prevent arpeggiation, the number of chips or 4op voices should be increased.
+
+=== Emulators
+
+One of several YMF262 chip emulators may be selected. Emulators may be switched dynamically.
+
+During the time required for switching emulators, the sound will be muted, and the MIDI stream will be ignored. This will not interfere with real-time operation.
+
+.Emulators
+image::../resources/emulators.png[200,200]
+
+- DOSBox OPL: This emulator is a balanced choice, producing good fidelity sound while using a very reasonable quantity of CPU resources.
+- Nuked OPL: This emulator offers excellent fidelity, aiming to provide nearly cycle-exact emulation. However, CPU usage is significant, so it is only recommended with a small number of chips, or for non-realtime rendering.
+
+=== Operators
+
+Les opérateurs, au nombre de 4, et quels que soient leur rôle de modulatrice ou porteuse, présentent un paramétrage semblable.
+
+.Un opérateur
+image::../resources/operator.png[270,270]
+
+==== Waveforms
+
+Le premier paramètre est la forme d'onde de l'oscillateur, situé au coin inférieur gauche. On peut choisir une forme d'onde
+parmi 8 disponibles.
+
+. sinus
+. demi-sinus
+. sinus redressé
+. sinus-impulsion
+. sinus - périodes paires uniquement
+. sinus redressé - périodes paires uniquement
+. carré
+. carré dérivé
+
+==== Envelopes
+
+Le générateur d'enveloppe se contrôle au moyen des quatre potentiomètres étiquetés "ADSR". +
+L'enveloppe est une variation d'amplitude au fil du temps qui applique un volume à l'oscillateur.
+
+.Enveloppe ADSR
+image::../resources/adsr.svg[250,250]
+
+Les paramètres d'attaque "A" et de déclin "D" sont les durées des étapes "A" et "D" correspondantes.
+
+Le paramètre "S" est le niveau de volume correspondant au maintien, une étape active une fois "A" et
+"D" passées, et tant que la touche du clavier reste enfoncée.
+De plus, si le fanion "Maintien" est désactivé, l'étape "S" est simplement outrepassée et il y a un
+passage direct de "D" à "R", faisant alors de l'enveloppe non plus une "ADSR" mais une "ADR".
+
+Le relâchement "R" fait suite à l´étape précédente et son paramètre désigne une durée, comme précédemment avec "A" et "D".
+
+==== Effects
+
+Les fanions "Tremolo" et "Vibrato" appliquent des modulations sur l'opérateur, qui affectent respectivement le volume et la fréquence.
+
+Le "Maintien" rend active ou inactive la phase "S" du générateur d'enveloppe. Se référer à l'explication concernant les enveloppes.
+
+Le "Suivi de clavier" permet d'activer un raccourcissement de la durée de l'enveloppe en fonction de la hauteur de note.
+
+==== Levels
+
+Le niveau de sortie "Nv" détermine le volume appliqué globalement à l'opérateur.
+Il est à noter qu'il n'y a pas de volume zéro, un opérateur pourra toujours se faire entendre, même faiblement, au niveau de signal le plus bas.
+
+Le multiplicateur de fréquence "F*" élève le ton de l'opérateur d'un nombre d'octaves correspondant approximativement à sa valeur.
+
+Le taux de suivi de clavier "Tsc" est une valeur indicant la quantité de variation appliquée à la durée d'enveloppe en fonction de la hauteur de note.
+Le "Tsc" s'applique à condition que le fanion "Suivi de clavier" soit actif, autrement il est ignoré.
+
+=== Other parameters
+
+Les paramètres restants se classifient en deux groupes&nbsp;: Divers et Globaux.
+
+Un paramètre divers fait partie du programme actif dans l'éditeur.
+A contrario, un paramètre global fait partie de la banque et il s'applique à tous les programmes.
+
+.Paramètres divers
+image::../resources/misc.png[200,200]
+
+Le "Décalage de vélocité" est un modificateur fixe appliqué à la vélocité de base de notes en MIDI,
+des valeurs comprises dans l'intervalle [0, 127]. Une valeur positive augmente la vélocité, une valeur
+négative la diminue.
+
+.Paramètres globaux
+image::../resources/global.png[230,230]
+
+Les fanions "Tremolo augmenté" et "Vibrato augmenté" rendent les effets correspondants plus prononcés,
+dans le cas où ils sont actifs. Les taux d'augmentation sont des valeurs non-réglables qui sont spécifiques
+à la conception du circuit YMF262.
+
+Le "Modèle de volume" désigne une formule qui transforme les paramètres discrets associés au volume en valeurs
+de gain effectives. Dans la plupart des cas, le modèle générique fera l'affaire.
+
+En revanche, lorsqu'il s'agit de charger des banques provenant d'autres logiciels, il faut choisir la formule
+qui reproduit bien le fonctionnement du logiciel original. Par exemple, si on charge une banque issue du jeu vidéo
+Doom, il conviendra de choisir le modèle DMX&nbsp;; pour Duke Nukem 3D, le modèle approprié sera Apogee.
+
+== About
+
+ADLplug was developed by Jean Pierre Cimalando in 2018. +
+It is based on previous work by several groups of people.
+
+The YMF262 emulators were developed by the DOSBox team, and by Alexey Khokholov (Nuke.YKT) for Nuked OPL.
+
+The MIDI driver was previously developed by Joel Yliluoma (Bisqwit). Originally, this program, ADLMIDI, was a simple MIDI file player.
+
+Vitaly Novichkov (Wohlstand) reorganized ADLMIDI into a reuseable library, adding the basic building blocks of realtime MIDI control. Jean Pierre Cimalando has contributed improvements which make it more suitable for usage in MAO (???) under real-time constraints.
+
+ADLplug est un logiciel réalisé avec un objectif&nbsp;: faciliter l'utilisation de
+la FM en OPL3 dans la MAO, qui représente une certaine niche de la création musicale
+"chiptune", en la rendant accessible au plus grand nombre de musiciens.
