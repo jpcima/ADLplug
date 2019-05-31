@@ -7,7 +7,7 @@
 
 = User's Guide
 Jean Pierre Cimalando, Olivier Humbert, Bruce Sutherland
-v1.1
+v1.2
 :toc:
 
 [.Lead]
@@ -19,14 +19,14 @@ https://github.com/jpcima/ADLplug
 == Description
 
 ADLplug is an FM syntheiszer, built on Yamaha's OPL3 standard.
-The implementation of this synthesis is based on an accurate emulation of the YMF262 chip.
+The implementation of this synthesis is based on an accurate emulation of the YMF262 chip. Note that OPL3 and YMF262 are two names for the same chip.
 
 The chip can perform 2 or 4 operator FM synthesis, providing polyphony of 6 to 18 voices, depending on how it is used. It supports 6 algorithms and 8 waveforms.
 
 Using this plug-in, you can control any number of virtual YMF262 chips via MIDI input. This enables high levels of polyphony, which would be difficult or impossible to obtain using real hardware.
 
 Additionally, the plugin can use a multitude of instrument banks. A collection of banks is integrated in the plugin.
-General MIDI compatibility allows ynthesis of multiple simultaneous tracks using the same instrument.
+General MIDI compatibility allows synthesis of multiple simultaneous tracks using the same instrument.
 
 == Installation
 
@@ -168,6 +168,10 @@ image::../resources/emulators.png[200,200]
 
 - DOSBox OPL: This emulator is a balanced choice, producing good fidelity sound while using a very reasonable quantity of CPU resources.
 - Nuked OPL: This emulator offers excellent fidelity, aiming to provide nearly cycle-exact emulation. However, CPU usage is significant, so it is only recommended with a small number of chips, or for non-realtime rendering.
+-- v1.7.4 has been optimized to reduce CPU usage.
+-- v1.8 includes an improved ADSR implementation, but greater CPU usage.
+- Opal OPL3: This emulator is less accurate than the choices above, and has no support for percussion, but was taken from the popular Reality Adlib Tracker software. It could be used to replicate music composed in that tracker.
+- Java: Another alternative, originally developed as an experiment in Java.
 
 === Operators
 
@@ -220,7 +224,15 @@ Note that there is no "0" setting; even at the lowest level, the operator can be
 
 The frequency multiplier "F*" controls the base frequency of the operator, in octaves.
 
-The key scale level "Ksl" determines the extent to which amplitude is attenuated as pitch increases.
+The key scale level "Ksl" determines the extent to which amplitude is attenuated as pitch increases. The parameter value maps to attenuation as follows:
+
+- "0" means no attenuation by frequency;
+- "1" attenuates by 3.0 decibels per octave;
+- "2" attenuates by 1.5 decibels per octave;
+- "3" attenuates by 6.0 decibels per octave.
+
+Note values "1" and "2" carefully.
+In the OPL3 chip, attenuation does not increase monotonically with respect to the parameter value.
 
 === Other parameters
 
@@ -231,14 +243,19 @@ A miscellaneous parameter applies to the currently selected program in the edito
 .Miscellaneous parameters
 image::../resources/misc.png[200,200]
 
-"Velocity Offset" is a fixed modifier applied to the velocity of MIDI notes, and can be set in the range [0, 127]. A positive offset increases velocity, and a negative value decreases it.
+"Velocity Offset" is a fixed modifier applied to the velocity of MIDI notes, and can be set in the range [-127, 127]. A positive offset increases velocity, and a negative value decreases it.
 
 .Global parameters
 image::../resources/global.png[230,230]
 
-The "Deep tremolo" and "Deep vibrato" flags make those effects more pronounced, if they are active. The effect depths are fixed values determined by the design of the YMF262.
+The "Deep tremolo" and "Deep vibrato" flags make those effects more pronounced, if they are active. The effect depths are fixed values determined by the design of the YMF262, and are as follows:
 
-"Volume moodel" specifies a function for transforming the discrete parameters associated with volume into actual gain values. In most cases, the generic model is appropriate.
+- Regular tremolo modulates amplitude by 1.0 dB
+- Deep tremolo modulates amplitude by 4.8 dB
+- Regular vibrato modulates frequency by 7 cents (7 hundredths of a semitone)
+- Deep vibrato modulates frequency by 14 cents
+
+"Volume model" specifies a function for transforming the discrete parameters associated with volume into actual gain values. In most cases, the generic model is appropriate.
 
 However, when loading banks from other software, the formula that reproduces the operation of that software should be selected. For example, if you load a bank from Doom, you should choose the DMX model. For Duke Nukem 3D, use Apogee.
 
@@ -247,10 +264,37 @@ However, when loading banks from other software, the formula that reproduces the
 ADLplug was developed by Jean Pierre Cimalando in 2018. +
 It is based on previous work by several groups of people.
 
-The YMF262 emulators were developed by the DOSBox team, and by Alexey Khokholov (Nuke.YKT) for Nuked OPL.
+The YMF262 emulators were developed by:
+
+- The DOSBox team.
+- Alexey Khokholov (Nuke.YKT) for Nuked OPL, and Alexander Troosh for his optimizations on v1.7.4.
+- Robson Cozendey for the original Java OPL, and Vitaly Novichkov (Wohlstand) for the C++ version.
+- 90's demo group Reality for Opal.
 
 The MIDI driver was previously developed by Joel Yliluoma (Bisqwit). Originally, this program, ADLMIDI, was a simple MIDI file player.
 
-Vitaly Novichkov (Wohlstand) reorganized ADLMIDI into a reuseable library, adding the basic building blocks of realtime MIDI control. Jean Pierre Cimalando has contributed improvements which make it more suitable for usage in MAO under real-time constraints.
+Vitaly Novichkov (Wohlstand) reorganized ADLMIDI into a reuseable library, adding the basic building blocks of realtime MIDI control. Jean Pierre Cimalando has contributed improvements which make it more suitable for usage in real-time composition.
 
-The ADplug software was developed with the goal of allowing the use of the OPL3's FM in a MAO, making the creation of "chiptunes" accessible to as many musicians as possible.
+The ADplug software was developed with the goal of allowing the use of the OPL3's FM in composition, making the creation of "chiptunes" accessible to as many musicians as possible.
+
+Other acknowledgements include:
+
+=== Instrument design
+
+- Sneakernets
+- Papiezak
+- Vitaly Novichkov
+
+=== Artists
+
+- Brian (linuxsynths.com)
+- Garvalf
+
+=== Translation
+
+- Olivier Humbert
+- Bruce Sutherland
+
+=== Artwork
+
+- Christopher Arndt

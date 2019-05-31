@@ -441,7 +441,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>User&#8217;s Guide</h1>
 <div class="details">
 <span id="author" class="author">Jean Pierre Cimalando, Olivier Humbert, Bruce Sutherland</span><br>
-<span id="revnumber">version 1.1</span>
+<span id="revnumber">version 1.2</span>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
@@ -459,7 +459,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_other_parameters">Other parameters</a></li>
 </ul>
 </li>
-<li><a href="#_about">About</a></li>
+<li><a href="#_about">About</a>
+<ul class="sectlevel2">
+<li><a href="#_instrument_design">Instrument design</a></li>
+<li><a href="#_artists">Artists</a></li>
+<li><a href="#_translation">Translation</a></li>
+<li><a href="#_artwork">Artwork</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -479,7 +486,7 @@ If you encounter a problem with the software, please create an issue on the proj
 <div class="sectionbody">
 <div class="paragraph">
 <p>ADLplug is an FM syntheiszer, built on Yamaha&#8217;s OPL3 standard.
-The implementation of this synthesis is based on an accurate emulation of the YMF262 chip.</p>
+The implementation of this synthesis is based on an accurate emulation of the YMF262 chip. Note that OPL3 and YMF262 are two names for the same chip.</p>
 </div>
 <div class="paragraph">
 <p>The chip can perform 2 or 4 operator FM synthesis, providing polyphony of 6 to 18 voices, depending on how it is used. It supports 6 algorithms and 8 waveforms.</p>
@@ -781,7 +788,13 @@ Your browser does not support the audio tag.
 <p>DOSBox OPL: This emulator is a balanced choice, producing good fidelity sound while using a very reasonable quantity of CPU resources.</p>
 </li>
 <li>
-<p>Nuked OPL: This emulator offers excellent fidelity, aiming to provide nearly cycle-exact emulation. However, CPU usage is significant, so it is only recommended with a small number of chips, or for non-realtime rendering.</p>
+<p>Nuked OPL: This emulator offers excellent fidelity, aiming to provide nearly cycle-exact emulation. However, CPU usage is significant, so it is only recommended with a small number of chips, or for non-realtime rendering.&#8201;&#8212;&#8201;v1.7.4 has been optimized to reduce CPU usage.&#8201;&#8212;&#8201;v1.8 includes an improved ADSR implementation, but greater CPU usage.</p>
+</li>
+<li>
+<p>Opal OPL3: This emulator is less accurate than the choices above, and has no support for percussion, but was taken from the popular Reality Adlib Tracker software. It could be used to replicate music composed in that tracker.</p>
+</li>
+<li>
+<p>Java: Another alternative, originally developed as an experiment in Java.</p>
 </li>
 </ul>
 </div>
@@ -876,7 +889,27 @@ Note that there is no "0" setting; even at the lowest level, the operator can be
 <p>The frequency multiplier "F*" controls the base frequency of the operator, in octaves.</p>
 </div>
 <div class="paragraph">
-<p>The key scale level "Ksl" determines the extent to which amplitude is attenuated as pitch increases.</p>
+<p>The key scale level "Ksl" determines the extent to which amplitude is attenuated as pitch increases. The parameter value maps to attenuation as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"0" means no attenuation by frequency;</p>
+</li>
+<li>
+<p>"1" attenuates by 3.0 decibels per octave;</p>
+</li>
+<li>
+<p>"2" attenuates by 1.5 decibels per octave;</p>
+</li>
+<li>
+<p>"3" attenuates by 6.0 decibels per octave.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note values "1" and "2" carefully.
+In the OPL3 chip, attenuation does not increase monotonically with respect to the parameter value.</p>
 </div>
 </div>
 </div>
@@ -895,7 +928,7 @@ Note that there is no "0" setting; even at the lowest level, the operator can be
 <div class="title">Figure 11. Miscellaneous parameters</div>
 </div>
 <div class="paragraph">
-<p>"Velocity Offset" is a fixed modifier applied to the velocity of MIDI notes, and can be set in the range [0, 127]. A positive offset increases velocity, and a negative value decreases it.</p>
+<p>"Velocity Offset" is a fixed modifier applied to the velocity of MIDI notes, and can be set in the range [-127, 127]. A positive offset increases velocity, and a negative value decreases it.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -904,10 +937,26 @@ Note that there is no "0" setting; even at the lowest level, the operator can be
 <div class="title">Figure 12. Global parameters</div>
 </div>
 <div class="paragraph">
-<p>The "Deep tremolo" and "Deep vibrato" flags make those effects more pronounced, if they are active. The effect depths are fixed values determined by the design of the YMF262.</p>
+<p>The "Deep tremolo" and "Deep vibrato" flags make those effects more pronounced, if they are active. The effect depths are fixed values determined by the design of the YMF262, and are as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Regular tremolo modulates amplitude by 1.0 dB</p>
+</li>
+<li>
+<p>Deep tremolo modulates amplitude by 4.8 dB</p>
+</li>
+<li>
+<p>Regular vibrato modulates frequency by 7 cents (7 hundredths of a semitone)</p>
+</li>
+<li>
+<p>Deep vibrato modulates frequency by 14 cents</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>"Volume moodel" specifies a function for transforming the discrete parameters associated with volume into actual gain values. In most cases, the generic model is appropriate.</p>
+<p>"Volume model" specifies a function for transforming the discrete parameters associated with volume into actual gain values. In most cases, the generic model is appropriate.</p>
 </div>
 <div class="paragraph">
 <p>However, when loading banks from other software, the formula that reproduces the operation of that software should be selected. For example, if you load a bank from Doom, you should choose the DMX model. For Duke Nukem 3D, use Apogee.</p>
@@ -923,24 +972,95 @@ Note that there is no "0" setting; even at the lowest level, the operator can be
 It is based on previous work by several groups of people.</p>
 </div>
 <div class="paragraph">
-<p>The YMF262 emulators were developed by the DOSBox team, and by Alexey Khokholov (Nuke.YKT) for Nuked OPL.</p>
+<p>The YMF262 emulators were developed by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The DOSBox team.</p>
+</li>
+<li>
+<p>Alexey Khokholov (Nuke.YKT) for Nuked OPL, and Alexander Troosh for his optimizations on v1.7.4.</p>
+</li>
+<li>
+<p>Robson Cozendey for the original Java OPL, and Vitaly Novichkov (Wohlstand) for the C++ version.</p>
+</li>
+<li>
+<p>90&#8217;s demo group Reality for Opal.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>The MIDI driver was previously developed by Joel Yliluoma (Bisqwit). Originally, this program, ADLMIDI, was a simple MIDI file player.</p>
 </div>
 <div class="paragraph">
-<p>Vitaly Novichkov (Wohlstand) reorganized ADLMIDI into a reuseable library, adding the basic building blocks of realtime MIDI control. Jean Pierre Cimalando has contributed improvements which make it more suitable for usage in MAO under real-time constraints.</p>
+<p>Vitaly Novichkov (Wohlstand) reorganized ADLMIDI into a reuseable library, adding the basic building blocks of realtime MIDI control. Jean Pierre Cimalando has contributed improvements which make it more suitable for usage in real-time composition.</p>
 </div>
 <div class="paragraph">
-<p>The ADplug software was developed with the goal of allowing the use of the OPL3&#8217;s FM in a MAO, making the creation of "chiptunes" accessible to as many musicians as possible.</p>
+<p>The ADplug software was developed with the goal of allowing the use of the OPL3&#8217;s FM in composition, making the creation of "chiptunes" accessible to as many musicians as possible.</p>
+</div>
+<div class="paragraph">
+<p>Other acknowledgements include:</p>
+</div>
+<div class="sect2">
+<h3 id="_instrument_design">Instrument design</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Sneakernets</p>
+</li>
+<li>
+<p>Papiezak</p>
+</li>
+<li>
+<p>Vitaly Novichkov</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_artists">Artists</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Brian (linuxsynths.com)</p>
+</li>
+<li>
+<p>Garvalf</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_translation">Translation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Olivier Humbert</p>
+</li>
+<li>
+<p>Bruce Sutherland</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_artwork">Artwork</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Christopher Arndt</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 1.1<br>
-Last update 2019-05-31 10:05:48 +0900
+Version 1.2<br>
+Last update 2019-05-31 17:13:28 +0900
 </div>
 </div>
 </body>
