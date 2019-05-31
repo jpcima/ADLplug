@@ -171,87 +171,76 @@ image::../resources/emulators.png[200,200]
 
 === Operators
 
-Les opérateurs, au nombre de 4, et quels que soient leur rôle de modulatrice ou porteuse, présentent un paramétrage semblable.
+The four operators, whether functioning as modulator or carrier, provide the same parameters.
 
-.Un opérateur
+.An operator
 image::../resources/operator.png[270,270]
 
 ==== Waveforms
 
-Le premier paramètre est la forme d'onde de l'oscillateur, situé au coin inférieur gauche. On peut choisir une forme d'onde
-parmi 8 disponibles.
+The first parameter is the oscillator waveform, located in the lower left corner. One of 8 waveforms may be sellected.
 
-. sinus
-. demi-sinus
-. sinus redressé
-. sinus-impulsion
-. sinus - périodes paires uniquement
-. sinus redressé - périodes paires uniquement
-. carré
-. carré dérivé
+
+. sine
+. half-sine
+. absolute sine
+. quarter-sine, also known as pulse sine
+. alternating sine
+. camel sine, also known as absolute alternating sine
+. square
+. logarithmic sawtooth, also known as derived square
 
 ==== Envelopes
 
-Le générateur d'enveloppe se contrôle au moyen des quatre potentiomètres étiquetés "ADSR". +
-L'enveloppe est une variation d'amplitude au fil du temps qui applique un volume à l'oscillateur.
+The envelope generator is controlled by four dials labelled "ADSR".
+The envelope controls the amplitude (volume) of an oscillator with respect to time.
 
-.Enveloppe ADSR
+.ADSR Envelope
 image::../resources/adsr.svg[250,250]
 
-Les paramètres d'attaque "A" et de déclin "D" sont les durées des étapes "A" et "D" correspondantes.
+The attack (A) and decay (D) parameters control the durations of those envelope stages.
 
-Le paramètre "S" est le niveau de volume correspondant au maintien, une étape active une fois "A" et
-"D" passées, et tant que la touche du clavier reste enfoncée.
-De plus, si le fanion "Maintien" est désactivé, l'étape "S" est simplement outrepassée et il y a un
-passage direct de "D" à "R", faisant alors de l'enveloppe non plus une "ADSR" mais une "ADR".
+The sustain (S) parameter controls the volume level held after A + D has elapsed, and as long as the key remains pressed.
+However, if the "Sustain" flag is disabled, there is no sustain stage, and the envelope effectively becomes an "ADR".
 
-Le relâchement "R" fait suite à l´étape précédente et son paramètre désigne une durée, comme précédemment avec "A" et "D".
+The release (R) parameter comes after sustain, and similarly to "A" and "D", specifies the duration of the release stage.
 
-==== Effects
+==== Flags
 
-Les fanions "Tremolo" et "Vibrato" appliquent des modulations sur l'opérateur, qui affectent respectivement le volume et la fréquence.
+The "Tremolo" and "Vibrato" flags apply small modulations to the operator, affecting volume and frequency respectively.
 
-Le "Maintien" rend active ou inactive la phase "S" du générateur d'enveloppe. Se référer à l'explication concernant les enveloppes.
+"Sustain" enables or disables the "S" stage of the envelope. Refer to the explanation on envelopes.
 
-Le "Suivi de clavier" permet d'activer un raccourcissement de la durée de l'enveloppe en fonction de la hauteur de note.
+"Key scaling" automatically shortens the duration of the envelope as the pitch of the note increases.
 
 ==== Levels
 
-Le niveau de sortie "Nv" détermine le volume appliqué globalement à l'opérateur.
-Il est à noter qu'il n'y a pas de volume zéro, un opérateur pourra toujours se faire entendre, même faiblement, au niveau de signal le plus bas.
+The output level "Lv" is the global volume of the operator.
+Note that there is no "0" setting; even at the lowest level, the operator can be heard faintly.
 
-Le multiplicateur de fréquence "F*" élève le ton de l'opérateur d'un nombre d'octaves correspondant approximativement à sa valeur.
+The frequency multiplier "F*" controls the base frequency of the operator, in octaves.
 
-Le taux de suivi de clavier "Tsc" est une valeur indicant la quantité de variation appliquée à la durée d'enveloppe en fonction de la hauteur de note.
-Le "Tsc" s'applique à condition que le fanion "Suivi de clavier" soit actif, autrement il est ignoré.
+The key scale level "Ksl" determines the extent to which amplitude is attenuated as pitch increases.
 
 === Other parameters
 
-Les paramètres restants se classifient en deux groupes&nbsp;: Divers et Globaux.
+The remaining parameters fall into two groups: Miscellaneous and Global.
 
-Un paramètre divers fait partie du programme actif dans l'éditeur.
-A contrario, un paramètre global fait partie de la banque et il s'applique à tous les programmes.
+A miscellaneous parameter applies to the currently selected program in the editor. On the other hand, a global parameter is a property of the bank, and applies to all programs in that bank.
 
-.Paramètres divers
+.Miscellaneous parameters
 image::../resources/misc.png[200,200]
 
-Le "Décalage de vélocité" est un modificateur fixe appliqué à la vélocité de base de notes en MIDI,
-des valeurs comprises dans l'intervalle [0, 127]. Une valeur positive augmente la vélocité, une valeur
-négative la diminue.
+"Velocity Offset" is a fixed modifier applied to the velocity of MIDI notes, and can be set in the range [0, 127]. A positive offset increases velocity, and a negative value decreases it.
 
-.Paramètres globaux
+.Global parameters
 image::../resources/global.png[230,230]
 
-Les fanions "Tremolo augmenté" et "Vibrato augmenté" rendent les effets correspondants plus prononcés,
-dans le cas où ils sont actifs. Les taux d'augmentation sont des valeurs non-réglables qui sont spécifiques
-à la conception du circuit YMF262.
+The "Deep tremolo" and "Deep vibrato" flags make those effects more pronounced, if they are active. The effect depths are fixed values determined by the design of the YMF262.
 
-Le "Modèle de volume" désigne une formule qui transforme les paramètres discrets associés au volume en valeurs
-de gain effectives. Dans la plupart des cas, le modèle générique fera l'affaire.
+"Volume moodel" specifies a function for transforming the discrete parameters associated with volume into actual gain values. In most cases, the generic model is appropriate.
 
-En revanche, lorsqu'il s'agit de charger des banques provenant d'autres logiciels, il faut choisir la formule
-qui reproduit bien le fonctionnement du logiciel original. Par exemple, si on charge une banque issue du jeu vidéo
-Doom, il conviendra de choisir le modèle DMX&nbsp;; pour Duke Nukem 3D, le modèle approprié sera Apogee.
+However, when loading banks from other software, the formula that reproduces the operation of that software should be selected. For example, if you load a bank from Doom, you should choose the DMX model. For Duke Nukem 3D, use Apogee.
 
 == About
 
@@ -262,7 +251,7 @@ The YMF262 emulators were developed by the DOSBox team, and by Alexey Khokholov 
 
 The MIDI driver was previously developed by Joel Yliluoma (Bisqwit). Originally, this program, ADLMIDI, was a simple MIDI file player.
 
-Vitaly Novichkov (Wohlstand) reorganized ADLMIDI into a reuseable library, adding the basic building blocks of realtime MIDI control. Jean Pierre Cimalando has contributed improvements which make it more suitable for usage in MAO (???) under real-time constraints.
+Vitaly Novichkov (Wohlstand) reorganized ADLMIDI into a reuseable library, adding the basic building blocks of realtime MIDI control. Jean Pierre Cimalando has contributed improvements which make it more suitable for usage in MAO under real-time constraints.
 
 ADLplug est un logiciel réalisé avec un objectif&nbsp;: faciliter l'utilisation de
 la FM en OPL3 dans la MAO, qui représente une certaine niche de la création musicale
