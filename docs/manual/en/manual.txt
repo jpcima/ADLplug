@@ -15,7 +15,7 @@ https://github.com/jpcima/ADLplug
 
 == Description
 
-ADLplug is an FM syntheiszer, built on Yamaha's OPL3 standard.
+ADLplug is an FM synthesizer, built on Yamaha's OPL3 standard.
 The implementation of this synthesis is based on an accurate emulation of the YMF262 chip. Note that OPL3 and YMF262 are two names for the same chip.
 
 The chip can perform 2 or 4 operator FM synthesis, providing polyphony of 6 to 18 voices, depending on how it is used. It supports 6 algorithms and 8 waveforms.
@@ -179,7 +179,7 @@ image::../resources/operator.png[270,270]
 
 ==== Waveforms
 
-The first parameter is the oscillator waveform, located in the lower left corner. One of 8 waveforms may be sellected.
+The first parameter is the oscillator waveform, located in the lower left corner. One of 8 waveforms may be selected.
 
 
 . sine
