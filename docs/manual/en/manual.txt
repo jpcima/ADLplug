@@ -253,6 +253,4 @@ The MIDI driver was previously developed by Joel Yliluoma (Bisqwit). Originally,
 
 Vitaly Novichkov (Wohlstand) reorganized ADLMIDI into a reuseable library, adding the basic building blocks of realtime MIDI control. Jean Pierre Cimalando has contributed improvements which make it more suitable for usage in MAO under real-time constraints.
 
-ADLplug est un logiciel réalisé avec un objectif&nbsp;: faciliter l'utilisation de
-la FM en OPL3 dans la MAO, qui représente une certaine niche de la création musicale
-"chiptune", en la rendant accessible au plus grand nombre de musiciens.
+The ADplug software was developed with the goal of allowing the use of the OPL3's FM in a MAO, making the creation of "chiptunes" accessible to as many musicians as possible.
