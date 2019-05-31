@@ -1,13 +1,12 @@
 
 ADOC = asciidoctor
-ADOCFLAGS = -a docdate="$(shell date "+%d/%m/%Y")" -a doctime="$(shell date "+%R %Z")"
 
 all:
-  $(ADOC) $(ADOCFLAGS) manual.txt
+  $(ADOC) manual.txt
 
 clean:
   rm -f manual.html
 
 auto:
-  while true; do $(ADOC) $(ADOCFLAGS) manual.txt; \
+  while true; do $(ADOC) manual.txt; \
       inotifywait -q -e close_write manual.txt; done

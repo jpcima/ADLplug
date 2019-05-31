@@ -1,9 +1,6 @@
 // -*- mode: adoc; -*-
 
 :lang: en
-:toc-title: Table of Contents
-:last-update-label: Last update
-:warning-caption: Attention
 
 = User's Guide
 Jean Pierre Cimalando, Olivier Humbert, Bruce Sutherland
