@@ -8,7 +8,7 @@
 
 = Manuel de l'utilisateur
 Jean Pierre Cimalando, Olivier Humbert
-v1.1
+v1.2
 :toc:
 
 [.Lead]
@@ -20,7 +20,7 @@ https://github.com/jpcima/ADLplug
 == Description
 
 ADLplug est un synthétiseur FM, construit sur le standard OPL3 développé par Yamaha.
-La réalisation de cette synthèse est basée sur une émulation fidèle du circuit intégré YMF262.
+La réalisation de cette synthèse est basée sur une émulation fidèle du circuit intégré YMF262. Le circuit YMF262 est aussi appelé OPL3.
 
 Le circuit est capable de synthèse FM en 2 ou 4 opérateurs, pour une polyphonie allant de 6 à 18 voix, variant selon les conditions d'usage.
 Il permet de travailler avec 6 algorithmes et 8 formes d'ondes.
@@ -33,7 +33,7 @@ La compatibilité General MIDI permet la synthèse de pistes multiples simultan�
 
 == Installation
 
-Le projet met à disposition des téléchargements pour les systèmes Windows et Mac. +
+Le projet met à disposition des téléchargements pour les systèmes Windows, Mac et Debian. +
 https://github.com/jpcima/ADLplug/releases
 
 À défaut de disposer d'une version téléchargeable pour son système d'exploitation, il faudra récupérer le code source et le construire soi-même.
@@ -196,11 +196,13 @@ pas pour autant le fonctionnement en temps réel.
 .Les émulateurs
 image::../resources/emulators.png[200,200]
 
-- DOSBox OPL&nbsp;: cet émulateur est un choix équilibré qui produit une sortie sonore de bonne fidélité, consommant une
-quantité de ressource processeur très raisonnable.
-- Nuked OPL&nbsp;: cet émulateur propose un excellent niveau de fidélité, aspirant à proposer une émulation quasi exacte
-et précise au cycle près. La consommation de ressource processeur est importante&nbsp;: il est donc plutôt
+- DOSBox OPL&nbsp;: cet émulateur est un choix équilibré qui produit une sortie sonore de bonne fidélité, consommant une quantité de ressource processeur très raisonnable.
+- Nuked OPL&nbsp;: cet émulateur propose un excellent niveau de fidélité, aspirant à proposer une émulation quasi exacte et précise au cycle près. La consommation de ressource processeur est importante&nbsp;: il est donc plutôt
 recommandé de limiter son usage au cas d'un faible nombre de circuits, ou du rendu en différé.
+-- v1.7.4 est plutôt optimisé pour la vitesse de calcul.
+-- v1.8 améliore la fidélité de l'enveloppe ADSR, mais il est plus gourmand en ressource processeur.
+- Opal OPL3&nbsp;: cet émulateur est moins précis que les deux précédents, ne gère pas les canaux rhythmiques, mais provient du fameux logiciel Reality Adlib Tracker. Il pourrait reproduire les particularités sonores de ce séquenceur de type "tracker".
+- Java&nbsp;: une autre alternative, un version expérimentale d'abord réalisée avec Java.
 
 === Les opérateurs
 
@@ -217,11 +219,11 @@ parmi 8 disponibles.
 . sinus
 . demi-sinus
 . sinus redressé
-. sinus-impulsion
+. sinus-impulsion, ou "quart de sinus"
 . sinus - périodes paires uniquement
-. sinus redressé - périodes paires uniquement
+. sinus redressé - périodes paires uniquement, ou en anglais "camel sine"
 . carré
-. carré dérivé
+. carré dérivé, ou "dent de scie logarithmique"
 
 ==== Enveloppe
 
@@ -256,7 +258,12 @@ Il est à noter qu'il n'y a pas de volume zéro, un opérateur pourra toujours s
 Le multiplicateur de fréquence "F*" élève le ton de l'opérateur d'un nombre d'octaves correspondant approximativement à sa valeur.
 
 Le taux de suivi de clavier "Tsc" est une valeur indicant la quantité de variation appliquée à la durée d'enveloppe en fonction de la hauteur de note.
-Le "Tsc" s'applique à condition que le fanion "Suivi de clavier" soit actif, autrement il est ignoré.
+Les valeurs du paramètre correspondent aux atténuations suivantes&nbsp;:
+
+- "0" ne produit aucune atténuation&nbsp;;
+- "1" atténue de 3.0 décibels par octave&nbsp;;
+- "2" atténue de 1.5 décibels par octave&nbsp;;
+- "3" atténue de 6.0 décibels par octave.
 
 === Les autres paramètres
 
@@ -277,7 +284,12 @@ image::../resources/global.png[230,230]
 
 Les fanions "Tremolo augmenté" et "Vibrato augmenté" rendent les effets correspondants plus prononcés,
 dans le cas où ils sont actifs. Les taux d'augmentation sont des valeurs non-réglables qui sont spécifiques
-à la conception du circuit YMF262.
+à la conception du circuit YMF262, et sont définies comme ceci&nbsp;:
+
+- Le tremolo ordinaire module l'amplitude de 1.0 dB
+- Le tremolo augmenté module l'amplitude de 4.8 dB
+- Le vibrato ordinaire module la fréquence de 7 cents (7 centièmes de demi-ton)
+- Le vibrato augmenté module la fréquence de 14 cents
 
 Le "Modèle de volume" désigne une formule qui transforme les paramètres discrets associés au volume en valeurs
 de gain effectives. Dans la plupart des cas, le modèle générique fera l'affaire.
@@ -291,8 +303,12 @@ Doom, il conviendra de choisir le modèle DMX&nbsp;; pour Duke Nukem 3D, le mod�
 ADLplug est un logiciel développé par Jean Pierre Cimalando en 2018. +
 Il est basé sur un travail préalable de plusieurs groupes de personnes.
 
-Les émulations de YMF262 sont développées par l'équipe DOSBox d'une part,
-et par Alexey Khokholov "Nuke.YKT" pour Nuked OPL d'autre part.
+Les émulations de YMF262 sont développées par&nbsp;:
+
+- L'équipe DOSBox.
+- Alexey Khokholov (Nuke.YKT) pour Nuked OPL, et Alexander Troosh pour ses optimisations sur la v1.7.4.
+- Robson Cozendey pour le Java OPL original, et Vitaly Novichkov (Wohlstand) pour la version C++.
+- Le groupe de démo Reality des années 90 pour Opal.
 
 Le pilote MIDI qui interagit avec l'émulateur est un travail initial de Joel Yliluoma "Bisqwit".
 Au départ, ce programme, ADLMIDI, est un simple lecteur de fichiers MIDI.
@@ -305,3 +321,25 @@ plus utilisable pour un usage en MAO sous contraintes de temps réel.
 ADLplug est un logiciel réalisé avec un objectif&nbsp;: faciliter l'utilisation de
 la FM en OPL3 dans la MAO, qui représente une certaine niche de la création musicale
 "chiptune", en la rendant accessible au plus grand nombre de musiciens.
+
+Sont remerciés également&nbsp;:
+
+=== Conception d'instruments
+
+- Sneakernets
+- Papiezak
+- Vitaly Novichkov
+
+=== Artistes
+
+- Brian (linuxsynths.com)
+- Garvalf
+
+=== Traduction
+
+- Olivier Humbert
+- Bruce Sutherland
+
+=== Graphismes
+
+- Christopher Arndt
