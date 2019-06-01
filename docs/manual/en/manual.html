@@ -477,7 +477,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>This manual documents the use of ADLplug, a frequency modulation (FM) synthesizer based on the technology of the OPL3.<br>
 ADLplug is free and open source software.<br>
 If you encounter a problem with the software, please create an issue on the project page:<br>
-<a href="https://github.com/jpcima/ADLplug" class="bare">https://github.com/jpcima/ADLplug</a></p>
+<a href="https://github.com/jpcima/ADLplug/issues" class="bare">https://github.com/jpcima/ADLplug/issues</a></p>
 </div>
 </div>
 </div>
@@ -489,10 +489,10 @@ If you encounter a problem with the software, please create an issue on the proj
 The implementation of this synthesis is based on an accurate emulation of the YMF262 chip. Note that OPL3 and YMF262 are two names for the same chip.</p>
 </div>
 <div class="paragraph">
-<p>The chip can perform 2 or 4 operator FM synthesis, providing polyphony of 6 to 18 voices, depending on how it is used. It supports 6 algorithms and 8 waveforms.</p>
+<p>The chip can perform 2- or 4-operator FM synthesis, providing polyphony of 6 to 18 voices, depending on how it is used. It supports 6 algorithms and 8 waveforms.</p>
 </div>
 <div class="paragraph">
-<p>Using this plug-in, you can control any number of virtual YMF262 chips via MIDI input. This enables high levels of polyphony, which would be difficult or impossible to obtain using real hardware.</p>
+<p>Using this plugin, you can control any number of virtual YMF262 chips via MIDI input. This enables high levels of polyphony, which would be difficult or impossible to obtain using real hardware.</p>
 </div>
 <div class="paragraph">
 <p>Additionally, the plugin can use a multitude of instrument banks. A collection of banks is integrated in the plugin.
@@ -504,7 +504,7 @@ General MIDI compatibility allows synthesis of multiple simultaneous tracks usin
 <h2 id="_installation">Installation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Binary downloads are provided for both Windows and Mac.<br>
+<p>Binary downloads are provided for Windows, Mac and Debian.<br>
 <a href="https://github.com/jpcima/ADLplug/releases" class="bare">https://github.com/jpcima/ADLplug/releases</a></p>
 </div>
 <div class="paragraph">
@@ -571,7 +571,7 @@ General MIDI compatibility allows synthesis of multiple simultaneous tracks usin
 <p>The General MIDI standard applies: the MIDI channels are each associated with their melodic instrument, and channel 10 is associated with percussion.</p>
 </div>
 <div class="paragraph">
-<p>Another bank an be selected from the included collections. This is done by clicking on <span class="image"><img src="../resources/emoji_u1f4c2.png" alt="24" width="24"></span>, then opening the submenu via "Load from collection".</p>
+<p>Another bank can be selected from the included collections. This is done by clicking on <span class="image"><img src="../resources/emoji_u1f4c2.png" alt="24" width="24"></span>, then opening the submenu via "Load from collection".</p>
 </div>
 </div>
 <div class="sect2">
@@ -581,7 +581,7 @@ General MIDI compatibility allows synthesis of multiple simultaneous tracks usin
 </div>
 <div class="paragraph">
 <p>FM (frequency modulation) synthesis uses interconnected oscillators, also known as operators.
-The layout of these operators and connections are also known as algorithms. Each operator in an algorithm acts as either a modulator or a carrier.</p>
+The layout of these operators and connections are also known as algorithms. Each operator in an algorithm may act as either a modulator or a carrier.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -594,7 +594,7 @@ The layout of these operators and connections are also known as algorithms. Each
 </ul>
 </div>
 <div class="paragraph">
-<p>The OPL3 has three classes of algorithm:</p>
+<p>The OPL3 has three classes of algorithms:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -691,7 +691,7 @@ Note: "Note offset 3-4" and "Fine tune 3-4" apply only to the second voice of 2x
 <h3 id="_polyphony">Polyphony</h3>
 <div class="paragraph">
 <p>The program is played on the 18 general purpose channels of the OPL3.<br>
-In 2op algorithms, each of these channels can accommodate a single 2op voice.</p>
+For 2op algorithms, each of these channels can accommodate a single 2op voice.</p>
 </div>
 <div class="paragraph">
 <p>For more complex instruments, it becomes more complicated.</p>
@@ -713,7 +713,7 @@ In 2op algorithms, each of these channels can accommodate a single 2op voice.</p
 <div class="title">Figure 6. 4op channel reservation</div>
 </div>
 <div class="paragraph">
-<p>The example above shows two OPL3 chips with 18 channels each. We have reserved 16 channels for 8 4op voices. Each voice has 2 channels, one colored pink and one colored blue. The remaining 20 channels in gray are available for 2op and 2x2op, allowing for polyphony of 20 or 10 voices respectively.</p>
+<p>The example above shows two OPL3 chips with 18 channels each. We have reserved 16 channels for 8 4op voices. Each voice has 2 channels, one colored pink and one colored blue. The remaining 20 channels in grey are available for 2op and 2x2op, allowing for polyphony of 20 or 10 voices respectively.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -857,14 +857,14 @@ The envelope controls the amplitude (volume) of an oscillator with respect to ti
 <div class="title">Figure 10. ADSR Envelope</div>
 </div>
 <div class="paragraph">
-<p>The attack (A) and decay (D) parameters control the durations of those envelope stages.</p>
+<p>The attack ("A") and decay ("D") parameters control the durations of those envelope stages.</p>
 </div>
 <div class="paragraph">
-<p>The sustain (S) parameter controls the volume level held after A + D has elapsed, and as long as the key remains pressed.
+<p>The sustain ("S") parameter controls the volume level held after A + D has elapsed, and as long as the key remains pressed.
 However, if the "Sustain" flag is disabled, there is no sustain stage, and the envelope effectively becomes an "ADR".</p>
 </div>
 <div class="paragraph">
-<p>The release &#174; parameter comes after sustain, and similarly to "A" and "D", specifies the duration of the release stage.</p>
+<p>The release ("R") parameter comes after sustain, and similarly to "A" and "D", specifies the duration of the release stage.</p>
 </div>
 </div>
 <div class="sect3">
@@ -997,7 +997,7 @@ It is based on previous work by several groups of people.</p>
 <p>Vitaly Novichkov (Wohlstand) reorganized ADLMIDI into a reuseable library, adding the basic building blocks of realtime MIDI control. Jean Pierre Cimalando has contributed improvements which make it more suitable for usage in real-time composition.</p>
 </div>
 <div class="paragraph">
-<p>The ADplug software was developed with the goal of allowing the use of the OPL3&#8217;s FM in composition, making the creation of "chiptunes" accessible to as many musicians as possible.</p>
+<p>The ADLplug software was developed with the goal of allowing the use of the OPL3&#8217;s FM in composition, making the creation of "chiptunes" accessible to as many musicians as possible.</p>
 </div>
 <div class="paragraph">
 <p>Other acknowledgements include:</p>
@@ -1060,7 +1060,7 @@ It is based on previous work by several groups of people.</p>
 <div id="footer">
 <div id="footer-text">
 Version 1.2<br>
-Last updated 2019-05-31 20:44:27 +0900
+Last updated 2019-06-01 15:21:53 +0900
 </div>
 </div>
 </body>
