@@ -1,4 +1,5 @@
 // -*- mode: adoc; -*-
+// SPDX-License-Identifier: LAL-1.3 or CC-BY-SA-4.0
 
 :lang: fr
 :toc-title: Table des Matières
