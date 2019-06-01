@@ -19,7 +19,7 @@ The emulations and the drivers are provided by [libADLMIDI](https://github.com/W
 - [x] ability to synthesize entire MIDI files out of the box
 
 Author: [Jean Pierre Cimalando](https://github.com/jpcima)  
-Contributors: [Olivier Humbert](https://github.com/trebmuh), [Christopher Arndt](https://github.com/SpotlightKid)
+Contributors: [Olivier Humbert](https://github.com/trebmuh), [Christopher Arndt](https://github.com/SpotlightKid), [Bruce Sutherland](https://github.com/bsutherland)
 
 ## Development builds
 
@@ -29,7 +29,7 @@ You can find automatic builds of the development branch [here](https://github.co
 
 ## Useful links
 
-- User Manual : [French :fr:](http://jpcima.sdf1.org/software/documentation/ADLplug/manual/fr/manual.html)
+- User Manual : [English :us:](http://jpcima.sdf1.org/software/documentation/ADLplug/manual/en/manual.html) [French :fr:](http://jpcima.sdf1.org/software/documentation/ADLplug/manual/fr/manual.html)
 - LibraZiK-2 : [ADLplug :fr:](https://librazik.tuxfamily.org/doc2/logiciels/adlplug) [OPNplug :fr:](https://librazik.tuxfamily.org/doc2/logiciels/opnplug)
 - Fedora Copr : [ycollet/linuxmao](https://copr.fedorainfracloud.org/coprs/ycollet/linuxmao/)
 - Arch Linux AUR : [adlplug-git](https://aur.archlinux.org/packages/adlplug-git/) and [opnplug-git](https://aur.archlinux.org/packages/opnplug-git/)
@@ -92,6 +92,10 @@ sudo cmake --build . --target install
 ```
 
 ### Change Log
+
+**1.0.2-dev**
+
+- English translation of the user manual by Bruce Sutherland
 
 **1.0.1**
 
