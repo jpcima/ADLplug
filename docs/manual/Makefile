@@ -1,7 +1,7 @@
 
 PREFIX = /usr/local
 DOCDIR = $(PREFIX)/share/doc
-LANGS = fr
+LANGS = fr en
 
 all:
 	$(foreach lang,$(LANGS),$(MAKE) -C $(lang))
