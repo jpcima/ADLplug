@@ -23,7 +23,7 @@ Contributors: [Olivier Humbert](https://github.com/trebmuh), [Christopher Arndt]
 
 ## Development builds
 
-[![Build Status](https://semaphoreci.com/api/v1/jpcima/adlplug-2/branches/master/badge.svg)](https://semaphoreci.com/jpcima/adlplug-2)
+[![Build Status](https://ci.appveyor.com/api/projects/status/jpcima/ADLplug)](https://ci.appveyor.com/project/jpcima/ADLplug)
 
 You can find automatic builds of the development branch [here](https://github.com/jpcima/ADLplug/releases/tag/latest).
 
