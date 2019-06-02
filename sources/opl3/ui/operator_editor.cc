@@ -456,6 +456,17 @@ void Operator_Editor::buttonClicked (Button* buttonThatWasClicked)
 
 
 //[MiscUserCode] You can add your own definitions of your custom methods or any other code here...
+static unsigned swap_ksl(unsigned ksl)
+{
+    // OPL mapping for KSL (dB/oct): 0=>0, 1=>3, 2=>1.5, 3=>6
+    // for user-friendly ordering, the UI control will swap 1 and 2
+    switch (ksl) {
+    case 1: return 2;
+    case 2: return 1;
+    default: return ksl;
+    }
+}
+
 void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op, NotificationType ntf)
 {
     kn_attack->set_value(ins.attack(op), ntf);
@@ -465,7 +476,7 @@ void Operator_Editor::set_operator_parameters(const Instrument &ins, unsigned op
 
     sl_level->set_value(ins.level(op), ntf);
     sl_fmul->set_value(ins.fmul(op), ntf);
-    sl_ksl->set_value(ins.ksl(op), ntf);
+    sl_ksl->set_value(swap_ksl(ins.ksl(op)), ntf);
 
     btn_trem->setToggleState(ins.trem(op), ntf);
     btn_vib->setToggleState(ins.vib(op), ntf);
@@ -500,7 +511,7 @@ void Operator_Editor::knob_value_changed(Knob *k)
     }
     else if (k == sl_ksl.get()) {
         AudioParameterInt &p = *op.p_ksl;
-        p = (int)std::lround(k->value());
+        p = swap_ksl((int)std::lround(k->value()));
     }
     else if (k == kn_attack.get()) {
         AudioParameterInt &p = *op.p_attack;
@@ -626,7 +637,7 @@ bool Operator_Editor::display_info_for_component(Component *c)
     }
     else if (c == sl_ksl.get()) {
         param = prefix + "Key scale level";
-        val = (int)std::lround(kn->value());
+        val = swap_ksl((int)std::lround(kn->value()));
     }
     else if (c == kn_attack.get()) {
         param = prefix + "Attack";
