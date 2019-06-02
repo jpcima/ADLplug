@@ -1,0 +1,138 @@
+# Build settings for Appveyor CI
+
+image: Ubuntu
+
+configuration: Release
+
+cache:
+  - download
+
+environment:
+  matrix:
+    - build_type: source
+    - build_type: librazik
+    - build_type: macos
+    - build_type: mingw32
+    - build_type: mingw64
+
+install:
+  - mkdir -p download
+  - checkfile() { test "$(sha1sum -b "$1" | cut -d ' ' -f 1)" == "$2"; }
+  - getfile() { if ! checkfile "$1" "$2"; then curl -o "$1" "$3"; checkfile "$1" "$2"; fi }
+  - git submodule update --init --recursive
+  #- patch -d thirdparty/JUCE -p1 -i "`pwd`"/resources/patch/juce-pthread-priority.patch
+  - patch -d thirdparty/JUCE -p1 -i "`pwd`"/resources/patch/juce-enable-mingw-vst3.patch
+  - patch -d thirdparty/JUCE -p1 -i "`pwd`"/resources/patch/juce-enable-mingw-directwrite.patch
+  - getfile download/asiosdk2.3.zip 4ed6c150dcc1ee55d4ae32dfabad306547e9f15d http://jpcima.sdf1.org/files/asiosdk2.3.zip
+  - getfile download/vst_sdk2_4_rev2.zip d7f3668c90a69dbe640f2eeed6fc0a7e0717adff http://jpcima.sdf1.org/files/vst_sdk2_4_rev2.zip
+  - unzip -q -d thirdparty download/asiosdk2.3.zip
+  - unzip -q -d thirdparty download/vst_sdk2_4_rev2.zip
+  - sudo apt-get install p7zip
+
+for:
+  -
+    matrix:
+      only:
+        - build_type: source
+    build_script:
+      - git clone --recursive . ADLplug-dev
+      - rm -rf ADLplug-dev/thirdparty/ASIOSDK2.3
+      - rm -rf ADLplug-dev/thirdparty/vstsdk2.4
+      - rm -rf ADLplug-dev/thirdparty/JUCE/{doxygen,examples,extras}
+      - rm -rf ADLplug-dev/thirdparty/fmt/doc
+      - rm -rf ADLplug-dev/thirdparty/{libADLMIDI,libOPNMIDI}/fm_banks
+      - rm -rf ADLplug-dev/thirdparty/libADLMIDI/projects
+      - find ADLplug-dev -name '.git*' -exec rm -rf {} +
+      - tar -c -J -v -f ADLplug-dev.tar.xz ADLplug-dev
+    artifacts:
+      - path: ADLplug-dev.tar.xz
+        name: 'ADLplug & OPNplug source code'
+  -
+    matrix:
+      only:
+        - build_type: librazik
+    build_script:
+      - rm -rf thirdparty/vstsdk2.4
+      - docker pull jpcima/librazik
+      - container=$(docker run -d -i -v /home:/home jpcima/librazik /bin/bash)
+      - alias cross='docker exec -w "$(pwd)" -i "$container"'
+      - build() { mkdir -p "$1"; cd "$1"; shift; cross cmake -G "Unix Makefiles" "$@" ..; cross make -j2; cd ..; }
+      - build ADLplug-dev-lzk -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPL3 -DADLplug_PCH=ON -DADLplug_LV2=ON
+      - build OPNplug-dev-lzk -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPN2 -DADLplug_PCH=ON -DADLplug_LV2=ON
+      - package() { cd "$1"; cross cpack -G DEB; mv ./*.deb ..; cd ..; }
+      - package ADLplug-dev-lzk
+      - package OPNplug-dev-lzk
+    artifacts:
+      - path: adlplug_amd64.deb
+        name: 'ADLplug for 64-bit LibraZiK-2 / Debian Stretch'
+      - path: opnplug_amd64.deb
+        name: 'OPNplug for 64-bit LibraZiK-2 / Debian Stretch'
+  -
+    matrix:
+      only:
+        - build_type: macos
+    build_script:
+      - docker pull jpcima/osxcross
+      - container=$(docker run -d -i -v /home:/home jpcima/osxcross /bin/bash)
+      - alias cross='docker exec -w "$(pwd)" -e PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/osxcross/target/bin" -i "$container"'
+      - build() { mkdir -p "$1"; cd "$1"; shift; cross x86_64-apple-darwin15-cmake -G "Unix Makefiles" -DCMAKE_OSX_ARCHITECTURES="x86_64;i386" "$@" ..; cross make -j2; cd ..; }
+      - package() { 7zr a "$1".7z "$1"/{lv2,vst2,vst3,au,standalone}; }
+      - build ADLplug-dev-mac -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPL3 -DADLplug_LV2=ON -DADLplug_AU=ON
+      - build OPNplug-dev-mac -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPN2 -DADLplug_LV2=ON -DADLplug_AU=ON
+      - package ADLplug-dev-mac
+      - package OPNplug-dev-mac
+    artifacts:
+      - path: ADLplug-dev-mac.7z
+        name: 'ADLplug for macOS'
+      - path: OPNplug-dev-mac.7z
+        name: 'OPNplug for macOS'
+  -
+    matrix:
+      only:
+        - build_type: mingw32
+    build_script:
+      - docker pull jpcima/mingw
+      - container=$(docker run -d -i -v /home:/home jpcima/mingw /bin/bash)
+      - alias cross='docker exec -w "$(pwd)" -i "$container"'
+      - build() { mkdir -p "$1"; cd "$1"; shift; cross mingw32-cmake -G "Unix Makefiles" "$@" ..; cross make -j2; cd ..; }
+      - package() { 7zr a "$1".7z "$1"/{lv2,vst2,vst3,standalone}; }
+      - build ADLplug-dev-win32 -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPL3 -DADLplug_PCH=ON -DADLplug_LV2=ON
+      - build OPNplug-dev-win32 -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPN2 -DADLplug_PCH=ON -DADLplug_LV2=ON
+      - package ADLplug-dev-win32
+      - package OPNplug-dev-win32
+    artifacts:
+      - path: ADLplug-dev-win32.7z
+        name: 'ADLplug for 32-bit Windows'
+      - path: OPNplug-dev-win32.7z
+        name: 'OPNplug for 32-bit Windows'
+  -
+    matrix:
+      only:
+        - build_type: mingw64
+    build_script:
+      - docker pull jpcima/mingw
+      - container=$(docker run -d -i -v /home:/home jpcima/mingw /bin/bash)
+      - alias cross='docker exec -w "$(pwd)" -i "$container"'
+      - build() { mkdir -p "$1"; cd "$1"; shift; cross mingw64-cmake -G "Unix Makefiles" "$@" ..; cross make -j2; cd ..; }
+      - package() { 7zr a "$1".7z "$1"/{lv2,vst2,vst3,standalone}; }
+      - build ADLplug-dev-win64 -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPL3 -DADLplug_PCH=ON -DADLplug_LV2=ON
+      - build OPNplug-dev-win64 -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPN2 -DADLplug_PCH=ON -DADLplug_LV2=ON
+      - package ADLplug-dev-win64
+      - package OPNplug-dev-win64
+    artifacts:
+      - path: ADLplug-dev-win64.7z
+        name: 'ADLplug for 64-bit Windows'
+      - path: OPNplug-dev-win64.7z
+        name: 'OPNplug for 64-bit Windows'
+
+deploy:
+  release: latest
+  description: 'Latest'
+  provider: GitHub
+  auth_token:
+    secure: 4wBuPa3uquM+Kn9w3xOBGaIOZhu0NPqHXDA585i257wxDl0M5+irUgiaPaAPvaih
+  artifact: 'ADLplug for 32-bit Windows,OPNplug for 32-bit Windows,ADLplug for 64-bit Windows,OPNplug for 64-bit Windows,ADLplug for macOS,OPNplug for macOS,ADLplug for 64-bit LibraZiK-2 / Debian Stretch,OPNplug for 64-bit LibraZiK-2 / Debian Stretch,ADLplug & OPNplug source code'
+  draft: false
+  prerelease: true
+  on:
+    branch: master
