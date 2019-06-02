@@ -201,7 +201,7 @@ image::../resources/emulators.png[200,200]
 recommandé de limiter son usage au cas d'un faible nombre de circuits, ou du rendu en différé.
 -- v1.7.4 est plutôt optimisé pour la vitesse de calcul.
 -- v1.8 améliore la fidélité de l'enveloppe ADSR, mais il est plus gourmand en ressource processeur.
-- Opal OPL3&nbsp;: cet émulateur est moins précis que les deux précédents, ne gère pas les canaux rhythmiques, mais provient du fameux logiciel Reality Adlib Tracker. Il pourrait reproduire les particularités sonores de ce séquenceur de type "tracker".
+- Opal OPL3&nbsp;: cet émulateur est moins précis que les deux précédents, ne gère pas les 5 canaux rhythmiques dédiés, mais provient du fameux logiciel Reality Adlib Tracker. Il pourrait reproduire les particularités sonores de ce séquenceur de type "tracker".
 - Java&nbsp;: une autre alternative, un version expérimentale d'abord réalisée avec Java.
 
 === Les opérateurs
@@ -307,7 +307,7 @@ Les émulations de YMF262 sont développées par&nbsp;:
 
 - L'équipe DOSBox.
 - Alexey Khokholov (Nuke.YKT) pour Nuked OPL, et Alexander Troosh pour ses optimisations sur la v1.7.4.
-- Robson Cozendey pour le Java OPL original, et Vitaly Novichkov (Wohlstand) pour la version C++.
+- Robson Cozendey pour le Java OPL original, converti plus tard en C++ par Randy Heit.
 - Le groupe de démo Reality des années 90 pour Opal.
 
 Le pilote MIDI qui interagit avec l'émulateur est un travail initial de Joel Yliluoma "Bisqwit".
