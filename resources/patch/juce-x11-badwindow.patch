@@ -1,0 +1,14 @@
+diff --git a/modules/juce_gui_basics/native/juce_linux_X11_Windowing.cpp b/modules/juce_gui_basics/native/juce_linux_X11_Windowing.cpp
+index ab9b9496b..0357deac6 100644
+--- a/modules/juce_gui_basics/native/juce_linux_X11_Windowing.cpp
++++ b/modules/juce_gui_basics/native/juce_linux_X11_Windowing.cpp
+@@ -1500,6 +1500,9 @@ public:
+         ScopedXLock xlock (display);
+         XGetInputFocus (display, &focusedWindow, &revert);
+ 
++        if (focusedWindow == PointerRoot)
++            return false;
++
+         return isParentWindowOf (focusedWindow);
+     }
+ 
