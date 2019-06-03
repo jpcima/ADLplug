@@ -23,7 +23,7 @@ Contributors: [Olivier Humbert](https://github.com/trebmuh), [Christopher Arndt]
 
 ## Development builds
 
-[![Build Status](https://ci.appveyor.com/api/projects/status/jpcima/ADLplug)](https://ci.appveyor.com/project/jpcima/ADLplug)
+[![Build Status](https://ci.appveyor.com/api/projects/status/github/jpcima/ADLplug?svg=true)](https://ci.appveyor.com/project/jpcima/ADLplug)
 
 You can find automatic builds of the development branch [here](https://github.com/jpcima/ADLplug/releases/tag/latest).
 
