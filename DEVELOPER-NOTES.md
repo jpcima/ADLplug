@@ -57,9 +57,41 @@ There exist multiple entities to the managed state, which are as follows.
 1. the active set of banks and programs
 2. the chip settings
 3. the bank global settings
-4. the parameters
+4. the program selection for each MIDI channel
+5. the parameters
 
-The elements 1, 2 and 3 are used by both the processor and editor, and they both have their own copy.
+The elements 1, 2, 3 and 4 are used by both the processor and editor, and they both have their own copy.
 The parameters concern the host to plugin communication, they also keep a value, and it's most often a copy of data stored as synthesizer internals.
 
 For the correctness of all the kinds of state, it's required to keep this data in synchronization.
+
+### The bank manager
+
+The set of banks and programs is tracked on the processor side by the bank manager object.
+
+It keeps the slots, metadata and status, but not patch data which is actually kept inside the synthesizer instance.
+
+- The slots are bits which indicate whether program entries are blank or used within a bank.
+- As metadata, the bank manager stores the individual names of banks and instruments.
+- The *notify* status bit indicates whether a program is changed from the processor, and needs notification to the editor.
+- The *measure* status bit indicates whether a program needs the time measurements of its envelope to be updated.
+
+Every bank is identified by this set of values:
+- a 7-bit MSB from the MIDI bank select controller
+- a 7-bit LSB from the MIDI bank select controller
+- a percussion bit, 0 if the bank is melodic, 1 if percussive
+
+There is a limit to the number of banks which can be stored, known as the reserve size.
+This is set to a small but reasonable number, such that the bank storage is bounded in size. Banks cannot be loaded into the synthesizer beyond this capacity.
+
+### The bank management on editor side
+
+The banks and programs are kept in a data structure which is fitting to the graphical presentation.
+In the editor, melodic and percussion banks of the same (MSB, LSB) pair are merged under the same menu item.
+
+In order to update or receive a program, FIFO messages are transmitted in either direction.
+The program to edit is designated by a bank identifier and a program number. The program number ranges from 0 to 127.
+
+In order to add or remove programs, *slots* are transmitted.
+It is a set of bits which indicates which banks and programs exists or not.
+By comparing these bits with current status, either side should update itself by adding or deleting banks and programs which differ in the slot comparison.
