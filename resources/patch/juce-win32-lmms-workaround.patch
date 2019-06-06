@@ -1,0 +1,20 @@
+diff --git a/modules/juce_gui_basics/native/juce_win32_Windowing.cpp b/modules/juce_gui_basics/native/juce_win32_Windowing.cpp
+index c21682211..59a970357 100644
+--- a/modules/juce_gui_basics/native/juce_win32_Windowing.cpp
++++ b/modules/juce_gui_basics/native/juce_win32_Windowing.cpp
+@@ -4065,6 +4065,7 @@ bool offerKeyMessageToJUCEWindow (MSG& m)   { return HWNDComponentPeer::offerKey
+ //==============================================================================
+ bool JUCE_CALLTYPE Process::isForegroundProcess()
+ {
++#if 0
+     if (auto fg = GetForegroundWindow())
+     {
+         DWORD processID = 0;
+@@ -4072,6 +4073,7 @@ bool JUCE_CALLTYPE Process::isForegroundProcess()
+ 
+         return processID == GetCurrentProcessId();
+     }
++#endif
+ 
+     return true;
+ }
