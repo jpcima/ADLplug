@@ -19,7 +19,7 @@ The emulations and the drivers are provided by [libADLMIDI](https://github.com/W
 - [x] ability to synthesize entire MIDI files out of the box
 
 Author: [Jean Pierre Cimalando](https://github.com/jpcima)  
-Contributors: [Olivier Humbert](https://github.com/trebmuh), [Christopher Arndt](https://github.com/SpotlightKid), [Bruce Sutherland](https://github.com/bsutherland)
+Contributors: [Olivier Humbert](https://github.com/trebmuh), [Christopher Arndt](https://github.com/SpotlightKid), [Bruce Sutherland](https://github.com/bsutherland), [David Runge](https://github.com/dvzrv)
 
 ## Development builds
 
