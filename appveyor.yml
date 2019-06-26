@@ -29,7 +29,7 @@ install:
   - getfile() { if ! checkfile "$1" "$2"; then curl -o "$1" "$3"; checkfile "$1" "$2"; fi }
   - makekey() { install -d ~/.ssh -m 0700; echo "$1" | base64 -d > ~/.ssh/"$2"; chmod 0600 ~/.ssh/"$2"; }
   - pushtag() { git tag -f -a "$1" -m "$2"; git push -f origin "$1" || true; }
-  - is_master() { test "$APPVEYOR_REPO_BRANCH" = "master" -a -z "$APPVEYOR_PULL_REQUEST_NUMBER" }
+  - is_master() { test "$APPVEYOR_REPO_BRANCH" = "master" -a -z "$APPVEYOR_PULL_REQUEST_NUMBER"; }
   - git submodule update --init --recursive
   #- patch -d thirdparty/JUCE -p1 -i "`pwd`"/resources/patch/juce-pthread-priority.patch
   - patch -d thirdparty/JUCE -p1 -i "`pwd`"/resources/patch/juce-enable-mingw-vst3.patch
