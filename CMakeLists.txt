@@ -28,11 +28,13 @@ system_option(ADLplug_Jack "Build Jack" ON "Windows" OFF "Darwin" OFF)
 option(ADLplug_PCH "Enable precompiled headers" OFF)
 option(ADLplug_RT_CHECKER "Enable a detector of RT programming errors" OFF)
 option(ADLplug_ASSERTIONS "Enable assertions" OFF)
+option(SYSTEM_FMT "Use fmt libraries from system" OFF)
 
 set(ADLplug_CHIP "OPL3" CACHE STRING "Kind of synthesizer chip (OPL3, OPN2)")
 
 include(GNUWarnings)
 include(LinkHelpers)
+
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -183,14 +185,23 @@ elseif(ADLplug_CHIP STREQUAL "OPN2")
   target_link_libraries(ADLplug_core PUBLIC OPNMIDI_static)
 endif()
 
-add_library(fmt STATIC
-  "thirdparty/fmt/src/format.cc"
-  "thirdparty/fmt/src/posix.cc")
-target_compile_definitions(fmt PUBLIC "FMT_USE_USER_DEFINED_LITERALS=0")
-target_include_directories(fmt PUBLIC "thirdparty/fmt/include")
-set_property(TARGET fmt PROPERTY POSITION_INDEPENDENT_CODE ON)
+if(SYSTEM_FMT)
+    find_package(fmt 5.1.0)
+    if(fmt_FOUND)
+      target_link_libraries(ADLplug_core PUBLIC fmt)
+    else()
+      message(FATAL_ERROR "Unable to find fmt on system.")
+    endif()
+else()
+  add_library(fmt STATIC
+    "thirdparty/fmt/src/format.cc"
+    "thirdparty/fmt/src/posix.cc")
+  target_compile_definitions(fmt PUBLIC "FMT_USE_USER_DEFINED_LITERALS=0")
+  target_include_directories(fmt PUBLIC "thirdparty/fmt/include")
+  set_property(TARGET fmt PROPERTY POSITION_INDEPENDENT_CODE ON)
+  target_link_libraries(ADLplug_core PUBLIC fmt)
+endif()
 
-target_link_libraries(ADLplug_core PUBLIC fmt)
 
 add_library(simple-ini STATIC "thirdparty/simpleini/ConvertUTF.cpp")
 target_include_directories(simple-ini INTERFACE "thirdparty/simpleini")
