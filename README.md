@@ -97,6 +97,7 @@ sudo cmake --build . --target install
 
 - English translation of the user manual by Bruce Sutherland
 - modified KSL editing behavior to make it linear with regards to attenuation
+- added a build option to link with system-wide libfmt
 
 **1.0.1**
 
