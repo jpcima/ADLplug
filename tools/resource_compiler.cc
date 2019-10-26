@@ -1,4 +1,4 @@
-//          Copyright Jean Pierre Cimalando 2018.
+//          Copyright Jean Pierre Cimalando 2018-2019.
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
@@ -97,7 +97,7 @@ void generate_resources(
 
         cc << "namespace " << md.ns << " {\n";
         for (const FileMetadata &fmd : md.files) {
-            cc << "    const char rdata_" << fmd.id << "[] = { ";
+            cc << "    const signed char rdata_" << fmd.id << "[] = { ";
             std::ifstream in;
             in.exceptions(std::ios::failbit|std::ios::badbit);
             in.open(dir + '/' + fmd.source, std::ios::binary);
@@ -121,7 +121,7 @@ void generate_resources(
 
         for (const FileMetadata &fmd : md.files) {
             cc << md.ns << "::Data " << md.ns << "::" << fmd.id
-               << " = { " << md.ns << "::rdata_" << fmd.id
+               << " = { (const char *)" << md.ns << "::rdata_" << fmd.id
                << ", sizeof(" << md.ns << "::rdata_" << fmd.id << ") };\n";
         }
     }
