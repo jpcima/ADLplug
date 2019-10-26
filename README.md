@@ -19,7 +19,7 @@ The emulations and the drivers are provided by [libADLMIDI](https://github.com/W
 - [x] ability to synthesize entire MIDI files out of the box
 
 Author: [Jean Pierre Cimalando](https://github.com/jpcima)  
-Contributors: [Olivier Humbert](https://github.com/trebmuh), [Christopher Arndt](https://github.com/SpotlightKid), [Bruce Sutherland](https://github.com/bsutherland), [David Runge](https://github.com/dvzrv)
+Contributors: [Olivier Humbert](https://github.com/trebmuh), [Christopher Arndt](https://github.com/SpotlightKid), [Bruce Sutherland](https://github.com/bsutherland), [David Runge](https://github.com/dvzrv), [Jérémy Frey](https://github.com/jfrey-xx)
 
 ## Development builds
 
@@ -98,6 +98,7 @@ sudo cmake --build . --target install
 - English translation of the user manual by Bruce Sutherland
 - modified KSL editing behavior to make it linear with regards to attenuation
 - added a build option to link with system-wide libfmt
+- made the resource system compatible with unsigned-char targets
 
 **1.0.1**
 
