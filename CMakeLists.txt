@@ -52,6 +52,9 @@ disable_gnu_warning("class-memaccess")
 # fatal warnings
 enable_gnu_warning("error=return-type")
 
+# explicit signed char, so that resources.cc compiles on all systems
+add_definitions("-fsigned-char")
+
 if(ADLplug_RT_CHECKER)
   add_definitions("-DADLplug_RT_CHECKER=1")
   set(ADLplug_RT_CHECKER_LINK_FLAGS "-Wl,--wrap=malloc -Wl,--wrap=realloc -Wl,--wrap=free -Wl,--wrap=memalign")
