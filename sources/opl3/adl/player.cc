@@ -3,6 +3,8 @@
 //    (See accompanying file LICENSE or copy at
 //          http://www.boost.org/LICENSE_1_0.txt)
 
+#include <stdexcept>
+
 #include "player.h"
 
 void Player::init(unsigned sample_rate)
