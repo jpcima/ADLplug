@@ -151,7 +151,7 @@ deploy:
     description: The latest development release. Revision $(APPVEYOR_REPO_COMMIT)
     provider: GitHub
     auth_token:
-      secure: 4wBuPa3uquM+Kn9w3xOBGaIOZhu0NPqHXDA585i257wxDl0M5+irUgiaPaAPvaih
+      secure: tvDB6NGgbFIuYY2MbMnWtb7+uQNnlYmnqjNLZUxKhknQq/xjyNbSWayJkzjQJcga
     artifact: 'ADLplug for 32-bit Windows,OPNplug for 32-bit Windows,ADLplug for 64-bit Windows,OPNplug for 64-bit Windows,ADLplug for macOS,OPNplug for macOS,ADLplug for 64-bit LibraZiK-2 / Debian Stretch,OPNplug for 64-bit LibraZiK-2 / Debian Stretch,ADLplug & OPNplug source code'
     draft: false
     prerelease: true
