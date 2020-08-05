@@ -93,7 +93,7 @@ sudo cmake --build . --target install
 
 ### Change Log
 
-**1.0.2-dev**
+**1.0.2**
 
 - English translation of the user manual by Bruce Sutherland
 - modified KSL editing behavior to make it linear with regards to attenuation

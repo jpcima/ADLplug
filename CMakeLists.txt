@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION "3.3")
 cmake_policy(SET CMP0063 NEW)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-project(ADLplug VERSION "1.0.0" LANGUAGES CXX C)
+project(ADLplug VERSION "1.0.2" LANGUAGES CXX C)
 set(PROJECT_VENDOR "Jean Pierre Cimalando")
 set(PROJECT_CONTACT "Jean Pierre Cimalando <http://jpcima.sdf1.org/>")
 set(PROJECT_HOMEPAGE "https://github.com/jpcima/ADLplug")
