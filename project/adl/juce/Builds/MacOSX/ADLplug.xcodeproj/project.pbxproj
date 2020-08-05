@@ -2401,8 +2401,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=1",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
@@ -2415,7 +2415,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",
@@ -2463,8 +2463,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=1",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
@@ -2478,7 +2478,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",
@@ -2527,8 +2527,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=1",
 					"JucePlugin_Build_AU=0",
@@ -2541,7 +2541,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",
@@ -2589,8 +2589,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=1",
 					"JucePlugin_Build_AU=0",
@@ -2604,7 +2604,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",
@@ -2653,8 +2653,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=1",
@@ -2667,7 +2667,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",
@@ -2716,8 +2716,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=1",
@@ -2731,7 +2731,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",
@@ -2781,8 +2781,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
@@ -2794,7 +2794,7 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",
@@ -2839,8 +2839,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
@@ -2853,7 +2853,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",
@@ -2897,8 +2897,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
@@ -2910,7 +2910,7 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",
@@ -2953,8 +2953,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=0",
 					"JucePlugin_Build_VST3=0",
 					"JucePlugin_Build_AU=0",
@@ -2967,7 +2967,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",
@@ -3011,8 +3011,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=1",
 					"JucePlugin_Build_VST3=1",
 					"JucePlugin_Build_AU=1",
@@ -3025,7 +3025,7 @@
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",
@@ -3067,8 +3067,8 @@
 					"ADLMIDI_DISABLE_MUS_SUPPORT",
 					"ADLMIDI_DISABLE_XMI_SUPPORT",
 					"JUCER_XCODE_MAC_5F8EC92D=1",
-					"JUCE_APP_VERSION=1.0.1",
-					"JUCE_APP_VERSION_HEX=0x10001",
+					"JUCE_APP_VERSION=1.0.2",
+					"JUCE_APP_VERSION_HEX=0x10002",
 					"JucePlugin_Build_VST=1",
 					"JucePlugin_Build_VST3=1",
 					"JucePlugin_Build_AU=1",
@@ -3082,7 +3082,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"$(HOME)/SDKs/VST_SDK/VST3_SDK",
+					"../../../../../thirdparty/JUCE/modules/juce_audio_processors/format_types/VST3_SDK",
 					"../../../JuceLibraryCode",
 					"../../../../../thirdparty/JUCE/modules",
 					"../../../../../sources",

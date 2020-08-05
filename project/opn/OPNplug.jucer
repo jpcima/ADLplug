@@ -8,7 +8,7 @@
               pluginManufacturer="Jean Pierre Cimalando" pluginManufacturerCode="JPCm"
               pluginCode="OPNM" aaxIdentifier="jpcima.OPNplug" headerPath="../../../../../sources&#10;../../../../../thirdparty/libOPNMIDI/include&#10;../../../../../thirdparty/wopn&#10;../../../../../thirdparty/simpleini&#10;../../../../../thirdparty/fmt/include&#10;../../../../../thirdparty/folly"
               defines="ADLPLUG_OPN2&#10;OPNMIDI_UNSTABLE_API&#10;OPNMIDI_DISABLE_GX_EMULATOR&#10;OPNMIDI_DISABLE_CPP_EXTRAS&#10;OPNMIDI_DISABLE_MIDI_SEQUENCER&#10;OPNMIDI_DISABLE_MUS_SUPPORT&#10;OPNMIDI_DISABLE_XMI_SUPPORT"
-              id="ojbkOL" version="1.0.1" includeBinaryInJuceHeader="0" cppLanguageStandard="11">
+              id="ojbkOL" version="1.0.2" includeBinaryInJuceHeader="0" cppLanguageStandard="11">
   <MAINGROUP id="faq0v0" name="OPNplug">
     <GROUP id="{57FD1426-D8BF-7CCC-6B25-2A7108A4390B}" name="sources">
       <FILE id="dneZUm" name="bank_manager.cc" compile="1" resource="0" file="../../sources/bank_manager.cc"/>

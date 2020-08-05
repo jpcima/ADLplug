@@ -8,7 +8,7 @@
               pluginManufacturer="Jean Pierre Cimalando" pluginManufacturerCode="JPCm"
               pluginCode="ADLM" aaxIdentifier="jpcima.ADLplug" headerPath="../../../../../sources&#10;../../../../../thirdparty/libADLMIDI/include&#10;../../../../../thirdparty/wopl&#10;../../../../../thirdparty/simpleini&#10;../../../../../thirdparty/fmt/include&#10;../../../../../thirdparty/folly"
               defines="ADLPLUG_OPL3&#10;ADLMIDI_UNSTABLE_API&#10;ADLMIDI_DISABLE_CPP_EXTRAS&#10;ADLMIDI_DISABLE_MIDI_SEQUENCER&#10;ADLMIDI_DISABLE_MUS_SUPPORT&#10;ADLMIDI_DISABLE_XMI_SUPPORT"
-              id="ojbkOL" version="1.0.1" includeBinaryInJuceHeader="0" cppLanguageStandard="11">
+              id="ojbkOL" version="1.0.2" includeBinaryInJuceHeader="0" cppLanguageStandard="11">
   <MAINGROUP id="faq0v0" name="ADLplug">
     <GROUP id="{57FD1426-D8BF-7CCC-6B25-2A7108A4390B}" name="sources">
       <FILE id="dneZUm" name="bank_manager.cc" compile="1" resource="0" file="../../sources/bank_manager.cc"/>
