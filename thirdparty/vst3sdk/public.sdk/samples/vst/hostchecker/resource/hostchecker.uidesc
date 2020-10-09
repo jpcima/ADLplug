@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+	<fonts>
+	</fonts>
+	<colors>
+		<color name="Background" rgba="#414a4eff"/>
+		<color name="Focus" rgba="#6565ffff"/>
+	</colors>
+	<template autosize="left right top bottom " background-color="Background" background-color-draw-style="filled and stroked" class="CViewContainer" maxSize="700, 10000" minSize="200, 300" mouse-enabled="true" name="HostCheckerEditor" opacity="1" origin="0, 0" size="600, 400" transparent="false" wants-focus="false">
+		<view auto-drag-scrolling="false" auto-hide-scrollbars="false" autosize="left right top bottom " background-color="~ WhiteCColor" background-color-draw-style="filled and stroked" bordered="false" class="CScrollView" container-size="583, 2907" custom-view-name="HostCheckerDataBrowser" follow-focus-view="false" horizontal-scrollbar="false" mouse-enabled="true" opacity="1" origin="12, 55" overlay-scrollbars="false" scrollbar-background-color="~ TransparentCColor" scrollbar-frame-color="~ BlackCColor" scrollbar-scroller-color="Background" scrollbar-width="16" size="580, 335" transparent="false" vertical-scrollbar="true" wants-focus="true"/>
+		<view autosize="left right top " back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontBig" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="-5, 3" round-rect-radius="6" shadow-color="~ RedCColor" size="601, 20" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" text-shadow-offset="1, 1" title="VST3 HostChecker" transparent="true" value-precision="2" wants-focus="false" wheel-inc-value="0.1"/>
+		<view autosize="right top " bitmap="bypass" class="COnOffButton" control-tag="Bypass" default-value="0" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="569, 24" size="21, 19" tooltip="Bypass (should be in sync with the host bypass button if available)" transparent="true" wants-focus="true" wheel-inc-value="0.1"/>
+		<view autosize="left top " background-color="~ BlackCColor" background-color-draw-style="stroked" class="CViewContainer" mouse-enabled="true" opacity="1" origin="10, 2" size="107, 51" transparent="false" wants-focus="false">
+			<view back-color="~ GreyCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontVerySmall" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ GreyCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="11, 30" round-rect-radius="6" shadow-color="~ RedCColor" size="24, 11" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" text-shadow-offset="1, 1" title="P1" transparent="false" value-precision="2" wants-focus="false" wheel-inc-value="0.1"/>
+			<view angle-range="270" angle-start="135" autosize="left top " bitmap="knob" class="CAnimKnob" control-tag="Param1" default-value="0" height-of-one-image="20" inverse-bitmap="false" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="11, 10" size="20, 20" sub-pixmaps="80" tooltip="Test ContextMenu (right-click on it should open Host ContextMenu (if supported))" transparent="false" value-inset="0" wants-focus="true" wheel-inc-value="0.1" zoom-factor="1.5"/>
+			<view angle-range="270" angle-start="135" autosize="left top " bitmap="knob" class="CAnimKnob" control-tag="GeneratePeaks" default-value="0" height-of-one-image="20" inverse-bitmap="false" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="41, 10" size="20, 20" sub-pixmaps="80" tooltip="Enable Peaks Generation" transparent="false" value-inset="0" wants-focus="true" wheel-inc-value="0.1" zoom-factor="1.5"/>
+			<view autosize="left top " back-color="~ GreyCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontVerySmall" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ GreyCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="39, 30" round-rect-radius="6" shadow-color="~ RedCColor" size="24, 11" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" text-shadow-offset="1, 1" title="Level" transparent="false" value-precision="2" wants-focus="false" wheel-inc-value="0.1"/>
+			<view angle-range="270" angle-start="135" autosize="left top " bitmap="knob" class="CAnimKnob" control-tag="latency" default-value="0" height-of-one-image="20" inverse-bitmap="false" max-value="8192" min-value="0" mouse-enabled="true" opacity="1" origin="71, 9" size="20, 20" sub-pixmaps="80" tooltip="Test Latency Change (check the Bypass Processor)" transparent="false" value-inset="0" wants-focus="true" wheel-inc-value="0.1" zoom-factor="1.5"/>
+			<view autosize="left top " back-color="~ GreyCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontVerySmall" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ GreyCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="66, 30" round-rect-radius="6" shadow-color="~ RedCColor" size="35, 11" style-3D-in="false" style-3D-out="false" style-no-draw="true" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" text-shadow-offset="1, 1" title="Latency" transparent="false" value-precision="2" wants-focus="false" wheel-inc-value="0.1"/>
+		</view>
+		<view autosize="left top " background-color="~ BlackCColor" background-color-draw-style="stroked" class="CViewContainer" mouse-enabled="true" opacity="1" origin="118, 2" size="54, 51" transparent="false" wants-focus="false">
+			<view autosize="left top " back-color="~ GreyCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontVerySmall" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ GreyCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="10, 30" round-rect-radius="6" shadow-color="~ RedCColor" size="35, 11" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" text-shadow-offset="1, 1" title="Scoring" transparent="false" value-precision="2" wants-focus="false" wheel-inc-value="0.1"/>
+			<view autosize="left top " back-color="~ BlackCColor" background-offset="0, 0" class="CParamDisplay" control-tag="Scoring" default-value="0" font="~ NormalFontBig" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ BlueCColor" frame-width="1" max-value="100" min-value="0" mouse-enabled="true" opacity="1" origin="11, 8" round-rect-radius="6" shadow-color="~ RedCColor" size="33, 19" style-3D-in="true" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" text-shadow-offset="1, 1" tooltip="Scoring (up to 100)" transparent="false" value-precision="0" wants-focus="false" wheel-inc-value="0.1"/>
+		</view>
+		<view autosize="left top " background-color="~ BlackCColor" background-color-draw-style="stroked" class="CViewContainer" mouse-enabled="true" opacity="1" origin="173, 21" size="117, 32" transparent="false" wants-focus="false">
+			<view autosize="left top " autosize-to-fit="false" boxfill-color="~ WhiteCColor" boxframe-color="~ BlackCColor" checkmark-color="~ RedCColor" class="CCheckBox" control-tag="Progress" default-value="0" draw-crossbox="false" font="~ NormalFontSmaller" font-color="~ WhiteCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="2, -2" round-rect-radius="0" size="66, 20" title="Progress" tooltip="Click on it to start a Host progress" transparent="false" wants-focus="true" wheel-inc-value="0.1"/>
+			<view autosize="left top " autosize-to-fit="false" boxfill-color="~ WhiteCColor" boxframe-color="~ BlackCColor" checkmark-color="~ RedCColor" class="CCheckBox" control-tag="Hidden" default-value="0" draw-crossbox="false" font="~ NormalFontSmaller" font-color="~ WhiteCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="67, -2" round-rect-radius="0" size="48, 20" title="Hidden" tooltip="Click on it to make a specific parameter Hidden or not" transparent="false" wants-focus="true" wheel-inc-value="0.1"/>
+			<view autosize="left top " bitmap-offset="0, 0" class="CSlider" control-tag="ProgressValue" default-value="0" draw-back="false" draw-back-color="~ BlackCColor" draw-frame="true" draw-frame-color="~ GreyCColor" draw-value="true" draw-value-color="~ WhiteCColor" draw-value-from-center="false" draw-value-inverted="false" frame-width="1" handle-offset="0, 0" max-value="100" min-value="0" mode="use global" mouse-enabled="true" opacity="1" orientation="horizontal" origin="4, 19" reverse-orientation="false" size="54, 10" tooltip="Progress Value" transparent="false" wants-focus="false" wheel-inc-value="0.1" zoom-factor="10"/>
+			<view angle-range="270" angle-start="135" autosize="left top " bitmap="knob" class="CAnimKnob" control-tag="HiddenValue" default-value="0" height-of-one-image="20" inverse-bitmap="false" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="81, 13" size="20, 20" sub-pixmaps="80" tooltip="This is the parameter which will Hidden or not for Host" transparent="false" value-inset="0" wants-focus="false" wheel-inc-value="0.1" zoom-factor="1.5"/>
+		</view>
+		<view autosize="right top " background-color="~ BlackCColor" background-color-draw-style="stroked" class="CViewContainer" mouse-enabled="true" opacity="1" origin="439, 2" size="126, 51" transparent="false" wants-focus="false">
+			<view autosize-to-fit="false" boxfill-color="~ WhiteCColor" boxframe-color="~ BlackCColor" checkmark-color="~ RedCColor" class="CCheckBox" control-tag="canResize" default-value="1" draw-crossbox="false" font="~ NormalFontSmaller" font-color="~ WhiteCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="25, 1" round-rect-radius="0" size="80, 20" title="CanResize" tooltip="Test canResize behaviour (reopen the editor)" transparent="false" wants-focus="true" wheel-inc-value="0.1"/>
+			<view autosize="left top " class="CSegmentButton" control-tag="EditorSize" default-value="0.5" font="~ NormalFont" frame-color="~ BlackCColor" frame-width="1" gradient="Default TextButton Gradient" gradient-highlighted="Default TextButton Gradient Highlighted" icon-text-margin="0" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="4, 22" round-radius="5" segment-names="75%,100%,150%" selection-mode="Single" size="120, 20" style="horizontal" sub-controller="EditorSizeController" text-alignment="center" text-color="~ BlackCColor" text-color-highlighted="~ WhiteCColor" tooltip="Zoom to different factors the UI" transparent="false" wants-focus="true" wheel-inc-value="0.1"/>
+		</view>
+	</template>
+	<custom>
+		<attributes name="UIViewInspector" windowSize="116, 251, 607, 836"/>
+		<attributes gridsize="10" name="UIEditFrame" uidescPath="/Volumes/maintrunk/public.sdk/samples/vst/hostchecker/resource/hostchecker.uidesc"/>
+		<attributes color="Focus" enabled="true" name="FocusDrawing" width="2"/>
+		<attributes Grids="1x 1,2x 1,5x 5,10x 10,12x 12,15x 15" Size="1, 1" name="UIGridController"/>
+		<attributes SelectedTemplate="HostCheckerEditor" name="UITemplateController"/>
+		<attributes EditViewScale="2.25" EditorSize="0, 0, 1490, 782" SplitViewSize_0_0="0.6031746031746031411202579874952789396048" SplitViewSize_0_1="0.3703703703703703498106847291637677699327" SplitViewSize_1_0="0.5634920634920634885389745249995030462742" SplitViewSize_1_1="0.4298941798941798841937611541652586311102" SplitViewSize_2_0="0.7543624161073825273859938533860258758068" SplitViewSize_2_1="0.242281879194630872520477282705542165786" TabSwitchValue="0" Version="1" name="UIEditController"/>
+		<attributes name="UIAttributesController"/>
+		<attributes SelectedRow="31" name="UIViewCreatorDataSource"/>
+		<attributes SelectedRow="2" name="UITagsDataSource"/>
+		<attributes SelectedRow="-1" name="UIColorsDataSource"/>
+		<attributes SelectedRow="-1" name="UIGradientsDataSource"/>
+		<attributes SelectedRow="0" name="UIBitmapsDataSource"/>
+		<attributes SelectedRow="-1" name="UIFontsDataSource"/>
+		<attributes Path="N:\SVN\devpluginset\public.sdk\samples\vst\hostchecker\resource\hostchecker.uidesc" name="VST3Editor"/>
+	</custom>
+	<bitmaps>
+		<bitmap name="bypass" path="bypass.png"/>
+		<bitmap name="knob" path="knob.png"/>
+	</bitmaps>
+	<control-tags>
+		<control-tag name="Param1" tag="1000"/>
+		<control-tag name="GeneratePeaks" tag="1001"/>
+		<control-tag name="latency" tag="1002"/>
+		<control-tag name="Bypass" tag="1003"/>
+		<control-tag name="canResize" tag="1004"/>
+		<control-tag name="Scoring" tag="1005"/>
+		<control-tag name="HiddenValue" tag="1006"/>
+		<control-tag name="Hidden" tag="1007"/>
+		<control-tag name="Progress" tag="1008"/>
+		<control-tag name="ProgressValue" tag="1009"/>
+		<control-tag name="EditorSize" tag="2000"/>
+	</control-tags>
+	<variables/>
+	<gradients>
+		<gradient name="Default TextButton Gradient">
+			<color-stop rgba="#dcdcdcff" start="0"/>
+			<color-stop rgba="#b4b4b4ff" start="1"/>
+		</gradient>
+		<gradient name="Default TextButton Gradient Highlighted">
+			<color-stop rgba="#b4b4b4ff" start="0"/>
+			<color-stop rgba="#646464ff" start="1"/>
+		</gradient>
+	</gradients>
+</vstgui-ui-description>

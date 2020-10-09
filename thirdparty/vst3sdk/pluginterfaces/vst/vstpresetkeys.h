@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include "vsttypes.h"
+#include "pluginterfaces/vst/vsttypes.h"
 
 //------------------------------------------------------------------------
 namespace Steinberg {
@@ -29,7 +29,7 @@ namespace PresetAttributes
 /**
 \defgroup presetAttributes Predefined Preset Attributes*/
 /*@{*/
-const CString kPlugInName	  = "PlugInName";		///< Plug-in name
+const CString kPlugInName	  = "PlugInName";		///< plug-in name
 const CString kPlugInCategory = "PlugInCategory";	///< eg. "Fx|Dynamics", "Instrument", "Instrument|Synth"
 
 const CString kInstrument	  = "MusicalInstrument";///< eg. instrument group (like 'Piano' or 'Piano|A. Piano')
@@ -203,7 +203,6 @@ const CString kWoodwindsOther		= "Woodwinds|Other";
 
 //------------------------------------------------------------------------
 /** Predefined Musical Style */
-//------------------------------------------------------------------------
 namespace MusicalStyle
 {
 /**
@@ -334,7 +333,6 @@ const CString kWorldEthnicAustralia				= "World/Ethnic|Australia";
 
 //------------------------------------------------------------------------
 /** Predefined Musical Character */
-//------------------------------------------------------------------------
 namespace MusicalCharacter
 {
 /**

@@ -24,9 +24,9 @@ class IString;
 
 //------------------------------------------------------------------------
 /** Interface for error handling. 
-[plug imp] \n
-[released: Sequel 2] */
-//------------------------------------------------------------------------
+- [plug imp]
+- [released: Sequel 2]
+*/
 class IErrorContext : public FUnknown
 {
 public:

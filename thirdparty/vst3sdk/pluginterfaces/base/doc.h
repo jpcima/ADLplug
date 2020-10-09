@@ -14,19 +14,22 @@
 // or distributed except according to the terms contained in the LICENSE file.
 //-----------------------------------------------------------------------------
 
-
-/** \mainpage VST Module Architecture
+/** 
 ********************************************************************
+\mainpage VST Module Architecture
+********************************************************************
+\tableofcontents
+
 ********************************************************************
 \section piVstMa Introduction
 ********************************************************************
-\b VST-MA is a component model system which is used in any <a href="http://www.steinberg.net" target=_blank>Steinberg</a> host application 
-as the basic layer for Plug-in support as well as for internal application components.\n
+\b VST-MA is a component model system which is used in all <a href="http://www.steinberg.net" target=_blank>Steinberg</a> host applications 
+as the basic layer for plug-in support as well as for internal application components.\n
 It is object-oriented, cross-platform and (almost) compiler-independent. \n
 The basics are very much like Microsoft(R) COM, so if you are familiar with
 this technology, understanding VST-MA should be quite easy. 
 
-\b VST-MA currently is provided in C++ only. Interfaces in C++ are expressed as pure virtual class
+\b VST-MA is provided in C++ only. Interfaces in C++ are expressed as pure virtual class
 (which is a class with nothing but abstract methods). Unlike COM there is no support for C or other
 languages yet - simply because there has been no need for this so far. But all \b VST-MA interfaces
 can be transformed into different representations in case this should be inevitable some day. \n
@@ -37,9 +40,8 @@ The C++ files belonging to \b VST-MA are located in the following folders:
 - <a href="../../pluginterfaces/gui" target=_blank>pluginterfaces/gui</a>
 
 \b Note: The name 'VST Module Architecture' has only little relation to the 'Virtual Studio Technology' itself. \n
-It describes the basic layer for any Plug-in category supported in <a href="http://www.steinberg.net" target=_blank>Steinberg</a> hosts. \b VST-MA has been
-existing long before it was used as base for VST 3 indeed. The 'VST'-part of the name was introduced only
-for reasons of misleading advertising...
+It describes the basic layer for any plug-in category supported in <a href="http://www.steinberg.net" target=_blank>Steinberg</a> hosts. \b VST-MA 
+existed long before it was used as a base for VST 3 ifself.
 \n
 \n
 ********************************************************************
@@ -60,7 +62,7 @@ for reasons of misleading advertising...
   interface from another one (Steinberg::FUnknown::queryInterface). It is important to understand the 
   difference between interface identifier and component identifier.\n
   A component-ID or class-ID (CID) is used to identify a concrete implementation class and is usually passed to a class factory in order 
-  to create the accordant component. \n
+  to create the corresponding component. \n
   So a lot of different classes (with different class identifiers) can implement the same interfaces. 
 \n 
 \n
@@ -68,13 +70,13 @@ for reasons of misleading advertising...
 \subsection direction Direction
 **********************************
 An interface may have a \b direction, meaning that the interface is expected to be 
-  implemented either in the Plug-in or in the host. The nature of an interface is documented like this:
+  implemented either in the plug-in or in the host. The nature of an interface is documented like this:
   \n \n
   - <b>[host imp] </b>: the host implements the interface
-  - <b>[plug imp] </b>: the Plug-in implements the interface
+  - <b>[plug imp] </b>: the plug-in implements the interface
   .
   \n
-  When neither of them is specified, the interface can be used in both ways.
+  When neither of these is specified, the interface can be used in both ways.
 \n
 \n
 **********************************
@@ -86,9 +88,9 @@ An interface may have a \b direction, meaning that the interface is expected to 
   (usually an ordinal number is added to its name in this case).\n
   A new version inherits the old version(s)
   of the interface, so the old and the new methods are combined in one interface. This is why specializations 
-  need to be modelled as separate interface! If a specialized interface would inherit from the basic interface
-  as well, an implementation class that needs to implement all these interfaces would inherit the base 
-  interface twice and the compiler will start to complain about ambiguities. So the specialization relation 
+  need to be modeled as separate interfaces! If a specialized interface were to inherit from the basic interface
+  as well, an implementation class that needs to implement all of these interfaces would inherit the base 
+  interface twice, causing the compiler to run into ambiguities. So the specialization relation 
   to a basic interface can only be expressed in the documentation: \n \n
   - ISpecialInterface [\b extends IBaseInterface] => means IBaseInterface::queryInterface (ISpecialInterface::iid, ...) can be used to retrieve the derived 
 	interface.
@@ -100,7 +102,7 @@ An interface may have a \b direction, meaning that the interface is expected to 
 **********************************
 \subsection com COM Compatibility
 **********************************
-  The first layer of \b VST-MA is binary compatible to \b COM. The Vtable and Interface Identifier of 
+  The first layer of \b VST-MA is binary-compatible to \b COM. The Vtable and interface identifier of 
   FUnknown match with the corresponding COM interface IUnknown. The main difference is the organization 
   and creation of components by a host application. \b VST-MA does not require any Microsoft(R) COM source file. 
   You can find information about \b COM on pages like: \n
@@ -112,7 +114,8 @@ An interface may have a \b direction, meaning that the interface is expected to 
 **********************************
   - Steinberg::FUnknown
   - Steinberg::IPluginBase 
-  - Steinberg::IPluginFactory 
+  - Steinberg::IPluginFactory
+ .
 \n
 \n
 **********************************
@@ -122,7 +125,6 @@ An interface may have a \b direction, meaning that the interface is expected to 
   - Steinberg::FUnknownPtr
 .
 \n
-\n
 \see \ref howtoClass
 \n
 \n
@@ -131,44 +133,44 @@ An interface may have a \b direction, meaning that the interface is expected to 
 ********************************************************************
 
 **********************************
-\subsection module Module Factory:
+\subsection module Module Factory
 **********************************
   A module (Windows: Dynamic Link Library, MAC: Mach-O Bundle) contains the implementation 
-  of one or more components (e.g. VST Effects). A \b VST-MA module must contain a class factory
+  of one or more components (e.g. VST 3 effects). A \b VST-MA module must contain a class factory
   where meta-data and create-methods for the components are registered. \n
-  The host has access to this factory through the Steinberg::IPluginFactory interface. This is the anchor point to the module
-  and it is realized as C-style export function named GetPluginFactory. You can find an export 
+  The host has access to this factory through the Steinberg::IPluginFactory interface. This is the anchor point for the module
+  and it is realized as a C-style export function named GetPluginFactory. You can find an export 
   definition file in folder - <a href="../../public.sdk/win/stdplug.def" target=_blank>public.sdk/win/stdplug.def</a> 
   which can be used to export this function. \n
   GetPluginFactory is declared as follows:
 
-\code
+\code{.cpp}
 IPluginFactory* PLUGIN_API GetPluginFactory ()
 \endcode
 \n
-\n
+
 **********************************
 \subsection Locations
 **********************************
-  Component modules don't require registration like DirectX. The host application expects component modules to be located in predefined folders of the file system.
-  These folders and their subfolders are scanned at application startup for \b VST-MA modules. Each folder serves a special purpose:
+  Component modules do not require registration like DirectX. The host application expects component modules to be located in predefined folders of the file system.
+  These folders and their subfolders are scanned for \b VST-MA modules during application startup. Each folder serves a special purpose:
 	- The application's \c Components subfolder (e.g. "C:\Program Files\Steinberg\Cubase SX\Components") is used for components tightly bound to the application. No other application should use it.
 	- Components that are shared between all <a href="http://www.steinberg.net" target=_blank>Steinberg</a> hosts are located at:
 		- Win: "/Program Files/Common Files/Steinberg/shared components"
 		- Mac: "/Library/Application Support/Steinberg/Components/"
-	- For special purpose Plug-in types, additional locations can be defined. Please refer to the corresponding documentation to find out if additional folders are used and where they are.
+	- For special purpose plug-in types, additional locations can be defined. Please refer to the corresponding documentation to find out if additional folders are used and where to find them.
 \n
 \n
 **********************************
 \subsection Categories
 **********************************
   Any class that the factory can create is assigned to a category. It is this category that tells 
-  the host the purpose of the class (and gives a hint of wich interfaces it might implement). \n
+  the host the purpose of the class (and gives a hint of which interfaces it might implement). \n
   A class is also described with a name and it has a unique id.
-  - The category for import/export filters is <b>"Project Filter"</b> and for VST 3 Audio Plug-ins <b>"Audio Module Class"</b> for example. 
-  - A special category is "Service". The purpose of a class of this category is completely 
-    unknown to the host. It will be loaded automatically at the program start 
-	(if the user did not deactivate it).
+  - For example, the category for import/export filters is <b>"Project Filter"</b> and for VST 3 audio plug-ins <b>"Audio Module Class"</b>. 
+  - "Service" is a special category. The purpose of a class of this category is completely 
+    unknown to the host. It is be loaded automatically during program start 
+	(provided that the user did not deactivate it).
   - Since the factory can create any number of classes, one component library can contain 
     multiple components of any type.
 \n
@@ -177,15 +179,15 @@ IPluginFactory* PLUGIN_API GetPluginFactory ()
 \subsection IPluginBase
 **********************************
   The entry-point interface for any component class is Steinberg::IPluginBase. The host uses this 
-  interface to initialize and to terminate the Plug-in component. When the host initializes the 
-  Plug-in, it passes a so called context. This context contains any interface to the host that 
-  the Plug-in will need to work.
+  interface to initialize and to terminate the plug-in component. When the host initializes the 
+  plug-in, it passes a so called context. This context contains any interface to the host that 
+  the plug-in will need to work.
 \n
 \n
 **********************************
 \subsection purpose Purpose-specific interfaces
 **********************************
-Each Plug-in category (VST 3 Effects, Project import/export Filters, Audio Codecs, etc...) defines its own set of purpose-specific interfaces. These are not part of the basic VST-MA layer.
+Each plug-in category (VST 3 Effects, Project import/export Filters, Audio Codecs, etc...) defines its own set of purpose-specific interfaces. These are not part of the basic VST-MA layer.
 \n
 \n
 \see \ref loadPlugin
@@ -196,65 +198,65 @@ Each Plug-in category (VST 3 Effects, Project import/export Filters, Audio Codec
 ********************************************************************
 
 Beginning with version 5 of Cubase and Nuendo, the internal structure of the host was modified to
-better support internationalization. Therefore the string handling was changed to utilize
+better support internationalization. Therefore, string handling was changed to utilize
 <A HREF="http://en.wikipedia.org/wiki/Unicode">Unicode</A> strings whenever strings are passed
-around. Consequently all the interfaces to Plug-ins have changed from using ASCI to Unicode strings
-as call and return parameters as well. So in turn also any Plug-in has to be adapted to support
+around. As a consequence, all the interfaces to plug-ins have changed from using ASCI to Unicode strings
+for call and return parameters. So in turn, all plug-in must be adapted to support
 Unicode. This has major consequences in that:
-- Unicode hosts (Cubase5 or later) will only work with Unicode Plug-ins. While loading a Plug-in
-a Unicode host will check the Plug-in's type and refuse to load any Plug-in that is non-Unicode.
+- Unicode hosts (Cubase 5 or later) will only work with Unicode plug-ins. When loading a plug-in,
+a Unicode host checks the plug-in's type and will not load any non-Unicode plug-ins.
 \n
-- Unicode Plug-ins will <b>not</b> load into non-Unicode hosts. While loading a Unicode Plug-in
-will request information from the host and refuse to load itself, if no Unicode host is detected.
-Therefore, if a Plug-in is supposed to work on both older and newer hosts, it is best to provide
-two versions of the Plug-in. 
+- Unicode plug-ins will <b>not</b> load in non-Unicode hosts. When loading a Unicode plug-in
+requests information from the host and will not load, if no Unicode host is detected.
+Therefore, if a plug-in is supposed to work with both older and newer hosts, it is best to provide
+two versions of the plug-in. 
 \n
 \n
 **********************************
-\subsection plugunicode Plug-ins for only Unicode hosts
+\subsection plugunicode Plug-ins for Unicode hosts
 **********************************
-Writing Plug-ins that are supposed to work only on Unicode hosts is easy. Use a current version
-of this SDK and develop a Plug-in as usual. Make sure that you only ever pass Unicode 
-<a href="http://en.wikipedia.org/wiki/UTF-16">UTF16</a> strings to interfaces that
-have strings as call parameters and also be prepared that interface return strings are
-always <a href="http://en.wikipedia.org/wiki/UTF-16">UTF16</a>. Therefore, to make things easier, it is recommended that throughout the
-Plug-in's implementation Unicode strings are used, in order to avoid back and forth conversions.
-To make things even more easy, use the Steinberg::String and Steinberg::ConstString classes from
-the \ref Base module, they have been designed to work universially on both, Mac and Win. 
+Writing plug-ins that are supposed to work only with Unicode hosts is easy. Use a current version
+of this SDK and develop a plug-in as usual. Make sure that you only ever pass Unicode 
+<a href="http://en.wikipedia.org/wiki/UTF-16">UTF-16</a> strings to interfaces that
+have strings as call parameters and also be prepared that strings returned by these interfaces are
+always <a href="http://en.wikipedia.org/wiki/UTF-16">UTF-16</a>. Therefore, to make things easier, it is recommended that Unicode strings are used throughout the
+plug-in's implementation, in order to avoid back and forth conversions.
+Also, use the Steinberg::String and Steinberg::ConstString classes from
+the Base module, they have been designed to work universally on both Mac and Win. 
 \n
 \n
 **********************************
 \subsection migrating Migrating from non-Unicode to Unicode
 **********************************
-In <a href="http://www.steinberg.net" target="_blank">Steinberg</a> SDKs released before Cubase5 the interface functions were using pointers of type <c> char </c>
+In <a href="http://www.steinberg.net" target="_blank">Steinberg</a> SDKs released before Cubase 5 the interface functions were using pointers of type <c> char </c>
 for passing strings to and from the host. These have been changed now to using Steinberg's defined
-type <c> tchar </c> which is equivalent to <c> char16 </c>, i.e. 16 bit character. There are
-theoretically many ways of how characters could be represented in 16 bits, but we chose
+type <c> tchar </c> which is equivalent to <c> char16 </c>, i.e. 16 bit character. In theory, there are 
+many ways for representing 16 bits characters, but we chose
 to use the industry standard <a href="http://en.wikipedia.org/wiki/Unicode">Unicode</a>, so strings
-are expected to be encoded in <a href="http://en.wikipedia.org/wiki/UTF-16">UTF16</a>. \n
-Accordingly also the implementation of a Plug-in needs to be adapted to deal correctly with Unicode
+are expected to be encoded in <a href="http://en.wikipedia.org/wiki/UTF-16">UTF-16</a>. \n
+Accordingly, also the implementation of a plug-in needs to be adapted to deal correctly with Unicode
 encoded strings, as well as only ever passing Unicode strings to the host. 
 \n
 \n
-<b>Technical note</b>: Changing a function from using 8 bit to 16 bit character pointers seems to be only a
+<b>Technical note</b>: Changing a function from using 8 bit to 16 bit character pointers may seem as only a
 minor modification, but in interface design this is a major intrusion, because an interface is
-a contract to the outer world that is never to be changed. Therefore, classes that were changed
-to use Unicode strings are distinguished and also received a new unique class id.
+a contract to the outside world that is never to be changed. Therefore, classes that are changed
+to use Unicode strings are distinguished and also receive a new unique class ID.
 \n
 \n
 **********************************
 \subsection backward SDK backward compatibility
 **********************************
-Even with the current SDK it is still possible to develop non-Unicode Plug-ins. In the
-file <a href="../../pluginterfaces/base/ftypes.h">pluginterfaces/base/ftypes.h</a> the line "#define UNICODE_OFF"
-is commented out, but if it gets uncommented, then all interfaces will revert back to using single byte ASCI strings.
-Alternatively you could also specify UNICODE_OFF as preprocessor definition in your project file.\n
-Also the Plug-in's factory info will then not define the Unicode flag anymore, so a Unicode host will see the compiled
-Plug-in as non-Unicode. As a matter of course, when reverting back to single byte strings the Plug-in's implementation also
+Even with the current SDK it is still possible to develop non-Unicode plug-ins. In the
+file <a href="../../pluginterfaces/base/ftypes.h">pluginterfaces/base/ftypes.h</a>, the line "#define UNICODE_OFF"
+is commented out, by uncommenting it you can revert all interfaces to using single byte ASCII strings.
+Alternatively you can also specify UNICODE_OFF as a preprocessor definition in your project file.\n
+Also, the plug-in's factory info now does not define the Unicode flag anymore, so a Unicode host sees the compiled
+plug-in as non-Unicode. Also, when reverting to single byte strings the plug-in's implementation also
 has to be changed to behave correctly. 
 \n
 \n
-<b>Technical note</b>: When undefining Unicode also the class ids will revert back to the old ones.
+<b>Technical note</b>: When undefining Unicode, the class IDs also revert to the old ones.
 \n
 \n
 */
@@ -265,7 +267,7 @@ has to be changed to behave correctly.
 *********************************************************
 In the first example we derive a class directly from FUnknown, using some of the helper macros provided by the SDK. 
 
-\code
+\code{.cpp}
 class CMyClass: public FUnknown
 {
 public:
@@ -297,10 +299,10 @@ tresult CMyClass::queryInterface (const char* iid, void** obj)
 
 Developing a class with more than one interface is done by multiple inheritance. Additionally you have to provide an appropriate cast for each interface in the queryInterface method. 
 
-\code
-class CMyMultiClass:	public Steinberg::IPluginBase,
-			public Steinberg::IPlugController,
-			public Steinberg::IEditorFactory
+\code{.cpp}
+class CMyMultiClass : public Steinberg::IPluginBase, 
+					  public Steinberg::IPlugController,
+					  public Steinberg::IEditorFactory
 {
 public:
 	DECLARE_FUNKNOWN_METHODS
@@ -319,7 +321,6 @@ tresult CMyMultiClass::queryInterface (const char* iid, void** obj)
 	*obj = 0;
 	return kNoInterface;
 }
-
 \endcode
 */
 
@@ -332,11 +333,11 @@ Unlike C++ classes, \b VST-MA interfaces do not use inheritance to express
 specializations of objects. Usually all interfaces are derived from
 FUnknown. This is because interfaces must \b never change after they
 have been released. The VST Module Architecture Interfaces use inheritance
-only for versioning! All specializations will be modelled as
+only for versioning! All specializations will be modeled as
 separate interfaces!
 
 For example the C++ classes
-\code
+\code{.cpp}
 class Shape
 {
 public:
@@ -356,10 +357,8 @@ protected:
 \endcode
 
 expressed in \b VST-MA, define an interface for each inheritance level:
-\code
 
-
-
+\code{.cpp}
 class IShape : public FUnknown
 {
 public:
@@ -374,7 +373,7 @@ public:
 
 In the next program version there need to be changes to 
 the \c Shape class that look like this:
-\code
+\code{.cpp}
 class Shape
 {
 public:
@@ -390,7 +389,7 @@ protected:
 The \b VST-MA representation now reflect the changes to Shape by adding a
 new interface that inherits from IShape and looks like the following
 code, while the former interface definitions remain the same:
-\code
+\code{.cpp}
 class IShape2 : public IShape
 {
 public:
@@ -400,14 +399,14 @@ public:
 */
 
 //********************************************************************
-/** \page loadPlugin How the host will load a Plug-in
+/** \page loadPlugin How the host will load a plug-in
 ********************************************************************
 \par
 
-The host application will handle a Plug-in in the following manner 
+The host application will handle a plug-in in the following manner 
 (some code is Windows-specific!): 
 
-\code
+\code{.cpp}
 HMODULE hModule = LoadLibrary ("SomePlugin.dll");
 if (hModule)
 {

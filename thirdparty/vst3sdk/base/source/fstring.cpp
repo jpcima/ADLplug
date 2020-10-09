@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -41,9 +41,9 @@
 #include "pluginterfaces/base/fvariant.h"
 
 #include <cstdlib>
-#include <ctype.h>
+#include <cctype>
 #include <cstdio>
-#include <stdarg.h>
+#include <cstdarg>
 #include <utility>
 
 #if SMTG_OS_WINDOWS
@@ -219,14 +219,12 @@ static bool fromCFStringRef (Steinberg::char8* dest, Steinberg::int32 destSize, 
 #define isdigit16 iswdigit
 #define isalnum16 iswalnum
 
-#if defined(_MSC_VER)
 #define stricmp _stricmp
 #define strnicmp _strnicmp
 #define snprintf _snprintf
 #define vsnprintf _vsnprintf
 #define snwprintf _snwprintf
 #define vsnwprintf _vsnwprintf
-#endif
 
 #define wtoi _wtoi
 #define wtol _wtol
@@ -331,7 +329,7 @@ static inline Steinberg::int32 strnicmp16 (const Steinberg::char16* str1, const 
 
 	CFIndex str1Len = Steinberg::strlen16 (str1);
 	CFIndex str2Len = Steinberg::strlen16 (str2);
-	if (size < str2Len) // range is not applied to second string
+	if (static_cast<CFIndex> (size) < str2Len) // range is not applied to second string
 		str2Len = size;
 	CFStringRef cfStr1 = CFStringCreateWithCharactersNoCopy (Steinberg::kCFAllocator, (UniChar*)str1, str1Len, kCFAllocatorNull);
 	CFStringRef cfStr2 = CFStringCreateWithCharactersNoCopy (Steinberg::kCFAllocator, (UniChar*)str2, str2Len, kCFAllocatorNull);
@@ -1635,7 +1633,7 @@ char8 ConstString::toLower (char8 c)
         ::CharLowerA (temp);
         return temp[0];
 	#else
-		return tolower (c);
+		return static_cast<char8> (tolower (c));
 	#endif
 }
 
@@ -1649,7 +1647,7 @@ char8 ConstString::toUpper (char8 c)
         ::CharUpperA (temp);
         return temp[0];
 	#else
-		return toupper (c);
+		return static_cast<char8> (toupper (c));
 	#endif
 }
 
@@ -1895,7 +1893,7 @@ int32 ConstString::multiByteToWideString (char16* dest, const char8* source, int
 #endif
 
 #if SMTG_OS_LINUX
-	if (sourceCodePage == kCP_ANSI || sourceCodePage == kCP_Utf8)
+	if (sourceCodePage == kCP_ANSI || sourceCodePage == kCP_US_ASCII || sourceCodePage == kCP_Utf8)
 	{
 		if (dest == nullptr)
 		{
@@ -1973,7 +1971,7 @@ int32 ConstString::wideStringToMultiByte (char8* dest, const char16* wideString,
 			}
 		}
 	}
-	else if (destCodePage == kCP_ANSI)
+	else if (destCodePage == kCP_ANSI || destCodePage == kCP_US_ASCII)
 	{
 		if (dest == nullptr)
 		{
@@ -3915,8 +3913,8 @@ template <class T> int32 tstrnatcmp (const T* s1, const T* s2, bool caseSensitiv
 		{
 			if (caseSensitive == false)
 			{
-				T srcToUpper = toupper (*s1);
-				T dstToUpper = toupper (*s2);
+				T srcToUpper = static_cast<T> (toupper (*s1));
+				T dstToUpper = static_cast<T> (toupper (*s2));
 				if (srcToUpper != dstToUpper)
 					return (int32)(srcToUpper - dstToUpper);
 			}

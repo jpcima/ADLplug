@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -54,7 +54,7 @@ public:
 	HostProcessData () : channelBufferOwner (false) {}
 	virtual ~HostProcessData ();
 
-	/** Prepare buffer containers for all buses. If bufferSamples is not null buffers will be
+	/** Prepare buffer containers for all busses. If bufferSamples is not null buffers will be
 	 * created. */
 	bool prepare (IComponent& component, int32 bufferSamples, int32 _symbolicSampleSize);
 
@@ -143,7 +143,7 @@ inline void HostProcessData::setChannelBuffers (BusDirection dir, int32 busIndex
 	AudioBusBuffers& busBuffers = dir == kInput ? inputs[busIndex] : outputs[busIndex];
 	int32 count = bufferCount < busBuffers.numChannels ? bufferCount : busBuffers.numChannels;
 	for (int32 i = 0; i < count; i++)
-		busBuffers.channelBuffers32[i] = sampleBuffers ? sampleBuffers[i] : 0;
+		busBuffers.channelBuffers32[i] = sampleBuffers ? sampleBuffers[i] : nullptr;
 }
 
 //------------------------------------------------------------------------
@@ -160,7 +160,7 @@ inline void HostProcessData::setChannelBuffers64 (BusDirection dir, int32 busInd
 	AudioBusBuffers& busBuffers = dir == kInput ? inputs[busIndex] : outputs[busIndex];
 	int32 count = bufferCount < busBuffers.numChannels ? bufferCount : busBuffers.numChannels;
 	for (int32 i = 0; i < count; i++)
-		busBuffers.channelBuffers64[i] = sampleBuffers ? sampleBuffers[i] : 0;
+		busBuffers.channelBuffers64[i] = sampleBuffers ? sampleBuffers[i] : nullptr;
 }
 
 //------------------------------------------------------------------------

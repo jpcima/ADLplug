@@ -18,7 +18,7 @@
 
 #include "fstrdefs.h"
 
-#include <stdio.h>
+#include <cstdio>
 
 #if SMTG_OS_WINDOWS
 #include <objbase.h>
@@ -26,9 +26,20 @@
 
 #if SMTG_OS_MACOS
 #include <CoreFoundation/CoreFoundation.h>
-#include <libkern/OSAtomic.h>
 
-#if defined (__GNUC__) && (__GNUC__ >= 4) && !__LP64__
+#if defined(MAC_OS_X_VERSION_10_11) && defined(MAC_OS_X_VERSION_MIN_REQUIRED)
+#define SMTG_MACOS_USE_STDATOMIC (MAC_OS_X_VERSION_MIN_REQUIRED > MAC_OS_X_VERSION_10_11)
+#else
+#define SMTG_MACOS_USE_STDATOMIC 0
+#endif
+
+#if SMTG_MACOS_USE_STDATOMIC
+#include <stdatomic.h>
+#else
+#include <libkern/OSAtomic.h>
+#endif
+
+#if defined(__GNUC__) && (__GNUC__ >= 4) && !__LP64__
 // on 32 bit Mac OS X we can safely ignore the format warnings as sizeof(int) == sizeof(long)
 #pragma GCC diagnostic ignored "-Wformat"
 #endif
@@ -36,7 +47,12 @@
 #endif
 
 #if SMTG_OS_LINUX
+#ifdef __ANDROID__
+#include <stdatomic.h>
+#else
 #include <ext/atomicity.h>
+#endif
+#include <stdlib.h>
 #endif
 
 namespace Steinberg {
@@ -48,10 +64,10 @@ namespace Steinberg {
 #else
 struct GuidStruct
 {
-    uint32  Data1;
-    uint16 Data2;
-    uint16 Data3;
-    uint8  Data4[8];
+	uint32 Data1;
+	uint16 Data2;
+	uint16 Data3;
+	uint8 Data4[8];
 };
 #endif
 #endif
@@ -68,9 +84,15 @@ namespace FUnknownPrivate {
 int32 PLUGIN_API atomicAdd (int32& var, int32 d)
 {
 #if SMTG_OS_WINDOWS
-	return InterlockedExchangeAdd ((long *)&var, d) + d;
+	return InterlockedExchangeAdd ((LONG*)&var, d) + d;
 #elif SMTG_OS_MACOS
+#if SMTG_MACOS_USE_STDATOMIC
+	return atomic_fetch_add (reinterpret_cast<atomic_int_least32_t*> (&var), d) + d;
+#else
 	return OSAtomicAdd32Barrier (d, (int32_t*)&var);
+#endif
+#elif defined(__ANDROID__)
+	return atomic_fetch_add ((atomic_int*)&var, d) + d;
 #elif SMTG_OS_LINUX
 	__gnu_cxx::__atomic_add (&var, d);
 	return var;
@@ -102,36 +124,39 @@ FUID::FUID (const FUID& f)
 {
 	memcpy (data, f.data, sizeof (TUID));
 }
-	
+
 //------------------------------------------------------------------------
 #if SMTG_CPP11_STDLIBSUPPORT
-FUID::FUID (FUID&& other) {
+FUID::FUID (FUID&& other)
+{
 	memcpy (data, other.data, sizeof (TUID));
 }
-	
+
 FUID& FUID::operator= (FUID&& other)
 {
 	memcpy (data, other.data, sizeof (TUID));
 	return *this;
 }
 #endif
-	
+
 //------------------------------------------------------------------------
 bool FUID::generate ()
 {
 #if SMTG_OS_WINDOWS
+#if defined(_M_ARM64) || defined(_M_ARM)
+	//#warning implement me!
+	return false;
+#else
 	GUID guid;
 	HRESULT hr = CoCreateGuid (&guid);
 	switch (hr)
 	{
-		case RPC_S_OK:
-			memcpy (data, (char*)&guid, sizeof (TUID));
-			return true;
+		case RPC_S_OK: memcpy (data, (char*)&guid, sizeof (TUID)); return true;
 
 		case RPC_S_UUID_LOCAL_ONLY:
-		default:
-			return false;
+		default: return false;
 	}
+#endif
 
 #elif SMTG_OS_MACOS
 	CFUUIDRef uuid = CFUUIDCreate (kCFAllocatorDefault);
@@ -144,6 +169,11 @@ bool FUID::generate ()
 	}
 	return false;
 
+#elif SMTG_OS_LINUX
+	srand ((size_t)this);
+	for (int32 i = 0; i < 16; i++)
+		data[i] = static_cast<unsigned char>(rand ());
+	return true;
 #else
 #warning implement me!
 	return false;
@@ -159,7 +189,7 @@ bool FUID::isValid () const
 }
 
 //------------------------------------------------------------------------
-FUID& FUID::operator = (const FUID& f)
+FUID& FUID::operator= (const FUID& f)
 {
 	memcpy (data, f.data, sizeof (TUID));
 	return *this;
@@ -218,9 +248,9 @@ void FUID::to4Int (uint32& d1, uint32& d2, uint32& d3, uint32& d4) const
 uint32 FUID::getLong1 () const
 {
 #if COM_COMPATIBLE
-	return makeLong (data[3],  data[2],  data [1],  data [0]);
+	return makeLong (data[3], data[2], data[1], data[0]);
 #else
-	return makeLong (data[0],  data[1],  data [2],  data [3]);
+	return makeLong (data[0], data[1], data[2], data[3]);
 #endif
 }
 
@@ -228,9 +258,9 @@ uint32 FUID::getLong1 () const
 uint32 FUID::getLong2 () const
 {
 #if COM_COMPATIBLE
-	return makeLong (data[5],  data[4],  data [7],  data [6]);
+	return makeLong (data[5], data[4], data[7], data[6]);
 #else
-	return makeLong (data[4],  data[5],  data [6],  data [7]);
+	return makeLong (data[4], data[5], data[6], data[7]);
 #endif
 }
 
@@ -238,9 +268,9 @@ uint32 FUID::getLong2 () const
 uint32 FUID::getLong3 () const
 {
 #if COM_COMPATIBLE
-	return makeLong (data[8],  data[9],  data [10], data [11]);
+	return makeLong (data[8], data[9], data[10], data[11]);
 #else
-	return makeLong (data[8],  data[9],  data [10], data [11]);
+	return makeLong (data[8], data[9], data[10], data[11]);
 #endif
 }
 
@@ -248,9 +278,9 @@ uint32 FUID::getLong3 () const
 uint32 FUID::getLong4 () const
 {
 #if COM_COMPATIBLE
-	return makeLong (data[12], data[13], data [14], data [15]);
+	return makeLong (data[12], data[13], data[14], data[15]);
 #else
-	return makeLong (data[12], data[13], data [14], data [15]);
+	return makeLong (data[12], data[13], data[14], data[15]);
 #endif
 }
 
@@ -260,16 +290,16 @@ void FUID::toString (char8* string) const
 	if (!string)
 		return;
 
-	#if COM_COMPATIBLE
-	GuidStruct* g = (GuidStruct*)data;
+#if COM_COMPATIBLE
+	auto* g = (GuidStruct*)data;
 
 	char8 s[17];
 	Steinberg::toString8 (s, data, 8, 16);
 
 	sprintf (string, "%08X%04X%04X%s", g->Data1, g->Data2, g->Data3, s);
-	#else
+#else
 	Steinberg::toString8 (string, data, 0, 16);
-	#endif
+#endif
 }
 
 //------------------------------------------------------------------------
@@ -280,7 +310,7 @@ bool FUID::fromString (const char8* string)
 	if (strlen (string) != 32)
 		return false;
 
-	#if COM_COMPATIBLE
+#if COM_COMPATIBLE
 	GuidStruct g;
 	char s[33];
 
@@ -296,9 +326,9 @@ bool FUID::fromString (const char8* string)
 
 	memcpy (data, &g, 8);
 	Steinberg::fromString8 (string + 16, data, 8, 16);
-	#else
+#else
 	Steinberg::fromString8 (string, data, 0, 16);
-	#endif
+#endif
 
 	return true;
 }
@@ -311,9 +341,9 @@ bool FUID::fromRegistryString (const char8* string)
 	if (strlen (string) != 38)
 		return false;
 
-	// e.g. {c200e360-38c5-11ce-ae62-08002b2b79ef}
+// e.g. {c200e360-38c5-11ce-ae62-08002b2b79ef}
 
-	#if COM_COMPATIBLE
+#if COM_COMPATIBLE
 	GuidStruct g;
 	char8 s[10];
 
@@ -330,13 +360,13 @@ bool FUID::fromRegistryString (const char8* string)
 
 	Steinberg::fromString8 (string + 20, data, 8, 10);
 	Steinberg::fromString8 (string + 25, data, 10, 16);
-	#else
+#else
 	Steinberg::fromString8 (string + 1, data, 0, 4);
 	Steinberg::fromString8 (string + 10, data, 4, 6);
 	Steinberg::fromString8 (string + 15, data, 6, 8);
 	Steinberg::fromString8 (string + 20, data, 8, 10);
 	Steinberg::fromString8 (string + 25, data, 10, 16);
-	#endif
+#endif
 
 	return true;
 }
@@ -344,10 +374,10 @@ bool FUID::fromRegistryString (const char8* string)
 //------------------------------------------------------------------------
 void FUID::toRegistryString (char8* string) const
 {
-	// e.g. {c200e360-38c5-11ce-ae62-08002b2b79ef}
+// e.g. {c200e360-38c5-11ce-ae62-08002b2b79ef}
 
-	#if COM_COMPATIBLE
-	GuidStruct* g = (GuidStruct*)data;
+#if COM_COMPATIBLE
+	auto* g = (GuidStruct*)data;
 
 	char8 s1[5];
 	Steinberg::toString8 (s1, data, 8, 10);
@@ -356,7 +386,7 @@ void FUID::toRegistryString (char8* string) const
 	Steinberg::toString8 (s2, data, 10, 16);
 
 	sprintf (string, "{%08X-%04X-%04X-%s-%s}", g->Data1, g->Data2, g->Data3, s1, s2);
-	#else
+#else
 	char8 s1[9];
 	Steinberg::toString8 (s1, data, 0, 4);
 	char8 s2[5];
@@ -369,7 +399,7 @@ void FUID::toRegistryString (char8* string) const
 	Steinberg::toString8 (s5, data, 10, 16);
 
 	sprintf (string, "{%s-%s-%s-%s-%s}", s1, s2, s3, s4, s5);
-	#endif
+#endif
 }
 
 //------------------------------------------------------------------------
@@ -377,7 +407,7 @@ void FUID::print (char8* string, int32 style) const
 {
 	if (!string) // no string: debug output
 	{
-		char8 str [128];
+		char8 str[128];
 		print (str, style);
 
 #if SMTG_OS_WINDOWS
@@ -408,7 +438,8 @@ void FUID::print (char8* string, int32 style) const
 
 		case kCLASS_UID:
 		default:
-			sprintf (string, "DECLARE_CLASS_IID (Interface, 0x%08X, 0x%08X, 0x%08X, 0x%08X)", l1, l2, l3, l4);
+			sprintf (string, "DECLARE_CLASS_IID (Interface, 0x%08X, 0x%08X, 0x%08X, 0x%08X)", l1,
+			         l2, l3, l4);
 			break;
 	}
 }
@@ -418,7 +449,7 @@ void FUID::print (char8* string, int32 style) const
 //------------------------------------------------------------------------
 static uint32 makeLong (uint8 b1, uint8 b2, uint8 b3, uint8 b4)
 {
-	return (uint32(b1) << 24) | (uint32(b2) << 16) | (uint32(b3) << 8) | uint32(b4);
+	return (uint32 (b1) << 24) | (uint32 (b2) << 16) | (uint32 (b3) << 8) | uint32 (b4);
 }
 
 //------------------------------------------------------------------------

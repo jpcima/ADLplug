@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -49,8 +49,8 @@ namespace Vst {
 
 //------------------------------------------------------------------------
 /** Description of a Parameter.
-\ingroup vstClasses */
-//------------------------------------------------------------------------
+\ingroup vstClasses
+*/
 class Parameter : public FObject
 {
 public:
@@ -61,18 +61,18 @@ public:
 	           ParamValue defaultValueNormalized = 0., int32 stepCount = 0,
 	           int32 flags = ParameterInfo::kCanAutomate, UnitID unitID = kRootUnitId,
                const TChar* shortTitle = nullptr);
-	virtual ~Parameter ();
+	~Parameter () override;
 
 	/** Returns its read only info. */
-	const ParameterInfo& getInfo () const { return info; }
+	virtual const ParameterInfo& getInfo () const { return info; }
 
 	/** Returns its writable info. */
-	ParameterInfo& getInfo () { return info; }
+	virtual ParameterInfo& getInfo () { return info; }
 
 	/** Sets its associated UnitId. */
-	void setUnitID (UnitID id) { info.unitId = id; }
+	virtual void setUnitID (UnitID id) { info.unitId = id; }
 	/** Gets its associated UnitId. */
-	UnitID getUnitID () { return info.unitId; }
+	virtual UnitID getUnitID () { return info.unitId; }
 
 	/** Gets its normalized value [0.0, 1.0]. */
 	ParamValue getNormalized () const { return valueNormalized; }
@@ -90,10 +90,10 @@ public:
 	virtual ParamValue toNormalized (ParamValue plainValue) const;
 
 	/** Gets the current precision (used for string representation of float). */
-	int32 getPrecision () const { return precision; }
+	virtual int32 getPrecision () const { return precision; }
 	/** Sets the precision for string representation of float value (for example 4.34 with 2 as
 	 * precision). */
-	void setPrecision (int32 val) { precision = val; }
+	virtual void setPrecision (int32 val) { precision = val; }
 
 	OBJ_METHODS (Parameter, FObject)
 //------------------------------------------------------------------------
@@ -105,8 +105,8 @@ protected:
 
 //------------------------------------------------------------------------
 /** Description of a RangeParameter.
-\ingroup vstClasses */
-//------------------------------------------------------------------------
+\ingroup vstClasses 
+*/
 class RangeParameter : public Parameter
 {
 public:
@@ -148,8 +148,8 @@ protected:
 
 //------------------------------------------------------------------------
 /** Description of a StringListParameter.
-\ingroup vstClasses */
-//------------------------------------------------------------------------
+\ingroup vstClasses
+*/
 class StringListParameter : public Parameter
 {
 public:
@@ -158,7 +158,7 @@ public:
 	StringListParameter (const TChar* title, ParamID tag, const TChar* units = nullptr,
 	                     int32 flags = ParameterInfo::kCanAutomate | ParameterInfo::kIsList,
 	                     UnitID unitID = kRootUnitId, const TChar* shortTitle= nullptr);
-	virtual ~StringListParameter ();
+	~StringListParameter () override;
 
 	/** Appends a string and increases the stepCount. */
 	virtual void appendString (const String128 string);
@@ -178,14 +178,14 @@ public:
 	OBJ_METHODS (StringListParameter, Parameter)
 //------------------------------------------------------------------------
 protected:
-	typedef std::vector<TChar*> StringVector;
+	using StringVector = std::vector<TChar*>;
 	StringVector strings;
 };
 
 //------------------------------------------------------------------------
 /** Collection of parameters.
-\ingroup vstClasses */
-//------------------------------------------------------------------------
+\ingroup vstClasses
+*/
 class ParameterContainer
 {
 public:
@@ -212,7 +212,7 @@ public:
 	int32 getParameterCount () const { return params ? static_cast<int32> (params->size ()) : 0; }
 
 	/** Gets parameter by index. */
-	Parameter* getParameterByIndex (int32 index) { return params ? params->at (index) : nullptr; }
+	Parameter* getParameterByIndex (int32 index) const { return params ? params->at (index) : nullptr; }
 
 	/** Removes all parameters. */
 	void removeAll ()
@@ -223,12 +223,14 @@ public:
 	}
 
 	/** Gets parameter by ID. */
-	Parameter* getParameter (ParamID tag);
+	Parameter* getParameter (ParamID tag) const;
 
-//------------------------------------------------------------------------
+	/** Remove a specific parameter by ID. */
+	bool removeParameter (ParamID tag);
+	//------------------------------------------------------------------------
 protected:
-	typedef std::vector<IPtr<Parameter>> ParameterPtrVector;
-	typedef std::map<ParamID, ParameterPtrVector::size_type> IndexMap;
+	using ParameterPtrVector = std::vector<IPtr<Parameter>>;
+	using IndexMap = std::map<ParamID, ParameterPtrVector::size_type>;
 	ParameterPtrVector* params;
 	IndexMap id2index;
 };

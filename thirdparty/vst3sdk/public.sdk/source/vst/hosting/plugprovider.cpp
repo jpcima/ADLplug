@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -36,9 +36,13 @@
 
 #include "plugprovider.h"
 
+#include "connectionproxy.h"
 #include "pluginterfaces/vst/ivstcomponent.h"
 #include "pluginterfaces/vst/ivsteditcontroller.h"
 #include "pluginterfaces/vst/ivstmessage.h"
+
+#include <cstdio>
+#include <iostream>
 
 namespace Steinberg {
 extern FUnknown* gStandardPluginContext;
@@ -49,96 +53,10 @@ FUnknown* getPluginContext ()
 }
 }
 
-#include <cstdio>
-#include <iostream>
-
 static std::ostream* errorStream = &std::cout;
 
 namespace Steinberg {
 namespace Vst {
-
-//------------------------------------------------------------------------
-class ConnectionProxy : public FObject, public IConnectionPoint
-{
-public:
-	ConnectionProxy (IConnectionPoint* srcConnection);
-	virtual ~ConnectionProxy ();
-
-	//--- from IConnectionPoint
-	tresult PLUGIN_API connect (IConnectionPoint* other) override;
-	tresult PLUGIN_API disconnect (IConnectionPoint* other) override;
-	tresult PLUGIN_API notify (IMessage* message) override;
-
-	bool disconnect ();
-
-	OBJ_METHODS (ConnectionProxy, FObject)
-	REFCOUNT_METHODS (FObject)
-	DEF_INTERFACES_1 (IConnectionPoint, FObject)
-
-protected:
-	IPtr<IConnectionPoint> srcConnection;
-	IPtr<IConnectionPoint> dstConnection;
-};
-
-//------------------------------------------------------------------------
-ConnectionProxy::ConnectionProxy (IConnectionPoint* srcConnection)
-: srcConnection (srcConnection) // share it
-{
-}
-
-//------------------------------------------------------------------------
-ConnectionProxy::~ConnectionProxy ()
-{
-}
-
-//------------------------------------------------------------------------
-tresult PLUGIN_API ConnectionProxy::connect (IConnectionPoint* other)
-{
-	if (other == nullptr)
-		return kInvalidArgument;
-	if (dstConnection)
-		return kResultFalse;
-
-	dstConnection = other; // share it
-	tresult res = srcConnection->connect (this);
-	if (res != kResultTrue)
-		dstConnection = nullptr;
-	return res;
-}
-
-//------------------------------------------------------------------------
-tresult PLUGIN_API ConnectionProxy::disconnect (IConnectionPoint* other)
-{
-	if (!other)
-		return kInvalidArgument;
-
-	if (other == dstConnection)
-	{
-		if (srcConnection)
-			srcConnection->disconnect (this);
-		dstConnection = nullptr;
-		return kResultTrue;
-	}
-
-	return kInvalidArgument;
-}
-
-//------------------------------------------------------------------------
-tresult PLUGIN_API ConnectionProxy::notify (IMessage* message)
-{
-	if (dstConnection)
-	{
-		// TODO we should test if we are in UI main thread else postpone the message
-		return dstConnection->notify (message);
-	}
-	return kResultFalse;
-}
-
-//------------------------------------------------------------------------
-bool ConnectionProxy::disconnect ()
-{
-	return disconnect (dstConnection) == kResultTrue;
-}
 
 //------------------------------------------------------------------------
 // PlugProvider
@@ -163,7 +81,7 @@ PlugProvider::~PlugProvider ()
 }
 
 //------------------------------------------------------------------------
-IComponent* PlugProvider::getComponent ()
+IComponent* PLUGIN_API PlugProvider::getComponent ()
 {
 	if (!component)
 		setupPlugin (getPluginContext ());
@@ -175,7 +93,7 @@ IComponent* PlugProvider::getComponent ()
 }
 
 //------------------------------------------------------------------------
-IEditController* PlugProvider::getController ()
+IEditController* PLUGIN_API PlugProvider::getController ()
 {
 	if (controller)
 		controller->addRef ();
@@ -185,14 +103,22 @@ IEditController* PlugProvider::getController ()
 }
 
 //------------------------------------------------------------------------
-tresult PlugProvider::getPluginUID (FUID& uid) const
+IPluginFactory* PLUGIN_API PlugProvider::getPluginFactory ()
+{
+	if (auto f = factory.get ())
+		return f.get ();
+	return nullptr;
+}
+
+//------------------------------------------------------------------------
+tresult PLUGIN_API PlugProvider::getComponentUID (FUID& uid) const
 {
 	uid = FUID::fromTUID (classInfo.ID ().data ());
 	return kResultOk;
 }
 
 //------------------------------------------------------------------------
-tresult PlugProvider::releasePlugIn (IComponent* iComponent, IEditController* iController)
+tresult PLUGIN_API PlugProvider::releasePlugIn (IComponent* iComponent, IEditController* iController)
 {
 	if (iComponent)
 		iComponent->release ();
@@ -306,7 +232,7 @@ void PlugProvider::terminatePlugin ()
 	bool controllerIsComponent = false;
 	if (component)
 	{
-		controllerIsComponent = FUnknownPtr<IEditController> (component).getInterface () != 0;
+		controllerIsComponent = FUnknownPtr<IEditController> (component).getInterface () != nullptr;
 		component->terminate ();
 	}
 

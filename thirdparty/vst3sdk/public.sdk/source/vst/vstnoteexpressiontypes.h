@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -38,6 +38,7 @@
 
 #include "base/source/fobject.h"
 #include "pluginterfaces/vst/ivstnoteexpression.h"
+#include "pluginterfaces/vst/ivstphysicalui.h"
 
 #include <map>
 #include <vector>
@@ -48,8 +49,8 @@ class Parameter;
 
 //------------------------------------------------------------------------
 /** Note expression type object.
-\ingroup vstClasses */
-//-----------------------------------------------------------------------------
+\ingroup vstClasses
+*/
 class NoteExpressionType : public FObject
 {
 public:
@@ -78,18 +79,23 @@ public:
 	/** Sets the precision for string representation of float value (for example 4.34 with 2 as
 	 * precision) */
 	void setPrecision (int32 val) { precision = val; }
+
+	tresult getPhysicalUIType (PhysicalUITypeID& physicalUITypeID /*out*/) const;
+	tresult setPhysicalUITypeID (PhysicalUITypeID physicalUITypeID /*in*/);
+
 //-----------------------------------------------------------------------------
 	OBJ_METHODS (NoteExpressionType, FObject)
 protected:
 	NoteExpressionTypeInfo info;
 	IPtr<Parameter> associatedParameter;
 	int32 precision;
+	PhysicalUITypeID physicalUITypeID {static_cast<PhysicalUITypeID> (kInvalidPUITypeID)};
 };
 
 //------------------------------------------------------------------------
 /** Note expression type object representing a custom range.
-\ingroup vstClasses */
-//-----------------------------------------------------------------------------
+\ingroup vstClasses
+*/
 class RangeNoteExpressionType : public NoteExpressionType
 {
 public:
@@ -108,9 +114,9 @@ public:
 	virtual void setMax (ParamValue value) { plainMax = value; }
 
 	tresult getStringByValue (NoteExpressionValue valueNormalized /*in*/,
-	                                  String128 string /*out*/) SMTG_OVERRIDE;
+	                          String128 string /*out*/) SMTG_OVERRIDE;
 	tresult getValueByString (const TChar* string /*in*/,
-	                                  NoteExpressionValue& valueNormalized /*out*/) SMTG_OVERRIDE;
+	                          NoteExpressionValue& valueNormalized /*out*/) SMTG_OVERRIDE;
 //-----------------------------------------------------------------------------
 	OBJ_METHODS (RangeNoteExpressionType, NoteExpressionType)
 protected:
@@ -120,8 +126,8 @@ protected:
 
 //------------------------------------------------------------------------
 /** Collection of note expression types.
-\ingroup vstClasses */
-//------------------------------------------------------------------------
+\ingroup vstClasses
+*/
 class NoteExpressionTypeContainer : public FObject
 {
 public:
@@ -143,18 +149,23 @@ public:
 	int32 getNoteExpressionCount ();
 
 	/** get note expression info */
-	tresult getNoteExpressionInfo (int32 noteExpressionIndex, NoteExpressionTypeInfo& info /*out*/);
+	tresult getNoteExpressionInfo (int32 noteExpressionIndex /*in*/,
+	                               NoteExpressionTypeInfo& info /*out*/);
 	/** convert a note expression value to a readable string */
-	tresult getNoteExpressionStringByValue (NoteExpressionTypeID id,
+	tresult getNoteExpressionStringByValue (NoteExpressionTypeID id /*in*/,
 	                                        NoteExpressionValue valueNormalized /*in*/,
 	                                        String128 string /*out*/);
 	/** convert a string to a note expression value */
-	tresult getNoteExpressionValueByString (NoteExpressionTypeID id, const TChar* string /*in*/,
+	tresult getNoteExpressionValueByString (NoteExpressionTypeID id /*in*/,
+	                                        const TChar* string /*in*/,
 	                                        NoteExpressionValue& valueNormalized /*out*/);
+
+	/** get the Physical UI Type associated to a given Note Expression Id */
+	tresult getMappedNoteExpression (const PhysicalUITypeID physicalUITypeID, NoteExpressionTypeID& id);
 //-----------------------------------------------------------------------------
 	OBJ_METHODS (NoteExpressionTypeContainer, FObject)
 protected:
-	typedef std::vector<IPtr<NoteExpressionType>> NoteExprTypeVector;
+	using NoteExprTypeVector = std::vector<IPtr<NoteExpressionType>>;
 	NoteExprTypeVector::const_iterator find (NoteExpressionTypeID typeId) const;
 
 	NoteExprTypeVector noteExps;

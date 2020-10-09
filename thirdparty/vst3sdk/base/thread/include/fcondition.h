@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -65,7 +65,7 @@ public:
 	/** Condition constructor.
 	 *  @param name name of condition
 	 */
-	FCondition (const char8* name = 0 /* "FCondition" */ );
+	FCondition (const char8* name = nullptr /* "FCondition" */ );
 
 	/** Condition destructor.
 	 */

@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -38,6 +38,7 @@
 
 #include "public.sdk/source/vst/vstbus.h"
 #include "public.sdk/source/vst/vstcomponent.h"
+#include "public.sdk/source/vst/utility/processcontextrequirements.h"
 #include "pluginterfaces/vst/ivstaudioprocessor.h"
 
 //------------------------------------------------------------------------
@@ -47,9 +48,9 @@ namespace Vst {
 //------------------------------------------------------------------------
 /** Default implementation for a VST 3 audio effect.
 \ingroup vstClasses
-Can be used as base class for a VST 3 effect implementation. */
-//------------------------------------------------------------------------
-class AudioEffect : public Component, public IAudioProcessor
+Can be used as base class for a VST 3 effect implementation.
+*/
+class AudioEffect : public Component, public IAudioProcessor, public IProcessContextRequirements
 {
 public:
 //------------------------------------------------------------------------
@@ -102,15 +103,20 @@ public:
 	tresult PLUGIN_API process (ProcessData& data) SMTG_OVERRIDE;
 	uint32 PLUGIN_API getTailSamples () SMTG_OVERRIDE { return kNoTail; }
 
+	//---from IProcessContextRequirements-------
+	uint32 PLUGIN_API getProcessContextRequirements () SMTG_OVERRIDE;
+
 	//---Interface---------
 	OBJ_METHODS (AudioEffect, Component)
 	DEFINE_INTERFACES
 		DEF_INTERFACE (IAudioProcessor)
+		DEF_INTERFACE (IProcessContextRequirements)
 	END_DEFINE_INTERFACES (Component)
 	REFCOUNT_METHODS (Component)
 //------------------------------------------------------------------------
 protected:
 	ProcessSetup processSetup;
+	ProcessContextRequirements processContextRequirements;
 };
 
 //------------------------------------------------------------------------

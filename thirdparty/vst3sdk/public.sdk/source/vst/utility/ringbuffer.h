@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -90,7 +90,7 @@ public:
 
 	/** push a new item into the ringbuffer
 	 *
-	 *	@item item to push
+	 *	@param item to push
 	 *	@return true on success or false if buffer is full
 	 */
 	bool push (ItemT&& item) noexcept
@@ -112,7 +112,7 @@ public:
 
 	/** push a new item into the ringbuffer
 	 *
-	 *	@item item to push
+	 *	@param item to push
 	 *	@return true on success or false if buffer is full
 	 */
 	bool push (const ItemT& item) noexcept
@@ -134,7 +134,7 @@ public:
 
 	/** pop an item out of the ringbuffer
 	 *
-	 *	@item item
+	 *	@param item
 	 *	@return true on success or false if buffer is empty
 	 */
 	bool pop (ItemT& item) noexcept

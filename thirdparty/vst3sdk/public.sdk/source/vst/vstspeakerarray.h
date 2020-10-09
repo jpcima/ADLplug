@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -37,6 +37,7 @@
 #pragma once
 
 #include "pluginterfaces/vst/vsttypes.h"
+#include <cstdlib>
 
 //------------------------------------------------------------------------
 namespace Steinberg {
@@ -44,8 +45,8 @@ namespace Vst {
 
 //------------------------------------------------------------------------
 // SpeakerArray
-/** Helper class representing speaker arrangement as array of speaker types. */
-//------------------------------------------------------------------------
+/** Helper class representing speaker arrangement as array of speaker types.
+*/
 class SpeakerArray
 {
 public:

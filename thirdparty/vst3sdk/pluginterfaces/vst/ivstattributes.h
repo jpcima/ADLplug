@@ -26,15 +26,18 @@
 //------------------------------------------------------------------------
 namespace Steinberg {
 namespace Vst {
+
 //------------------------------------------------------------------------
-/** Attribute list used in IMessage and IStreamAttributes.
+/** Attribute list used in IMessage and IStreamAttributes: Vst::IAttributeList
 \ingroup vstIHost vst300
 - [host imp]
 - [released: 3.0.0]
+- [mandatory]
 
-An attribute list associates values with a key (id: some predefined keys could be found in \ref presetAttributes). */
-//------------------------------------------------------------------------
-class IAttributeList: public FUnknown
+An attribute list associates values with a key (id: some predefined keys can be found in \ref
+presetAttributes).
+*/
+class IAttributeList : public FUnknown
 {
 public:
 //------------------------------------------------------------------------
@@ -55,7 +58,8 @@ public:
 	/** Sets string value (UTF16). */
 	virtual tresult PLUGIN_API setString (AttrID id, const TChar* string) = 0;
 
-	/** Gets string value (UTF16). Note that Size is in Byte, not the string Length! (Do not forget to multiply the length by sizeof (TChar)!) */
+	/** Gets string value (UTF16). Note that Size is in Byte, not the string Length!
+		Do not forget to multiply the length by sizeof (TChar)! */
 	virtual tresult PLUGIN_API getString (AttrID id, TChar* string, uint32 size) = 0;
 
 	/** Sets binary data. */
@@ -70,14 +74,19 @@ public:
 DECLARE_CLASS_IID (IAttributeList, 0x1E5F0AEB, 0xCC7F4533, 0xA2544011, 0x38AD5EE4)
 
 //------------------------------------------------------------------------
-/**  Meta attributes of a stream.
-\ingroup vstIHost  vst360
+/** Meta attributes of a stream: Vst::IStreamAttributes
+\ingroup vstIHost vst360
 - [host imp]
 - [extends IBStream]
 - [released: 3.6.0]
+- [optional]
 
-\code
-...
+Interface to access preset meta information from stream, used, for example, in setState in order to inform the plug-in about
+the current context in which the preset loading occurs (Project context or Preset load (see \ref StateType))
+or used to get the full file path of the loaded preset (if available).
+
+\code{.cpp}
+//------------------------------------------------------------------------
 #include "pluginterfaces/base/ustring.h"
 #include "pluginterfaces/vst/vstpresetkeys.h"
 ...
@@ -116,11 +125,8 @@ tresult PLUGIN_API MyPlugin::setState (IBStream* state)
 	return kResultTrue;
 }
 \endcode
-Interface to access preset meta information from stream, used for example in setState in order to inform the plug-in about 
-the current context in which this preset loading occurs (Project context or Preset load (see \ref StateType)) 
-or used to get the full file path of the loaded preset (if available). */
-//------------------------------------------------------------------------
-class IStreamAttributes: public FUnknown
+*/
+class IStreamAttributes : public FUnknown
 {
 public:
 	//------------------------------------------------------------------------
@@ -134,7 +140,6 @@ public:
 };
 
 DECLARE_CLASS_IID (IStreamAttributes, 0xD6CE2FFC, 0xEFAF4B8C, 0x9E74F1BB, 0x12DA44B4)
-
 
 //------------------------------------------------------------------------
 } // namespace Vst

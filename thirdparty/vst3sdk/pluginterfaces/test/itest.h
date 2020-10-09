@@ -27,35 +27,35 @@ namespace Steinberg {
 
 class ITestResult;
 
-//------------------------------------------------------------------------
-// ITest interface declaration
-//------------------------------------------------------------------------
+/** ------------------------------------------------------------------------
+ITest interface declaration
+*/
 class ITest : public FUnknown
 {
 public:
 	//--- ---------------------------------------------------------------------
-	/** called immediately before the test is actually run. 
-		Usually this will be used to setup the test environment.
-		\return true upon success	*/
+	/** called immediately before the test is actually run.
+	    Usually this will be used to setup the test environment.
+	    \return true upon success	*/
 	virtual bool PLUGIN_API setup () = 0;
 
-	/** execute the test. 
-		\param testResult : points to a test result where the test can
-							(optionally) add an error message. 
-		\return true upon success
-		\sa ITestResult */
+	/** execute the test.
+	    \param testResult : points to a test result where the test can
+	                        (optionally) add an error message.
+	    \return true upon success
+	    \sa ITestResult */
 	virtual bool PLUGIN_API run (ITestResult* testResult) = 0;
 
 	/** called after the test has run. This method shall be used to
-		deconstruct a test environment that has been setup with ITest::setup (). 
-	\return true upon success		*/
+	    deconstruct a test environment that has been setup with ITest::setup ().
+	\return true upon success */
 	virtual bool PLUGIN_API teardown () = 0;
 
 	/** This function is used to provide information about the performed
-		testcase. What is done, what is validated and what has to be prepared
-		before executing the test (in case of half-automated tests).
-	\return null terminated string upon success, zero otherwise		*/
-	virtual const tchar* PLUGIN_API getDescription () {return 0;}
+	    testcase. What is done, what is validated and what has to be prepared
+	    before executing the test (in case of half-automated tests).
+	\return null terminated string upon success, zero otherwise */
+	virtual const tchar* PLUGIN_API getDescription () { return nullptr; }
 	//--- ---------------------------------------------------------------------
 	static const FUID iid;
 };
@@ -74,7 +74,6 @@ DECLARE_CLASS_IID (ITest, 0x9E2E608B, 0x64C64CF8, 0x839059BD, 0xA194032D)
 when a test is called, a pointer to an ITestResult is passed in, so the 
 test class can output error messages
 */
-//------------------------------------------------------------------------
 class ITestResult : public FUnknown
 {
 public:
@@ -97,8 +96,8 @@ DECLARE_CLASS_IID (ITestResult, 0xCE13B461, 0x5334451D, 0xB3943E99, 0x7446885B)
 //------------------------------------------------------------------------
 /** A collection of tests supporting a hierarchical ordering 
 [host imp]
-[create via hostclasses]*/
-//------------------------------------------------------------------------
+[create via hostclasses]
+*/
 class ITestSuite : public FUnknown
 {
 public:
@@ -126,14 +125,14 @@ DECLARE_CLASS_IID (ITestSuite, 0x81724C94, 0xE9F64F65, 0xACB104E9, 0xCC702253)
 //------------------------------------------------------------------------
 /**	Class factory that any testable module defines for creating tests
 that will be executed from the host
-[plug imp] \n
+- [plug imp]
 */
-//------------------------------------------------------------------------
 class ITestFactory : public FUnknown
 {
 public:
 	//--- ---------------------------------------------------------------------
 	/** create the tests that this module provides.
+		\param context :
 		\param parentSuite : the test suite that the newly created tests
 							shall register with. */
 	virtual tresult PLUGIN_API createTests (FUnknown* context, ITestSuite* parentSuite) = 0;

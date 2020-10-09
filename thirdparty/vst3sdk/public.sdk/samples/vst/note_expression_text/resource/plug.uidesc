@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+	<fonts>
+	</fonts>
+	<colors>
+	</colors>
+	<template background-color="~ BlackCColor" background-color-draw-style="filled and stroked" class="CViewContainer" mouse-enabled="true" name="Editor" origin="0, 0" size="300, 100" transparent="false">
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" custom-view-name="NoteExpressionText" default-value="0.5" font="~ NormalFontVeryBig" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ BlackCColor" max-value="1" min-value="0" mouse-enabled="true" origin="0, 0" round-rect-radius="6" shadow-color="~ RedCColor" size="300, 100" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" title="..." transparent="false" value-precision="2" wheel-inc-value="0.1"/>
+	</template>
+	<custom>
+		<attributes name="FocusDrawing"/>
+		<attributes name="UIGridController"/>
+		<attributes SelectedTemplate="Editor" name="UITemplateController"/>
+		<attributes name="UIAttributesController"/>
+		<attributes EditorSize="0, 0, 500, 500" SplitViewSize_0_0="0.726315789473684250000" SplitViewSize_0_1="0.252631578947368430000" SplitViewSize_1_0="0.46736842105263160000" SplitViewSize_1_1="0.511578947368421020000" SplitViewSize_2_0="0.640000000000000010000" SplitViewSize_2_1="0.340000000000000020000" name="UIEditController"/>
+		<attributes SelectedRow="20" name="UIViewCreatorDataSource"/>
+		<attributes Path="J:\SVN\trunk\public.sdk\samples\vst\note_expression_text\resource\plug.uidesc" name="VST3Editor"/>
+	</custom>
+	<bitmaps/>
+</vstgui-ui-description>

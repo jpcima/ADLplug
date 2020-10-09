@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -51,8 +51,8 @@ namespace Vst {
 
 Here an example of how to use this helper:
 \n
-\code
-
+\code{.cpp}
+//------------------------------------------------------------------------
 // here the parameter ids used by this example
 enum {
     kGain = 129,
@@ -75,8 +75,7 @@ IBStream* stream)
     String name (info.name);
     if (name == GENERIC_8_CELLS)
     {
-        Vst::XmlRepresentationHelper helper (info, "My Company Name", "My Product Name",
-gPlugProcessorClassID, stream);
+        Vst::XmlRepresentationHelper helper (info, "My Company Name", "My Product Name", gPlugProcessorClassID, stream);
 
         helper.startPage ("Main Page");
         helper.startEndCellOneLayer (Vst::LayerType::kKnob, kGain);
@@ -106,7 +105,6 @@ gPlugProcessorClassID, stream);
 }
 \endcode
 */
-//------------------------------------------------------------------------
 class XmlRepresentationHelper
 {
 public:

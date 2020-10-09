@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -35,7 +35,7 @@
 //-----------------------------------------------------------------------------
 
 #include "module.h"
-#include "stringconvert.h"
+#include "public.sdk/source/vst/utility/stringconvert.h"
 #include <sstream>
 #include <utility>
 
@@ -277,6 +277,56 @@ std::string ClassInfo::subCategoriesString () const noexcept
 	for (auto index = 1u; index < data.subCategories.size (); ++index)
 		result += "|" + data.subCategories[index];
 	return result;
+}
+
+//------------------------------------------------------------------------
+namespace {
+
+//------------------------------------------------------------------------
+std::pair<size_t, size_t> rangeOfScaleFactor (const std::string& name)
+{
+	auto result = std::make_pair (std::string::npos, std::string::npos);
+	size_t xIndex = name.find_last_of ("x");
+	if (xIndex == std::string::npos)
+		return result;
+
+	size_t indicatorIndex = name.find_last_of ("_");
+	if (indicatorIndex == std::string::npos)
+		return result;
+	if (xIndex < indicatorIndex)
+		return result;
+	result.first = indicatorIndex + 1;
+	result.second = xIndex;
+	return result;
+}
+
+//------------------------------------------------------------------------
+} // anonymous
+
+//------------------------------------------------------------------------
+Optional<double> Module::Snapshot::decodeScaleFactor (const std::string& name)
+{
+	auto range = rangeOfScaleFactor (name);
+	if (range.first == std::string::npos || range.second == std::string::npos)
+		return {};
+	std::string tmp (name.data () + range.first, range.second - range.first);
+	std::istringstream sstream (tmp);
+	sstream.imbue (std::locale::classic ());
+	sstream.precision (static_cast<std::streamsize> (3));
+	double result;
+	sstream >> result;
+	return Optional<double> (result);
+}
+
+//------------------------------------------------------------------------
+Optional<UID> Module::Snapshot::decodeUID (const std::string& filename)
+{
+	if (filename.size () < 45)
+		return {};
+	if (filename.find ("_snapshot") != 32)
+		return {};
+	auto uidStr = filename.substr (0, 32);
+	return UID::fromString (uidStr);
 }
 
 //------------------------------------------------------------------------

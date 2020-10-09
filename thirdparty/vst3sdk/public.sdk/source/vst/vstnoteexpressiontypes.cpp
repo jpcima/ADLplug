@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -166,6 +166,21 @@ tresult NoteExpressionType::getValueByString (const TChar* string /*in*/,
 }
 
 //-----------------------------------------------------------------------------
+tresult NoteExpressionType::getPhysicalUIType (PhysicalUITypeID& _physicalUITypeID /*out*/) const
+{
+	_physicalUITypeID = physicalUITypeID;
+	return kResultTrue;
+}
+
+//-----------------------------------------------------------------------------
+tresult NoteExpressionType::setPhysicalUITypeID (PhysicalUITypeID _physicalUITypeID /*in*/)
+{
+	physicalUITypeID = _physicalUITypeID;
+	return kResultTrue;
+}
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 RangeNoteExpressionType::RangeNoteExpressionType (
     NoteExpressionTypeID _typeId, const TChar* _title, const TChar* _shortTitle,
     const TChar* _units, int32 _unitId, NoteExpressionValue _defaultPlainValue,
@@ -215,8 +230,7 @@ NoteExpressionTypeContainer::NoteExpressionTypeContainer ()
 NoteExpressionTypeContainer::NoteExprTypeVector::const_iterator NoteExpressionTypeContainer::find (
     NoteExpressionTypeID typeId) const
 {
-	for (NoteExprTypeVector::const_iterator it = noteExps.begin (), end = noteExps.end ();
-	     it != end; ++it)
+	for (auto it = noteExps.begin (), end = noteExps.end (); it != end; ++it)
 	{
 		if ((*it)->getInfo ().typeId == typeId)
 		{
@@ -229,14 +243,14 @@ NoteExpressionTypeContainer::NoteExprTypeVector::const_iterator NoteExpressionTy
 //-----------------------------------------------------------------------------
 bool NoteExpressionTypeContainer::addNoteExpressionType (NoteExpressionType* noteExpType)
 {
-	noteExps.push_back (IPtr<NoteExpressionType> (noteExpType, false));
+	noteExps.emplace_back (noteExpType, false);
 	return true;
 }
 
 //-----------------------------------------------------------------------------
 bool NoteExpressionTypeContainer::removeNoteExpressionType (NoteExpressionTypeID typeId)
 {
-	NoteExprTypeVector::const_iterator it = find (typeId);
+	auto it = find (typeId);
 	if (it != noteExps.end ())
 	{
 		noteExps.erase (it);
@@ -254,7 +268,7 @@ void NoteExpressionTypeContainer::removeAll ()
 //-----------------------------------------------------------------------------
 NoteExpressionType* NoteExpressionTypeContainer::getNoteExpressionType (NoteExpressionTypeID typeId)
 {
-	NoteExprTypeVector::const_iterator it = find (typeId);
+	auto it = find (typeId);
 	if (it != noteExps.end ())
 		return (*it);
 	return nullptr;
@@ -299,6 +313,26 @@ tresult NoteExpressionTypeContainer::getNoteExpressionValueByString (
 		return noteExpType->getValueByString (string, valueNormalized);
 	}
 	return kResultFalse;
+}
+
+//-----------------------------------------------------------------------------
+tresult NoteExpressionTypeContainer::getMappedNoteExpression (
+    const PhysicalUITypeID physicalUITypeID, NoteExpressionTypeID& id /*out*/)
+{
+	id = kInvalidTypeID;
+	for (auto& item : noteExps)
+	{
+		PhysicalUITypeID tmp;
+		if (item->getPhysicalUIType (tmp) == kResultTrue)
+		{
+			if (tmp == physicalUITypeID)
+			{
+				id = item->getInfo ().typeId;
+				break;
+			}
+		}
+	}
+	return kResultTrue;
 }
 
 //------------------------------------------------------------------------

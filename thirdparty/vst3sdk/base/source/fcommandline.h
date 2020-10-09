@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -47,6 +47,8 @@
 #include <vector>
 #include <algorithm>
 #include <sstream>
+#include <initializer_list>
+#include <iterator>
 
 namespace Steinberg {
 //------------------------------------------------------------------------
@@ -63,7 +65,6 @@ The command-line parser uses CommandLine::Descriptions to define the available o
 int main (int argc, char* argv[])
 {
 	using namespace std;
-	using namespace Steinberg;
 
 	CommandLine::Descriptions desc;
 	CommandLine::VariablesMap valueMap;
@@ -154,15 +155,22 @@ namespace CommandLine {
 		DescriptionsList mDescriptions;
 		std::string mCaption;
 	public:
-		Descriptions& addOptions (const std::string& caption = "");  ///< Sets the command-line tool caption and starts adding Descriptions.
-		bool parse (int ac, char* av[], VariablesMap& result, FilesVector* files = 0) const; ///< Parse the command-line.
-		void print (std::ostream& os) const;						 ///< Print a brief description for the command-line tool into the stream @c os.
-		Descriptions& operator() (const std::string& name, const std::string& help); ///< Add a new switch. Only 
-		template <typename Type> Descriptions& operator() (const std::string& name, const Type& inType, std::string help);  ///< Add a new option of type @c inType. Currently only std::string is supported.
-	};
+		/** Sets the command-line tool caption and starts adding Descriptions. */
+	    Descriptions& addOptions (const std::string& caption = "",
+	                              std::initializer_list<Description>&& options = {});
+	    /** Parse the command-line. */
+		bool parse (int ac, char* av[], VariablesMap& result, FilesVector* files = 0) const;
+		/** Print a brief description for the command-line tool into the stream @c os. */
+		void print (std::ostream& os) const;
+		/** Add a new switch. Only */
+		Descriptions& operator() (const std::string& name, const std::string& help);
+		/** Add a new option of type @c inType. Currently only std::string is supported. */
+	    template <typename Type>
+	    Descriptions& operator () (const std::string& name, const Type& inType, std::string help);
+    };
 	
 //------------------------------------------------------------------------
-// If you need the declarations in more than one cpp file you have to define 
+// If you need the declarations in more than one cpp file you have to define
 // SMTG_NO_IMPLEMENTATION in all but one file.
 //------------------------------------------------------------------------
 #ifndef SMTG_NO_IMPLEMENTATION
@@ -170,24 +178,24 @@ namespace CommandLine {
 	//------------------------------------------------------------------------
 	/*! If command-line contains option @c k more than once, only the last value will survive. */
 	//------------------------------------------------------------------------
-	std::string& VariablesMap::operator [](const VariablesMapContainer::key_type k) 
-	{ 
-		return mVariablesMapContainer[k]; 
-	} 
+	std::string& VariablesMap::operator [](const VariablesMapContainer::key_type k)
+	{
+		return mVariablesMapContainer[k];
+	}
 
 	//------------------------------------------------------------------------
 	/*! If command-line contains option @c k more than once, only the last value will survive. */
 	//------------------------------------------------------------------------
 	const std::string& VariablesMap::operator [](const VariablesMapContainer::key_type k) const
-	{ 
-		return (*const_cast<VariablesMap*>(this))[k]; 
-	} 
+	{
+		return (*const_cast<VariablesMap*>(this))[k];
+	}
 	
 	//------------------------------------------------------------------------
 	VariablesMap::VariablesMapContainer::size_type VariablesMap::count (const VariablesMapContainer::key_type k) const
-	{ 
-		return mVariablesMapContainer.count (k); 
-	} 
+	{
+		return mVariablesMapContainer.count (k);
+	}
 
 	//------------------------------------------------------------------------
 	/** Add a new option with a string as parameter. */
@@ -205,61 +213,71 @@ namespace CommandLine {
 
 	//------------------------------------------------------------------------
 	/*! In most cases you will use the Descriptions::addOptions (const std::string&) method to create and add descriptions.
-		
+	 
 		@param[in] name of the option.
 		@param[in] help a help description for this option.
-		@param[out] valueType Description::kBool or Description::kString. 
+		@param[out] valueType Description::kBool or Description::kString.
 	*/
-	//------------------------------------------------------------------------
-	Description::Description (const std::string& name, const std::string& help, const std::string& valueType) 
+	Description::Description (const std::string& name, const std::string& help, const std::string& valueType)
 	: std::string (name)
-	, mHelp (help) 
+	, mHelp (help)
 	, mType (valueType)
 	{
 	}
 
-	//------------------------------------------------------------------------
-	/*! Returning a reverence to *this, enables chaining of calls to operator()(const std::string&, const std::string&).
-		
-		@param[in] name of the added option.
-		@param[in] help a help description for this option.
-		@return a reverence to *this.
-	*/
-	Descriptions& Descriptions::operator() (const std::string& name, const std::string& help)
-	{
-		mDescriptions.push_back (Description (name, help, Description::kBool));
-		return *this;
-	}
-	
-	//------------------------------------------------------------------------
+//------------------------------------------------------------------------
+    /*! Returning a reference to *this, enables chaining of calls to operator()(const std::string&,
+     const std::string&).
+        @param[in] name of the added option.
+        @param[in] help a help description for this option.
+        @return a reference to *this.
+    */
+    Descriptions& Descriptions::operator () (const std::string& name, const std::string& help)
+    {
+	    mDescriptions.push_back (Description (name, help, Description::kBool));
+	    return *this;
+    }
+
+//------------------------------------------------------------------------
 	/*!	<b>Usage example:</b>
 																@code
 	CommandLine::Descriptions desc;
 	desc.addOptions ("myTool")           // Set caption to "myTool"
 	    ("help", "produce help message") // add switch -help
-	    ("opt1", string(), "option 1")   // add string option -opt1 
-	    ("opt2", string(), "option 2")   // add string option -opt2 
+	    ("opt1", string(), "option 1")   // add string option -opt1
+	    ("opt2", string(), "option 2")   // add string option -opt2
 	;
 																@endcode
 	@note
 		The operator() is used for every additional option.
+
+	Or with initializer list :
+																@code
+	CommandLine::Descriptions desc;
+	desc.addOptions ("myTool",                                 // Set caption to "myTool"
+	    {{"help", "produce help message", Description::kBool}, // add switch -help
+	     {"opt1", "option 1", Description::kString},           // add string option -opt1
+	     {"opt2", "option 2", Description::kString}}           // add string option -opt2
+	);
+																@endcode
 	@param[in] caption the caption of the command-line tool.
-	@return a reverense to *this. 
+	@param[in] options initializer list with options
+	@return a reverense to *this.
 	*/
-	//------------------------------------------------------------------------
-	Descriptions& Descriptions::addOptions (const std::string& caption)
-	{
+    Descriptions& Descriptions::addOptions (const std::string& caption,
+                                            std::initializer_list<Description>&& options)
+    {
 		mCaption = caption;
-		return *this;
+	    std::move (options.begin (), options.end (), std::back_inserter (mDescriptions));
+	    return *this;
 	}
 
 	//------------------------------------------------------------------------
 	/*!	@param[in] ac count of command-line parameters
-		@param[in] av command-line as array of strings 
+		@param[in] av command-line as array of strings
 		@param[out] result the parsing result
 		@param[out] files optional list of elements on the command line that are not handled by options parsing
 	*/
-	//------------------------------------------------------------------------
 	bool Descriptions::parse (int ac, char* av[], VariablesMap& result, FilesVector* files) const
 	{
 		using namespace std;
@@ -273,7 +291,7 @@ namespace CommandLine {
 				int pos = current[1] == '-' ? 2 : 1;
 				current = current.substr (pos, string::npos);
 
-				DescriptionsList::const_iterator found = 
+				DescriptionsList::const_iterator found =
 					find (mDescriptions.begin (), mDescriptions.end (), current);
 				if (found != mDescriptions.end ())
 				{
@@ -281,7 +299,7 @@ namespace CommandLine {
 					if (found->mType != Description::kBool)
 					{
 						if (((i + 1) < ac) && *av[i + 1] != '-')
-						{	
+						{
 							result[*found] = av[++i];
 						}
 						else
@@ -309,14 +327,20 @@ namespace CommandLine {
 	//------------------------------------------------------------------------
 	void Descriptions::print (std::ostream& os) const
 	{
-		if (!mCaption.empty())
+		if (!mCaption.empty ())
 			os << mCaption << ":\n";
 
-		unsigned int i; 
-		for (i = 0; i < mDescriptions.size (); ++i)
+		size_t maxLength = 0u;
+	    std::for_each (mDescriptions.begin (), mDescriptions.end (),
+	                   [&] (const Description& d) { maxLength = std::max (maxLength, d.size ()); });
+
+	    for (auto i = 0u; i < mDescriptions.size (); ++i)
 		{
 			const Description& opt = mDescriptions[i];
-			os << "-" << opt << ":\t" << opt.mHelp << "\n";
+			os << "-" << opt;
+			for (auto s = opt.size (); s < maxLength; ++s)
+				os << " ";
+			os << " | " << opt.mHelp << "\n";
 		}
 	}
 	
@@ -329,9 +353,9 @@ namespace CommandLine {
 
 	//------------------------------------------------------------------------
 	/*! @param[in] ac count of command-line parameters
-		@param[in] av command-line as array of strings 
+		@param[in] av command-line as array of strings
 		@param[in] desc Descriptions including all allowed options
-		@param[out] result the parsing result		
+		@param[out] result the parsing result
 		@param[out] files optional list of elements on the command line that are not handled by options parsing
 	*/
 	bool parse (int ac, char* av[], const Descriptions& desc, VariablesMap& result, FilesVector* files)

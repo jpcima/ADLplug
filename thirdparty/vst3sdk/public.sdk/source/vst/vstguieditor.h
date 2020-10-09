@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -51,9 +51,9 @@ namespace Vst {
 
 //------------------------------------------------------------------------
 /** Base class for an edit view using VSTGUI.
-\ingroup vstClasses  */
-//------------------------------------------------------------------------
-class VSTGUIEditor : public EditorView, public VSTGUIEditorInterface, public CBaseObject
+\ingroup vstClasses
+*/
+class VSTGUIEditor : public EditorView, public VSTGUI::VSTGUIEditorInterface, public VSTGUI::CBaseObject
 {
 public:
 	/** Constructor. */
@@ -66,7 +66,7 @@ public:
 /** Called when the editor will be opened. */
 #if VSTGUI_VERSION_MAJOR >= 4 && VSTGUI_VERSION_MINOR >= 1
 	virtual bool PLUGIN_API open (void* parent,
-	                              const PlatformType& platformType = kDefaultNative) = 0;
+	                              const VSTGUI::PlatformType& platformType = VSTGUI::kDefaultNative) = 0;
 #else
 	virtual bool PLUGIN_API open (void* parent) = 0;
 #endif
@@ -77,7 +77,7 @@ public:
 	void setIdleRate (int32 millisec);
 
 	//---from CBaseObject---------------
-	CMessageResult notify (CBaseObject* sender, const char* message) SMTG_OVERRIDE;
+	VSTGUI::CMessageResult notify (VSTGUI::CBaseObject* sender, const char* message) SMTG_OVERRIDE;
 	void forget () SMTG_OVERRIDE { EditorView::release (); }
 	void remember () SMTG_OVERRIDE { EditorView::addRef (); }
 	VSTGUI_INT32 getNbReference () const SMTG_OVERRIDE { return refCount; }
@@ -100,7 +100,12 @@ public:
 	DEFINE_INTERFACES
 	END_DEFINE_INTERFACES (EditorView)
 	REFCOUNT_METHODS (EditorView)
-private:
+
+#if TARGET_OS_IPHONE
+	static void setBundleRef (/*CFBundleRef*/ void* bundle);
+#endif
+
+protected:
 	//---from IPlugView-------
 	tresult PLUGIN_API attached (void* parent, FIDString type) SMTG_OVERRIDE;
 	tresult PLUGIN_API removed () SMTG_OVERRIDE;
@@ -109,7 +114,8 @@ private:
 	tresult PLUGIN_API onWheel (float distance) SMTG_OVERRIDE;
 	tresult PLUGIN_API setFrame (IPlugFrame* frame) SMTG_OVERRIDE;
 
-	CVSTGUITimer* timer;
+private:
+	VSTGUI::CVSTGUITimer* timer;
 };
 
 //------------------------------------------------------------------------

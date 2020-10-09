@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -54,7 +54,7 @@ struct StringWriter
 
 	void write (const ConstString& str)
 	{
-		stream->write (const_cast<char8*> (str.text8 ()), str.length (), 0);
+		stream->write (const_cast<char8*> (str.text8 ()), str.length (), nullptr);
 	}
 
 	IBStream* stream;
@@ -71,10 +71,10 @@ XmlRepresentationHelper::XmlRepresentationHelper (const Vst::RepresentationInfo&
 {
 	StringWriter writer (stream);
 	String string;
-	writer.write ("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+	writer.write (R"(<?xml version="1.0" encoding="UTF-8"?>)");
 	writer.write (ENDLINE_A);
 	string.printf (
-	    "<!DOCTYPE %s PUBLIC \"-//Steinberg//DTD VST Remote 1.1//EN\" \"http://dtd.steinberg.net/VST-Remote-1.1.dtd\">",
+	    R"(<!DOCTYPE %s PUBLIC "-//Steinberg//DTD VST Remote 1.1//EN" "http://dtd.steinberg.net/VST-Remote-1.1.dtd">)",
 	    ROOTXML_TAG);
 	writer.write (string.text8 ());
 	writer.write (ENDLINE_A);
@@ -88,7 +88,7 @@ XmlRepresentationHelper::XmlRepresentationHelper (const Vst::RepresentationInfo&
 	char uidText[33];
 	uid.toString (uidText);
 
-	string.printf ("<%s %s=\"%s\" %s=\"%s\" %s=\"%s\"/>", PLUGIN_TAG, ATTR_CLASSID, uidText,
+	string.printf (R"(<%s %s="%s" %s="%s" %s="%s"/>)", PLUGIN_TAG, ATTR_CLASSID, uidText,
 	               ATTR_NAME, pluginName, ATTR_VENDOR, companyName);
 	writer.write (string);
 	writer.write (ENDLINE_A);
@@ -156,7 +156,7 @@ bool XmlRepresentationHelper::startPage (FIDString name, int32 unitID)
 	StringWriter writer (stream);
 	String string;
 	if (unitID != -1)
-		string.printf ("<%s %s=\"%s\" %s=\"%d\">", PAGE_TAG, ATTR_NAME, name, ATTR_UNITID, unitID);
+		string.printf (R"(<%s %s="%s" %s="%d">)", PAGE_TAG, ATTR_NAME, name, ATTR_UNITID, unitID);
 	else
 		string.printf ("<%s %s=\"%s\">", PAGE_TAG, ATTR_NAME, name);
 	writer.write (string);
@@ -266,7 +266,7 @@ bool XmlRepresentationHelper::startLayer (int32 type, int32 id, FIDString _funct
 	StringWriter writer (stream);
 	String string;
 
-	string.printf ("<%s %s=\"%s\" %s=\"%d\"", LAYER_TAG, ATTR_TYPE,
+	string.printf (R"(<%s %s="%s" %s="%d")", LAYER_TAG, ATTR_TYPE,
 	               Vst::LayerType::layerTypeFIDString[type], ATTR_PARAMID, id);
 	writer.write (string);
 
@@ -331,7 +331,7 @@ bool XmlRepresentationHelper::startLayer (Vst::ParameterInfo& info, FIDString _f
 		style = Vst::AttributesStyle::kSwitchPushIncLoopedStyle;
 	}
 
-	return startLayer (type, info.id, _function, style, ended);
+	return startLayer (type, static_cast<int32> (info.id), _function, style, ended);
 }
 
 //------------------------------------------------------------------------

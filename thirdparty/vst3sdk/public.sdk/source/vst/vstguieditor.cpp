@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -53,12 +53,17 @@ static void ReleaseVSTGUIBundleRef ();
 #elif SMTG_OS_WINDOWS
 void* hInstance = nullptr; // VSTGUI hInstance
 extern void* moduleHandle;
+#if SMTG_MODULE_IS_BUNDLE
+#include "vstgui_win32_bundle_support.h"
+#endif // SMTG_MODULE_IS_BUNDLE
 #elif SMTG_OS_LINUX
 extern void* moduleHandle;
 namespace VSTGUI {
 void* soHandle = nullptr;
 } // VSTGUI
 #endif // SMTG_OS_MACOS
+
+using namespace VSTGUI;
 
 namespace Steinberg {
 namespace Vst {
@@ -70,7 +75,13 @@ VSTGUIEditor::VSTGUIEditor (void* controller, ViewRect* size)
 #if SMTG_OS_MACOS
 	CreateVSTGUIBundleRef ();
 #elif SMTG_OS_WINDOWS
-	hInstance = moduleHandle;
+	if (hInstance == nullptr)
+	{
+		hInstance = moduleHandle;
+#if SMTG_MODULE_IS_BUNDLE
+		setupVSTGUIBundleSupport (hInstance);
+#endif
+	}
 #elif SMTG_OS_LINUX
 	VSTGUI::soHandle = moduleHandle;
 #endif
@@ -264,7 +275,7 @@ tresult PLUGIN_API VSTGUIEditor::onKeyDown (char16 key, int16 keyMsg, int16 modi
 {
 	if (frame)
 	{
-		VstKeyCode keyCode = {0};
+		VstKeyCode keyCode = {};
 		if (translateKeyMessage (keyCode, key, keyMsg, modifiers))
 		{
 			VSTGUI_INT32 result = frame->onKeyDown (keyCode);
@@ -280,7 +291,7 @@ tresult PLUGIN_API VSTGUIEditor::onKeyUp (char16 key, int16 keyMsg, int16 modifi
 {
 	if (frame)
 	{
-		VstKeyCode keyCode = {0};
+		VstKeyCode keyCode = {};
 		if (translateKeyMessage (keyCode, key, keyMsg, modifiers))
 		{
 			VSTGUI_INT32 result = frame->onKeyUp (keyCode);
@@ -298,7 +309,7 @@ tresult PLUGIN_API VSTGUIEditor::onWheel (float distance)
 	{
 		CPoint where;
 		frame->getCurrentMouseLocation (where);
-		if (frame->onWheel (where, distance, frame->getCurrentMouseButtons ()))
+		if (frame->onWheel (where, kMouseWheelAxisY, distance, frame->getCurrentMouseButtons ()))
 			return kResultTrue;
 	}
 	return kResultFalse;
@@ -336,16 +347,17 @@ static int openCount = 0;
 //------------------------------------------------------------------------
 void CreateVSTGUIBundleRef ()
 {
+#if TARGET_OS_IPHONE
+	(void)openCount;
+	if (gBundleRef == nullptr)
+		gBundleRef = CFBundleGetMainBundle ();
+#else
 	openCount++;
 	if (gBundleRef)
 	{
 		CFRetain (gBundleRef);
 		return;
 	}
-#if TARGET_OS_IPHONE
-	gBundleRef = CFBundleGetMainBundle ();
-	CFRetain (gBundleRef);
-#else
 	Dl_info info;
 	if (dladdr ((const void*)CreateVSTGUIBundleRef, &info))
 	{
@@ -378,14 +390,31 @@ void CreateVSTGUIBundleRef ()
 //------------------------------------------------------------------------
 void ReleaseVSTGUIBundleRef ()
 {
+#if !TARGET_OS_IPHONE
 	openCount--;
 	if (gBundleRef)
 		CFRelease (gBundleRef);
 	if (openCount == 0)
 		gBundleRef = nullptr;
+#endif
 }
 
 //------------------------------------------------------------------------
 } // namespace VSTGUI
+
+#if TARGET_OS_IPHONE
+//------------------------------------------------------------------------
+namespace Steinberg {
+namespace Vst {
+
+//------------------------------------------------------------------------
+void VSTGUIEditor::setBundleRef (void* bundle)
+{
+	VSTGUI::gBundleRef = bundle;
+}
+
+}
+}
+#endif
 
 #endif // SMTG_OS_MACOS

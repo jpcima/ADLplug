@@ -17,7 +17,7 @@
 #include "ustring.h"
 
 #if SMTG_OS_WINDOWS
-#include <stdio.h>
+#include <cstdio>
 #pragma warning (disable : 4996)
 
 #elif SMTG_OS_MACOS
@@ -78,7 +78,7 @@ void StringCopy (TDstChar* dst, int32 dstSize, const TSrcChar* src, int32 srcSiz
 }
 
 //------------------------------------------------------------------------
-/** Find length of null-terminated string. */
+/** Find length of null-terminated string, i.e. StringLength (L"ABC\0") => 3 */
 //------------------------------------------------------------------------
 template <class TSrcChar>
 int32 StringLength (const TSrcChar* src, int32 srcSize = -1)

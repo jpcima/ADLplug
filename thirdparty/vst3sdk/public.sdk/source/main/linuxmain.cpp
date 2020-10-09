@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -45,8 +45,8 @@
 void* moduleHandle = 0;
 
 //------------------------------------------------------------------------
-bool InitModule ();		///< must be provided by Plug-in: called when the library is loaded
-bool DeinitModule ();	///< must be provided by Plug-in: called when the library is unloaded
+bool InitModule ();		///< must be provided by plug-in: called when the library is loaded
+bool DeinitModule ();	///< must be provided by plug-in: called when the library is unloaded
 
 //------------------------------------------------------------------------
 extern "C"
@@ -55,12 +55,14 @@ extern "C"
 	EXPORT bool ModuleExit (void);
 }
 
-static int counter {0};
+static int moduleCounter {0}; // counting for ModuleEntry/ModuleExit pairs
 
 //------------------------------------------------------------------------
+/** must be called from host right after loading dll
+Note: this could be called more than one time! */
 bool ModuleEntry (void* sharedLibraryHandle)
 {
-	if (++counter == 1)
+	if (++moduleCounter == 1)
 	{
 		moduleHandle = sharedLibraryHandle;
 		return InitModule ();
@@ -69,12 +71,16 @@ bool ModuleEntry (void* sharedLibraryHandle)
 }
 
 //------------------------------------------------------------------------
+/** must be called from host right before unloading dll
+Note: this could be called more than one time! */
 bool ModuleExit (void)
 {
-	if (--counter == 0)
+	if (--moduleCounter == 0)
 	{
 		moduleHandle = nullptr;
 		return DeinitModule ();
 	}
+	else if (moduleCounter < 0)
+		return false;
 	return true;
 }

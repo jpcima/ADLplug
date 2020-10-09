@@ -29,20 +29,20 @@ typedef ColorSpec		UColorSpec;			// legacy support
 typedef ColorComponent	UColorComponent;	// legacy support
 
 /** Create color specifier with RGB values (alpha is opaque) */
-inline ColorSpec MakeColorSpec (ColorComponent r, ColorComponent g, ColorComponent b)
+inline SMTG_CONSTEXPR ColorSpec MakeColorSpec (ColorComponent r, ColorComponent g, ColorComponent b)
 { 
 	return 0xFF000000 | ((ColorSpec)r) << 16 | ((ColorSpec)g) << 8 | (ColorSpec)b;
 }
 /** Create color specifier with RGBA values  */
-inline ColorSpec MakeColorSpec (ColorComponent r, ColorComponent g, ColorComponent b, ColorComponent a)
+inline SMTG_CONSTEXPR ColorSpec MakeColorSpec (ColorComponent r, ColorComponent g, ColorComponent b, ColorComponent a)
 { 
 	return ((ColorSpec)a) << 24 | ((ColorSpec)r) << 16 | ((ColorSpec)g) << 8 | (uint32)b;
 }
 
-inline ColorComponent GetBlue (ColorSpec cs)		         { return (ColorComponent)(cs & 0x000000FF); }
-inline ColorComponent GetGreen (ColorSpec cs)		         { return (ColorComponent)((cs >> 8) & 0x000000FF); }
-inline ColorComponent GetRed (ColorSpec cs)		         { return (ColorComponent)((cs >> 16) & 0x000000FF); }
-inline ColorComponent GetAlpha (ColorSpec cs)		         { return (ColorComponent)((cs >> 24) & 0x000000FF); }
+inline SMTG_CONSTEXPR ColorComponent GetBlue (ColorSpec cs)		         { return (ColorComponent)(cs & 0x000000FF); }
+inline SMTG_CONSTEXPR ColorComponent GetGreen (ColorSpec cs)		     { return (ColorComponent)((cs >> 8) & 0x000000FF); }
+inline SMTG_CONSTEXPR ColorComponent GetRed (ColorSpec cs)		         { return (ColorComponent)((cs >> 16) & 0x000000FF); }
+inline SMTG_CONSTEXPR ColorComponent GetAlpha (ColorSpec cs)		     { return (ColorComponent)((cs >> 24) & 0x000000FF); }
 
 inline void SetBlue (ColorSpec& argb, ColorComponent b)	 { argb = (argb & 0xFFFFFF00) | (ColorSpec)(b); }
 inline void SetGreen (ColorSpec& argb, ColorComponent g)	 { argb = (argb & 0xFFFF00FF) | (((ColorSpec)g) << 8); }
@@ -61,6 +61,15 @@ inline ColorComponent DenormalizeAlpha (double alphaNorm)   { return Denormalize
 /** } */
 inline ColorSpec StripAlpha (ColorSpec argb)               { return (argb & 0x00FFFFFF); }
 
+inline ColorSpec SMTG_CONSTEXPR BlendColor (ColorSpec color, double opacity)
+{
+	return MakeColorSpec (
+		GetRed (color),
+		GetGreen (color),
+		GetBlue (color),
+		static_cast<ColorComponent> (GetAlpha(color) * opacity)
+	);
+}
 
 enum StandardColor	 //TODO_REFACTOR: change to enum class (c++11)
 {

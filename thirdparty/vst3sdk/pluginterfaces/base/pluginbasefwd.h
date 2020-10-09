@@ -29,4 +29,6 @@ class IUpdateHandler;
 
 class IBStream;
 
+struct KeyCode;
+
 } // Steinberg

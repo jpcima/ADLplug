@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+	<fonts>
+	</fonts>
+	<colors>
+	</colors>
+	<template background-color="~ BlackCColor" background-color-draw-style="filled and stroked" bitmap="background" class="CViewContainer" mouse-enabled="true" name="view" opacity="1" origin="0, 0" size="350, 120" transparent="false" wants-focus="false">
+		<view angle-range="270" angle-start="135" bitmap="animation_knob" class="CAnimKnob" control-tag="ParamPan" default-value="0.5" height-of-one-image="111" inverse-bitmap="false" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="197, 4" size="111, 111" sub-pixmaps="61" tooltip="This is my Panning (Equal Power)" transparent="false" value-inset="0" wants-focus="true" wheel-inc-value="0.1" zoom-factor="1.5"/>
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFont" font-antialias="true" font-color="~ BlackCColor" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="230, 5" round-rect-radius="6" shadow-color="~ RedCColor" size="50, 20" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" text-shadow-offset="1, 1" title="C" transparent="true" value-precision="2" wants-focus="false" wheel-inc-value="0.1"/>
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFont" font-antialias="true" font-color="~ BlackCColor" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="195, 90" round-rect-radius="6" shadow-color="~ RedCColor" size="40, 20" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" text-shadow-offset="1, 1" title="L" transparent="true" value-precision="2" wants-focus="false" wheel-inc-value="0.1"/>
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFont" font-antialias="true" font-color="~ BlackCColor" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="270, 90" round-rect-radius="6" shadow-color="~ RedCColor" size="50, 20" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" text-shadow-offset="1, 1" title="R" transparent="true" value-precision="2" wants-focus="false" wheel-inc-value="0.1"/>
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextEdit" control-tag="ParamPan" default-value="0.5" font="~ NormalFont" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ BlackCColor" frame-width="1" immediate-text-change="false" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="150, 50" round-rect-radius="6" secure-style="false" shadow-color="~ RedCColor" size="55, 20" style-3D-in="false" style-3D-out="false" style-doubleclick="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" text-shadow-offset="1, 1" title="R 100" transparent="false" value-precision="2" wants-focus="true" wheel-inc-value="0.1"/>
+	</template>
+	<custom>
+		<attributes name="FocusDrawing"/>
+		<attributes Path="N:\SVN\devpluginset\public.sdk\samples\vst\panner\resource\plug.uidesc" name="VST3Editor"/>
+		<attributes Grids="1x 1,5x 5,10x 10,12x 12,15x 15" Size="5, 5" name="UIGridController"/>
+		<attributes SelectedTemplate="view" name="UITemplateController"/>
+		<attributes EditViewScale="1" EditorSize="0, 0, 800, 707" SplitViewSize_0_0="0.8105726872246695746682121352932881563902" SplitViewSize_0_1="0.1600587371512481593693877357509336434305" SplitViewSize_1_0="0.5095447870778266885594121049507521092892" SplitViewSize_1_1="0.4831130690161526963777305354597046971321" SplitViewSize_2_0="0.5200000000000000177635683940025046467781" SplitViewSize_2_1="0.4737500000000000044408920985006261616945" TabSwitchValue="0" Version="1" name="UIEditController"/>
+		<attributes name="UIAttributesController"/>
+		<attributes SelectedRow="26" name="UIViewCreatorDataSource"/>
+		<attributes SelectedRow="0" name="UIBitmapsDataSource"/>
+		<attributes SelectedRow="0" name="UITagsDataSource"/>
+	</custom>
+	<bitmaps>
+		<bitmap name="background" path="background.png"/>
+		<bitmap name="animation_knob" path="animation_knob.png"/>
+		<bitmap name="background_2x" path="background_2x.png" scale-factor="2"/>
+		<bitmap name="animation_knob_2x" path="animation_knob_2x.png" scale-factor="2"/>
+		<bitmap name="background_3x" path="background_3x.png" scale-factor="3"/>
+		<bitmap name="animation_knob_3x" path="animation_knob_3x.png" scale-factor="3"/>
+	</bitmaps>
+	<control-tags>
+		<control-tag name="Bypass" tag="100"/>
+		<control-tag name="ParamPan" tag="102"/>
+	</control-tags>
+</vstgui-ui-description>

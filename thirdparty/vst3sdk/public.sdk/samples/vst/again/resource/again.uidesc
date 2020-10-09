@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+	<fonts>
+	</fonts>
+	<colors>
+		<color name="Focus" rgba="#279bffff"/>
+		<color name="Title Background" rgba="#39393944"/>
+	</colors>
+	<template background-color="~ BlackCColor" background-color-draw-style="filled and stroked" bitmap="background" class="CViewContainer" maxSize="350, 120" minSize="350, 120" mouse-enabled="true" name="view" opacity="1" origin="0, 0" size="350, 120" transparent="false">
+		<view back-color="Title Background" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFontVeryBig" font-antialias="true" font-color="~ WhiteCColor" frame-color="Title Background" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="10, 10" round-rect-radius="10" shadow-color="~ RedCColor" size="310, 28" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="true" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" title="VST3 AGain" transparent="false" value-precision="2" wheel-inc-value="0.1"/>
+		<view background-color="~ BlackCColor" background-color-draw-style="filled and stroked" class="CViewContainer" mouse-enabled="true" opacity="1" origin="0, 45" size="330, 38" sub-controller="MessageController" transparent="true">
+			<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFont" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="10, 10" round-rect-radius="6" shadow-color="~ BlackCColor" size="80, 18" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="true" text-alignment="left" text-inset="5, 0" text-rotation="0" title="IMessage:" transparent="true" value-precision="2" wheel-inc-value="0.1"/>
+			<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextEdit" default-value="0.5" font="~ NormalFontSmall" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ GreyCColor" frame-width="1" immediate-text-change="false" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="90, 10" round-rect-radius="6" shadow-color="~ RedCColor" size="130, 18" style-3D-in="false" style-3D-out="false" style-doubleclick="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="false" text-alignment="center" text-inset="0, 0" text-rotation="0" transparent="false" value-precision="2" wheel-inc-value="0.1"/>
+			<view background-offset="0, 0" class="CTextButton" control-tag="UI::SendMessage" default-value="0.5" font="~ SystemFont" frame-color="~ BlackCColor" frame-color-highlighted="~ BlackCColor" frame-width="1" gradient="Default TextButton Gradient" gradient-highlighted="Default TextButton Gradient Highlighted" icon-position="left" icon-text-margin="0" kick-style="false" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="230, 10" round-radius="6" size="90, 18" text-alignment="center" text-color="~ BlackCColor" text-color-highlighted="~ WhiteCColor" title="Send!" transparent="false" wheel-inc-value="0.1"/>
+		</view>
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextLabel" default-value="0.5" font="~ NormalFont" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ BlackCColor" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="10, 90" round-rect-radius="6" shadow-color="~ BlackCColor" size="80, 18" style-3D-in="false" style-3D-out="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="false" style-shadow-text="true" text-alignment="left" text-inset="5, 0" text-rotation="0" title="Gain:" transparent="true" value-precision="2" wheel-inc-value="0.1"/>
+		<view background-offset="0, 0" bitmap="slider_background" bitmap-offset="0, 0" class="CSlider" control-tag="Unit1::Gain" default-value="0.5" draw-back="false" draw-back-color="~ WhiteCColor" draw-frame="false" draw-frame-color="~ WhiteCColor" draw-value="false" draw-value-color="~ WhiteCColor" draw-value-from-center="false" draw-value-inverted="false" handle-bitmap="slider_handle" handle-offset="0, 2" max-value="1" min-value="0" mode="free click" mouse-enabled="true" opacity="1" orientation="horizontal" origin="90, 90" reverse-orientation="false" size="130, 18" transparent="false" transparent-handle="true" wheel-inc-value="0.1" zoom-factor="10"/>
+		<view back-color="~ BlackCColor" background-offset="0, 0" class="CTextEdit" control-tag="Unit1::Gain" default-value="0.5" font="~ NormalFontSmall" font-antialias="true" font-color="~ WhiteCColor" frame-color="~ GreyCColor" frame-width="1" immediate-text-change="false" max-value="1" min-value="0" mouse-enabled="true" opacity="1" origin="230, 90" round-rect-radius="6" shadow-color="~ BlackCColor" size="90, 18" style-3D-in="false" style-3D-out="false" style-doubleclick="false" style-no-draw="false" style-no-frame="false" style-no-text="false" style-round-rect="true" style-shadow-text="false" text-alignment="center" text-inset="5, 0" text-rotation="0" title="0.00" transparent="false" value-precision="2" wheel-inc-value="0.1"/>
+		<view background-offset="0, 0" bitmap="vu_on" class="CVuMeter" control-tag="Root::VuPPM" decrease-step-value="0.1" default-value="0" max-value="1" min-value="0" mouse-enabled="false" num-led="100" off-bitmap="vu_off" opacity="1" orientation="vertical" origin="330, 7" size="12, 105" transparent="false" wheel-inc-value="0.1"/>
+	</template>
+	<variables/>
+	<custom>
+		<attributes color="Focus" enabled="true" name="FocusDrawing" width="1"/>
+		<attributes Size="5, 5" name="UIGridController"/>
+		<attributes SelectedTemplate="view" name="UITemplateController"/>
+		<attributes EditViewScale="1" EditorSize="0, 0, 882, 716" SplitViewSize_0_0="0.6402877697841726778449356061173602938652" SplitViewSize_0_1="0.3309352517985611474848894886235939338803" SplitViewSize_1_0="0.506474820143884896239683257590513676405" SplitViewSize_1_1="0.486330935251798546214985208280268125236" SplitViewSize_2_0="0.636054421768707523021646466077072545886" SplitViewSize_2_1="0.3582766439909297329080573035753332078457" TabSwitchValue="0" Version="1" name="UIEditController"/>
+		<attributes name="UIAttributesController"/>
+		<attributes SelectedRow="23" name="UIViewCreatorDataSource"/>
+		<attributes SelectedRow="4" name="UIBitmapsDataSource"/>
+		<attributes Path="/Volumes/git_brauhaus/VST3Linux/public.sdk/samples/vst/again/resource/again.uidesc" name="VST3Editor"/>
+		<attributes SelectedRow="2" name="UITagsDataSource"/>
+		<attributes SelectedRow="0" name="UIColorsDataSource"/>
+		<attributes SelectedRow="-1" name="UIGradientsDataSource"/>
+		<attributes SelectedRow="-1" name="UIFontsDataSource"/>
+	</custom>
+	<bitmaps>
+		<bitmap name="background" path="background.png"/>
+		<bitmap name="slider_background" path="slider_background.png"/>
+		<bitmap name="slider_handle" path="slider_handle.png"/>
+		<bitmap name="slider_handle#2x" path="slider_handle_2.0x.png" scale-factor="2"/>
+		<bitmap name="vu_off" path="vu_off.png"/>
+		<bitmap name="vu_on" path="vu_on.png"/>
+	</bitmaps>
+	<control-tags>
+		<control-tag name="Root::Bypass" tag="2"/>
+		<control-tag name="Root::VuPPM" tag="1"/>
+		<control-tag name="UI::SendMessage" tag="1000"/>
+		<control-tag name="Unit1::Gain" tag="0"/>
+	</control-tags>
+	<gradients>
+		<gradient name="Default TextButton Gradient">
+			<color-stop rgba="#dcdcdcff" start="0"/>
+			<color-stop rgba="#b4b4b4ff" start="1"/>
+		</gradient>
+		<gradient name="Default TextButton Gradient Highlighted">
+			<color-stop rgba="#b4b4b4ff" start="0"/>
+			<color-stop rgba="#646464ff" start="1"/>
+		</gradient>
+	</gradients>
+</vstgui-ui-description>

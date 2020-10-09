@@ -9,7 +9,7 @@
 // 
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -144,7 +144,7 @@ MacPlatformTimer::MacPlatformTimer (ITimerCallback* callback, uint32 millisecond
 {
 	if (callback)
 	{
-		CFRunLoopTimerContext timerContext = {0};
+		CFRunLoopTimerContext timerContext = {};
 		timerContext.info = this;
 		platformTimer = CFRunLoopTimerCreate (kCFAllocatorDefault, CFAbsoluteTimeGetCurrent () + milliseconds * 0.001, milliseconds * 0.001f, 0, 0, timerCallback, &timerContext);
 		if (platformTimer)

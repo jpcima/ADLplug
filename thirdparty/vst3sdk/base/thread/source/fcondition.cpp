@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -70,7 +70,7 @@ extern "C" {
 
 #if SMTG_OS_MACOS
 #include <TargetConditionals.h>
-#if !TARGET_OS_IPHONE
+#if !SMTG_OS_IOS
 #include <CoreServices/CoreServices.h>
 #endif
 #endif
@@ -193,6 +193,7 @@ void FCondition::wait ()
 bool FCondition::waitTimeout (int32 milliseconds)
 {
 #if SMTG_PTHREADS
+    // this is the implementation running on mac (2018-07-18)
 	if (milliseconds == -1)
 	{ // infinite timeout
 		wait ();
@@ -202,6 +203,7 @@ bool FCondition::waitTimeout (int32 milliseconds)
 	struct timespec time;
 
 #if __MACH__
+    // this is the implementation running on mac (2018-07-18)
 	time.tv_sec = milliseconds / 1000;
 	time.tv_nsec = 1000000 * (milliseconds - (time.tv_sec * 1000));
 
@@ -209,7 +211,7 @@ bool FCondition::waitTimeout (int32 milliseconds)
 #if DEVELOPMENT
 	waits++;
 #endif
-
+    // this is the implementation running on mac (2018-07-18)
 	waiters++;
 
 	bool result = true;
@@ -232,6 +234,7 @@ bool FCondition::waitTimeout (int32 milliseconds)
 	return result;
 
 #else
+    // dead code? not compiled in unit test and sequencer (2018-07-18)
 	clock_gettime (CLOCK_REALTIME, &time);
 	time.tv_nsec += milliseconds * 1000; // ?????????
 

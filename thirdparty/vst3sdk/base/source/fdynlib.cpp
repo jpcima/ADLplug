@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -46,7 +46,7 @@
 #include <mach-o/dyld.h>
 #include <CoreFoundation/CoreFoundation.h>
 
-#if !TARGET_OS_IPHONE
+#if !SMTG_OS_IOS
 static const Steinberg::tchar kUnixDelimiter = STR ('/');
 #endif
 #endif
@@ -177,7 +177,7 @@ bool FDynLibrary::init (const tchar* n, bool addExtension)
 			instance = (void*) NSAddImage (name, NSADDIMAGE_OPTION_RETURN_ON_ERROR);
 		}
 	}
-#endif // !TARGET_OS_IPHONE
+#endif // !SMTG_OS_IOS
 
 	if (instance)
 		isloaded = true;
@@ -253,7 +253,7 @@ void* FDynLibrary::getProcAddress (const char* name)
 			return NSAddressOfSymbol (symbol);
 		}
 	}
-#endif // !TARGET_OS_IPHONE
+#endif // !SMTG_OS_IOS
 
 	return nullptr;
 #else

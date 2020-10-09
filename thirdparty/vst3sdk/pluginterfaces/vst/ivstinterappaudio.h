@@ -31,10 +31,11 @@ class IInterAppAudioPresetManager;
 - [host imp]
 - [passed as 'context' to IPluginBase::initialize () ]
 - [released: 3.6.0]
+- [optional]
 
-Implemented by the InterAppAudio Wrapper. */
-//------------------------------------------------------------------------
-class IInterAppAudioHost: public FUnknown
+Implemented by the InterAppAudio Wrapper.
+*/
+class IInterAppAudioHost : public FUnknown
 {
 public:
 	/** get the size of the screen
@@ -91,13 +92,12 @@ public:
 DECLARE_CLASS_IID (IInterAppAudioHost, 0x0CE5743D, 0x68DF415E, 0xAE285BD4, 0xE2CDC8FD)
 
 //------------------------------------------------------------------------
-/** Extended Plug-in interface IEditController for Inter-App Audio connection state change notifications
+/** Extended plug-in interface IEditController for Inter-App Audio connection state change notifications
 \ingroup vstIPlug vst360
 - [plug imp]
 - [extends IEditController]
 - [released: 3.6.0]
 */
-//------------------------------------------------------------------------
 class IInterAppAudioConnectionNotification : public FUnknown
 {
 public:
@@ -113,13 +113,12 @@ public:
 DECLARE_CLASS_IID (IInterAppAudioConnectionNotification, 0x6020C72D, 0x5FC24AA1, 0xB0950DB5, 0xD7D6D5CF)
 
 //------------------------------------------------------------------------
-/** Extended Plug-in interface IEditController for Inter-App Audio Preset Management
+/** Extended plug-in interface IEditController for Inter-App Audio Preset Management
 \ingroup vstIPlug vst360
 - [plug imp]
 - [extends IEditController]
 - [released: 3.6.0]
 */
-//------------------------------------------------------------------------
 class IInterAppAudioPresetManager : public FUnknown
 {
 public:

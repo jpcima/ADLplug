@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -277,6 +277,8 @@ tresult PLUGIN_API UpdateHandler::removeDependent (FUnknown* u, IDependent* depe
 			{
 				Update::DependentList& list = (*iterMap).second;
 				Update::DependentListIter iterList = list.begin ();
+				bool listIsEmpty = false;
+				
 				while (iterList != list.end ())
 				{
 #if CLASS_NAME_TRACKED
@@ -285,14 +287,24 @@ tresult PLUGIN_API UpdateHandler::removeDependent (FUnknown* u, IDependent* depe
 					if ((*iterList) == dependent)
 #endif
 					{
-						iterList = list.erase (iterList);
+						if (list.size () == 1u)
+						{
+							listIsEmpty = true;
+							break;
+						}
+						else
+							iterList = list.erase (iterList);
 					}
 					else
 					{
 						++iterList;
 					}
 				}
-				++iterMap;
+				
+				if (listIsEmpty)
+					iterMap = map.erase (iterMap);
+				else
+					++iterMap;
 			}
 		}
 	}
@@ -386,7 +398,7 @@ tresult UpdateHandler::doTriggerUpdates (FUnknown* u, int32 message, bool suppre
 				{
 					if (dependents == smallDependents)
 					{
-						dependents = new IDependent*[Update::kMapSize];
+						dependents = NEW IDependent*[Update::kMapSize];
 						memcpy (dependents, smallDependents, count * sizeof (dependents[0]));
 						maxDependents = Update::kMapSize;
 					}

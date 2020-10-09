@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -87,9 +87,7 @@ tresult PLUGIN_API SingleComponentEffect::getBusInfo (MediaType type, BusDirecti
                                                       BusInfo& info)
 {
 	BusList* busList = getBusList (type, dir);
-	if (busList == nullptr)
-		return kInvalidArgument;
-	if (index >= static_cast<int32> (busList->size ()))
+	if (busList == nullptr || index >= static_cast<int32> (busList->size ()))
 		return kInvalidArgument;
 
 	Bus* bus = busList->at (index);
@@ -105,20 +103,22 @@ tresult PLUGIN_API SingleComponentEffect::activateBus (MediaType type, BusDirect
                                                        int32 index, TBool state)
 {
 	BusList* busList = getBusList (type, dir);
-	Bus* bus = busList ? (Bus*)busList->at (index) : nullptr;
-	if (bus)
-	{
-		bus->setActive (state);
-		return kResultTrue;
-	}
-	return kResultFalse;
+	if (busList == nullptr || index >= static_cast<int32> (busList->size ()))
+		return kInvalidArgument;
+
+	Bus* bus = busList->at (index);
+	if (!bus)
+		return kResultFalse;
+
+	bus->setActive (state);
+	return kResultTrue;
 }
 
 //-----------------------------------------------------------------------------
 AudioBus* SingleComponentEffect::addAudioInput (const TChar* name, SpeakerArrangement arr,
                                                 BusType busType, int32 flags)
 {
-	AudioBus* newBus = new AudioBus (name, busType, flags, arr);
+	auto* newBus = new AudioBus (name, busType, flags, arr);
 	audioInputs.push_back (IPtr<Vst::Bus> (newBus, false));
 	return newBus;
 }
@@ -127,7 +127,7 @@ AudioBus* SingleComponentEffect::addAudioInput (const TChar* name, SpeakerArrang
 AudioBus* SingleComponentEffect::addAudioOutput (const TChar* name, SpeakerArrangement arr,
                                                  BusType busType, int32 flags)
 {
-	AudioBus* newBus = new AudioBus (name, busType, flags, arr);
+	auto* newBus = new AudioBus (name, busType, flags, arr);
 	audioOutputs.push_back (IPtr<Vst::Bus> (newBus, false));
 	return newBus;
 }
@@ -136,7 +136,7 @@ AudioBus* SingleComponentEffect::addAudioOutput (const TChar* name, SpeakerArran
 EventBus* SingleComponentEffect::addEventInput (const TChar* name, int32 channels, BusType busType,
                                                 int32 flags)
 {
-	EventBus* newBus = new EventBus (name, busType, flags, channels);
+	auto* newBus = new EventBus (name, busType, flags, channels);
 	eventInputs.push_back (IPtr<Vst::Bus> (newBus, false));
 	return newBus;
 }
@@ -145,7 +145,7 @@ EventBus* SingleComponentEffect::addEventInput (const TChar* name, int32 channel
 EventBus* SingleComponentEffect::addEventOutput (const TChar* name, int32 channels, BusType busType,
                                                  int32 flags)
 {
-	EventBus* newBus = new EventBus (name, busType, flags, channels);
+	auto* newBus = new EventBus (name, busType, flags, channels);
 	eventOutputs.push_back (IPtr<Vst::Bus> (newBus, false));
 	return newBus;
 }
@@ -214,7 +214,10 @@ tresult PLUGIN_API SingleComponentEffect::getBusArrangement (BusDirection dir, i
                                                              SpeakerArrangement& arr)
 {
 	BusList* busList = getBusList (kAudio, dir);
-	AudioBus* audioBus = busList ? FCast<Vst::AudioBus> (busList->at (busIndex)) : 0;
+	if (busList == nullptr || busIndex >= static_cast<int32> (busList->size ()))
+		return kInvalidArgument;
+
+	auto* audioBus = FCast<Vst::AudioBus> (busList->at (busIndex));
 	if (audioBus)
 	{
 		arr = audioBus->getArrangement ();
@@ -259,6 +262,7 @@ tresult PLUGIN_API SingleComponentEffect::queryInterface (const TUID iid, void**
 	}
 	DEF_INTERFACE (IComponent)
 	DEF_INTERFACE (IAudioProcessor)
+	DEF_INTERFACE (IProcessContextRequirements)
 	return EditControllerEx1::queryInterface (iid, obj);
 }
 
@@ -267,9 +271,19 @@ tresult PLUGIN_API SingleComponentEffect::queryInterface (const TUID iid, void**
 } // namespace Steinberg
 
 // work around for the name clash of IComponent::setState and IEditController::setState
+#if PROJECT_INCLUDES_VSTEDITCONTROLLER
+// make sure that vsteditcontroller.cpp is included by your project
+//------------------------------------------------------------------------
+Steinberg::tresult PLUGIN_API Steinberg::Vst::EditController::setEditorState (Steinberg::IBStream* /*state*/) { return Steinberg::kNotImplemented; }
+
+//------------------------------------------------------------------------
+Steinberg::tresult PLUGIN_API Steinberg::Vst::EditController::getEditorState (Steinberg::IBStream* /*state*/) { return Steinberg::kNotImplemented; }
+
+#else
 // make sure that vsteditcontroller.cpp is otherwise excluded from your project
 #define setState setEditorState
 #define getState getEditorState
 #include "public.sdk/source/vst/vsteditcontroller.cpp"
 #undef setState
 #undef getState
+#endif

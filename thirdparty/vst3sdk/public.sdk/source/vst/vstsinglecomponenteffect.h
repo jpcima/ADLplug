@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -46,6 +46,7 @@
 #undef setState
 #undef getState
 
+#include "public.sdk/source/vst/utility/processcontextrequirements.h"
 #include "public.sdk/source/vst/vstbus.h"
 #include "public.sdk/source/vst/vstparameters.h"
 
@@ -63,9 +64,12 @@ This can be used as base class for a VST 3 effect implementation in case that th
 defining two separate components would cause too many implementation difficulties:
 - Cubase 4.2 is the first host that supports combined VST 3 Plug-ins
 - <b> Use this class only after giving the standard way of defining two components
-serious considerations! </b>*/
-//------------------------------------------------------------------------
-class SingleComponentEffect : public EditControllerEx1, public IComponent, public IAudioProcessor
+serious considerations! </b>
+*/
+class SingleComponentEffect : public EditControllerEx1,
+                              public IComponent,
+                              public IAudioProcessor,
+                              public IProcessContextRequirements
 {
 public:
 //------------------------------------------------------------------------
@@ -123,6 +127,12 @@ public:
 	tresult PLUGIN_API process (ProcessData& data) SMTG_OVERRIDE { return kNotImplemented; }
 	uint32 PLUGIN_API getTailSamples () SMTG_OVERRIDE { return kNoTail; }
 
+	//---from IProcessContextRequirements -------------------
+	uint32 PLUGIN_API getProcessContextRequirements () SMTG_OVERRIDE
+	{
+		return processContextRequirements.flags;
+	}
+
 	//---Interface---------
 	OBJ_METHODS (SingleComponentEffect, EditControllerEx1)
 	tresult PLUGIN_API queryInterface (const TUID iid, void** obj) SMTG_OVERRIDE;
@@ -133,6 +143,7 @@ protected:
 	BusList* getBusList (MediaType type, BusDirection dir);
 
 	ProcessSetup processSetup;
+	ProcessContextRequirements processContextRequirements;
 
 	BusList audioInputs;
 	BusList audioOutputs;

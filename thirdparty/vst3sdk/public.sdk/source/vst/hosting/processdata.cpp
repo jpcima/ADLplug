@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -106,7 +106,7 @@ bool HostProcessData::checkIfReallocationNeeded (IComponent& component, int32 bu
 
 	for (int32 i = 0; i < inBusCount; i++)
 	{
-		BusInfo busInfo = {0};
+		BusInfo busInfo = {};
 
 		if (component.getBusInfo (kAudio, kInput, i, busInfo) == kResultTrue)
 		{
@@ -116,7 +116,7 @@ bool HostProcessData::checkIfReallocationNeeded (IComponent& component, int32 bu
 	}
 	for (int32 i = 0; i < outBusCount; i++)
 	{
-		BusInfo busInfo = {0};
+		BusInfo busInfo = {};
 
 		if (component.getBusInfo (kAudio, kOutput, i, busInfo) == kResultTrue)
 		{
@@ -138,7 +138,7 @@ int32 HostProcessData::createBuffers (IComponent& component, AudioBusBuffers*& b
 
 		for (int32 i = 0; i < busCount; i++)
 		{
-			BusInfo busInfo = {0};
+			BusInfo busInfo = {};
 
 			if (component.getBusInfo (kAudio, dir, i, busInfo) == kResultTrue)
 			{
@@ -159,14 +159,14 @@ int32 HostProcessData::createBuffers (IComponent& component, AudioBusBuffers*& b
 							if (bufferSamples > 0)
 								buffers[i].channelBuffers64[j] = new Sample64[bufferSamples];
 							else
-								buffers[i].channelBuffers64[j] = 0;
+								buffers[i].channelBuffers64[j] = nullptr;
 						}
 						else
 						{
 							if (bufferSamples > 0)
 								buffers[i].channelBuffers32[j] = new Sample32[bufferSamples];
 							else
-								buffers[i].channelBuffers32[j] = 0;
+								buffers[i].channelBuffers32[j] = nullptr;
 						}
 					}
 				}
@@ -213,7 +213,7 @@ void HostProcessData::destroyBuffers (AudioBusBuffers*& buffers, int32& busCount
 		}
 
 		delete[] buffers;
-		buffers = 0;
+		buffers = nullptr;
 	}
 	busCount = 0;
 }

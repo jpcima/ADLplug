@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -69,13 +69,13 @@ void ParameterValueQueue::clear ()
 //-----------------------------------------------------------------------------
 int32 PLUGIN_API ParameterValueQueue::getPointCount () 
 { 
-	return (int32)values.size ();
+	return static_cast<int32> (values.size ());
 }
 
 //-----------------------------------------------------------------------------
 tresult PLUGIN_API ParameterValueQueue::getPoint (int32 index, int32& sampleOffset, ParamValue& value)
 {
-	if (index < (int32)values.size ())
+	if (index >= 0 && index < static_cast<int32> (values.size ()))
 	{
 		const ParameterQueueValue& queueValue = values[index];
 		sampleOffset = queueValue.sampleOffset;
@@ -88,7 +88,7 @@ tresult PLUGIN_API ParameterValueQueue::getPoint (int32 index, int32& sampleOffs
 //-----------------------------------------------------------------------------
 tresult PLUGIN_API ParameterValueQueue::addPoint (int32 sampleOffset, ParamValue value, int32& index)
 {
-	int32 destIndex = (int32)values.size ();
+	auto destIndex = static_cast<int32>(values.size ());
 	for (uint32 i = 0; i < values.size (); i++)
 	{
 		if (values[i].sampleOffset == sampleOffset)
@@ -106,7 +106,7 @@ tresult PLUGIN_API ParameterValueQueue::addPoint (int32 sampleOffset, ParamValue
 
 	// need new point
 	ParameterQueueValue queueValue (value, sampleOffset);
-	if (destIndex == (int32)values.size ())
+	if (destIndex == static_cast<int32> (values.size ()))
 		values.push_back (queueValue);
 	else
 		values.insert (values.begin () + destIndex, queueValue);
@@ -140,13 +140,13 @@ void ParameterChanges::setMaxParameters (int32 maxParameters)
 	if (maxParameters < 0)
 		return;
 
-	while ((int32)queues.size () < maxParameters)
+	while (static_cast<int32> (queues.size ()) < maxParameters)
 	{
-		ParameterValueQueue* valueQueue = new ParameterValueQueue (0xffffffff);
+		auto* valueQueue = new ParameterValueQueue (0xffffffff);
 		queues.push_back (valueQueue);
 	}
 
-	while ((int32)queues.size () > maxParameters)
+	while (static_cast<int32> (queues.size ()) > maxParameters)
 	{
 		queues.back ()->release ();
 		queues.pop_back ();
@@ -170,7 +170,7 @@ int32 PLUGIN_API ParameterChanges::getParameterCount ()
 //-----------------------------------------------------------------------------
 IParamValueQueue* PLUGIN_API ParameterChanges::getParameterData (int32 index)
 {
-	if (index < usedQueueCount)
+	if (index >= 0 && index < usedQueueCount)
 		return queues[index];
 	return nullptr;
 }
@@ -186,9 +186,9 @@ IParamValueQueue* PLUGIN_API ParameterChanges::addParameterData (const ParamID& 
 			return queues[i];
 		}
 	}
-	
+
 	ParameterValueQueue* valueQueue = nullptr;
-	if (usedQueueCount < (int32)queues.size ())
+	if (usedQueueCount < static_cast<int32> (queues.size ()))
 	{
 		valueQueue = queues[usedQueueCount];
 		valueQueue->setParamID (pid);

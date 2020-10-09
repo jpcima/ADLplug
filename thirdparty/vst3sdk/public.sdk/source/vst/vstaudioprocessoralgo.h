@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -47,7 +47,7 @@ namespace Steinberg {
 namespace Vst {
 
 //---helpers---------
-/** Return the current channelBuffers used (depending of symbolicSampleSize). */
+/** Returns the current channelBuffers used (depending of symbolicSampleSize). */
 inline void** getChannelBuffersPointer (const ProcessSetup& processSetup,
                                  const AudioBusBuffers& bufs)
 {
@@ -56,7 +56,7 @@ inline void** getChannelBuffersPointer (const ProcessSetup& processSetup,
 	return (void**)bufs.channelBuffers64;
 }
 
-/** Return the size in bytes of numSamples for one channel depending of symbolicSampleSize.*/
+/** Returns the size in bytes of numSamples for one channel depending of symbolicSampleSize.*/
 inline uint32 getSampleFramesSizeInBytes (const ProcessSetup& processSetup, int32 numSamples)
 {
 	if (processSetup.symbolicSampleSize == kSample32)
@@ -169,8 +169,7 @@ inline void clear32 (AudioBusBuffers* audioBusBuffers, int32 sampleCount, int32 
 	foreach (audioBusBuffers, busCount, [&] (AudioBusBuffers& audioBuffer) {
 		foreach32 (audioBuffer,
 		           [&] (Sample32* channelBuffer) { memset (channelBuffer, 0, numBytes); });
-	})
-		;
+	});
 }
 
 //------------------------------------------------------------------------
@@ -183,8 +182,7 @@ inline void clear64 (AudioBusBuffers* audioBusBuffers, int32 sampleCount, int32 
 	foreach (audioBusBuffers, busCount, [&] (AudioBusBuffers& audioBuffer) {
 		foreach64 (audioBuffer,
 		           [&] (Sample64* channelBuffer) { memset (channelBuffer, 0, numBytes); });
-	})
-		;
+	});
 }
 
 //------------------------------------------------------------------------
@@ -202,6 +200,33 @@ inline void mix64 (AudioBusBuffers& src, AudioBusBuffers& dest, int32 sampleCoun
 	foreach64 (src, dest, [&] (Sample64* srcBuffer, Sample64* destBuffer, int32 /*channelIndex*/) {
 		for (int32 sampleIndex = 0; sampleIndex < sampleCount; ++sampleIndex)
 			destBuffer[sampleIndex] += srcBuffer[sampleIndex];
+	});
+}
+
+//------------------------------------------------------------------------
+/* Multiply buffer with a constant */
+template <typename T>
+inline void multiply(T* srcBuffer, T* destBuffer, int32 sampleCount, T factor)
+{
+	for (int32 sampleIndex = 0; sampleIndex < sampleCount; ++sampleIndex)
+		destBuffer[sampleIndex] = srcBuffer[sampleIndex] * factor;
+}
+
+//------------------------------------------------------------------------
+/* Multiply all channels of AudioBusBuffer with a constant */
+inline void multiply32(AudioBusBuffers& src, AudioBusBuffers& dest, int32 sampleCount, float factor)
+{
+	foreach32(src, dest, [&](Sample32* srcBuffer, Sample32* destBuffer, int32 /*channelIndex*/) {
+		multiply(srcBuffer, destBuffer, sampleCount, factor);
+	});
+}
+
+//------------------------------------------------------------------------
+/* Multiply all channels of AudioBusBuffer with a constant */
+inline void multiply64(AudioBusBuffers& src, AudioBusBuffers& dest, int32 sampleCount, double factor)
+{
+	foreach64(src, dest, [&](Sample64* srcBuffer, Sample64* destBuffer, int32 /*channelIndex*/) {
+		multiply(srcBuffer, destBuffer, sampleCount, factor);
 	});
 }
 
@@ -260,7 +285,7 @@ inline void foreach (IEventList* eventList, const T& func)
 	auto eventCount = eventList->getEventCount ();
 	for (int32 eventIndex = 0; eventIndex < eventCount; ++eventIndex)
 	{
-		Vst::Event event = {0};
+		Vst::Event event = {};
 		if (eventList->getEvent (eventIndex, event) != kResultOk)
 			continue;
 

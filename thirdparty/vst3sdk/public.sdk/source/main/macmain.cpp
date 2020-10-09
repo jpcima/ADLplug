@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -42,72 +42,78 @@
 #include <CoreFoundation/CoreFoundation.h>
 
 #if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)))
-#define EXPORT	__attribute__ ((visibility ("default")))
+#define EXPORT __attribute__ ((visibility ("default")))
 #else
 #define EXPORT
 #endif
 
 //------------------------------------------------------------------------
 CFBundleRef ghInst = 0;
-unsigned int bundleRefCounter = 0;	// counting for bundleEntry/bundleExit pairs
+int bundleRefCounter = 0; // counting for bundleEntry/bundleExit pairs
 void* moduleHandle = 0;
-#define MAX_PATH 2048
-char gPath[MAX_PATH] = {0};
+#define VST_MAX_PATH 2048
+char gPath[VST_MAX_PATH] = {0};
 
 //------------------------------------------------------------------------
-bool InitModule ();		///< must be provided by Plug-in: called when the library is loaded
-bool DeinitModule ();	///< must be provided by Plug-in: called when the library is unloaded
+bool InitModule (); ///< must be provided by plug-in: called when the library is loaded
+bool DeinitModule (); ///< must be provided by plug-in: called when the library is unloaded
 
 //------------------------------------------------------------------------
-extern "C"
-{
-	EXPORT bool bundleEntry (CFBundleRef);
-	EXPORT bool bundleExit (void);
+extern "C" {
+EXPORT bool bundleEntry (CFBundleRef);
+EXPORT bool bundleExit (void);
 }
 
 #include <vector>
 
-std::vector< CFBundleRef > gBundleRefs;
+std::vector<CFBundleRef> gBundleRefs;
 
 //------------------------------------------------------------------------
+/** must be called from host right after loading bundle
+Note: this could be called more than one time! */
 bool bundleEntry (CFBundleRef ref)
 {
 	if (ref)
 	{
 		bundleRefCounter++;
 		CFRetain (ref);
-		
+
 		// hold all bundle refs until plug-in is fully uninitialized
 		gBundleRefs.push_back (ref);
-		
+
 		if (!moduleHandle)
 		{
 			ghInst = ref;
 			moduleHandle = ref;
-			
-			// optain the bundle path
+
+			// obtain the bundle path
 			CFURLRef tempURL = CFBundleCopyBundleURL (ref);
-			CFURLGetFileSystemRepresentation (tempURL, true, (UInt8*)gPath, MAX_PATH);
+			CFURLGetFileSystemRepresentation (tempURL, true, (UInt8*)gPath, VST_MAX_PATH);
 			CFRelease (tempURL);
 		}
+
+		if (bundleRefCounter == 1)
+			return InitModule ();
 	}
-	return InitModule ();
+	return true;
 }
 
 //------------------------------------------------------------------------
+/** must be called from host right before unloading bundle
+Note: this could be called more than one time! */
 bool bundleExit (void)
 {
-	if (DeinitModule ())
+	if (--bundleRefCounter == 0)
 	{
-		if (--bundleRefCounter == 0)
-		{	// release the CFBundleRef's once all bundleExit clients called in
-			// there is no way to identify the proper CFBundleRef of the bundleExit call
-			for (size_t i = 0; i < gBundleRefs.size(); i++)
-				CFRelease (gBundleRefs[i]);
-			gBundleRefs.clear();
-		}
-		return true;
+		DeinitModule ();
+
+		// release the CFBundleRef's once all bundleExit clients called in
+		// there is no way to identify the proper CFBundleRef of the bundleExit call
+		for (size_t i = 0; i < gBundleRefs.size (); i++)
+			CFRelease (gBundleRefs[i]);
+		gBundleRefs.clear ();
 	}
-	
-	return false;
+	else if (bundleRefCounter < 0)
+		return false;
+	return true;
 }

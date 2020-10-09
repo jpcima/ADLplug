@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -56,11 +56,9 @@ class EditorView;
 //------------------------------------------------------------------------
 /** Default implementation for a VST 3 edit controller.
 \ingroup vstClasses
-Can be used as base class for a specific controller implementation */
-//------------------------------------------------------------------------
-class EditController: public ComponentBase,
-					  public IEditController,
-					  public IEditController2
+Can be used as base class for a specific controller implementation
+*/
+class EditController : public ComponentBase, public IEditController, public IEditController2
 {
 public:
 //------------------------------------------------------------------------
@@ -137,17 +135,17 @@ protected:
 
 //------------------------------------------------------------------------
 /** View related to an edit controller.
-\ingroup vstClasses  */
-//------------------------------------------------------------------------
+\ingroup vstClasses
+*/
 class EditorView : public CPluginView
 {
 public:
 //------------------------------------------------------------------------
 	EditorView (EditController* controller, ViewRect* size = nullptr);
-	virtual ~EditorView ();
+	~EditorView () override;
 
 	/** Gets its controller part. */
-	EditController* getController () { return controller; }
+	EditController* getController () const { return controller; }
 
 	//---from CPluginView-------------
 	void attachedToParent () SMTG_OVERRIDE;
@@ -160,8 +158,8 @@ protected:
 
 //------------------------------------------------------------------------
 /** Unit element.
-\ingroup vstClasses  */
-//------------------------------------------------------------------------
+\ingroup vstClasses 
+*/
 class Unit : public FObject
 {
 public:
@@ -200,8 +198,8 @@ protected:
 
 //------------------------------------------------------------------------
 /** ProgramList element.
-\ingroup vstClasses  */
-//------------------------------------------------------------------------
+\ingroup vstClasses 
+*/
 class ProgramList : public FObject
 {
 public:
@@ -243,9 +241,9 @@ public:
 	OBJ_METHODS (ProgramList, FObject)
 //------------------------------------------------------------------------
 protected:
-	typedef std::map<String, String> StringMap;
-	typedef std::vector<String> StringVector;
-	typedef std::vector<StringMap> ProgramInfoVector;
+	using StringMap = std::map<String, String>;
+	using StringVector = std::vector<String>;
+	using ProgramInfoVector = std::vector<StringMap>;
 	ProgramListInfo info;
 	UnitID unitId;
 	StringVector programNames;
@@ -255,8 +253,8 @@ protected:
 
 //------------------------------------------------------------------------
 /** ProgramListWithPitchNames element.
-\ingroup vstClasses  */
-//-----------------------------------------------------------------------------
+\ingroup vstClasses
+*/
 class ProgramListWithPitchNames : public ProgramList
 {
 public:
@@ -277,8 +275,8 @@ public:
 
 	OBJ_METHODS (ProgramListWithPitchNames, ProgramList)
 protected:
-	typedef std::map<int16, String> PitchNameMap;
-	typedef std::vector<PitchNameMap> PitchNamesVector;
+	using PitchNameMap = std::map<int16, String>;
+	using PitchNamesVector = std::vector<PitchNameMap>;
 	PitchNamesVector pitchNames;
 };
 
@@ -287,12 +285,14 @@ protected:
 \ingroup vstClasses
 - [extends EditController]
 */
-//------------------------------------------------------------------------
 class EditControllerEx1 : public EditController, public IUnitInfo
 {
 public:
 	EditControllerEx1 ();
-	virtual ~EditControllerEx1 ();
+	~EditControllerEx1 () override;
+
+	//---from ComponentBase---------
+	tresult PLUGIN_API terminate () SMTG_OVERRIDE;
 
 	/** Adds a given unit. */
 	bool addUnit (Unit* unit);
@@ -360,9 +360,9 @@ public:
 	REFCOUNT_METHODS (EditController)
 
 protected:
-	typedef std::vector<IPtr<ProgramList>> ProgramListVector;
-	typedef std::map<ProgramListID, ProgramListVector::size_type> ProgramIndexMap;
-	typedef std::vector<IPtr<Unit>> UnitVector;
+	using ProgramListVector = std::vector<IPtr<ProgramList>>;
+	using ProgramIndexMap = std::map<ProgramListID, ProgramListVector::size_type>;
+	using UnitVector = std::vector<IPtr<Unit>>;
 	UnitVector units;
 	ProgramListVector programLists;
 	ProgramIndexMap programIndexMap;

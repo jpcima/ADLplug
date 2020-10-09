@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -39,8 +39,8 @@
 
 #include <windows.h>
 
-#if defined (_MSC_VER) && defined (DEVELOPMENT)
-	#include <crtdbg.h>
+#if defined(_MSC_VER) && defined(DEVELOPMENT)
+#include <crtdbg.h>
 #endif
 
 #ifdef UNICODE
@@ -50,30 +50,47 @@
 #endif
 
 //------------------------------------------------------------------------
-HINSTANCE ghInst = 0;
-void* moduleHandle = 0;
-Steinberg::tchar gPath[MAX_PATH] = {0};
+HINSTANCE ghInst = nullptr;
+void* moduleHandle = nullptr;
+#define VST_MAX_PATH 2048
+Steinberg::tchar gPath[VST_MAX_PATH] = {0};
 
 //------------------------------------------------------------------------
-#define DllExport __declspec( dllexport )
+#define DllExport __declspec (dllexport)
 
 //------------------------------------------------------------------------
-extern bool InitModule ();		///< must be provided by Plug-in: called when the library is loaded
-extern bool DeinitModule ();	///< must be provided by Plug-in: called when the library is unloaded
+extern bool InitModule (); ///< must be provided by plug-in: called when the library is loaded
+extern bool DeinitModule (); ///< must be provided by plug-in: called when the library is unloaded
 
 //------------------------------------------------------------------------
-#ifdef __cplusplus 
+#ifdef __cplusplus
 extern "C" {
 #endif
-	bool DllExport InitDll () ///< must be called from host right after loading dll
-	{ 		
-		return InitModule (); 
-	} 
-	bool DllExport ExitDll ()  ///< must be called from host right before unloading dll
-	{ 
-		return DeinitModule (); 
-	}
-#ifdef __cplusplus 
+
+static int moduleCounter {0}; // counting for InitDll/ExitDll pairs
+
+//------------------------------------------------------------------------
+/** must be called from host right after loading dll
+Note: this could be called more than one time! */
+bool DllExport InitDll ()
+{
+	if (++moduleCounter == 1)
+		return InitModule ();
+	return true;
+}
+
+//------------------------------------------------------------------------
+/** must be called from host right before unloading dll
+Note: this could be called more than one time! */
+bool DllExport ExitDll ()
+{
+	if (--moduleCounter == 0)
+		return DeinitModule ();
+	else if (moduleCounter < 0)
+		return false;
+	return true;
+}
+#ifdef __cplusplus
 } // extern "C"
 #endif
 
@@ -82,13 +99,13 @@ BOOL WINAPI DllMain (HINSTANCE hInst, DWORD dwReason, LPVOID /*lpvReserved*/)
 {
 	if (dwReason == DLL_PROCESS_ATTACH)
 	{
-	#if defined (_MSC_VER) && defined (DEVELOPMENT)
-		_CrtSetReportMode ( _CRT_WARN, _CRTDBG_MODE_DEBUG );
-		_CrtSetReportMode ( _CRT_ERROR, _CRTDBG_MODE_DEBUG );
-		_CrtSetReportMode ( _CRT_ASSERT, _CRTDBG_MODE_DEBUG );
+#if defined(_MSC_VER) && defined(DEVELOPMENT)
+		_CrtSetReportMode (_CRT_WARN, _CRTDBG_MODE_DEBUG);
+		_CrtSetReportMode (_CRT_ERROR, _CRTDBG_MODE_DEBUG);
+		_CrtSetReportMode (_CRT_ASSERT, _CRTDBG_MODE_DEBUG);
 		int flag = _CrtSetDbgFlag (_CRTDBG_REPORT_FLAG);
 		_CrtSetDbgFlag (flag | _CRTDBG_LEAK_CHECK_DF);
-	#endif
+#endif
 
 		moduleHandle = ghInst = hInst;
 

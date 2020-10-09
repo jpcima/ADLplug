@@ -91,9 +91,7 @@ namespace Steinberg
 //------------------------------------------------------------------
 // Char / Strings
 	typedef char char8;
-#if defined(__MINGW32__)
-	typedef wchar_t char16;
-#elif defined(_NATIVE_WCHAR_T_DEFINED)
+#ifdef _NATIVE_WCHAR_T_DEFINED
 	typedef __wchar_t char16;
 #elif SMTG_CPP11
 	typedef char16_t char16;
@@ -139,8 +137,8 @@ namespace Steinberg
 
 
 //----------------------------------------------------------------------------
-/** Byte-order Conversion Macros */
-//----------------------------------------------------------------------------
+/** Byte-order Conversion Macros 
+*/
 #define SWAP_32(l) { \
 	unsigned char* p = (unsigned char*)& (l); \
 	unsigned char t; \

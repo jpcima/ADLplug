@@ -8,46 +8,46 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
-// 
-//   * Redistributions of source code must retain the above copyright notice, 
+//
+//   * Redistributions of source code must retain the above copyright notice,
 //     this list of conditions and the following disclaimer.
 //   * Redistributions in binary form must reproduce the above copyright notice,
-//     this list of conditions and the following disclaimer in the documentation 
+//     this list of conditions and the following disclaimer in the documentation
 //     and/or other materials provided with the distribution.
 //   * Neither the name of the Steinberg Media Technologies nor the names of its
-//     contributors may be used to endorse or promote products derived from this 
+//     contributors may be used to endorse or promote products derived from this
 //     software without specific prior written permission.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
-// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
-// IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
-// INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, 
-// BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, 
-// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
-// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE 
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+// IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+// INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+// BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 // OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE  OF THIS SOFTWARE, EVEN IF ADVISED
 // OF THE POSSIBILITY OF SUCH DAMAGE.
 //-----------------------------------------------------------------------------
 
-#include "stringconvert.h"
 #include "module.h"
-#include "optional.h"
-#include <dlfcn.h>
+#include "../utility/optional.h"
+#include "../utility/stringconvert.h"
 #include <algorithm>
+#include <dlfcn.h>
 #include <experimental/filesystem>
-#include <sys/utsname.h>
 #include <sys/types.h>
+#include <sys/utsname.h>
 #include <unistd.h>
 
 //------------------------------------------------------------------------
 extern "C" {
-typedef bool (PLUGIN_API* ModuleEntryFunc) (void*);
-typedef bool (PLUGIN_API* ModuleExitFunc) ();
+using ModuleEntryFunc = bool (PLUGIN_API*) (void*);
+using ModuleExitFunc = bool (PLUGIN_API*) ();
 }
 
 //------------------------------------------------------------------------
@@ -104,7 +104,7 @@ public:
 		return reinterpret_cast<T> (dlsym (module, name));
 	}
 
-	~LinuxModule ()
+	~LinuxModule () override
 	{
 		factory = PluginFactory (nullptr);
 
@@ -180,7 +180,7 @@ public:
 			errorDescription = "Calling 'ModuleEntry' failed";
 			return false;
 		}
-		auto f = Steinberg::FUnknownPtr<Steinberg::IPluginFactory> (factoryProc ());
+		auto f = Steinberg::FUnknownPtr<Steinberg::IPluginFactory> (owned(factoryProc ()));
 		if (!f)
 		{
 			errorDescription = "Calling 'GetPluginFactory' returned nullptr";
@@ -194,16 +194,22 @@ public:
 };
 
 //------------------------------------------------------------------------
-void findFilesWithExt (const std::string& path, const std::string& ext, Module::PathList& pathList)
+void findFilesWithExt (const std::string& path, const std::string& ext, Module::PathList& pathList,
+                       bool recursive = true)
 {
+	using namespace std::experimental;
+
 	try
 	{
-		using namespace std::experimental;
-		for (auto& p : filesystem::recursive_directory_iterator (path))
+		for (auto& p : filesystem::directory_iterator (path))
 		{
-			if (p.path ().extension () == ext && filesystem::is_directory (p))
+			if (p.path ().extension () == ext)
 			{
 				pathList.push_back (p.path ().generic_u8string ());
+			}
+			else if (recursive && p.status ().type () == filesystem::file_type::directory)
+			{
+				findFilesWithExt (p.path (), ext, pathList);
 			}
 		}
 	}
@@ -240,11 +246,11 @@ Module::Ptr Module::create (const std::string& path, std::string& errorDescripti
 Module::PathList Module::getModulePaths ()
 {
 	/* VST3 component locations on linux :
-	    * User privately installed	: $HOME/.vst3/
-	    * Distribution installed	: /usr/lib/vst3/
-	    * Locally installed			: /usr/local/lib/vst3/
-	    * Application				: /$APPFOLDER/vst3/
-	*/
+	 * User privately installed	: $HOME/.vst3/
+	 * Distribution installed	: /usr/lib/vst3/
+	 * Locally installed		: /usr/local/lib/vst3/
+	 * Application				: /$APPFOLDER/vst3/
+	 */
 
 	const auto systemPaths = {"/usr/lib/vst3/", "/usr/local/lib/vst3/"};
 
@@ -270,6 +276,51 @@ Module::PathList Module::getModulePaths ()
 	}
 
 	return list;
+}
+
+//------------------------------------------------------------------------
+Module::SnapshotList Module::getSnapshots (const std::string& modulePath)
+{
+	using namespace std::experimental;
+
+	SnapshotList result;
+	filesystem::path path (modulePath);
+	path /= "Contents";
+	path /= "Resources";
+	path /= "Snapshots";
+	PathList pngList;
+	findFilesWithExt (path, ".png", pngList, false);
+	for (auto& png : pngList)
+	{
+		filesystem::path p (png);
+		auto filename = p.filename ().generic_u8string ();
+		auto uid = Snapshot::decodeUID (filename);
+		if (!uid)
+			continue;
+		auto scaleFactor = 1.;
+		if (auto decodedScaleFactor = Snapshot::decodeScaleFactor (filename))
+			scaleFactor = *decodedScaleFactor;
+
+		Module::Snapshot::ImageDesc desc;
+		desc.scaleFactor = scaleFactor;
+		desc.path = std::move (png);
+		bool found = false;
+		for (auto& entry : result)
+		{
+			if (entry.uid != *uid)
+				continue;
+			found = true;
+			entry.images.emplace_back (std::move (desc));
+			break;
+		}
+		if (found)
+			continue;
+		Module::Snapshot snapshot;
+		snapshot.uid = *uid;
+		snapshot.images.emplace_back (std::move (desc));
+		result.emplace_back (std::move (snapshot));
+	}
+	return result;
 }
 
 //------------------------------------------------------------------------

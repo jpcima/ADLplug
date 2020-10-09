@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -42,6 +42,14 @@ namespace Steinberg {
 namespace Vst {
 
 //-----------------------------------------------------------------------------
+HostApplication::HostApplication ()
+{
+	FUNKNOWN_CTOR
+
+	mPlugInterfaceSupport = owned (NEW PlugInterfaceSupport);
+}
+
+//-----------------------------------------------------------------------------
 tresult PLUGIN_API HostApplication::getName (String128 name)
 {
 	String str ("My VST3 HostApplication");
@@ -64,7 +72,7 @@ tresult PLUGIN_API HostApplication::createInstance (TUID cid, TUID _iid, void** 
 		*obj = new HostAttributeList;
 		return kResultTrue;
 	}
-	*obj = 0;
+	*obj = nullptr;
 	return kResultFalse;
 }
 
@@ -73,7 +81,11 @@ tresult PLUGIN_API HostApplication::queryInterface (const char* _iid, void** obj
 {
 	QUERY_INTERFACE (_iid, obj, FUnknown::iid, IHostApplication)
 	QUERY_INTERFACE (_iid, obj, IHostApplication::iid, IHostApplication)
-	*obj = 0;
+
+	if (mPlugInterfaceSupport && mPlugInterfaceSupport->queryInterface (iid, obj) == kResultTrue)
+		return kResultOk;
+
+	*obj = nullptr;
 	return kResultFalse;
 }
 
@@ -94,7 +106,7 @@ uint32 PLUGIN_API HostApplication::release ()
 //-----------------------------------------------------------------------------
 IMPLEMENT_FUNKNOWN_METHODS (HostMessage, IMessage, IMessage::iid)
 //-----------------------------------------------------------------------------
-HostMessage::HostMessage () : messageId (0), attributeList (0)
+HostMessage::HostMessage () : messageId (nullptr), attributeList (nullptr)
 {
 	FUNKNOWN_CTOR
 }
@@ -102,7 +114,7 @@ HostMessage::HostMessage () : messageId (0), attributeList (0)
 //-----------------------------------------------------------------------------
 HostMessage::~HostMessage ()
 {
-	setMessageID (0);
+	setMessageID (nullptr);
 	if (attributeList)
 		attributeList->release ();
 	FUNKNOWN_DTOR
@@ -119,7 +131,7 @@ void PLUGIN_API HostMessage::setMessageID (const char* mid)
 {
 	if (messageId)
 		delete[] messageId;
-	messageId = 0;
+	messageId = nullptr;
 	if (mid)
 	{
 		size_t len = strlen (mid) + 1;
@@ -152,6 +164,7 @@ public:
 
 	HostAttribute (int64 value) : size (0), type (kInteger) { v.intValue = value; }
 	HostAttribute (double value) : size (0), type (kFloat) { v.floatValue = value; }
+	/** size is in code unit (count of TChar) */
 	HostAttribute (const TChar* value, uint32 size) : size (size), type (kString)
 	{
 		v.stringValue = new TChar[size];
@@ -195,8 +208,6 @@ protected:
 	Type type;
 };
 
-typedef std::map<String, HostAttribute*>::iterator mapIterator;
-
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -210,7 +221,7 @@ HostAttributeList::HostAttributeList ()
 //-----------------------------------------------------------------------------
 HostAttributeList::~HostAttributeList ()
 {
-	std::map<String, HostAttribute*>::reverse_iterator it = list.rbegin ();
+	auto it = list.rbegin ();
 	while (it != list.rend ())
 	{
 		delete it->second;
@@ -222,7 +233,7 @@ HostAttributeList::~HostAttributeList ()
 //-----------------------------------------------------------------------------
 void HostAttributeList::removeAttrID (AttrID aid)
 {
-	mapIterator it = list.find (aid);
+	auto it = list.find (aid);
 	if (it != list.end ())
 	{
 		delete it->second;
@@ -241,7 +252,7 @@ tresult PLUGIN_API HostAttributeList::setInt (AttrID aid, int64 value)
 //-----------------------------------------------------------------------------
 tresult PLUGIN_API HostAttributeList::getInt (AttrID aid, int64& value)
 {
-	mapIterator it = list.find (aid);
+	auto it = list.find (aid);
 	if (it != list.end () && it->second)
 	{
 		value = it->second->intValue ();
@@ -261,7 +272,7 @@ tresult PLUGIN_API HostAttributeList::setFloat (AttrID aid, double value)
 //-----------------------------------------------------------------------------
 tresult PLUGIN_API HostAttributeList::getFloat (AttrID aid, double& value)
 {
-	mapIterator it = list.find (aid);
+	auto it = list.find (aid);
 	if (it != list.end () && it->second)
 	{
 		value = it->second->floatValue ();
@@ -274,42 +285,42 @@ tresult PLUGIN_API HostAttributeList::getFloat (AttrID aid, double& value)
 tresult PLUGIN_API HostAttributeList::setString (AttrID aid, const TChar* string)
 {
 	removeAttrID (aid);
-	list[aid] = new HostAttribute (string, String (const_cast<TChar*> (string)).length ());
+	list[aid] = new HostAttribute (string, String (const_cast<TChar*> (string)).length () + 1);
 	return kResultTrue;
 }
 
 //-----------------------------------------------------------------------------
-tresult PLUGIN_API HostAttributeList::getString (AttrID aid, TChar* string, uint32 size)
+tresult PLUGIN_API HostAttributeList::getString (AttrID aid, TChar* string, uint32 sizeInBytes)
 {
-	mapIterator it = list.find (aid);
+	auto it = list.find (aid);
 	if (it != list.end () && it->second)
 	{
 		uint32 stringSize = 0;
 		const TChar* _string = it->second->stringValue (stringSize);
-		memcpy (string, _string, std::min<uint32> (stringSize, size) * sizeof (TChar));
+		memcpy (string, _string, std::min<uint32> (stringSize, sizeInBytes));
 		return kResultTrue;
 	}
 	return kResultFalse;
 }
 
 //-----------------------------------------------------------------------------
-tresult PLUGIN_API HostAttributeList::setBinary (AttrID aid, const void* data, uint32 size)
+tresult PLUGIN_API HostAttributeList::setBinary (AttrID aid, const void* data, uint32 sizeInBytes)
 {
 	removeAttrID (aid);
-	list[aid] = new HostAttribute (data, size);
+	list[aid] = new HostAttribute (data, sizeInBytes);
 	return kResultTrue;
 }
 
 //-----------------------------------------------------------------------------
-tresult PLUGIN_API HostAttributeList::getBinary (AttrID aid, const void*& data, uint32& size)
+tresult PLUGIN_API HostAttributeList::getBinary (AttrID aid, const void*& data, uint32& sizeInBytes)
 {
-	mapIterator it = list.find (aid);
+	auto it = list.find (aid);
 	if (it != list.end () && it->second)
 	{
-		data = it->second->binaryValue (size);
+		data = it->second->binaryValue (sizeInBytes);
 		return kResultTrue;
 	}
-	size = 0;
+	sizeInBytes = 0;
 	return kResultFalse;
 }
 }

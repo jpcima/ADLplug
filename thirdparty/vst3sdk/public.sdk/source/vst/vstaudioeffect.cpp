@@ -8,7 +8,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -54,7 +54,7 @@ AudioEffect::AudioEffect ()
 AudioBus* AudioEffect::addAudioInput (const TChar* name, SpeakerArrangement arr, BusType busType,
                                       int32 flags)
 {
-	AudioBus* newBus = new AudioBus (name, busType, flags, arr);
+	auto* newBus = new AudioBus (name, busType, flags, arr);
 	audioInputs.push_back (IPtr<Vst::Bus> (newBus, false));
 	return newBus;
 }
@@ -63,7 +63,7 @@ AudioBus* AudioEffect::addAudioInput (const TChar* name, SpeakerArrangement arr,
 AudioBus* AudioEffect::addAudioOutput (const TChar* name, SpeakerArrangement arr, BusType busType,
                                        int32 flags)
 {
-	AudioBus* newBus = new AudioBus (name, busType, flags, arr);
+	auto* newBus = new AudioBus (name, busType, flags, arr);
 	audioOutputs.push_back (IPtr<Vst::Bus> (newBus, false));
 	return newBus;
 }
@@ -90,7 +90,7 @@ AudioBus* AudioEffect::getAudioOutput (int32 index)
 EventBus* AudioEffect::addEventInput (const TChar* name, int32 channels, BusType busType,
                                       int32 flags)
 {
-	EventBus* newBus = new EventBus (name, busType, flags, channels);
+	auto* newBus = new EventBus (name, busType, flags, channels);
 	eventInputs.push_back (IPtr<Vst::Bus> (newBus, false));
 	return newBus;
 }
@@ -99,7 +99,7 @@ EventBus* AudioEffect::addEventInput (const TChar* name, int32 channels, BusType
 EventBus* AudioEffect::addEventOutput (const TChar* name, int32 channels, BusType busType,
                                        int32 flags)
 {
-	EventBus* newBus = new EventBus (name, busType, flags, channels);
+	auto* newBus = new EventBus (name, busType, flags, channels);
 	eventOutputs.push_back (IPtr<Vst::Bus> (newBus, false));
 	return newBus;
 }
@@ -157,7 +157,7 @@ tresult PLUGIN_API AudioEffect::getBusArrangement (BusDirection dir, int32 busIn
 	BusList* busList = getBusList (kAudio, dir);
 	if (!busList || busIndex < 0 || static_cast<int32> (busList->size ()) <= busIndex)
 		return kInvalidArgument;
-	AudioBus* audioBus = FCast<Vst::AudioBus> (busList->at (busIndex));
+	auto* audioBus = FCast<Vst::AudioBus> (busList->at (busIndex));
 	if (audioBus)
 	{
 		arr = audioBus->getArrangement ();
@@ -197,6 +197,12 @@ tresult PLUGIN_API AudioEffect::canProcessSampleSize (int32 symbolicSampleSize)
 tresult PLUGIN_API AudioEffect::process (ProcessData& /*data*/)
 {
 	return kNotImplemented;
+}
+
+//------------------------------------------------------------------------
+uint32 PLUGIN_API AudioEffect::getProcessContextRequirements ()
+{
+	return processContextRequirements.flags;
 }
 
 //------------------------------------------------------------------------

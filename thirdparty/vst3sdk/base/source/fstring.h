@@ -9,7 +9,7 @@
 //
 //-----------------------------------------------------------------------------
 // LICENSE
-// (c) 2018, Steinberg Media Technologies GmbH, All Rights Reserved
+// (c) 2020, Steinberg Media Technologies GmbH, All Rights Reserved
 //-----------------------------------------------------------------------------
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -307,6 +307,7 @@ Extends class ConstString by operations which allow modifications.
 class String : public ConstString
 {
 public:
+	
 //-----------------------------------------------------------------------------
 	String ();
 	String (const char8* str, MBCodePage codepage, int32 n = -1, bool isTerminated = true);							///< assign n characters of str and convert to wide string by using the specified codepage
