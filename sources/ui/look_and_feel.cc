@@ -26,13 +26,6 @@ RESOURCE(Res, Serif_Regular)
 #endif
 
 //==============================================================================
-void Custom_Look_And_Feel::add_custom_tooltip(const String &key, Component *component, bool owned)
-{
-    OptionalScopedPointer<Component> ptr(component, owned);
-    custom_tooltips_[key].component = ptr;
-}
-
-//==============================================================================
 Typeface::Ptr Custom_Look_And_Feel::getTypefaceForFont(const Font &font)
 {
     const String &name = font.getTypefaceName();

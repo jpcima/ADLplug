@@ -280,7 +280,7 @@ if(ADLplug_VST2)
 endif()
 
 if(ADLplug_VST3)
-  if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Windows" OR CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
+  if(NOT (CMAKE_SYSTEM_NAME STREQUAL "Windows" OR CMAKE_SYSTEM_NAME STREQUAL "Darwin" OR CMAKE_SYSTEM_NAME STREQUAL "Linux"))
     message(FATAL_ERROR "VST3 is not supported on ${CMAKE_SYSTEM_NAME}")
   endif()
   add_plugin(ADLplug_VST3)

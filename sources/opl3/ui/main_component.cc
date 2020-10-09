@@ -1243,7 +1243,7 @@ void Main_Component::buttonClicked (Button* buttonThatWasClicked)
     else if (buttonThatWasClicked == btn_algo_help.get())
     {
         //[UserButtonCode_btn_algo_help] -- add your button handler code here..
-        CallOutBox::launchAsynchronously(new Algorithm_Help, btn_algo_help->getBounds(), this);
+        CallOutBox::launchAsynchronously(std::unique_ptr<Algorithm_Help>(new Algorithm_Help), btn_algo_help->getBounds(), this);
         //[/UserButtonCode_btn_algo_help]
     }
     else if (buttonThatWasClicked == btn_auto4ops.get())
