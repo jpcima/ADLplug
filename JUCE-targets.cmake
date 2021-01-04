@@ -64,9 +64,11 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
   #
   set(ADLplug_ASIO_SDK "${PROJECT_SOURCE_DIR}/thirdparty/ASIOSDK2.3" CACHE STRING "ASIO SDK location")
   if(NOT EXISTS "${ADLplug_ASIO_SDK}/common/iasiodrv.h")
-    message(FATAL_ERROR "ASIO SDK not found in directory ${ADLplug_ASIO_SDK}")
+    message(WARNING "ASIO SDK not found in directory ${ADLplug_ASIO_SDK}. ASIO support disabled.")
+    add_definitions("-DADLplug_ASIO=0")
+  else()
+    target_include_directories(juce_audio_devices PRIVATE "${ADLplug_ASIO_SDK}/common")
   endif()
-  target_include_directories(juce_audio_devices PRIVATE "${ADLplug_ASIO_SDK}/common")
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
   # Mac
   find_library(FOUNDATION_LIBRARY "Foundation")

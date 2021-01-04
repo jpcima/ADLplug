@@ -22,6 +22,10 @@
 #define JucePlugin_WantsLV2Latency 0
 #define JucePlugin_LV2URI "https://github.com/jpcima/ADLplug"
 
+#if defined(ADLplug_ASIO)
+#   define JUCE_ASIO ADLplug_ASIO
+#endif
+
 // [END_USER_CODE_SECTION]
 
 /*
