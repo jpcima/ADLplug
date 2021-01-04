@@ -95,7 +95,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
 
     sl_tune->setBounds (696, 324, 76, 20);
 
-    midi_kb.reset (new Midi_Keyboard_Ex (midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard));
+    midi_kb.reset (new Midi_Keyboard_Ex (midi_kb_state_, Midi_Keyboard_Ex::horizontalKeyboard));
     addAndMakeVisible (midi_kb.get());
     midi_kb->setName ("new component");
 
@@ -1483,7 +1483,7 @@ BEGIN_JUCER_METADATA
           textBoxWidth="36" textBoxHeight="20" skewFactor="1.0" needsCallback="1"/>
   <GENERICCOMPONENT name="new component" id="4d4a20a681c7e721" memberName="midi_kb"
                     virtualName="" explicitFocusOrder="0" pos="16 520 730 64" class="Midi_Keyboard_Ex"
-                    params="midi_kb_state_, MidiKeyboardComponent::horizontalKeyboard"/>
+                    params="midi_kb_state_, Midi_Keyboard_Ex::horizontalKeyboard"/>
   <IMAGEBUTTON name="new button" id="1c21a98bd6493eb8" memberName="btn_about"
                virtualName="" explicitFocusOrder="0" pos="16 8 232 40" buttonText=""
                connectedEdges="0" needsCallback="1" radioGroupId="0" keepProportions="1"

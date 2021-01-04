@@ -6,7 +6,12 @@
 #pragma once
 #include "JuceHeader.h"
 
-class Midi_Keyboard_Ex : public MidiKeyboardComponent {
+// XXX(jpc) a hack so we don't need to link the whole `juce_audio_utils`
+namespace ex {
+#include <juce_audio_utils/gui/juce_MidiKeyboardComponent.h>
+}
+
+class Midi_Keyboard_Ex : public ex::juce::MidiKeyboardComponent {
 public:
     Midi_Keyboard_Ex(MidiKeyboardState &state, Orientation orientation);
     void highlight_note(unsigned note, unsigned velocity);

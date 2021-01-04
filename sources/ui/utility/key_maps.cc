@@ -19,7 +19,7 @@ const std::array<const char32_t *, 3> key_layout_maps {
     U"wsxdcvgbhnj,aéz\"er(t-yèuiçoàp",
 };
 
-Key_Layout set_key_layout(MidiKeyboardComponent &kb, Key_Layout layout, Configuration &conf)
+Key_Layout set_key_layout(Midi_Keyboard_Ex &kb, Key_Layout layout, Configuration &conf)
 {
     kb.clearKeyMappings();
 
@@ -30,7 +30,7 @@ Key_Layout set_key_layout(MidiKeyboardComponent &kb, Key_Layout layout, Configur
     return layout;
 }
 
-Key_Layout load_key_configuration(MidiKeyboardComponent &kb, Configuration &conf)
+Key_Layout load_key_configuration(Midi_Keyboard_Ex &kb, Configuration &conf)
 {
     const char *layout_name = conf.get_string("piano", "layout", key_layout_names[0]);
     Key_Layout layout = key_layout_of_name(layout_name);

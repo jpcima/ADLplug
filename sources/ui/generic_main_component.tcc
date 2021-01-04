@@ -1218,7 +1218,7 @@ void Generic_Main_Component<T>::save_single_instrument(uint32_t program, const F
 template <class T>
 void Generic_Main_Component<T>::handle_change_keymap()
 {
-    MidiKeyboardComponent &kb = *self()->midi_kb;
+    Midi_Keyboard_Ex &kb = *self()->midi_kb;
     PopupMenu menu;
     build_key_layout_menu(menu, last_key_layout_);
     int selection = menu.showMenu(PopupMenu::Options()
@@ -1231,7 +1231,7 @@ void Generic_Main_Component<T>::handle_change_keymap()
 template <class T>
 void Generic_Main_Component<T>::handle_change_octave(int diff)
 {
-    MidiKeyboardComponent &kb = *self()->midi_kb;
+    Midi_Keyboard_Ex &kb = *self()->midi_kb;
     int octave = midi_kb_octave_ + diff;
     octave = (octave < 0) ? 0 : octave;
     octave = (octave > 10) ? 10 : octave;
