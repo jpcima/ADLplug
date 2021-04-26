@@ -34,9 +34,9 @@ private:
         Custom_Tooltip_Entry()
             {}
         Custom_Tooltip_Entry(Custom_Tooltip_Entry &&other)
-            : component(other.component) {}
+            : component(std::move(other.component)) {}
         Custom_Tooltip_Entry &operator=(Custom_Tooltip_Entry &&other)
-            { return component = other.component, *this; }
+            { component = std::move(other.component); return *this; }
         OptionalScopedPointer<Component> component;
         JUCE_DECLARE_NON_COPYABLE(Custom_Tooltip_Entry)
     };

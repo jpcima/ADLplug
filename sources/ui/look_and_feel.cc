@@ -29,7 +29,7 @@ RESOURCE(Res, Serif_Regular)
 void Custom_Look_And_Feel::add_custom_tooltip(const String &key, Component *component, bool owned)
 {
     OptionalScopedPointer<Component> ptr(component, owned);
-    custom_tooltips_[key].component = ptr;
+    custom_tooltips_[key].component = std::move(ptr);
 }
 
 //==============================================================================
