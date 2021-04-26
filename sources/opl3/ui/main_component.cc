@@ -715,7 +715,7 @@ Main_Component::Main_Component (AdlplugAudioProcessor &proc, Parameter_Block &pb
     lbl_mastervol->setBounds (468, 102, 44, 22);
 
     lbl_info.reset (new Label ("new label",
-                               TRANS("OPL Ready!")));
+                               TRANS("OPL Ready")));
     addAndMakeVisible (lbl_info.get());
     lbl_info->setFont (Font (Font::getDefaultMonospacedFontName(), 15.0f, Font::plain));
     lbl_info->setJustificationType (Justification::centred);
@@ -1987,7 +1987,7 @@ BEGIN_JUCER_METADATA
          italic="0" justification="34"/>
   <LABEL name="new label" id="d7c1d56634e337b7" memberName="lbl_info"
          virtualName="" explicitFocusOrder="0" pos="16 474 264 36" textCol="fff0f8ff"
-         edTextCol="ff000000" edBkgCol="0" labelText="OPL Ready!" editableSingleClick="0"
+         edTextCol="ff000000" edBkgCol="0" labelText="OPL Ready" editableSingleClick="0"
          editableDoubleClick="0" focusDiscardsChanges="0" fontname="Default monospaced font"
          fontsize="15.0" kerning="0.0" bold="0" italic="0" justification="36"/>
 </JUCER_COMPONENT>
