@@ -19,7 +19,7 @@ include(ADLMIDI)
 
 include(SystemOption)
 system_option(ADLplug_VST2 "Build VST2" ON)
-system_option(ADLplug_VST3 "Build VST3" OFF "Windows" ON "Darwin" ON)
+system_option(ADLplug_VST3 "Build VST3" OFF)
 system_option(ADLplug_LV2 "Build LV2" ON "Windows" OFF "Darwin" OFF)
 system_option(ADLplug_AU "Build AU" OFF "Darwin" ON)
 system_option(ADLplug_Standalone "Build Standalone" ON)
