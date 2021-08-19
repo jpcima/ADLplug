@@ -1,18 +1,17 @@
 diff --git a/modules/juce_core/native/juce_win32_ComSmartPtr.h b/modules/juce_core/native/juce_win32_ComSmartPtr.h
-index 29b455d2c..6a8b72926 100644
+index 3c06d6d41..83902482f 100644
 --- a/modules/juce_core/native/juce_win32_ComSmartPtr.h
 +++ b/modules/juce_core/native/juce_win32_ComSmartPtr.h
-@@ -22,23 +22,20 @@
- 
+@@ -23,22 +23,20 @@
  namespace juce
  {
--
+ 
 -#if JUCE_MINGW || (! (defined (_MSC_VER) || defined (__uuidof)))
 - #ifdef __uuidof
 -  #undef __uuidof
 - #endif
 -
-- template<typename Type> struct UUIDGetter { static CLSID get() { jassertfalse; return {}; } };
+- template <typename Type> struct UUIDGetter { static CLSID get() { jassertfalse; return {}; } };
 - #define __uuidof(x)  UUIDGetter<x>::get()
 -
 - template <>
@@ -22,7 +21,7 @@ index 29b455d2c..6a8b72926 100644
 - };
 -
 - #define JUCE_DECLARE_UUID_GETTER(name, uuid) \
--    template<> struct UUIDGetter<name> { static CLSID get()  { return uuidFromString (uuid); } };
+-    template <> struct UUIDGetter<name> { static CLSID get()  { return uuidFromString (uuid); } };
 +#if JUCE_MINGW
 +    template <class T> const GUID& juce_uuidof();
 +}
@@ -41,12 +40,12 @@ index 29b455d2c..6a8b72926 100644
   #define JUCE_COMCLASS(name, guid) \
      struct name; \
 diff --git a/modules/juce_graphics/juce_graphics.cpp b/modules/juce_graphics/juce_graphics.cpp
-index 2dcbc5e8b..6989fcfd2 100644
+index 4b2bd3217..092231e55 100644
 --- a/modules/juce_graphics/juce_graphics.cpp
 +++ b/modules/juce_graphics/juce_graphics.cpp
-@@ -52,11 +52,6 @@
-   #pragma warning (disable : 4458)
-  #endif
+@@ -48,11 +48,6 @@
+   // get rid of some warnings in Window's own headers
+  JUCE_BEGIN_IGNORE_WARNINGS_MSVC (4458)
  
 - #if JUCE_MINGW && JUCE_USE_DIRECTWRITE
 -  #warning "DirectWrite not currently implemented with mingw..."
