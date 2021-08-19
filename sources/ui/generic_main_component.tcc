@@ -692,8 +692,11 @@ void Generic_Main_Component<T>::midi_keys_update()
     AdlplugAudioProcessor &proc = *proc_;
     Midi_Keyboard_Ex &kb = *self()->midi_kb;
     unsigned midichannel = midichannel_;
-    for (unsigned note = 0; note < 128; ++note)
-        kb.highlight_note(note, proc.midi_channel_note_active(midichannel, note) ? 127 : 0);
+    for (unsigned note = 0; note < 128; ++note) {
+        bool note_active = proc.midi_channel_note_active(midichannel, note);
+        unsigned velocity = note_active ? 127 : 0;
+        kb.highlight_note(note, velocity);
+    }
 }
 
 template <class T>

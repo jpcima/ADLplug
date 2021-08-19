@@ -40,6 +40,12 @@ void Midi_Keyboard_Ex::designate_note(int note)
 static constexpr int gray_min = 0xa0;
 static constexpr int gray_max = 0xa0;
 
+void Midi_Keyboard_Ex::colourChanged()
+{
+    if (!block_colour_changed_callback_)
+        MidiKeyboardComponent::colourChanged();
+}
+
 void Midi_Keyboard_Ex::drawWhiteNote(int note, Graphics &g, Rectangle<float> area, bool is_down, bool is_over, Colour line_colour, Colour text_colour)
 {
     jassert(note >= 0 && note < 128);
@@ -51,13 +57,18 @@ void Midi_Keyboard_Ex::drawWhiteNote(int note, Graphics &g, Rectangle<float> are
         orig_colour = findColour(keyDownOverlayColourId);
         float velocity = (hl - 1) * (1 / 126.0f);
         int cc = (int)(gray_min + velocity * (gray_max - gray_min));
+        block_colour_changed_callback_ = true;
         setColour(keyDownOverlayColourId, Colour(cc, cc, cc));
+        block_colour_changed_callback_ = false;
     }
 
     MidiKeyboardComponent::drawWhiteNote(note, g, area, is_down || hl > 0, is_over, line_colour, text_colour);
 
-    if (hl > 0)
+    if (hl > 0) {
+        block_colour_changed_callback_ = true;
         setColour(keyDownOverlayColourId, orig_colour);
+        block_colour_changed_callback_ = false;
+    }
 
     if (note == designated_note_) {
         float w = area.getWidth();
@@ -78,13 +89,18 @@ void Midi_Keyboard_Ex::drawBlackNote(int note, Graphics &g, Rectangle<float> are
         orig_colour = findColour(keyDownOverlayColourId);
         float velocity = (hl - 1) * (1 / 126.0f);
         int cc = (int)(gray_min + velocity * (gray_max - gray_min));
+        block_colour_changed_callback_ = true;
         setColour(keyDownOverlayColourId, Colour(cc, cc, cc));
+        block_colour_changed_callback_ = false;
     }
 
     MidiKeyboardComponent::drawBlackNote(note, g, area, is_down || hl > 0, is_over, note_fill_colour);
 
-    if (hl > 0)
+    if (hl > 0) {
+        block_colour_changed_callback_ = true;
         setColour(keyDownOverlayColourId, orig_colour);
+        block_colour_changed_callback_ = false;
+    }
 
     if (note == designated_note_) {
         float w = area.getWidth();
