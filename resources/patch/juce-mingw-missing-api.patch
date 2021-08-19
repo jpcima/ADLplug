@@ -1,0 +1,16 @@
+diff --git a/modules/juce_gui_basics/juce_gui_basics.cpp b/modules/juce_gui_basics/juce_gui_basics.cpp
+index 12a815f6b..e805b49dd 100644
+--- a/modules/juce_gui_basics/juce_gui_basics.cpp
++++ b/modules/juce_gui_basics/juce_gui_basics.cpp
+@@ -88,6 +88,11 @@
+    #pragma comment (lib, "D2d1.lib")
+   #endif
+  #endif
++
++ #if JUCE_MINGW
++   // NOTE(jpc): Windows API which might be missing from system headers
++   LWSTDAPI IUnknown_GetWindow(IUnknown* unk, HWND* phwnd);
++ #endif
+ #endif
+ 
+ #include <set>

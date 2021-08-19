@@ -37,6 +37,7 @@ install:
   #- patch -d thirdparty/JUCE -p1 -i "`pwd`"/resources/patch/juce-x11-badwindow.patch
   - patch -d thirdparty/JUCE -p1 -i "`pwd`"/resources/patch/juce-win32-lmms-workaround.patch
   #- patch -d thirdparty/JUCE -p1 -i "`pwd`"/resources/patch/juce-gcc9.patch
+  - patch -d thirdparty/JUCE -p1 -i "`pwd`"/resources/patch/juce-mingw-missing-api.patch
   - getfile download/asiosdk2.3.zip 4ed6c150dcc1ee55d4ae32dfabad306547e9f15d http://jpcima.sdf1.org/files/asiosdk2.3.zip
   - getfile download/vst_sdk2_4_rev2.zip d7f3668c90a69dbe640f2eeed6fc0a7e0717adff http://jpcima.sdf1.org/files/vst_sdk2_4_rev2.zip
   - unzip -q -d thirdparty download/asiosdk2.3.zip
