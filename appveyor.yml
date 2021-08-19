@@ -14,10 +14,10 @@ cache:
 environment:
   matrix:
     - build_type: source
-    - build_type: librazik
-    - build_type: macos
     - build_type: mingw32
     - build_type: mingw64
+    - build_type: macos
+    - build_type: librazik
   GIT_PUBKEY:
     secure: v1Kq8OUJsWKW5gn4AXi0FCKOuYG1XK9nlkpux50M2JIrv2v5t/V8EhQOr6SxDsdKZuhcbT+9ZG85TvIEyYmlR9JLs+O06o4oHLzMKmY9+G/HkNpVAnXTwcksz+2vi+BXisvY6Hll7cVuJMOaieP1b7dZ+fF6zjFzhEZ+WhPV3bkzUrOXdfgFl2wz4J6yXLxDaqLCj3A/gmC8dRV4aFDYRcWc1idbmofgNZFaO/1gLxpflA3YbXJSoXIA9+4RNRz0kzlKXg/Wufkh1BLYHBqF80iFO2iBd1o+yehdpIaJtOcEhdmKAUtmwP8+IBsFFJmJotP6lDiO8SO6U6w/yPUplySXspZiv6Spey34Pt5+KbiGI/u1WmM40twE3ohYp8WgpbznKmJwKk+YnqEZimc3IkfnYpk5Eiy/rZo57w2c0/PZXMyyzf8WVuk64X4Jda1hkHNhV9WvSQFXjRCTJIUl6zQeNDjYWCH909pyhlUsPPPguZZolh0KFweD9VZMktGWmdhEAmmOSfFsRFP5yTuhGsODwuLnHhhZu++YO4pYhhweKPXAhORO1ElORcNE7rz2wgF1F14Ey0DDKyonJtLxHqQR1gfTrVJPBRAA8O5xPLwJAmR3VQB01jVMPgI7ZV7cnQWBr63z3VNe4nw+l7r7A381ehcRwP/TC81jhFMdl/HcnCH0lCT11EoPjCbQxeQb
   GIT_PRIVKEY:
