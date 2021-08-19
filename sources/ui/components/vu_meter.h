@@ -21,14 +21,19 @@ public:
     void set_logarithmic(bool logarithmic);
 
     void set_hue(double start, double range);
+    void set_num_stops(unsigned num_stops);
 
 protected:
     void paint(Graphics &g) override;
+
+private:
+    void update_gradient();
 
 private:
     double value_ = 1.0;
     bool logarithmic_ = false;
     double hue_start_ = 0.0;
     double hue_range_ = 0.0;
-    std::vector<Colour> colormap_;
+    unsigned num_stops_ = 10;
+    ColourGradient gradient_;
 };
