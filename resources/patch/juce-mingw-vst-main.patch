@@ -1,0 +1,13 @@
+diff --git a/modules/juce_audio_plugin_client/VST/juce_VST_Wrapper.cpp b/modules/juce_audio_plugin_client/VST/juce_VST_Wrapper.cpp
+index b7e9c7ca4..03f039bb4 100644
+--- a/modules/juce_audio_plugin_client/VST/juce_VST_Wrapper.cpp
++++ b/modules/juce_audio_plugin_client/VST/juce_VST_Wrapper.cpp
+@@ -2223,7 +2223,7 @@ namespace
+         return pluginEntryPoint (audioMaster);
+     }
+ 
+-   #if ! defined (JUCE_64BIT) && JUCE_MSVC // (can't compile this on win64, but it's not needed anyway with VST2.4)
++   #if ! defined (JUCE_64BIT) && JUCE_WINDOWS // (can't compile this on win64, but it's not needed anyway with VST2.4)
+     extern "C" __declspec (dllexport) int main (Vst2::VstHostCallback audioMaster)
+     {
+         PluginHostType::jucePlugInClientCurrentWrapperType = AudioProcessor::wrapperType_VST;
