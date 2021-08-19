@@ -123,7 +123,7 @@ void Generic_Main_Component<T>::setup_generic_components()
     create_image_overlay(*self()->btn_keymap, ImageCache::getFromMemory(Res::emoji_u2328.data, Res::emoji_u2328.size), 0.7f);
 
     vu_timer_.reset(Functional_Timer::create([this]() { vu_update(); }));
-    vu_timer_->startTimer(10);
+    vu_timer_->startTimer(30);
 
     cpu_load_timer_.reset(Functional_Timer::create([this]() { cpu_load_update(); }));
     cpu_load_timer_->startTimer(500);
