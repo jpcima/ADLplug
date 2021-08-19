@@ -72,45 +72,6 @@ for:
   -
     matrix:
       only:
-        - build_type: librazik
-    build_script:
-      - rm -rf thirdparty/vstsdk2.4
-      - docker pull jpcima/librazik
-      - container=$(docker run -d -i -v /home:/home jpcima/librazik /bin/bash)
-      - cross() { docker exec -w "$(pwd)" -i "$container" "$@"; }
-      - build() { mkdir -p "$1"; cd "$1"; shift; cross cmake -G "Unix Makefiles" "$@" ..; cross make -j2; cd ..; }
-      - build ADLplug-dev-lzk -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPL3 -DADLplug_PCH=ON -DADLplug_LV2=ON
-      - build OPNplug-dev-lzk -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPN2 -DADLplug_PCH=ON -DADLplug_LV2=ON
-      - package() { cd "$1"; cross cpack -G DEB; mv ./*.deb ..; cd ..; }
-      - package ADLplug-dev-lzk
-      - package OPNplug-dev-lzk
-    artifacts:
-      - path: adlplug_amd64.deb
-        name: 'ADLplug for 64-bit LibraZiK-2 / Debian Stretch'
-      - path: opnplug_amd64.deb
-        name: 'OPNplug for 64-bit LibraZiK-2 / Debian Stretch'
-  -
-    matrix:
-      only:
-        - build_type: macos
-    build_script:
-      - docker pull jpcima/osxcross
-      - container=$(docker run -d -i -v /home:/home jpcima/osxcross /bin/bash)
-      - cross() { docker exec -w "$(pwd)" -e PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/osxcross/target/bin" -i "$container" "$@"; }
-      - build() { mkdir -p "$1"; cd "$1"; shift; cross x86_64-apple-darwin15-cmake -G "Unix Makefiles" -DCMAKE_OSX_ARCHITECTURES="x86_64;i386" "$@" ..; cross make -j2; cd ..; }
-      - package() { 7zr a "$1".7z "$1"/{lv2,vst2,au,standalone}; }
-      - build ADLplug-dev-mac -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPL3 -DADLplug_LV2=ON -DADLplug_AU=ON
-      - build OPNplug-dev-mac -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPN2 -DADLplug_LV2=ON -DADLplug_AU=ON
-      - package ADLplug-dev-mac
-      - package OPNplug-dev-mac
-    artifacts:
-      - path: ADLplug-dev-mac.7z
-        name: 'ADLplug for macOS'
-      - path: OPNplug-dev-mac.7z
-        name: 'OPNplug for macOS'
-  -
-    matrix:
-      only:
         - build_type: mingw32
     build_script:
       - docker pull jpcima/mingw
@@ -146,6 +107,45 @@ for:
         name: 'ADLplug for 64-bit Windows'
       - path: OPNplug-dev-win64.7z
         name: 'OPNplug for 64-bit Windows'
+  -
+    matrix:
+      only:
+        - build_type: macos
+    build_script:
+      - docker pull jpcima/osxcross
+      - container=$(docker run -d -i -v /home:/home jpcima/osxcross /bin/bash)
+      - cross() { docker exec -w "$(pwd)" -e PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/osxcross/target/bin" -i "$container" "$@"; }
+      - build() { mkdir -p "$1"; cd "$1"; shift; cross x86_64-apple-darwin15-cmake -G "Unix Makefiles" -DCMAKE_OSX_ARCHITECTURES="x86_64;i386" "$@" ..; cross make -j2; cd ..; }
+      - package() { 7zr a "$1".7z "$1"/{lv2,vst2,au,standalone}; }
+      - build ADLplug-dev-mac -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPL3 -DADLplug_LV2=ON -DADLplug_AU=ON
+      - build OPNplug-dev-mac -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPN2 -DADLplug_LV2=ON -DADLplug_AU=ON
+      - package ADLplug-dev-mac
+      - package OPNplug-dev-mac
+    artifacts:
+      - path: ADLplug-dev-mac.7z
+        name: 'ADLplug for macOS'
+      - path: OPNplug-dev-mac.7z
+        name: 'OPNplug for macOS'
+  -
+    matrix:
+      only:
+        - build_type: librazik
+    build_script:
+      - rm -rf thirdparty/vstsdk2.4
+      - docker pull jpcima/librazik
+      - container=$(docker run -d -i -v /home:/home jpcima/librazik /bin/bash)
+      - cross() { docker exec -w "$(pwd)" -i "$container" "$@"; }
+      - build() { mkdir -p "$1"; cd "$1"; shift; cross cmake -G "Unix Makefiles" "$@" ..; cross make -j2; cd ..; }
+      - build ADLplug-dev-lzk -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPL3 -DADLplug_PCH=ON -DADLplug_LV2=ON
+      - build OPNplug-dev-lzk -DCMAKE_BUILD_TYPE=Release -DADLplug_CHIP=OPN2 -DADLplug_PCH=ON -DADLplug_LV2=ON
+      - package() { cd "$1"; cross cpack -G DEB; mv ./*.deb ..; cd ..; }
+      - package ADLplug-dev-lzk
+      - package OPNplug-dev-lzk
+    artifacts:
+      - path: adlplug_amd64.deb
+        name: 'ADLplug for 64-bit LibraZiK-2 / Debian Stretch'
+      - path: opnplug_amd64.deb
+        name: 'OPNplug for 64-bit LibraZiK-2 / Debian Stretch'
 
 deploy:
   - release: latest
