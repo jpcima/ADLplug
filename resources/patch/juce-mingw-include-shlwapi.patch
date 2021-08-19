@@ -1,0 +1,12 @@
+diff --git a/modules/juce_gui_basics/juce_gui_basics.cpp b/modules/juce_gui_basics/juce_gui_basics.cpp
+index 12a815f6b..83bce2ed2 100644
+--- a/modules/juce_gui_basics/juce_gui_basics.cpp
++++ b/modules/juce_gui_basics/juce_gui_basics.cpp
+@@ -66,6 +66,7 @@
+  #include <windowsx.h>
+  #include <vfw.h>
+  #include <commdlg.h>
++ #include <shlwapi.h>
+ 
+  #if JUCE_WEB_BROWSER
+   #include <exdisp.h>
