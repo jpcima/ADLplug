@@ -27,6 +27,7 @@ macro(target_link_static_threads TARGET)
     # use a statically link winpthread
     target_link_libraries("${TARGET}" PRIVATE "-Wl,-Bstatic,--whole-archive -lwinpthread -Wl,--no-whole-archive,-Bdynamic")
   else()
+    set(THREADS_PREFER_PTHREAD_FLAG TRUE)
     find_package(Threads REQUIRED)
     target_link_libraries("${TARGET}" PRIVATE ${CMAKE_THREAD_LIBS_INIT})
   endif()
