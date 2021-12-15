@@ -802,8 +802,10 @@ void AdlplugAudioProcessor::getStateInformation(MemoryBlock &data)
     std::lock_guard<std::mutex> lock(player_lock_);
 
     Player *pl = player_.get();
-    if (!pl)
+    if (!pl) {
+        data = last_state_information_;
         return;
+    }
 
     const Parameter_Block &pb = *parameter_block_;
     const Bank_Manager &bm = *bank_manager_;
