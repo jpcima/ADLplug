@@ -93,6 +93,12 @@ sudo cmake --build . --target install
 
 ### Change Log
 
+**dev**
+
+- Fixed state reloading under certain plugin hosts
+- Linked to pthread on platforms where relevant
+- Fixed the user interface using 100% CPU on Windows
+
 **1.0.2**
 
 - English translation of the user manual by Bruce Sutherland
