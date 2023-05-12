@@ -126,7 +126,7 @@ add_library(ADLplug_core STATIC EXCLUDE_FROM_ALL
 target_include_directories(ADLplug_core PUBLIC "sources" "${JUCE_PROJECT_DIR}/JuceLibraryCode")
 target_link_libraries(ADLplug_core PUBLIC
   juce_core juce_events juce_data_structures
-  juce_audio_basics juce_audio_processors
+  juce_audio_basics juce_audio_utils juce_audio_processors
   juce_graphics juce_gui_basics juce_gui_extra
   ADLMIDI_static)
 set_property(TARGET ADLplug_core
