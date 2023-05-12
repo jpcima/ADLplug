@@ -5,11 +5,6 @@
 
 #include "midi_keyboard_ex.h"
 
-// XXX(jpc) a hack so we don't need to link the whole `juce_audio_utils`
-namespace ex {
-#include <juce_audio_utils/gui/juce_MidiKeyboardComponent.cpp>
-}
-
 Midi_Keyboard_Ex::Midi_Keyboard_Ex(MidiKeyboardState &state, Orientation orientation)
     : MidiKeyboardComponent(state, orientation),
       designated_note_color_((uint8_t)245, 0, 41, 0.5f)
